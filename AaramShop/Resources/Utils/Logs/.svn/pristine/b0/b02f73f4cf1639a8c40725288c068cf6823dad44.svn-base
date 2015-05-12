@@ -1,0 +1,174 @@
+//========================================================================================
+//	
+//	$HeadURL$
+//	$Revision$
+//	$Date$
+//	$Author$
+//	
+//	Creator: Aman Alam
+//	Created: 14-Jul-2011
+//	Copyright: 2011-2012 Redfive. All rights reserved.
+//	
+//	Description:
+//========================================================================================
+
+#import "Red5Log.h"
+#define STR_LOGFILEPATH @"~//Library//Logs//DebuggingLogs.txt"
+
+NSLock *gLogLock;  //Lock used to sync log writing by many threads.
+
+NSFileHandle *gLogFileH = nil;
+int gLogLevel = 0
+		| eLLErrors
+		| eLLDebugInfo
+		| eLLParsing
+		| eLLEverything
+		;
+
+int gLogArea =	//Note: bitwise OR operator is used here
+			eLANone
+			//| eLAObjRefCount			//Object allocation counting for leaks.
+			//| eLANotification			//Message broadcasting
+			//| eLAArticle				//Server object
+			//| eLAEdition		//Server object
+			| eLAServerObj			//eLAArticle | eLAEdition | eLASpecialist | eLAVideo | eLANote
+
+			//| eLALocalData			//Locally persisted data
+			//| eLAReqResp				//Request creation, handling response
+			//| eLAWS						//Processing request - sending over network
+			//| eLAWSRespParsing		//Processing response to create objects from xml
+			//| eLARed5Id					//wrapper to store ID
+
+			//| eLAArticleList				//Article list
+			//| eLAEditionList		//Article Category list
+
+			//| eLAAppController		//Application controller, app delegate
+			//| eLAConfigController		//Config data controller
+			//| eLADataController		//Model data controller
+			
+			//| eLAServerObjMgr			//Server object managers
+
+			| eLAUI						//General UI
+			//| eLATable					//Table Controllers
+			//| eLATableCell				//Table Cells
+		//	| eLAZoomingScroll			//Zooming scroll view
+			//| eLAPhotoBrowser			//Editorial view 
+           // | eLAXmlParsing			//XmlParsing 
+
+			//| eLATestWS				//Testing WS.
+
+			//| eLAAll
+			;
+
+#pragma mark -
+// inFormat is NSString with variables to print
+void
+Red5Log(
+	enLogLevels				inLogLevel,
+	enLogAreas				inLogArea,
+	NSString *				inFormat,
+	...)
+{
+	if( ((inLogLevel == eLLEverything) || (inLogLevel & gLogLevel) )
+		&& ((inLogArea == eLAAll) || (inLogArea & gLogArea) ) )
+	{
+		va_list argList;
+		va_start(argList, inFormat);
+		NSLog(inFormat, argList);
+		va_end(argList);
+	}
+}
+
+#pragma mark -
+//This function is used to log the messages on the console.
+//	Usually it is not called directly, use APLogs macro to call this function */
+//----------------------------------------------------------------------------------------------------------------
+void
+Red5LogEx(
+	enLogLevels				inLogLevel,
+	enLogAreas				inLogArea,
+	const char *			inFilePath,
+	const char *			inFunctionName,
+	int						inLineNumber,
+	NSString *				inFormat,
+	...)
+{
+	if( !gLogLock )
+		gLogLock = [[NSLock alloc] init];
+	[gLogLock lock];
+	
+	@try {
+	if( ((inLogLevel == eLLEverything) || (inLogLevel & gLogLevel) )
+	 && ((inLogArea == eLAAll) || (inLogArea & gLogArea) ) )
+	{
+		va_list argList;
+		va_start(argList, inFormat);
+		
+		NSString * strToPrint = [[NSString alloc] initWithFormat:inFormat arguments: argList];
+		va_end(argList);
+		
+#define LOGSTYLE 3	//Choose any one of the following NSLog statements.
+#define PRINTSTYLE LOGSTYLE
+
+#if LOGSTYLE == 1 || PRINTSTYLE == 1
+		NSString* theFileName =[[NSString alloc] initWithBytes: inFilePath  length:strlen(inFilePath) encoding:NSUTF8StringEncoding];
+#endif
+		
+#if LOGSTYLE == 1	//Prints the file name
+		NSLog(@"%s:%s:%d %@",[[theFileName lastPathComponent] UTF8String], inFunctionName, inLineNumber, strToPrint);
+#elif LOGSTYLE == 2	//Prints the complete file path
+		NSLog(@"%s:%s:%d %@", inFilePath, inFunctionName, inLineNumber, strToPrint);
+#elif LOGSTYLE == 3	//Prints the function name only, in objc, message consists of class name and function name both, so we
+					//don't need the file name, as it is mostly the class name.
+		NSLog(@"%s:%d\n%@",  inFunctionName, inLineNumber, strToPrint);
+#elif LOGSTYLE == 4	//Print without function name
+		NSLog(@"%s:%d %@", inFilePath, inLineNumber, strToPrint);
+#endif
+				
+
+#if PRINTSTYLE == 1
+		NSString *logStr = [NSString stringWithFormat: @"%s:%s:%d %@",[[theFileName lastPathComponent] UTF8String], inFunctionName, inLineNumber, print];
+#elif PRINTSTYLE == 2
+		NSString *logStr = [NSString stringWithFormat: @"%s:%s:%d\n%@\n", inFilePath, inFunctionName, inLineNumber, strToPrint];
+#elif PRINTSTYLE == 3	
+		NSString *logStr = [NSString stringWithFormat: @"%s:%d\t%@\n",  inFunctionName, inLineNumber, strToPrint];
+#elif PRINTSTYLE == 4
+		NSString *logStr = [NSString stringWithFormat: @"%s:%d %@", inFilePath, inLineNumber, strToPrint];
+#endif
+
+		// Log to the file as well 
+		if(!gLogFileH && logStr)
+		{
+			NSString *logFilePath = [STR_LOGFILEPATH stringByExpandingTildeInPath];
+			NSLog( @"%@", logFilePath);
+			NSString *logDirPath = [@"~//Library//Logs" stringByExpandingTildeInPath];
+			[[NSFileManager defaultManager] createDirectoryAtPath :logDirPath withIntermediateDirectories: YES attributes:nil error:nil];
+			[[NSFileManager defaultManager] createFileAtPath: logFilePath contents: nil attributes: nil];			
+			gLogFileH = [[NSFileHandle fileHandleForWritingAtPath: logFilePath] retain];		
+		}
+		if(gLogFileH && (0 < [logStr length]))
+		{
+			NSData * dataToWrite = [logStr dataUsingEncoding: NSUTF8StringEncoding allowLossyConversion: YES]; 
+			if( dataToWrite )
+				[gLogFileH writeData: dataToWrite];
+			[gLogFileH synchronizeFile];
+		}
+
+		
+		if(strToPrint)
+		{
+			[strToPrint release];
+			strToPrint = nil;
+		}
+		
+#if LOGSTYLE == 1 || PRINTSTYLE == 1
+		if( theFileName )
+			[theFileName release];
+#endif
+	}
+	}//Try
+	@catch(...)
+	{
+	}
+	[gLogLock unlock];
+}

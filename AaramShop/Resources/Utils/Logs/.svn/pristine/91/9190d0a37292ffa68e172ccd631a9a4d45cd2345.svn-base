@@ -1,0 +1,29 @@
+//========================================================================================
+//	
+//	$HeadURL$
+//	$Revision$
+//	$Date$
+//	$Author$
+//	
+//	Creator: Raj Kumar Sehrawat
+//	Created: 26-Jul-2011
+//	Copyright: 2011-2012 Redfive. All rights reserved.
+//	
+//	Description:
+//========================================================================================
+
+#import "Red5Log+.h"
+
+void
+Red5LogRect_(
+	enLogLevels				inLogLevel,
+	enLogAreas				inLogArea,
+	const CGRect 			inRect,
+	const char *			inFilePath,
+	const char *			inFunctionName,
+	int						inLineNumber
+	)
+{
+	Red5LogEx( inLogLevel, inLogArea, inFilePath, inFunctionName, inLineNumber, @" x = %f, y = %f, width = %f, height = %f",
+	   inRect.origin.x, inRect.origin.y, inRect.size.width, inRect.size.height );
+}

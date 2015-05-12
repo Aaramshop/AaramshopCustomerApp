@@ -1,0 +1,46 @@
+//========================================================================================
+//	
+//	$HeadURL$
+//	$Revision$
+//	$Date$
+//	$Author$
+//	
+//	Creator: Raj Kumar Sehrawat
+//	Created: 26-Jul-2011
+//	Copyright: 2011-2012 Redfive. All rights reserved.
+//	
+//	Description:
+//========================================================================================
+
+#ifndef __Red5Log__H__
+#define __Red5Log__H__
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+void		Red5LogRect_(
+				enLogLevels				inLogLevel,
+				enLogAreas				inLogArea,
+				const CGRect 			inRect,
+				const char *			inFilePath,
+				const char *			inFunctionName,
+				int						inLineNumber );
+					  
+#ifdef __cplusplus
+}
+#endif
+
+#ifdef DEBUG // 1	//Enable logs
+
+#define Red5LogRect( l, a, s )	\
+			Red5LogRect_(l, a, s, __FILE__, __FUNCTION__, __LINE__ ); 
+
+#else
+
+#define Red5LogRect( l, a, s )
+
+#endif
+
+
+#endif	//__Red5Log__H__

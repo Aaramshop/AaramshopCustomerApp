@@ -1,0 +1,97 @@
+//========================================================================================
+//	
+//	$HeadURL$
+//	$Revision$
+//	$Date$
+//	$Author$
+//	
+//	Creator: Aman Alam
+//	Created: 14-Jul-2011
+//	Copyright: 2011-2012 Redfive. All rights reserved.
+//	
+//	Description:
+//========================================================================================
+
+#ifndef __Red5Log_H__
+#define __Red5Log_H__
+
+typedef enum
+{
+	eLLErrors		= 1 << 0,
+	eLLDebugInfo	= 1 << 1,
+	eLLParsing		= 1 << 2,
+	eLLEverything	= 0xFFFFFFFF
+} enLogLevels;
+
+
+typedef enum
+{
+	eLANone				= 0,
+	eLAObjRefCount		= 1 << 0,	//Object allocation counting for leaks.
+	eLANotification		= 1 << 1,	//Message broadcasting
+	eLAArticle			= 1 << 2,	//Server object report
+	eLAEdition			= 1 << 3,	//Server object report category
+	
+	eLALocalData		= 1 << 7,	//Locally persisted data
+	eLAReqResp			= 1 << 8,	//Request creation, handling response
+	eLAWS				= 1 << 9,	//Processing request - sending over network,
+	eLAWSRespParsing	= 1 << 10,	//Processing response to create objects from xml
+	eLARed5Id				= 1 << 11,	//wrapper to store ID
+	
+	eLAArticleList		= 1 << 15,	//Article list
+	eLAEditionList		= 1 << 16,	//Article Category list
+	
+	eLAAppController	= 1 << 20,	//Application controller, app delegate
+	eLAConfigController	= 1 << 21,	//Config data controller
+	eLADataController	= 1 << 22,	//Model data controller
+	
+	eLAServerObjMgr		= 1 << 20,	//Server object managers
+	
+	eLAUI				= 1 << 25,	//General UI
+	eLATable			= 1 << 26,	//Table Controllers
+	eLATableCell		= 1 << 27,	//Table Cells
+	eLAZoomingScroll	= 1 << 28,	//Zooming scroll view
+	eLAPhotoBrowser		= 1 << 29,	//Editorial view 
+	
+	eLATestWS			= 1 << 30,	//Testing WS.
+    eLAXmlParsing		= 1 << 31,	//XmlParsing
+	eLAAll				= 0xFFFFFFFF,
+	eLAServerObj		= eLAArticle | eLAEdition
+} enLogAreas;
+
+extern int gLogLevel;
+extern int gLogArea;
+extern NSFileHandle *gLogFileH;
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+void		Red5Log(
+				enLogLevels				inLogLevel,
+				enLogAreas				inLogArea,
+				NSString *				inFormat,
+				...);
+void		Red5LogEx(
+				enLogLevels				inLogLevel,
+				enLogAreas				inLogArea,
+				const char *			inFilePath,
+				const char *			inFunctionName,
+				int						inLineNumber,
+				NSString *				inFormat,
+				...);
+#ifdef __cplusplus
+}
+#endif
+
+#ifdef DEBUG // 1	//Enable logs
+
+#define Red5Logs( l, a, s, ... )	\
+	Red5LogEx(l, a, __FILE__, __FUNCTION__, __LINE__, s, ##__VA_ARGS__ ); 
+#else
+
+#define Red5Logs( l, a, s, ... )			
+
+#endif
+
+#endif
