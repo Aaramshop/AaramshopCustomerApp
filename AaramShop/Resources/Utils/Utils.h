@@ -1,6 +1,8 @@
 
 #import <Foundation/Foundation.h>
 #import "AFHTTPSessionManager.h"
+
+#import "CDRTranslucentSideBar.h"
 @interface ImageOnNavigationBar : UINavigationBar
 {
 	
@@ -93,6 +95,9 @@
 +(NSMutableDictionary *)setPredefindValueForWebservice;
 +(CGSize)getLabelSizeByText:(NSString * )text font:(UIFont *)inFont andConstraintWith:(float)inWidth;
 + (float)getTimeZone;
+
+#pragma mark SideBar
++(CDRTranslucentSideBar*)createLeftBarWithDelegate:(id)delegate;
 @end
 
 

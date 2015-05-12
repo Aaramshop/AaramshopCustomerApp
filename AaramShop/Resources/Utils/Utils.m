@@ -989,4 +989,14 @@
     float timeInterval = interval;
     return timeInterval;
 }
+#pragma mark SideBar
++ (CDRTranslucentSideBar *)createLeftBarWithDelegate:(id)delegate
+{
+    // Create SideBar and Set Properties
+    CDRTranslucentSideBar *sideBar = [[CDRTranslucentSideBar alloc] init];
+    sideBar.sideBarWidth = 220;
+    sideBar.translucentStyle=UIBarStyleDefault;
+    sideBar.delegate = delegate;
+    return sideBar;
+}
 @end
