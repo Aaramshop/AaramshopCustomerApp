@@ -111,7 +111,7 @@
     if (![Utils isInternetAvailable])
     {
         [AppManager stopStatusbarActivityIndicator];
-        [activityVw startAnimating];
+        [activityVw stopAnimating];
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
@@ -120,7 +120,7 @@
           success:^(NSURLSessionDataTask *task, id responseObject)
      {
          [AppManager stopStatusbarActivityIndicator];
-         [activityVw startAnimating];
+         [activityVw stopAnimating];
          NSLog(@"value %@",responseObject);
          if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"OTP Sent!"]) {
              MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
@@ -155,7 +155,7 @@
      {
          NSLog(@"value %@",error);
          [AppManager stopStatusbarActivityIndicator];
-         [activityVw startAnimating];
+         [activityVw stopAnimating];
 
          
          if ([Utils isRequestTimeOut:error])

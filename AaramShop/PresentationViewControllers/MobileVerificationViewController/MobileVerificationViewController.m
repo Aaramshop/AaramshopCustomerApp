@@ -49,6 +49,13 @@
      {
          [AppManager stopStatusbarActivityIndicator];
          NSLog(@"value %@",responseObject);
+         if ([[responseObject objectForKey:kstatus] intValue] == 1) {
+             
+             if ([[responseObject objectForKey:kIsValid] isEqualToString:@"1"]) {
+                 // go to main screen
+             }
+             
+         }
      }
           failure:^(NSURLSessionDataTask *task, NSError *error)
      {
