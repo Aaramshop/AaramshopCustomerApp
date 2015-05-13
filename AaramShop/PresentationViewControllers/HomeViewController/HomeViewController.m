@@ -7,7 +7,7 @@
 //
 
 #import "HomeViewController.h"
-
+#import "LocationEnterViewController.h"
 @interface HomeViewController ()
 
 @end
@@ -19,6 +19,14 @@
     // Do any additional setup after loading the view.
     self.sideBar = [Utils createLeftBarWithDelegate:self];
     [self setNavigationBar];
+    [self showLocationScreen];
+
+}
+-(void)showLocationScreen
+{
+    LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+    //UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:locationScreen];
+    [self presentViewController:locationScreen animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

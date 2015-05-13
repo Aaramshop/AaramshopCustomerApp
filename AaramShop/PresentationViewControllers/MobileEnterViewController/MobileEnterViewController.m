@@ -94,7 +94,14 @@
              mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
              [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
          }
-        // else if (<#expression#>)
+         else if ([[responseObject objectForKey:kstatus]intValue] == 0 &&[[responseObject objectForKey:kIsValid]intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"Mobile No. Already Registered & Verified!"])
+         {
+             [AppManager saveDataToNSUserDefaults:responseObject];
+             [AppManager saveUserDatainUserDefault];
+
+             UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+             [self.navigationController pushViewController:tabBarController animated:YES];
+         }
      }
           failure:^(NSURLSessionDataTask *task, NSError *error)
      {

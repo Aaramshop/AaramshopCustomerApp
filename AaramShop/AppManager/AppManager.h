@@ -33,8 +33,5 @@
 
 
 +(void)removeDataFromNSUserDefaults;
-+(void)callWebserviceToUpdateGeoLocationToServer:(NSDictionary *)aDic;
--(void)uploadRestImageswithDictionary:(NSMutableDictionary *)dict;
--(void)uploadVideowithDictionary:(NSMutableDictionary *)dict;
 @end
 extern AppManager *gAppManager;
