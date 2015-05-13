@@ -47,15 +47,15 @@
  
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface UIImage (ImageEffects)
+@interface UIImageEffects : NSObject
 
-- (UIImage *)applySubtleEffect;
-- (UIImage *)imageByApplyingLightEffectToImage;
-- (UIImage *)imageByApplyingExtraLightEffectToImage;
-- (UIImage *)imageByApplyingDarkEffectToImage;
-- (UIImage *)imageByApplyingTintEffectWithColor:(UIColor *)tintColor;
++ (UIImage*)imageByApplyingLightEffectToImage:(UIImage*)inputImage;
++ (UIImage*)imageByApplyingExtraLightEffectToImage:(UIImage*)inputImage;
++ (UIImage*)imageByApplyingDarkEffectToImage:(UIImage*)inputImage;
++ (UIImage*)imageByApplyingTintEffectWithColor:(UIColor *)tintColor toImage:(UIImage*)inputImage;
+
 //| ----------------------------------------------------------------------------
 //! Applies a blur, tint color, and saturation adjustment to @a inputImage,
 //! optionally within the area specified by @a maskImage.
@@ -76,7 +76,7 @@
 //!         If specified, @a inputImage is only modified in the area(s) defined
 //!         by this mask.  This must be an image mask or it must meet the
 //!         requirements of the mask parameter of CGContextClipToMask.
-- (UIImage *)imageByApplyingBlurToImage:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage;
++ (UIImage*)imageByApplyingBlurToImage:(UIImage*)inputImage withRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage;
 
 @end
 

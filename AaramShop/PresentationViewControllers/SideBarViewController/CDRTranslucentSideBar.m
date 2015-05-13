@@ -239,16 +239,13 @@
     UILabel *lblSeperator = [[UILabel alloc]initWithFrame:CGRectMake(8, secView.frame.size.height - 47, secView.frame.size.width - 16, 2)];
     lblSeperator.backgroundColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:0.40];
     
-    bluredImageView = [[UIImageView alloc] initWithFrame:imgBackground.frame];
-    bluredImageView.autoresizingMask = imgBackground.autoresizingMask;
-    bluredImageView.alpha = 0.0f;
+   
     
     [secView addSubview:imgBackground];
     [secView addSubview:imgProfile];
     
     [secView addSubview:lblSeperator];
-    [secView addSubview:bluredImageView];
-    [self refreshBlurViewForNewImage];
+  
     return secView;
     
 }
@@ -829,21 +826,5 @@
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
     if (callAppearanceMethods) [self endAppearanceTransition];
-}
-- (UIImage *)screenShotOfView:(UIView *)view
-{
-    UIGraphicsBeginImageContextWithOptions(kDefaultHeaderFrame.size, YES, 0.0);
-    [secView drawViewHierarchyInRect:kDefaultHeaderFrame afterScreenUpdates:YES];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
-}
-
-- (void)refreshBlurViewForNewImage
-{
-    UIImage *screenShot = [self screenShotOfView:secView];
-    screenShot = [screenShot imageByApplyingBlurToImage:5 tintColor:[UIColor colorWithWhite:0.6 alpha:0.2] saturationDeltaFactor:1.0 maskImage:nil];
-    bluredImageView.image = screenShot;
 }
 @end
