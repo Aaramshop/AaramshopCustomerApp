@@ -14,7 +14,7 @@
 {
     
     CLLocationManager *locationManager;
-
+    CLGeocoder *geocoder;
 }
 
 

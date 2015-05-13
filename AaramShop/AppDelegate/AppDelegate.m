@@ -38,7 +38,7 @@
         }
     }
     [self registerDeviceForDeviceToken:application];
-  //  [self findCurrentLocation];
+    [self findCurrentLocation];
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
@@ -51,52 +51,52 @@
     return YES;
 }
 -(void)findCurrentLocation
-//{
-//    locationManager=[[CLLocationManager alloc] init];
-//    geocoder = [[CLGeocoder alloc] init];
-//
-//    if ([CLLocationManager locationServicesEnabled])
-//    {
-//        locationManager.delegate = self;
-//        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-//        locationManager.headingFilter = 1;
-//
-//        locationManager.distanceFilter = kCLDistanceFilterNone;//5; // Don't use other value than - 'kCLDistanceFilterNone', else the local notification will not work.
-//        
-//        
-//        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
-//        {
-//            [locationManager requestWhenInUseAuthorization];
-//        }
-//        //[locationManager startUpdatingLocation];
-//        
-//        
-//    }
-//}
-//#pragma mark - CLLocationManagerDelegate
-//
-//- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-//{
-//    //    NSLog(@"didFailWithError: %@", error);
-//    //    UIAlertView *errorAlert = [[UIAlertView alloc]
-//    //                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//    //    [errorAlert show];
-//}
-//
-//
-//- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-//{
-//    CLLocation* newLocation = [locations lastObject];
-//    
-//    [self getUpdatedLocation:newLocation];
-//}
-//
-//
-//-(void)getUpdatedLocation:(CLLocation *)newLocation
-//{
-//  //  appDataManager.UpdatedLocation=newLocation;
-//    
-//    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray placemarks, NSError error)
+{
+    locationManager=[[CLLocationManager alloc] init];
+    geocoder = [[CLGeocoder alloc] init];
+
+    if ([CLLocationManager locationServicesEnabled])
+    {
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        locationManager.headingFilter = 1;
+
+        locationManager.distanceFilter = kCLDistanceFilterNone;//5; // Don't use other value than - 'kCLDistanceFilterNone', else the local notification will not work.
+        
+        
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+        {
+            [locationManager requestWhenInUseAuthorization];
+        }
+        [locationManager startUpdatingLocation];
+        
+        
+    }
+}
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    //    NSLog(@"didFailWithError: %@", error);
+    //    UIAlertView *errorAlert = [[UIAlertView alloc]
+    //                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //    [errorAlert show];
+}
+
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation* newLocation = [locations lastObject];
+    
+    [self getUpdatedLocation:newLocation];
+}
+
+
+-(void)getUpdatedLocation:(CLLocation *)newLocation
+{
+  //  appDataManager.UpdatedLocation=newLocation;
+    
+//    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error)
 //     {
 //         
 //         if (error == nil && [placemarks count] > 0)
@@ -109,13 +109,13 @@
 //             
 //             if (strCurrentAddress != nil)
 //             {
-//                 appDataManager.addressByLocation = strCurrentAddress;
+////                 appDataManager.addressByLocation = strCurrentAddress;
 //                 
 //                 // when source address is not available and user already started commute ..
-//                 if ([[appDataManager.sourceAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0)
-//                 {
-//                     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotifyToUpdateSourceAddress" object:nil];
-//                 }
+////                 if ([[appDataManager.sourceAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0)
+////                 {
+////                     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotifyToUpdateSourceAddress" object:nil];
+////                 }
 //             }
 //             
 //         } else
@@ -128,8 +128,8 @@
 //    NSDate* eventDate = appDataManager.lastLocation.timestamp;
 //    
 //    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-//    
-//    if (abs(howRecent) > KNotificationTime)
+    
+   // if (abs(howRecent) > KNotificationTime)
 //    {
 //        
 //        //        if (appDataManager.isCommuteStopped==NO && appDataManager.isCommuteStarted == YES )
@@ -158,7 +158,7 @@
 //        
 //        
 //    }
-//}
+}
  #pragma mark - Register Device For Device Token
 -(void)registerDeviceForDeviceToken:(UIApplication *)application
 {
