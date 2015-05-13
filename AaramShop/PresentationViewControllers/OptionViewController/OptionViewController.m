@@ -19,7 +19,15 @@
     [super viewDidLoad];
     
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn]) {
+        UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+        [self.navigationController pushViewController:tabBarController animated:YES];
 
+    }
+}
 
 - (IBAction)btnNewUserClick:(UIButton *)sender {
     
