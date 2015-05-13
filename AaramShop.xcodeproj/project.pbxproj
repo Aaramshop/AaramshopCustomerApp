@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		274625821B02702E00C1941B /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 274625811B02702E00C1941B /* UIImageEffects.m */; };
 		27BE657E1B0203E6004FA4B4 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE657D1B0203E6004FA4B4 /* ChatViewController.m */; };
 		27BE65811B0203F2004FA4B4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE65801B0203F2004FA4B4 /* HomeViewController.m */; };
 		27BE65841B0203FD004FA4B4 /* OffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE65831B0203FD004FA4B4 /* OffersViewController.m */; };
@@ -165,6 +166,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		274625801B02702E00C1941B /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
+		274625811B02702E00C1941B /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		27BE657C1B0203E6004FA4B4 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		27BE657D1B0203E6004FA4B4 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		27BE657F1B0203F2004FA4B4 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -411,6 +414,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2746257F1B02702E00C1941B /* UIImageEffects */ = {
+			isa = PBXGroup;
+			children = (
+				274625801B02702E00C1941B /* UIImageEffects.h */,
+				274625811B02702E00C1941B /* UIImageEffects.m */,
+			);
+			path = UIImageEffects;
+			sourceTree = "<group>";
+		};
 		27BE65771B0203CC004FA4B4 /* ChatViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -512,6 +524,7 @@
 		6B12DC861AF22C8100245209 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2746257F1B02702E00C1941B /* UIImageEffects */,
 				6BC2B8641AF3C27D009E77E3 /* Utils */,
 				6BC2B87A1AF3C27D009E77E3 /* AFNetworking */,
 				6BC2B8A11AF3C27D009E77E3 /* Reachability */,
@@ -1194,6 +1207,7 @@
 				6B12DCD41AF29E8200245209 /* ForgotPasswordViewController.m in Sources */,
 				6BC2B8D01AF3C27D009E77E3 /* SHLog+.m in Sources */,
 				6BC2B8FA1AF3C27D009E77E3 /* UIScrollView+AKKeyboardAvoidingAdditions.m in Sources */,
+				274625821B02702E00C1941B /* UIImageEffects.m in Sources */,
 				6B12DC611AF2294D00245209 /* main.m in Sources */,
 				27D049591B020780001A437F /* TabbarViewController.m in Sources */,
 				6BC2B8EE1AF3C27D009E77E3 /* SDWebImageDownloader.m in Sources */,
