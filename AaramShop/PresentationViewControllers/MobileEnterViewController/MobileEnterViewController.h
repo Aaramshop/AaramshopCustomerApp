@@ -15,6 +15,7 @@
     __weak IBOutlet UIButton *btnProfile;
     __weak IBOutlet UIScrollView *scrollViewMobileEnter;
     __weak IBOutlet UITextField *txtFMobileNumber;
+    __weak IBOutlet UIImageView *imgBackground;
     UIImage *imgUser;
     NSData *imageData;
 }

@@ -1,7 +1,7 @@
 
 
-#define kMyriadProRegular   MyriadPro-Regular
-#define kMyriadProBold      MyriadPro-Bold
+#define kMyriadProRegular   @"MyriadPro-Regular"
+#define kMyriadProBold      @"MyriadPro-Bold"
 
 #pragma mark - Alert titles and Internet alerts
 
@@ -40,7 +40,7 @@
 #define kOptionLogin                          @"login"
 #define kstatus                               @"status"
 #define kOptionNew_user_login                 @"new_user_login"
-
+#define kImage                                      @"Img"
 
 #pragma mark - Existing User Keys
 

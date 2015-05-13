@@ -10,7 +10,9 @@
 
 
 @interface MobileVerificationViewController ()
-
+{
+    UIImage * effectImage;
+}
 @end
 
 @implementation MobileVerificationViewController
@@ -23,17 +25,25 @@
     [self.view addGestureRecognizer:gst];
     
     lblMobileNumber.text = [NSString stringWithFormat:@"xxx xxx xx%@",[strMobileNum substringFromIndex:8]];
+    NSData* imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
+    UIImage* image = [UIImage imageWithData:imageData];
+    effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
+    imgVBg.image = effectImage;
 }
 
 -(void)createDataForOtpSend
 {
-    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+   /* NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict removeObjectForKey:kSessionToken];
     [dict setObject:kOptionLogin_otp_validate forKey:kOption];
     [dict setObject:txtfVerificationCode.text forKey:kOtp];
     [dict setObject:strMobileNum forKey:kMobile];
-    [self callWebserviceForOtpSend:dict];
+    [self callWebserviceForOtpSend:dict];*/
+
+    UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+    [self.navigationController pushViewController:tabBarController animated:YES];
 }
+
 -(void)callWebserviceForOtpSend:(NSMutableDictionary *)aDict
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
@@ -53,7 +63,9 @@
              
              if ([[responseObject objectForKey:kIsValid] isEqualToString:@"1"]) {
                  // go to main screen
-             }
+                 
+                 UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+                 [self.navigationController pushViewController:tabBarController animated:YES];             }
              
          }
      }
@@ -93,7 +105,8 @@
 }
 
 - (IBAction)btnContinueVerificationClick:(UIButton *)sender {
-    
+      [self createDataForOtpSend];
+    /*
     if ([txtfVerificationCode.text length] == 0) {
         [Utils showAlertView:kAlertTitle message:@"Please enter verification code to continue" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
     }
@@ -101,6 +114,7 @@
     {
         [self createDataForOtpSend];
     }
+     */
 }
 
 - (IBAction)btnResendVerificationClick:(UIButton *)sender {

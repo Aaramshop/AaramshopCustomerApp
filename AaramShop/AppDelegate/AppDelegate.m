@@ -88,77 +88,11 @@
 {
     CLLocation* newLocation = [locations lastObject];
     
-    [self getUpdatedLocation:newLocation];
+   // [self getUpdatedLocation:newLocation];
 }
 
 
--(void)getUpdatedLocation:(CLLocation *)newLocation
-{
-  //  appDataManager.UpdatedLocation=newLocation;
-    
-//    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error)
-//     {
-//         
-//         if (error == nil && [placemarks count] > 0)
-//         {
-//             placemark = [placemarks lastObject];
-//             
-//             NSArray *lines = placemark.addressDictionary[ @"FormattedAddressLines"];
-//             NSString * strCurrentAddress = [lines componentsJoinedByString:@" "];
-//             
-//             
-//             if (strCurrentAddress != nil)
-//             {
-////                 appDataManager.addressByLocation = strCurrentAddress;
-//                 
-//                 // when source address is not available and user already started commute ..
-////                 if ([[appDataManager.sourceAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0)
-////                 {
-////                     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotifyToUpdateSourceAddress" object:nil];
-////                 }
-//             }
-//             
-//         } else
-//         {
-//             NSLog(@"%@", error.debugDescription);
-//         }
-//     } ];
-//    
-//    
-//    NSDate* eventDate = appDataManager.lastLocation.timestamp;
-//    
-//    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    
-   // if (abs(howRecent) > KNotificationTime)
-//    {
-//        
-//        //        if (appDataManager.isCommuteStopped==NO && appDataManager.isCommuteStarted == YES )
-//        
-//        if (appDataManager.commuteType == eMyCommuteSingleCommuter && appDataManager.isCommuteStopped==NO && appDataManager.isCommuteStarted == YES )
-//        {
-//            [self setupLocalNotifications];
-//        }
-//        
-//    }
-//    else if (  [appDataManager.lastLocation distanceFromLocation:newLocation] > kUpdateLocationAfterDistance)
-//    {
-//        [alert dismissWithClickedButtonIndex:0 animated:YES]; // when user suddenly move from idle state to running state
-//        
-//        appDataManager.lastLocation = newLocation;
-//        if (appDataManager.commuteType == eMyCommuteCarpool && appDataManager.isCommuteStarted)
-//        {
-//            [appDataManager callWebServiceForCarpoolerPathTracking];
-//            NSLog(@" car pool update path");
-//        }
-//        else if (appDataManager.commuteType == eMyCommuteSingleCommuter && appDataManager.isCommuteStarted)
-//        {
-//            [appDataManager callWebServiceForPathTracking];
-//            NSLog(@" singal update path");
-//        }
-//        
-//        
-//    }
-}
+
  #pragma mark - Register Device For Device Token
 -(void)registerDeviceForDeviceToken:(UIApplication *)application
 {
@@ -259,25 +193,5 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - Location delegate
-
-//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-//{
-//    if (locations)
-//    {
-//        myCurrentLocation = [locations lastObject];
-//
-////        if ( [[NSUserDefaults standardUserDefaults] valueForKey:kIsLoggedIn] && [[[NSUserDefaults standardUserDefaults]valueForKey:kUserId] length]>0 && ([myCurrentLocation distanceFromLocation:[locations lastObject]] > 5 || !myCurrentLocation))
-////        {
-////            myCurrentLocation = [locations lastObject];
-////        }
-////        
-//    }
-//}
-//
-//
-//-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-//    NSLog(@"%@", error.localizedDescription);
-//}
 
 @end

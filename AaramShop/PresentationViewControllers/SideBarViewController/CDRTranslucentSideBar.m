@@ -31,6 +31,7 @@
     UIStoryboard *storyboard;
     UIImageView * bluredImageView;
     UIView *secView;
+    UIImage *effectImage;
     
 }
 @property (nonatomic, strong) UIToolbar *translucentView;
@@ -118,7 +119,7 @@
     
     arrMenu=[[NSMutableArray alloc]initWithObjects:@"Account Settings",@"Preferences",@"Cart",@"Vouchers",@"Awards Points",nil];
     
-    arrImages=[[NSMutableArray alloc]initWithObjects:@"backBtn",@"backBtn",@"backBtn",@"backBtn",@"backBtn",nil];
+    arrImages=[[NSMutableArray alloc]initWithObjects:@"menuAccountSettingsIcon",@"menuPreferencesIcon",@"menuCartIcon",@"menuVouchersIcon",@"menuAwardsPointsIcon",nil];
     
  
    
@@ -134,7 +135,7 @@
     if (!_showFromRight) {
         
         //  tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, 65, 270, [UIScreen mainScreen].bounds.size.height-135) style:UITableViewStyleGrouped];
-        tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 220, 568) style:UITableViewStyleGrouped];
+        tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,260, [UIScreen mainScreen].bounds.size.height) style:UITableViewStyleGrouped];
     }
     
     
@@ -208,43 +209,72 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    return 36;
+    //menuFacebookBox
+    return 63;
     
 }
-
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    
+//}
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 215)];
+    secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 215)];
     UIImageView *imgBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, secView.frame.size.width, 215)];
     
-    imgBackground.image = [UIImage imageNamed:@"defaultProfilePic"];
+//    imgBackground.image = [UIImage imageNamed:@"menuProfileBackImage"];
 //    [imgBackground sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseURL,objUserModel.profilePicUrl]] placeholderImage:[UIImage imageNamed:@"inviteDefaultImage"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
-    
+    NSData* imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
+    UIImage* image = [UIImage imageWithData:imageData];
+    effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
+    imgBackground.image = effectImage;
+
     
     UIImageView *imgProfile=[[UIImageView alloc]initWithFrame:CGRectMake((secView.frame.size.width - 101)/2, 39, 101, 101)];
     imgProfile.layer.cornerRadius = imgProfile.frame.size.width / 2;
+    imgProfile.clipsToBounds=YES;
     
 //    [imgProfile sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kBaseURL] ,[Utils getUserDefaultValue:kProfilePicUrl]]] placeholderImage:[UIImage imageNamed:@"inviteDefaultImage"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
     
         
 //    }];
     
-    imgProfile.image = [UIImage imageNamed:@"defaultProfilePic"];
+    imgProfile.image = image;
     
-    
+    UILabel *lblName = [[UILabel alloc]initWithFrame:CGRectMake(0, imgProfile.frame.origin.y + imgProfile.frame.size.height +5, tblView.frame.size.width, 21)];
+    lblName.textColor= [UIColor whiteColor];
+    lblName.textAlignment=NSTextAlignmentCenter;
+    lblName.font=[UIFont fontWithName:kMyriadProBold size:15];
+    lblName.text=@"Reena Sharma";
     
     
     
     UILabel *lblSeperator = [[UILabel alloc]initWithFrame:CGRectMake(8, secView.frame.size.height - 47, secView.frame.size.width - 16, 2)];
     lblSeperator.backgroundColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:0.40];
     
-   
+    
+    
+    UIImageView *imglocation=[[UIImageView alloc]initWithFrame:CGRectMake(7, lblSeperator.frame.origin.y + 10, 20, 20)];
+    imglocation.image=[UIImage imageNamed:@"locationIcon"];
+    
+    UILabel *lblAddress = [[UILabel alloc]initWithFrame:CGRectMake(32, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-64, 40)];
+    lblAddress.numberOfLines = 2;
+    lblAddress.lineBreakMode = NSLineBreakByWordWrapping;
+    lblAddress.font=[UIFont fontWithName:kMyriadProRegular size:15];
+    lblAddress.text=@"Noida, Sec - 18, Near Hospital, Uttar pradesh";
+    lblAddress.textColor=[UIColor whiteColor];
+    
+    
+    
     
     [secView addSubview:imgBackground];
     [secView addSubview:imgProfile];
     
     [secView addSubview:lblSeperator];
+    [secView addSubview:imglocation];
+    [secView addSubview:lblName];
+    [secView addSubview:lblAddress];
+    
   
     return secView;
     
@@ -273,7 +303,8 @@
 //        cell.textLabel.text=[arrayHireModeMenu objectAtIndex:indexPath.row];
 //        cell.imageView.image=[UIImage imageNamed:[arrayHireSideImages objectAtIndex:indexPath.row]];
 //    }
-    cell.textLabel.textColor=[UIColor colorWithRed:128.0/255.0 green:128.0/255.0 blue:128.0/255.0 alpha:1.0];
+    cell.textLabel.textColor=[UIColor colorWithRed:55/255.0 green:55/255.0 blue:55/255.0 alpha:1.0];
+    cell.textLabel.font=[UIFont fontWithName:kMyriadProRegular size:16];
 //    cell.textLabel.font=[UIFont fontWithName:kFontCalibriRegular size:13];
     [cell setSeparatorInset:UIEdgeInsetsZero];
     
