@@ -28,6 +28,9 @@
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -523,8 +526,8 @@
                                                 <rect key="frame" x="10" y="293" width="299" height="49"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eeF-JT-ST8">
-                                                <rect key="frame" x="17" y="305" width="25" height="25"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="indianFlag.png" translatesAutoresizingMaskIntoConstraints="NO" id="eeF-JT-ST8">
+                                                <rect key="frame" x="22" y="310" width="23" height="15"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="INDIA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYH-1J-OdN">
@@ -737,6 +740,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="imgVBg" destination="pcN-w6-N38" id="y7T-cS-58C"/>
                         <outlet property="lblMobileNumber" destination="g7o-7T-dmg" id="7mf-sd-FMf"/>
                         <outlet property="txtfVerificationCode" destination="MQR-gA-aOi" id="h88-y7-ydk"/>
                     </connections>
@@ -795,45 +799,102 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ccN-pn-OzU">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ccN-pn-OzU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <connections>
                                     <outlet property="delegate" destination="Kva-dY-HCj" id="zdx-VK-0hR"/>
                                 </connections>
                             </mapView>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c02-wz-VZS">
+                            <imageView userInteractionEnabled="NO" alpha="0.41999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c02-wz-VZS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="xfp-Iy-9Ua"/>
+                                </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oI3-dS-uae">
-                                <rect key="frame" x="0.0" y="95" width="278" height="44"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1R3-jU-aTN">
-                                <rect key="frame" x="278" y="95" width="42" height="44"/>
-                                <state key="normal" title="B">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="In order to deliver, Please give us your address" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yer-4o-KdU">
-                                <rect key="frame" x="70" y="14" width="180" height="40"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to deliver, Please give us your address" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yer-4o-KdU">
+                                <rect key="frame" x="70" y="49" width="180" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bZT-jH-IFd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BK-lU-vgp">
+                                <rect key="frame" x="230" y="14" width="80" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="AK3-iz-ddK"/>
+                                    <constraint firstAttribute="height" constant="25" id="JnY-RR-9re"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
+                                <state key="normal" title="Done" backgroundImage="doneBtn.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnDoneClick:" destination="Kva-dY-HCj" eventType="touchUpInside" id="3V0-RH-ezy"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="mapPopupBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="oI3-dS-uae">
+                                <rect key="frame" x="0.0" y="95" width="278" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="pcv-Z3-2jY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Kva-dY-HCj" id="Tnc-Dh-KfM"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1R3-jU-aTN">
+                                <rect key="frame" x="278" y="95" width="42" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="w3d-sp-i40"/>
+                                </constraints>
+                                <state key="normal" image="pencilIcon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnEditClick:" destination="Kva-dY-HCj" eventType="touchUpInside" id="WFD-dT-TvG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1R3-jU-aTN" firstAttribute="leading" secondItem="oI3-dS-uae" secondAttribute="trailing" id="3GS-I7-Q6w"/>
+                            <constraint firstItem="0BK-lU-vgp" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="14" id="3dP-Jk-cq1"/>
+                            <constraint firstAttribute="trailing" secondItem="0BK-lU-vgp" secondAttribute="trailing" constant="10" id="3gR-Fj-th9"/>
+                            <constraint firstItem="yer-4o-KdU" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leading" constant="70" id="5dp-ai-1cb"/>
+                            <constraint firstItem="ccN-pn-OzU" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" id="9lk-1t-wYb"/>
+                            <constraint firstItem="ccN-pn-OzU" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leading" id="IZ4-yU-4Xs"/>
+                            <constraint firstItem="ccN-pn-OzU" firstAttribute="width" secondItem="5VK-Hk-9C7" secondAttribute="width" id="OT1-hE-yOr"/>
+                            <constraint firstItem="oI3-dS-uae" firstAttribute="top" secondItem="c02-wz-VZS" secondAttribute="bottom" id="OnL-We-Y2k"/>
+                            <constraint firstItem="c02-wz-VZS" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leading" id="UW5-6Y-ngS"/>
+                            <constraint firstItem="yer-4o-KdU" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="49" id="Wcv-vf-nKp"/>
+                            <constraint firstItem="1R3-jU-aTN" firstAttribute="top" secondItem="c02-wz-VZS" secondAttribute="bottom" id="bAX-we-BYh"/>
+                            <constraint firstAttribute="trailing" secondItem="1R3-jU-aTN" secondAttribute="trailing" id="cUg-IF-0qU"/>
+                            <constraint firstItem="oI3-dS-uae" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leading" id="gaA-rw-XHc"/>
+                            <constraint firstItem="c02-wz-VZS" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" id="heW-2W-i50"/>
+                            <constraint firstAttribute="trailing" secondItem="yer-4o-KdU" secondAttribute="trailing" constant="70" id="las-sl-HZA"/>
+                            <constraint firstItem="c02-wz-VZS" firstAttribute="width" secondItem="5VK-Hk-9C7" secondAttribute="width" id="mWu-E8-Sgr"/>
+                            <constraint firstItem="ccN-pn-OzU" firstAttribute="height" secondItem="5VK-Hk-9C7" secondAttribute="height" id="oBq-Qp-1lC"/>
+                            <constraint firstAttribute="trailing" secondItem="oI3-dS-uae" secondAttribute="trailing" constant="42" id="pqO-TA-9eY"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="mapViewLocation" destination="ccN-pn-OzU" id="rix-Aq-Jjh"/>
+                        <outlet property="txtFLocation" destination="oI3-dS-uae" id="FUD-f6-Be8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkh-Cn-e7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2361" y="397"/>
+            <point key="canvasLocation" x="2137" y="390"/>
         </scene>
         <!--Cart View Controller-->
         <scene sceneID="7kA-zG-w1p">
@@ -1076,11 +1137,15 @@
         <image name="bg1.jpg" width="320" height="568"/>
         <image name="bg2.jpg" width="320" height="568"/>
         <image name="bg4.jpg" width="320" height="568"/>
+        <image name="doneBtn.png" width="45" height="25"/>
         <image name="enterMobileNoBox.png" width="300" height="46"/>
         <image name="enterMobileNoDefaultCameraIcon.png" width="160" height="160"/>
         <image name="existingUserBox.png" width="296" height="48"/>
+        <image name="indianFlag.png" width="23" height="15"/>
         <image name="lowerBox.png" width="300" height="51"/>
+        <image name="mapPopupBox.png" width="279" height="45"/>
         <image name="newUserBox.png" width="296" height="48"/>
+        <image name="pencilIcon.png" width="42" height="45"/>
         <image name="singleBox.png" width="300" height="50"/>
         <image name="upperBox.png" width="300" height="49"/>
     </resources>

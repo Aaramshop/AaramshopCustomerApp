@@ -92,7 +92,9 @@
 }
 -(void)createDataForLogin
 {
-    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+    [self.navigationController pushViewController:tabBarController animated:YES];
+  /*  [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     [activityVw startAnimating];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:kExisting_user forKey:kOption];
@@ -103,6 +105,7 @@
     [dict removeObjectForKey:kUserId];
     [dict removeObjectForKey:kSessionToken];
     [self callWebserviceForLogin:dict];
+   */
     
 }
 # pragma webService Calling

@@ -27,6 +27,15 @@
 		2791DE3E1B036E5C000121BC /* menuVouchersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE2C1B036E5C000121BC /* menuVouchersIcon.png */; };
 		2791DE3F1B036E5C000121BC /* menuVouchersIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE2D1B036E5C000121BC /* menuVouchersIcon@2x.png */; };
 		2791DE401B036E5C000121BC /* menuVouchersIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE2E1B036E5C000121BC /* menuVouchersIcon@3x.png */; };
+		2791DE441B03770B000121BC /* indianFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE411B03770B000121BC /* indianFlag.png */; };
+		2791DE451B03770B000121BC /* indianFlag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE421B03770B000121BC /* indianFlag@2x.png */; };
+		2791DE461B03770B000121BC /* indianFlag@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE431B03770B000121BC /* indianFlag@3x.png */; };
+		2791DE4D1B0377C6000121BC /* menuProfileBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE471B0377C6000121BC /* menuProfileBackImage.png */; };
+		2791DE4E1B0377C6000121BC /* menuProfileBackImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE481B0377C6000121BC /* menuProfileBackImage@2x.png */; };
+		2791DE4F1B0377C6000121BC /* menuProfileBackImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE491B0377C6000121BC /* menuProfileBackImage@3x.png */; };
+		2791DE501B0377C6000121BC /* menuProfileImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE4A1B0377C6000121BC /* menuProfileImage.png */; };
+		2791DE511B0377C6000121BC /* menuProfileImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE4B1B0377C6000121BC /* menuProfileImage@2x.png */; };
+		2791DE521B0377C6000121BC /* menuProfileImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE4C1B0377C6000121BC /* menuProfileImage@3x.png */; };
 		27BE657E1B0203E6004FA4B4 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE657D1B0203E6004FA4B4 /* ChatViewController.m */; };
 		27BE65811B0203F2004FA4B4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE65801B0203F2004FA4B4 /* HomeViewController.m */; };
 		27BE65841B0203FD004FA4B4 /* OffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE65831B0203FD004FA4B4 /* OffersViewController.m */; };
@@ -88,6 +97,9 @@
 		6B12DCF51AF2A53200245209 /* defaultProfilePic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DCEB1AF2A53200245209 /* defaultProfilePic@3x.png */; };
 		6B12DCFC1AF360A500245209 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12DCFB1AF360A500245209 /* BaseViewController.m */; };
 		6B12DD001AF360F600245209 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12DCFF1AF360F600245209 /* AppDelegate.m */; };
+		6B1A9A521B0364740005917B /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A9A511B0364740005917B /* Annotation.m */; };
+		6B1A9A581B03658C0005917B /* CustomMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A9A561B03658C0005917B /* CustomMapAnnotationView.m */; };
+		6B1A9A591B03658C0005917B /* CustomMapAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B1A9A571B03658C0005917B /* CustomMapAnnotationView.xib */; };
 		6B388E191AFCC31800FF3CF3 /* LocationEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */; };
 		6BB896FA1AF8C50600971846 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BB896F91AF8C50600971846 /* CoreLocation.framework */; };
 		6BB897051AF8CBB000971846 /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB897031AF8CBB000971846 /* AppManager.m */; };
@@ -143,6 +155,24 @@
 		6BC2B8FD1AF3C455009E77E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC2B8FC1AF3C455009E77E3 /* UIKit.framework */; };
 		6BC2B8FF1AF3C474009E77E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC2B8FE1AF3C474009E77E3 /* CoreGraphics.framework */; };
 		6BC2B9011AF3C47B009E77E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC2B9001AF3C47B009E77E3 /* Foundation.framework */; };
+		6BE4C8FB1B034BB600EF1EDB /* doneBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8F81B034BB600EF1EDB /* doneBtn.png */; };
+		6BE4C8FC1B034BB600EF1EDB /* doneBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8F91B034BB600EF1EDB /* doneBtn@2x.png */; };
+		6BE4C8FD1B034BB600EF1EDB /* doneBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8FA1B034BB600EF1EDB /* doneBtn@3x.png */; };
+		6BE4C9071B034CDE00EF1EDB /* locationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8FE1B034CDE00EF1EDB /* locationIcon.png */; };
+		6BE4C9081B034CDE00EF1EDB /* locationIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8FF1B034CDE00EF1EDB /* locationIcon@2x.png */; };
+		6BE4C9091B034CDE00EF1EDB /* locationIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9001B034CDE00EF1EDB /* locationIcon@3x.png */; };
+		6BE4C90A1B034CDE00EF1EDB /* mapPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9011B034CDE00EF1EDB /* mapPin.png */; };
+		6BE4C90B1B034CDE00EF1EDB /* mapPin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9021B034CDE00EF1EDB /* mapPin@2x.png */; };
+		6BE4C90C1B034CDE00EF1EDB /* mapPin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9031B034CDE00EF1EDB /* mapPin@3x.png */; };
+		6BE4C90D1B034CDE00EF1EDB /* pencilIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9041B034CDE00EF1EDB /* pencilIcon.png */; };
+		6BE4C90E1B034CDE00EF1EDB /* pencilIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9051B034CDE00EF1EDB /* pencilIcon@2x.png */; };
+		6BE4C90F1B034CDE00EF1EDB /* pencilIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9061B034CDE00EF1EDB /* pencilIcon@3x.png */; };
+		6BE4C9131B0351FD00EF1EDB /* mapPopupBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9101B0351FD00EF1EDB /* mapPopupBox.png */; };
+		6BE4C9141B0351FD00EF1EDB /* mapPopupBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9111B0351FD00EF1EDB /* mapPopupBox@2x.png */; };
+		6BE4C9151B0351FD00EF1EDB /* mapPopupBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9121B0351FD00EF1EDB /* mapPopupBox@3x.png */; };
+		6BE4C9191B035DEF00EF1EDB /* mapPopup.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9161B035DEF00EF1EDB /* mapPopup.png */; };
+		6BE4C91A1B035DEF00EF1EDB /* mapPopup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9171B035DEF00EF1EDB /* mapPopup@2x.png */; };
+		6BE4C91B1B035DEF00EF1EDB /* mapPopup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C9181B035DEF00EF1EDB /* mapPopup@3x.png */; };
 		6BFFF90F1B02133300BB2B62 /* CDRTranslucentSideBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFFF90E1B02133300BB2B62 /* CDRTranslucentSideBar.m */; };
 		6BFFF9141B0217CB00BB2B62 /* menuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BFFF9111B0217CA00BB2B62 /* menuIcon.png */; };
 		6BFFF9151B0217CB00BB2B62 /* menuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BFFF9121B0217CA00BB2B62 /* menuIcon@2x.png */; };
@@ -204,6 +234,15 @@
 		2791DE2C1B036E5C000121BC /* menuVouchersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuVouchersIcon.png; sourceTree = "<group>"; };
 		2791DE2D1B036E5C000121BC /* menuVouchersIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuVouchersIcon@2x.png"; sourceTree = "<group>"; };
 		2791DE2E1B036E5C000121BC /* menuVouchersIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuVouchersIcon@3x.png"; sourceTree = "<group>"; };
+		2791DE411B03770B000121BC /* indianFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indianFlag.png; sourceTree = "<group>"; };
+		2791DE421B03770B000121BC /* indianFlag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indianFlag@2x.png"; sourceTree = "<group>"; };
+		2791DE431B03770B000121BC /* indianFlag@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indianFlag@3x.png"; sourceTree = "<group>"; };
+		2791DE471B0377C6000121BC /* menuProfileBackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuProfileBackImage.png; sourceTree = "<group>"; };
+		2791DE481B0377C6000121BC /* menuProfileBackImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuProfileBackImage@2x.png"; sourceTree = "<group>"; };
+		2791DE491B0377C6000121BC /* menuProfileBackImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuProfileBackImage@3x.png"; sourceTree = "<group>"; };
+		2791DE4A1B0377C6000121BC /* menuProfileImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuProfileImage.png; sourceTree = "<group>"; };
+		2791DE4B1B0377C6000121BC /* menuProfileImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuProfileImage@2x.png"; sourceTree = "<group>"; };
+		2791DE4C1B0377C6000121BC /* menuProfileImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuProfileImage@3x.png"; sourceTree = "<group>"; };
 		27BE657C1B0203E6004FA4B4 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		27BE657D1B0203E6004FA4B4 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		27BE657F1B0203F2004FA4B4 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -280,6 +319,11 @@
 		6B12DCFB1AF360A500245209 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		6B12DCFE1AF360F600245209 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6B12DCFF1AF360F600245209 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6B1A9A501B0364740005917B /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		6B1A9A511B0364740005917B /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		6B1A9A551B03658C0005917B /* CustomMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMapAnnotationView.h; sourceTree = "<group>"; };
+		6B1A9A561B03658C0005917B /* CustomMapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomMapAnnotationView.m; sourceTree = "<group>"; };
+		6B1A9A571B03658C0005917B /* CustomMapAnnotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomMapAnnotationView.xib; sourceTree = "<group>"; };
 		6B388E171AFCC31800FF3CF3 /* LocationEnterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEnterViewController.h; sourceTree = "<group>"; };
 		6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEnterViewController.m; sourceTree = "<group>"; };
 		6BB896F91AF8C50600971846 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -391,6 +435,24 @@
 		6BC2B9001AF3C47B009E77E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6BE4C8F31B021BCE00EF1EDB /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		6BE4C8F41B021BCE00EF1EDB /* backBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@2x.png"; sourceTree = "<group>"; };
+		6BE4C8F81B034BB600EF1EDB /* doneBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doneBtn.png; sourceTree = "<group>"; };
+		6BE4C8F91B034BB600EF1EDB /* doneBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "doneBtn@2x.png"; sourceTree = "<group>"; };
+		6BE4C8FA1B034BB600EF1EDB /* doneBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "doneBtn@3x.png"; sourceTree = "<group>"; };
+		6BE4C8FE1B034CDE00EF1EDB /* locationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationIcon.png; sourceTree = "<group>"; };
+		6BE4C8FF1B034CDE00EF1EDB /* locationIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationIcon@2x.png"; sourceTree = "<group>"; };
+		6BE4C9001B034CDE00EF1EDB /* locationIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationIcon@3x.png"; sourceTree = "<group>"; };
+		6BE4C9011B034CDE00EF1EDB /* mapPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapPin.png; sourceTree = "<group>"; };
+		6BE4C9021B034CDE00EF1EDB /* mapPin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPin@2x.png"; sourceTree = "<group>"; };
+		6BE4C9031B034CDE00EF1EDB /* mapPin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPin@3x.png"; sourceTree = "<group>"; };
+		6BE4C9041B034CDE00EF1EDB /* pencilIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencilIcon.png; sourceTree = "<group>"; };
+		6BE4C9051B034CDE00EF1EDB /* pencilIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pencilIcon@2x.png"; sourceTree = "<group>"; };
+		6BE4C9061B034CDE00EF1EDB /* pencilIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pencilIcon@3x.png"; sourceTree = "<group>"; };
+		6BE4C9101B0351FD00EF1EDB /* mapPopupBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapPopupBox.png; sourceTree = "<group>"; };
+		6BE4C9111B0351FD00EF1EDB /* mapPopupBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPopupBox@2x.png"; sourceTree = "<group>"; };
+		6BE4C9121B0351FD00EF1EDB /* mapPopupBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPopupBox@3x.png"; sourceTree = "<group>"; };
+		6BE4C9161B035DEF00EF1EDB /* mapPopup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapPopup.png; sourceTree = "<group>"; };
+		6BE4C9171B035DEF00EF1EDB /* mapPopup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPopup@2x.png"; sourceTree = "<group>"; };
+		6BE4C9181B035DEF00EF1EDB /* mapPopup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPopup@3x.png"; sourceTree = "<group>"; };
 		6BEC8BC21AF3667600787870 /* AaramShop.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AaramShop.pch; sourceTree = "<group>"; };
 		6BFFF90D1B02133300BB2B62 /* CDRTranslucentSideBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDRTranslucentSideBar.h; sourceTree = "<group>"; };
 		6BFFF90E1B02133300BB2B62 /* CDRTranslucentSideBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDRTranslucentSideBar.m; sourceTree = "<group>"; };
@@ -561,6 +623,8 @@
 		6B12DC5D1AF2294D00245209 /* AaramShop */ = {
 			isa = PBXGroup;
 			children = (
+				6B1A9A531B03658C0005917B /* CustomViews */,
+				6B1A9A4F1B0364740005917B /* Annotation */,
 				6BB897011AF8CBB000971846 /* AppManager */,
 				6B12DCFD1AF360E000245209 /* AppDelegate */,
 				6B12DC9D1AF2543A00245209 /* PresentationViewControllers */,
@@ -603,7 +667,17 @@
 		6B12DC871AF22C8100245209 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2791DE471B0377C6000121BC /* menuProfileBackImage.png */,
+				2791DE481B0377C6000121BC /* menuProfileBackImage@2x.png */,
+				2791DE491B0377C6000121BC /* menuProfileBackImage@3x.png */,
+				2791DE4A1B0377C6000121BC /* menuProfileImage.png */,
+				2791DE4B1B0377C6000121BC /* menuProfileImage@2x.png */,
+				2791DE4C1B0377C6000121BC /* menuProfileImage@3x.png */,
+				2791DE411B03770B000121BC /* indianFlag.png */,
+				2791DE421B03770B000121BC /* indianFlag@2x.png */,
+				2791DE431B03770B000121BC /* indianFlag@3x.png */,
 				2791DE1C1B036E5B000121BC /* MenuImages */,
+				6BE4C8F71B034BB600EF1EDB /* LocationScreenImages */,
 				6BFFF9101B0217CA00BB2B62 /* TabbarImages */,
 				6B12DCE41AF2A53200245209 /* MobileEnterImages */,
 				6B12DCD51AF2A09700245209 /* ForgotPasswordScreen */,
@@ -799,6 +873,33 @@
 			path = Constant;
 			sourceTree = "<group>";
 		};
+		6B1A9A4F1B0364740005917B /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				6B1A9A501B0364740005917B /* Annotation.h */,
+				6B1A9A511B0364740005917B /* Annotation.m */,
+			);
+			path = Annotation;
+			sourceTree = "<group>";
+		};
+		6B1A9A531B03658C0005917B /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				6B1A9A541B03658C0005917B /* CustomMapAnnotation */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		6B1A9A541B03658C0005917B /* CustomMapAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				6B1A9A551B03658C0005917B /* CustomMapAnnotationView.h */,
+				6B1A9A561B03658C0005917B /* CustomMapAnnotationView.m */,
+				6B1A9A571B03658C0005917B /* CustomMapAnnotationView.xib */,
+			);
+			path = CustomMapAnnotation;
+			sourceTree = "<group>";
+		};
 		6B388E161AFCC2FF00FF3CF3 /* LocationEnterViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -990,6 +1091,31 @@
 			path = "UIImage+Extensions";
 			sourceTree = "<group>";
 		};
+		6BE4C8F71B034BB600EF1EDB /* LocationScreenImages */ = {
+			isa = PBXGroup;
+			children = (
+				6BE4C9161B035DEF00EF1EDB /* mapPopup.png */,
+				6BE4C9171B035DEF00EF1EDB /* mapPopup@2x.png */,
+				6BE4C9181B035DEF00EF1EDB /* mapPopup@3x.png */,
+				6BE4C9101B0351FD00EF1EDB /* mapPopupBox.png */,
+				6BE4C9111B0351FD00EF1EDB /* mapPopupBox@2x.png */,
+				6BE4C9121B0351FD00EF1EDB /* mapPopupBox@3x.png */,
+				6BE4C8FE1B034CDE00EF1EDB /* locationIcon.png */,
+				6BE4C8FF1B034CDE00EF1EDB /* locationIcon@2x.png */,
+				6BE4C9001B034CDE00EF1EDB /* locationIcon@3x.png */,
+				6BE4C9011B034CDE00EF1EDB /* mapPin.png */,
+				6BE4C9021B034CDE00EF1EDB /* mapPin@2x.png */,
+				6BE4C9031B034CDE00EF1EDB /* mapPin@3x.png */,
+				6BE4C9041B034CDE00EF1EDB /* pencilIcon.png */,
+				6BE4C9051B034CDE00EF1EDB /* pencilIcon@2x.png */,
+				6BE4C9061B034CDE00EF1EDB /* pencilIcon@3x.png */,
+				6BE4C8F81B034BB600EF1EDB /* doneBtn.png */,
+				6BE4C8F91B034BB600EF1EDB /* doneBtn@2x.png */,
+				6BE4C8FA1B034BB600EF1EDB /* doneBtn@3x.png */,
+			);
+			path = LocationScreenImages;
+			sourceTree = "<group>";
+		};
 		6BFFF90C1B02133300BB2B62 /* SideBarViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,13 +1250,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2791DE461B03770B000121BC /* indianFlag@3x.png in Resources */,
 				2791DE381B036E5C000121BC /* menuFacebookBox.png in Resources */,
+				2791DE521B0377C6000121BC /* menuProfileImage@3x.png in Resources */,
+				2791DE4D1B0377C6000121BC /* menuProfileBackImage.png in Resources */,
 				6BFFF9481B0236B800BB2B62 /* tabBarChatIconActive.png in Resources */,
 				27EC674C1B031FE0007D126E /* aaramShopAppLogo@2x.png in Resources */,
 				6B12DCCF1AF2720400245209 /* upperBox@2x.png in Resources */,
 				6BFFF94E1B0236B800BB2B62 /* tabBarHomeIconActive.png in Resources */,
 				2791DE361B036E5C000121BC /* menuCartIcon@2x.png in Resources */,
 				6BFFF9571B0236B800BB2B62 /* tabBarOffersIcon.png in Resources */,
+				6BE4C90D1B034CDE00EF1EDB /* pencilIcon.png in Resources */,
 				6BFFF94A1B0236B800BB2B62 /* tabBarChatIconActive@3x.png in Resources */,
 				27EC675D1B032F9C007D126E /* bg4.jpg in Resources */,
 				6BFFF9541B0236B800BB2B62 /* tabBarMyListIconActive.png in Resources */,
@@ -1138,41 +1268,56 @@
 				27EC675E1B032F9C007D126E /* bg4@2x.jpg in Resources */,
 				2791DE3A1B036E5C000121BC /* menuFacebookBox@3x.png in Resources */,
 				2791DE3F1B036E5C000121BC /* menuVouchersIcon@2x.png in Resources */,
+				6BE4C9131B0351FD00EF1EDB /* mapPopupBox.png in Resources */,
 				27EC675F1B032F9C007D126E /* bg4@3x.jpg in Resources */,
+				6BE4C9141B0351FD00EF1EDB /* mapPopupBox@2x.png in Resources */,
 				6BFFF9511B0236B800BB2B62 /* tabBarMyListIcon.png in Resources */,
+				6BE4C8FC1B034BB600EF1EDB /* doneBtn@2x.png in Resources */,
 				6B12DCAE1AF26B4100245209 /* existingUserBox@3x.png in Resources */,
 				6BFFF9531B0236B800BB2B62 /* tabBarMyListIcon@3x.png in Resources */,
 				6BFFF9521B0236B800BB2B62 /* tabBarMyListIcon@2x.png in Resources */,
 				6BFFF9601B0236B800BB2B62 /* tabBarOrdersIconActive.png in Resources */,
+				6BE4C9191B035DEF00EF1EDB /* mapPopup.png in Resources */,
+				6BE4C90B1B034CDE00EF1EDB /* mapPin@2x.png in Resources */,
 				6B12DCD01AF2720400245209 /* upperBox@3x.png in Resources */,
 				2791DE3E1B036E5C000121BC /* menuVouchersIcon.png in Resources */,
 				6B12DCA61AF26AA000245209 /* appicon_80.png in Resources */,
+				6B1A9A591B03658C0005917B /* CustomMapAnnotationView.xib in Resources */,
 				6B12DCAD1AF26B4100245209 /* existingUserBox@2x.png in Resources */,
 				6B12DCB21AF26BF900245209 /* newUserBox.png in Resources */,
 				6B12DCB31AF26BF900245209 /* newUserBox@2x.png in Resources */,
 				27EC67581B032E90007D126E /* enterMobileNoBox@2x.png in Resources */,
 				6B12DC6A1AF2294D00245209 /* Main.storyboard in Resources */,
 				6B12DC8D1AF22C8100245209 /* welcomeScreenBackground@2x.png in Resources */,
+				6BE4C9091B034CDE00EF1EDB /* locationIcon@3x.png in Resources */,
 				6BFFF95A1B0236B800BB2B62 /* tabBarOffersIconActive.png in Resources */,
 				6BFFF9151B0217CB00BB2B62 /* menuIcon@2x.png in Resources */,
+				6BE4C91A1B035DEF00EF1EDB /* mapPopup@2x.png in Resources */,
 				6BFFF9591B0236B800BB2B62 /* tabBarOffersIcon@3x.png in Resources */,
 				6B12DCC91AF2720400245209 /* bg2@2x.jpg in Resources */,
+				6BE4C9081B034CDE00EF1EDB /* locationIcon@2x.png in Resources */,
 				27EC67631B03316F007D126E /* enterMobileNoDefaultCameraIcon.png in Resources */,
 				6BC2B8601AF3A9F0009E77E3 /* MyriadPro-Regular.otf in Resources */,
+				2791DE511B0377C6000121BC /* menuProfileImage@2x.png in Resources */,
 				6B12DC8E1AF22C8100245209 /* welcomeScreenBackground@3x.png in Resources */,
 				2791DE391B036E5C000121BC /* menuFacebookBox@2x.png in Resources */,
 				6B12DCDA1AF2A09700245209 /* singleBox@2x.png in Resources */,
 				6BFFF9581B0236B800BB2B62 /* tabBarOffersIcon@2x.png in Resources */,
 				27EC67531B0326A5007D126E /* bg1@3x.jpg in Resources */,
+				2791DE451B03770B000121BC /* indianFlag@2x.png in Resources */,
+				6BE4C8FB1B034BB600EF1EDB /* doneBtn.png in Resources */,
 				27EC674D1B031FE0007D126E /* aaramShopAppLogo@3x.png in Resources */,
 				2791DE351B036E5C000121BC /* menuCartIcon.png in Resources */,
 				6B12DCA71AF26AA000245209 /* appicon_87.png in Resources */,
 				6BFFF9501B0236B800BB2B62 /* tabBarHomeIconActive@3x.png in Resources */,
+				6BE4C9151B0351FD00EF1EDB /* mapPopupBox@3x.png in Resources */,
 				6BFFF9551B0236B800BB2B62 /* tabBarMyListIconActive@2x.png in Resources */,
 				6BC2B85F1AF3A9F0009E77E3 /* MyriadPro-Bold.otf in Resources */,
 				6B12DCB41AF26BF900245209 /* newUserBox@3x.png in Resources */,
 				6B12DC6C1AF2294D00245209 /* Images.xcassets in Resources */,
+				6BE4C8FD1B034BB600EF1EDB /* doneBtn@3x.png in Resources */,
 				6B12DCCD1AF2720400245209 /* lowerBox@3x.png in Resources */,
+				6BE4C90C1B034CDE00EF1EDB /* mapPin@3x.png in Resources */,
 				6BB897061AF8CBB000971846 /* CountryCodeList.plist in Resources */,
 				6B12DCA51AF26AA000245209 /* appicon_58.png in Resources */,
 				6BFFF95B1B0236B800BB2B62 /* tabBarOffersIconActive@2x.png in Resources */,
@@ -1186,6 +1331,7 @@
 				2791DE1B1B0365B5000121BC /* backBtn@3x.png in Resources */,
 				6BFFF9491B0236B800BB2B62 /* tabBarChatIconActive@2x.png in Resources */,
 				6B12DCF51AF2A53200245209 /* defaultProfilePic@3x.png in Resources */,
+				6BE4C9071B034CDE00EF1EDB /* locationIcon.png in Resources */,
 				6BFFF95E1B0236B800BB2B62 /* tabBarOrdersIcon@2x.png in Resources */,
 				6BFFF9611B0236B800BB2B62 /* tabBarOrdersIconActive@2x.png in Resources */,
 				2791DE311B036E5C000121BC /* menuAccountSettingsIcon@3x.png in Resources */,
@@ -1197,21 +1343,28 @@
 				6BFFF94C1B0236B800BB2B62 /* tabBarHomeIcon@2x.png in Resources */,
 				6B12DCD91AF2A09700245209 /* singleBox.png in Resources */,
 				6BFFF9141B0217CB00BB2B62 /* menuIcon.png in Resources */,
+				2791DE441B03770B000121BC /* indianFlag.png in Resources */,
 				2791DE371B036E5C000121BC /* menuCartIcon@3x.png in Resources */,
 				6BFFF9161B0217CB00BB2B62 /* menuIcon@3x.png in Resources */,
 				6B12DCF31AF2A53200245209 /* defaultProfilePic.png in Resources */,
 				6BFFF9451B0236B800BB2B62 /* tabBarChatIcon.png in Resources */,
+				6BE4C90A1B034CDE00EF1EDB /* mapPin.png in Resources */,
+				6BE4C90F1B034CDE00EF1EDB /* pencilIcon@3x.png in Resources */,
+				2791DE4E1B0377C6000121BC /* menuProfileBackImage@2x.png in Resources */,
 				6B12DCDB1AF2A09700245209 /* singleBox@3x.png in Resources */,
 				6BFFF95D1B0236B800BB2B62 /* tabBarOrdersIcon.png in Resources */,
 				6B12DCF41AF2A53200245209 /* defaultProfilePic@2x.png in Resources */,
 				27EC67511B0326A5007D126E /* bg1.jpg in Resources */,
 				2791DE3D1B036E5C000121BC /* menuPreferencesIcon@3x.png in Resources */,
 				2791DE3B1B036E5C000121BC /* menuPreferencesIcon.png in Resources */,
+				6BE4C91B1B035DEF00EF1EDB /* mapPopup@3x.png in Resources */,
 				27EC67651B03316F007D126E /* enterMobileNoDefaultCameraIcon@3x.png in Resources */,
 				6B12DCCA1AF2720400245209 /* bg2@3x.jpg in Resources */,
 				6B12DCAC1AF26B4100245209 /* existingUserBox.png in Resources */,
+				2791DE4F1B0377C6000121BC /* menuProfileBackImage@3x.png in Resources */,
 				2791DE3C1B036E5C000121BC /* menuPreferencesIcon@2x.png in Resources */,
 				2791DE341B036E5C000121BC /* menuAwardsPointsIcon@3x.png in Resources */,
+				2791DE501B0377C6000121BC /* menuProfileImage.png in Resources */,
 				6B12DCA81AF26AA000245209 /* appicon_180.png in Resources */,
 				6B12DCCB1AF2720400245209 /* lowerBox.png in Resources */,
 				2791DE401B036E5C000121BC /* menuVouchersIcon@3x.png in Resources */,
@@ -1223,6 +1376,7 @@
 				6BFFF95F1B0236B800BB2B62 /* tabBarOrdersIcon@3x.png in Resources */,
 				27EC67521B0326A5007D126E /* bg1@2x.jpg in Resources */,
 				6BFFF9561B0236B800BB2B62 /* tabBarMyListIconActive@3x.png in Resources */,
+				6BE4C90E1B034CDE00EF1EDB /* pencilIcon@2x.png in Resources */,
 				6BFFF94B1B0236B800BB2B62 /* tabBarHomeIcon.png in Resources */,
 				2791DE331B036E5C000121BC /* menuAwardsPointsIcon@2x.png in Resources */,
 				27EC67641B03316F007D126E /* enterMobileNoDefaultCameraIcon@2x.png in Resources */,
@@ -1238,6 +1392,7 @@
 			files = (
 				6BC2B8E51AF3C27D009E77E3 /* UIProgressView+AFNetworking.m in Sources */,
 				6BC2B8E41AF3C27D009E77E3 /* UIImageView+AFNetworking.m in Sources */,
+				6B1A9A521B0364740005917B /* Annotation.m in Sources */,
 				6BC2B8D71AF3C27D009E77E3 /* AFHTTPRequestOperation.m in Sources */,
 				6BC2B8D51AF3C27D009E77E3 /* SHFileUtil.m in Sources */,
 				6BC2B8EC1AF3C27D009E77E3 /* SDWebImageCompat.m in Sources */,
@@ -1270,6 +1425,7 @@
 				6BC2B8F61AF3C27D009E77E3 /* UIImageView+HighlightedWebCache.m in Sources */,
 				6BC2B8CE1AF3C27D009E77E3 /* CLocation.m in Sources */,
 				6BFFF9261B02229E00BB2B62 /* PreferencesViewController.m in Sources */,
+				6B1A9A581B03658C0005917B /* CustomMapAnnotationView.m in Sources */,
 				6BC2B8DC1AF3C27D009E77E3 /* AFURLConnectionOperation.m in Sources */,
 				6BC2B8DE1AF3C27D009E77E3 /* AFURLResponseSerialization.m in Sources */,
 				27BE657E1B0203E6004FA4B4 /* ChatViewController.m in Sources */,

@@ -85,6 +85,7 @@
     }
     else
     {
+        /*
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:txtFMobileNumber.text forKey:kMobile];
@@ -94,6 +95,11 @@
     [dict removeObjectForKey:kUserId];
     [dict removeObjectForKey:kSessionToken];
     [self callWebserviceForEnterNewMobile:dict];
+         */
+        MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
+        mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
+        [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
+
     }
 }
 # pragma webService Calling
@@ -112,7 +118,7 @@
          [AppManager stopStatusbarActivityIndicator];
          //NSLog(@"value %@",responseObject);
          
-         if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"Mobile No. Registered & OTP Sent!"]) {
+         if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 &&  ([[responseObject objectForKey:kMessage] isEqualToString:@"Mobile No. Registered & OTP Sent!"] || [[responseObject objectForKey:kMessage] isEqualToString:@"Mobile No. Already Registered but not Verified. OTP Sent!"])) {
              
              [self saveDataToLocal:responseObject];
              MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
@@ -247,7 +253,7 @@
         imgBackground.image = imgUser;
         effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:imgUser];
         imgBackground.image=effectImage;
-
+        [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(imgUser)            forKey:kImage];
         imgBackground.contentMode = UIViewContentModeScaleAspectFill;
     }];
     

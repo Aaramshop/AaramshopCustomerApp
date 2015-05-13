@@ -13,6 +13,7 @@
     
     __weak IBOutlet UITextField *txtfVerificationCode;
     __weak IBOutlet UILabel *lblMobileNumber;
+    __weak IBOutlet UIImageView *imgVBg;
 }
 @property(nonatomic,strong) NSString *strMobileNum;
 - (IBAction)btnBackClick:(UIButton *)sender;
