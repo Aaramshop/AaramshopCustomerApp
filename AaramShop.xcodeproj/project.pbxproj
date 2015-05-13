@@ -118,6 +118,8 @@
 		6BC2B8FD1AF3C455009E77E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC2B8FC1AF3C455009E77E3 /* UIKit.framework */; };
 		6BC2B8FF1AF3C474009E77E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC2B8FE1AF3C474009E77E3 /* CoreGraphics.framework */; };
 		6BC2B9011AF3C47B009E77E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC2B9001AF3C47B009E77E3 /* Foundation.framework */; };
+		6BE4C8F51B021BCE00EF1EDB /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8F31B021BCE00EF1EDB /* backBtn.png */; };
+		6BE4C8F61B021BCE00EF1EDB /* backBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8F41B021BCE00EF1EDB /* backBtn@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -295,6 +297,8 @@
 		6BC2B8FC1AF3C455009E77E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6BC2B8FE1AF3C474009E77E3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6BC2B9001AF3C47B009E77E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6BE4C8F31B021BCE00EF1EDB /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
+		6BE4C8F41B021BCE00EF1EDB /* backBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@2x.png"; sourceTree = "<group>"; };
 		6BEC8BC21AF3667600787870 /* AaramShop.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AaramShop.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -400,6 +404,8 @@
 		6B12DC8F1AF22DD700245209 /* LoginImages */ = {
 			isa = PBXGroup;
 			children = (
+				6BE4C8F31B021BCE00EF1EDB /* backBtn.png */,
+				6BE4C8F41B021BCE00EF1EDB /* backBtn@2x.png */,
 				6B12DCBD1AF2720400245209 /* bg2-568h@2x.jpg */,
 				6B12DCBE1AF2720400245209 /* bg2.jpg */,
 				6B12DCBF1AF2720400245209 /* bg2@2x.jpg */,
@@ -781,6 +787,7 @@
 				TargetAttributes = {
 					6B12DC5A1AF2294D00245209 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = THBY882CDS;
 					};
 				};
 			};
@@ -818,6 +825,7 @@
 				6B12DC9B1AF252B900245209 /* logo.png in Resources */,
 				6B12DCF01AF2A53200245209 /* bg3.jpg in Resources */,
 				6B12DCD01AF2720400245209 /* upperBox@3x.png in Resources */,
+				6BE4C8F51B021BCE00EF1EDB /* backBtn.png in Resources */,
 				6B12DCA61AF26AA000245209 /* appicon_80.png in Resources */,
 				6B12DCAD1AF26B4100245209 /* existingUserBox@2x.png in Resources */,
 				6B12DCB21AF26BF900245209 /* newUserBox.png in Resources */,
@@ -842,6 +850,7 @@
 				6B12DCA51AF26AA000245209 /* appicon_58.png in Resources */,
 				6B12DC991AF252B900245209 /* bg1@2x.jpg in Resources */,
 				6B12DC8C1AF22C8100245209 /* welcomeScreenBackground.png in Resources */,
+				6BE4C8F61B021BCE00EF1EDB /* backBtn@2x.png in Resources */,
 				6B12DCCE1AF2720400245209 /* upperBox.png in Resources */,
 				6B12DCC71AF2720400245209 /* bg2-568h@2x.jpg in Resources */,
 				6B12DCF51AF2A53200245209 /* defaultProfilePic@3x.png in Resources */,
@@ -1026,6 +1035,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = AaramShop/Resources/AaramShop.pch;
 				INFOPLIST_FILE = AaramShop/Info.plist;
@@ -1042,6 +1052,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = AaramShop/Resources/AaramShop.pch;
 				INFOPLIST_FILE = AaramShop/Info.plist;
