@@ -16,6 +16,9 @@
 #import "PreferencesViewController.h"
 #import "AccountSettingsViewC.h"
 #import "CartViewController.h"
+#import "UIImageEffects.h"
+
+#define kDefaultHeaderFrame CGRectMake(0, 0, tblView.frame.size.width, tblView.frame.size.height)
 
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -25,12 +28,9 @@
     NSMutableArray *arrMenu;
     NSMutableArray *arrImages;
     UITableView *tblView;
-    UIButton *btnHireMode;
-    UIButton *btnJobsMode;
-    BOOL Mode;
-    UIStoryboard *storyboard ;
-    UINavigationController *viewController;
-    AppDelegate *appDel;
+    UIStoryboard *storyboard;
+    UIImageView * bluredImageView;
+    UIView *secView;
     
 }
 @property (nonatomic, strong) UIToolbar *translucentView;
@@ -114,7 +114,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    appDel =APP_DELEGATE;
     
     
     arrMenu=[[NSMutableArray alloc]initWithObjects:@"Account Settings",@"Preferences",@"Cart",@"Vouchers",@"Awards Points",nil];
@@ -145,6 +144,7 @@
     tblView.dataSource = self;
     tblView.delegate = self;
     tblView.scrollEnabled=YES;
+//    [tblView separatorInset:c]
     tblView.alwaysBounceVertical=YES;
     tblView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
@@ -215,10 +215,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 215)];
+    secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 215)];
     UIImageView *imgBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, secView.frame.size.width, 215)];
     
-    
+    imgBackground.image = [UIImage imageNamed:@"defaultProfilePic"];
 //    [imgBackground sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseURL,objUserModel.profilePicUrl]] placeholderImage:[UIImage imageNamed:@"inviteDefaultImage"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
     
     
@@ -239,11 +239,13 @@
     UILabel *lblSeperator = [[UILabel alloc]initWithFrame:CGRectMake(8, secView.frame.size.height - 47, secView.frame.size.width - 16, 2)];
     lblSeperator.backgroundColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:0.40];
     
+   
+    
     [secView addSubview:imgBackground];
     [secView addSubview:imgProfile];
     
     [secView addSubview:lblSeperator];
-    
+  
     return secView;
     
 }
@@ -825,5 +827,4 @@
     [self removeFromParentViewController];
     if (callAppearanceMethods) [self endAppearanceTransition];
 }
-
 @end
