@@ -12,6 +12,7 @@
 @interface MobileEnterViewController ()
 {
     AppDelegate *appDeleg;
+    UIImage * effectImage;
 }
 @property (nonatomic) UIImage *image;
 @end
@@ -23,7 +24,6 @@
     appDeleg = APP_DELEGATE;
     imgVUser.layer.cornerRadius = imgVUser.frame.size.height/2;
     imgVUser.clipsToBounds = YES;
-    imgVUser.image = [UIImage imageNamed:@"defaultProfilePic.png"];
     
     btnProfile.layer.cornerRadius = btnProfile.frame.size.height/2;
     btnProfile.clipsToBounds = YES;
@@ -237,13 +237,20 @@
 #pragma - mark Selecting Image from Camera and Library
 - (void)imagePickerController:(UIImagePickerController *)pickerVw didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    
     [pickerVw dismissViewControllerAnimated:YES completion:^{
         
         imgUser = [info objectForKey:@"UIImagePickerControllerEditedImage"];
         //myImagePickerController.allowsEditing=YES;
         imageData = [NSMutableData dataWithData:UIImageJPEGRepresentation(imgUser, 1.0)];
         imgVUser.image = imgUser;
+        imgBackground.image = imgUser;
+        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:imgUser];
+        imgBackground.image=effectImage;
+
+        imgBackground.contentMode = UIViewContentModeScaleAspectFill;
     }];
+    
 }
 
 #pragma mark - 

@@ -118,7 +118,7 @@
     
     arrMenu=[[NSMutableArray alloc]initWithObjects:@"Account Settings",@"Preferences",@"Cart",@"Vouchers",@"Awards Points",nil];
     
-    arrImages=[[NSMutableArray alloc]initWithObjects:@"backBtn",@"backBtn",@"backBtn",@"backBtn",@"backBtn",nil];
+    arrImages=[[NSMutableArray alloc]initWithObjects:@"menuAccountSettingsIcon",@"menuPreferencesIcon",@"menuCartIcon",@"menuVouchersIcon",@"menuAwardsPointsIcon",nil];
     
  
    
@@ -208,11 +208,14 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    //menuFacebookBox
     return 36;
     
 }
-
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    
+//}
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 215)];
