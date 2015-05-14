@@ -7,12 +7,16 @@
 //
 
 #import "LocationEnterViewController.h"
+#import "DDAnnotationView.h"
+
 @interface LocationEnterViewController ()
 {
     AppDelegate *appDeleg;
     CustomMapAnnotationView *viewOfCustomAnnotation;
 
 }
+- (void)coordinateChanged_:(NSNotification *)notification;
+
 @end
 
 @implementation LocationEnterViewController
@@ -24,89 +28,80 @@
     txtFLocation.delegate = self;
     txtFLocation.tintColor = [UIColor blackColor];
     
-    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 0.5; //user needs to press for half a second.
-    [mapViewLocation addGestureRecognizer:lpgr];
+    mapViewLocation.delegate = self;
+    
+    CLLocationCoordinate2D theCoordinate;
+    theCoordinate.latitude = 27.810000;
+    theCoordinate.longitude = 82.477989;
+
+    Annotation *annotation = [[Annotation alloc]initWithName:@"You" Address:@"" Coordinate:theCoordinate imageUrl:@""];
+    [mapViewLocation addAnnotation:annotation];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coordinateChanged_:) name:@"DDAnnotationCoordinateDidChangeNotification" object:nil];
 }
 
-- (void)handleLongPress:(UIGestureRecognizer *)gestureRecognizer {
-    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
-        return;
-    }
-    CGPoint touchPoint = [gestureRecognizer locationInView:mapViewLocation];
-    CLLocationCoordinate2D touchMapCoordinate = [mapViewLocation convertPoint:touchPoint toCoordinateFromView:mapViewLocation];
-    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-    point.coordinate = touchMapCoordinate;
-    for (id annotation in mapViewLocation.annotations) {
-        [mapViewLocation removeAnnotation:annotation];
-    }
-    [mapViewLocation addAnnotation:point];
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DDAnnotationCoordinateDidChangeNotification" object:nil];
 }
 
-- (void)plotPosition
-{
-    for (id<MKAnnotation> annotation in mapViewLocation.annotations)
-    {
-        [mapViewLocation removeAnnotation:annotation];
-    }
+#pragma mark -
+#pragma mark DDAnnotationCoordinateDidChangeNotification
+
+- (void)coordinateChanged_:(NSNotification *)notification {
     
-        NSString *strName=@"You";
-        NSString *strAddress=@"s";
+    Annotation *annotation = notification.object;
+    annotation.Address = [NSString	stringWithFormat:@"%f %f", annotation.coordinate.latitude, annotation.coordinate.longitude];
+}
+
+#pragma mark -
+#pragma mark MKMapViewDelegate
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)annotationView didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
     
-    
-    Annotation *pinpoint=[[Annotation alloc] initWithName:strName Address:strAddress  Coordinate:appDeleg.myCurrentLocation.coordinate imageUrl:@""];
-    
-    if ([pinpoint observationInfo]==nil)
-    {
-        [mapViewLocation addAnnotation: pinpoint];
-    }
-    else
-    {
-        [pinpoint removeObserver:pinpoint forKeyPath:@"Anotations"];
-    }
-    
-    pinpoint = nil;
-    CLLocationCoordinate2D topLeftCoord;
-    topLeftCoord.latitude = -90;
-    topLeftCoord.longitude = 180;
-    
-    CLLocationCoordinate2D bottomRightCoord;
-    bottomRightCoord.latitude = 90;
-    bottomRightCoord.longitude = -180;
-    
-    for (id <MKAnnotation> annotation in mapViewLocation.annotations)
-    {
-        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
-        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
+    if (oldState == MKAnnotationViewDragStateDragging) {
+        annotationView.image = [UIImage imageNamed:@"mapPinGreen.png"];
+        Annotation *annotation = (Annotation *)annotationView.annotation;
+        annotation.Address = [NSString	stringWithFormat:@"%f %f", annotation.coordinate.latitude, annotation.coordinate.longitude];
         
-        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
-        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
     }
-    
-    MKCoordinateRegion region;
-    
-    region.center.latitude=(topLeftCoord.latitude+bottomRightCoord.latitude)/2;
-    region.center.longitude=(bottomRightCoord.longitude+ topLeftCoord.longitude)/2;
-    float LatDelta=(topLeftCoord.latitude-bottomRightCoord.latitude)*1.5;
-    
-    float LonDelta=(bottomRightCoord.longitude-topLeftCoord.longitude)*1.5;
-    
-    if (LatDelta>180)
-        LatDelta=180;
-    
-    if (LonDelta>180)
-        LonDelta=180;
-    
-    region.span.latitudeDelta = LatDelta;
-    region.span.longitudeDelta = LonDelta;
-    
-    if(region.center.longitude == 0.00000000 && region.center.latitude==0)
-        NSLog(@"Invalid region!");
-    else
-        [mapViewLocation setRegion:region animated:YES];
 }
 
-#pragma mark - MKMapViewDelegate methods.
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
+    
+    static NSString * const kPinAnnotationIdentifier = @"PinIdentifier";
+    MKAnnotationView *draggablePinView = [mapViewLocation dequeueReusableAnnotationViewWithIdentifier:kPinAnnotationIdentifier];
+    
+    if (draggablePinView) {
+        draggablePinView.annotation = annotation;
+        draggablePinView.image= [UIImage imageNamed:@"mapPinGreen.png"];
+
+    } else {
+
+        draggablePinView = [DDAnnotationView annotationViewWithAnnotation:annotation reuseIdentifier:kPinAnnotationIdentifier mapView:mapViewLocation];
+        draggablePinView.draggable = YES;
+        draggablePinView.image= [UIImage imageNamed:@"mapPinGreen.png"];
+
+        if ([draggablePinView isKindOfClass:[DDAnnotationView class]]) {
+            // draggablePinView is DDAnnotationView on iOS 3.
+        } else {
+            draggablePinView.draggable = YES;
+            // draggablePinView instance will be built-in draggable MKPinAnnotationView when running on iOS 4.
+        }
+    }		
+    
+    return draggablePinView;
+}
 
 #pragma mark-
 
@@ -115,7 +110,7 @@
     if(![view.annotation isKindOfClass:[MKUserLocation class]])
     {
         viewOfCustomAnnotation = (CustomMapAnnotationView *)[[[NSBundle mainBundle] loadNibNamed:@"CustomMapAnnotationView" owner:self options:nil]objectAtIndex:0];
-        
+        viewOfCustomAnnotation.backgroundColor = [UIColor clearColor];
         CGRect calloutViewFrame = viewOfCustomAnnotation.frame;
         calloutViewFrame.origin = CGPointMake(-calloutViewFrame.size.width/2 + 7, -calloutViewFrame.size.height);
         
@@ -132,77 +127,7 @@
 }
 
 
-#pragma mark - MKMapViewDelegate methods.
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    
-    static NSString *annotationViewReuseIdentifier = @"annotationViewReuseIdentifier";
-    
-    MKAnnotationView *annotationView = (MKAnnotationView *)[mapViewLocation dequeueReusableAnnotationViewWithIdentifier:annotationViewReuseIdentifier];
-    
-    if (annotationView == nil)
-        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationViewReuseIdentifier] ;
-    
-    if ([annotation isKindOfClass:[MKUserLocation class]])
-        return nil;
-    else
-    {
-        annotationView.enabled = YES;
-        annotationView.canShowCallout = NO;
-        annotationView.calloutOffset = CGPointMake(0, 0);
-        annotationView.annotation = annotation;
-        return annotationView;
-    }
-    return annotationView;
-}
-
-
-//- (MKAnnotationView *)mapView:(MKMapView *)mapView
-//            viewForAnnotation:(id <MKAnnotation>)annotation
-//{
-//    // If the annotation is the user location, just return nil.
-//    if ([annotation isKindOfClass:[MKUserLocation class]])
-//        return nil;
-//    
-//    // Handle any custom annotations.
-//    if ([annotation isKindOfClass:[MyCustomAnnotation class]])
-//    {
-//        // Try to dequeue an existing pin view first.
-//        MKPinAnnotationView*    pinView = (MKPinAnnotationView*)[mapView
-//                                                                 dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
-//        
-//        if (!pinView)
-//        {
-//            // If an existing pin view was not available, create one.
-//            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation
-//                                                      reuseIdentifier:@"CustomPinAnnotationView"];
-//            pinView.pinColor = MKPinAnnotationColorRed;
-//            pinView.animatesDrop = YES;
-//            pinView.canShowCallout = YES;
-//            
-//            // If appropriate, customize the callout by adding accessory views (code not shown).
-//        }
-//        else
-//            pinView.annotation = annotation;
-//        
-//        return pinView;
-//    }
-//    
-//    return nil;
-//}
-//
-//- (MKAnnotationView *)viewForAnnotation:(id <MKAnnotation>)annotation
-//{
-//    
-//}
-- (CGRect)textRectForBounds:(CGRect)bounds {
-    return CGRectInset( bounds , 10 , 10 );
-}
-
-// text position
-- (CGRect)editingRectForBounds:(CGRect)bounds {
-    return CGRectInset( bounds , 10 , 10 );
-}
 -(BOOL)prefersStatusBarHidden
 {
     return YES;

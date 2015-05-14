@@ -25,7 +25,7 @@
 -(void)showLocationScreen
 {
     LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
-    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:locationScreen];
+   // UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:locationScreen];
     [self presentViewController:locationScreen animated:YES completion:nil];
 }
 

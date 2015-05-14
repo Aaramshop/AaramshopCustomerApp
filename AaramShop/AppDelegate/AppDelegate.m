@@ -13,7 +13,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize navController,myCurrentLocation;
+@synthesize navController,myCurrentLocation,locationManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -96,6 +96,7 @@
 
 -(void)getUpdatedLocation:(CLLocation *)newLocation
 {
+    myCurrentLocation = newLocation;
 //    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error)
 //     {
 //         
