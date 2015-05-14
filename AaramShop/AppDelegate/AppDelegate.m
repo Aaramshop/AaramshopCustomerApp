@@ -50,17 +50,18 @@
     
     return YES;
 }
+
 -(void)findCurrentLocation
 {
     locationManager=[[CLLocationManager alloc] init];
     geocoder = [[CLGeocoder alloc] init];
-
+    
     if ([CLLocationManager locationServicesEnabled])
     {
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
         locationManager.headingFilter = 1;
-
+        
         locationManager.distanceFilter = kCLDistanceFilterNone;//5; // Don't use other value than - 'kCLDistanceFilterNone', else the local notification will not work.
         
         
@@ -73,9 +74,10 @@
         
     }
 }
+
 #pragma mark - CLLocationManagerDelegate
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+- (void)locationManager:(CLLocationManager* )manager didFailWithError:(NSError *)error
 {
     //    NSLog(@"didFailWithError: %@", error);
     //    UIAlertView *errorAlert = [[UIAlertView alloc]
@@ -84,14 +86,67 @@
 }
 
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+- (void)locationManager:(CLLocationManager* )manager didUpdateLocations:(NSArray* )locations
 {
     CLLocation* newLocation = [locations lastObject];
     
-   // [self getUpdatedLocation:newLocation];
+    [self getUpdatedLocation:newLocation];
 }
 
 
+-(void)getUpdatedLocation:(CLLocation *)newLocation
+{
+//    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error)
+//     {
+//         
+//         if (error == nil && [placemarks count] > 0)
+////         {
+////             placemark = [placemarks lastObject];
+////             
+////             NSArray *lines = placemark.addressDictionary[ @"FormattedAddressLines"];
+////             NSString * strCurrentAddress = [lines componentsJoinedByString:@" "];
+////             
+////             
+////             if (strCurrentAddress != nil)
+////             {
+////                 appDataManager.addressByLocation = strCurrentAddress;
+////                 
+////                 // when source address is not available and user already started commute ..
+////                 if ([[appDataManager.sourceAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0)
+////                 {
+////                     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotifyToUpdateSourceAddress" object:nil];
+////                 }
+////             }
+////             
+////         } else
+//         {
+//             NSLog(@"%@", error.debugDescription);
+//         }
+//     } ];
+    
+    
+//    NSDate* eventDate = appDataManager.lastLocation.timestamp;
+//    
+//    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+//    
+//    if (abs(howRecent) > KNotificationTime)
+//    {
+//        
+//        //        if (appDataManager.isCommuteStopped==NO && appDataManager.isCommuteStarted == YES )
+//        
+//        if (appDataManager.commuteType == eMyCommuteSingleCommuter && appDataManager.isCommuteStopped==NO && appDataManager.isCommuteStarted == YES )
+//        {
+//            [self setupLocalNotifications];
+//        }
+//        
+//    }
+//    else if (  [appDataManager.lastLocation distanceFromLocation:newLocation] > kUpdateLocationAfterDistance)
+//    {
+//        [alert dismissWithClickedButtonIndex:0 animated:YES]; // when user suddenly move from idle state to running state
+//        
+//        appDataManager.lastLocation = newLocation;
+//    }
+}
 
  #pragma mark - Register Device For Device Token
 -(void)registerDeviceForDeviceToken:(UIApplication *)application
@@ -118,18 +173,19 @@
         }
     }
 }
+ #pragma mark - Remote Notification Methods
 
 
 ////////////////////// FOR iOS 8 & iOS 7 /////////////////////
 
 #ifdef __IPHONE_8_0
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings*)notificationSettings
 {
     //register to receive notifications
     [application registerForRemoteNotifications];
 }
 
-- (void)application:(UIApplication*)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
 {
     //handle the actions
     if ([identifier isEqualToString:@"declineAction"])
@@ -138,7 +194,7 @@
     }
     else if ([identifier isEqualToString:@"answerAction"])
     {
-//        [[NSNotificationCenter defaultCenter] postNotificationName:KGetPush object:nil];
+       // [[NSNotificationCenter defaultCenter] postNotificationName:KGetPush object:nil];
         
     }
 }
@@ -158,7 +214,7 @@
     NSLog(@"Device Token: %@ ", deviceTokenStr);
 }
 
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err
 {
     
     [[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
