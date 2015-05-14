@@ -82,7 +82,7 @@
     self.isCurrentPanGestureTarget = NO;
     
     //  self.sideBarWidth = 150;
-    self.animationDuration = 0.25f;
+    self.animationDuration = 0.35f;
     
     [self initTranslucentView];
     
@@ -105,7 +105,7 @@
         self.translucentView.frame = translucentFrame;
         self.translucentView.contentMode = _showFromRight ? UIViewContentModeTopRight : UIViewContentModeTopLeft;
         self.translucentView.clipsToBounds = YES;
-        self.translucentView.backgroundColor=[UIColor whiteColor];
+        self.translucentView.backgroundColor=[UIColor clearColor];
         self.translucentView.barStyle =UIBarStyleDefault;
         
         [self.view.layer insertSublayer:self.translucentView.layer atIndex:0];
@@ -140,7 +140,7 @@
     
     
     tblView.scrollEnabled=NO;
-    tblView.backgroundColor=[UIColor whiteColor];
+    tblView.backgroundColor=[UIColor clearColor];
     [vContentView addSubview:tblView];
     tblView.dataSource = self;
     tblView.delegate = self;
@@ -210,36 +210,65 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //menuFacebookBox
-    return 63;
+    return 60;
     
 }
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 44;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 44)];
+    UIButton *btnFacebook=[[UIButton alloc]initWithFrame:CGRectMake((tblView.frame.size.width - 184)/2, 8, 184, 34)];
+    [btnFacebook setBackgroundImage:[UIImage imageNamed:@"menuFacebookBox"] forState:UIControlStateNormal];
+    [btnFacebook setTitle:@"Share with Facebook" forState:UIControlStateNormal];
+    [btnFacebook setTitleEdgeInsets:UIEdgeInsetsMake(3.0f, 30.0f, 0.0f, 0.0f)];
+    btnFacebook.titleLabel.font=[UIFont fontWithName:kMyriadProRegular size:15];
+    [btnFacebook addTarget:self action:@selector(shareWithFacebook) forControlEvents:UIControlEventTouchUpInside];
+    [secView addSubview:btnFacebook];
+    
+    return secView;
+}
+-(void)shareWithFacebook
+{
+    
+}
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    UIImage* image;
     secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 215)];
     UIImageView *imgBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, secView.frame.size.width, 215)];
     
 //    imgBackground.image = [UIImage imageNamed:@"menuProfileBackImage"];
-//    [imgBackground sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseURL,objUserModel.profilePicUrl]] placeholderImage:[UIImage imageNamed:@"inviteDefaultImage"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
-    NSData* imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
-    UIImage* image = [UIImage imageWithData:imageData];
-    effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
-    imgBackground.image = effectImage;
-
-    
     UIImageView *imgProfile=[[UIImageView alloc]initWithFrame:CGRectMake((secView.frame.size.width - 101)/2, 39, 101, 101)];
     imgProfile.layer.cornerRadius = imgProfile.frame.size.width / 2;
     imgProfile.clipsToBounds=YES;
+    
+    
+//    [imgBackground sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseURL,objUserModel.profilePicUrl]] placeholderImage:[UIImage imageNamed:@"inviteDefaultImage"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
+    NSData* imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
+    if (imageData) {
+        image = [UIImage imageWithData:imageData];
+        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
+        imgBackground.image = effectImage;
+        imgProfile.image = image;
+    }
+    else
+    {
+//        imgBackground.image=[UIImage imageNamed:@"defaultProfilePic"];
+        imgProfile.image = [UIImage imageNamed:@"defaultProfilePic"];
+    }
+
+    
+   
     
 //    [imgProfile sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kBaseURL] ,[Utils getUserDefaultValue:kProfilePicUrl]]] placeholderImage:[UIImage imageNamed:@"inviteDefaultImage"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
     
         
 //    }];
     
-    imgProfile.image = image;
+    
     
     UILabel *lblName = [[UILabel alloc]initWithFrame:CGRectMake(0, imgProfile.frame.origin.y + imgProfile.frame.size.height +5, tblView.frame.size.width, 21)];
     lblName.textColor= [UIColor whiteColor];
@@ -254,7 +283,7 @@
     
     
     
-    UIImageView *imglocation=[[UIImageView alloc]initWithFrame:CGRectMake(7, lblSeperator.frame.origin.y + 10, 20, 20)];
+    UIImageView *imglocation=[[UIImageView alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 10, 20, 20)];
     imglocation.image=[UIImage imageNamed:@"locationIcon"];
     
     UILabel *lblAddress = [[UILabel alloc]initWithFrame:CGRectMake(32, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-64, 40)];
@@ -264,8 +293,11 @@
     lblAddress.text=@"Noida, Sec - 18, Near Hospital, Uttar pradesh";
     lblAddress.textColor=[UIColor whiteColor];
     
-    
-    
+    UIButton *btnEdit=[[UIButton alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-16, 34)];
+    [btnEdit setImage:[UIImage imageNamed:@"menuEditIcon"] forState:UIControlStateNormal];
+    [btnEdit setImageEdgeInsets:UIEdgeInsetsMake(-2.0f, 0.0f, 0.0f, -225.0f)];
+    btnEdit.titleLabel.font=[UIFont fontWithName:kMyriadProRegular size:15];
+    [btnEdit addTarget:self action:@selector(EditAddress) forControlEvents:UIControlEventTouchUpInside];
     
     [secView addSubview:imgBackground];
     [secView addSubview:imgProfile];
@@ -274,6 +306,7 @@
     [secView addSubview:imglocation];
     [secView addSubview:lblName];
     [secView addSubview:lblAddress];
+    [secView addSubview:btnEdit];
     
   
     return secView;
@@ -369,7 +402,10 @@
         }
     
     }
-
+-(void)EditAddress
+{
+    
+}
 //#pragma mark Button Actions And Method
 //-(void)btnHireMode:(UIButton *)button
 //{

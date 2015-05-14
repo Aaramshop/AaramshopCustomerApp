@@ -26,9 +26,14 @@
     
     lblMobileNumber.text = [NSString stringWithFormat:@"xxx xxx xx%@",[strMobileNum substringFromIndex:8]];
     NSData* imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
-    UIImage* image = [UIImage imageWithData:imageData];
-    effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
-    imgVBg.image = effectImage;
+    if (imageData) {
+        UIImage* image = [UIImage imageWithData:imageData];
+        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
+        imgVBg.image = effectImage;
+
+    }
+    else
+        imgVBg.image = [UIImage imageNamed:@"bg4.jpg"];
 }
 
 -(void)createDataForOtpSend
