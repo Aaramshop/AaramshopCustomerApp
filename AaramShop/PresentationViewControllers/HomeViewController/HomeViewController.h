@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController<CDRTranslucentSideBarDelegate>
+@interface HomeViewController : UIViewController<CDRTranslucentSideBarDelegate,CustomNavigationDelegate>
+
+{
+}
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
 
 @end

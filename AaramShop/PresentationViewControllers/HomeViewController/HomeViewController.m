@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.sideBar = [Utils createLeftBarWithDelegate:self];
-    [self setNavigationBar];
+    [self setUpNavigationView];
     [self showLocationScreen];
 
 }
@@ -34,24 +34,25 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark Navigation
--(void)setNavigationBar
+
+-(void)setUpNavigationView
 {
-    self.navigationController.navigationBarHidden = NO;
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    //.view.backgroundColor =kCommonScreenBackgroundColor;
+    CustomNavigationView* navView =[[CustomNavigationView alloc]init];
+    //  [navView setCustomNavigationLeftButtonText:NSLocalizedString(kCommonNavButtonCancelText, nil)];
+    // [navView setCustomNavigationRightButtonText:NSLocalizedString(kCommonNavButtonSaveText, nil)];
+//    [navView setCustomNavigationTitle:NSLocalizedString(@"Your LineJump", nil)];
+//    //    [navView setCustomNavigationLeftArrowImage];
+//    [navView removeCustomNavigationLeftArrowImage];
     
-    UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
-    sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
-    [sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
-    [sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
+    [navView setCustomNavigationLeftArrowImageWithImageName:@"menuIcon.png"];
     
-    
-    NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
-    self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+        navView.delegate=self;
+    [self.view addSubview:navView];
     
     
 }
--(void)SideMenuClicked
+-(void)customNavigationLeftButtonClick:(UIButton *)sender
 {
     [self.sideBar show];
 }

@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		274625821B02702E00C1941B /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 274625811B02702E00C1941B /* UIImageEffects.m */; };
+		274929AB1B03CE3E008ACEFD /* CustomNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 274929AA1B03CE3E008ACEFD /* CustomNavigationView.m */; };
+		274929AF1B03DC03008ACEFD /* homePageBannerImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 274929AC1B03DC03008ACEFD /* homePageBannerImage.png */; };
+		274929B01B03DC03008ACEFD /* homePageBannerImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 274929AD1B03DC03008ACEFD /* homePageBannerImage@2x.png */; };
+		274929B11B03DC03008ACEFD /* homePageBannerImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 274929AE1B03DC03008ACEFD /* homePageBannerImage@3x.png */; };
+		274929B51B03DC10008ACEFD /* indianFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = 274929B21B03DC10008ACEFD /* indianFlag.png */; };
+		274929B61B03DC10008ACEFD /* indianFlag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 274929B31B03DC10008ACEFD /* indianFlag@2x.png */; };
+		274929B71B03DC10008ACEFD /* indianFlag@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 274929B41B03DC10008ACEFD /* indianFlag@3x.png */; };
+		2786559D1B0467F400A262A3 /* menuEditIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2786559A1B0467F400A262A3 /* menuEditIcon.png */; };
+		2786559E1B0467F400A262A3 /* menuEditIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2786559B1B0467F400A262A3 /* menuEditIcon@2x.png */; };
+		2786559F1B0467F400A262A3 /* menuEditIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2786559C1B0467F400A262A3 /* menuEditIcon@3x.png */; };
 		2791DE1B1B0365B5000121BC /* backBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE1A1B0365B5000121BC /* backBtn@3x.png */; };
 		2791DE2F1B036E5C000121BC /* menuAccountSettingsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE1D1B036E5B000121BC /* menuAccountSettingsIcon.png */; };
 		2791DE301B036E5C000121BC /* menuAccountSettingsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE1E1B036E5B000121BC /* menuAccountSettingsIcon@2x.png */; };
@@ -27,15 +37,6 @@
 		2791DE3E1B036E5C000121BC /* menuVouchersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE2C1B036E5C000121BC /* menuVouchersIcon.png */; };
 		2791DE3F1B036E5C000121BC /* menuVouchersIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE2D1B036E5C000121BC /* menuVouchersIcon@2x.png */; };
 		2791DE401B036E5C000121BC /* menuVouchersIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE2E1B036E5C000121BC /* menuVouchersIcon@3x.png */; };
-		2791DE441B03770B000121BC /* indianFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE411B03770B000121BC /* indianFlag.png */; };
-		2791DE451B03770B000121BC /* indianFlag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE421B03770B000121BC /* indianFlag@2x.png */; };
-		2791DE461B03770B000121BC /* indianFlag@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE431B03770B000121BC /* indianFlag@3x.png */; };
-		2791DE4D1B0377C6000121BC /* menuProfileBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE471B0377C6000121BC /* menuProfileBackImage.png */; };
-		2791DE4E1B0377C6000121BC /* menuProfileBackImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE481B0377C6000121BC /* menuProfileBackImage@2x.png */; };
-		2791DE4F1B0377C6000121BC /* menuProfileBackImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE491B0377C6000121BC /* menuProfileBackImage@3x.png */; };
-		2791DE501B0377C6000121BC /* menuProfileImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE4A1B0377C6000121BC /* menuProfileImage.png */; };
-		2791DE511B0377C6000121BC /* menuProfileImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE4B1B0377C6000121BC /* menuProfileImage@2x.png */; };
-		2791DE521B0377C6000121BC /* menuProfileImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE4C1B0377C6000121BC /* menuProfileImage@3x.png */; };
 		27BE657E1B0203E6004FA4B4 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE657D1B0203E6004FA4B4 /* ChatViewController.m */; };
 		27BE65811B0203F2004FA4B4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE65801B0203F2004FA4B4 /* HomeViewController.m */; };
 		27BE65841B0203FD004FA4B4 /* OffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE65831B0203FD004FA4B4 /* OffersViewController.m */; };
@@ -225,6 +226,17 @@
 /* Begin PBXFileReference section */
 		274625801B02702E00C1941B /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		274625811B02702E00C1941B /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
+		274929A91B03CE3E008ACEFD /* CustomNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationView.h; sourceTree = "<group>"; };
+		274929AA1B03CE3E008ACEFD /* CustomNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationView.m; sourceTree = "<group>"; };
+		274929AC1B03DC03008ACEFD /* homePageBannerImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homePageBannerImage.png; sourceTree = "<group>"; };
+		274929AD1B03DC03008ACEFD /* homePageBannerImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homePageBannerImage@2x.png"; sourceTree = "<group>"; };
+		274929AE1B03DC03008ACEFD /* homePageBannerImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homePageBannerImage@3x.png"; sourceTree = "<group>"; };
+		274929B21B03DC10008ACEFD /* indianFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indianFlag.png; sourceTree = "<group>"; };
+		274929B31B03DC10008ACEFD /* indianFlag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indianFlag@2x.png"; sourceTree = "<group>"; };
+		274929B41B03DC10008ACEFD /* indianFlag@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indianFlag@3x.png"; sourceTree = "<group>"; };
+		2786559A1B0467F400A262A3 /* menuEditIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuEditIcon.png; sourceTree = "<group>"; };
+		2786559B1B0467F400A262A3 /* menuEditIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuEditIcon@2x.png"; sourceTree = "<group>"; };
+		2786559C1B0467F400A262A3 /* menuEditIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuEditIcon@3x.png"; sourceTree = "<group>"; };
 		2791DE1A1B0365B5000121BC /* backBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@3x.png"; sourceTree = "<group>"; };
 		2791DE1D1B036E5B000121BC /* menuAccountSettingsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuAccountSettingsIcon.png; sourceTree = "<group>"; };
 		2791DE1E1B036E5B000121BC /* menuAccountSettingsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuAccountSettingsIcon@2x.png"; sourceTree = "<group>"; };
@@ -244,15 +256,6 @@
 		2791DE2C1B036E5C000121BC /* menuVouchersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuVouchersIcon.png; sourceTree = "<group>"; };
 		2791DE2D1B036E5C000121BC /* menuVouchersIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuVouchersIcon@2x.png"; sourceTree = "<group>"; };
 		2791DE2E1B036E5C000121BC /* menuVouchersIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuVouchersIcon@3x.png"; sourceTree = "<group>"; };
-		2791DE411B03770B000121BC /* indianFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indianFlag.png; sourceTree = "<group>"; };
-		2791DE421B03770B000121BC /* indianFlag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indianFlag@2x.png"; sourceTree = "<group>"; };
-		2791DE431B03770B000121BC /* indianFlag@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "indianFlag@3x.png"; sourceTree = "<group>"; };
-		2791DE471B0377C6000121BC /* menuProfileBackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuProfileBackImage.png; sourceTree = "<group>"; };
-		2791DE481B0377C6000121BC /* menuProfileBackImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuProfileBackImage@2x.png"; sourceTree = "<group>"; };
-		2791DE491B0377C6000121BC /* menuProfileBackImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuProfileBackImage@3x.png"; sourceTree = "<group>"; };
-		2791DE4A1B0377C6000121BC /* menuProfileImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuProfileImage.png; sourceTree = "<group>"; };
-		2791DE4B1B0377C6000121BC /* menuProfileImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuProfileImage@2x.png"; sourceTree = "<group>"; };
-		2791DE4C1B0377C6000121BC /* menuProfileImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuProfileImage@3x.png"; sourceTree = "<group>"; };
 		27BE657C1B0203E6004FA4B4 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		27BE657D1B0203E6004FA4B4 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		27BE657F1B0203F2004FA4B4 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -547,9 +550,21 @@
 			path = UIImageEffects;
 			sourceTree = "<group>";
 		};
+		274929A81B03CE3E008ACEFD /* CustomNavigationView */ = {
+			isa = PBXGroup;
+			children = (
+				274929A91B03CE3E008ACEFD /* CustomNavigationView.h */,
+				274929AA1B03CE3E008ACEFD /* CustomNavigationView.m */,
+			);
+			path = CustomNavigationView;
+			sourceTree = "<group>";
+		};
 		2791DE1C1B036E5B000121BC /* MenuImages */ = {
 			isa = PBXGroup;
 			children = (
+				2786559A1B0467F400A262A3 /* menuEditIcon.png */,
+				2786559B1B0467F400A262A3 /* menuEditIcon@2x.png */,
+				2786559C1B0467F400A262A3 /* menuEditIcon@3x.png */,
 				2791DE1D1B036E5B000121BC /* menuAccountSettingsIcon.png */,
 				2791DE1E1B036E5B000121BC /* menuAccountSettingsIcon@2x.png */,
 				2791DE1F1B036E5B000121BC /* menuAccountSettingsIcon@3x.png */,
@@ -677,6 +692,7 @@
 		6B12DC861AF22C8100245209 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				274929A81B03CE3E008ACEFD /* CustomNavigationView */,
 				2746257F1B02702E00C1941B /* UIImageEffects */,
 				6BC2B8641AF3C27D009E77E3 /* Utils */,
 				6BC2B87A1AF3C27D009E77E3 /* AFNetworking */,
@@ -695,15 +711,9 @@
 		6B12DC871AF22C8100245209 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				2791DE471B0377C6000121BC /* menuProfileBackImage.png */,
-				2791DE481B0377C6000121BC /* menuProfileBackImage@2x.png */,
-				2791DE491B0377C6000121BC /* menuProfileBackImage@3x.png */,
-				2791DE4A1B0377C6000121BC /* menuProfileImage.png */,
-				2791DE4B1B0377C6000121BC /* menuProfileImage@2x.png */,
-				2791DE4C1B0377C6000121BC /* menuProfileImage@3x.png */,
-				2791DE411B03770B000121BC /* indianFlag.png */,
-				2791DE421B03770B000121BC /* indianFlag@2x.png */,
-				2791DE431B03770B000121BC /* indianFlag@3x.png */,
+				274929AC1B03DC03008ACEFD /* homePageBannerImage.png */,
+				274929AD1B03DC03008ACEFD /* homePageBannerImage@2x.png */,
+				274929AE1B03DC03008ACEFD /* homePageBannerImage@3x.png */,
 				2791DE1C1B036E5B000121BC /* MenuImages */,
 				6BE4C8F71B034BB600EF1EDB /* LocationScreenImages */,
 				6BFFF9101B0217CA00BB2B62 /* TabbarImages */,
@@ -859,6 +869,9 @@
 		6B12DCE41AF2A53200245209 /* MobileEnterImages */ = {
 			isa = PBXGroup;
 			children = (
+				274929B21B03DC10008ACEFD /* indianFlag.png */,
+				274929B31B03DC10008ACEFD /* indianFlag@2x.png */,
+				274929B41B03DC10008ACEFD /* indianFlag@3x.png */,
 				27EC67601B03316F007D126E /* enterMobileNoDefaultCameraIcon.png */,
 				27EC67611B03316F007D126E /* enterMobileNoDefaultCameraIcon@2x.png */,
 				27EC67621B03316F007D126E /* enterMobileNoDefaultCameraIcon@3x.png */,
@@ -1290,13 +1303,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2791DE461B03770B000121BC /* indianFlag@3x.png in Resources */,
 				2791DE381B036E5C000121BC /* menuFacebookBox.png in Resources */,
-				2791DE521B0377C6000121BC /* menuProfileImage@3x.png in Resources */,
-				2791DE4D1B0377C6000121BC /* menuProfileBackImage.png in Resources */,
 				6BFFF9481B0236B800BB2B62 /* tabBarChatIconActive.png in Resources */,
 				27EC674C1B031FE0007D126E /* aaramShopAppLogo@2x.png in Resources */,
+
 				6BA2F09E1B04B2F30074562F /* mapPinGreen.png in Resources */,
+
+				2786559E1B0467F400A262A3 /* menuEditIcon@2x.png in Resources */,
+				274929B51B03DC10008ACEFD /* indianFlag.png in Resources */,
+
 				6B12DCCF1AF2720400245209 /* upperBox@2x.png in Resources */,
 				6BFFF94E1B0236B800BB2B62 /* tabBarHomeIconActive.png in Resources */,
 				2791DE361B036E5C000121BC /* menuCartIcon@2x.png in Resources */,
@@ -1305,6 +1320,7 @@
 				6BFFF94A1B0236B800BB2B62 /* tabBarChatIconActive@3x.png in Resources */,
 				27EC675D1B032F9C007D126E /* bg4.jpg in Resources */,
 				6BFFF9541B0236B800BB2B62 /* tabBarMyListIconActive.png in Resources */,
+				274929B01B03DC03008ACEFD /* homePageBannerImage@2x.png in Resources */,
 				6BFFF9471B0236B800BB2B62 /* tabBarChatIcon@3x.png in Resources */,
 				27EC675E1B032F9C007D126E /* bg4@2x.jpg in Resources */,
 				2791DE3A1B036E5C000121BC /* menuFacebookBox@3x.png in Resources */,
@@ -1316,11 +1332,13 @@
 				6BE4C8FC1B034BB600EF1EDB /* doneBtn@2x.png in Resources */,
 				6B12DCAE1AF26B4100245209 /* existingUserBox@3x.png in Resources */,
 				6BFFF9531B0236B800BB2B62 /* tabBarMyListIcon@3x.png in Resources */,
+				274929B71B03DC10008ACEFD /* indianFlag@3x.png in Resources */,
 				6BFFF9521B0236B800BB2B62 /* tabBarMyListIcon@2x.png in Resources */,
 				6BFFF9601B0236B800BB2B62 /* tabBarOrdersIconActive.png in Resources */,
 				6BE4C9191B035DEF00EF1EDB /* mapPopup.png in Resources */,
 				6BE4C90B1B034CDE00EF1EDB /* mapPin@2x.png in Resources */,
 				6B12DCD01AF2720400245209 /* upperBox@3x.png in Resources */,
+				274929B61B03DC10008ACEFD /* indianFlag@2x.png in Resources */,
 				2791DE3E1B036E5C000121BC /* menuVouchersIcon.png in Resources */,
 				6B12DCA61AF26AA000245209 /* appicon_80.png in Resources */,
 				6B1A9A591B03658C0005917B /* CustomMapAnnotationView.xib in Resources */,
@@ -1328,9 +1346,11 @@
 				6B12DCB21AF26BF900245209 /* newUserBox.png in Resources */,
 				6B12DCB31AF26BF900245209 /* newUserBox@2x.png in Resources */,
 				27EC67581B032E90007D126E /* enterMobileNoBox@2x.png in Resources */,
+				274929B11B03DC03008ACEFD /* homePageBannerImage@3x.png in Resources */,
 				6B12DC6A1AF2294D00245209 /* Main.storyboard in Resources */,
 				6B12DC8D1AF22C8100245209 /* welcomeScreenBackground@2x.png in Resources */,
 				6BE4C9091B034CDE00EF1EDB /* locationIcon@3x.png in Resources */,
+				2786559F1B0467F400A262A3 /* menuEditIcon@3x.png in Resources */,
 				6BFFF95A1B0236B800BB2B62 /* tabBarOffersIconActive.png in Resources */,
 				6BFFF9151B0217CB00BB2B62 /* menuIcon@2x.png in Resources */,
 				6BE4C91A1B035DEF00EF1EDB /* mapPopup@2x.png in Resources */,
@@ -1340,13 +1360,11 @@
 				6BE4C9081B034CDE00EF1EDB /* locationIcon@2x.png in Resources */,
 				27EC67631B03316F007D126E /* enterMobileNoDefaultCameraIcon.png in Resources */,
 				6BC2B8601AF3A9F0009E77E3 /* MyriadPro-Regular.otf in Resources */,
-				2791DE511B0377C6000121BC /* menuProfileImage@2x.png in Resources */,
 				6B12DC8E1AF22C8100245209 /* welcomeScreenBackground@3x.png in Resources */,
 				2791DE391B036E5C000121BC /* menuFacebookBox@2x.png in Resources */,
 				6B12DCDA1AF2A09700245209 /* singleBox@2x.png in Resources */,
 				6BFFF9581B0236B800BB2B62 /* tabBarOffersIcon@2x.png in Resources */,
 				27EC67531B0326A5007D126E /* bg1@3x.jpg in Resources */,
-				2791DE451B03770B000121BC /* indianFlag@2x.png in Resources */,
 				6BE4C8FB1B034BB600EF1EDB /* doneBtn.png in Resources */,
 				27EC674D1B031FE0007D126E /* aaramShopAppLogo@3x.png in Resources */,
 				2791DE351B036E5C000121BC /* menuCartIcon.png in Resources */,
@@ -1363,6 +1381,7 @@
 				6BB897061AF8CBB000971846 /* CountryCodeList.plist in Resources */,
 				6B12DCA51AF26AA000245209 /* appicon_58.png in Resources */,
 				6BFFF95B1B0236B800BB2B62 /* tabBarOffersIconActive@2x.png in Resources */,
+				2786559D1B0467F400A262A3 /* menuEditIcon.png in Resources */,
 				6B12DC8C1AF22C8100245209 /* welcomeScreenBackground.png in Resources */,
 				27EC67591B032E90007D126E /* enterMobileNoBox@3x.png in Resources */,
 				6B12DCCE1AF2720400245209 /* upperBox.png in Resources */,
@@ -1386,7 +1405,6 @@
 				6BFFF94C1B0236B800BB2B62 /* tabBarHomeIcon@2x.png in Resources */,
 				6B12DCD91AF2A09700245209 /* singleBox.png in Resources */,
 				6BFFF9141B0217CB00BB2B62 /* menuIcon.png in Resources */,
-				2791DE441B03770B000121BC /* indianFlag.png in Resources */,
 				2791DE371B036E5C000121BC /* menuCartIcon@3x.png in Resources */,
 				6BA2F0A01B04B2F30074562F /* mapPinGreen@3x.png in Resources */,
 				6BFFF9161B0217CB00BB2B62 /* menuIcon@3x.png in Resources */,
@@ -1394,7 +1412,6 @@
 				6BFFF9451B0236B800BB2B62 /* tabBarChatIcon.png in Resources */,
 				6BE4C90A1B034CDE00EF1EDB /* mapPin.png in Resources */,
 				6BE4C90F1B034CDE00EF1EDB /* pencilIcon@3x.png in Resources */,
-				2791DE4E1B0377C6000121BC /* menuProfileBackImage@2x.png in Resources */,
 				6B12DCDB1AF2A09700245209 /* singleBox@3x.png in Resources */,
 				6BFFF95D1B0236B800BB2B62 /* tabBarOrdersIcon.png in Resources */,
 				6B12DCF41AF2A53200245209 /* defaultProfilePic@2x.png in Resources */,
@@ -1405,11 +1422,10 @@
 				27EC67651B03316F007D126E /* enterMobileNoDefaultCameraIcon@3x.png in Resources */,
 				6B12DCCA1AF2720400245209 /* bg2@3x.jpg in Resources */,
 				6B12DCAC1AF26B4100245209 /* existingUserBox.png in Resources */,
-				2791DE4F1B0377C6000121BC /* menuProfileBackImage@3x.png in Resources */,
 				2791DE3C1B036E5C000121BC /* menuPreferencesIcon@2x.png in Resources */,
 				2791DE341B036E5C000121BC /* menuAwardsPointsIcon@3x.png in Resources */,
-				2791DE501B0377C6000121BC /* menuProfileImage.png in Resources */,
 				6B12DCA81AF26AA000245209 /* appicon_180.png in Resources */,
+				274929AF1B03DC03008ACEFD /* homePageBannerImage.png in Resources */,
 				6B12DCCB1AF2720400245209 /* lowerBox.png in Resources */,
 				2791DE401B036E5C000121BC /* menuVouchersIcon@3x.png in Resources */,
 				6B12DCC81AF2720400245209 /* bg2.jpg in Resources */,
@@ -1439,6 +1455,7 @@
 				6B1A9A521B0364740005917B /* Annotation.m in Sources */,
 				6BC2B8D71AF3C27D009E77E3 /* AFHTTPRequestOperation.m in Sources */,
 				6BC2B8D51AF3C27D009E77E3 /* SHFileUtil.m in Sources */,
+				274929AB1B03CE3E008ACEFD /* CustomNavigationView.m in Sources */,
 				6BC2B8EC1AF3C27D009E77E3 /* SDWebImageCompat.m in Sources */,
 				6B12DCBC1AF26FA300245209 /* LoginViewController.m in Sources */,
 				6B388E191AFCC31800FF3CF3 /* LocationEnterViewController.m in Sources */,
