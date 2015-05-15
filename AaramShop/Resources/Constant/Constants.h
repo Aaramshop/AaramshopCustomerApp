@@ -66,6 +66,35 @@
 #define kState                                @"state"
 #define kToddlers                             @"toddlers"
 
+#pragma mark - AaramShopValues
+
+#define kOptionStore_listing                @"store_listing"
+#define kRadius                             @"radius"
+#define kCity_name                          @"city_name"
+#define kDelivers                           @"delivers"
+#define kLocality_name                      @"locality_name"
+#define kMinimum_order                      @"minimum_order"
+#define kState_name                         @"state_name"
+#define kStore_address                      @"store_address"
+#define kStore_category                     @"store_category"
+#define kStore_closing_days                 @"store_closing_days"
+#define kStore_code                         @"store_code"
+#define kStore_distance                     @"store_distance"
+#define kStore_email                        @"store_email"
+#define kStore_id                           @"store_id"
+#define kStore_image                        @"store_image"
+#define kStore_latitude                     @"store_latitude"
+#define kStore_longitude                    @"store_longitude"
+#define kStore_mobile                       @"store_mobile"
+#define kStore_name                         @"store_name"
+#define kStore_person                       @"store_person"
+#define kStore_phone                        @"store_phone"
+#define kStore_pincode                      @"store_pincode"
+#define kStore_terms                        @"store_terms"
+#define kStore_working_from                 @"store_working_from"
+#define kStore_working_status               @"store_working_status"
+#define kStore_working_to                   @"store_working_to"
+#define kData                               @"data"
 
 #pragma mark UpdateMobile
 

@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSString *Name;
 @property (nonatomic, strong) NSString *Address;
 @property (nonatomic, strong) NSString *strImgUrl;
+@property(nonatomic,assign) BOOL isMyLocation;
 
-
-- (id)initWithName:(NSString*)name Address:(NSString*)address Coordinate:(CLLocationCoordinate2D)cornidate imageUrl:(NSString *)strImageUrl;
+- (id)initWithName:(NSString*)name Address:(NSString*)address Coordinate:(CLLocationCoordinate2D)cornidate imageUrl:(NSString *)strImageUrl showMyLocation:(BOOL)isMyLocation;
 @end

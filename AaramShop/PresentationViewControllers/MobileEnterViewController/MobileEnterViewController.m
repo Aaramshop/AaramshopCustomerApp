@@ -114,7 +114,12 @@
         return;
     }
     AFHTTPSessionManager *manager = [Utils InitSetUpForWebService];
-    [manager POST:@"" parameters:aDict
+    
+    
+    [manager POST:@"" parameters:aDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+     {
+         [formData appendPartWithFileData:imageData name:kProfileImage fileName:@"profileImage.jpg" mimeType:@"image/jpg"];
+     }
           success:^(NSURLSessionDataTask *task, id responseObject)
      {
          [AppManager stopStatusbarActivityIndicator];

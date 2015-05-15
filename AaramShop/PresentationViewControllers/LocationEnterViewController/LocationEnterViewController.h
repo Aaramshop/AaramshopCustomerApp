@@ -12,7 +12,7 @@
 {
    __weak IBOutlet UITextField *txtFLocation;
     __weak IBOutlet MKMapView *mapViewLocation;
-
+    NSMutableArray *arrShopsData;
 }
 - (IBAction)btnDoneClick:(UIButton *)sender;
 - (IBAction)btnEditClick:(UIButton *)sender;
