@@ -12,15 +12,14 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate,UITabBarControllerDelegate,UINavigationControllerDelegate>
 {
-    
-    CLLocationManager *locationManager;
-    CLGeocoder *geocoder;
+CLGeocoder *geocoder;
 }
 
 
 @property (strong, nonatomic) UIWindow *window;
 @property(nonatomic,strong) UINavigationController *navController;
 @property (nonatomic, strong) CLLocation *myCurrentLocation;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 
 @end

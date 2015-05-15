@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LocationEnterViewController : UIViewController<UITextFieldDelegate>
+@interface LocationEnterViewController : UIViewController<UITextFieldDelegate,MKMapViewDelegate>
 {
    __weak IBOutlet UITextField *txtFLocation;
     __weak IBOutlet MKMapView *mapViewLocation;
