@@ -406,6 +406,12 @@
 		27EC67641B03316F007D126E /* enterMobileNoDefaultCameraIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27EC67611B03316F007D126E /* enterMobileNoDefaultCameraIcon@2x.png */; };
 		27EC67651B03316F007D126E /* enterMobileNoDefaultCameraIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27EC67621B03316F007D126E /* enterMobileNoDefaultCameraIcon@3x.png */; };
 		6B0676E41B06027F0002259E /* ShopDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0676E31B06027F0002259E /* ShopDataModel.m */; };
+		6B0676EC1B0630580002259E /* locationPopupCancelBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676E61B0630580002259E /* locationPopupCancelBox.png */; };
+		6B0676ED1B0630580002259E /* locationPopupCancelBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676E71B0630580002259E /* locationPopupCancelBox@2x.png */; };
+		6B0676EE1B0630580002259E /* locationPopupCancelBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676E81B0630580002259E /* locationPopupCancelBox@3x.png */; };
+		6B0676EF1B0630580002259E /* locationPopupSaveBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676E91B0630580002259E /* locationPopupSaveBox.png */; };
+		6B0676F01B0630580002259E /* locationPopupSaveBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676EA1B0630580002259E /* locationPopupSaveBox@2x.png */; };
+		6B0676F11B0630580002259E /* locationPopupSaveBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676EB1B0630580002259E /* locationPopupSaveBox@3x.png */; };
 		6B12DC611AF2294D00245209 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12DC601AF2294D00245209 /* main.m */; };
 		6B12DC6A1AF2294D00245209 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DC681AF2294D00245209 /* Main.storyboard */; };
 		6B12DC6C1AF2294D00245209 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DC6B1AF2294D00245209 /* Images.xcassets */; };
@@ -1156,6 +1162,12 @@
 		27EC67621B03316F007D126E /* enterMobileNoDefaultCameraIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enterMobileNoDefaultCameraIcon@3x.png"; sourceTree = "<group>"; };
 		6B0676E21B06027F0002259E /* ShopDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDataModel.h; sourceTree = "<group>"; };
 		6B0676E31B06027F0002259E /* ShopDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDataModel.m; sourceTree = "<group>"; };
+		6B0676E61B0630580002259E /* locationPopupCancelBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationPopupCancelBox.png; sourceTree = "<group>"; };
+		6B0676E71B0630580002259E /* locationPopupCancelBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupCancelBox@2x.png"; sourceTree = "<group>"; };
+		6B0676E81B0630580002259E /* locationPopupCancelBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupCancelBox@3x.png"; sourceTree = "<group>"; };
+		6B0676E91B0630580002259E /* locationPopupSaveBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationPopupSaveBox.png; sourceTree = "<group>"; };
+		6B0676EA1B0630580002259E /* locationPopupSaveBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupSaveBox@2x.png"; sourceTree = "<group>"; };
+		6B0676EB1B0630580002259E /* locationPopupSaveBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupSaveBox@3x.png"; sourceTree = "<group>"; };
 		6B12DC5B1AF2294D00245209 /* AaramShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AaramShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B12DC5F1AF2294D00245209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B12DC601AF2294D00245209 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2807,6 +2819,19 @@
 			path = ShopDataModel;
 			sourceTree = "<group>";
 		};
+		6B0676E51B0630580002259E /* AlertScreenImages */ = {
+			isa = PBXGroup;
+			children = (
+				6B0676E61B0630580002259E /* locationPopupCancelBox.png */,
+				6B0676E71B0630580002259E /* locationPopupCancelBox@2x.png */,
+				6B0676E81B0630580002259E /* locationPopupCancelBox@3x.png */,
+				6B0676E91B0630580002259E /* locationPopupSaveBox.png */,
+				6B0676EA1B0630580002259E /* locationPopupSaveBox@2x.png */,
+				6B0676EB1B0630580002259E /* locationPopupSaveBox@3x.png */,
+			);
+			path = AlertScreenImages;
+			sourceTree = "<group>";
+		};
 		6B12DC521AF2294D00245209 = {
 			isa = PBXGroup;
 			children = (
@@ -2868,6 +2893,7 @@
 		6B12DC871AF22C8100245209 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6B0676E51B0630580002259E /* AlertScreenImages */,
 				274A5A381B05C075009112B5 /* HomeImages */,
 				275F7DD41B05BD390049758B /* NavigationImages */,
 				275F7DA91B05BC7C0049758B /* DemoImage */,
@@ -3296,6 +3322,7 @@
 				6B12DCCF1AF2720400245209 /* upperBox@2x.png in Resources */,
 				6BFFF94E1B0236B800BB2B62 /* tabBarHomeIconActive.png in Resources */,
 				274A5DC41B05C88B009112B5 /* chatPlayIconWhite.png in Resources */,
+				6B0676EE1B0630580002259E /* locationPopupCancelBox@3x.png in Resources */,
 				274A5DFC1B05C88B009112B5 /* ShowFullProfileImageViewController4.xib in Resources */,
 				274A5C791B05C4AA009112B5 /* poweredByFoursquare_gray.png in Resources */,
 				274A5DDE1B05C88B009112B5 /* ReceivedMessage.wav in Resources */,
@@ -3322,6 +3349,7 @@
 				6BE4C9141B0351FD00EF1EDB /* mapPopupBox@2x.png in Resources */,
 				6BFFF9511B0236B800BB2B62 /* tabBarMyListIcon.png in Resources */,
 				6BE4C8FC1B034BB600EF1EDB /* doneBtn@2x.png in Resources */,
+				6B0676F11B0630580002259E /* locationPopupSaveBox@3x.png in Resources */,
 				6B12DCAE1AF26B4100245209 /* existingUserBox@3x.png in Resources */,
 				6BFFF9531B0236B800BB2B62 /* tabBarMyListIcon@3x.png in Resources */,
 				274A5D0C1B05C4AA009112B5 /* MyriadPro-Regular.otf in Resources */,
@@ -3344,6 +3372,7 @@
 				2791DE3E1B036E5C000121BC /* menuVouchersIcon.png in Resources */,
 				274A5DB51B05C88B009112B5 /* chatCloseCircular@2x.png in Resources */,
 				274A5DCC1B05C88B009112B5 /* feedsViewerBar.png in Resources */,
+				6B0676ED1B0630580002259E /* locationPopupCancelBox@2x.png in Resources */,
 				6B12DCA61AF26AA000245209 /* appicon_80.png in Resources */,
 				6B1A9A591B03658C0005917B /* CustomMapAnnotationView.xib in Resources */,
 				274A5DB11B05C88B009112B5 /* chatBubbleGrey@2x.png in Resources */,
@@ -3364,6 +3393,7 @@
 				274A5A4C1B05C075009112B5 /* homeOfferBox@2x.png in Resources */,
 				2786559F1B0467F400A262A3 /* menuEditIcon@3x.png in Resources */,
 				6BFFF95A1B0236B800BB2B62 /* tabBarOffersIconActive.png in Resources */,
+				6B0676F01B0630580002259E /* locationPopupSaveBox@2x.png in Resources */,
 				275F7DC21B05BC7C0049758B /* homePageBannerImageFour.png in Resources */,
 				274A5DCD1B05C88B009112B5 /* feedsViewerBar@2x.png in Resources */,
 				6BE4C91A1B035DEF00EF1EDB /* mapPopup@2x.png in Resources */,
@@ -3472,6 +3502,7 @@
 				274A5DD61B05C88B009112B5 /* msgChatMapImg.png in Resources */,
 				6B12DCDB1AF2A09700245209 /* singleBox@3x.png in Resources */,
 				6BFFF95D1B0236B800BB2B62 /* tabBarOrdersIcon.png in Resources */,
+				6B0676EF1B0630580002259E /* locationPopupSaveBox.png in Resources */,
 				274A5DEB1B05C88B009112B5 /* MapViewController.xib in Resources */,
 				275F7DCF1B05BC7C0049758B /* imageThree@2x.png in Resources */,
 				274A5E001B05C88B009112B5 /* SMChatViewController.xib in Resources */,
@@ -3492,6 +3523,7 @@
 				6B12DCAC1AF26B4100245209 /* existingUserBox.png in Resources */,
 				2791DE3C1B036E5C000121BC /* menuPreferencesIcon@2x.png in Resources */,
 				2791DE341B036E5C000121BC /* menuAwardsPointsIcon@3x.png in Resources */,
+				6B0676EC1B0630580002259E /* locationPopupCancelBox.png in Resources */,
 				274A5A461B05C075009112B5 /* addToCardNoBox@2x.png in Resources */,
 				6B12DCA81AF26AA000245209 /* appicon_180.png in Resources */,
 				274A5E011B05C88B009112B5 /* Stickers.plist in Resources */,
