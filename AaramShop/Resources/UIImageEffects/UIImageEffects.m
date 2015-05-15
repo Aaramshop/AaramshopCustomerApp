@@ -73,6 +73,14 @@
 
 
 //| ----------------------------------------------------------------------------
++ (UIImage *)imageByApplyingLightEffectToImageOnNavigationBar:(UIImage*)inputImage
+{
+    UIColor *tintColor = [UIColor colorWithWhite:0.11 alpha:0.5];
+    return [self imageByApplyingBlurToImage:inputImage withRadius:80 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
+}
+
+
+//| ----------------------------------------------------------------------------
 + (UIImage *)imageByApplyingDarkEffectToImage:(UIImage*)inputImage
 {
     UIColor *tintColor = [UIColor colorWithWhite:0.11 alpha:0.58];

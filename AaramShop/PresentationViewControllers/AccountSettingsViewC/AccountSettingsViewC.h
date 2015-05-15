@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface AccountSettingsViewC : UIViewController
-
+{
+    
+    __weak IBOutlet UITableView *tblView;
+}
 @end

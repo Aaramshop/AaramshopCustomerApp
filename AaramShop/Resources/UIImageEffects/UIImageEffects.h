@@ -53,6 +53,7 @@
 
 + (UIImage*)imageByApplyingLightEffectToImage:(UIImage*)inputImage;
 + (UIImage*)imageByApplyingExtraLightEffectToImage:(UIImage*)inputImage;
++ (UIImage *)imageByApplyingLightEffectToImageOnNavigationBar:(UIImage*)inputImage;
 + (UIImage*)imageByApplyingDarkEffectToImage:(UIImage*)inputImage;
 + (UIImage*)imageByApplyingTintEffectWithColor:(UIColor *)tintColor toImage:(UIImage*)inputImage;
 

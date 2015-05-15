@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PreferenceTableCell.h"
 
 @interface PreferencesViewController : UIViewController
-
+{
+    
+    __weak IBOutlet UITableView *tblView;
+}
 @end
