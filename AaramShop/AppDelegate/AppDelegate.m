@@ -15,7 +15,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize navController,myCurrentLocation,locationManager;
+@synthesize navController,myCurrentLocation,locationManager,arrOptions;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -39,9 +39,15 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
     }
+    
+    if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn] == NO) {
+    }
+
+    arrOptions = [NSArray arrayWithObjects:@"Home Address",@"Office Address", @"Others", nil];
     [self registerDeviceForDeviceToken:application];
     [self findCurrentLocation];
 
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     navController = [storyboard instantiateViewControllerWithIdentifier:@"optionNav"];
@@ -52,7 +58,6 @@
     
     return YES;
 }
-
 -(void)findCurrentLocation
 {
     locationManager=[[CLLocationManager alloc] init];

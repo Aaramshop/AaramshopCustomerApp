@@ -67,7 +67,6 @@ void MyAddressBookExternalChangeCallback (
 
 //Pop up for authentication fail
 -(void)showAuthenticationFailedAlertView;
-- (void)createDefaultAppSettings;
 //ADdressbook
 -(void)fetchAddressBookWithContactModel;
 +(NSString*)stringFromDate:(NSDate*)date;

@@ -133,12 +133,12 @@
 - (id)initWithAnnotation_:(id <MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier mapView:(MKMapView *)mapView {
 		
 	if ((self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier])) {
-		self.image = [UIImage imageNamed:@"mapPinGreen.png"];
+//		self.image = [UIImage imageNamed:@"mapPinGreen.png"];
 		self.centerOffset = CGPointMake(8, -14);
 		self.calloutOffset = CGPointMake(-8, 0);
 		self.canShowCallout = NO;
 		
-		self.pinShadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapPinGreen.png"]] autorelease];
+		self.pinShadow = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PinShadow"]] autorelease];
 		self.pinShadow.frame = CGRectMake(0, 0, 32, 39);
 		self.pinShadow.hidden = YES;
 		[self addSubview:self.pinShadow];
@@ -159,9 +159,9 @@
 	CAKeyframeAnimation *pinBounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
 	
 	NSMutableArray *values = [NSMutableArray array];
-	[values addObject:(id)[UIImage imageNamed:@"mapPinGreen.png"].CGImage];
-	[values addObject:(id)[UIImage imageNamed:@"mapPinGreen.png"].CGImage];
-	[values addObject:(id)[UIImage imageNamed:@"mapPinGreen.png"].CGImage];
+//	[values addObject:(id)[UIImage imageNamed:@"mapPinGreen.png"].CGImage];
+//	[values addObject:(id)[UIImage imageNamed:@"mapPinGreen.png"].CGImage];
+//	[values addObject:(id)[UIImage imageNamed:@"mapPinGreen.png"].CGImage];
 	
 	[pinBounceAnimation setValues:values];
 	pinBounceAnimation.duration = 0.1;
@@ -173,7 +173,7 @@
 	
 	CAKeyframeAnimation *pinFloatingAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
 	
-	[pinFloatingAnimation setValues:[NSArray arrayWithObject:(id)[UIImage imageNamed:@"mapPinGreen.png"].CGImage]];
+//	[pinFloatingAnimation setValues:[NSArray arrayWithObject:(id)[UIImage imageNamed:@"mapPinGreen.png"].CGImage]];
 	pinFloatingAnimation.duration = 0.2;
 	
 	return pinFloatingAnimation;

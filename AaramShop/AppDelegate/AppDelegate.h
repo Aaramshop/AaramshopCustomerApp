@@ -14,21 +14,18 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate,UITabBarControllerDelegate,UINavigationControllerDelegate>
 {
 CLGeocoder *geocoder;
-    
-        
-    
 }
 
 
-@property (strong, nonatomic) UIWindow *window;
-@property(nonatomic,strong) UINavigationController *navController;
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) UINavigationController *navController;
 @property (nonatomic, strong) CLLocation *myCurrentLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
-
+@property (nonatomic,  strong) NSArray *arrOptions;
 
 #pragma mark - chat
-@property(nonatomic,assign)BOOL isChatViewOpened;
-@property (strong, nonatomic) NSMutableDictionary *AllChatViewConDic;
+@property (nonatomic,assign)  BOOL isChatViewOpened;
+@property (nonatomic, strong) NSMutableDictionary *AllChatViewConDic;
 @property (nonatomic, strong) SMChatViewController *chatViewController;
 
 -(void)setChatWindowOpenedStatusBySender:(NSString*)inSender andBool:(BOOL)inBool;

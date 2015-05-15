@@ -8,13 +8,14 @@
 
 #import "Annotation.h"
 @implementation Annotation
-@synthesize Name,Address,coordinate,strImgUrl;
-- (id)initWithName:(NSString*)name Address:(NSString*)address Coordinate:(CLLocationCoordinate2D)cornidate imageUrl:(NSString *)strImageUrl
+@synthesize Name,Address,coordinate,strImgUrl,isMyLocation;
+- (id)initWithName:(NSString*)name Address:(NSString*)address Coordinate:(CLLocationCoordinate2D)cornidate imageUrl:(NSString *)strImageUrl showMyLocation:(BOOL)isMyLocationThis
 {
     self.Address = address;
     self.Name = name;
     self.coordinate = cornidate;
     self.strImgUrl=strImageUrl;
+    self.isMyLocation = isMyLocationThis;
     return self;
 }
 

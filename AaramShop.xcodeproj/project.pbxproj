@@ -405,6 +405,7 @@
 		27EC67631B03316F007D126E /* enterMobileNoDefaultCameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 27EC67601B03316F007D126E /* enterMobileNoDefaultCameraIcon.png */; };
 		27EC67641B03316F007D126E /* enterMobileNoDefaultCameraIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27EC67611B03316F007D126E /* enterMobileNoDefaultCameraIcon@2x.png */; };
 		27EC67651B03316F007D126E /* enterMobileNoDefaultCameraIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27EC67621B03316F007D126E /* enterMobileNoDefaultCameraIcon@3x.png */; };
+		6B0676E41B06027F0002259E /* ShopDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0676E31B06027F0002259E /* ShopDataModel.m */; };
 		6B12DC611AF2294D00245209 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12DC601AF2294D00245209 /* main.m */; };
 		6B12DC6A1AF2294D00245209 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DC681AF2294D00245209 /* Main.storyboard */; };
 		6B12DC6C1AF2294D00245209 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DC6B1AF2294D00245209 /* Images.xcassets */; };
@@ -1153,6 +1154,8 @@
 		27EC67601B03316F007D126E /* enterMobileNoDefaultCameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enterMobileNoDefaultCameraIcon.png; sourceTree = "<group>"; };
 		27EC67611B03316F007D126E /* enterMobileNoDefaultCameraIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enterMobileNoDefaultCameraIcon@2x.png"; sourceTree = "<group>"; };
 		27EC67621B03316F007D126E /* enterMobileNoDefaultCameraIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enterMobileNoDefaultCameraIcon@3x.png"; sourceTree = "<group>"; };
+		6B0676E21B06027F0002259E /* ShopDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDataModel.h; sourceTree = "<group>"; };
+		6B0676E31B06027F0002259E /* ShopDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDataModel.m; sourceTree = "<group>"; };
 		6B12DC5B1AF2294D00245209 /* AaramShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AaramShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B12DC5F1AF2294D00245209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B12DC601AF2294D00245209 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -2787,6 +2790,23 @@
 			path = TabbarViewController;
 			sourceTree = "<group>";
 		};
+		6B0676E01B06024B0002259E /* BusinessModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B0676E11B0602690002259E /* ShopDataModel */,
+			);
+			path = BusinessModel;
+			sourceTree = "<group>";
+		};
+		6B0676E11B0602690002259E /* ShopDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B0676E21B06027F0002259E /* ShopDataModel.h */,
+				6B0676E31B06027F0002259E /* ShopDataModel.m */,
+			);
+			path = ShopDataModel;
+			sourceTree = "<group>";
+		};
 		6B12DC521AF2294D00245209 = {
 			isa = PBXGroup;
 			children = (
@@ -2807,6 +2827,7 @@
 		6B12DC5D1AF2294D00245209 /* AaramShop */ = {
 			isa = PBXGroup;
 			children = (
+				6B0676E01B06024B0002259E /* BusinessModel */,
 				274A5D131B05C88B009112B5 /* ChatClasses */,
 				6B1A9A531B03658C0005917B /* CustomViews */,
 				6B1A9A4F1B0364740005917B /* Annotation */,
@@ -3647,6 +3668,7 @@
 				274A5DE51B05C88B009112B5 /* CustomUplaodingView.m in Sources */,
 				274A5CBE1B05C4AA009112B5 /* XMPPvCard.xcdatamodeld in Sources */,
 				274A5DE41B05C88B009112B5 /* CustomChatView.m in Sources */,
+				6B0676E41B06027F0002259E /* ShopDataModel.m in Sources */,
 				274A5E051B05C88B009112B5 /* SHBaseRequest.m in Sources */,
 				274A5DE71B05C88B009112B5 /* HPTextViewInternal.m in Sources */,
 				27BE657E1B0203E6004FA4B4 /* ChatViewController.m in Sources */,

@@ -837,7 +837,7 @@
                                     <action selector="btnDoneClick:" destination="Kva-dY-HCj" eventType="touchUpInside" id="3V0-RH-ezy"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="mapPopupBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="oI3-dS-uae" customClass="txtFLocation">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" background="mapPopupBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="oI3-dS-uae" customClass="txtFLocation">
                                 <rect key="frame" x="0.0" y="95" width="278" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>

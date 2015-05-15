@@ -19,6 +19,8 @@
     UIImage *imgUser;
     NSData *imageData;
 }
+@property(nonatomic,assign) BOOL isUpdateMobile;
+
 - (IBAction)btnContinueClick:(UIButton *)sender;
 - (IBAction)btnBackClick:(UIButton *)sender;
 - (IBAction)btnPickProfileClick:(UIButton *)sender;

@@ -66,53 +66,44 @@ UIAlertView *alert = nil;
 
 +(void)saveUserDatainUserDefault
 {
-//    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kIsLoggedIn];
-//    [[AppManager sharedManager]createDefaultAppSettings];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kIsLoggedIn];
 }
-//- (void)createDefaultAppSettings
-//{
-//    [[AppManager sharedManager].dicAppSettings removeAllObjects];
-//    [AppManager sharedManager].dicAppSettings = [[NSMutableDictionary alloc] init];
-//    
-//    NSMutableDictionary *dictChatSettings = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"Default",kCHAT_SETTINGS_CHAT_WALLPAPER,@"1",kCHAT_SETTINGS_AUTODOWNLOAD,@"1",kCHAT_SETTINGS_SAVE_INCOMING_MEDIA, nil];
-//    
-//    NSMutableDictionary *dictNotifications = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"1",kALERT,@"None",kSOUNDNAME, @"1",kSHOW_PREVIEW,nil];
-//    
-//    [[AppManager sharedManager].dicAppSettings setObject:dictChatSettings forKey:kCHAT_SETTINGS];
-//    [[AppManager sharedManager].dicAppSettings setObject:dictNotifications forKey:kMESSAGE_NOTIFICATION];
-//    [[NSUserDefaults standardUserDefaults]setObject:[AppManager sharedManager].dicAppSettings forKey:kAPP_SETTINGS];
-//}
-//+(void)saveDataToNSUserDefaults:(NSDictionary*)responseDic
-//{
-//    [[NSUserDefaults standardUserDefaults] setValue:[responseDic objectForKey:kUserId] forKey:kUserId];
-//    [[NSUserDefaults standardUserDefaults] setValue:[responseDic objectForKey:kSessionToken] forKey:kSessionToken];
-//
-//    if([[responseDic objectForKey:kFullName]length]>0)
-//    {
-//        [[NSUserDefaults standardUserDefaults] setValue:[responseDic objectForKey:kFullName] forKey:kFullName];
-//    }
-//    if([[responseDic objectForKey:kchatUserName]length]>0)
-//    {
-//        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@@%@",[responseDic objectForKey:kchatUserName],STRChatServerURL] forKey:kXMPPmyJID1];
-//        [[NSUserDefaults standardUserDefaults] setObject:@"123456" forKey:kXMPPmyPassword1];
-//        [[NSUserDefaults standardUserDefaults] setValue:[responseDic objectForKey:kchatUserName] forKey:kchatUserName];
-//    }
-//
-//    [[NSUserDefaults standardUserDefaults] setValue:[responseDic objectForKey:kUserState] forKey:kUserState];
-//    [[NSUserDefaults standardUserDefaults] setValue:[responseDic objectForKey:kShowVerification] forKey:kShowVerification];
-//    [[NSUserDefaults standardUserDefaults] setValue:[responseDic objectForKey:kServerUrl] forKey:kServerUrl];
-//    if([[responseDic objectForKey:kProfileImage]length]>0)
-//    {
-//        UIImageView *imgView = [[UIImageView alloc] init];
-//        [imgView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kServerUrl] ,[responseDic objectForKey:kProfileImage]]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-//            //
-//        }];
-//        [[NSUserDefaults standardUserDefaults] setValue:[responseDic objectForKey:kProfileImage] forKey:kProfileImage];
-//    }
-//
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//}
++(void)saveDataToNSUserDefaults:(NSDictionary*)responseDic
+{
+    NSDictionary *dict = (NSDictionary *)responseDic;
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAddress] forKey:kAddress];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAdultFemale] forKey:kAdultFemale];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAdultMale] forKey:kAdultMale];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kChatUsername] forKey:kChatUsername];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kCity] forKey:kCity];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kDeviceId] forKey:kDeviceId];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kDob] forKey:kDob];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kEmail] forKey:kEmail];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kFemaleChild] forKey:kFemaleChild];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kFirstName] forKey:kFirstName];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kGender] forKey:kGender];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kIncome] forKey:kIncome];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kLastName] forKey:kLastName];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kMaleChild] forKey:kMaleChild];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kMobile] forKey:kMobile];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kMobile_verified] forKey:kMobile_verified];
+    
+    if([[dict objectForKey:kProfileImage]length]>0)
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kProfileImage] forKey:kProfileImage];
+    }
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kQualification] forKey:kQualification];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kState] forKey:kState];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kToddlers] forKey:kToddlers];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kUserId] forKey:kUserId];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 +(NSArray*)getCountryCodeList{
     // Read plist from bundle and get Root Dictionary out of it
     NSArray *arrRoot = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CountryCodeList" ofType:@"plist"]];
