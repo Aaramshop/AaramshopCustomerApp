@@ -41,6 +41,9 @@
         self.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
+    if (self.view.frame.size.height <=560 ) {
+        [imgVUser setFrame:CGRectMake(0, 0, 160, 160)];
+    }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField

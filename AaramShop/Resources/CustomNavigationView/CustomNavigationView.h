@@ -69,6 +69,7 @@
 -(void)showCustomNavigationRightButtonOnViewOmlyMode;
 
 -(void)setCustomNavigationLeftArrowImageWithImageName :(NSString*)ImageName;
+-(void)setCustomNavigationRightArrowImageWithImageName :(NSString*)ImageName;
 
 //Special Case
 -(void)setCustomNavigationRightButtonHiddenForceful:(BOOL)hiddenType;

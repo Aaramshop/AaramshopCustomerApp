@@ -113,8 +113,10 @@
         }
         UIImageView *imgNavigationBlur= [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, NAVIGATIONHEIGHT)];
         
-        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:self.image];
+        effectImage = [UIImageEffects imageByApplyingLightEffectToImageOnNavigationBar:self.image];
         imgNavigationBlur.image=effectImage;
+//        imgNavigationBlur.contentMode = UIViewContentModeScaleAspectFit;
+
         
         [self addSubview:imgNavigationBlur];
         [self addSubview:lblNavigationTitle];
@@ -169,6 +171,8 @@
 //    [btnRight ]
     btnRight.titleLabel.font = [UIFont fontWithName:@"YanoneKaffeesatz-Light" size:22.0f] ;
     [btnRight setTitleColor: [UIColor colorWithRed:217.0/255.0f green:136.0/255.0f blue:40.0/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    
+//    [btnRight setImage:[UIImage imageNamed:@"addToCardLogo" ] forState:UIControlStateNormal];
     [btnRight setImageEdgeInsets:UIEdgeInsetsMake(0, (RIGHT_BUTTONLABELWIDTH)/1.3, 0, 0)];
     // Update label frame
     [lblRightButtonText setFrame:CGRectMake(kScreenWidth-(BUTTONLABELPADDING+(LBLPADDINGWITHIMAGE))-(RIGHT_BUTTONLABELWIDTH), ORIGIN_Y, RIGHT_BUTTONLABELWIDTH, HEIGHT)];
@@ -197,6 +201,17 @@
     [lblLeftButtonText setFrame:CGRectMake(BUTTONLABELPADDING+(LBLPADDINGWITHIMAGE), ORIGIN_Y, LEFT_BUTTONLABELWIDTH, HEIGHT)];
 }
 
+-(void)setCustomNavigationRightArrowImageWithImageName :(NSString*)ImageName
+{
+    // Add Image
+    [btnRight setImage:[UIImage imageNamed:ImageName] forState:UIControlStateNormal];
+    //[btnLeft setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, (LEFT_BUTTONLABELWIDTH)/1.2)];
+    // Update label frame
+    
+    
+    [lblRightButtonText setFrame:CGRectMake(BUTTONLABELPADDING+(LBLPADDINGWITHIMAGE) +100 , ORIGIN_Y, RIGHT_BUTTONLABELWIDTH, HEIGHT)];
+}
+
 
 #pragma mark - Hide/Unhide Nav Button -
 // Hide Left and Right Button if Required
@@ -209,8 +224,8 @@
 //    }
 //    else
 //    {
-//        [lblRightButtonText setHidden:hiddenType];
-//        [btnRight setHidden:hiddenType];
+        [lblRightButtonText setHidden:hiddenType];
+        [btnRight setHidden:hiddenType];
 //    }
 }
 -(void)setCustomNavigationLeftButtonHidden:(BOOL)hiddenType
@@ -221,10 +236,10 @@
     //        [btnLeft setHidden:YES];
     //    }
     //    else
-    {
+//    {
         [lblLeftButtonText setHidden:hiddenType];
         [btnLeft setHidden:hiddenType];
-    }
+//    }
 }
 
 #pragma mark - User Intraction -

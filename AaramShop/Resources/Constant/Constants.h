@@ -83,3 +83,38 @@
 #define kOptionLogin_otp_validate         @"login_otp_validate"
 #define kOtp                              @"otp"
 
+//==================Sign Up============
+
+#define kFileType                                   @"fileType"
+
+
+/////////////////////////////////////////////
+//Search The List of user ///////////////////
+
+#define kSeachUrl @"search"
+#define kFriendSearch @"friendSearch"
+#define kItemCount @"itemCount"
+#define kSearchCount 10
+#define kPageNumber @"pageNumber"
+#define kSearchString @"searchString"
+#define kProfilePic @"profilePic"
+//====================NetworkService.h=======================
+
+#define NULLVALUE(m) (m == [NSNULL null]? @"":m)
+
+#define SUCCESS                @"status"
+#define DATA                    @"data"
+
+#define KPost                 @"POST"
+#define KGet                  @"GET"
+#define KPut                  @"PUT"
+
+#define kParameter @"Parameter"
+#define kDataDic @"DataDic"
+#define kBodyStr @"BodyStr"
+
+//========= uploading Image =====
+#define kMyUpload     @"myUpload"
+#define kProfilePhoto @"profilePhoto"
+#define kBoundry @"Boundry"
+#define kServerUserNameId @"userNameId"

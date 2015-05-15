@@ -206,7 +206,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     
-    return 215;
+    return 216;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -238,8 +238,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIImage* image;
-    secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 215)];
-    UIImageView *imgBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, secView.frame.size.width, 215)];
+    secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 216)];
+    UIImageView *imgBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, secView.frame.size.width, 216)];
     
 //    imgBackground.image = [UIImage imageNamed:@"menuProfileBackImage"];
     UIImageView *imgProfile=[[UIImageView alloc]initWithFrame:CGRectMake((secView.frame.size.width - 101)/2, 39, 101, 101)];
@@ -253,11 +253,12 @@
         effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
         imgBackground.image = effectImage;
         imgProfile.image = image;
+//        [imgBackground setContentMode:UIViewContentModeScaleAspectFill];
     }
     else
     {
-//        imgBackground.image=[UIImage imageNamed:@"defaultProfilePic"];
-        imgProfile.image = [UIImage imageNamed:@"defaultProfilePic"];
+        imgBackground.image=[UIImage imageNamed:@"defaultImageMenuTop"];
+//        imgProfile.image = [UIImage imageNamed:@"defaultProfilePic"];
     }
 
     
@@ -295,7 +296,7 @@
     
     UIButton *btnEdit=[[UIButton alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-16, 34)];
     [btnEdit setImage:[UIImage imageNamed:@"menuEditIcon"] forState:UIControlStateNormal];
-    [btnEdit setImageEdgeInsets:UIEdgeInsetsMake(-2.0f, 0.0f, 0.0f, -225.0f)];
+    [btnEdit setImageEdgeInsets:UIEdgeInsetsMake(-12.0f, 0.0f, 0.0f, -225.0f)];
     btnEdit.titleLabel.font=[UIFont fontWithName:kMyriadProRegular size:15];
     [btnEdit addTarget:self action:@selector(EditAddress) forControlEvents:UIControlEventTouchUpInside];
     

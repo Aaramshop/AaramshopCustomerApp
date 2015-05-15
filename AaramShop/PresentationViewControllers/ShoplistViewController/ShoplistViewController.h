@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ShoplistViewController : UIViewController<CDRTranslucentSideBarDelegate>
+{
+    
+    __weak IBOutlet UITableView *tblView;
+}
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
 
 @end

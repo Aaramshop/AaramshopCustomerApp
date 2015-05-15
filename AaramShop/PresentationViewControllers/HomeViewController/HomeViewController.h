@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HomeViewController : UIViewController<CDRTranslucentSideBarDelegate,CustomNavigationDelegate>
+#import "HomeTableCell.h"
+@interface HomeViewController : UIViewController<CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate>
 
 {
+    NSMutableArray *dataSource;
+    __weak IBOutlet UITableView *tblView;
 }
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
 
