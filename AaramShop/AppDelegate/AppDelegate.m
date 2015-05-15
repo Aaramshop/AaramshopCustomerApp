@@ -9,7 +9,9 @@
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
-
+{
+    Reachability *aReachability;
+}
 @end
 
 @implementation AppDelegate
@@ -249,6 +251,233 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+#pragma mark - Chatting Methods
 
+- (XMPPStream *)xmppStream {
+    return [gCXMPPController xmppStream];
+}
+-(void)initializeAllSingletonObjects
+{
+    [CXMPPController sharedXMPPController];
+}
+
+-(SMChatViewController *)createChatViewByChatUserNameIfNeeded:(NSString *)inChatUser
+{
+    //    UINavigationController *navcon = (UINavigationController*)self.tabBarController.selectedViewController;
+    //
+    //    if (self.AllChatViewConDic == nil)
+    //    {
+    //        self.AllChatViewConDic = [[NSMutableDictionary alloc] init];
+    //
+    //    }
+    //    SMChatViewController *aChatViewCon = [self.AllChatViewConDic objectForKey: inChatUser];
+    //    NSUInteger index=[[navcon childViewControllers] indexOfObject:aChatViewCon];
+    //
+    //
+    //    if (aChatViewCon)
+    //    {
+    //        if (index == NSNotFound)
+    //        {
+    //            aChatViewCon.isAlreadyInStack= NO;
+    //            aChatViewCon.eSMChatStatus = SMCHAT_NOT_IN_STACK;
+    //
+    //        }
+    //        else if (index == [[navcon childViewControllers] count]-1)
+    //        {
+    //            aChatViewCon.isAlreadyInStack= YES;
+    //            aChatViewCon.eSMChatStatus = SMCHAT_AT_TOP_OF_STACK;
+    //
+    //        }
+    //        else
+    //        {
+    //            aChatViewCon.isAlreadyInStack= YES;
+    //            aChatViewCon.eSMChatStatus = SMCHAT_EXIST_BUT_NOT_ON_TOP;
+    //
+    //        }
+    //    }
+    //    else
+    //    {
+    //
+    //        aChatViewCon = [[SMChatViewController alloc] initWithNibName:@"SMChatViewController" bundle:nil];
+    //        [self.AllChatViewConDic setObject: aChatViewCon forKey: inChatUser];
+    //
+    //        aChatViewCon.isAlreadyInStack= NO;
+    //        aChatViewCon.eSMChatStatus=SMCHAT_NOT_IN_STACK;
+    //    }
+    //    return  aChatViewCon;
+    return nil;
+}
+
+-(SMChatViewController *)getChatViewDelegateByChatUserName:(NSString *)inChatUser
+{
+    SMChatViewController *aChatViewCon = [self.AllChatViewConDic objectForKey: inChatUser];
+    return  aChatViewCon;
+}
+
+-(void)releaseChatViewByChatUserNameIfNeeded:(NSString *)inChatUser
+{
+    id aChatViewCon = [self.AllChatViewConDic objectForKey: inChatUser];
+    
+    if (aChatViewCon)
+    {
+        [self.AllChatViewConDic removeObjectForKey: inChatUser];
+        
+    }
+}
+-(void)sendPresence:(NSString *)type
+{
+    if([type isEqualToString:@"away"])
+    {
+        XMPPPresence *presence = [XMPPPresence presence];
+        NSXMLElement *show = [NSXMLElement elementWithName:@"show" stringValue:@"away"];
+        NSXMLElement *status = [NSXMLElement elementWithName:@"status" stringValue:@"away"];
+        [presence addChild:show];
+        [presence addChild:status];
+        [presence addAttributeWithName:@"date" stringValue:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]];
+        [gCXMPPController.xmppStream sendElement:presence];
+    }
+    else
+    {
+        XMPPPresence *presence = [XMPPPresence presence];
+        NSXMLElement *status = [NSXMLElement elementWithName:@"status"];
+        [status setStringValue:@"online"];
+        [presence addChild:status];
+        [presence addAttributeWithName:@"date" stringValue:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]];
+        [gCXMPPController.xmppStream sendElement:presence];
+    }
+}
+
+
+//-(BOOL)openChatViewfromNotificationViewByFriendDetail:(FriendsDetails *)inFrndDetail
+//{
+//
+//}
+-(void)setChatWindowOpenedStatusBySender:(NSString*)inSender andBool:(BOOL)inBool
+{
+    if(inBool)
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:inSender forKey:kMessageChatWithUser];
+    }
+    else
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:kMessageChatWithUser];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+}
+-(BOOL)getChatWindowOpenedStatusBySender:(NSString*)inSender
+{
+    if(inSender==nil)
+        return NO;
+    
+    BOOL aStatus = NO;
+    if([[[NSUserDefaults standardUserDefaults] valueForKey:kMessageChatWithUser]isEqualToString:inSender])
+    {
+        aStatus = YES;
+    }
+    return  aStatus;
+}
+-(BOOL)openChatViewfromNotificationViewByFriendDetailAnonymous:(NSString *)inFrndDetail
+{
+    //    UINavigationController *navcon = (UINavigationController*)self.tabBarController.selectedViewController;
+    //    if([self getChatWindowOpenedStatusBySender:inFrndDetail])
+    //    {
+    //        if([navcon.topViewController isKindOfClass:[SMChatViewController class]])
+    //            return NO;
+    //    }
+    //    SMChatViewController *chatView = nil;
+    //    chatView = [self createChatViewByChatUserNameIfNeeded: inFrndDetail];
+    //    chatView.chatWithUser =[[[inFrndDetail lowercaseString] stringByAppendingString:[NSString stringWithFormat:@"@%@",STRChatServerURL]]lowercaseString];
+    //    chatView.userName = inFrndDetail;
+    //    chatView.imageString = nil;
+    //
+    //    chatView.friendNameId = nil;
+    //
+    //    switch (chatView.eSMChatStatus) {
+    //        case SMCHAT_AT_TOP_OF_STACK:
+    //            return NO;
+    //            break;
+    //        case SMCHAT_EXIST_BUT_NOT_ON_TOP:
+    //            [navcon popToViewController:chatView animated:YES];
+    //            return YES;
+    //            break;
+    //        case SMCHAT_NOT_IN_STACK:
+    //            [navcon pushViewController:chatView animated:YES];
+    //            return YES;
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    return NO;
+    
+}
+//-(BOOL)openChatViewfromNotificationViewByFriendDetail:(AddressBookDB *)inFrndDetail
+//{
+//    UINavigationController *navcon = (UINavigationController*)self.tabBarController.selectedViewController;
+//    if([self getChatWindowOpenedStatusBySender:inFrndDetail.orgChatUsername])
+//    {
+//        if([navcon.topViewController isKindOfClass:[SMChatViewController class]])
+//            return NO;
+//    }
+//    SMChatViewController *chatView = nil;
+//    chatView = [self createChatViewByChatUserNameIfNeeded: [inFrndDetail.orgChatUsername lowercaseString]];
+//    chatView.chatWithUser =[[[inFrndDetail.orgChatUsername lowercaseString] stringByAppendingString:[NSString stringWithFormat:@"@%@",STRChatServerURL]]lowercaseString];
+//    chatView.userName = inFrndDetail.fullName;
+//    chatView.imageString = inFrndDetail.profilePic;
+//
+//    chatView.friendNameId = [NSString stringWithFormat:@"%@",inFrndDetail.userId];
+//
+//    switch (chatView.eSMChatStatus) {
+//        case SMCHAT_AT_TOP_OF_STACK:
+//            return NO;
+//            break;
+//        case SMCHAT_EXIST_BUT_NOT_ON_TOP:
+//            [navcon popToViewController:chatView animated:YES];
+//            return YES;
+//            break;
+//        case SMCHAT_NOT_IN_STACK:
+//            [navcon pushViewController:chatView animated:YES];
+//            return YES;
+//            break;
+//        default:
+//            break;
+//    }
+//
+//
+//}
+#pragma mark check internet avalability method
+
+-(void)internetConnectionListener:(NSNotification *)inNotification
+{
+    if([Utils isInternetAvailable])
+    {
+        
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground)
+        {
+            if([[aReachability currentReachabilityString]isEqualToString:@"Cellular"])
+            {
+                [gCXMPPController disconnect];
+            }
+            if(![gCXMPPController isConnected])
+            {
+                
+                [gCXMPPController connect];
+            }
+            [self sendPresence:@"away"];
+        }
+        else
+        {
+            [gCXMPPController disconnect];
+            [gCXMPPController connect];
+            [self sendPresence:@"online"];
+            
+        }
+        
+    }
+    else
+    {
+    }
+}
 
 @end
