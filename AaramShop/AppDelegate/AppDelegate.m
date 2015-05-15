@@ -40,6 +40,7 @@
     [self registerDeviceForDeviceToken:application];
     [self findCurrentLocation];
 
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     navController = [storyboard instantiateViewControllerWithIdentifier:@"optionNav"];
@@ -50,7 +51,6 @@
     
     return YES;
 }
-
 -(void)findCurrentLocation
 {
     locationManager=[[CLLocationManager alloc] init];

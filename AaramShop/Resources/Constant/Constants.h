@@ -40,7 +40,8 @@
 #define kOptionLogin                          @"login"
 #define kstatus                               @"status"
 #define kOptionNew_user_login                 @"new_user_login"
-#define kImage                                      @"Img"
+#define kImage                                @"Img"
+
 
 #pragma mark - Existing User Keys
 
@@ -66,6 +67,9 @@
 #define kToddlers                             @"toddlers"
 
 
+#pragma mark UpdateMobile
+
+#define kOptionUpdate_user                    @"update_user"
 
 #define kTextFieldDigitRange @"0123456789"
 

@@ -14,14 +14,10 @@
 #pragma Properties
 
 @interface AppManager : NSObject
-@property (nonatomic, strong) NSMutableDictionary *notifyDict;
-@property(nonatomic,strong) NSMutableArray *arrImages;
-@property(nonatomic, assign) BOOL isFetchingContacts;
-@property (nonatomic, strong) NSMutableDictionary *dicAppSettings;
-@property(nonatomic,strong) NSURL *urlSelectedVideo;
+
 #pragma Methods
 +(AppManager *)sharedManager;
-+(CLocation *)getLocationByLocationStr:(NSString *)inLocationStr;
+//+(CLocation *)getLocationByLocationStr:(NSString *)inLocationStr;
 +(void)saveUserDatainUserDefault;
 +(void)saveDataToNSUserDefaults:(NSDictionary*)responseDic;
 +(void)stopStatusbarActivityIndicator;

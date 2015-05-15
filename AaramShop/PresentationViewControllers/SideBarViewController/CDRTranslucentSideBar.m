@@ -17,6 +17,7 @@
 #import "AccountSettingsViewC.h"
 #import "CartViewController.h"
 #import "UIImageEffects.h"
+#import "LocationEnterViewController.h"
 
 #define kDefaultHeaderFrame CGRectMake(0, 0, tblView.frame.size.width, tblView.frame.size.height)
 
@@ -245,7 +246,6 @@
     imgProfile.layer.cornerRadius = imgProfile.frame.size.width / 2;
     imgProfile.clipsToBounds=YES;
     
-    
 //    [imgBackground sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseURL,objUserModel.profilePicUrl]] placeholderImage:[UIImage imageNamed:@"inviteDefaultImage"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
     NSData* imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
     if (imageData) {
@@ -404,7 +404,9 @@
     }
 -(void)EditAddress
 {
-    
+    LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+    // UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:locationScreen];
+    [self presentViewController:locationScreen animated:YES completion:nil];
 }
 //#pragma mark Button Actions And Method
 //-(void)btnHireMode:(UIButton *)button

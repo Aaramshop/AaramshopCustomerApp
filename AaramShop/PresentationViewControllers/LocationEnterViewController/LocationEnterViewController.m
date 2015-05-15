@@ -13,7 +13,6 @@
 {
     AppDelegate *appDeleg;
     CustomMapAnnotationView *viewOfCustomAnnotation;
-
 }
 - (void)coordinateChanged_:(NSNotification *)notification;
 
@@ -149,6 +148,9 @@
     if ([touch isKindOfClass:[UITextField class]]) {
         return NO;
     }
+    return YES;
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
     return YES;
 }
 #pragma mark - Button Actions

@@ -38,15 +38,17 @@
 
 -(void)createDataForOtpSend
 {
-   /* NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict removeObjectForKey:kSessionToken];
     [dict setObject:kOptionLogin_otp_validate forKey:kOption];
     [dict setObject:txtfVerificationCode.text forKey:kOtp];
     [dict setObject:strMobileNum forKey:kMobile];
-    [self callWebserviceForOtpSend:dict];*/
+    [self callWebserviceForOtpSend:dict];
+    /*
 
     UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
     [self.navigationController pushViewController:tabBarController animated:YES];
+     */
 }
 
 -(void)callWebserviceForOtpSend:(NSMutableDictionary *)aDict
@@ -64,14 +66,15 @@
      {
          [AppManager stopStatusbarActivityIndicator];
          NSLog(@"value %@",responseObject);
-         if ([[responseObject objectForKey:kstatus] intValue] == 1) {
+         
+         if ([[responseObject objectForKey:kIsValid] isEqualToString:@"1"] && [[responseObject objectForKey:kstatus] intValue] == 1) {
+             UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+             [self.navigationController pushViewController:tabBarController animated:YES];
              
-             if ([[responseObject objectForKey:kIsValid] isEqualToString:@"1"]) {
-                 // go to main screen
-                 
-                 UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-                 [self.navigationController pushViewController:tabBarController animated:YES];             }
-             
+         }
+         else
+         {
+             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
          }
      }
           failure:^(NSURLSessionDataTask *task, NSError *error)

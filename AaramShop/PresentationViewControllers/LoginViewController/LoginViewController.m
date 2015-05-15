@@ -92,9 +92,10 @@
 }
 -(void)createDataForLogin
 {
-    UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+   /* UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
     [self.navigationController pushViewController:tabBarController animated:YES];
-  /*  [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    */
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     [activityVw startAnimating];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:kExisting_user forKey:kOption];
@@ -105,8 +106,6 @@
     [dict removeObjectForKey:kUserId];
     [dict removeObjectForKey:kSessionToken];
     [self callWebserviceForLogin:dict];
-   */
-    
 }
 # pragma webService Calling
 -(void)callWebserviceForLogin:(NSMutableDictionary*)aDict
@@ -133,21 +132,25 @@
          {
               [AppManager saveDataToNSUserDefaults:responseObject];
               [AppManager saveUserDatainUserDefault];
-
-             // go to main screen
+              UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+             [self.navigationController pushViewController:tabBarController animated:YES];
          }
          else if ([[responseObject objectForKey:kMobile_verified] intValue] == 0 && [[responseObject objectForKey:kstatus] intValue] == 1)
          {
+             [AppManager saveDataToNSUserDefaults:responseObject];
+
              MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
+             mobileEnterVwController.isUpdateMobile = YES;
              [self.navigationController pushViewController:mobileEnterVwController animated:YES];
 
          }
 
-         else if([[responseObject objectForKey:kstatus] intValue] == 0 && [[responseObject objectForKey:kMessage] isEqualToString:@"Mobile No. not Registered with us!"])
+       /*  else if([[responseObject objectForKey:kstatus] intValue] == 0 && [[responseObject objectForKey:kMessage] isEqualToString:@"Mobile No. not Registered with us!"])
          {
              MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
+             mobileEnterVwController.isUpdateMobile = YES;
              [self.navigationController pushViewController:mobileEnterVwController animated:YES];
-         }
+         }*/
          else if ([[responseObject objectForKey:kstatus] intValue] == 0)
          {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];

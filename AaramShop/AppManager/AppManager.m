@@ -11,7 +11,7 @@
 
 AppManager * gAppManager = nil;
 @implementation AppManager
-@synthesize notifyDict,arrImages,urlSelectedVideo;
+
 +(AppManager *)sharedManager
 {
     static AppManager *instance = nil;
@@ -35,7 +35,6 @@ AppManager * gAppManager = nil;
 -(void)initializeObjects
 {
 }
-
 +(CLocation *)getLocationByLocationStr:(NSString *)inLocationStr
 {
     CLocation *aLocation = [[CLocation alloc] init];
@@ -139,6 +138,15 @@ AppManager * gAppManager = nil;
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kToddlers] forKey:kToddlers];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kUserId] forKey:kUserId];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(void)saveAddressInToDefaults
+{
+    
+}
+
++(void)removeDataFromNSUserDefaults
+{
+    
 }
 
 

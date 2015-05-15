@@ -18,7 +18,7 @@
 @end
 
 @implementation MobileEnterViewController
-
+@synthesize isUpdateMobile;
 - (void)viewDidLoad {
     [super viewDidLoad];
     appDeleg = APP_DELEGATE;
@@ -36,23 +36,6 @@
     [self.view addGestureRecognizer:gst];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.1)
     {
-        // There was a bug in iOS versions 7.0.x which caused vImage buffers
-        // created using vImageBuffer_InitWithCGImage to be initialized with data
-        // that had the reverse channel ordering (RGBA) if BOTH of the following
-        // conditions were met:
-        //      1) The vImage_CGImageFormat structure passed to
-        //         vImageBuffer_InitWithCGImage was configured with
-        //         (kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little)
-        //         for the bitmapInfo member.  That is, if you wanted a BGRA
-        //         vImage buffer.
-        //      2) The CGImage object passed to vImageBuffer_InitWithCGImage
-        //         was loaded from an asset catalog.
-        //
-        // To reiterate, this bug only affected images loaded from asset
-        // catalogs.
-        //
-        // The workaround is to setup a bitmap context, draw the image, and
-        // capture the contents of the bitmap context in a new image.
         UIGraphicsBeginImageContextWithOptions(self.image.size, NO, self.image.scale);
         [self.image drawAtPoint:CGPointZero];
         self.image = UIGraphicsGetImageFromCurrentImageContext();
@@ -85,7 +68,20 @@
     }
     else
     {
+        if (isUpdateMobile) {
+            [self createDataToUpdateMobileNumber];
+        }
+        else
+            [self createDataToEnterMobileNumber];
         /*
+        MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
+        mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
+        [self.navigationController pushViewController:mobileVerificationVwController animated:YES];*/
+
+    }
+}
+-(void)createDataToEnterMobileNumber
+{
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:txtFMobileNumber.text forKey:kMobile];
@@ -95,12 +91,15 @@
     [dict removeObjectForKey:kUserId];
     [dict removeObjectForKey:kSessionToken];
     [self callWebserviceForEnterNewMobile:dict];
-         */
-        MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
-        mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
-        [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
-
-    }
+}
+-(void)createDataToUpdateMobileNumber
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    [dict removeObjectForKey:kSessionToken];
+    [dict setObject:txtFMobileNumber.text forKey:kMobile];
+    [dict setObject:kOptionUpdate_user forKey:kOption];
+    [self callWebserviceForEnterNewMobile:dict];
 }
 # pragma webService Calling
 -(void)callWebserviceForEnterNewMobile:(NSMutableDictionary*)aDict
@@ -118,21 +117,19 @@
          [AppManager stopStatusbarActivityIndicator];
          //NSLog(@"value %@",responseObject);
          
-         if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 &&  ([[responseObject objectForKey:kMessage] isEqualToString:@"Mobile No. Registered & OTP Sent!"] || [[responseObject objectForKey:kMessage] isEqualToString:@"Mobile No. Already Registered but not Verified. OTP Sent!"])) {
+         if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 ) {
              
              [self saveDataToLocal:responseObject];
              MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
              mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
              [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
          }
-         else if ([[responseObject objectForKey:kstatus]intValue] == 0 &&[[responseObject objectForKey:kIsValid]intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"Mobile No. Already Registered & Verified!"])
+       /*  stop the login because already registered */
+        else if ([[responseObject objectForKey:kstatus]intValue] == 0 &&[[responseObject objectForKey:kIsValid]intValue] == 1)
          {
-             [AppManager saveDataToNSUserDefaults:responseObject];
-             [AppManager saveUserDatainUserDefault];
-
-             UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-             [self.navigationController pushViewController:tabBarController animated:YES];
+             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
          }
+        
      }
           failure:^(NSURLSessionDataTask *task, NSError *error)
      {
