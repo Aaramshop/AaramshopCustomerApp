@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LocationAlertViewController : UIViewController
+@interface LocationAlertViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
 {
     
+    __weak IBOutlet PWTextField *txtTitle;
+    __weak IBOutlet UIView *subView;
     __weak IBOutlet UIView *viewBackAlert;
+    NSMutableArray *dataSource;
+    UIPickerView * pickerView;
 }
+- (IBAction)btnCancel:(id)sender;
+- (IBAction)btnSave:(id)sender;
+- (IBAction)btnDropDown:(id)sender;
+
+
+
 @end
