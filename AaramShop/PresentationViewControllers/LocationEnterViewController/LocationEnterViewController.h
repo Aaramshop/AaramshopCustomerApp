@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "LocationAlertViewController.h"
-@interface LocationEnterViewController : UIViewController<UITextFieldDelegate,MKMapViewDelegate>
+@interface LocationEnterViewController : UIViewController<UITextFieldDelegate,MKMapViewDelegate,AaramShop_ConnectionManager_Delegate>
 {
    __weak IBOutlet UITextField *txtFLocation;
     __weak IBOutlet MKMapView *mapViewLocation;
     NSMutableArray *arrShopsData;
 }
+@property (nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager ;
+
 - (IBAction)btnDoneClick:(UIButton *)sender;
 - (IBAction)btnEditClick:(UIButton *)sender;
 

@@ -11,14 +11,17 @@
 
 typedef enum
 {
-    TASK_GET_COUNTRY,
+    TASK_LOGIN,
+    TASK_ENTER_MOBILE_NUMBER,
+    TASK_ENTER_LOCATION,
+    TASK_VERIFY_MOBILE
 }CURRENT_TASK;
 
 @protocol AaramShop_ConnectionManager_Delegate <NSObject>
 
 @optional
--(void) didFailWithError:(id)object;
--(void) responseReceived:(id)object;
+-(void) didFailWithError:(NSError *)error;
+-(void) responseReceived:(id)responseObject;
 
 @end
 @interface AaramShop_ConnectionManager : NSObject
@@ -30,5 +33,8 @@ typedef enum
 @property(nonatomic,weak) id<AaramShop_ConnectionManager_Delegate> delegate;
 
 -(BOOL) getDataForFunction : (NSString *) functionName withInput: (NSMutableDictionary *) aDict withCurrentTask : (CURRENT_TASK) inputTask andDelegate : (id)inputDelegate;
+-(BOOL) getDataForFunction:(NSString *)functionName withInput:(NSMutableDictionary *)aDict withCurrentTask:(CURRENT_TASK)inputTask Delegate:(id)inputDelegate andMultipartData:(NSData *)data;
+
+-(void)failureBlockCalled:(NSError *)error;
 
 @end

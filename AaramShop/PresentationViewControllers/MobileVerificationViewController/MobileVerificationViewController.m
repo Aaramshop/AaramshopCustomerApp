@@ -16,9 +16,12 @@
 @end
 
 @implementation MobileVerificationViewController
-@synthesize strMobileNum;
+@synthesize strMobileNum,aaramShop_ConnectionManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
+    aaramShop_ConnectionManager.delegate=self;
     UITapGestureRecognizer *gst = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard)];
     gst.cancelsTouchesInView = NO;
     gst.delegate = self;
@@ -60,39 +63,27 @@
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
-    AFHTTPSessionManager *manager = [Utils InitSetUpForWebService];
-    [manager POST:@"" parameters:aDict
-          success:^(NSURLSessionDataTask *task, id responseObject)
-     {
-         [AppManager stopStatusbarActivityIndicator];
-         NSLog(@"value %@",responseObject);
-         
-         if ([[responseObject objectForKey:kIsValid] isEqualToString:@"1"] && [[responseObject objectForKey:kstatus] intValue] == 1) {
-             UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-             [self.navigationController pushViewController:tabBarController animated:YES];
-             
-         }
-         else
-         {
-             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-         }
-     }
-          failure:^(NSURLSessionDataTask *task, NSError *error)
-     {
-         NSLog(@"value %@",error);
-         [AppManager stopStatusbarActivityIndicator];
-         
-         
-         if ([Utils isRequestTimeOut:error])
-         {
-             [Utils showAlertView:kAlertTitle message:kRequestTimeOutMessage delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-         }
-         else
-         {
-             //  [Utils showAlertView:kAlertTitle message:kAlertServiceFailed delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-         }
-     }];
+    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_VERIFY_MOBILE andDelegate:self];
 }
+-(void) didFailWithError:(NSError *)error
+{
+    [aaramShop_ConnectionManager failureBlockCalled:error];
+}
+-(void) responseReceived:(id)responseObject
+{
+    if (aaramShop_ConnectionManager.currentTask == TASK_VERIFY_MOBILE) {
+        if ([[responseObject objectForKey:kIsValid] isEqualToString:@"1"] && [[responseObject objectForKey:kstatus] intValue] == 1) {
+            UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+            [self.navigationController pushViewController:tabBarController animated:YES];
+            
+        }
+        else
+        {
+            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        }
+    }
+}
+
 #pragma mark - UITextfield Delegates
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

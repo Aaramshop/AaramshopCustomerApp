@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MobileVerificationViewController : BaseViewController<UIGestureRecognizerDelegate>
+@interface MobileVerificationViewController : BaseViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
 {
     
     __weak IBOutlet UITextField *txtfVerificationCode;
@@ -16,6 +16,7 @@
     __weak IBOutlet UIImageView *imgVBg;
 }
 @property(nonatomic,strong) NSString *strMobileNum;
+@property(nonatomic,strong)AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 - (IBAction)btnBackClick:(UIButton *)sender;
 - (IBAction)btnContinueVerificationClick:(UIButton *)sender;
 - (IBAction)btnResendVerificationClick:(UIButton *)sender;

@@ -17,11 +17,13 @@
 @end
 
 @implementation LoginViewController
-
+@synthesize aaramShop_ConnectionManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
     appDeleg = APP_DELEGATE;
-    
+    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
+    aaramShop_ConnectionManager.delegate = self;
+
     UITapGestureRecognizer *gst = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard)];
     gst.cancelsTouchesInView = NO;
     gst.delegate = self;
@@ -117,62 +119,44 @@
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
-    AFHTTPSessionManager *manager = [Utils InitSetUpForWebService];
-    [manager POST:@"" parameters:aDict
-          success:^(NSURLSessionDataTask *task, id responseObject)
-     {
-         [AppManager stopStatusbarActivityIndicator];
-         [activityVw stopAnimating];
-         NSLog(@"value %@",responseObject);
-         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"OTP Sent!"]) {
-             MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
-             [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
-         }
-         else if ([[responseObject objectForKey:kMobile_verified] intValue] == 1 && [[responseObject objectForKey:kstatus] intValue] == 1)
-         {
-              [AppManager saveDataToNSUserDefaults:responseObject];
-              [AppManager saveUserDatainUserDefault];
-              UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-             [self.navigationController pushViewController:tabBarController animated:YES];
-         }
-         else if ([[responseObject objectForKey:kMobile_verified] intValue] == 0 && [[responseObject objectForKey:kstatus] intValue] == 1)
-         {
-             [AppManager saveDataToNSUserDefaults:responseObject];
+    
+    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_LOGIN andDelegate:self];
+}
 
-             MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
-             mobileEnterVwController.isUpdateMobile = YES;
-             [self.navigationController pushViewController:mobileEnterVwController animated:YES];
-
-         }
-
-       /*  else if([[responseObject objectForKey:kstatus] intValue] == 0 && [[responseObject objectForKey:kMessage] isEqualToString:@"Mobile No. not Registered with us!"])
-         {
-             MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
-             mobileEnterVwController.isUpdateMobile = YES;
-             [self.navigationController pushViewController:mobileEnterVwController animated:YES];
-         }*/
-         else if ([[responseObject objectForKey:kstatus] intValue] == 0)
-         {
+-(void) didFailWithError:(NSError *)error
+{
+    [activityVw stopAnimating];
+    [aaramShop_ConnectionManager failureBlockCalled:error];
+}
+-(void) responseReceived:(id)responseObject
+{
+    [activityVw stopAnimating];
+    if (aaramShop_ConnectionManager.currentTask == TASK_LOGIN) {
+        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"OTP Sent!"]) {
+            MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
+            [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
+        }
+        else if ([[responseObject objectForKey:kMobile_verified] intValue] == 1 && [[responseObject objectForKey:kstatus] intValue] == 1)
+        {
+            [AppManager saveDataToNSUserDefaults:responseObject];
+            [AppManager saveUserDatainUserDefault];
+            UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+            [self.navigationController pushViewController:tabBarController animated:YES];
+        }
+        else if ([[responseObject objectForKey:kMobile_verified] intValue] == 0 && [[responseObject objectForKey:kstatus] intValue] == 1)
+        {
+            [AppManager saveDataToNSUserDefaults:responseObject];
+            
+            MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
+            mobileEnterVwController.isUpdateMobile = YES;
+            [self.navigationController pushViewController:mobileEnterVwController animated:YES];
+            
+        }
+        else if ([[responseObject objectForKey:kstatus] intValue] == 0)
+        {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-         }
-
-     }
-          failure:^(NSURLSessionDataTask *task, NSError *error)
-     {
-         NSLog(@"value %@",error);
-         [AppManager stopStatusbarActivityIndicator];
-         [activityVw stopAnimating];
-
-         
-         if ([Utils isRequestTimeOut:error])
-         {
-             [Utils showAlertView:kAlertTitle message:kRequestTimeOutMessage delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-         }
-         else
-         {
-               [Utils showAlertView:kAlertTitle message:kAlertServiceFailed delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-         }
-     }];
+        }
+    }
 }
 
 

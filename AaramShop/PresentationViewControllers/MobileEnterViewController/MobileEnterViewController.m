@@ -18,10 +18,13 @@
 @end
 
 @implementation MobileEnterViewController
-@synthesize isUpdateMobile;
+@synthesize isUpdateMobile,aaramShop_ConnectionManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
     appDeleg = APP_DELEGATE;
+    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
+    aaramShop_ConnectionManager.delegate = self;
+
     imgVUser.layer.cornerRadius = imgVUser.frame.size.height/2;
     imgVUser.clipsToBounds = YES;
     
@@ -76,11 +79,6 @@
         }
         else
             [self createDataToEnterMobileNumber];
-        /*
-        MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
-        mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
-        [self.navigationController pushViewController:mobileVerificationVwController animated:YES];*/
-
     }
 }
 -(void)createDataToEnterMobileNumber
@@ -113,47 +111,30 @@
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
-    AFHTTPSessionManager *manager = [Utils InitSetUpForWebService];
     
-    
-    [manager POST:@"" parameters:aDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
-     {
-             [formData appendPartWithFileData:imageData name:kProfileImage fileName:@"profileImage.jpg" mimeType:@"image/jpg"];
-     }
-          success:^(NSURLSessionDataTask *task, id responseObject)
-     {
-         [AppManager stopStatusbarActivityIndicator];
-         //NSLog(@"value %@",responseObject);
-         
-         if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 ) {
-             
-             [self saveDataToLocal:responseObject];
-             MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
-             mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
-             [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
-         }
-       /*  stop the login because already registered */
+    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_ENTER_MOBILE_NUMBER Delegate:self andMultipartData:imageData];
+}
+-(void) didFailWithError:(NSError *)error
+{
+    [aaramShop_ConnectionManager failureBlockCalled:error];
+}
+-(void) responseReceived:(id)responseObject
+{
+    if (aaramShop_ConnectionManager.currentTask == TASK_ENTER_MOBILE_NUMBER) {
+        if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 ) {
+            
+            [self saveDataToLocal:responseObject];
+            MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
+            mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
+            [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
+        }
+        /*  stop the login because already registered */
         else if ([[responseObject objectForKey:kstatus]intValue] == 0 &&[[responseObject objectForKey:kIsValid]intValue] == 1)
-         {
-             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-         }
+        {
+            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        }
         
-     }
-          failure:^(NSURLSessionDataTask *task, NSError *error)
-     {
-         NSLog(@"value %@",error);
-         [AppManager stopStatusbarActivityIndicator];
-         
-         
-         if ([Utils isRequestTimeOut:error])
-         {
-             [Utils showAlertView:kAlertTitle message:kRequestTimeOutMessage delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-         }
-         else
-         {
-             //  [Utils showAlertView:kAlertTitle message:kAlertServiceFailed delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-         }
-     }];
+    }
 }
 -(void)saveDataToLocal:(id)responseObject{
     
