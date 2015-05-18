@@ -412,6 +412,19 @@
 		6B0676EF1B0630580002259E /* locationPopupSaveBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676E91B0630580002259E /* locationPopupSaveBox.png */; };
 		6B0676F01B0630580002259E /* locationPopupSaveBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676EA1B0630580002259E /* locationPopupSaveBox@2x.png */; };
 		6B0676F11B0630580002259E /* locationPopupSaveBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676EB1B0630580002259E /* locationPopupSaveBox@3x.png */; };
+		6B0676F51B06383F0002259E /* locationPopupUpperRedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676F21B06383F0002259E /* locationPopupUpperRedBox.png */; };
+		6B0676F61B06383F0002259E /* locationPopupUpperRedBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676F31B06383F0002259E /* locationPopupUpperRedBox@2x.png */; };
+		6B0676F71B06383F0002259E /* locationPopupUpperRedBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676F41B06383F0002259E /* locationPopupUpperRedBox@3x.png */; };
+		6B0676FE1B07042B0002259E /* loactionPopupDropDownBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676F81B07042B0002259E /* loactionPopupDropDownBox.png */; };
+		6B0676FF1B07042B0002259E /* loactionPopupDropDownBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676F91B07042B0002259E /* loactionPopupDropDownBox@2x.png */; };
+		6B0677001B07042B0002259E /* loactionPopupDropDownBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676FA1B07042B0002259E /* loactionPopupDropDownBox@3x.png */; };
+		6B0677011B07042B0002259E /* locationPopupBigBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676FB1B07042B0002259E /* locationPopupBigBox.png */; };
+		6B0677021B07042B0002259E /* locationPopupBigBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676FC1B07042B0002259E /* locationPopupBigBox@2x.png */; };
+		6B0677031B07042B0002259E /* locationPopupBigBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676FD1B07042B0002259E /* locationPopupBigBox@3x.png */; };
+		6B0677071B07045E0002259E /* singleBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0677041B07045E0002259E /* singleBox.png */; };
+		6B0677081B07045E0002259E /* singleBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0677051B07045E0002259E /* singleBox@2x.png */; };
+		6B0677091B07045E0002259E /* singleBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0677061B07045E0002259E /* singleBox@3x.png */; };
+		6B06770D1B070C3C0002259E /* LocationAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B06770C1B070C3C0002259E /* LocationAlertViewController.m */; };
 		6B12DC611AF2294D00245209 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12DC601AF2294D00245209 /* main.m */; };
 		6B12DC6A1AF2294D00245209 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DC681AF2294D00245209 /* Main.storyboard */; };
 		6B12DC6C1AF2294D00245209 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DC6B1AF2294D00245209 /* Images.xcassets */; };
@@ -463,6 +476,7 @@
 		6BA2F09F1B04B2F30074562F /* mapPinGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09C1B04B2F30074562F /* mapPinGreen@2x.png */; };
 		6BA2F0A01B04B2F30074562F /* mapPinGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09D1B04B2F30074562F /* mapPinGreen@3x.png */; };
 		6BA2F0A21B04B9300074562F /* PinShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F0A11B04B9300074562F /* PinShadow.png */; };
+		6BA8F8FF1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA8F8FE1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m */; };
 		6BE4C8FB1B034BB600EF1EDB /* doneBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8F81B034BB600EF1EDB /* doneBtn.png */; };
 		6BE4C8FC1B034BB600EF1EDB /* doneBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8F91B034BB600EF1EDB /* doneBtn@2x.png */; };
 		6BE4C8FD1B034BB600EF1EDB /* doneBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8FA1B034BB600EF1EDB /* doneBtn@3x.png */; };
@@ -1168,6 +1182,20 @@
 		6B0676E91B0630580002259E /* locationPopupSaveBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationPopupSaveBox.png; sourceTree = "<group>"; };
 		6B0676EA1B0630580002259E /* locationPopupSaveBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupSaveBox@2x.png"; sourceTree = "<group>"; };
 		6B0676EB1B0630580002259E /* locationPopupSaveBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupSaveBox@3x.png"; sourceTree = "<group>"; };
+		6B0676F21B06383F0002259E /* locationPopupUpperRedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationPopupUpperRedBox.png; sourceTree = "<group>"; };
+		6B0676F31B06383F0002259E /* locationPopupUpperRedBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupUpperRedBox@2x.png"; sourceTree = "<group>"; };
+		6B0676F41B06383F0002259E /* locationPopupUpperRedBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupUpperRedBox@3x.png"; sourceTree = "<group>"; };
+		6B0676F81B07042B0002259E /* loactionPopupDropDownBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loactionPopupDropDownBox.png; sourceTree = "<group>"; };
+		6B0676F91B07042B0002259E /* loactionPopupDropDownBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loactionPopupDropDownBox@2x.png"; sourceTree = "<group>"; };
+		6B0676FA1B07042B0002259E /* loactionPopupDropDownBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loactionPopupDropDownBox@3x.png"; sourceTree = "<group>"; };
+		6B0676FB1B07042B0002259E /* locationPopupBigBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationPopupBigBox.png; sourceTree = "<group>"; };
+		6B0676FC1B07042B0002259E /* locationPopupBigBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupBigBox@2x.png"; sourceTree = "<group>"; };
+		6B0676FD1B07042B0002259E /* locationPopupBigBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupBigBox@3x.png"; sourceTree = "<group>"; };
+		6B0677041B07045E0002259E /* singleBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = singleBox.png; sourceTree = "<group>"; };
+		6B0677051B07045E0002259E /* singleBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "singleBox@2x.png"; sourceTree = "<group>"; };
+		6B0677061B07045E0002259E /* singleBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "singleBox@3x.png"; sourceTree = "<group>"; };
+		6B06770B1B070C3C0002259E /* LocationAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationAlertViewController.h; sourceTree = "<group>"; };
+		6B06770C1B070C3C0002259E /* LocationAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAlertViewController.m; sourceTree = "<group>"; };
 		6B12DC5B1AF2294D00245209 /* AaramShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AaramShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B12DC5F1AF2294D00245209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B12DC601AF2294D00245209 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1234,6 +1262,8 @@
 		6BA2F09C1B04B2F30074562F /* mapPinGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPinGreen@2x.png"; sourceTree = "<group>"; };
 		6BA2F09D1B04B2F30074562F /* mapPinGreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPinGreen@3x.png"; sourceTree = "<group>"; };
 		6BA2F0A11B04B9300074562F /* PinShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinShadow.png; sourceTree = "<group>"; };
+		6BA8F8FD1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AaramShop_ConnectionManager.h; sourceTree = "<group>"; };
+		6BA8F8FE1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AaramShop_ConnectionManager.m; sourceTree = "<group>"; };
 		6BC2B8611AF3AC71009E77E3 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		6BE4C8F31B021BCE00EF1EDB /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		6BE4C8F41B021BCE00EF1EDB /* backBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@2x.png"; sourceTree = "<group>"; };
@@ -2822,6 +2852,18 @@
 		6B0676E51B0630580002259E /* AlertScreenImages */ = {
 			isa = PBXGroup;
 			children = (
+				6B0677041B07045E0002259E /* singleBox.png */,
+				6B0677051B07045E0002259E /* singleBox@2x.png */,
+				6B0677061B07045E0002259E /* singleBox@3x.png */,
+				6B0676F81B07042B0002259E /* loactionPopupDropDownBox.png */,
+				6B0676F91B07042B0002259E /* loactionPopupDropDownBox@2x.png */,
+				6B0676FA1B07042B0002259E /* loactionPopupDropDownBox@3x.png */,
+				6B0676FB1B07042B0002259E /* locationPopupBigBox.png */,
+				6B0676FC1B07042B0002259E /* locationPopupBigBox@2x.png */,
+				6B0676FD1B07042B0002259E /* locationPopupBigBox@3x.png */,
+				6B0676F21B06383F0002259E /* locationPopupUpperRedBox.png */,
+				6B0676F31B06383F0002259E /* locationPopupUpperRedBox@2x.png */,
+				6B0676F41B06383F0002259E /* locationPopupUpperRedBox@3x.png */,
 				6B0676E61B0630580002259E /* locationPopupCancelBox.png */,
 				6B0676E71B0630580002259E /* locationPopupCancelBox@2x.png */,
 				6B0676E81B0630580002259E /* locationPopupCancelBox@3x.png */,
@@ -2830,6 +2872,15 @@
 				6B0676EB1B0630580002259E /* locationPopupSaveBox@3x.png */,
 			);
 			path = AlertScreenImages;
+			sourceTree = "<group>";
+		};
+		6B06770A1B070C210002259E /* LocationAlertViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B06770B1B070C3C0002259E /* LocationAlertViewController.h */,
+				6B06770C1B070C3C0002259E /* LocationAlertViewController.m */,
+			);
+			path = LocationAlertViewController;
 			sourceTree = "<group>";
 		};
 		6B12DC521AF2294D00245209 = {
@@ -2852,6 +2903,7 @@
 		6B12DC5D1AF2294D00245209 /* AaramShop */ = {
 			isa = PBXGroup;
 			children = (
+				6BA8F8FC1B08FCBD00EAA6A8 /* ConnectionManager */,
 				6B0676E01B06024B0002259E /* BusinessModel */,
 				274A5D131B05C88B009112B5 /* ChatClasses */,
 				6B1A9A531B03658C0005917B /* CustomViews */,
@@ -2961,6 +3013,7 @@
 		6B12DC9D1AF2543A00245209 /* PresentationViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6B06770A1B070C210002259E /* LocationAlertViewController */,
 				6BFFF9201B02224B00BB2B62 /* PreferencesViewCont */,
 				6BFFF9171B0221FC00BB2B62 /* AccountSettingsViewC */,
 				6BFFF91B1B0221FC00BB2B62 /* CartViewController */,
@@ -3142,6 +3195,15 @@
 			path = LocationEnterViewController;
 			sourceTree = "<group>";
 		};
+		6BA8F8FC1B08FCBD00EAA6A8 /* ConnectionManager */ = {
+			isa = PBXGroup;
+			children = (
+				6BA8F8FD1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.h */,
+				6BA8F8FE1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m */,
+			);
+			path = ConnectionManager;
+			sourceTree = "<group>";
+		};
 		6BE4C8F71B034BB600EF1EDB /* LocationScreenImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -3303,9 +3365,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0677091B07045E0002259E /* singleBox@3x.png in Resources */,
 				274A5C781B05C4AA009112B5 /* pin@2x.png in Resources */,
 				2791DE381B036E5C000121BC /* menuFacebookBox.png in Resources */,
 				274A5DB41B05C88B009112B5 /* chatCloseCircular.png in Resources */,
+				6B0677001B07042B0002259E /* loactionPopupDropDownBox@3x.png in Resources */,
 				6BFFF9481B0236B800BB2B62 /* tabBarChatIconActive.png in Resources */,
 				274A5DAB1B05C88B009112B5 /* aqua.png in Resources */,
 				274A5DC61B05C88B009112B5 /* chatRecordBtn.png in Resources */,
@@ -3334,10 +3398,12 @@
 				275F7DD11B05BC7C0049758B /* imageTwo.png in Resources */,
 				6BFFF94A1B0236B800BB2B62 /* tabBarChatIconActive@3x.png in Resources */,
 				27EC675D1B032F9C007D126E /* bg4.jpg in Resources */,
+				6B0677031B07042B0002259E /* locationPopupBigBox@3x.png in Resources */,
 				275F7DC81B05BC7C0049758B /* homePageBannerImageTwo.png in Resources */,
 				274A5C771B05C4AA009112B5 /* pin.png in Resources */,
 				6BFFF9541B0236B800BB2B62 /* tabBarMyListIconActive.png in Resources */,
 				6BFFF9471B0236B800BB2B62 /* tabBarChatIcon@3x.png in Resources */,
+				6B0676FF1B07042B0002259E /* loactionPopupDropDownBox@2x.png in Resources */,
 				274A5DC01B05C88B009112B5 /* chatPauseIconWhite.png in Resources */,
 				274A5DB91B05C88B009112B5 /* chatKeyboardIcon@2x.png in Resources */,
 				27EC675E1B032F9C007D126E /* bg4@2x.jpg in Resources */,
@@ -3375,6 +3441,7 @@
 				6B0676ED1B0630580002259E /* locationPopupCancelBox@2x.png in Resources */,
 				6B12DCA61AF26AA000245209 /* appicon_80.png in Resources */,
 				6B1A9A591B03658C0005917B /* CustomMapAnnotationView.xib in Resources */,
+				6B0677011B07042B0002259E /* locationPopupBigBox.png in Resources */,
 				274A5DB11B05C88B009112B5 /* chatBubbleGrey@2x.png in Resources */,
 				6B12DCAD1AF26B4100245209 /* existingUserBox@2x.png in Resources */,
 				274A5DB21B05C88B009112B5 /* chatCameraSmall.png in Resources */,
@@ -3401,6 +3468,7 @@
 				6BA2F09F1B04B2F30074562F /* mapPinGreen@2x.png in Resources */,
 				6B12DCC91AF2720400245209 /* bg2@2x.jpg in Resources */,
 				6BE4C9081B034CDE00EF1EDB /* locationIcon@2x.png in Resources */,
+				6B0677021B07042B0002259E /* locationPopupBigBox@2x.png in Resources */,
 				274A5DF81B05C88B009112B5 /* ShareLocationViewController.xib in Resources */,
 				27EC67631B03316F007D126E /* enterMobileNoDefaultCameraIcon.png in Resources */,
 				6B12DC8E1AF22C8100245209 /* welcomeScreenBackground@3x.png in Resources */,
@@ -3435,6 +3503,8 @@
 				275F7DCA1B05BC7C0049758B /* homePageBannerImageTwo@3x.png in Resources */,
 				6BE4C8FD1B034BB600EF1EDB /* doneBtn@3x.png in Resources */,
 				6B12DCCD1AF2720400245209 /* lowerBox@3x.png in Resources */,
+				6B0676F71B06383F0002259E /* locationPopupUpperRedBox@3x.png in Resources */,
+				6B0676FE1B07042B0002259E /* loactionPopupDropDownBox.png in Resources */,
 				274A5DF61B05C88B009112B5 /* CellPostLocation.xib in Resources */,
 				274A5C491B05C4AA009112B5 /* CountryCodeList.plist in Resources */,
 				6BE4C90C1B034CDE00EF1EDB /* mapPin@3x.png in Resources */,
@@ -3478,6 +3548,7 @@
 				6BFFF94D1B0236B800BB2B62 /* tabBarHomeIcon@3x.png in Resources */,
 				27EC674B1B031FE0007D126E /* aaramShopAppLogo.png in Resources */,
 				275F7DC51B05BC7C0049758B /* homePageBannerImageThree.png in Resources */,
+				6B0677081B07045E0002259E /* singleBox@2x.png in Resources */,
 				6B12DCA01AF269BC00245209 /* appicon_120.png in Resources */,
 				274A5D091B05C4AA009112B5 /* build-libidn.sh in Resources */,
 				274A5DC81B05C88B009112B5 /* chatRecordBtnActive.png in Resources */,
@@ -3485,6 +3556,7 @@
 				6BFFF94C1B0236B800BB2B62 /* tabBarHomeIcon@2x.png in Resources */,
 				6B12DCD91AF2A09700245209 /* singleBox.png in Resources */,
 				274A5DBB1B05C88B009112B5 /* chatLoadMessages@2x.png in Resources */,
+				6B0676F61B06383F0002259E /* locationPopupUpperRedBox@2x.png in Resources */,
 				275F7DC61B05BC7C0049758B /* homePageBannerImageThree@2x.png in Resources */,
 				274A5DAC1B05C88B009112B5 /* btnArrow.png in Resources */,
 				2791DE371B036E5C000121BC /* menuCartIcon@3x.png in Resources */,
@@ -3492,6 +3564,7 @@
 				274A5DA51B05C88B009112B5 /* PlayVideoViewController.xib in Resources */,
 				274A5DF11B05C88B009112B5 /* ShowLargePhotoViewController_iPhone4.xib in Resources */,
 				6B12DCF31AF2A53200245209 /* defaultProfilePic.png in Resources */,
+				6B0677071B07045E0002259E /* singleBox.png in Resources */,
 				274A5DB31B05C88B009112B5 /* chatCameraSmall@2x.png in Resources */,
 				6BFFF9451B0236B800BB2B62 /* tabBarChatIcon.png in Resources */,
 				275F7DC71B05BC7C0049758B /* homePageBannerImageThree@3x.png in Resources */,
@@ -3515,6 +3588,7 @@
 				2791DE3B1B036E5C000121BC /* menuPreferencesIcon.png in Resources */,
 				6BE4C91B1B035DEF00EF1EDB /* mapPopup@3x.png in Resources */,
 				27EC67651B03316F007D126E /* enterMobileNoDefaultCameraIcon@3x.png in Resources */,
+				6B0676F51B06383F0002259E /* locationPopupUpperRedBox.png in Resources */,
 				6B12DCCA1AF2720400245209 /* bg2@3x.jpg in Resources */,
 				274A5DD11B05C88B009112B5 /* iconDownload@2x.png in Resources */,
 				274A5DE01B05C88B009112B5 /* shadowOverlayBottom-1.png in Resources */,
@@ -3628,6 +3702,7 @@
 				274A5DF41B05C88B009112B5 /* SHRequestSampleList.m in Sources */,
 				274A5C9C1B05C4AA009112B5 /* XMPPCoreDataStorage.m in Sources */,
 				274A5CA01B05C4AA009112B5 /* XMPPGroupCoreDataStorageObject.m in Sources */,
+				6B06770D1B070C3C0002259E /* LocationAlertViewController.m in Sources */,
 				27BE658D1B020446004FA4B4 /* ShoplistViewController.m in Sources */,
 				274A5CC81B05C4AA009112B5 /* XMPPvCardTempLabel.m in Sources */,
 				6B1C0B821B04D25B009DD32D /* DPAnnotationView.m in Sources */,
@@ -3655,6 +3730,7 @@
 				274A5D071B05C4AA009112B5 /* DDXMLElement.m in Sources */,
 				274A5CEE1B05C4AA009112B5 /* XMPPAttentionModule.m in Sources */,
 				274A5CF81B05C4AA009112B5 /* XMPPIDTracker.m in Sources */,
+				6BA8F8FF1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m in Sources */,
 				274A5C501B05C4AA009112B5 /* AFURLRequestSerialization.m in Sources */,
 				6B8536571B046B8300E60AA3 /* DDAnnotationView.m in Sources */,
 				274A5E021B05C88B009112B5 /* CustomNotificationView.m in Sources */,
@@ -3907,8 +3983,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -3932,7 +4008,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "37ee2fa5-f738-491e-ab0a-52ab9318ff43";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -3942,8 +4018,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -3967,7 +4043,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "37ee2fa5-f738-491e-ab0a-52ab9318ff43";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;

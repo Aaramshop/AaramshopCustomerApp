@@ -402,7 +402,11 @@
 #pragma mark - Button Actions
 
 - (IBAction)btnDoneClick:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    LocationAlertViewController *locAlertVwController = (LocationAlertViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationAlertScreen"];
+  //  [self presentViewController:locAlertVwController animated:YES completion:nil];
+   // [self.view addSubview:locAlertVwController.view];
+   // [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)btnEditClick:(UIButton *)sender {
