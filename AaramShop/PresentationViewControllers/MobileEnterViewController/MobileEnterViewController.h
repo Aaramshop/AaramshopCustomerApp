@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MobileEnterViewController : BaseViewController<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+@interface MobileEnterViewController : BaseViewController<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,AaramShop_ConnectionManager_Delegate>
 {
     
     __weak IBOutlet UIImageView *imgVUser;
@@ -20,8 +20,8 @@
     NSData *imageData;
 }
 @property(nonatomic,assign) BOOL isUpdateMobile;
-
-- (IBAction)btnContinueClick:(UIButton *)sender;
+@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+ - (IBAction)btnContinueClick:(UIButton *)sender;
 - (IBAction)btnBackClick:(UIButton *)sender;
 - (IBAction)btnPickProfileClick:(UIButton *)sender;
 

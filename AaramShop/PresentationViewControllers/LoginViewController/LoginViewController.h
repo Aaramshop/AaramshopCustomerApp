@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : BaseViewController<UIGestureRecognizerDelegate>
+@interface LoginViewController : BaseViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
 {
     
     __weak IBOutlet UITextField *txtUserName;
@@ -17,6 +17,7 @@
     __weak IBOutlet UIScrollView *scrollViewLogin;
     __weak IBOutlet UIActivityIndicatorView *activityVw;
 }
+@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 - (IBAction)btnForgotPasswordClick:(UIButton *)sender;
 - (IBAction)btnLoginClick:(UIButton *)sender;
 - (IBAction)btnBackClick:(UIButton *)sender;

@@ -9,6 +9,7 @@
 #import "LocationEnterViewController.h"
 #import "DDAnnotationView.h"
 #import "ShopDataModel.h"
+#import "AaramShop_ConnectionManager.h"
 
 @interface LocationEnterViewController ()
 {
@@ -21,12 +22,15 @@
 @end
 
 @implementation LocationEnterViewController
-
+@synthesize aaramShop_ConnectionManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     appDeleg = APP_DELEGATE;
     txtFLocation.delegate = self;
+    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
+    aaramShop_ConnectionManager.delegate = self;
+
     txtFLocation.tintColor = [UIColor blackColor];
     arrShopsData = [[NSMutableArray alloc]init];
     mapViewLocation.delegate = self;
@@ -121,29 +125,21 @@
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
-    AFHTTPSessionManager *manager = [Utils InitSetUpForWebService];
-    [manager POST:@"" parameters:aDict
-          success:^(NSURLSessionDataTask *task, id responseObject)
-     {
-         [AppManager stopStatusbarActivityIndicator];
-         NSLog(@"value %@",responseObject);
-         [self parseResponseForAaramShops:responseObject];
-     }
-          failure:^(NSURLSessionDataTask *task, NSError *error)
-     {
-         NSLog(@"value %@",error);
-         [AppManager stopStatusbarActivityIndicator];
-         
-         if ([Utils isRequestTimeOut:error])
-         {
-             [Utils showAlertView:kAlertTitle message:kRequestTimeOutMessage delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-         }
-         else
-         {
-             [Utils showAlertView:kAlertTitle message:kAlertServiceFailed delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-         }
-     }];
+    
+    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_ENTER_LOCATION andDelegate:self];
 }
+-(void) didFailWithError:(NSError *)error
+{
+    [aaramShop_ConnectionManager failureBlockCalled:error];
+}
+-(void) responseReceived:(id)responseObject
+{
+    if (aaramShop_ConnectionManager.currentTask == TASK_ENTER_LOCATION) {
+        [self parseResponseForAaramShops:responseObject];
+
+    }
+}
+
 -(void)parseResponseForAaramShops:(id)responseObject
 {
     NSArray *arrData = [responseObject objectForKey:kData];
