@@ -118,7 +118,10 @@
     
     [manager POST:@"" parameters:aDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      {
-         [formData appendPartWithFileData:imageData name:kProfileImage fileName:@"profileImage.jpg" mimeType:@"image/jpg"];
+         if (imageData) {
+             [formData appendPartWithFileData:imageData name:kProfileImage fileName:@"profileImage.jpg" mimeType:@"image/jpg"];
+
+         }
      }
           success:^(NSURLSessionDataTask *task, id responseObject)
      {
