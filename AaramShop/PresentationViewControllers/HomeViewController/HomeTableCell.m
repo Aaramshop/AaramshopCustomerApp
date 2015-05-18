@@ -24,7 +24,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     
-    if (self) {
+    if (self)
+    {
         lblRestaurant = [[UILabel alloc]initWithFrame:CGRectZero];
         lblRestaurant.font = [UIFont fontWithName:kMyriadProRegular size:15];
         
@@ -92,7 +93,7 @@
     lblRestaurantRect.size.height       =   lblHeight;
     lblRestaurantRect.origin.x           =      imgUserChoiceRect.origin.x + imgUserChoiceRect.size.width + padding;
     lblRestaurantRect.origin.y          =       imgUserChoiceRect.origin.y;
-    lblRestaurant.frame             =lblRestaurantRect;
+    lblRestaurant.frame                     =lblRestaurantRect;
     
     imgDotRect.size.width        =   11;
     imgDotRect.size.height       =   11;

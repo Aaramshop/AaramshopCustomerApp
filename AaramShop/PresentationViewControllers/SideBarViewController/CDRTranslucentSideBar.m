@@ -258,7 +258,7 @@
     else
     {
         imgBackground.image=[UIImage imageNamed:@"defaultImageMenuTop"];
-//        imgProfile.image = [UIImage imageNamed:@"defaultProfilePic"];
+        imgProfile.image = [UIImage imageNamed:@"defaultProfilePic"];
     }
 
     
