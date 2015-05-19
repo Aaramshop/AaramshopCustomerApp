@@ -14,7 +14,8 @@ typedef enum
     TASK_LOGIN,
     TASK_ENTER_MOBILE_NUMBER,
     TASK_ENTER_LOCATION,
-    TASK_VERIFY_MOBILE
+    TASK_VERIFY_MOBILE,
+    TASK_RESEND_OTP
 }CURRENT_TASK;
 
 @protocol AaramShop_ConnectionManager_Delegate <NSObject>

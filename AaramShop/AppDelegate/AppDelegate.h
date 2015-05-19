@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "SMChatViewController.h"
+#import <CoreData/CoreData.h>
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate,UITabBarControllerDelegate,UINavigationControllerDelegate>
@@ -16,6 +17,13 @@
 CLGeocoder *geocoder;
 }
 
+
+// Core Data
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+- (void)saveContext;
+- (NSURL *)applicationDocumentsDirectory;
 
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UINavigationController *navController;
