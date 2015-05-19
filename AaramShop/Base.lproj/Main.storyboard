@@ -955,11 +955,11 @@
                                                     <constraint firstAttribute="height" constant="51" id="GEP-pd-h1c"/>
                                                 </constraints>
                                             </imageView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="gum odioque civiuda." translatesAutoresizingMaskIntoConstraints="NO" id="mfn-dZ-eaI">
-                                                <rect key="frame" x="8" y="92" width="243" height="51"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfn-dZ-eaI">
+                                                <rect key="frame" x="12" y="94" width="235" height="47"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="51" id="Q5a-FY-4Ux"/>
+                                                    <constraint firstAttribute="height" constant="47" id="Q5a-FY-4Ux"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1017,11 +1017,11 @@
                                             <constraint firstItem="C70-xU-MNF" firstAttribute="top" secondItem="lSE-aX-ISo" secondAttribute="top" constant="-59" id="TMW-XA-rer"/>
                                             <constraint firstItem="UVo-b6-oy9" firstAttribute="top" secondItem="33w-Th-wLp" secondAttribute="top" id="Wak-ke-dSv"/>
                                             <constraint firstItem="33w-Th-wLp" firstAttribute="leading" secondItem="PI5-X5-zM4" secondAttribute="leading" id="f1m-3J-abX"/>
-                                            <constraint firstAttribute="trailing" secondItem="mfn-dZ-eaI" secondAttribute="trailing" constant="9" id="gZE-NX-Qnb"/>
-                                            <constraint firstItem="mfn-dZ-eaI" firstAttribute="leading" secondItem="PI5-X5-zM4" secondAttribute="leading" constant="8" id="gxI-ex-52E"/>
+                                            <constraint firstAttribute="trailing" secondItem="mfn-dZ-eaI" secondAttribute="trailing" constant="13" id="gZE-NX-Qnb"/>
+                                            <constraint firstItem="mfn-dZ-eaI" firstAttribute="leading" secondItem="PI5-X5-zM4" secondAttribute="leading" constant="12" id="gxI-ex-52E"/>
                                             <constraint firstAttribute="trailing" secondItem="4Dh-Q7-NlC" secondAttribute="trailing" id="hzf-su-mi4"/>
                                             <constraint firstItem="UVo-b6-oy9" firstAttribute="leading" secondItem="33w-Th-wLp" secondAttribute="leading" id="kUb-vv-s8F"/>
-                                            <constraint firstItem="xGX-Dk-1dv" firstAttribute="top" secondItem="mfn-dZ-eaI" secondAttribute="top" constant="-40" id="pWx-4n-Uqs"/>
+                                            <constraint firstItem="xGX-Dk-1dv" firstAttribute="top" secondItem="mfn-dZ-eaI" secondAttribute="top" constant="-42" id="pWx-4n-Uqs"/>
                                             <constraint firstItem="C70-xU-MNF" firstAttribute="leading" secondItem="PI5-X5-zM4" secondAttribute="leading" constant="8" id="raP-TY-8nI"/>
                                             <constraint firstItem="t7H-uQ-B85" firstAttribute="baseline" secondItem="4Dh-Q7-NlC" secondAttribute="baseline" id="rdg-sw-0SE"/>
                                             <constraint firstItem="lSE-aX-ISo" firstAttribute="leading" secondItem="PI5-X5-zM4" secondAttribute="leading" constant="8" id="xZc-NU-C70"/>
@@ -1052,6 +1052,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="dropDownBtn" destination="xGX-Dk-1dv" id="btU-S6-hYT"/>
                         <outlet property="subView" destination="PI5-X5-zM4" id="QR4-gW-uU2"/>
                         <outlet property="txtTitle" destination="lSE-aX-ISo" id="rEE-2q-lDV"/>
                         <outlet property="viewBackAlert" destination="OYK-qQ-7yw" id="Tyv-u7-Lfk"/>

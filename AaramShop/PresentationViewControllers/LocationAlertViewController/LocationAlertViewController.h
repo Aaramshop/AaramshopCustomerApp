@@ -11,11 +11,13 @@
 @interface LocationAlertViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
 {
     
+    __weak IBOutlet UIButton *dropDownBtn;
+    UIPickerView *picker;
     __weak IBOutlet PWTextField *txtTitle;
     __weak IBOutlet UIView *subView;
     __weak IBOutlet UIView *viewBackAlert;
     NSMutableArray *dataSource;
-    UIPickerView * pickerView;
+    UIToolbar* keyBoardToolBar;
 }
 - (IBAction)btnCancel:(id)sender;
 - (IBAction)btnSave:(id)sender;

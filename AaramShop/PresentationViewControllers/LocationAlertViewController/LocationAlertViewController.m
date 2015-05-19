@@ -21,26 +21,105 @@
     
     subView.layer.cornerRadius = 5;
     subView.layer.masksToBounds = YES;
-    dataSource=[[NSMutableArray alloc]init];
-    [dataSource addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Home",@"title",
-                                                        @"djsjhkdshjksd",@"address",nil]];
-    [dataSource addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Office",@"title",
-                           @"djsjhkdshjksd",@"address",nil]];
-    [dataSource addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Custom",@"title",
-                           @"djsjhkdshjksd",@"address",nil]];
+    dataSource=[[NSMutableArray alloc]initWithObjects:
+                @"Home",
+                    @"Office",@"Custom", nil];
+//    [dataSource addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Home",@"title",
+//                                                        @"djsjhkdshjksd",@"address",nil]];
+//    [dataSource addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Office",@"title",
+//                           @"djsjhkdshjksd",@"address",nil]];
+//    [dataSource addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Custom",@"title",
+//                           @"djsjhkdshjksd",@"address",nil]];
+    [txtTitle setHidden:YES];
+    [self ToolBarDesignes];
+    [self PickerView];
     
+}
+#pragma mark OptionPatch
+-(void)showOptionPatch:(BOOL)isShow
+{
+    if(isShow)
+    {
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
+         {
+             keyBoardToolBar.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) -(196 + 20) , [[UIScreen mainScreen]bounds].size.width, 40 );
+         }completion:nil];
+        
+    }
+    else
+    {
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
+         {
+             keyBoardToolBar.frame = CGRectMake(0, [[UIScreen mainScreen]bounds].size.height + 40, [[UIScreen mainScreen]bounds].size.width, 40);
+         }
+                         completion:nil];
+    }
+}
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+    [self showOptionPatch:NO];
+    [self showPickerView:NO];
+}
+-(void)ToolBarDesignes
+{
+    if (keyBoardToolBar==nil)
+    {
+        keyBoardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 610 , [[UIScreen mainScreen]bounds].size.width, 40)];
+        UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
+        
+        keyBoardToolBar.backgroundColor=[UIColor blackColor];
+        UIBarButtonItem *tempDistance = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
+        
+        keyBoardToolBar.items = [NSArray arrayWithObjects:btnCancel,tempDistance,btnDone, nil];
+    }
+    else
+    {
+        [keyBoardToolBar removeFromSuperview];
+    }
     
-    pickerView =[[UIPickerView alloc]initWithFrame:CGRectMake(0, 0,320, 150)];
-    
-    pickerView.hidden=NO;
-//    [pickerView addTarget:self action:@selector(LabelTitle:) forControlEvents:UIControlEventValueChanged];
-    [subView addSubview:pickerView];
-    UIBarButtonItem* rightBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
-    self.navigationItem.rightBarButtonItem=rightBtn;
-    pickerView.dataSource = self;
-    pickerView.delegate = self;
+    [self.view addSubview:keyBoardToolBar];
+    [self.view bringSubviewToFront:keyBoardToolBar];
+}
+-(void)toolBarBtnClicked:(UIBarButtonItem *)sender
+{
+        [self showOptionPatch:NO];
+        [self showPickerView:NO];
+       
+}
+-(void)PickerView
+{
+    picker=[[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds)+100, [[UIScreen mainScreen]bounds].size.width,196)];
+    picker.delegate =self;
+    picker.dataSource =self;
+    picker.backgroundColor=[UIColor whiteColor];
+    picker.showsSelectionIndicator = YES;
+    [self.view addSubview:picker];
 }
 
+#pragma mark Show and Hide Picker View
+-(void)showPickerView:(BOOL)isShow
+{
+    if(isShow)
+    {
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            picker.frame = CGRectMake(0,CGRectGetHeight(self.view.bounds)-(196-20), [[UIScreen mainScreen]bounds].size.width, 196);
+            
+        }
+                         completion:nil];
+        
+    }
+    else
+    {
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             picker.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds)+100, [[UIScreen mainScreen]bounds].size.width,196);
+                         }
+                         completion:nil];
+        
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -56,25 +135,30 @@
 }
 */
 
-- (IBAction)btnCancel:(id)sender {
+- (IBAction)btnCancel:(id)sender
+{
+        [self.view removeFromSuperview];
 }
 
-- (IBAction)btnSave:(id)sender {
+- (IBAction)btnSave:(id)sender
+{
+    
 }
 
 - (IBAction)btnDropDown:(id)sender
 {
-    
+    [self showPickerView:YES];
+    [self showOptionPatch:YES];
     
     
     
 }
+#pragma mark PickerView Methods & Delegates
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
-    
 }
-
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
 {
@@ -83,19 +167,26 @@
 }
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
 {
-   
     
     return [dataSource objectAtIndex:row];
+    
+    
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
 {
-    switch(row)
+    NSString *strValue = [dataSource objectAtIndex:[picker selectedRowInComponent:0]];
+    if ([strValue isEqualToString:[NSString stringWithFormat:@"%@",@"Custom"] ])
     {
-            
-        case 0:
-            break;
-            default:
-            break;
+        [txtTitle setHidden:NO];
+        [dropDownBtn setTitle:[dataSource objectAtIndex:row] forState:UIControlStateNormal];
     }
+    else
+    {
+        [txtTitle setHidden:YES];
+        [dropDownBtn setTitle:[dataSource objectAtIndex:row] forState:UIControlStateNormal];
+    }
+//    NSLog(@"%@", strValue);
+    
+    
 }
 @end
