@@ -384,6 +384,10 @@
 		2791DE3E1B036E5C000121BC /* menuVouchersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE2C1B036E5C000121BC /* menuVouchersIcon.png */; };
 		2791DE3F1B036E5C000121BC /* menuVouchersIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE2D1B036E5C000121BC /* menuVouchersIcon@2x.png */; };
 		2791DE401B036E5C000121BC /* menuVouchersIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2791DE2E1B036E5C000121BC /* menuVouchersIcon@3x.png */; };
+		2797043A1B0A02EF00FAD4D9 /* alertSingleBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 279704371B0A02EF00FAD4D9 /* alertSingleBox.png */; };
+		2797043B1B0A02EF00FAD4D9 /* alertSingleBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 279704381B0A02EF00FAD4D9 /* alertSingleBox@2x.png */; };
+		2797043C1B0A02EF00FAD4D9 /* alertSingleBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 279704391B0A02EF00FAD4D9 /* alertSingleBox@3x.png */; };
+		279704401B0A091A00FAD4D9 /* PWTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2797043F1B0A091A00FAD4D9 /* PWTextField.m */; };
 		27BE657E1B0203E6004FA4B4 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE657D1B0203E6004FA4B4 /* ChatViewController.m */; };
 		27BE65811B0203F2004FA4B4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE65801B0203F2004FA4B4 /* HomeViewController.m */; };
 		27BE65841B0203FD004FA4B4 /* OffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE65831B0203FD004FA4B4 /* OffersViewController.m */; };
@@ -421,9 +425,6 @@
 		6B0677011B07042B0002259E /* locationPopupBigBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676FB1B07042B0002259E /* locationPopupBigBox.png */; };
 		6B0677021B07042B0002259E /* locationPopupBigBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676FC1B07042B0002259E /* locationPopupBigBox@2x.png */; };
 		6B0677031B07042B0002259E /* locationPopupBigBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676FD1B07042B0002259E /* locationPopupBigBox@3x.png */; };
-		6B0677071B07045E0002259E /* singleBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0677041B07045E0002259E /* singleBox.png */; };
-		6B0677081B07045E0002259E /* singleBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0677051B07045E0002259E /* singleBox@2x.png */; };
-		6B0677091B07045E0002259E /* singleBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0677061B07045E0002259E /* singleBox@3x.png */; };
 		6B06770D1B070C3C0002259E /* LocationAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B06770C1B070C3C0002259E /* LocationAlertViewController.m */; };
 		6B12DC611AF2294D00245209 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12DC601AF2294D00245209 /* main.m */; };
 		6B12DC6A1AF2294D00245209 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DC681AF2294D00245209 /* Main.storyboard */; };
@@ -1150,6 +1151,11 @@
 		2791DE2C1B036E5C000121BC /* menuVouchersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuVouchersIcon.png; sourceTree = "<group>"; };
 		2791DE2D1B036E5C000121BC /* menuVouchersIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuVouchersIcon@2x.png"; sourceTree = "<group>"; };
 		2791DE2E1B036E5C000121BC /* menuVouchersIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuVouchersIcon@3x.png"; sourceTree = "<group>"; };
+		279704371B0A02EF00FAD4D9 /* alertSingleBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alertSingleBox.png; sourceTree = "<group>"; };
+		279704381B0A02EF00FAD4D9 /* alertSingleBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertSingleBox@2x.png"; sourceTree = "<group>"; };
+		279704391B0A02EF00FAD4D9 /* alertSingleBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertSingleBox@3x.png"; sourceTree = "<group>"; };
+		2797043E1B0A091A00FAD4D9 /* PWTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWTextField.h; sourceTree = "<group>"; };
+		2797043F1B0A091A00FAD4D9 /* PWTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWTextField.m; sourceTree = "<group>"; };
 		27BE657C1B0203E6004FA4B4 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		27BE657D1B0203E6004FA4B4 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		27BE657F1B0203F2004FA4B4 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -1194,9 +1200,6 @@
 		6B0676FB1B07042B0002259E /* locationPopupBigBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationPopupBigBox.png; sourceTree = "<group>"; };
 		6B0676FC1B07042B0002259E /* locationPopupBigBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupBigBox@2x.png"; sourceTree = "<group>"; };
 		6B0676FD1B07042B0002259E /* locationPopupBigBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupBigBox@3x.png"; sourceTree = "<group>"; };
-		6B0677041B07045E0002259E /* singleBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = singleBox.png; sourceTree = "<group>"; };
-		6B0677051B07045E0002259E /* singleBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "singleBox@2x.png"; sourceTree = "<group>"; };
-		6B0677061B07045E0002259E /* singleBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "singleBox@3x.png"; sourceTree = "<group>"; };
 		6B06770B1B070C3C0002259E /* LocationAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationAlertViewController.h; sourceTree = "<group>"; };
 		6B06770C1B070C3C0002259E /* LocationAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAlertViewController.m; sourceTree = "<group>"; };
 		6B12DC5B1AF2294D00245209 /* AaramShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AaramShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2786,6 +2789,15 @@
 			path = MenuImages;
 			sourceTree = "<group>";
 		};
+		2797043D1B0A091A00FAD4D9 /* PWTextField */ = {
+			isa = PBXGroup;
+			children = (
+				2797043E1B0A091A00FAD4D9 /* PWTextField.h */,
+				2797043F1B0A091A00FAD4D9 /* PWTextField.m */,
+			);
+			path = PWTextField;
+			sourceTree = "<group>";
+		};
 		27BE65771B0203CC004FA4B4 /* ChatViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2862,9 +2874,9 @@
 		6B0676E51B0630580002259E /* AlertScreenImages */ = {
 			isa = PBXGroup;
 			children = (
-				6B0677041B07045E0002259E /* singleBox.png */,
-				6B0677051B07045E0002259E /* singleBox@2x.png */,
-				6B0677061B07045E0002259E /* singleBox@3x.png */,
+				279704371B0A02EF00FAD4D9 /* alertSingleBox.png */,
+				279704381B0A02EF00FAD4D9 /* alertSingleBox@2x.png */,
+				279704391B0A02EF00FAD4D9 /* alertSingleBox@3x.png */,
 				6B0676F81B07042B0002259E /* loactionPopupDropDownBox.png */,
 				6B0676F91B07042B0002259E /* loactionPopupDropDownBox@2x.png */,
 				6B0676FA1B07042B0002259E /* loactionPopupDropDownBox@3x.png */,
@@ -2942,6 +2954,7 @@
 		6B12DC861AF22C8100245209 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2797043D1B0A091A00FAD4D9 /* PWTextField */,
 				274A5A621B05C4A9009112B5 /* AppManager */,
 				274A5A661B05C4A9009112B5 /* External */,
 				274A5C451B05C4AA009112B5 /* Fonts */,
@@ -3376,7 +3389,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B0677091B07045E0002259E /* singleBox@3x.png in Resources */,
 				274A5C781B05C4AA009112B5 /* pin@2x.png in Resources */,
 				2791DE381B036E5C000121BC /* menuFacebookBox.png in Resources */,
 				274A5DB41B05C88B009112B5 /* chatCloseCircular.png in Resources */,
@@ -3496,6 +3508,7 @@
 				274A5A4A1B05C075009112B5 /* favourateIcon@3x.png in Resources */,
 				6BE4C8FB1B034BB600EF1EDB /* doneBtn.png in Resources */,
 				274A5DBF1B05C88B009112B5 /* chatPauseIcon@2x.png in Resources */,
+				2797043B1B0A02EF00FAD4D9 /* alertSingleBox@2x.png in Resources */,
 				274A5DE31B05C88B009112B5 /* stcker3@2x.png in Resources */,
 				274A5DCA1B05C88B009112B5 /* chatSendBtn.png in Resources */,
 				27EC674D1B031FE0007D126E /* aaramShopAppLogo@3x.png in Resources */,
@@ -3559,7 +3572,6 @@
 				6BFFF94D1B0236B800BB2B62 /* tabBarHomeIcon@3x.png in Resources */,
 				27EC674B1B031FE0007D126E /* aaramShopAppLogo.png in Resources */,
 				275F7DC51B05BC7C0049758B /* homePageBannerImageThree.png in Resources */,
-				6B0677081B07045E0002259E /* singleBox@2x.png in Resources */,
 				6B12DCA01AF269BC00245209 /* appicon_120.png in Resources */,
 				274A5D091B05C4AA009112B5 /* build-libidn.sh in Resources */,
 				274A5DC81B05C88B009112B5 /* chatRecordBtnActive.png in Resources */,
@@ -3575,7 +3587,6 @@
 				274A5DA51B05C88B009112B5 /* PlayVideoViewController.xib in Resources */,
 				274A5DF11B05C88B009112B5 /* ShowLargePhotoViewController_iPhone4.xib in Resources */,
 				6B12DCF31AF2A53200245209 /* defaultProfilePic.png in Resources */,
-				6B0677071B07045E0002259E /* singleBox.png in Resources */,
 				274A5DB31B05C88B009112B5 /* chatCameraSmall@2x.png in Resources */,
 				6BFFF9451B0236B800BB2B62 /* tabBarChatIcon.png in Resources */,
 				275F7DC71B05BC7C0049758B /* homePageBannerImageThree@3x.png in Resources */,
@@ -3585,6 +3596,7 @@
 				274A5DCE1B05C88B009112B5 /* iconAttach.png in Resources */,
 				274A5DD61B05C88B009112B5 /* msgChatMapImg.png in Resources */,
 				6B12DCDB1AF2A09700245209 /* singleBox@3x.png in Resources */,
+				2797043A1B0A02EF00FAD4D9 /* alertSingleBox.png in Resources */,
 				6BFFF95D1B0236B800BB2B62 /* tabBarOrdersIcon.png in Resources */,
 				6B0676EF1B0630580002259E /* locationPopupSaveBox.png in Resources */,
 				274A5DEB1B05C88B009112B5 /* MapViewController.xib in Resources */,
@@ -3630,6 +3642,7 @@
 				274A5DE11B05C88B009112B5 /* stcker1@2x.png in Resources */,
 				6BFFF9561B0236B800BB2B62 /* tabBarMyListIconActive@3x.png in Resources */,
 				6BE4C90E1B034CDE00EF1EDB /* pencilIcon@2x.png in Resources */,
+				2797043C1B0A02EF00FAD4D9 /* alertSingleBox@3x.png in Resources */,
 				275F7DCC1B05BC7C0049758B /* imageOne@2x.png in Resources */,
 				6BFFF94B1B0236B800BB2B62 /* tabBarHomeIcon.png in Resources */,
 				2791DE331B036E5C000121BC /* menuAwardsPointsIcon@2x.png in Resources */,
@@ -3870,6 +3883,7 @@
 				274A5CE81B05C4AA009112B5 /* XMPPAutoPing.m in Sources */,
 				274A5CA91B05C4AA009112B5 /* XMPPSystemInputActivityMonitor.m in Sources */,
 				274A5C6F1B05C4AA009112B5 /* FSConverter.m in Sources */,
+				279704401B0A091A00FAD4D9 /* PWTextField.m in Sources */,
 				274A5DFE1B05C88B009112B5 /* RMDownloadIndicator.m in Sources */,
 				274A5D081B05C4AA009112B5 /* DDXMLNode.m in Sources */,
 				274A5C951B05C4AA009112B5 /* XMPPJID.m in Sources */,

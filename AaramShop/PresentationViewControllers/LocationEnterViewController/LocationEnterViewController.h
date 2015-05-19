@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LocationAlertViewController.h"
+
 @interface LocationEnterViewController : UIViewController<UITextFieldDelegate,MKMapViewDelegate,AaramShop_ConnectionManager_Delegate>
 {
    __weak IBOutlet UITextField *txtFLocation;
