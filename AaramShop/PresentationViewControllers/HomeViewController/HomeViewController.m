@@ -47,9 +47,9 @@
 }
 -(void)showLocationScreen
 {
-    LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+    [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
 
-   // UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:locationScreen];
+    LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
     [self presentViewController:locationScreen animated:YES completion:nil];
 }
 
