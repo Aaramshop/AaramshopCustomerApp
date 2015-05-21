@@ -111,7 +111,7 @@
 
 #define kOptionLogin_otp_validate         @"login_otp_validate"
 #define kOtp                              @"otp"
-
+#define kOptionResend_otp                 @"resend_otp"
 //==================Sign Up============
 
 #define kFileType                                   @"fileType"
@@ -147,3 +147,9 @@
 #define kProfilePhoto @"profilePhoto"
 #define kBoundry @"Boundry"
 #define kServerUserNameId @"userNameId"
+
+
+#pragma mark - 
+
+#define kContactsAccessPermission           @"contactsAccessPermission"
+#define kType                               @"type"

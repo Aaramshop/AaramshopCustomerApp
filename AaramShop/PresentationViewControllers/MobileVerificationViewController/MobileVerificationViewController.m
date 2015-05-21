@@ -53,6 +53,20 @@
     [self.navigationController pushViewController:tabBarController animated:YES];
      */
 }
+-(void)createDataForOtpResend
+{
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    [dict removeObjectForKey:kSessionToken];
+    [dict setObject:strMobileNum forKey:kMobile];
+    [dict setObject:kOptionResend_otp forKey:kOption];
+    [self callWebserviceForOtpResend:dict];
+    /*
+     
+     UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+     [self.navigationController pushViewController:tabBarController animated:YES];
+     */
+}
+
 
 -(void)callWebserviceForOtpSend:(NSMutableDictionary *)aDict
 {
@@ -65,6 +79,18 @@
     }
     [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_VERIFY_MOBILE andDelegate:self];
 }
+-(void)callWebserviceForOtpResend:(NSMutableDictionary *)aDict
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_RESEND_OTP andDelegate:self];
+}
+
 -(void) didFailWithError:(NSError *)error
 {
     [aaramShop_ConnectionManager failureBlockCalled:error];
@@ -80,6 +106,13 @@
         else
         {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        }
+    }
+    else if (aaramShop_ConnectionManager.currentTask == TASK_RESEND_OTP)
+    {
+        if ([[responseObject objectForKey:kstatus]intValue] == 1) {
+            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+
         }
     }
 }
@@ -117,6 +150,7 @@
 }
 
 - (IBAction)btnResendVerificationClick:(UIButton *)sender {
+    [self createDataForOtpResend];
 }
 
 #pragma mark -

@@ -143,202 +143,122 @@ UIAlertView *alert = nil;
     
 }
 
-//#pragma mark - AddressBook
-//-(void)fetchAddressBookWithContactModel
-//{
-//  
-//    
-//    if (!addressBookRef) {
-//        addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
-//    }
-//    if(!addressBookRef)
-//        return ;
-//    ABAddressBookRevert(addressBookRef);
-//    //     ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
-//    
-//    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
-//        ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
-//            
-//            if (granted) {
-//                  [AppManager sharedManager].isFetchingContacts=YES;
-//                [[AppManager sharedManager] PerformTaskAfterContactsPermissionGranted];
-//            }
-//        });
-//    }
-//    else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
-//          [AppManager sharedManager].isFetchingContacts=YES;
-//        [[AppManager sharedManager] PerformTaskAfterContactsPermissionGranted];
-//    }
-//    else {
-//        // Send an alert telling user to change privacy setting in settings app
-//        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kContactsAccessPermission];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//        
-//        // the user has previously denied access - send alert to user to allow access in Settings app
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Privacy Settings"
-//                                                        message:@"This app does not have access to your contacts.  You can enable access in Privacy Settings."
-//                                                       delegate:nil
-//                                              cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil];
-//        [alert show];
-//        
-//        
-//    }
-//    
-//}
-//
-//-(void)PerformTaskAfterContactsPermissionGranted{
-//    
-//    
-//    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kContactsAccessPermission];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//    
-//  
-//    NSArray *allPeople = (__bridge NSArray *)(ABAddressBookCopyArrayOfAllPeople(addressBookRef));
-//    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"modifiedDate"]) {
-//        NSDate *preModifiedDate=[[NSUserDefaults standardUserDefaults] valueForKey:@"modifiedDate"] ;
-//        
-//        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-//            ABRecordRef person=(__bridge ABRecordRef)evaluatedObject;
-//            CFTypeRef theProperty = ABRecordCopyValue(person, kABPersonPhoneProperty);
-//            CFRelease(theProperty);
-//            BOOL result=NO;
-//            NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue((person),  kABPersonModificationDateProperty);
-//            if ([modifiedDate compare:preModifiedDate] == NSOrderedDescending) {
-//                result = YES;
-//            }else
-//                result = NO;
-//            
-//            
-//            
-//            return result;
-//        }];
-//        
-//        NSArray *states = [allPeople filteredArrayUsingPredicate:predicate];
-//        
-////        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-////            ABRecordRef person=(__bridge ABRecordRef)evaluatedObject;
-////            CFTypeRef theProperty = ABRecordCopyValue(person, kABPersonPhoneProperty);
-////            CFRelease(theProperty);
-////            BOOL result=NO;
-////            NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue((person),  kABPersonModificationDateProperty);
-////            //            NSInteger* modifiedDate = (__bridge NSDate*) ABRecordCopyValue((person),  kABPersonModificationDateProperty);
-////            
-////            NSInteger idstring=(NSInteger )ABRecordGetRecordID((ABRecordRef)(person));
-////            
-////            
-////            if (idstring == 1647) {
-////                result = YES;
-////            }else
-////                result = NO;
-////            
-////            
-////            
-////            return result;
-////        }];
-//        
-////        NSArray *states = [allPeople filteredArrayUsingPredicate:predicate];
-//
-//        
-//        
-//        NSString *strToBeDelete = [AppManager CheckForDeletedContacts:allPeople];
-//        
-//        
-//        [AppManager NewOrUpdatedAddressBookContacts:states andContactsToBeDeleted:strToBeDelete];
-//        
-//    }else{
-//        
-//        
-//       
-//        [AppManager NewOrUpdatedAddressBookContacts:allPeople andContactsToBeDeleted:@""];
-//        
-//        
-//        
-//    }
-//    
-//}
-//+(void)NewOrUpdatedAddressBookContacts:(NSArray*)allPeople andContactsToBeDeleted:(NSString*)strDeleteContactIDs{
-//    
-//    //    NSError *writeError = nil;
-//    NSMutableArray* arrAddressBook= [[NSMutableArray alloc] init];
-//    for (id person in allPeople)
-//    {
-//        NSString *name = @"";
-//        NSString *firstname = @"";
-//        NSString *lastname = @"";
-//        
-//        
-//        firstname = (__bridge NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonFirstNameProperty);
-//        lastname = (__bridge_transfer NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonLastNameProperty);
-//        
-//        name = (__bridge_transfer NSString *)ABRecordCopyCompositeName((__bridge ABRecordRef)(person));
-//        
-//        if ([name length]==0) {
-//            name = @" ";
-//        }
-//        
-//        if (!lastname) {
-//            lastname = @"";
-//        }
-//        
-//        if (!firstname) {
-//            firstname = @"";
-//        }
-//        ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
-//       // name = [NSString stringWithFormat:@"%@ %@",firstname,lastname];
-//        
-//        //        NSMutableAttributedString * stringName = [[NSMutableAttributedString alloc] initWithString:name];
-//        //        [stringName addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:NSMakeRange(0,firstname.length)];
-//        
-//        
-//        
-//        ABMultiValueRef Phone = ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
+#pragma mark - AddressBook
+-(void)fetchAddressBookWithContactModel
+{
+    if (!addressBookRef) {
+        addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+    }
+    if(!addressBookRef)
+        return ;
+    ABAddressBookRevert(addressBookRef);
+    
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
+        ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
+            
+            if (granted) {
+                  [AppManager sharedManager].isFetchingContacts=YES;
+                [[AppManager sharedManager] PerformTaskAfterContactsPermissionGranted];
+            }
+        });
+    }
+    else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+          [AppManager sharedManager].isFetchingContacts=YES;
+        [[AppManager sharedManager] PerformTaskAfterContactsPermissionGranted];
+    }
+    else {
+        // Send an alert telling user to change privacy setting in settings app
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kContactsAccessPermission];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        // the user has previously denied access - send alert to user to allow access in Settings app
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Privacy Settings"
+                                                        message:@"This app does not have access to your contacts.  You can enable access in Privacy Settings."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+        
+    }
+    
+}
+
+-(void)PerformTaskAfterContactsPermissionGranted{
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kContactsAccessPermission];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSArray *allPeople = (__bridge NSArray *)(ABAddressBookCopyArrayOfAllPeople(addressBookRef));
+    [AppManager NewOrUpdatedAddressBookContacts:allPeople andContactsToBeDeleted:@""];
+    
+}
++(void)NewOrUpdatedAddressBookContacts:(NSArray*)allPeople andContactsToBeDeleted:(NSString*)strDeleteContactIDs{
+    
+    //    NSError *writeError = nil;
+    NSMutableArray* arrAddressBook= [[NSMutableArray alloc] init];
+    for (id person in allPeople)
+    {
+        NSString *name = @"";
+        NSString *firstname = @"";
+        NSString *lastname = @"";
+        
+        firstname = (__bridge NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonFirstNameProperty);
+        lastname = (__bridge_transfer NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonLastNameProperty);
+        
+        name = (__bridge_transfer NSString *)ABRecordCopyCompositeName((__bridge ABRecordRef)(person));
+        
+        if ([name length]==0) {
+            name = @" ";
+        }
+        
+        if (!lastname) {
+            lastname = @"";
+        }
+        
+        if (!firstname) {
+            firstname = @"";
+        }
+        ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
+       // name = [NSString stringWithFormat:@"%@ %@",firstname,lastname];
+        
+        //        NSMutableAttributedString * stringName = [[NSMutableAttributedString alloc] initWithString:name];
+        //        [stringName addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:NSMakeRange(0,firstname.length)];
+        
+        
+        
+        ABMultiValueRef Phone = ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
 //        ABMultiValueRef Email = ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonEmailProperty);
-//        NSMutableDictionary *aTemp=[[NSMutableDictionary alloc]init];
-//        //            AllContacts *contacts=[[AllContacts alloc] init];
-//        //            contacts.fullName=stringName;
-//        //     [aTemp setObject:stringName forKey:kfullName];
-//        
-//        NSMutableArray *arrPhone=[[NSMutableArray alloc]init];
-//        for (CFIndex i = 0; i < ABMultiValueGetCount(Phone); i++) {
-//            CFStringRef label = ABMultiValueCopyLabelAtIndex(Phone, i);
-//            
-//            
-//            
-//            NSString *phoneLabel1 =(__bridge NSString*) ABAddressBookCopyLocalizedLabel(label);
-//            
-//            NSString *phoneNumber = [AppManager removeSpecialCheractersFromPhoneNumber:(__bridge_transfer NSString *) ABMultiValueCopyValueAtIndex(Phone, i)];
-//            NSMutableDictionary *aTemp=[NSMutableDictionary dictionaryWithObjectsAndKeys:phoneLabel1,kType,phoneNumber,@"number", nil];
-//            
-//            [arrPhone addObject:aTemp];
-//            if (label != NULL)
-//                CFRelease(label);
-//        }
-//        NSMutableArray *arrEmail=[[NSMutableArray alloc]init];
-//        for (CFIndex i = 0; i < ABMultiValueGetCount(Email); i++) {
-//            NSString *phoneNumber;
-//            phoneNumber = (__bridge_transfer NSString *) ABMultiValueCopyValueAtIndex(Email, i);
-//            CFStringRef label = ABMultiValueCopyLabelAtIndex(Email, i);
-//            NSString *emailLabel1 =(__bridge NSString*) ABAddressBookCopyLocalizedLabel(label);
-//            
-//            NSMutableDictionary *aTemp=[NSMutableDictionary dictionaryWithObjectsAndKeys:emailLabel1,kType,phoneNumber,@"number", nil];
-//            
-//            [arrEmail addObject:aTemp];
-//            if (label!=NULL) {
-//                CFRelease(label);
-//            }
-//        }
-//        
-//        NSInteger idstring=(NSInteger )ABRecordGetRecordID((__bridge ABRecordRef)(person));
-//        [aTemp setObject:[NSString stringWithFormat:@"%ld",(long)idstring] forKey:@"uniqueContactID"];
-//        
-//        
-//        NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue( (__bridge ABRecordRef)(person),  kABPersonModificationDateProperty);
-//        [aTemp setObject:[AppManager stringFromDate:modifiedDate] forKey:@"strModifiedDate"];
-//        //        [aTemp setObject:modifiedDate forKey:@"modifiedDate"];
-//        
-//        
-//        
+        NSMutableDictionary *aTemp=[[NSMutableDictionary alloc]init];
+        //            AllContacts *contacts=[[AllContacts alloc] init];
+        //            contacts.fullName=stringName;
+        //     [aTemp setObject:stringName forKey:kfullName];
+        
+        NSMutableArray *arrPhone=[[NSMutableArray alloc]init];
+        for (CFIndex i = 0; i < ABMultiValueGetCount(Phone); i++) {
+            CFStringRef label = ABMultiValueCopyLabelAtIndex(Phone, i);
+            
+            
+            
+            NSString *phoneLabel1 =(__bridge NSString*) ABAddressBookCopyLocalizedLabel(label);
+            
+            NSString *phoneNumber = [AppManager removeSpecialCheractersFromPhoneNumber:(__bridge_transfer NSString *) ABMultiValueCopyValueAtIndex(Phone, i)];
+            NSMutableDictionary *aTemp=[NSMutableDictionary dictionaryWithObjectsAndKeys:phoneLabel1,kType,phoneNumber,@"number", nil];
+            
+            [arrPhone addObject:aTemp];
+            if (label != NULL)
+                CFRelease(label);
+        }
+        
+        NSInteger idstring=(NSInteger )ABRecordGetRecordID((__bridge ABRecordRef)(person));
+        [aTemp setObject:[NSString stringWithFormat:@"%ld",(long)idstring] forKey:@"uniqueContactID"];
+        
+        
+        NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue( (__bridge ABRecordRef)(person),  kABPersonModificationDateProperty);
+        [aTemp setObject:[AppManager stringFromDate:modifiedDate] forKey:@"strModifiedDate"];
+        //        [aTemp setObject:modifiedDate forKey:@"modifiedDate"];
+        
+        
+        
 //        if ([arrEmail count] != 0) {
 //            
 //            //            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:arrEmail options:NSJSONWritingPrettyPrinted error:&writeError];
@@ -346,78 +266,29 @@ UIAlertView *alert = nil;
 //            
 //            [aTemp setObject:arrEmail forKey:@"email"];
 //        }
+        
+        
+        if ([AppManager IsStringEmptyWithoutWhiteSpaces:name]) {
+            name=[NSString stringWithFormat:@"%@",[[arrPhone firstObject] valueForKey:@"number"]];
+        }
+        [aTemp setObject:name forKey:@"name"];
+        
+        
+        if ([arrPhone count] != 0) {
+            [aTemp setObject:arrPhone forKey:@"phone"];
+        }
+        
+        [arrAddressBook addObject:aTemp];
+        
+        CFRelease(Phone);
+    }
+//
 //        
+//        [AppManager callAddressBookWebService:[NSDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults] valueForKey:kSessionToken],kSessionToken,[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceToken],kDeviceToken,[[NSUserDefaults standardUserDefaults] valueForKey:kUserId],kUserId,arrC,kPhoneAddress,kGetPhoneBookFriends,kOption,kDevice,kDeviceType,strDeleteContactIDs,@"idsToBeDelete",nil]];
 //        
-//        if ([AppManager IsStringEmptyWithoutWhiteSpaces:name] && ([arrEmail count]>0 || [arrPhone count]>0)) {
-//            name=[NSString stringWithFormat:@"%@",[arrPhone count]>0?[[arrPhone firstObject] valueForKey:@"number"]:[[arrEmail firstObject]valueForKey:@"number"]];
-//        }
-//        [aTemp setObject:name forKey:@"name"];
-//        
-//        NSString *notes = (__bridge NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonNoteProperty);
-//        if (notes) {
-//            [aTemp setObject:notes forKey:kNotes];
-//        }
-//        
-//        
-//        NSString *jobTitle = (__bridge NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonOrganizationProperty);
-//        if (jobTitle) {
-//            [aTemp setObject:jobTitle forKey:kJobTitle];
-//        }
-//        
-//        if ([arrPhone count] != 0) {
-//            
-////            NSMutableDictionary *aTempDict=[[NSMutableDictionary alloc] init];
-////            
-////            [aTempDict setObject:[NSString stringWithFormat:@"%ld",(long)idstring] forKey:@"uniqueContactID"];
-////            [aTempDict setObject:arrPhone forKey:@"phone"];
-////            [arrAddressBook addObject:arrPhone];
-//            
-//            [aTemp setObject:arrPhone forKey:@"phone"];
-//            
-//            
-//        }
-////        [[Database database] SaveAddressBookDataBaseBeforeServerUpdate:aTemp];
-//        
-//        
-//        
-//        [arrAddressBook addObject:aTemp];
-//        
-//        CFRelease(Phone);
-//        CFRelease(Email);
 //    }
-//    
-//    
-//
-//    
-////    for (int i = 0; i<1500; i++) {
-////        [arrAddressBook removeLastObject];
-////    }
-//    
-////    NSUInteger count = [arrAddressBook count];
-////    NSUInteger chunks = (count % kMax_No_Of_contacts)==0?(count/kMax_No_Of_contacts):(count/kMax_No_Of_contacts+1);
-////    
-////    
-////    
-////  
-////    
-////    for (int i=0; i<1; i++) {
-////      
-////     
-////        NSInteger location= i*kMax_No_Of_contacts;
-////        NSInteger length= count>kMax_No_Of_contacts?kMax_No_Of_contacts:count;
-////        count-=kMax_No_Of_contacts;
-////        
-////        
-////        
-////        NSArray *arrC = [arrAddressBook objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1618, 2)]];
-////        
-////        
-////        
-////        [AppManager callAddressBookWebService:[NSDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults] valueForKey:kSessionToken],kSessionToken,[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceToken],kDeviceToken,[[NSUserDefaults standardUserDefaults] valueForKey:kUserId],kUserId,arrC,kPhoneAddress,kGetPhoneBookFriends,kOption,kDevice,kDeviceType,strDeleteContactIDs,@"idsToBeDelete",nil]];
-////        
-////    }
-//    
-//
+    
+
 //    NSArray *contact = [[Database database] fetchDataFromDatabaseForEntity:@"AddressBookDB"];
 //    NSMutableArray *realMessages = [NSMutableArray arrayWithArray:[contact valueForKey:@"originalUserId"]];
 //    [realMessages removeObject:[NSNumber numberWithInt:[@"0" intValue]]];
@@ -429,33 +300,33 @@ UIAlertView *alert = nil;
 //    {
 //        [AppManager callAddressBookWebService:[NSDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults] valueForKey:kSessionToken],kSessionToken,[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceToken],kDeviceToken,[[NSUserDefaults standardUserDefaults] valueForKey:kUserId],kUserId,arrAddressBook,kPhoneAddress,kGetPhoneBookFriends,kOption,kDevice,kDeviceType,strDeleteContactIDs,@"idsToBeDelete",nil]];
 //    }
-//
-//    
-//    //    return arrAddressBook;
-//}
-////This method removes any type of special character from the phone numbers
-//+(NSString *) removeSpecialCheractersFromPhoneNumber:(NSString *)phoneNumber
-//{
-//    NSMutableString *result = [NSMutableString stringWithCapacity:phoneNumber.length];
-//    
-//    NSScanner *scanner = [NSScanner scannerWithString:phoneNumber];
-//    NSCharacterSet *numbers = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
-//    
-//    while ([scanner isAtEnd] == NO)
-//    {
-//        NSString *buffer;
-//        if ([scanner scanCharactersFromSet:numbers intoString:&buffer])
-//        {
-//            [result appendString:buffer];
-//        }
-//        else
-//        {
-//            [scanner setScanLocation:([scanner scanLocation] + 1)];
-//        }
-//    }
-//    
-//    return result;
-//}
+
+    
+    //    return arrAddressBook;
+}
+//This method removes any type of special character from the phone numbers
++(NSString *) removeSpecialCheractersFromPhoneNumber:(NSString *)phoneNumber
+{
+    NSMutableString *result = [NSMutableString stringWithCapacity:phoneNumber.length];
+    
+    NSScanner *scanner = [NSScanner scannerWithString:phoneNumber];
+    NSCharacterSet *numbers = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    
+    while ([scanner isAtEnd] == NO)
+    {
+        NSString *buffer;
+        if ([scanner scanCharactersFromSet:numbers intoString:&buffer])
+        {
+            [result appendString:buffer];
+        }
+        else
+        {
+            [scanner setScanLocation:([scanner scanLocation] + 1)];
+        }
+    }
+    
+    return result;
+}
 +(BOOL)IsStringEmptyWithoutWhiteSpaces:(NSString*)string{
     //    NSCharacterSet *characterset=[NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSString *trimmed = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

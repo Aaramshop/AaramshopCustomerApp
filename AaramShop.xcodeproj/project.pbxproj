@@ -486,6 +486,9 @@
 		6BA2F0A01B04B2F30074562F /* mapPinGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09D1B04B2F30074562F /* mapPinGreen@3x.png */; };
 		6BA2F0A21B04B9300074562F /* PinShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F0A11B04B9300074562F /* PinShadow.png */; };
 		6BA8F8FF1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA8F8FE1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m */; };
+		6BA8F92B1B0A226000EAA6A8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA8F92A1B0A226000EAA6A8 /* AddressBook.framework */; };
+		6BA8F92D1B0A226D00EAA6A8 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA8F92C1B0A226D00EAA6A8 /* AddressBookUI.framework */; };
+		6BA8F9301B0A269100EAA6A8 /* AaramShop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6BA8F92E1B0A269100EAA6A8 /* AaramShop.xcdatamodeld */; };
 		6BE4C8FB1B034BB600EF1EDB /* doneBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8F81B034BB600EF1EDB /* doneBtn.png */; };
 		6BE4C8FC1B034BB600EF1EDB /* doneBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8F91B034BB600EF1EDB /* doneBtn@2x.png */; };
 		6BE4C8FD1B034BB600EF1EDB /* doneBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8FA1B034BB600EF1EDB /* doneBtn@3x.png */; };
@@ -1284,6 +1287,9 @@
 		6BA2F0A11B04B9300074562F /* PinShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinShadow.png; sourceTree = "<group>"; };
 		6BA8F8FD1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AaramShop_ConnectionManager.h; sourceTree = "<group>"; };
 		6BA8F8FE1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AaramShop_ConnectionManager.m; sourceTree = "<group>"; };
+		6BA8F92A1B0A226000EAA6A8 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		6BA8F92C1B0A226D00EAA6A8 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		6BA8F92F1B0A269100EAA6A8 /* AaramShop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AaramShop.xcdatamodel; sourceTree = "<group>"; };
 		6BC2B8611AF3AC71009E77E3 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		6BE4C8F31B021BCE00EF1EDB /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		6BE4C8F41B021BCE00EF1EDB /* backBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@2x.png"; sourceTree = "<group>"; };
@@ -1353,6 +1359,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BA8F92D1B0A226D00EAA6A8 /* AddressBookUI.framework in Frameworks */,
+				6BA8F92B1B0A226000EAA6A8 /* AddressBook.framework in Frameworks */,
 				274A5E161B05D3D5009112B5 /* CFNetwork.framework in Frameworks */,
 				274A5E141B05D3C5009112B5 /* MessageUI.framework in Frameworks */,
 				274A5E121B05D3BA009112B5 /* CoreImage.framework in Frameworks */,
@@ -1407,6 +1415,8 @@
 		274A5A511B05C443009112B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6BA8F92C1B0A226D00EAA6A8 /* AddressBookUI.framework */,
+				6BA8F92A1B0A226000EAA6A8 /* AddressBook.framework */,
 				274A5E151B05D3D5009112B5 /* CFNetwork.framework */,
 				274A5E131B05D3C5009112B5 /* MessageUI.framework */,
 				274A5E111B05D3BA009112B5 /* CoreImage.framework */,
@@ -2950,6 +2960,7 @@
 				6B12DC9D1AF2543A00245209 /* PresentationViewControllers */,
 				6B12DC861AF22C8100245209 /* Resources */,
 				6B12DC5E1AF2294D00245209 /* Supporting Files */,
+				6BA8F92E1B0A269100EAA6A8 /* AaramShop.xcdatamodeld */,
 			);
 			path = AaramShop;
 			sourceTree = "<group>";
@@ -3763,6 +3774,7 @@
 				274A5CE71B05C4AA009112B5 /* XMPPBlocking.m in Sources */,
 				274A5D051B05C4AA009112B5 /* NSString+DDXML.m in Sources */,
 				274A5CD11B05C4AA009112B5 /* XMPPMessage+XEP_0066.m in Sources */,
+				6BA8F9301B0A269100EAA6A8 /* AaramShop.xcdatamodeld in Sources */,
 				274A5C901B05C4AA009112B5 /* NSNumber+XMPP.m in Sources */,
 				274A5C561B05C4AA009112B5 /* UIButton+AFNetworking.m in Sources */,
 				274A5CDA1B05C4AA009112B5 /* XMPPCapsCoreDataStorageObject.m in Sources */,
@@ -4149,6 +4161,16 @@
 			);
 			currentVersion = 274A5BD21B05C4AA009112B5 /* XMPPMessageArchiving.xcdatamodel */;
 			path = XMPPMessageArchiving.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		6BA8F92E1B0A269100EAA6A8 /* AaramShop.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6BA8F92F1B0A269100EAA6A8 /* AaramShop.xcdatamodel */,
+			);
+			currentVersion = 6BA8F92F1B0A269100EAA6A8 /* AaramShop.xcdatamodel */;
+			path = AaramShop.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
