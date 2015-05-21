@@ -1,6 +1,6 @@
 //
 //  CDRTranslucentSideBar.m
-//  JobIck
+//  AaramShop
 //
 //  Created by AppRoutes on 06/04/15.
 //  Copyright (c) 2015 AppRoutes. All rights reserved.
@@ -12,7 +12,15 @@ typedef enum
     eAccountSettings=0,
     ePreferences,
     eCart
-}eRowType;
+}eRowTypeLeftSideBar;
+typedef enum
+{
+    eBeverages=0,
+    eBakery,
+    eSoap,
+    eTea,
+    eSnacks
+}eRowTypeRightSideBar;
 @class CDRTranslucentSideBar;
 @protocol CDRTranslucentSideBarDelegate <NSObject>
 @optional
@@ -43,7 +51,8 @@ typedef enum
 @property (nonatomic, weak) id<CDRTranslucentSideBarDelegate> delegate;
 
 - (id)init;
-- (id)initWithDirection:(BOOL)showFromRight;
+- (instancetype)initWithDirectionFromRight:(BOOL)showFromRight;
+
 
 - (void)show;
 - (void)showAnimated:(BOOL)animated;

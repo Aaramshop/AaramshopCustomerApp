@@ -17,6 +17,7 @@
     __weak IBOutlet UIScrollView *scrollViewLogin;
     __weak IBOutlet UIActivityIndicatorView *activityVw;
 }
+@property (weak, nonatomic) IBOutlet UIButton *loginClickBtn;
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 - (IBAction)btnForgotPasswordClick:(UIButton *)sender;
 - (IBAction)btnLoginClick:(UIButton *)sender;

@@ -7,9 +7,11 @@
 //
 
 #import "LocationAlertViewController.h"
-
+#import "LocationEnterViewController.h"
 @interface LocationAlertViewController ()
-
+{
+    LocationEnterViewController *locationEnter;
+}
 @end
 
 @implementation LocationAlertViewController
@@ -40,7 +42,7 @@
 {
     if(isShow)
     {
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
          {
              keyBoardToolBar.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) -(196 + 20) , [[UIScreen mainScreen]bounds].size.width, 40 );
          }completion:nil];
@@ -48,19 +50,14 @@
     }
     else
     {
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
          {
              keyBoardToolBar.frame = CGRectMake(0, [[UIScreen mainScreen]bounds].size.height + 40, [[UIScreen mainScreen]bounds].size.width, 40);
          }
                          completion:nil];
     }
 }
--(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
-    [self showOptionPatch:NO];
-    [self showPickerView:NO];
-}
+
 -(void)ToolBarDesignes
 {
     if (keyBoardToolBar==nil)
@@ -103,7 +100,7 @@
 {
     if(isShow)
     {
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             picker.frame = CGRectMake(0,CGRectGetHeight(self.view.bounds)-(196-20), [[UIScreen mainScreen]bounds].size.width, 196);
             
         }
@@ -112,7 +109,7 @@
     }
     else
     {
-        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
                          animations:^{
                              picker.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds)+100, [[UIScreen mainScreen]bounds].size.width,196);
                          }
@@ -142,13 +139,14 @@
 
 - (IBAction)btnSave:(id)sender
 {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)btnDropDown:(id)sender
 {
     [self showPickerView:YES];
     [self showOptionPatch:YES];
+//    [self.view endEditing:YES];
     
     
     

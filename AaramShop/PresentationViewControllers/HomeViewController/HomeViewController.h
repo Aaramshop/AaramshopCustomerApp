@@ -15,5 +15,6 @@
     __weak IBOutlet UITableView *tblView;
 }
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
+@property (nonatomic, strong) CDRTranslucentSideBar *rightSideBar;
 
 @end

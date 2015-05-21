@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
-
 typedef enum
 {
     TASK_LOGIN,

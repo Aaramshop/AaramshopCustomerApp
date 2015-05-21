@@ -997,6 +997,17 @@
     sideBar.sideBarWidth = 260;
     sideBar.translucentStyle=UIBarStyleDefault;
     sideBar.delegate = delegate;
+    sideBar.tag = 0;
     return sideBar;
+}
++ (CDRTranslucentSideBar *)createRightBarWithDelegate:(id)deleagte
+{
+    CDRTranslucentSideBar *rightSideBar = [[CDRTranslucentSideBar alloc] initWithDirectionFromRight:YES];
+    rightSideBar.delegate = deleagte;
+    rightSideBar.sideBarWidth = 250;
+    rightSideBar.translucentStyle = UIBarStyleDefault;
+    
+    rightSideBar.tag = 1;
+    return rightSideBar;
 }
 @end

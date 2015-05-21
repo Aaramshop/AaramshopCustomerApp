@@ -28,7 +28,7 @@ typedef enum {
 #define kXMPPmyJID1            @"kXMPPmyJID"
 #define kXMPPmyPassword1  @"kXMPPmyPassword"
 #define STRChatServerURL    @"chat.reach-out.mobi" // live
-#define kchatUserName           @"chatUserName"
+#define kchatUserName           @"chatUsername"
 
 
 #define kUMMAPPFORWARD @"W1231@UMMAPP%#@#UMMAPP"

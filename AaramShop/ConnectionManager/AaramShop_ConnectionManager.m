@@ -7,11 +7,13 @@
 //
 
 #import "AaramShop_ConnectionManager.h"
+#import "LoginViewController.h"
+
 
 @implementation AaramShop_ConnectionManager
 @synthesize delegate,sessionManager,currentTask;
 
--(BOOL) getDataForFunction:(NSString *)functionName withInput:(NSMutableDictionary *)aDict withCurrentTask:(CURRENT_TASK)inputTask andDelegate:(id)inputDelegate
+-(BOOL) getDataForFunction:(NSString *)functionName withInput:(NSMutableDictionary *)aDict withCurrentTask:(CURRENT_TASK)inputTask andDelegate:(id)inputDelegate 
 {
     
     self.delegate = inputDelegate;
@@ -21,16 +23,20 @@
     [manager POST:functionName parameters:aDict
           success:^(NSURLSessionDataTask *task, id responseObject)
      {
+         
          [AppManager stopStatusbarActivityIndicator];
+//        [loginView.loginClickBtn setEnabled:YES];
+         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"reachout_chatuser_89@%@",STRChatServerURL] forKey:kXMPPmyJID1];
+         [[NSUserDefaults standardUserDefaults] setObject:@"123456" forKey:kXMPPmyPassword1];
          if(self.delegate != nil && [self.delegate respondsToSelector:@selector(responseReceived:)])
          {
              [self.delegate performSelector:@selector(responseReceived:) withObject:responseObject];
-         }
+         }  
      }
           failure:^(NSURLSessionDataTask *task, NSError *error)
      {
          [AppManager stopStatusbarActivityIndicator];
-         
+//         [loginView.loginClickBtn setEnabled:YES];
          if(self.delegate != nil && [self.delegate respondsToSelector:@selector(didFailWithError:)])
          {
              [self.delegate performSelector:@selector(didFailWithError:) withObject:error];

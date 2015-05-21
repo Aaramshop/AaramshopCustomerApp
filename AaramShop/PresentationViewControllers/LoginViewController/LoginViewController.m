@@ -56,6 +56,7 @@
 
 - (IBAction)btnLoginClick:(UIButton *)sender {
     
+    [self.loginClickBtn setEnabled:NO];
     txtUserName.text = [txtUserName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     if (txtUserName.text.length>1) {
@@ -65,26 +66,35 @@
         BOOL stringIsValid = [numbersOnly isSupersetOfSet:characterSetFromTextField];
         if(stringIsValid)
         {
+            
             if(txtUserName.text.length != 10)
                 [Utils showAlertView:kAlertTitle message:@"Please enter valid mobile number" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
             else if(txtPassword.text.length==0)
                 [Utils showAlertView:kAlertTitle message:@"Please enter password" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
             else
             {
+//                [sender setEnabled:YES];
                 [self createDataForLogin];
             }
         }
         else
         {    if ([self validateEmail:txtUserName.text andPassword:txtPassword.text])
+        {
+//            [sender setEnabled:YES];
             [self createDataForLogin];
+            
+        }
             
         else
             [Utils showAlertView:kAlertTitle message:@"Please enter Email-id/Mobile no to continue" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            [sender setEnabled:YES];
+
         }
     }
     else
     {
         [Utils showAlertView:kAlertTitle message:@"Please enter Email-id/Mobile no to continue" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        [sender setEnabled:YES];
     }
 }
 
@@ -107,7 +117,8 @@
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     [dict removeObjectForKey:kUserId];
     [dict removeObjectForKey:kSessionToken];
-    [self callWebserviceForLogin:dict];
+//    [sender setEnabled:NO];
+    [self callWebserviceForLogin:dict ];
 }
 # pragma webService Calling
 -(void)callWebserviceForLogin:(NSMutableDictionary*)aDict
@@ -120,7 +131,8 @@
         return;
     }
     
-    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_LOGIN andDelegate:self];
+    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_LOGIN andDelegate:self ];
+    [self.loginClickBtn setEnabled:YES];
 }
 
 -(void) didFailWithError:(NSError *)error
@@ -191,7 +203,8 @@
         if(stringIsValid)
         {
             if(textField.text.length == 10)
-                return NO;
+                if(range.length == 0)
+                    return NO;
         }
     }
     
