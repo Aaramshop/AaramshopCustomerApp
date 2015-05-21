@@ -44,20 +44,20 @@
         lblNavigationTitle.backgroundColor=[UIColor clearColor];
         lblNavigationTitle.textAlignment = NSTextAlignmentCenter;
         [lblNavigationTitle setAdjustsFontSizeToFitWidth:YES];
-//        lblNavigationTitle.font = [UIFont fontWithName:@"YanoneKaffeesatz-Regular" size:24.0f];
+        //        lblNavigationTitle.font = [UIFont fontWithName:@"YanoneKaffeesatz-Regular" size:24.0f];
         
         
-    
-//        lblBottomLine=[[UILabel alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, 2)];
-//         lblBottomLine.backgroundColor=[UIColor colorWithRed:197/255.0f green:110/255.0f blue:29/255.0f alpha:1.0f];
-    
-//        [lblNavigationTitle setMinimumScaleFactor:0.9];
+        
+        //        lblBottomLine=[[UILabel alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, 2)];
+        //         lblBottomLine.backgroundColor=[UIColor colorWithRed:197/255.0f green:110/255.0f blue:29/255.0f alpha:1.0f];
+        
+        //        [lblNavigationTitle setMinimumScaleFactor:0.9];
         //lblNavigationTitle.font = kCommonNavigationTitleFont;
         
         // Right Button And Label
         lblRightButtonText = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth-BUTTONLABELPADDING-(RIGHT_BUTTONLABELWIDTH), ORIGIN_Y, RIGHT_BUTTONLABELWIDTH, HEIGHT)];
         lblRightButtonText.textAlignment = NSTextAlignmentRight;
-       // lblRightButtonText.font = kCommonNavButtonCancelSaveFont;
+        // lblRightButtonText.font = kCommonNavButtonCancelSaveFont;
         
         btnRight =  [UIButton buttonWithType:UIButtonTypeCustom];
         [btnRight setFrame:CGRectMake(kScreenWidth-(RIGHT_BUTTONLABELWIDTH), ORIGIN_Y, RIGHT_BUTTONLABELWIDTH, HEIGHT)];
@@ -66,7 +66,7 @@
         // Left Button And Label
         lblLeftButtonText = [[UILabel alloc] initWithFrame:CGRectMake(BUTTONLABELPADDING, ORIGIN_Y, LEFT_BUTTONLABELWIDTH, HEIGHT)];
         lblLeftButtonText.textAlignment = NSTextAlignmentLeft;
-      //  lblLeftButtonText.font = kCommonNavButtonCancelSaveFont;
+        //  lblLeftButtonText.font = kCommonNavButtonCancelSaveFont;
         
         btnLeft =  [UIButton buttonWithType:UIButtonTypeCustom];
         [btnLeft setFrame:CGRectMake(-10, ORIGIN_Y, RIGHT_BUTTONLABELWIDTH, HEIGHT)];
@@ -115,8 +115,8 @@
         
         effectImage = [UIImageEffects imageByApplyingLightEffectToImageOnNavigationBar:self.image];
         imgNavigationBlur.image=effectImage;
-//        imgNavigationBlur.contentMode = UIViewContentModeScaleAspectFit;
-
+        //        imgNavigationBlur.contentMode = UIViewContentModeScaleAspectFit;
+        
         
         [self addSubview:imgNavigationBlur];
         [self addSubview:lblNavigationTitle];
@@ -124,7 +124,7 @@
         [self addSubview:lblLeftButtonText];
         [self addSubview:btnRight];
         [self addSubview:btnLeft];
-//        [self addSubview:lblBottomLine];
+        //        [self addSubview:lblBottomLine];
         
         
         //        [self addSubview:rightArrowImageView];
@@ -168,11 +168,11 @@
 {
     //    [rightArrowImageView setHidden:NO];
     [btnRight setTitle:@"About" forState:UIControlStateNormal];
-//    [btnRight ]
+    //    [btnRight ]
     btnRight.titleLabel.font = [UIFont fontWithName:@"YanoneKaffeesatz-Light" size:22.0f] ;
     [btnRight setTitleColor: [UIColor colorWithRed:217.0/255.0f green:136.0/255.0f blue:40.0/255.0f alpha:1.0f] forState:UIControlStateNormal];
     
-//    [btnRight setImage:[UIImage imageNamed:@"addToCardLogo" ] forState:UIControlStateNormal];
+    //    [btnRight setImage:[UIImage imageNamed:@"addToCardLogo" ] forState:UIControlStateNormal];
     [btnRight setImageEdgeInsets:UIEdgeInsetsMake(0, (RIGHT_BUTTONLABELWIDTH)/1.3, 0, 0)];
     // Update label frame
     [lblRightButtonText setFrame:CGRectMake(kScreenWidth-(BUTTONLABELPADDING+(LBLPADDINGWITHIMAGE))-(RIGHT_BUTTONLABELWIDTH), ORIGIN_Y, RIGHT_BUTTONLABELWIDTH, HEIGHT)];
@@ -198,7 +198,7 @@
     // Update label frame
     
     
-    [lblLeftButtonText setFrame:CGRectMake((LBLPADDINGWITHIMAGE + 10), ORIGIN_Y, HEIGHT, HEIGHT)];
+    [lblLeftButtonText setFrame:CGRectMake(BUTTONLABELPADDING+(LBLPADDINGWITHIMAGE), ORIGIN_Y, LEFT_BUTTONLABELWIDTH, HEIGHT)];
 }
 
 -(void)setCustomNavigationRightArrowImageWithImageName :(NSString*)ImageName
@@ -209,7 +209,7 @@
     // Update label frame
     
     
-    [lblRightButtonText setFrame:CGRectMake(kScreenWidth-(HEIGHT), ORIGIN_Y,HEIGHT, HEIGHT)];
+    [lblRightButtonText setFrame:CGRectMake(BUTTONLABELPADDING+(LBLPADDINGWITHIMAGE) +100 , ORIGIN_Y, RIGHT_BUTTONLABELWIDTH, HEIGHT)];
 }
 
 
@@ -217,16 +217,16 @@
 // Hide Left and Right Button if Required
 -(void)setCustomNavigationRightButtonHidden:(BOOL)hiddenType
 {
-//    if([CDataManager isReadOnlyRequiredForFirstThreeStep])
-//    {
-//        [lblRightButtonText setHidden:YES];
-//        [btnRight setHidden:YES];
-//    }
-//    else
-//    {
-        [lblRightButtonText setHidden:hiddenType];
-        [btnRight setHidden:hiddenType];
-//    }
+    //    if([CDataManager isReadOnlyRequiredForFirstThreeStep])
+    //    {
+    //        [lblRightButtonText setHidden:YES];
+    //        [btnRight setHidden:YES];
+    //    }
+    //    else
+    //    {
+    [lblRightButtonText setHidden:hiddenType];
+    [btnRight setHidden:hiddenType];
+    //    }
 }
 -(void)setCustomNavigationLeftButtonHidden:(BOOL)hiddenType
 {
@@ -236,10 +236,10 @@
     //        [btnLeft setHidden:YES];
     //    }
     //    else
-//    {
-        [lblLeftButtonText setHidden:hiddenType];
-        [btnLeft setHidden:hiddenType];
-//    }
+    //    {
+    [lblLeftButtonText setHidden:hiddenType];
+    [btnLeft setHidden:hiddenType];
+    //    }
 }
 
 #pragma mark - User Intraction -
@@ -296,7 +296,7 @@
 {
     [btnRight setImage:nil forState:UIControlStateNormal];
     [lblRightButtonText setFrame:CGRectMake(kScreenWidth-BUTTONLABELPADDING-(RIGHT_BUTTONLABELWIDTH), ORIGIN_Y, RIGHT_BUTTONLABELWIDTH, HEIGHT)];
-
+    
 }
 -(void)removeCustomNavigationLeftArrowImage
 {

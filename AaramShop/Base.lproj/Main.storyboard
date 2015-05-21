@@ -1039,8 +1039,27 @@
                     <view key="view" contentMode="scaleToFill" id="akQ-7d-bJx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="hnn-kS-LvG">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="nx8-E2-9dr" id="0hy-vN-ZHy"/>
+                                    <outlet property="delegate" destination="nx8-E2-9dr" id="9gy-It-iNr"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hnn-kS-LvG" secondAttribute="trailing" id="7uu-aT-afA"/>
+                            <constraint firstItem="hnn-kS-LvG" firstAttribute="top" secondItem="mlk-d2-lie" secondAttribute="bottom" constant="44" id="J2P-P4-a1Q"/>
+                            <constraint firstItem="hnn-kS-LvG" firstAttribute="leading" secondItem="akQ-7d-bJx" secondAttribute="leading" id="mIM-hy-3bz"/>
+                            <constraint firstItem="xfZ-ol-cY3" firstAttribute="top" secondItem="hnn-kS-LvG" secondAttribute="bottom" id="sEk-uv-zDp"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tblView" destination="hnn-kS-LvG" id="ZN1-P7-bZc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a7j-ec-2wc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

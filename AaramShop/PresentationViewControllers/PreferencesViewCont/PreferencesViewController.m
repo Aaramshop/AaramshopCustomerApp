@@ -27,54 +27,49 @@
     dataDict=[[NSMutableDictionary alloc]init];
     allSections =[[NSMutableArray alloc]init];
     [arrNotification addObject: [NSDictionary dictionaryWithObjectsAndKeys:
-                         @"Name",@"Key",
-                         @"Rose Jackson",@"Value",nil]];
+                         @"preferencesOffersIcon",@"images",
+                         @"Offers",@"name",nil]];
     [arrNotification addObject: [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"Email Id",@"Key",
-                             @"rosejackson@gmail.com",@"Value",nil]];
+                             @"preferencesDeleveryStatusIcon",@"images",
+                             @"Delivery Status",@"name",nil]];
     [arrNotification addObject: [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"Phone No.",@"Key",
-                             @"9996866907",@"Value",nil]];
+                             @"preferencesChatIcon",@"images",
+                             @"Chat",@"name",nil]];
     
     [arrLocation addObject: [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"Phone No.",@"Key",
-                                 @"9996866907",@"Value",nil]];
+                                 @"preferencesLocationIcon",@"images",
+                                 @"9996866907",@"name",nil]];
     
     [allSections addObject:@"Notification"];
     [allSections addObject:@"Location"];
     [dataDict setObject:arrNotification forKey:@"Notification"];
     [dataDict setObject:arrLocation forKey:@"Location"];
-    [self setNavigationBar];
+    [self setUpNavigationView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)setNavigationBar
+#pragma mark Navigation
+
+-(void)setUpNavigationView
 {
+    CustomNavigationView* navView =[[CustomNavigationView alloc]init];
+
     
+    [navView setCustomNavigationLeftArrowImageWithImageName:@"backBtn"];
     
+    navView.delegate=self;
+    [self.view addSubview:navView];
     
-    UIImage *imgBack = [UIImage imageNamed:@"backBtn"];
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.bounds = CGRectMake( -10, 0, 20, 20);
-    
-    [backBtn setImage:imgBack forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(backBtn) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    
-    
-    
-    NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
-    self.navigationItem.leftBarButtonItems = arrBtnsLeft;
-    
-    
-    UIViewController *vCon ;
-    
-    [self.view addSubview: vCon.view];
     
 }
+-(void)customNavigationLeftButtonClick:(UIButton *)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)backBtn
 {
     [self.navigationController popViewControllerAnimated:YES];

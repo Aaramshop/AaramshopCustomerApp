@@ -375,6 +375,18 @@
 		275F7DD81B05BD390049758B /* menuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 275F7DD51B05BD390049758B /* menuIcon.png */; };
 		275F7DD91B05BD390049758B /* menuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 275F7DD61B05BD390049758B /* menuIcon@2x.png */; };
 		275F7DDA1B05BD390049758B /* menuIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 275F7DD71B05BD390049758B /* menuIcon@3x.png */; };
+		276FFF171B0DADC200071B98 /* preferencesChatIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF0B1B0DADC200071B98 /* preferencesChatIcon.png */; };
+		276FFF181B0DADC200071B98 /* preferencesChatIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF0C1B0DADC200071B98 /* preferencesChatIcon@2x.png */; };
+		276FFF191B0DADC200071B98 /* preferencesChatIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF0D1B0DADC200071B98 /* preferencesChatIcon@3x.png */; };
+		276FFF1A1B0DADC200071B98 /* preferencesDeleveryStatusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF0E1B0DADC200071B98 /* preferencesDeleveryStatusIcon.png */; };
+		276FFF1B1B0DADC200071B98 /* preferencesDeleveryStatusIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF0F1B0DADC200071B98 /* preferencesDeleveryStatusIcon@2x.png */; };
+		276FFF1C1B0DADC200071B98 /* preferencesDeleveryStatusIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF101B0DADC200071B98 /* preferencesDeleveryStatusIcon@3x.png */; };
+		276FFF1D1B0DADC200071B98 /* preferencesLocationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF111B0DADC200071B98 /* preferencesLocationIcon.png */; };
+		276FFF1E1B0DADC200071B98 /* preferencesLocationIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF121B0DADC200071B98 /* preferencesLocationIcon@2x.png */; };
+		276FFF1F1B0DADC200071B98 /* preferencesLocationIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF131B0DADC200071B98 /* preferencesLocationIcon@3x.png */; };
+		276FFF201B0DADC200071B98 /* preferencesOffersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF141B0DADC200071B98 /* preferencesOffersIcon.png */; };
+		276FFF211B0DADC200071B98 /* preferencesOffersIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF151B0DADC200071B98 /* preferencesOffersIcon@2x.png */; };
+		276FFF221B0DADC200071B98 /* preferencesOffersIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 276FFF161B0DADC200071B98 /* preferencesOffersIcon@3x.png */; };
 		2786559D1B0467F400A262A3 /* menuEditIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2786559A1B0467F400A262A3 /* menuEditIcon.png */; };
 		2786559E1B0467F400A262A3 /* menuEditIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2786559B1B0467F400A262A3 /* menuEditIcon@2x.png */; };
 		2786559F1B0467F400A262A3 /* menuEditIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2786559C1B0467F400A262A3 /* menuEditIcon@3x.png */; };
@@ -1154,6 +1166,18 @@
 		275F7DD51B05BD390049758B /* menuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon.png; sourceTree = "<group>"; };
 		275F7DD61B05BD390049758B /* menuIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuIcon@2x.png"; sourceTree = "<group>"; };
 		275F7DD71B05BD390049758B /* menuIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuIcon@3x.png"; sourceTree = "<group>"; };
+		276FFF0B1B0DADC200071B98 /* preferencesChatIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferencesChatIcon.png; sourceTree = "<group>"; };
+		276FFF0C1B0DADC200071B98 /* preferencesChatIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesChatIcon@2x.png"; sourceTree = "<group>"; };
+		276FFF0D1B0DADC200071B98 /* preferencesChatIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesChatIcon@3x.png"; sourceTree = "<group>"; };
+		276FFF0E1B0DADC200071B98 /* preferencesDeleveryStatusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferencesDeleveryStatusIcon.png; sourceTree = "<group>"; };
+		276FFF0F1B0DADC200071B98 /* preferencesDeleveryStatusIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesDeleveryStatusIcon@2x.png"; sourceTree = "<group>"; };
+		276FFF101B0DADC200071B98 /* preferencesDeleveryStatusIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesDeleveryStatusIcon@3x.png"; sourceTree = "<group>"; };
+		276FFF111B0DADC200071B98 /* preferencesLocationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferencesLocationIcon.png; sourceTree = "<group>"; };
+		276FFF121B0DADC200071B98 /* preferencesLocationIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesLocationIcon@2x.png"; sourceTree = "<group>"; };
+		276FFF131B0DADC200071B98 /* preferencesLocationIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesLocationIcon@3x.png"; sourceTree = "<group>"; };
+		276FFF141B0DADC200071B98 /* preferencesOffersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferencesOffersIcon.png; sourceTree = "<group>"; };
+		276FFF151B0DADC200071B98 /* preferencesOffersIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesOffersIcon@2x.png"; sourceTree = "<group>"; };
+		276FFF161B0DADC200071B98 /* preferencesOffersIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesOffersIcon@3x.png"; sourceTree = "<group>"; };
 		2786559A1B0467F400A262A3 /* menuEditIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuEditIcon.png; sourceTree = "<group>"; };
 		2786559B1B0467F400A262A3 /* menuEditIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuEditIcon@2x.png"; sourceTree = "<group>"; };
 		2786559C1B0467F400A262A3 /* menuEditIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuEditIcon@3x.png"; sourceTree = "<group>"; };
@@ -2788,6 +2812,25 @@
 			path = NavigationImages;
 			sourceTree = "<group>";
 		};
+		276FFF0A1B0DADC200071B98 /* PreferencesImages */ = {
+			isa = PBXGroup;
+			children = (
+				276FFF0B1B0DADC200071B98 /* preferencesChatIcon.png */,
+				276FFF0C1B0DADC200071B98 /* preferencesChatIcon@2x.png */,
+				276FFF0D1B0DADC200071B98 /* preferencesChatIcon@3x.png */,
+				276FFF0E1B0DADC200071B98 /* preferencesDeleveryStatusIcon.png */,
+				276FFF0F1B0DADC200071B98 /* preferencesDeleveryStatusIcon@2x.png */,
+				276FFF101B0DADC200071B98 /* preferencesDeleveryStatusIcon@3x.png */,
+				276FFF111B0DADC200071B98 /* preferencesLocationIcon.png */,
+				276FFF121B0DADC200071B98 /* preferencesLocationIcon@2x.png */,
+				276FFF131B0DADC200071B98 /* preferencesLocationIcon@3x.png */,
+				276FFF141B0DADC200071B98 /* preferencesOffersIcon.png */,
+				276FFF151B0DADC200071B98 /* preferencesOffersIcon@2x.png */,
+				276FFF161B0DADC200071B98 /* preferencesOffersIcon@3x.png */,
+			);
+			path = PreferencesImages;
+			sourceTree = "<group>";
+		};
 		2791DE1C1B036E5B000121BC /* MenuImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -2945,6 +2988,7 @@
 			isa = PBXGroup;
 			children = (
 				274A5A511B05C443009112B5 /* Frameworks */,
+				6B12DC681AF2294D00245209 /* Main.storyboard */,
 				6B12DC5D1AF2294D00245209 /* AaramShop */,
 				6B12DC5C1AF2294D00245209 /* Products */,
 			);
@@ -2979,7 +3023,6 @@
 		6B12DC5E1AF2294D00245209 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6B12DC681AF2294D00245209 /* Main.storyboard */,
 				6B12DC6B1AF2294D00245209 /* Images.xcassets */,
 				6B12DC841AF229D500245209 /* Default-568h@2x.png */,
 				6B12DC5F1AF2294D00245209 /* Info.plist */,
@@ -3006,6 +3049,7 @@
 		6B12DC871AF22C8100245209 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				276FFF0A1B0DADC200071B98 /* PreferencesImages */,
 				274F887D1B0C659500F85743 /* bg5.jpg */,
 				274F887E1B0C659500F85743 /* bg5@2x.jpg */,
 				274F887F1B0C659500F85743 /* bg5@3x.jpg */,
@@ -3445,6 +3489,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				276FFF1B1B0DADC200071B98 /* preferencesDeleveryStatusIcon@2x.png in Resources */,
 				274F88B41B0D0E7400F85743 /* homePageBannerImageTwo@2x.png in Resources */,
 				274A5C781B05C4AA009112B5 /* pin@2x.png in Resources */,
 				2791DE381B036E5C000121BC /* menuFacebookBox.png in Resources */,
@@ -3457,6 +3502,7 @@
 				27EC674C1B031FE0007D126E /* aaramShopAppLogo@2x.png in Resources */,
 				274A5DB01B05C88B009112B5 /* chatBubbleGrey.png in Resources */,
 				274A5DA81B05C88B009112B5 /* ChatCustomCell.xib in Resources */,
+				276FFF1E1B0DADC200071B98 /* preferencesLocationIcon@2x.png in Resources */,
 				274A5A451B05C075009112B5 /* addToCardNoBox.png in Resources */,
 				6BA2F09E1B04B2F30074562F /* mapPinGreen.png in Resources */,
 				2786559E1B0467F400A262A3 /* menuEditIcon@2x.png in Resources */,
@@ -3491,6 +3537,7 @@
 				27EC675E1B032F9C007D126E /* bg4@2x.jpg in Resources */,
 				2791DE3A1B036E5C000121BC /* menuFacebookBox@3x.png in Resources */,
 				2791DE3F1B036E5C000121BC /* menuVouchersIcon@2x.png in Resources */,
+				276FFF171B0DADC200071B98 /* preferencesChatIcon.png in Resources */,
 				6BE4C9131B0351FD00EF1EDB /* mapPopupBox.png in Resources */,
 				27EC675F1B032F9C007D126E /* bg4@3x.jpg in Resources */,
 				6BE4C9141B0351FD00EF1EDB /* mapPopupBox@2x.png in Resources */,
@@ -3519,6 +3566,7 @@
 				2791DE3E1B036E5C000121BC /* menuVouchersIcon.png in Resources */,
 				274A5DB51B05C88B009112B5 /* chatCloseCircular@2x.png in Resources */,
 				274A5DCC1B05C88B009112B5 /* feedsViewerBar.png in Resources */,
+				276FFF191B0DADC200071B98 /* preferencesChatIcon@3x.png in Resources */,
 				274F888C1B0D0DC700F85743 /* addToCardLogo.png in Resources */,
 				6B0676ED1B0630580002259E /* locationPopupCancelBox@2x.png in Resources */,
 				274F88B11B0D0E7400F85743 /* homePageBannerImageThree@2x.png in Resources */,
@@ -3529,6 +3577,7 @@
 				274A5DB21B05C88B009112B5 /* chatCameraSmall.png in Resources */,
 				6B12DCB21AF26BF900245209 /* newUserBox.png in Resources */,
 				6B12DCB31AF26BF900245209 /* newUserBox@2x.png in Resources */,
+				276FFF1F1B0DADC200071B98 /* preferencesLocationIcon@3x.png in Resources */,
 				274A5DD81B05C88B009112B5 /* NotReceived.png in Resources */,
 				274A5DDC1B05C88B009112B5 /* Read.png in Resources */,
 				274A5DAD1B05C88B009112B5 /* btnArrow@2x.png in Resources */,
@@ -3544,6 +3593,7 @@
 				6BFFF95A1B0236B800BB2B62 /* tabBarOffersIconActive.png in Resources */,
 				6B0676F01B0630580002259E /* locationPopupSaveBox@2x.png in Resources */,
 				274A5DCD1B05C88B009112B5 /* feedsViewerBar@2x.png in Resources */,
+				276FFF211B0DADC200071B98 /* preferencesOffersIcon@2x.png in Resources */,
 				6BE4C91A1B035DEF00EF1EDB /* mapPopup@2x.png in Resources */,
 				6BFFF9591B0236B800BB2B62 /* tabBarOffersIcon@3x.png in Resources */,
 				6BA2F09F1B04B2F30074562F /* mapPinGreen@2x.png in Resources */,
@@ -3590,6 +3640,7 @@
 				6B0676FE1B07042B0002259E /* loactionPopupDropDownBox.png in Resources */,
 				274A5DF61B05C88B009112B5 /* CellPostLocation.xib in Resources */,
 				274A5C491B05C4AA009112B5 /* CountryCodeList.plist in Resources */,
+				276FFF1D1B0DADC200071B98 /* preferencesLocationIcon.png in Resources */,
 				6BE4C90C1B034CDE00EF1EDB /* mapPin@3x.png in Resources */,
 				274A5A481B05C075009112B5 /* favourateIcon.png in Resources */,
 				274F88931B0D0DC700F85743 /* searchIcon@2x.png in Resources */,
@@ -3659,6 +3710,7 @@
 				2797043A1B0A02EF00FAD4D9 /* alertSingleBox.png in Resources */,
 				6BFFF95D1B0236B800BB2B62 /* tabBarOrdersIcon.png in Resources */,
 				6B0676EF1B0630580002259E /* locationPopupSaveBox.png in Resources */,
+				276FFF201B0DADC200071B98 /* preferencesOffersIcon.png in Resources */,
 				274A5DEB1B05C88B009112B5 /* MapViewController.xib in Resources */,
 				274A5E001B05C88B009112B5 /* SMChatViewController.xib in Resources */,
 				6B12DCF41AF2A53200245209 /* defaultProfilePic@2x.png in Resources */,
@@ -3674,6 +3726,8 @@
 				274A5DD11B05C88B009112B5 /* iconDownload@2x.png in Resources */,
 				274A5DE01B05C88B009112B5 /* shadowOverlayBottom-1.png in Resources */,
 				274A5DC71B05C88B009112B5 /* chatRecordBtn@2x.png in Resources */,
+				276FFF1A1B0DADC200071B98 /* preferencesDeleveryStatusIcon.png in Resources */,
+				276FFF181B0DADC200071B98 /* preferencesChatIcon@2x.png in Resources */,
 				274A5DB81B05C88B009112B5 /* chatKeyboardIcon.png in Resources */,
 				6B12DCAC1AF26B4100245209 /* existingUserBox.png in Resources */,
 				2791DE3C1B036E5C000121BC /* menuPreferencesIcon@2x.png in Resources */,
@@ -3681,6 +3735,7 @@
 				6B0676EC1B0630580002259E /* locationPopupCancelBox.png in Resources */,
 				274A5A461B05C075009112B5 /* addToCardNoBox@2x.png in Resources */,
 				274A5E011B05C88B009112B5 /* Stickers.plist in Resources */,
+				276FFF1C1B0DADC200071B98 /* preferencesDeleveryStatusIcon@3x.png in Resources */,
 				6B12DCCB1AF2720400245209 /* lowerBox.png in Resources */,
 				274F88BD1B0D0E7400F85743 /* imageTwo@2x.png in Resources */,
 				274F88821B0C659500F85743 /* bg5@3x.jpg in Resources */,
@@ -3692,6 +3747,7 @@
 				274F88AE1B0D0E7400F85743 /* homePageBannerImageFour@2x.png in Resources */,
 				274A5C761B05C4AA009112B5 /* FSWebLogin.xib in Resources */,
 				2791DE401B036E5C000121BC /* menuVouchersIcon@3x.png in Resources */,
+				276FFF221B0DADC200071B98 /* preferencesOffersIcon@3x.png in Resources */,
 				274A5D041B05C4AA009112B5 /* README.txt in Resources */,
 				274A5DDB1B05C88B009112B5 /* profileOutboxIcon@2x.png in Resources */,
 				6B12DCC81AF2720400245209 /* bg2.jpg in Resources */,
@@ -3985,6 +4041,7 @@
 				6B12DC691AF2294D00245209 /* Base */,
 			);
 			name = Main.storyboard;
+			path = AaramShop;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
