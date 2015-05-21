@@ -481,6 +481,9 @@
 		6BA8F92B1B0A226000EAA6A8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA8F92A1B0A226000EAA6A8 /* AddressBook.framework */; };
 		6BA8F92D1B0A226D00EAA6A8 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA8F92C1B0A226D00EAA6A8 /* AddressBookUI.framework */; };
 		6BA8F9301B0A269100EAA6A8 /* AaramShop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6BA8F92E1B0A269100EAA6A8 /* AaramShop.xcdatamodeld */; };
+		6BADA6301B0C748200BF7639 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BADA62F1B0C748100BF7639 /* CoreData.framework */; };
+		6BADA6751B0C9F5200BF7639 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BADA6741B0C9F5200BF7639 /* DataBase.m */; };
+		6BADA6791B0CA18900BF7639 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BADA6781B0CA18900BF7639 /* Contact.m */; };
 		6BE4C8FB1B034BB600EF1EDB /* doneBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8F81B034BB600EF1EDB /* doneBtn.png */; };
 		6BE4C8FC1B034BB600EF1EDB /* doneBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8F91B034BB600EF1EDB /* doneBtn@2x.png */; };
 		6BE4C8FD1B034BB600EF1EDB /* doneBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE4C8FA1B034BB600EF1EDB /* doneBtn@3x.png */; };
@@ -1273,6 +1276,11 @@
 		6BA8F92A1B0A226000EAA6A8 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		6BA8F92C1B0A226D00EAA6A8 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		6BA8F92F1B0A269100EAA6A8 /* AaramShop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AaramShop.xcdatamodel; sourceTree = "<group>"; };
+		6BADA62F1B0C748100BF7639 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6BADA6731B0C9F5200BF7639 /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase.h; sourceTree = "<group>"; };
+		6BADA6741B0C9F5200BF7639 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
+		6BADA6771B0CA18900BF7639 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		6BADA6781B0CA18900BF7639 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		6BC2B8611AF3AC71009E77E3 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		6BE4C8F31B021BCE00EF1EDB /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		6BE4C8F41B021BCE00EF1EDB /* backBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@2x.png"; sourceTree = "<group>"; };
@@ -1342,6 +1350,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BADA6301B0C748200BF7639 /* CoreData.framework in Frameworks */,
 				6BA8F92D1B0A226D00EAA6A8 /* AddressBookUI.framework in Frameworks */,
 				6BA8F92B1B0A226000EAA6A8 /* AddressBook.framework in Frameworks */,
 				274A5E161B05D3D5009112B5 /* CFNetwork.framework in Frameworks */,
@@ -1398,6 +1407,7 @@
 		274A5A511B05C443009112B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6BADA62F1B0C748100BF7639 /* CoreData.framework */,
 				6BA8F92C1B0A226D00EAA6A8 /* AddressBookUI.framework */,
 				6BA8F92A1B0A226000EAA6A8 /* AddressBook.framework */,
 				274A5E151B05D3D5009112B5 /* CFNetwork.framework */,
@@ -2925,6 +2935,7 @@
 		6B12DC5D1AF2294D00245209 /* AaramShop */ = {
 			isa = PBXGroup;
 			children = (
+				6BADA6131B0B717700BF7639 /* DataBaseClasses */,
 				6BA8F8FC1B08FCBD00EAA6A8 /* ConnectionManager */,
 				6B0676E01B06024B0002259E /* BusinessModel */,
 				274A5D131B05C88B009112B5 /* ChatClasses */,
@@ -3226,6 +3237,33 @@
 				6BA8F8FE1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m */,
 			);
 			path = ConnectionManager;
+			sourceTree = "<group>";
+		};
+		6BADA6131B0B717700BF7639 /* DataBaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				6BADA6761B0CA17700BF7639 /* Contact */,
+				6BADA6721B0C9F5200BF7639 /* DataBase */,
+			);
+			path = DataBaseClasses;
+			sourceTree = "<group>";
+		};
+		6BADA6721B0C9F5200BF7639 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				6BADA6731B0C9F5200BF7639 /* DataBase.h */,
+				6BADA6741B0C9F5200BF7639 /* DataBase.m */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		6BADA6761B0CA17700BF7639 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				6BADA6771B0CA18900BF7639 /* Contact.h */,
+				6BADA6781B0CA18900BF7639 /* Contact.m */,
+			);
+			path = Contact;
 			sourceTree = "<group>";
 		};
 		6BE4C8F71B034BB600EF1EDB /* LocationScreenImages */ = {
@@ -3684,6 +3722,7 @@
 				274A5C621B05C4AA009112B5 /* UIDevice+SH.m in Sources */,
 				274A5C8E1B05C4AA009112B5 /* XMPPXOAuth2Google.m in Sources */,
 				274A5CD81B05C4AA009112B5 /* XMPPCapabilities.xcdatamodel in Sources */,
+				6BADA6751B0C9F5200BF7639 /* DataBase.m in Sources */,
 				274A5CD91B05C4AA009112B5 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
 				274A5DEE1B05C88B009112B5 /* ScrollerLargeViewController.m in Sources */,
 				274A5DAA1B05C88B009112B5 /* ChatFirstRowCell.m in Sources */,
@@ -3715,6 +3754,7 @@
 				274A5DA41B05C88B009112B5 /* PlayVideoViewController.m in Sources */,
 				274A5CA11B05C4AA009112B5 /* XMPPResourceCoreDataStorageObject.m in Sources */,
 				274A5CC11B05C4AA009112B5 /* XMPPvCardCoreDataStorageObject.m in Sources */,
+				6BADA6791B0CA18900BF7639 /* Contact.m in Sources */,
 				274A5C981B05C4AA009112B5 /* XMPPParser.m in Sources */,
 				274A5C881B05C4AA009112B5 /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				274A5C671B05C4AA009112B5 /* UINavigationController+SH.m in Sources */,
