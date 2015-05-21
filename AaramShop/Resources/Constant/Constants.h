@@ -41,7 +41,7 @@
 #define kstatus                               @"status"
 #define kOptionNew_user_login                 @"new_user_login"
 #define kImage                                @"Img"
-
+#define kPhoneNumbers                         @"phoneNumbers"
 
 #pragma mark - Existing User Keys
 
@@ -112,6 +112,7 @@
 #define kOptionLogin_otp_validate         @"login_otp_validate"
 #define kOtp                              @"otp"
 #define kOptionResend_otp                 @"resend_otp"
+#define kOptionUser_mobile_data           @"user_mobile_data"
 //==================Sign Up============
 
 #define kFileType                                   @"fileType"

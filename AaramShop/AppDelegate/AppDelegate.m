@@ -39,9 +39,10 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
     }
-    [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
     
-    if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn] == NO) {
+    if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn] == YES) {
+        [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
+
     }
 
     arrOptions = [NSArray arrayWithObjects:@"Home Address",@"Office Address", @"Others", nil];
@@ -159,12 +160,14 @@
 
 #pragma mark - Core Data stack
 
+#pragma mark - Core Data stack
+
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (NSURL *)applicationDocumentsDirectory {
-    // The directory the application uses to store the Core Data store file. This code uses a directory named "Neha.EmoteIt" in the application's documents directory.
+    // The directory the application uses to store the Core Data store file. This code uses a directory named "Neha.MCare" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
@@ -173,7 +176,7 @@
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"TrackBuddy" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"AaramShop" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
@@ -187,10 +190,15 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"PoppuhApp.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"AaramShop.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    NSDictionary *options =
+    @{
+      NSMigratePersistentStoresAutomaticallyOption:@YES
+      ,NSInferMappingModelAutomaticallyOption:@YES
+      };
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
@@ -236,9 +244,6 @@
         }
     }
 }
-
-
-
  #pragma mark - Register Device For Device Token
 -(void)registerDeviceForDeviceToken:(UIApplication *)application
 {
@@ -338,6 +343,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self saveContext];
 }
 #pragma mark - Chatting Methods
 
