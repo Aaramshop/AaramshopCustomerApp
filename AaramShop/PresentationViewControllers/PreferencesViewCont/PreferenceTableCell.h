@@ -10,8 +10,7 @@
 
 @interface PreferenceTableCell : UITableViewCell
 {
-    UILabel *lbl;
-    UIImageView * rightArrow;
+    UILabel *lblName;
     UIImageView *imgPic;
     UISwitch *swtBtn;
 }

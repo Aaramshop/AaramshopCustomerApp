@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PreferenceTableCell.h"
 
-@interface PreferencesViewController : UIViewController
+@interface PreferencesViewController : UIViewController<CustomNavigationDelegate>
 {
     
     __weak IBOutlet UITableView *tblView;

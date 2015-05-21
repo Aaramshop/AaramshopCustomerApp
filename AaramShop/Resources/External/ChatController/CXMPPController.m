@@ -438,7 +438,7 @@ CXMPPController * gCXMPPController = nil;
 
     
 	NSString *myJID = [[NSUserDefaults standardUserDefaults] stringForKey:kXMPPmyJID1];
-	NSString *myPassword = [[NSUserDefaults standardUserDefaults] stringForKey:kXMPPmyPassword1];
+	NSString *myPassword = @"123456";//[[NSUserDefaults standardUserDefaults] stringForKey:kXMPPmyPassword1];
     
 	//
 	// If you don't want to use the Settings view to set the JID,
