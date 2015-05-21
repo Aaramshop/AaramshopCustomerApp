@@ -18,6 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.sideBar = [Utils createLeftBarWithDelegate:self];
+    self.rightSideBar = [Utils createRightBarWithDelegate:self];
     [self setUpNavigationView];
     [self showLocationScreen];
     dataSource = [[NSMutableArray alloc]init];
@@ -69,7 +70,8 @@
 //    [navView removeCustomNavigationLeftArrowImage];
     
     [navView setCustomNavigationLeftArrowImageWithImageName:@"menuIcon.png"];
-    [navView setCustomNavigationRightArrowImage];
+    [navView setCustomNavigationRightArrowImageWithImageName:@"menuIcon.png"];//temporary code
+    //    [navView setCustomNavigationRightArrowImage];
     
         navView.delegate=self;
     [self.view addSubview:navView];
@@ -79,6 +81,10 @@
 -(void)customNavigationLeftButtonClick:(UIButton *)sender
 {
     [self.sideBar show];
+}
+-(void)customNavigationRightButtonClick:(UIButton *)sender
+{
+    [self.rightSideBar show];
 }
 - (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
     

@@ -323,6 +323,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="activityVw" destination="1u5-1w-IZw" id="3s5-xM-Kzm"/>
+                        <outlet property="loginClickBtn" destination="6t9-Rf-Yke" id="uOQ-4V-TDf"/>
                         <outlet property="scrollViewLogin" destination="SbL-B4-Md8" id="qyL-AH-SYa"/>
                         <outlet property="txtPassword" destination="tEc-Es-mwP" id="ca0-lT-hTU"/>
                         <outlet property="txtUserName" destination="GW9-Ct-uuU" id="RDc-x7-mwM"/>
@@ -904,6 +905,7 @@
         <!--Location Alert View Controller-->
         <scene sceneID="SDS-jp-fEh">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mIw-MU-dVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LocationAlertScreen" id="p9S-PA-MaK" customClass="LocationAlertViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QCa-jI-Ofa"/>
@@ -913,138 +915,84 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OYK-qQ-7yw">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Gq-z7-tG1" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PI5-X5-zM4">
-                                        <rect key="frame" x="30" y="165" width="260" height="239"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYK-qQ-7yw">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationPopupUpperRedBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="33w-Th-wLp">
-                                                <rect key="frame" x="0.0" y="0.0" width="260" height="37"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="37" id="P4u-Is-Gyz"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label your Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVo-b6-oy9">
-                                                <rect key="frame" x="0.0" y="0.0" width="260" height="37"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="37" id="4eH-De-Yd1"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGX-Dk-1dv">
-                                                <rect key="frame" x="8" y="52" width="244" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="QQZ-6t-xJf"/>
-                                                </constraints>
-                                                <inset key="titleEdgeInsets" minX="-180" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" backgroundImage="loactionPopupDropDownBox.png">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="btnDropDown:" destination="p9S-PA-MaK" eventType="touchUpInside" id="Eha-Xr-xpa"/>
-                                                </connections>
-                                            </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationPopupBigBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="C70-xU-MNF">
-                                                <rect key="frame" x="8" y="92" width="243" height="51"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="51" id="GEP-pd-h1c"/>
-                                                </constraints>
-                                            </imageView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfn-dZ-eaI">
-                                                <rect key="frame" x="12" y="94" width="235" height="47"/>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PI5-X5-zM4">
+                                                <rect key="frame" x="30" y="164" width="260" height="239"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="locationPopupUpperRedBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="33w-Th-wLp">
+                                                        <rect key="frame" x="0.0" y="0.0" width="260" height="37"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label your Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVo-b6-oy9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="260" height="37"/>
+                                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGX-Dk-1dv">
+                                                        <rect key="frame" x="8" y="52" width="244" height="34"/>
+                                                        <inset key="titleEdgeInsets" minX="-180" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" backgroundImage="loactionPopupDropDownBox.png">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="btnDropDown:" destination="p9S-PA-MaK" eventType="touchUpInside" id="Eha-Xr-xpa"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="locationPopupBigBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="C70-xU-MNF">
+                                                        <rect key="frame" x="8" y="92" width="243" height="51"/>
+                                                    </imageView>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfn-dZ-eaI">
+                                                        <rect key="frame" x="12" y="94" width="235" height="47"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" background="alertSingleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="lSE-aX-ISo" customClass="PWTextField">
+                                                        <rect key="frame" x="8" y="151" width="243" height="34"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7H-uQ-B85">
+                                                        <rect key="frame" x="0.0" y="198" width="130" height="41"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                                                        <state key="normal" title="Save" backgroundImage="locationPopupSaveBox.png">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="btnSave:" destination="p9S-PA-MaK" eventType="touchUpInside" id="7RN-kU-ein"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Dh-Q7-NlC">
+                                                        <rect key="frame" x="130" y="198" width="130" height="41"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                                                        <state key="normal" title="Cancel" backgroundImage="locationPopupCancelBox.png">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="btnCancel:" destination="p9S-PA-MaK" eventType="touchUpInside" id="ODQ-7v-Q1t"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="47" id="Q5a-FY-4Ux"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" background="alertSingleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="lSE-aX-ISo" customClass="PWTextField">
-                                                <rect key="frame" x="8" y="151" width="243" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="QrE-Xe-Ogu"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7H-uQ-B85">
-                                                <rect key="frame" x="0.0" y="198" width="130" height="41"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="130" id="K0e-le-rSk"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                <state key="normal" title="Save" backgroundImage="locationPopupSaveBox.png">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="btnSave:" destination="p9S-PA-MaK" eventType="touchUpInside" id="7RN-kU-ein"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Dh-Q7-NlC">
-                                                <rect key="frame" x="130" y="198" width="130" height="41"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
-                                                <state key="normal" title="Cancel" backgroundImage="locationPopupCancelBox.png">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="btnCancel:" destination="p9S-PA-MaK" eventType="touchUpInside" id="ODQ-7v-Q1t"/>
-                                                </connections>
-                                            </button>
+                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="33w-Th-wLp" firstAttribute="top" secondItem="PI5-X5-zM4" secondAttribute="top" id="1ER-Cb-Bt5"/>
-                                            <constraint firstAttribute="trailing" secondItem="xGX-Dk-1dv" secondAttribute="trailing" constant="8" id="2IE-yl-FQB"/>
-                                            <constraint firstItem="33w-Th-wLp" firstAttribute="leading" secondItem="t7H-uQ-B85" secondAttribute="leading" id="3Oa-jJ-QSL"/>
-                                            <constraint firstItem="xGX-Dk-1dv" firstAttribute="top" secondItem="UVo-b6-oy9" secondAttribute="top" constant="52" id="Aos-FM-JVK"/>
-                                            <constraint firstItem="UVo-b6-oy9" firstAttribute="bottom" secondItem="33w-Th-wLp" secondAttribute="bottom" id="C2M-7b-0Jz"/>
-                                            <constraint firstAttribute="bottom" secondItem="4Dh-Q7-NlC" secondAttribute="bottom" id="CfN-gY-iqE"/>
-                                            <constraint firstItem="33w-Th-wLp" firstAttribute="trailing" secondItem="UVo-b6-oy9" secondAttribute="trailing" id="DrD-yU-IZX"/>
-                                            <constraint firstAttribute="trailing" secondItem="C70-xU-MNF" secondAttribute="trailing" constant="9" id="GIL-lS-An3"/>
-                                            <constraint firstItem="4Dh-Q7-NlC" firstAttribute="leading" secondItem="t7H-uQ-B85" secondAttribute="trailing" id="IZ1-dn-Y5L"/>
-                                            <constraint firstAttribute="trailing" secondItem="lSE-aX-ISo" secondAttribute="trailing" constant="9" id="Ke4-ar-d2z"/>
-                                            <constraint firstItem="xGX-Dk-1dv" firstAttribute="leading" secondItem="PI5-X5-zM4" secondAttribute="leading" constant="8" id="L1f-yC-DQM"/>
-                                            <constraint firstItem="C70-xU-MNF" firstAttribute="top" secondItem="xGX-Dk-1dv" secondAttribute="top" constant="40" id="Q5F-jX-ij1"/>
-                                            <constraint firstItem="C70-xU-MNF" firstAttribute="top" secondItem="lSE-aX-ISo" secondAttribute="top" constant="-59" id="TMW-XA-rer"/>
-                                            <constraint firstItem="UVo-b6-oy9" firstAttribute="top" secondItem="33w-Th-wLp" secondAttribute="top" id="Wak-ke-dSv"/>
-                                            <constraint firstItem="33w-Th-wLp" firstAttribute="leading" secondItem="PI5-X5-zM4" secondAttribute="leading" id="f1m-3J-abX"/>
-                                            <constraint firstAttribute="trailing" secondItem="mfn-dZ-eaI" secondAttribute="trailing" constant="13" id="gZE-NX-Qnb"/>
-                                            <constraint firstItem="mfn-dZ-eaI" firstAttribute="leading" secondItem="PI5-X5-zM4" secondAttribute="leading" constant="12" id="gxI-ex-52E"/>
-                                            <constraint firstAttribute="trailing" secondItem="4Dh-Q7-NlC" secondAttribute="trailing" id="hzf-su-mi4"/>
-                                            <constraint firstItem="UVo-b6-oy9" firstAttribute="leading" secondItem="33w-Th-wLp" secondAttribute="leading" id="kUb-vv-s8F"/>
-                                            <constraint firstItem="xGX-Dk-1dv" firstAttribute="top" secondItem="mfn-dZ-eaI" secondAttribute="top" constant="-42" id="pWx-4n-Uqs"/>
-                                            <constraint firstItem="C70-xU-MNF" firstAttribute="leading" secondItem="PI5-X5-zM4" secondAttribute="leading" constant="8" id="raP-TY-8nI"/>
-                                            <constraint firstItem="t7H-uQ-B85" firstAttribute="baseline" secondItem="4Dh-Q7-NlC" secondAttribute="baseline" id="rdg-sw-0SE"/>
-                                            <constraint firstItem="lSE-aX-ISo" firstAttribute="leading" secondItem="PI5-X5-zM4" secondAttribute="leading" constant="8" id="xZc-NU-C70"/>
-                                            <constraint firstAttribute="bottom" secondItem="t7H-uQ-B85" secondAttribute="bottom" id="yro-Ad-3aJ"/>
-                                        </constraints>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="PI5-X5-zM4" firstAttribute="centerX" secondItem="OYK-qQ-7yw" secondAttribute="centerX" id="0ZC-Ex-cQ7"/>
-                                    <constraint firstItem="PI5-X5-zM4" firstAttribute="leading" secondItem="OYK-qQ-7yw" secondAttribute="leading" constant="30" id="URs-St-CNL"/>
-                                    <constraint firstItem="PI5-X5-zM4" firstAttribute="centerY" secondItem="OYK-qQ-7yw" secondAttribute="centerY" id="gpg-MQ-gZR"/>
-                                    <constraint firstItem="PI5-X5-zM4" firstAttribute="top" secondItem="OYK-qQ-7yw" secondAttribute="top" constant="165" id="ooC-Uz-9ih"/>
-                                </constraints>
-                            </view>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="OYK-qQ-7yw" secondAttribute="trailing" id="JFJ-cC-0bw"/>
-                            <constraint firstItem="OYK-qQ-7yw" firstAttribute="bottom" secondItem="7tb-9K-teE" secondAttribute="top" id="JTU-Xd-xC0"/>
-                            <constraint firstItem="OYK-qQ-7yw" firstAttribute="leading" secondItem="1Km-fn-n1W" secondAttribute="leading" id="Kk9-Oc-1uk"/>
-                            <constraint firstItem="OYK-qQ-7yw" firstAttribute="top" secondItem="1Km-fn-n1W" secondAttribute="top" id="vqo-5T-jmk"/>
-                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -1058,7 +1006,6 @@
                         <outlet property="viewBackAlert" destination="OYK-qQ-7yw" id="Tyv-u7-Lfk"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mIw-MU-dVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2495" y="397"/>
         </scene>
@@ -1129,7 +1076,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="fDh-2b-xsu"/>
+                    <navigationItem key="navigationItem" id="fDh-2b-xsu">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="AhA-5e-pRQ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kt6-p4-zgU">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Chat">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnChatClicked:" destination="vLF-Vy-zDX" eventType="touchUpInside" id="4yy-YT-GBD"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vqY-MX-LUd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

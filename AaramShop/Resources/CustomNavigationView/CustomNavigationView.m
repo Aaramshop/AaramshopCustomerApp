@@ -132,7 +132,7 @@
         
         // HIde Left and Right Buttom
         // Until title not sat
-        [self setCustomNavigationRightButtonHidden:YES];
+        [self setCustomNavigationRightButtonHidden:NO];
         [self setCustomNavigationLeftButtonHidden:NO];
     }
     return self;
@@ -198,7 +198,7 @@
     // Update label frame
     
     
-    [lblLeftButtonText setFrame:CGRectMake(BUTTONLABELPADDING+(LBLPADDINGWITHIMAGE), ORIGIN_Y, LEFT_BUTTONLABELWIDTH, HEIGHT)];
+    [lblLeftButtonText setFrame:CGRectMake((LBLPADDINGWITHIMAGE + 10), ORIGIN_Y, HEIGHT, HEIGHT)];
 }
 
 -(void)setCustomNavigationRightArrowImageWithImageName :(NSString*)ImageName
@@ -209,7 +209,7 @@
     // Update label frame
     
     
-    [lblRightButtonText setFrame:CGRectMake(BUTTONLABELPADDING+(LBLPADDINGWITHIMAGE) +100 , ORIGIN_Y, RIGHT_BUTTONLABELWIDTH, HEIGHT)];
+    [lblRightButtonText setFrame:CGRectMake(kScreenWidth-(HEIGHT), ORIGIN_Y,HEIGHT, HEIGHT)];
 }
 
 

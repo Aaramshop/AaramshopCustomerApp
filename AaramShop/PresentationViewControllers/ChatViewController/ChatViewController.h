@@ -10,4 +10,5 @@
 
 @interface ChatViewController : UIViewController<CDRTranslucentSideBarDelegate>
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
+- (IBAction)btnChatClicked:(id)sender;
 @end

@@ -66,4 +66,15 @@
 }
 */
 
+- (IBAction)btnChatClicked:(id)sender {
+    AppDelegate *deleg = APP_DELEGATE;
+    SMChatViewController *chatView = nil;
+    chatView = [deleg createChatViewByChatUserNameIfNeeded:@"reachout_chatuser_87"];
+    chatView.chatWithUser =@"reachout_chatuser_87@chat.reach-out.mobi";
+    chatView.userName =@"user 2";
+    chatView.imageString = @"";
+    chatView.friendNameId = @"1";
+    chatView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatView animated:YES];
+}
 @end

@@ -98,6 +98,7 @@
 
 #pragma mark SideBar
 +(CDRTranslucentSideBar*)createLeftBarWithDelegate:(id)delegate;
++(CDRTranslucentSideBar*)createRightBarWithDelegate:(id)delegate;
 @end
 
 
