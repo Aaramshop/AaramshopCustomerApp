@@ -69,8 +69,11 @@
 
 - (IBAction)btnContinueClick:(UIButton *)sender {
     
+    [sender setEnabled:NO];
+    
     if ([txtFMobileNumber.text length]==0 || [txtFMobileNumber.text length]<10) {
         [Utils showAlertView:kAlertTitle message:@"Please enter valid mobile number" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        [sender setEnabled:YES];
     }
     else
     {
@@ -107,6 +110,7 @@
 {
     if (![Utils isInternetAvailable])
     {
+        [btnContinue setEnabled:YES];
         [AppManager stopStatusbarActivityIndicator];
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
@@ -116,11 +120,14 @@
 }
 -(void) didFailWithError:(NSError *)error
 {
+    [btnContinue setEnabled:YES];
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 -(void) responseReceived:(id)responseObject
 {
     if (aaramShop_ConnectionManager.currentTask == TASK_ENTER_MOBILE_NUMBER) {
+        [btnContinue setEnabled:YES];
+
         if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 ) {
             
             [self saveDataToLocal:responseObject];

@@ -18,6 +18,8 @@
     __weak IBOutlet UIImageView *imgBackground;
     UIImage *imgUser;
     NSData *imageData;
+    
+    __weak IBOutlet UIButton *btnContinue;
 }
 @property(nonatomic,assign) BOOL isUpdateMobile;
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

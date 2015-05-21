@@ -56,6 +56,7 @@ void MyAddressBookExternalChangeCallback (
 +(NSDate*)DateFromString:(NSString*)strDate;
 +(void)callAddressBookWebService:(NSDictionary*)userData;
 +(void)clearAllConversation;
+-(void)createDefaultValuesForDictionay;
 
 @end
 extern AppManager *gAppManager;

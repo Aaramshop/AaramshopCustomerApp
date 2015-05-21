@@ -154,3 +154,10 @@
 
 #define kContactsAccessPermission           @"contactsAccessPermission"
 #define kType                               @"type"
+
+#pragma mark - 
+#define kAddressForLocation                 @"addressForLocation"
+#define kAddressTitle                       @"addressTitle"
+#define kHomeAddress                        @"homeAddress"
+#define kOfficeAddress                      @"officeAddress"
+#define kAddressValue                       @"addressValue"

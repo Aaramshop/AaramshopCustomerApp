@@ -43,6 +43,30 @@ UIAlertView *alert = nil;
     }
     return self;
 }
+-(void)createDefaultValuesForDictionay
+{
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:kAddressForLocation]) {
+        
+        NSMutableArray *arrAddress = [[NSMutableArray alloc]init];
+        
+        for (int z=0; z<2; z++) {
+            
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+            if (z==0)
+                [dict setObject:kHomeAddress forKey:kAddressTitle];
+            else
+                [dict setObject:kOfficeAddress forKey:kAddressTitle];
+            
+            [dict setObject:@"" forKey:kAddressValue];
+            [arrAddress addObject:dict];
+        }
+        
+        [[NSUserDefaults standardUserDefaults] setObject:arrAddress forKey:kAddressForLocation];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
+    
+}
+
 -(void)initializeObjects
 {
 }
@@ -188,30 +212,49 @@ UIAlertView *alert = nil;
     NSArray *allPeople = (__bridge NSArray *)(ABAddressBookCopyArrayOfAllPeople(addressBookRef));
     if ([[NSUserDefaults standardUserDefaults] valueForKey:@"modifiedDate"]) {
         
-            NSDate *preModifiedDate=[[NSUserDefaults standardUserDefaults] valueForKey:@"modifiedDate"] ;
-     
-             NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-                 ABRecordRef person=(__bridge ABRecordRef)evaluatedObject;
-                 CFTypeRef theProperty = ABRecordCopyValue(person, kABPersonPhoneProperty);
-                 CFRelease(theProperty);
-                 BOOL result=NO;
-                 NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue((person),  kABPersonModificationDateProperty);
-                 if ([modifiedDate compare:preModifiedDate] == NSOrderedDescending) {
-                     result = YES;
-                 }else
-                     result = NO;
-     
-     
-     
-                 return result;
-             }];
+        NSDate *preModifiedDate=[[NSUserDefaults standardUserDefaults] valueForKey:@"modifiedDate"] ;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+            ABRecordRef person=(__bridge ABRecordRef)evaluatedObject;
+            CFTypeRef theProperty = ABRecordCopyValue(person, kABPersonPhoneProperty);
+            CFRelease(theProperty);
+            BOOL result=NO;
+            NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue((person),  kABPersonModificationDateProperty);
+            if ([modifiedDate compare:preModifiedDate] == NSOrderedDescending) {
+                result = YES;
+            }else
+                result = NO;
+            
+            return result;
+        }];
         NSArray *states = [allPeople filteredArrayUsingPredicate:predicate];
-
+        
         NSString *strToBeDelete = [AppManager CheckForDeletedContacts:allPeople];
+        
+        if (states.count > 0 ) {
+            
+            NSArray *newArrayFromAddressBook = (NSArray*)[AppManager simplifiedArray:states];
+            
+            NSMutableSet *set1 = [NSMutableSet setWithArray: [newArrayFromAddressBook valueForKey:@"uniqueContactID"]];
+            NSArray *resultArray = [set1 allObjects];
+            
+            NSString *strToBeDeleteNow=@"";
+            for (id obj  in resultArray) {
+                strToBeDeleteNow=[strToBeDeleteNow stringByAppendingFormat:@"%@,",obj];
+            }
+            if ([strToBeDeleteNow length]>0) {
+                strToBeDeleteNow = [strToBeDeleteNow substringToIndex:[strToBeDeleteNow length]-1];
+                if ([strToBeDelete length]>0) {
+                    strToBeDelete=[strToBeDelete stringByAppendingFormat:@",%@",strToBeDeleteNow];
+
+                }
+                else
+                    strToBeDelete = strToBeDeleteNow;
+
+            }
+        }
         [AppManager NewOrUpdatedAddressBookContacts:states andContactsToBeDeleted:strToBeDelete];
-
     }
-
     else
     [AppManager NewOrUpdatedAddressBookContacts:allPeople andContactsToBeDeleted:@""];
     
@@ -225,48 +268,54 @@ UIAlertView *alert = nil;
         
         [[DataBase database] DeleteAddressBookFromDatabase:strDeleteContactIDs];
     }
-    for (id person in allPeople)
-    {
-        NSMutableDictionary *dictData = [[NSMutableDictionary alloc] init];
-        
-        ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
-        ABMultiValueRef Phone = ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
-        
-        for (CFIndex i = 0; i < ABMultiValueGetCount(Phone); i++) {
-            NSString *strPhoneNumber = [AppManager removeSpecialCheractersFromPhoneNumber:(__bridge_transfer NSString *) ABMultiValueCopyValueAtIndex(Phone, i)];
-            strPhoneNumber = [strPhoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+    dispatch_queue_t  backgroundQueue = dispatch_queue_create("bgQueue", NULL);
+    dispatch_async(backgroundQueue, ^{
+        for (id person in allPeople)
+        {
+            NSMutableDictionary *dictData = [[NSMutableDictionary alloc] init];
             
-            NSString *firstname = @"";
-            NSString *lastname = @"";
+            ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
+            ABMultiValueRef Phone = ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
             
-            firstname = (__bridge NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonFirstNameProperty);
-            lastname = (__bridge_transfer NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonLastNameProperty);
-            
-            if (!lastname) {
-                lastname = @"";
+            for (CFIndex i = 0; i < ABMultiValueGetCount(Phone); i++) {
+                NSString *strPhoneNumber = [AppManager removeSpecialCheractersFromPhoneNumber:(__bridge_transfer NSString *) ABMultiValueCopyValueAtIndex(Phone, i)];
+                strPhoneNumber = [strPhoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+                
+                NSString *firstname = @"";
+                NSString *lastname = @"";
+                
+                firstname = (__bridge NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonFirstNameProperty);
+                lastname = (__bridge_transfer NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonLastNameProperty);
+                
+                if (!lastname) {
+                    lastname = @"";
+                }
+                
+                if (!firstname) {
+                    firstname = @"";
+                }
+                
+                [dictData setObject:firstname forKey:@"firstName"];
+                [dictData setObject:lastname forKey:@"lastName"];
+                
+                NSInteger idstring=(NSInteger )ABRecordGetRecordID((__bridge ABRecordRef)(person));
+                [dictData setObject:[NSNumber numberWithInteger:idstring] forKey:@"uniqueContactID"];
+                
+                NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue( (__bridge ABRecordRef)(person),  kABPersonModificationDateProperty);
+                [dictData setObject:[AppManager stringFromDate:modifiedDate] forKey:@"strModifiedDate"];
+                
+                [dictData setObject:strPhoneNumber forKey:@"phoneNumber"];
+                [arrAddressBook addObject:[NSDictionary dictionaryWithDictionary:dictData]];
+                [arrPhoneOnly addObject:strPhoneNumber];
             }
             
-            if (!firstname) {
-                firstname = @"";
-            }
             
-            [dictData setObject:firstname forKey:@"firstName"];
-            [dictData setObject:lastname forKey:@"lastName"];
-
-            NSInteger idstring=(NSInteger )ABRecordGetRecordID((__bridge ABRecordRef)(person));
-            [dictData setObject:[NSNumber numberWithInteger:idstring] forKey:@"uniqueContactID"];
-            
-            NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue( (__bridge ABRecordRef)(person),  kABPersonModificationDateProperty);
-            [dictData setObject:[AppManager stringFromDate:modifiedDate] forKey:@"strModifiedDate"];
-            
-            [dictData setObject:strPhoneNumber forKey:@"phoneNumber"];
-            [arrAddressBook addObject:[NSDictionary dictionaryWithDictionary:dictData]];
-            [arrPhoneOnly addObject:strPhoneNumber];
+            CFRelease(Phone);
         }
-        
-        
-        CFRelease(Phone);
-    }
+    });
+
+   
+    
     [[DataBase database] SaveAddressBookDataBase:arrAddressBook from:NO];
 
     
