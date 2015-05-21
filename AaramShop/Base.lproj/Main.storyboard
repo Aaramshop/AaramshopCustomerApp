@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
@@ -905,7 +905,6 @@
         <!--Location Alert View Controller-->
         <scene sceneID="SDS-jp-fEh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mIw-MU-dVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LocationAlertScreen" id="p9S-PA-MaK" customClass="LocationAlertViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QCa-jI-Ofa"/>
@@ -948,7 +947,7 @@
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="locationPopupBigBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="C70-xU-MNF">
                                                         <rect key="frame" x="8" y="92" width="243" height="51"/>
                                                     </imageView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfn-dZ-eaI">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfn-dZ-eaI">
                                                         <rect key="frame" x="12" y="94" width="235" height="47"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1003,9 +1002,11 @@
                         <outlet property="dropDownBtn" destination="xGX-Dk-1dv" id="btU-S6-hYT"/>
                         <outlet property="subView" destination="PI5-X5-zM4" id="QR4-gW-uU2"/>
                         <outlet property="txtTitle" destination="lSE-aX-ISo" id="rEE-2q-lDV"/>
+                        <outlet property="txtVAddress" destination="mfn-dZ-eaI" id="YNs-bd-s4o"/>
                         <outlet property="viewBackAlert" destination="OYK-qQ-7yw" id="Tyv-u7-Lfk"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mIw-MU-dVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2495" y="397"/>
         </scene>
@@ -1390,6 +1391,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="btnContinue" destination="XyJ-02-XW0" id="waQ-ZH-drL"/>
                         <outlet property="btnProfile" destination="tzQ-T5-ye4" id="xbP-d8-xTR"/>
                         <outlet property="imgBackground" destination="lG6-xh-RWP" id="fwC-7b-6TC"/>
                         <outlet property="imgVUser" destination="2Ka-WI-rvS" id="Y5Q-Cl-lkm"/>

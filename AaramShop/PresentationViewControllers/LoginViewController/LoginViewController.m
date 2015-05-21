@@ -66,29 +66,30 @@
         BOOL stringIsValid = [numbersOnly isSupersetOfSet:characterSetFromTextField];
         if(stringIsValid)
         {
-            
             if(txtUserName.text.length != 10)
-                [Utils showAlertView:kAlertTitle message:@"Please enter valid mobile number" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-            else if(txtPassword.text.length==0)
-                [Utils showAlertView:kAlertTitle message:@"Please enter password" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-            else
             {
-//                [sender setEnabled:YES];
+                [Utils showAlertView:kAlertTitle message:@"Please enter valid mobile number" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+                [sender setEnabled:YES];
+            }
+            else if(txtPassword.text.length==0)
+            {
+                [Utils showAlertView:kAlertTitle message:@"Please enter password" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+                [sender setEnabled:YES];
+            }
+            else
+                [self createDataForLogin];
+        }
+        else
+        {
+            if ([self validateEmail:txtUserName.text andPassword:txtPassword.text])
+            {
                 [self createDataForLogin];
             }
-        }
-        else
-        {    if ([self validateEmail:txtUserName.text andPassword:txtPassword.text])
-        {
-//            [sender setEnabled:YES];
-            [self createDataForLogin];
-            
-        }
-            
-        else
-            [Utils showAlertView:kAlertTitle message:@"Please enter Email-id/Mobile no to continue" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-            [sender setEnabled:YES];
-
+            else
+            {
+                [Utils showAlertView:kAlertTitle message:@"Please enter Email-id/Mobile no to continue" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+                [sender setEnabled:YES];
+            }
         }
     }
     else
@@ -127,23 +128,26 @@
     {
         [AppManager stopStatusbarActivityIndicator];
         [activityVw stopAnimating];
+        [self.loginClickBtn setEnabled:YES];
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
     
     [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_LOGIN andDelegate:self ];
-    [self.loginClickBtn setEnabled:YES];
 }
 
 -(void) didFailWithError:(NSError *)error
 {
     [activityVw stopAnimating];
+    [self.loginClickBtn setEnabled:YES];
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 -(void) responseReceived:(id)responseObject
 {
     [activityVw stopAnimating];
     if (aaramShop_ConnectionManager.currentTask == TASK_LOGIN) {
+        [self.loginClickBtn setEnabled:YES];
+
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"OTP Sent!"]) {
             MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
             [self.navigationController pushViewController:mobileVerificationVwController animated:YES];

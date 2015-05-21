@@ -15,29 +15,27 @@
 @end
 
 @implementation LocationAlertViewController
-
+@synthesize strAddress,delegate;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [picker selectRow:0 inComponent:0 animated:YES];
     viewBackAlert.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     
     subView.layer.cornerRadius = 5;
     subView.layer.masksToBounds = YES;
-    dataSource=[[NSMutableArray alloc]initWithObjects:
-                @"Home",
-                    @"Office",@"Custom", nil];
-//    [dataSource addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Home",@"title",
-//                                                        @"djsjhkdshjksd",@"address",nil]];
-//    [dataSource addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Office",@"title",
-//                           @"djsjhkdshjksd",@"address",nil]];
-//    [dataSource addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Custom",@"title",
-//                           @"djsjhkdshjksd",@"address",nil]];
+
+    txtVAddress.text = strAddress;
+    dataSource=[[NSMutableArray alloc]initWithObjects:@"Home",@"Office",@"Custom", nil];
+    [dropDownBtn setTitle:@"Home" forState:UIControlStateNormal];
+
     [txtTitle setHidden:YES];
     [self ToolBarDesignes];
     [self PickerView];
     
 }
 #pragma mark OptionPatch
+
 -(void)showOptionPatch:(BOOL)isShow
 {
     if(isShow)
@@ -81,9 +79,20 @@
 }
 -(void)toolBarBtnClicked:(UIBarButtonItem *)sender
 {
-        [self showOptionPatch:NO];
-        [self showPickerView:NO];
-       
+    NSInteger indexValue = [picker selectedRowInComponent:0];
+    
+    if ([picker selectedRowInComponent:0] >=0) {
+        [dropDownBtn setTitle:[dataSource objectAtIndex:indexValue] forState:UIControlStateNormal];
+        [self checkForCustomLabelForIndex:indexValue];
+
+    }
+    else
+    {
+        [Utils showAlertView:kAlertTitle message:@"Please Select Address Type" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+
+    }
+    [self showOptionPatch:NO];
+    [self showPickerView:NO];
 }
 -(void)PickerView
 {
@@ -96,6 +105,7 @@
 }
 
 #pragma mark Show and Hide Picker View
+
 -(void)showPickerView:(BOOL)isShow
 {
     if(isShow)
@@ -117,20 +127,45 @@
         
     }
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+-(void)saveIntoDataBase:(NSInteger) Value
+{
+    NSMutableArray *arrAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kAddressForLocation];
+    if (Value == 2) {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+        [dict setObject:txtVAddress.text forKey:kAddressValue];
+        [dict setObject:txtTitle.text forKey:kAddressTitle];
+        [arrAddress addObject:dict];
+    }
+    else
+    {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+        [dict setObject:txtVAddress.text forKey:kAddressValue];
+        
+        if (Value == 0) {
+            [dict setObject:kHomeAddress forKey:kAddressTitle];
+
+        }
+        else if (Value == 1)
+        {
+            [dict setObject:kOfficeAddress forKey:kAddressTitle];
+        }
+        [arrAddress replaceObjectAtIndex:Value withObject:dict];
+
+    }
+    [[NSUserDefaults standardUserDefaults]setObject:arrAddress forKey:kAddressForLocation];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+
+    [self.view removeFromSuperview];
+
+    if (self.delegate && [self.delegate conformsToProtocol:@protocol(LocationAlertViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(saveAddress)])
+    {
+        [self.delegate saveAddress];
+    }
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+#pragma mark - UIButton Actions
 
 - (IBAction)btnCancel:(id)sender
 {
@@ -139,17 +174,22 @@
 
 - (IBAction)btnSave:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([picker selectedRowInComponent:0] >= 0) {
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:kAddressForLocation]) {
+            [[AppManager sharedManager] createDefaultValuesForDictionay];
+        }
+        [self saveIntoDataBase:[picker selectedRowInComponent:0]];
+    }
+    else
+        [Utils showAlertView:kAlertTitle message:@"Please Select Address Type" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 }
 
 - (IBAction)btnDropDown:(id)sender
 {
+    [picker selectRow:0 inComponent:0 animated:YES];
+    [dropDownBtn setTitle:[dataSource objectAtIndex:0] forState:UIControlStateNormal];
     [self showPickerView:YES];
     [self showOptionPatch:YES];
-//    [self.view endEditing:YES];
-    
-    
-    
 }
 #pragma mark PickerView Methods & Delegates
 
@@ -157,7 +197,6 @@
 {
     return 1;
 }
-// returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
 {
     return dataSource.count;
@@ -172,19 +211,27 @@
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
 {
+    [self checkForCustomLabelForIndex:row];
+}
+-(void)checkForCustomLabelForIndex:(NSInteger)indexValue
+{
     NSString *strValue = [dataSource objectAtIndex:[picker selectedRowInComponent:0]];
     if ([strValue isEqualToString:[NSString stringWithFormat:@"%@",@"Custom"] ])
     {
         [txtTitle setHidden:NO];
-        [dropDownBtn setTitle:[dataSource objectAtIndex:row] forState:UIControlStateNormal];
+        [dropDownBtn setTitle:[dataSource objectAtIndex:indexValue] forState:UIControlStateNormal];
     }
     else
     {
         [txtTitle setHidden:YES];
-        [dropDownBtn setTitle:[dataSource objectAtIndex:row] forState:UIControlStateNormal];
+        [dropDownBtn setTitle:[dataSource objectAtIndex:indexValue] forState:UIControlStateNormal];
     }
-//    NSLog(@"%@", strValue);
-    
-    
+
 }
+#pragma mark -
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 @end

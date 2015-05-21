@@ -400,16 +400,12 @@
 
 - (IBAction)btnDoneClick:(UIButton *)sender {
     
-//    LocationAlertViewController *locAlertVwController = (LocationAlertViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationAlertScreen"];
-  //  [self presentViewController:locAlertVwController animated:YES completion:nil];
-   // [self.view addSubview:locAlertVwController.view];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-//    locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
-//    
-//    CGRect locationAlertViewRect = self.view.bounds;
-//    locationAlert.view.frame = locationAlertViewRect;
-//    [self.view addSubview:locationAlert.view];
+    locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
+    locationAlert.delegate = self;
+    CGRect locationAlertViewRect = self.view.bounds;
+    locationAlert.strAddress = txtFLocation.text;
+    locationAlert.view.frame = locationAlertViewRect;
+    [self.view addSubview:locationAlert.view];
 }
 
 - (IBAction)btnEditClick:(UIButton *)sender {
@@ -417,6 +413,10 @@
     [txtFLocation becomeFirstResponder];
 }
 
+-(void)saveAddress
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma mark - 
 
 - (void)didReceiveMemoryWarning {

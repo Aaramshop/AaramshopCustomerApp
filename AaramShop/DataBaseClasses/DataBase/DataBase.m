@@ -55,9 +55,8 @@ AppDelegate *appDeleg;
             NSFetchRequest *request = [[NSFetchRequest alloc] init];
             [request setEntity:entity];
             
-//            NSPredicate *pred = [NSPredicate predicateWithFormat:@"(phoneNumber == %d)",[[obj valueForKey:@"phoneNumber"] integerValue]];
             NSPredicate *pred = [NSPredicate predicateWithFormat:@"phoneNumber MATCHES %@",[obj valueForKey:@"phoneNumber"]];
-
+            
             NSPredicate *finalPred  = nil;
             finalPred =[NSCompoundPredicate orPredicateWithSubpredicates:@[pred]];
             [request setPredicate:finalPred];
@@ -65,7 +64,7 @@ AppDelegate *appDeleg;
             
             NSMutableArray *mutableFetchResults = [[context executeFetchRequest:request error:&error] mutableCopy];
             Contact *addressBook = nil;
-
+            
             if ([mutableFetchResults count]>0) {
                 addressBook = (Contact*)[mutableFetchResults objectAtIndex:0];
             }else
@@ -74,7 +73,6 @@ AppDelegate *appDeleg;
             addressBook.lastName = [obj valueForKey:@"lastName"];
             if([obj valueForKey:@"uniqueContactID"])
             {
-//                NSString *str = [obj valueForKey:@"uniqueContactID"];
                 addressBook.uniqueContactID = [obj valueForKey:@"uniqueContactID"];
             }
             
@@ -83,10 +81,8 @@ AppDelegate *appDeleg;
                 addressBook.modifiedDate =[obj valueForKey:@"strModifiedDate"];
             }
             
-
-            
             if ([[obj valueForKey:@"phoneNumber"] length]>0) {
-
+                
                 NSArray *arrPhones = [[obj valueForKey:@"phoneNumber"] componentsSeparatedByString:@","];
                 
                 for (NSString *strPhonesValues in arrPhones) {
@@ -137,11 +133,11 @@ AppDelegate *appDeleg;
             }
         }
     }
-  if (![context save:&error])
-  {
-          NSLog(@"Error : %@",error);
-          abort();
-  }
+    if (![context save:&error])
+    {
+        NSLog(@"Error : %@",error);
+        abort();
+    }
 }
 
 
@@ -166,9 +162,6 @@ AppDelegate *appDeleg;
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         [request setEntity:entity];
 
-
-//        NSInteger userId=[[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] integerValue];
-        //     NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"(userId == %d)",userId];
         NSPredicate *pred2 = [NSPredicate predicateWithFormat:@"(uniqueContactID == %d)",[obj integerValue]];
         NSPredicate *finalPred = [NSCompoundPredicate andPredicateWithSubpredicates: @[pred2]];
 

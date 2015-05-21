@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol LocationAlertViewControllerDelegate <NSObject>
+
+-(void)saveAddress;
+@end
+
+
 
 @interface LocationAlertViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
 {
@@ -15,10 +21,13 @@
     UIPickerView *picker;
     __weak IBOutlet PWTextField *txtTitle;
     __weak IBOutlet UIView *subView;
+    __weak IBOutlet UITextView *txtVAddress;
     __weak IBOutlet UIView *viewBackAlert;
     NSMutableArray *dataSource;
     UIToolbar* keyBoardToolBar;
 }
+@property(nonatomic,strong) NSString *strAddress;
+@property(nonatomic,weak) id<LocationAlertViewControllerDelegate> delegate;
 - (IBAction)btnCancel:(id)sender;
 - (IBAction)btnSave:(id)sender;
 - (IBAction)btnDropDown:(id)sender;

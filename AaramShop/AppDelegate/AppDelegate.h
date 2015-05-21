@@ -31,6 +31,7 @@ CLGeocoder *geocoder;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic,  strong) NSArray *arrOptions;
 
+
 #pragma mark - chat
 @property (nonatomic,assign)  BOOL isChatViewOpened;
 @property (nonatomic, strong) NSMutableDictionary *AllChatViewConDic;
