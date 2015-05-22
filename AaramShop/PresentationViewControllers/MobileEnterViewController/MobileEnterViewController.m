@@ -75,6 +75,10 @@
         [Utils showAlertView:kAlertTitle message:@"Please enter valid mobile number" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         [sender setEnabled:YES];
     }
+    if ([txtFullName.text length]==0 || [txtFullName.text length]<50) {
+        [Utils showAlertView:kAlertTitle message:@"Please enter your full name" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        [sender setEnabled:YES];
+    }
     else
     {
         if (isUpdateMobile) {

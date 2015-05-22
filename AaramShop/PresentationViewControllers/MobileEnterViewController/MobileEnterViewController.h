@@ -19,6 +19,7 @@
     UIImage *imgUser;
     NSData *imageData;
     
+    __weak IBOutlet UITextField *txtFullName;
     __weak IBOutlet UIButton *btnContinue;
 }
 @property(nonatomic,assign) BOOL isUpdateMobile;
