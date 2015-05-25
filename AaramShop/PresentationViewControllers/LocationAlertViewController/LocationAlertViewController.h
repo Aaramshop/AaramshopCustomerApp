@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AKKeyboardAvoidingScrollView.h"
 @protocol LocationAlertViewControllerDelegate <NSObject>
 
 -(void)saveAddress;
@@ -26,6 +27,7 @@
     NSMutableArray *dataSource;
     UIToolbar* keyBoardToolBar;
 }
+@property (nonatomic, retain) IBOutlet AKKeyboardAvoidingScrollView *scrollView;
 @property(nonatomic,strong) NSString *strAddress;
 @property(nonatomic,weak) id<LocationAlertViewControllerDelegate> delegate;
 - (IBAction)btnCancel:(id)sender;

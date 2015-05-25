@@ -155,6 +155,9 @@
         else if ([[responseObject objectForKey:kMobile_verified] intValue] == 1 && [[responseObject objectForKey:kstatus] intValue] == 1)
         {
             [AppManager saveDataToNSUserDefaults:responseObject];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@@%@",[responseObject objectForKey:kchatUserName],STRChatServerURL] forKey:kXMPPmyJID1];
+            [[NSUserDefaults standardUserDefaults ]synchronize];
+            [gCXMPPController connect];
             [AppManager saveUserDatainUserDefault];
             UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
             [self.navigationController pushViewController:tabBarController animated:YES];

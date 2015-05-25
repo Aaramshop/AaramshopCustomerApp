@@ -26,8 +26,8 @@
          
          [AppManager stopStatusbarActivityIndicator];
 //        [loginView.loginClickBtn setEnabled:YES];
-         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"1430112307524@%@",STRChatServerURL] forKey:kXMPPmyJID1];
-         [[NSUserDefaults standardUserDefaults] setObject:@"123456" forKey:kXMPPmyPassword1];
+         
+         
          if(self.delegate != nil && [self.delegate respondsToSelector:@selector(responseReceived:)])
          {
              [self.delegate performSelector:@selector(responseReceived:) withObject:responseObject];

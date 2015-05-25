@@ -33,8 +33,8 @@ CLGeocoder *geocoder;
 
 
 #pragma mark - chat
-@property (nonatomic,assign)  BOOL isChatViewOpened;
-@property (nonatomic, strong) NSMutableDictionary *AllChatViewConDic;
+@property(nonatomic,assign)BOOL isChatViewOpened;
+@property (strong, nonatomic) NSMutableDictionary *AllChatViewConDic;
 @property (nonatomic, strong) SMChatViewController *chatViewController;
 
 -(void)setChatWindowOpenedStatusBySender:(NSString*)inSender andBool:(BOOL)inBool;

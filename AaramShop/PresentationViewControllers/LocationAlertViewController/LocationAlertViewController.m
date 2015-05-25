@@ -15,9 +15,14 @@
 @end
 
 @implementation LocationAlertViewController
-@synthesize strAddress,delegate;
+@synthesize strAddress,delegate,scrollView;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.scrollView contentSizeToFit];
+    
+    // Do any additional setup after loading the view.
+    
     
     [picker selectRow:0 inComponent:0 animated:YES];
     viewBackAlert.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
@@ -26,9 +31,12 @@
     subView.layer.masksToBounds = YES;
 
     txtVAddress.text = strAddress;
-    dataSource=[[NSMutableArray alloc]initWithObjects:@"Home",@"Office",@"Custom", nil];
-    [dropDownBtn setTitle:@"Home" forState:UIControlStateNormal];
-
+    dataSource=[[NSMutableArray alloc]initWithObjects:@"Home Address",@"Office Address",@"Custom Address", nil];
+    [dropDownBtn setTitle:@"Home Address" forState:UIControlStateNormal];
+    scrollView=[[AKKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, 0.01f)];
+    
+    scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+    [scrollView setContentSize:CGSizeMake(320, [UIScreen mainScreen].bounds.size.height+100)];
     [txtTitle setHidden:YES];
     [self ToolBarDesignes];
     [self PickerView];
@@ -216,7 +224,7 @@
 -(void)checkForCustomLabelForIndex:(NSInteger)indexValue
 {
     NSString *strValue = [dataSource objectAtIndex:[picker selectedRowInComponent:0]];
-    if ([strValue isEqualToString:[NSString stringWithFormat:@"%@",@"Custom"] ])
+    if ([strValue isEqualToString:[NSString stringWithFormat:@"%@",@"Custom Address"] ])
     {
         [txtTitle setHidden:NO];
         [dropDownBtn setTitle:[dataSource objectAtIndex:indexValue] forState:UIControlStateNormal];
