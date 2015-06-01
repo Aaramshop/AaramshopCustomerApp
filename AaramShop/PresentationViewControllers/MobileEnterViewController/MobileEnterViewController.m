@@ -8,11 +8,13 @@
 
 #import "MobileEnterViewController.h"
 #import "MobileVerificationViewController.h"
+#import "CMCountryList.h"
 
 @interface MobileEnterViewController ()
 {
     AppDelegate *appDeleg;
     UIImage * effectImage;
+    AppManager *appManager;
 }
 @property (nonatomic) UIImage *image;
 @end
@@ -21,7 +23,9 @@
 @synthesize isUpdateMobile,aaramShop_ConnectionManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     appDeleg = APP_DELEGATE;
+    appManager = [[AppManager alloc]init];
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate = self;
 
@@ -47,8 +51,34 @@
     if (self.view.frame.size.height <=560 ) {
         [imgVUser setFrame:CGRectMake(0, 0, 160, 160)];
     }
+    scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+    NSString *firstName = [[NSUserDefaults standardUserDefaults]objectForKey:kFirstName];
+    NSString *lastName = [[NSUserDefaults standardUserDefaults]objectForKey:kLastName];
+    if ([firstName isEqualToString:@""]) {
+       txtFullName.text = @"";
+    }
+    else
+    {
+        
+        NSString *fullName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+        txtFullName.text = fullName;
+    }
+    
+    
+    
 }
-
+-(void)parseCountryListData
+{
+    lblPhoneCode.text = gAppManager.cmCountryList.phoneCode;
+    imgFlagName.image = [UIImage imageNamed:gAppManager.cmCountryList.flagName];
+    [btnCountryName setTitle:gAppManager.cmCountryList.countryName forState:UIControlStateNormal];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    [self parseCountryListData];
+}
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [scrollViewMobileEnter setContentOffset:CGPointMake(0, 200) animated:YES];
@@ -57,13 +87,14 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [scrollViewMobileEnter setContentOffset:CGPointMake(0, 0) animated:YES];
-    [txtFMobileNumber resignFirstResponder];
+    [textField resignFirstResponder];
     return YES;
 }
 -(void)hideKeyboard
 {
     [scrollViewMobileEnter setContentOffset:CGPointMake(0, 0) animated:YES];
     [txtFMobileNumber resignFirstResponder];
+    [txtFullName resignFirstResponder];
 }
 
 
@@ -71,7 +102,7 @@
     
     [sender setEnabled:NO];
     
-    if ([txtFMobileNumber.text length]==0 || [txtFMobileNumber.text length]<10) {
+    if ([txtFMobileNumber.text length]==0 || [txtFMobileNumber.text length]>11 || [txtFMobileNumber.text length]<8) {
         [Utils showAlertView:kAlertTitle message:@"Please enter valid mobile number" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         [sender setEnabled:YES];
     }
@@ -185,6 +216,12 @@
     [actionSheet setCancelButtonIndex: [arrbuttonTitles count] - 1];
     
     [actionSheet showInView:self.view];
+}
+
+- (IBAction)btnCountryList:(id)sender {
+    FlagListTableViewController *viewController = [[FlagListTableViewController alloc] initWithNibName:NSStringFromClass([FlagListTableViewController class]) bundle:nil];
+//    backFromFlagList = YES;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

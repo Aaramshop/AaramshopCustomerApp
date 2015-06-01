@@ -27,7 +27,9 @@
     gst.delegate = self;
     [self.view addGestureRecognizer:gst];
     
-    lblMobileNumber.text = [NSString stringWithFormat:@"xxx xxx xx%@",[strMobileNum substringFromIndex:8]];
+    int mobLength = [strMobileNum length];
+    lblMobileNumber.text = [NSString stringWithFormat:@"xxx xxx xx%@",[strMobileNum substringFromIndex:mobLength-2]];
+    
     NSData* imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
     if (imageData) {
         UIImage* image = [UIImage imageWithData:imageData];

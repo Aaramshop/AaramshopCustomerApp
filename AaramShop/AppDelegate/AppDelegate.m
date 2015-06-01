@@ -355,6 +355,7 @@
 -(void)initializeAllSingletonObjects
 {
     [CXMPPController sharedXMPPController];
+    [AppManager sharedManager];
 }
 
 -(SMChatViewController *)createChatViewByChatUserNameIfNeeded:(NSString *)inChatUser

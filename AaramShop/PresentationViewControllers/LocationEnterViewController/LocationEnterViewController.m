@@ -53,20 +53,41 @@
 -(void)getAddressFromLatitude:(CLLocationDegrees)Latitude andLongitude:(CLLocationDegrees)LongitudeValue
 {
     if ([Utils isInternetAvailable]) {
-        NSString*urlStrings = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%.8f,%.8f&sensor=true&key=AIzaSyCTT48mLXvl2wBtzb9tzfZhafxaXyYrPiA",Latitude, LongitudeValue];
+        
+        [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+        NSString*urlStrings = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=%.8f,%.8f&sensor=false",Latitude, LongitudeValue];
         
         NSURL *url=[NSURL URLWithString:[urlStrings stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        NSError* error;
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
         
-        NSData* data = [NSData dataWithContentsOfURL:url];
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        NSLog(@"json=%@",json);
-        NSString *str=[json objectForKey:@"status"];
-        if ([str isEqualToString:@"OK"])
-        {
-            [self fetchedData:data];
-        }
+        NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:queue
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                                   if (error) {
+                                       [AppManager stopStatusbarActivityIndicator];
+                                       NSLog(@"error:%@", error.localizedDescription);
+                                   }
+                                   else
+                                   {
+                                       data = [NSData dataWithContentsOfURL:url];
+                                       NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                       NSLog(@"json=%@",json);
+                                       NSString *str=[json objectForKey:@"status"];
+                                       if ([str isEqualToString:@"OK"])
+                                       {
+                                           [self fetchedData:data];
+                                       }
+                                       else
+                                           [AppManager stopStatusbarActivityIndicator];
+                                       
+                                       
+                                       
+                                   }
+                                   
+                               }];
     }
+
 }
 - (void)fetchedData:(NSData *)responseData
 {
