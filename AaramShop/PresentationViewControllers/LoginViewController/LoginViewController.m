@@ -105,9 +105,6 @@
 }
 -(void)createDataForLogin
 {
-   /* UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-    [self.navigationController pushViewController:tabBarController animated:YES];
-    */
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     [activityVw startAnimating];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];

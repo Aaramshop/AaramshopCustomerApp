@@ -49,11 +49,6 @@
     [dict setObject:txtfVerificationCode.text forKey:kOtp];
     [dict setObject:strMobileNum forKey:kMobile];
     [self callWebserviceForOtpSend:dict];
-    /*
-
-    UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-    [self.navigationController pushViewController:tabBarController animated:YES];
-     */
 }
 -(void)createDataForOtpResend
 {
@@ -62,11 +57,6 @@
     [dict setObject:strMobileNum forKey:kMobile];
     [dict setObject:kOptionResend_otp forKey:kOption];
     [self callWebserviceForOtpResend:dict];
-    /*
-     
-     UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-     [self.navigationController pushViewController:tabBarController animated:YES];
-     */
 }
 
 
