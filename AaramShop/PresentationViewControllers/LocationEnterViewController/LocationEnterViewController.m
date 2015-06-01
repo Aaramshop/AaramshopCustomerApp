@@ -56,16 +56,33 @@
         NSString*urlStrings = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%.8f,%.8f&sensor=true&key=AIzaSyCTT48mLXvl2wBtzb9tzfZhafxaXyYrPiA",Latitude, LongitudeValue];
         
         NSURL *url=[NSURL URLWithString:[urlStrings stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        NSError* error;
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
         
-        NSData* data = [NSData dataWithContentsOfURL:url];
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        NSLog(@"json=%@",json);
-        NSString *str=[json objectForKey:@"status"];
-        if ([str isEqualToString:@"OK"])
-        {
-            [self fetchedData:data];
-        }
+//        NSError* error;
+//        NSData* responseData = [[NSMutableData alloc]init];
+        
+        NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:queue
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                                   if (error) {
+                                       NSLog(@"error:%@", error.localizedDescription);
+                                   }
+                                   else
+                                   {
+                                       data = [NSData dataWithContentsOfURL:url];
+                                       NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                       NSLog(@"json=%@",json);
+                                       NSString *str=[json objectForKey:@"status"];
+                                       if ([str isEqualToString:@"OK"])
+                                       {
+                                           [self fetchedData:data];
+                                       }
+                                       
+                                       
+                                   }
+                                   
+                               }];
     }
 }
 - (void)fetchedData:(NSData *)responseData
