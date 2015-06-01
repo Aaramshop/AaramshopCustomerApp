@@ -12,6 +12,8 @@
 	<dict>
 		<key>4F9E8CE44E533460AECE1D5F9C866E85609E7920</key>
 		<string>https://bitbucket.org/aaramshopapproutes/aaramshop_ios.git</string>
+		<key>d9baa53c-3917-1440-8e8b-4266d6da197a++5631</key>
+		<string>https://10.11.5.3/svn/scanit/trunk/iOS/ScanIT/ALL%2525252520FILES/MBProgressHUD</string>
 		<key>ddc2b218-ff7b-401f-aa3d-48e6ee7d59de++2962</key>
 		<string>https://my.redfive.biz/svn/zabbix-apps/Codebase/Zabbix/Source/Utils/Logs</string>
 	</dict>
@@ -21,11 +23,15 @@
 	<dict>
 		<key>4F9E8CE44E533460AECE1D5F9C866E85609E7920</key>
 		<string>../..</string>
+		<key>d9baa53c-3917-1440-8e8b-4266d6da197a++5631</key>
+		<string>../..AaramShop/Resources/External/MBProgressHUD</string>
 		<key>ddc2b218-ff7b-401f-aa3d-48e6ee7d59de++2962</key>
-		<string>../..AaramShop/Resources/Utils/Logs</string>
+		<string>../..AaramShop/Resources/External/Utils/Logs</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>
+		<key>d9baa53c-3917-1440-8e8b-4266d6da197a++5631</key>
+		<string>https://10.11.5.3/svn/scanit</string>
 		<key>ddc2b218-ff7b-401f-aa3d-48e6ee7d59de++2962</key>
 		<string>https://my.redfive.biz/svn/zabbix-apps</string>
 	</dict>
@@ -52,6 +58,14 @@
 			<string>ddc2b218-ff7b-401f-aa3d-48e6ee7d59de++2962</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Logs</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>d9baa53c-3917-1440-8e8b-4266d6da197a++5631</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MBProgressHUD</string>
 		</dict>
 	</array>
 </dict>

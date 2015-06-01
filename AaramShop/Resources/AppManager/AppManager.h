@@ -34,12 +34,14 @@ void MyAddressBookExternalChangeCallback (
                                           void *context
                                           );
 #pragma Properties
-
+@class  CMCountryList;
 @interface AppManager : NSObject{
     ABAddressBookRef addressBookRef;
 }
 @property(nonatomic,strong) NSMutableArray *arrImages;
 @property(nonatomic, assign) BOOL isFetchingContacts;
+@property(nonatomic , strong)   CMCountryList *cmCountryList;
+
 #pragma Methods
 +(AppManager *)sharedManager;
 +(CLocation *)getLocationByLocationStr:(NSString *)inLocationStr;

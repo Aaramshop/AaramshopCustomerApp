@@ -191,14 +191,25 @@
         [scrollViewLogin setContentOffset:CGPointMake(0, 250) animated:YES];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
 {
-    [scrollViewLogin setContentOffset:CGPointMake(0, 0) animated:YES];
-    [txtUserName resignFirstResponder];
-    [txtPassword resignFirstResponder];
-    return YES;
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+        
+        
+    } else {
+        // Not found, so remove keyboard.
+        
+        [textField resignFirstResponder];
+        [self btnLoginClick:self.loginClickBtn];
+        
+    }
+    return YES; // We do not want UITextField to insert line-breaks.
 }
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if (textField.text.length>2) {

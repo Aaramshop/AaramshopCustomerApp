@@ -9,8 +9,8 @@
 #import "AKKeyboardAvoidingScrollView.h"
 #import <objc/runtime.h>
 
-static const CGFloat kCalculatedContentPadding = 200;
-static const CGFloat kMinimumScrollOffsetPadding = 0;
+static const CGFloat kCalculatedContentPadding = 26;
+static const CGFloat kMinimumScrollOffsetPadding = 20;
 
 static const int kStateKey;
 

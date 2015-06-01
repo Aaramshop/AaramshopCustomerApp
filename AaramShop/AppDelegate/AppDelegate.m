@@ -64,36 +64,25 @@
 }
 -(void)findCurrentLocation
 {
-    locationManager=[[CLLocationManager alloc] init];
+    
+    locationManager = [[CLLocationManager alloc] init];
     geocoder = [[CLGeocoder alloc] init];
     
     if ([CLLocationManager locationServicesEnabled])
     {
         locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        locationManager.headingFilter = 1;
-        
-        locationManager.distanceFilter = kCLDistanceFilterNone;//5; // Don't use other value than - 'kCLDistanceFilterNone', else the local notification will not work.
-        
-        
-        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
-        {
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             [locationManager requestWhenInUseAuthorization];
         }
         [locationManager startUpdatingLocation];
         
-        
     }
 }
-
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager* )manager didFailWithError:(NSError *)error
 {
-    //    NSLog(@"didFailWithError: %@", error);
-    //    UIAlertView *errorAlert = [[UIAlertView alloc]
-    //                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    //    [errorAlert show];
+    
 }
 
 
@@ -108,56 +97,6 @@
 -(void)getUpdatedLocation:(CLLocation *)newLocation
 {
     myCurrentLocation = newLocation;
-//    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error)
-//     {
-//         
-//         if (error == nil && [placemarks count] > 0)
-////         {
-////             placemark = [placemarks lastObject];
-////             
-////             NSArray *lines = placemark.addressDictionary[ @"FormattedAddressLines"];
-////             NSString * strCurrentAddress = [lines componentsJoinedByString:@" "];
-////             
-////             
-////             if (strCurrentAddress != nil)
-////             {
-////                 appDataManager.addressByLocation = strCurrentAddress;
-////                 
-////                 // when source address is not available and user already started commute ..
-////                 if ([[appDataManager.sourceAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]==0)
-////                 {
-////                     [[NSNotificationCenter defaultCenter] postNotificationName:@"NotifyToUpdateSourceAddress" object:nil];
-////                 }
-////             }
-////             
-////         } else
-//         {
-//             NSLog(@"%@", error.debugDescription);
-//         }
-//     } ];
-    
-    
-//    NSDate* eventDate = appDataManager.lastLocation.timestamp;
-//    
-//    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-//    
-//    if (abs(howRecent) > KNotificationTime)
-//    {
-//        
-//        //        if (appDataManager.isCommuteStopped==NO && appDataManager.isCommuteStarted == YES )
-//        
-//        if (appDataManager.commuteType == eMyCommuteSingleCommuter && appDataManager.isCommuteStopped==NO && appDataManager.isCommuteStarted == YES )
-//        {
-//            [self setupLocalNotifications];
-//        }
-//        
-//    }
-//    else if (  [appDataManager.lastLocation distanceFromLocation:newLocation] > kUpdateLocationAfterDistance)
-//    {
-//        [alert dismissWithClickedButtonIndex:0 animated:YES]; // when user suddenly move from idle state to running state
-//        
-//        appDataManager.lastLocation = newLocation;
-//    }
 }
 
 #pragma mark - Core Data stack
@@ -356,6 +295,7 @@
 -(void)initializeAllSingletonObjects
 {
     [CXMPPController sharedXMPPController];
+    [AppManager sharedManager];
 }
 
 -(SMChatViewController *)createChatViewByChatUserNameIfNeeded:(NSString *)inChatUser

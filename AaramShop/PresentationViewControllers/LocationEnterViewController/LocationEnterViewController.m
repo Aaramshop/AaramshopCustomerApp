@@ -53,19 +53,19 @@
 -(void)getAddressFromLatitude:(CLLocationDegrees)Latitude andLongitude:(CLLocationDegrees)LongitudeValue
 {
     if ([Utils isInternetAvailable]) {
-        NSString*urlStrings = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/textsearch/json?query=%.8f,%.8f&sensor=true&key=AIzaSyCTT48mLXvl2wBtzb9tzfZhafxaXyYrPiA",Latitude, LongitudeValue];
+        
+        [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+        NSString*urlStrings = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=%.8f,%.8f&sensor=false",Latitude, LongitudeValue];
         
         NSURL *url=[NSURL URLWithString:[urlStrings stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        
-//        NSError* error;
-//        NSData* responseData = [[NSMutableData alloc]init];
         
         NSOperationQueue *queue = [[NSOperationQueue alloc]init];
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:queue
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
                                    if (error) {
+                                       [AppManager stopStatusbarActivityIndicator];
                                        NSLog(@"error:%@", error.localizedDescription);
                                    }
                                    else
@@ -78,12 +78,15 @@
                                        {
                                            [self fetchedData:data];
                                        }
-                                       
+                                       else
+                                           [AppManager stopStatusbarActivityIndicator];
+                                                                            
                                        
                                    }
                                    
                                }];
     }
+
 }
 - (void)fetchedData:(NSData *)responseData
 {
@@ -417,12 +420,13 @@
 
 - (IBAction)btnDoneClick:(UIButton *)sender {
     
+    [txtFLocation resignFirstResponder];
     locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
     locationAlert.delegate = self;
     CGRect locationAlertViewRect = self.view.bounds;
     locationAlert.strAddress = txtFLocation.text;
     locationAlert.view.frame = locationAlertViewRect;
-    [self.view addSubview:locationAlert.view];
+    [appDeleg.window addSubview:locationAlert.view];
 }
 
 - (IBAction)btnEditClick:(UIButton *)sender {

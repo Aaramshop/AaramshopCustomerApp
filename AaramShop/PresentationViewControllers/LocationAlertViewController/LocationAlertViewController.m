@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.scrollView contentSizeToFit];
+    
     
     // Do any additional setup after loading the view.
     
@@ -36,7 +36,7 @@
     scrollView=[[AKKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, 0.01f)];
     
     scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
-    [scrollView setContentSize:CGSizeMake(320, [UIScreen mainScreen].bounds.size.height+100)];
+    [scrollView setContentSize:CGSizeMake(320, ([UIScreen mainScreen].bounds.size.height-100))];
     [txtTitle setHidden:YES];
     [self ToolBarDesignes];
     [self PickerView];
@@ -182,14 +182,20 @@
 
 - (IBAction)btnSave:(id)sender
 {
-    if ([picker selectedRowInComponent:0] >= 0) {
-        if (![[NSUserDefaults standardUserDefaults] objectForKey:kAddressForLocation]) {
-            [[AppManager sharedManager] createDefaultValuesForDictionay];
-        }
-        [self saveIntoDataBase:[picker selectedRowInComponent:0]];
+
+    if (self.delegate && [self.delegate conformsToProtocol:@protocol(LocationAlertViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(saveAddress)])
+    {
+        [self.delegate saveAddress];
     }
-    else
-        [Utils showAlertView:kAlertTitle message:@"Please Select Address Type" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    [self.view removeFromSuperview];
+//    if ([picker selectedRowInComponent:0] >= 0) {
+//        if (![[NSUserDefaults standardUserDefaults] objectForKey:kAddressForLocation]) {
+//            [[AppManager sharedManager] createDefaultValuesForDictionay];
+//        }
+//        [self saveIntoDataBase:[picker selectedRowInComponent:0]];
+//    }
+//    else
+//        [Utils showAlertView:kAlertTitle message:@"Please Select Address Type" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 }
 
 - (IBAction)btnDropDown:(id)sender
