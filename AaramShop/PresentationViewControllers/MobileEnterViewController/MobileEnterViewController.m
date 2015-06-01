@@ -55,7 +55,7 @@
     NSString *firstName = [[NSUserDefaults standardUserDefaults]objectForKey:kFirstName];
     NSString *lastName = [[NSUserDefaults standardUserDefaults]objectForKey:kLastName];
     if ([firstName isEqualToString:@""]) {
-       txtFullName.text = @"";
+       txtFullName.text = nil;
     }
     else
     {

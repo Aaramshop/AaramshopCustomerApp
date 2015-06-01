@@ -421,12 +421,13 @@
 
 - (IBAction)btnDoneClick:(UIButton *)sender {
     
+    [txtFLocation resignFirstResponder];
     locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
     locationAlert.delegate = self;
     CGRect locationAlertViewRect = self.view.bounds;
     locationAlert.strAddress = txtFLocation.text;
     locationAlert.view.frame = locationAlertViewRect;
-    [self.view addSubview:locationAlert.view];
+    [appDeleg.window addSubview:locationAlert.view];
 }
 
 - (IBAction)btnEditClick:(UIButton *)sender {
