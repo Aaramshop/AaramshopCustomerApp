@@ -104,20 +104,25 @@
             NSLog(@"%@",returnJsonValue);
             if(returnJsonValue.count>0)
             {
-                NSArray *arr=[returnJsonValue objectAtIndex:0];
-                NSString *stringTaggedLocationloc=[arr valueForKey:@"formatted_address"];
-                
-                NSArray *items = [stringTaggedLocationloc componentsSeparatedByString:@","];
-                
-                NSMutableString *strAddress = [[NSMutableString alloc]init];
-                for (int p = 0; p < [items count]; p++)
-                {
-                    [strAddress appendString:[items objectAtIndex:p]];
-                }
-                if (strAddress.length>0) {
-                    strYourCurrentAddress = strAddress;
-                    txtFLocation.text = strYourCurrentAddress;
-                }
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    
+                    NSArray *arr=[returnJsonValue objectAtIndex:0];
+                    NSString *stringTaggedLocationloc=[arr valueForKey:@"formatted_address"];
+                    
+                    NSArray *items = [stringTaggedLocationloc componentsSeparatedByString:@","];
+                    
+                    NSMutableString *strAddress = [[NSMutableString alloc]init];
+                    for (int p = 0; p < [items count]; p++)
+                    {
+                        [strAddress appendString:[items objectAtIndex:p]];
+                    }
+                    if (strAddress.length>0) {
+                        strYourCurrentAddress = strAddress;
+                        txtFLocation.text = strYourCurrentAddress;
+                    }
+                    
+                }];
+
             }
             
         }
