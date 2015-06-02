@@ -20,7 +20,7 @@
 @end
 
 @implementation MobileEnterViewController
-@synthesize isUpdateMobile,aaramShop_ConnectionManager;
+@synthesize isUpdateMobile,aaramShop_ConnectionManager,scrollViewMobileEnter;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
@@ -35,7 +35,8 @@
     btnProfile.layer.cornerRadius = btnProfile.frame.size.height/2;
     btnProfile.clipsToBounds = YES;
     btnProfile.backgroundColor = [UIColor clearColor];
-
+    scrollViewMobileEnter = [[AKKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollViewMobileEnter.frame.size.width, 0.01f)];
+    scrollViewMobileEnter.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     
     UITapGestureRecognizer *gst = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard)];
     gst.cancelsTouchesInView = NO;
@@ -52,9 +53,30 @@
         [imgVUser setFrame:CGRectMake(0, 0, 160, 160)];
     }
     scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+    imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
+    if (imageData) {
+        UIImage* image = [UIImage imageWithData:imageData];
+        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
+        imgBackground.image = effectImage;
+        imgVUser.image = image;
+        lbltakeyourselfie.text = @"Change Picture";
+    }
+    else
+    {
+        imgBackground.image = [UIImage imageNamed:@"bg4.jpg"];
+        lbltakeyourselfie.text = @"Take your selfie";
+    }
+    NSLocale *locale = [NSLocale currentLocale];
+    NSString *countryCode = [locale objectForKey: NSLocaleCountryCode];
+    
+    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
+    NSString *country = [usLocale displayNameForKey: NSLocaleCountryCode value: countryCode];
+    [btnCountryName setTitle:country forState:UIControlStateNormal];
     NSString *firstName = [[NSUserDefaults standardUserDefaults]objectForKey:kFirstName];
     NSString *lastName = [[NSUserDefaults standardUserDefaults]objectForKey:kLastName];
-    if ([firstName isEqualToString:@""]) {
+    if ([firstName length]==0)
+    {
        txtFullName.text = nil;
     }
     else
@@ -77,22 +99,13 @@
 {
     [super viewWillAppear:YES];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
-    [self parseCountryListData];
-}
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [scrollViewMobileEnter setContentOffset:CGPointMake(0, 200) animated:YES];
+//    [self parseCountryListData];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [scrollViewMobileEnter setContentOffset:CGPointMake(0, 0) animated:YES];
-    [textField resignFirstResponder];
-    return YES;
-}
+
+
 -(void)hideKeyboard
 {
-    [scrollViewMobileEnter setContentOffset:CGPointMake(0, 0) animated:YES];
     [txtFMobileNumber resignFirstResponder];
     [txtFullName resignFirstResponder];
 }
@@ -289,6 +302,7 @@
         imgBackground.image=effectImage;
         [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(imgUser)            forKey:kImage];
         imgBackground.contentMode = UIViewContentModeScaleAspectFill;
+        lbltakeyourselfie.text = @"Change Picture";
     }];
     
 }
