@@ -138,7 +138,7 @@
 
 -(void)saveIntoDataBase:(NSInteger) Value
 {
-    NSMutableArray *arrAddress = [[NSUserDefaults standardUserDefaults]valueForKey:kAddressForLocation];
+    NSMutableArray *arrAddress = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults]valueForKey:kAddressForLocation]] ;
     if (Value == 2) {
         NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
         [dict setObject:txtVAddress.text forKey:kAddressValue];
@@ -170,7 +170,6 @@
     {
         [self.delegate saveAddress];
     }
-    
 }
 
 #pragma mark - UIButton Actions
@@ -182,20 +181,19 @@
 
 - (IBAction)btnSave:(id)sender
 {
-
-    if (self.delegate && [self.delegate conformsToProtocol:@protocol(LocationAlertViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(saveAddress)])
-    {
-        [self.delegate saveAddress];
-    }
-    [self.view removeFromSuperview];
-//    if ([picker selectedRowInComponent:0] >= 0) {
-//        if (![[NSUserDefaults standardUserDefaults] objectForKey:kAddressForLocation]) {
-//            [[AppManager sharedManager] createDefaultValuesForDictionay];
-//        }
-//        [self saveIntoDataBase:[picker selectedRowInComponent:0]];
+//    if (self.delegate && [self.delegate conformsToProtocol:@protocol(LocationAlertViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(saveAddress)])
+//    {
+//        [self.delegate saveAddress];
 //    }
-//    else
-//        [Utils showAlertView:kAlertTitle message:@"Please Select Address Type" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+//    [self.view removeFromSuperview];
+    if ([picker selectedRowInComponent:0] >= 0) {
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:kAddressForLocation]) {
+            [[AppManager sharedManager] createDefaultValuesForDictionay];
+        }
+        [self saveIntoDataBase:[picker selectedRowInComponent:0]];
+    }
+    else
+        [Utils showAlertView:kAlertTitle message:@"Please Select Address Type" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 }
 
 - (IBAction)btnDropDown:(id)sender
