@@ -754,6 +754,12 @@
 		36820A401B1C46FA002AA93F /* zanzibar.png in Resources */ = {isa = PBXBuildFile; fileRef = 368209011B1C46FA002AA93F /* zanzibar.png */; };
 		36820A411B1C46FA002AA93F /* zimbabwe.png in Resources */ = {isa = PBXBuildFile; fileRef = 368209021B1C46FA002AA93F /* zimbabwe.png */; };
 		36820A451B1C4709002AA93F /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 36820A441B1C4709002AA93F /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36EE08E11B1D7CC400906277 /* CurLocationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EE08E01B1D7CC400906277 /* CurLocationTableCell.m */; };
+		36EE08E71B1DA60200906277 /* UserContactTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EE08E61B1DA60200906277 /* UserContactTableCell.m */; };
+		36EE08EA1B1DA61800906277 /* UserInfoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EE08E91B1DA61800906277 /* UserInfoTableCell.m */; };
+		36EE09311B1DC43300906277 /* disc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 36EE09301B1DC43300906277 /* disc.mp4 */; };
+		36EE09341B1DD79600906277 /* disc2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 36EE09321B1DD79600906277 /* disc2.mp4 */; };
+		36EE09351B1DD79600906277 /* disc3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 36EE09331B1DD79600906277 /* disc3.mp4 */; };
 		6B0676E41B06027F0002259E /* ShopDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0676E31B06027F0002259E /* ShopDataModel.m */; };
 		6B0676EC1B0630580002259E /* locationPopupCancelBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676E61B0630580002259E /* locationPopupCancelBox.png */; };
 		6B0676ED1B0630580002259E /* locationPopupCancelBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676E71B0630580002259E /* locationPopupCancelBox@2x.png */; };
@@ -1874,6 +1880,15 @@
 		368209021B1C46FA002AA93F /* zimbabwe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zimbabwe.png; sourceTree = "<group>"; };
 		36820A431B1C4709002AA93F /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		36820A441B1C4709002AA93F /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		36EE08DF1B1D7CC400906277 /* CurLocationTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurLocationTableCell.h; sourceTree = "<group>"; };
+		36EE08E01B1D7CC400906277 /* CurLocationTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurLocationTableCell.m; sourceTree = "<group>"; };
+		36EE08E51B1DA60200906277 /* UserContactTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserContactTableCell.h; sourceTree = "<group>"; };
+		36EE08E61B1DA60200906277 /* UserContactTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserContactTableCell.m; sourceTree = "<group>"; };
+		36EE08E81B1DA61800906277 /* UserInfoTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableCell.h; sourceTree = "<group>"; };
+		36EE08E91B1DA61800906277 /* UserInfoTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableCell.m; sourceTree = "<group>"; };
+		36EE09301B1DC43300906277 /* disc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = disc.mp4; sourceTree = "<group>"; };
+		36EE09321B1DD79600906277 /* disc2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = disc2.mp4; sourceTree = "<group>"; };
+		36EE09331B1DD79600906277 /* disc3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = disc3.mp4; sourceTree = "<group>"; };
 		6B0676E21B06027F0002259E /* ShopDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDataModel.h; sourceTree = "<group>"; };
 		6B0676E31B06027F0002259E /* ShopDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDataModel.m; sourceTree = "<group>"; };
 		6B0676E61B0630580002259E /* locationPopupCancelBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationPopupCancelBox.png; sourceTree = "<group>"; };
@@ -4028,6 +4043,9 @@
 		6B12DC861AF22C8100245209 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				36EE09321B1DD79600906277 /* disc2.mp4 */,
+				36EE09331B1DD79600906277 /* disc3.mp4 */,
+				36EE09301B1DC43300906277 /* disc.mp4 */,
 				2797043D1B0A091A00FAD4D9 /* PWTextField */,
 				274A5A621B05C4A9009112B5 /* AppManager */,
 				274A5A661B05C4A9009112B5 /* External */,
@@ -4400,6 +4418,10 @@
 		6BFFF9171B0221FC00BB2B62 /* AccountSettingsViewC */ = {
 			isa = PBXGroup;
 			children = (
+				36EE08E51B1DA60200906277 /* UserContactTableCell.h */,
+				36EE08E61B1DA60200906277 /* UserContactTableCell.m */,
+				36EE08E81B1DA61800906277 /* UserInfoTableCell.h */,
+				36EE08E91B1DA61800906277 /* UserInfoTableCell.m */,
 				6BFFF91D1B02221600BB2B62 /* AccountSettingsViewC.h */,
 				6BFFF91E1B02221600BB2B62 /* AccountSettingsViewC.m */,
 			);
@@ -4420,6 +4442,8 @@
 			children = (
 				275F7DA61B05BC180049758B /* PreferenceTableCell.h */,
 				275F7DA71B05BC180049758B /* PreferenceTableCell.m */,
+				36EE08DF1B1D7CC400906277 /* CurLocationTableCell.h */,
+				36EE08E01B1D7CC400906277 /* CurLocationTableCell.m */,
 				6BFFF9241B02229E00BB2B62 /* PreferencesViewController.h */,
 				6BFFF9251B02229E00BB2B62 /* PreferencesViewController.m */,
 			);
@@ -4707,6 +4731,7 @@
 				6B12DCC91AF2720400245209 /* bg2@2x.jpg in Resources */,
 				368209FC1B1C46FA002AA93F /* sierra leone.png in Resources */,
 				36820A091B1C46FA002AA93F /* south-africa.png in Resources */,
+				36EE09351B1DD79600906277 /* disc3.mp4 in Resources */,
 				368209611B1C46FA002AA93F /* estonia.png in Resources */,
 				3682093D1B1C46FA002AA93F /* chad.png in Resources */,
 				368209BB1B1C46FA002AA93F /* moldova.png in Resources */,
@@ -4817,6 +4842,7 @@
 				6BE4C90C1B034CDE00EF1EDB /* mapPin@3x.png in Resources */,
 				368209F21B1C46FA002AA93F /* sakha republic.png in Resources */,
 				274A5A481B05C075009112B5 /* favourateIcon.png in Resources */,
+				36EE09341B1DD79600906277 /* disc2.mp4 in Resources */,
 				274F88931B0D0DC700F85743 /* searchIcon@2x.png in Resources */,
 				6BFFF95B1B0236B800BB2B62 /* tabBarOffersIconActive@2x.png in Resources */,
 				274A5DF01B05C88B009112B5 /* ShowLargePhotoViewController.xib in Resources */,
@@ -4862,6 +4888,7 @@
 				36820A0C1B1C46FA002AA93F /* sovereign military of malta.png in Resources */,
 				274A5C7A1B05C4AA009112B5 /* poweredByFoursquare_gray@2x.png in Resources */,
 				368209181B1C46FA002AA93F /* austria.png in Resources */,
+				36EE09311B1DC43300906277 /* disc.mp4 in Resources */,
 				368209F91B1C46FA002AA93F /* senegal.png in Resources */,
 				274A5DAE1B05C88B009112B5 /* chatAdd.png in Resources */,
 				274F88AA1B0D0E7400F85743 /* homePageBannerImage.png in Resources */,
@@ -5171,6 +5198,7 @@
 				274A5C681B05C4AA009112B5 /* UITableViewController+SH.m in Sources */,
 				274A5CB81B05C4AA009112B5 /* XMPPRoomMemoryStorage.m in Sources */,
 				274A5C931B05C4AA009112B5 /* XMPPElement.m in Sources */,
+				36EE08E71B1DA60200906277 /* UserContactTableCell.m in Sources */,
 				275F7DA51B05BC030049758B /* HomeTableCell.m in Sources */,
 				274A5CC71B05C4AA009112B5 /* XMPPvCardTempEmail.m in Sources */,
 				274A5DF31B05C88B009112B5 /* SHRequestSampleImage.m in Sources */,
@@ -5212,6 +5240,7 @@
 				274A5CB01B05C4AA009112B5 /* XMPPRoom.xcdatamodeld in Sources */,
 				6B1C0B7F1B04C022009DD32D /* txtFLocation.m in Sources */,
 				6BFFF9261B02229E00BB2B62 /* PreferencesViewController.m in Sources */,
+				36EE08E11B1D7CC400906277 /* CurLocationTableCell.m in Sources */,
 				274A5CB51B05C4AA009112B5 /* XMPPRoomHybridStorage.m in Sources */,
 				274A5CDC1B05C4AA009112B5 /* XMPPCapabilities.m in Sources */,
 				274A5C871B05C4AA009112B5 /* XMPPAnonymousAuthentication.m in Sources */,
@@ -5246,6 +5275,7 @@
 				274A5DFA1B05C88B009112B5 /* ShowFullProfileImageViewController.m in Sources */,
 				274A5C6A1B05C4AA009112B5 /* UIView+DownSubviews.m in Sources */,
 				274A5C6C1B05C4AA009112B5 /* UIWebView+SH.m in Sources */,
+				36EE08EA1B1DA61800906277 /* UserInfoTableCell.m in Sources */,
 				274A5C9F1B05C4AA009112B5 /* XMPPReconnect.m in Sources */,
 				274A5CFE1B05C4AA009112B5 /* DDFileLogger.m in Sources */,
 				27BE65811B0203F2004FA4B4 /* HomeViewController.m in Sources */,

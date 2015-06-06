@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface OptionViewController : BaseViewController
+{
+    __weak IBOutlet UIView *subView;
+    
+}
 - (IBAction)btnNewUserClick:(UIButton *)sender;
 - (IBAction)btnExistingUserClick:(UIButton *)sender;
 

@@ -13,7 +13,7 @@
     
     __weak IBOutlet UIImageView *imgVUser;
     __weak IBOutlet UIButton *btnProfile;
-    __weak IBOutlet UIScrollView *scrollViewMobileEnter;
+
     __weak IBOutlet UITextField *txtFMobileNumber;
     __weak IBOutlet UIImageView *imgFlagName;
     __weak IBOutlet UILabel *lblPhoneCode;
@@ -22,6 +22,7 @@
     UIImage *imgUser;
     NSData *imageData;
     
+    __weak IBOutlet UILabel *lbltakeyourselfie;
     __weak IBOutlet UIScrollView *scrollView;
     __weak IBOutlet UITextField *txtFullName;
     __weak IBOutlet UIButton *btnContinue;
@@ -32,6 +33,7 @@
 - (IBAction)btnBackClick:(UIButton *)sender;
 - (IBAction)btnPickProfileClick:(UIButton *)sender;
 - (IBAction)btnCountryList:(id)sender;
+@property (strong, nonatomic) IBOutlet AKKeyboardAvoidingScrollView *scrollViewMobileEnter;
 
 
 @end
