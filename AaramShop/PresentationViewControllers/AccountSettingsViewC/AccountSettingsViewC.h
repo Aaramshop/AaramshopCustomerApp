@@ -7,10 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserInfoTableCell.h"
+#import "UserContactTableCell.h"
+typedef enum
+{
+    eChangeSelfie = 0,
+    eUserInfo,
+    eUserContact
+}eSectionType;
 
 @interface AccountSettingsViewC : UIViewController
 {
-    
+    NSMutableArray *arrUserInfo;
+    NSMutableArray *arrUserContact;
+    NSMutableArray *allSections;
+    NSMutableDictionary *dataDict;
     __weak IBOutlet UITableView *tblView;
 }
 @end

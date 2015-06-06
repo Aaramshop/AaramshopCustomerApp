@@ -24,8 +24,8 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setBackgroundColor:[UIColor blackColor]];
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+   
+  
     // view controllers selection to display
     if ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone Simulator"])
     {

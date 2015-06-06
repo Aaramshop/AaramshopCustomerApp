@@ -206,6 +206,7 @@
                             <constraint firstItem="5Wh-Xo-qPL" firstAttribute="leading" secondItem="SNH-i8-v1i" secondAttribute="leading" id="bWl-WR-L3S"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -249,6 +250,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="POK-u6-wSB"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="tblView" destination="B0y-3t-dKR" id="GVi-vD-soG"/>
                     </connections>
@@ -491,6 +493,7 @@
                             <constraint firstItem="c02-wz-VZS" firstAttribute="centerX" secondItem="ccN-pn-OzU" secondAttribute="centerX" id="pFY-jy-oGp"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -520,7 +523,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gq-z7-tG1" customClass="AKKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gq-z7-tG1" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PI5-X5-zM4">
@@ -609,7 +612,7 @@
                             <constraint firstItem="0Gq-z7-tG1" firstAttribute="leading" secondItem="1Km-fn-n1W" secondAttribute="leading" id="wYF-Tz-mp6"/>
                         </constraints>
                     </view>
-                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -639,6 +642,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eiB-dY-JIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -692,12 +696,31 @@
                     <view key="view" contentMode="scaleToFill" id="u7h-4e-gLf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5WE-qy-M8C">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="cQU-La-hkD" id="C2c-62-7rG"/>
+                                    <outlet property="delegate" destination="cQU-La-hkD" id="m8B-Sn-6Go"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5WE-qy-M8C" firstAttribute="height" secondItem="u7h-4e-gLf" secondAttribute="height" id="2tc-2o-gDf"/>
+                            <constraint firstAttribute="centerY" secondItem="5WE-qy-M8C" secondAttribute="centerY" id="FCW-e0-o20"/>
+                            <constraint firstItem="5WE-qy-M8C" firstAttribute="width" secondItem="u7h-4e-gLf" secondAttribute="width" id="Hpf-mE-bAh"/>
+                            <constraint firstAttribute="centerX" secondItem="5WE-qy-M8C" secondAttribute="centerX" id="PIx-T7-gHW"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tblView" destination="5WE-qy-M8C" id="Mz6-gG-ktu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZpX-xR-yn4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3248" y="1231"/>
+            <point key="canvasLocation" x="3171" y="1231"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="Vpm-6P-NmU">
@@ -797,6 +820,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="tabbarScreen" id="6KP-CK-xg4" customClass="TabbarViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="04T-MN-Qgm"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="TYz-6a-ino">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -907,10 +931,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="VW9-PW-1ff">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXN-B9-N4y">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </imageView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaramShopAppLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="AGv-sp-z0g">
                                 <rect key="frame" x="14" y="66" width="292" height="292"/>
                                 <constraints>
@@ -953,17 +977,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eBF-1k-2Lq" firstAttribute="leading" secondItem="hX0-Sn-QGL" secondAttribute="leading" id="6in-Qz-gMm"/>
+                            <constraint firstItem="LXN-B9-N4y" firstAttribute="top" secondItem="zgv-K9-NUo" secondAttribute="bottom" id="8Cd-4j-RmT"/>
                             <constraint firstItem="5bb-F9-xOE" firstAttribute="top" secondItem="eBF-1k-2Lq" secondAttribute="bottom" constant="42" id="8aN-f3-80N"/>
-                            <constraint firstAttribute="centerY" secondItem="VW9-PW-1ff" secondAttribute="centerY" id="DcP-Kw-pfv"/>
+                            <constraint firstAttribute="trailing" secondItem="LXN-B9-N4y" secondAttribute="trailing" id="Vs7-Qu-B0T"/>
                             <constraint firstItem="5bb-F9-xOE" firstAttribute="top" secondItem="AGv-sp-z0g" secondAttribute="bottom" constant="210" id="apF-e4-83c"/>
-                            <constraint firstAttribute="centerX" secondItem="VW9-PW-1ff" secondAttribute="centerX" id="d1z-gh-aGr"/>
                             <constraint firstItem="eBF-1k-2Lq" firstAttribute="top" secondItem="hX0-Sn-QGL" secondAttribute="bottom" constant="6" id="eqY-bO-l92"/>
                             <constraint firstItem="5bb-F9-xOE" firstAttribute="top" secondItem="eBF-1k-2Lq" secondAttribute="bottom" constant="42" id="h75-hS-qL1"/>
                             <constraint firstAttribute="centerX" secondItem="eBF-1k-2Lq" secondAttribute="centerX" id="j47-Xy-nKc"/>
                             <constraint firstAttribute="centerX" secondItem="AGv-sp-z0g" secondAttribute="centerX" id="l8C-Z6-n0C"/>
+                            <constraint firstItem="LXN-B9-N4y" firstAttribute="leading" secondItem="xbR-7Z-KdE" secondAttribute="leading" id="mud-d5-CG0"/>
+                            <constraint firstItem="5bb-F9-xOE" firstAttribute="top" secondItem="LXN-B9-N4y" secondAttribute="bottom" id="tjr-Ug-tj4"/>
                             <constraint firstAttribute="centerX" secondItem="hX0-Sn-QGL" secondAttribute="centerX" id="u02-gT-mpY"/>
-                            <constraint firstAttribute="width" secondItem="VW9-PW-1ff" secondAttribute="width" id="u0w-bf-iyn"/>
-                            <constraint firstAttribute="height" secondItem="VW9-PW-1ff" secondAttribute="height" id="vzZ-FJ-Rk0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="F9T-1C-oaH"/>
@@ -971,6 +995,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="subView" destination="LXN-B9-N4y" id="fbU-xb-7uO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JgV-Ti-IZd" sceneMemberID="firstResponder"/>
             </objects>
@@ -1151,6 +1178,7 @@
                             <constraint firstAttribute="width" secondItem="5JT-sI-VQP" secondAttribute="width" id="t5B-le-va4"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -1286,6 +1314,7 @@
                             <constraint firstItem="Htr-Dr-4xw" firstAttribute="top" secondItem="iTR-BH-ely" secondAttribute="bottom" constant="4" id="x4g-aU-d92"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -1466,6 +1495,7 @@
                             <constraint firstAttribute="centerX" secondItem="NFr-qh-kAe" secondAttribute="centerX" id="z6g-yr-OtC"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -1493,7 +1523,6 @@
         <image name="aaramShopAppLogo.png" width="292" height="292"/>
         <image name="alertSingleBox.png" width="243" height="34"/>
         <image name="backBtn.png" width="25" height="25"/>
-        <image name="bg1.jpg" width="320" height="568"/>
         <image name="bg2.jpg" width="320" height="568"/>
         <image name="bg4.jpg" width="320" height="568"/>
         <image name="bg5.jpg" width="320" height="568"/>

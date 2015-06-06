@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PreferenceTableCell.h"
+#import "CurLocationTableCell.h"
 
-@interface PreferencesViewController : UIViewController<CustomNavigationDelegate>
+@interface PreferencesViewController : UIViewController<CustomNavigationDelegate,delegateSwitchValue>
 {
     
     __weak IBOutlet UITableView *tblView;

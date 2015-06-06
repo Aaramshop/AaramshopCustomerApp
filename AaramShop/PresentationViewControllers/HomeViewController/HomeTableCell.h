@@ -18,7 +18,7 @@
     UIImageView *imgDot;
     UIImageView * rightArrow;
     UIImageView *imgProfilePic;
-    UISwitch *swtBtn;
+
 }
 
 
