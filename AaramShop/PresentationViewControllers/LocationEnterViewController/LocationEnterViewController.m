@@ -42,6 +42,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coordinateChanged_:) name:@"DDAnnotationCoordinateDidChangeNotification" object:nil];
     [self createDataToGetAaramShops];
     [self getAddressFromLatitude:appDeleg.myCurrentLocation.coordinate.latitude andLongitude:appDeleg.myCurrentLocation.coordinate.longitude];
+    
+    NSLocale *currentLocale = [NSLocale currentLocale];  // get the current locale.
+    NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
