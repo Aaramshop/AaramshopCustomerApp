@@ -262,7 +262,8 @@ UIAlertView *alert = nil;
     }
     
 }
-+(void)NewOrUpdatedAddressBookContacts:(NSArray*)allPeople andContactsToBeDeleted:(NSString*)strDeleteContactIDs{
+
++(void)NewOrUpdatedAddressBookContacts:(NSArray *)allPeople andContactsToBeDeleted:(NSString*)strDeleteContactIDs{
     
     NSMutableArray* arrAddressBook= [[NSMutableArray alloc] init];
     NSMutableArray *arrPhoneOnly = [[NSMutableArray alloc]init];
@@ -308,23 +309,24 @@ UIAlertView *alert = nil;
                 [dictData setObject:[AppManager stringFromDate:modifiedDate] forKey:@"strModifiedDate"];
                 
                 [dictData setObject:strPhoneNumber forKey:@"phoneNumber"];
-                [arrAddressBook addObject:[NSDictionary dictionaryWithDictionary:dictData]];
+                [arrAddressBook addObject:dictData];
                 [arrPhoneOnly addObject:strPhoneNumber];
             }
             
             
             CFRelease(Phone);
         }
+        [[DataBase database] SaveAddressBookDataBase:arrAddressBook from:NO];
+        
+        
+        if (arrPhoneOnly.count > 0) {
+            [self createDataForAddressBook:arrPhoneOnly];
+        }
+
     });
 
    
     
-    [[DataBase database] SaveAddressBookDataBase:arrAddressBook from:NO];
-
-    
-    if (arrPhoneOnly.count > 0) {
-        [self createDataForAddressBook:arrPhoneOnly];
-    }
 }
 +(void)createDataForAddressBook:(NSMutableArray *)arrAddressContacts
 {

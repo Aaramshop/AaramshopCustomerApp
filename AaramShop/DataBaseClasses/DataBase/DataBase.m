@@ -39,7 +39,7 @@ AppDelegate *appDeleg;
     }
     return self;
 }
--(void)SaveAddressBookDataBase:(NSArray*)array from:(BOOL)updatedArray
+-(void)SaveAddressBookDataBase:(NSMutableArray*)array from:(BOOL)updatedArray
 {
     NSManagedObjectContext *context;
     if (!context) {
@@ -52,6 +52,9 @@ AppDelegate *appDeleg;
     if(!updatedArray)
     {
         for (id obj in array) {
+            
+            
+            
             NSFetchRequest *request = [[NSFetchRequest alloc] init];
             [request setEntity:entity];
             

@@ -11,7 +11,7 @@
 @interface DataBase : NSObject
 
 + (DataBase *)database;
--(void)SaveAddressBookDataBase:(NSArray*)array from:(BOOL)updatedArray;
+-(void)SaveAddressBookDataBase:(NSMutableArray*)array from:(BOOL)updatedArray;
 -(NSArray *)CallForGetContacts;
 -(NSArray *)fetchDataFromDatabaseForEntity:(NSString *)entityName;
 -(void)DeleteAddressBookFromDatabase:(NSString*)idsToBeDelete;
