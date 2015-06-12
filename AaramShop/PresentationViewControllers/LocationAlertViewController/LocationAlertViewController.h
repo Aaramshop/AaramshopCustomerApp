@@ -23,7 +23,6 @@
     __weak IBOutlet PWTextField *txtTitle;
     __weak IBOutlet UIView *subView;
     __weak IBOutlet UITextView *txtVAddress;
-    __weak IBOutlet UIView *viewBackAlert;
     NSMutableArray *dataSource;
     UIToolbar* keyBoardToolBar;
 }

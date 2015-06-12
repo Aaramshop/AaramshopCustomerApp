@@ -15,6 +15,7 @@
 #import "UIImageEffects.h"
 #import "LocationEnterViewController.h"
 
+
 #define kDefaultHeaderFrame CGRectMake(0, 0, tblView.frame.size.width, tblView.frame.size.height)
 
 
@@ -126,7 +127,6 @@
     arrImages=[[NSMutableArray alloc]initWithObjects:@"menuAccountSettingsIcon",@"menuPreferencesIcon",@"menuCartIcon",@"menuVouchersIcon",@"menuAwardsPointsIcon",nil];
     
     
-    
     // Add PanGesture to Show SideBar by PanGesture
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
     [self.view addGestureRecognizer:panGestureRecognizer];
@@ -138,46 +138,42 @@
     vContentView.backgroundColor = [UIColor clearColor];
     if (!_showFromRight) {
         
-        //  tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, 65, 270, [UIScreen mainScreen].bounds.size.height-135) style:UITableViewStyleGrouped];
         tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,260, [UIScreen mainScreen].bounds.size.height) style:UITableViewStyleGrouped];
-        
-        
         
         tblView.backgroundColor=[UIColor clearColor];
         [vContentView addSubview:tblView];
         tblView.dataSource = self;
         tblView.delegate = self;
         tblView.scrollEnabled=YES;
-        //    [tblView separatorInset:c]
         tblView.alwaysBounceVertical=YES;
         tblView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-        
-        
     }
     else
     {
-        tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,250, [UIScreen mainScreen].bounds.size.height) style:UITableViewStyleGrouped];
-        
-        
-        
-        tblView.backgroundColor=[UIColor clearColor];
-        tblView.separatorColor = [UIColor clearColor];
-        
-        UIButton *btnBack = [[UIButton alloc] initWithFrame:CGRectMake(16, 30, 35, 35)];
-        [btnBack setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-        [btnBack addTarget:self
-                   action:@selector(backButtonAction)
-         forControlEvents:UIControlEventTouchUpInside];
-        
-        [vContentView addSubview:tblView];
-        [vContentView addSubview:btnBack];
-        
-        tblView.dataSource = self;
-        tblView.delegate = self;
-        tblView.scrollEnabled=YES;
-        //    [tblView separatorInset:c]
-        tblView.alwaysBounceVertical=YES;
-        tblView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+//        tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,250, [UIScreen mainScreen].bounds.size.height) style:UITableViewStyleGrouped];
+//        
+//        
+//        
+//        tblView.backgroundColor=[UIColor clearColor];
+//        tblView.separatorColor = [UIColor clearColor];
+//        
+//        UIButton *btnBack = [[UIButton alloc] initWithFrame:CGRectMake(16, 30, 35, 35)];
+//        [btnBack setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+//        [btnBack addTarget:self
+//                   action:@selector(backButtonAction)
+//         forControlEvents:UIControlEventTouchUpInside];
+//        
+//        [vContentView addSubview:tblView];
+//        [vContentView addSubview:btnBack];
+//        
+//        tblView.dataSource = self;
+//        tblView.delegate = self;
+//        tblView.scrollEnabled=YES;
+//        //    [tblView separatorInset:c]
+//        tblView.alwaysBounceVertical=YES;
+//        tblView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+       // [vContentView addSubview:rightSideBarClass.view];
+
     }
     // Set ContentView in SideBar
     [self setContentViewInSideBar:vContentView];
@@ -252,7 +248,6 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //menuFacebookBox
     if (self.tag == 0) {
         return 60;
     }
@@ -278,7 +273,7 @@
         [btnFacebook setBackgroundImage:[UIImage imageNamed:@"menuFacebookBox"] forState:UIControlStateNormal];
         [btnFacebook setTitle:@"Share with Facebook" forState:UIControlStateNormal];
         [btnFacebook setTitleEdgeInsets:UIEdgeInsetsMake(3.0f, 30.0f, 0.0f, 0.0f)];
-        btnFacebook.titleLabel.font=[UIFont fontWithName:kMyriadProRegular size:15];
+        btnFacebook.titleLabel.font=[UIFont fontWithName:kRobotoRegular size:15];
         [btnFacebook addTarget:self action:@selector(shareWithFacebook) forControlEvents:UIControlEventTouchUpInside];
         [secView addSubview:btnFacebook];
         
@@ -299,64 +294,44 @@
         UIImage* image;
         secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 216)];
         UIImageView *imgBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, secView.frame.size.width, 216)];
-        
-        //    imgBackground.image = [UIImage imageNamed:@"menuProfileBackImage"];
         UIImageView *imgProfile=[[UIImageView alloc]initWithFrame:CGRectMake((secView.frame.size.width - 101)/2, 39, 101, 101)];
         imgProfile.layer.cornerRadius = imgProfile.frame.size.width / 2;
         imgProfile.clipsToBounds=YES;
-        
-        //    [imgBackground sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseURL,objUserModel.profilePicUrl]] placeholderImage:[UIImage imageNamed:@"inviteDefaultImage"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
         NSData* imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
         if (imageData) {
             image = [UIImage imageWithData:imageData];
             effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
             imgBackground.image = effectImage;
             imgProfile.image = image;
-            //        [imgBackground setContentMode:UIViewContentModeScaleAspectFill];
         }
         else
         {
             imgBackground.image=[UIImage imageNamed:@"defaultImageMenuTop"];
-            
         }
-        
-        
-        
-        
-        //    [imgProfile sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kBaseURL] ,[Utils getUserDefaultValue:kProfilePicUrl]]] placeholderImage:[UIImage imageNamed:@"inviteDefaultImage"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
-        
-        //    }];
-        
-        
         
         UILabel *lblName = [[UILabel alloc]initWithFrame:CGRectMake(0, imgProfile.frame.origin.y + imgProfile.frame.size.height +5, tblView.frame.size.width, 21)];
         lblName.textColor= [UIColor whiteColor];
         lblName.textAlignment=NSTextAlignmentCenter;
-        lblName.font=[UIFont fontWithName:kMyriadProBold size:15];
+        lblName.font=[UIFont fontWithName:kRobotoBold size:15];
         lblName.text=@"Reena Sharma";
-        
-        
         
         UILabel *lblSeperator = [[UILabel alloc]initWithFrame:CGRectMake(8, secView.frame.size.height - 47, secView.frame.size.width - 16, 2)];
         lblSeperator.backgroundColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:0.40];
-        
-        
-        
+                
         UIImageView *imglocation=[[UIImageView alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 10, 20, 20)];
         imglocation.image=[UIImage imageNamed:@"locationIcon"];
         
         UILabel *lblAddress = [[UILabel alloc]initWithFrame:CGRectMake(32, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-64, 40)];
         lblAddress.numberOfLines = 2;
         lblAddress.lineBreakMode = NSLineBreakByWordWrapping;
-        lblAddress.font=[UIFont fontWithName:kMyriadProRegular size:15];
+        lblAddress.font=[UIFont fontWithName:kRobotoRegular size:15];
         lblAddress.text=@"Noida, Sec - 18, Near Hospital, Uttar pradesh";
         lblAddress.textColor=[UIColor whiteColor];
         
         UIButton *btnEdit=[[UIButton alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-16, 34)];
         [btnEdit setImage:[UIImage imageNamed:@"menuEditIcon"] forState:UIControlStateNormal];
         [btnEdit setImageEdgeInsets:UIEdgeInsetsMake(-12.0f, 0.0f, 0.0f, -225.0f)];
-        btnEdit.titleLabel.font=[UIFont fontWithName:kMyriadProRegular size:15];
+        btnEdit.titleLabel.font=[UIFont fontWithName:kRobotoRegular size:15];
         [btnEdit addTarget:self action:@selector(EditAddress) forControlEvents:UIControlEventTouchUpInside];
         
         [secView addSubview:imgBackground];
@@ -389,19 +364,10 @@
             aCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        //    if (modeSelected == eJobsMode)
-        //    {
         aCell.textLabel.text=[arrMenu objectAtIndex:indexPath.row];
         aCell.imageView.image=[UIImage imageNamed:[arrImages objectAtIndex:indexPath.row]];
-        //    }
-        //    else
-        //    {
-        //        aCell.textLabel.text=[arrayHireModeMenu objectAtIndex:indexPath.row];
-        //        aCell.imageView.image=[UIImage imageNamed:[arrayHireSideImages objectAtIndex:indexPath.row]];
-        //    }
         aCell.textLabel.textColor=[UIColor colorWithRed:55/255.0 green:55/255.0 blue:55/255.0 alpha:1.0];
-        aCell.textLabel.font=[UIFont fontWithName:kMyriadProRegular size:16];
-        //    aCell.textLabel.font=[UIFont fontWithName:kFontCalibriRegular size:13];
+        aCell.textLabel.font=[UIFont fontWithName:kRobotoRegular size:16];
         [aCell setSeparatorInset:UIEdgeInsetsZero];
         
         return aCell;
@@ -528,58 +494,6 @@
     // UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:locationScreen];
     [self presentViewController:locationScreen animated:YES completion:nil];
 }
-//#pragma mark Button Actions And Method
-//-(void)btnHireMode:(UIButton *)button
-//{
-//    [self dismiss];
-//    [btnHireMode setSelected:![btnHireMode isSelected]];
-//
-//    [self setModeBtnState: eHireMode];
-//    modeSelected = eHireMode;
-//
-//    //    HireViewController *HireVwController = (HireViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HireFeedScreen"];
-//    //    if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)])
-//    //    {
-//    //        [self.delegate sideBarDelegatePushMethod:HireVwController];
-//    //    }
-//    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    viewController = [storyboard instantiateViewControllerWithIdentifier:@"navHireScene"];
-//    appDel.window.rootViewController = viewController;
-//    [appDel.window makeKeyAndVisible];
-//}
-//-(void)btnJobsMode:(UIButton *)button
-//{
-//    [btnJobsMode setSelected:![btnJobsMode isSelected]];
-//
-//    [self setModeBtnState: eJobsMode];
-//    modeSelected = eJobsMode;
-//    [self dismiss];
-//    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    viewController = [storyboard instantiateViewControllerWithIdentifier:@"navJobScene"];
-//    appDel.window.rootViewController = viewController;
-//    [appDel.window makeKeyAndVisible];
-//}
-//-(void)btnMatchesClicked
-//{
-//    [self dismiss];
-//    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    JobMatchesViewControllerViewController *Vc=[storyboard instantiateViewControllerWithIdentifier:@"jobMatchesVC"];
-//    if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)])
-//    {
-//        [self.delegate sideBarDelegatePushMethod:Vc];
-//    }
-//}
-//-(void)btnSettingsClicked
-//{
-//    [self dismiss];
-//    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    SettingsViewController *Vc=[storyboard instantiateViewControllerWithIdentifier:@"SettingsScreen"];
-//    if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)])
-//    {
-//        [self.delegate sideBarDelegatePushMethod:Vc];
-//    }
-//
-//}
 -(void)btnAppliedClicked
 {
     //    [self dismiss];
@@ -1016,4 +930,15 @@
     [self removeFromParentViewController];
     if (callAppearanceMethods) [self endAppearanceTransition];
 }
+
+
+
+
+
+
+
+
+
+
+
 @end

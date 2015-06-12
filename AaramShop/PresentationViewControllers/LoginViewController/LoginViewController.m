@@ -10,6 +10,8 @@
 #import "ForgotPasswordViewController.h"
 #import "MobileEnterViewController.h"
 #import "MobileVerificationViewController.h"
+#import "HomeStoreViewController.h"
+
 @interface LoginViewController ()
 {
     AppDelegate *appDeleg;
@@ -156,8 +158,12 @@
             [[NSUserDefaults standardUserDefaults ]synchronize];
             [gCXMPPController connect];
             [AppManager saveUserDatainUserDefault];
-            UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-            [self.navigationController pushViewController:tabBarController animated:YES];
+            
+            HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
+            [self.navigationController pushViewController:homeStoreVwController animated:YES];
+//            UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+//            
+//            [self.navigationController pushViewController:tabBarController animated:YES];
         }
         else if ([[responseObject objectForKey:kMobile_verified] intValue] == 0 && [[responseObject objectForKey:kstatus] intValue] == 1)
         {

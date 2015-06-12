@@ -2,16 +2,21 @@
 //  HomeStoreViewController.h
 //  AaramShop
 //
-//  Created by Pradeep Singh on 15/05/15.
 //  Copyright (c) 2015 Approutes. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "HomeStorePopUpViewController.h"
 
-@interface HomeStoreViewController : UIViewController
+@interface HomeStoreViewController : UIViewController<HomeStorePopUpViewControllerDelegate>
 {
     
     __weak IBOutlet UITextField *txtStoreId;
+    __weak IBOutlet UILabel *lblHd;
+    
+    __weak IBOutlet UIButton *btnWhatsHomeStore;    
 }
 - (IBAction)btnStart:(id)sender;
+- (IBAction)btnWhatsHomeStoreClick:(UIButton *)sender;
+
 @end

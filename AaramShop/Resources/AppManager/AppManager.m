@@ -256,7 +256,10 @@ UIAlertView *alert = nil;
         [AppManager NewOrUpdatedAddressBookContacts:states andContactsToBeDeleted:strToBeDelete];
     }
     else
-    [AppManager NewOrUpdatedAddressBookContacts:allPeople andContactsToBeDeleted:@""];
+    {
+        [AppManager NewOrUpdatedAddressBookContacts:allPeople andContactsToBeDeleted:@""];
+ 
+    }
     
 }
 +(void)NewOrUpdatedAddressBookContacts:(NSArray*)allPeople andContactsToBeDeleted:(NSString*)strDeleteContactIDs{

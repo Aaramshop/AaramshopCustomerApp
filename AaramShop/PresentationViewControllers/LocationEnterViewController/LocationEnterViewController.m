@@ -17,6 +17,7 @@
     CustomMapAnnotationView *viewOfCustomAnnotation;
     NSString *strYourCurrentAddress;
     LocationAlertViewController *locationAlert;
+    CLLocationCoordinate2D cordinatesLocation;
 }
 - (void)coordinateChanged_:(NSNotification *)notification;
 @end
@@ -41,7 +42,10 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coordinateChanged_:) name:@"DDAnnotationCoordinateDidChangeNotification" object:nil];
     [self createDataToGetAaramShops];
-    [self getAddressFromLatitude:appDeleg.myCurrentLocation.coordinate.latitude andLongitude:appDeleg.myCurrentLocation.coordinate.longitude];
+    
+    cordinatesLocation = CLLocationCoordinate2DMake(appDeleg.myCurrentLocation.coordinate.latitude, appDeleg.myCurrentLocation.coordinate.longitude);
+    
+    [self getAddressFromLatitude:cordinatesLocation.latitude andLongitude:cordinatesLocation.longitude];
     
     NSLocale *currentLocale = [NSLocale currentLocale];  // get the current locale.
     NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
@@ -122,10 +126,12 @@
                     if (strAddress.length>0) {
                         strYourCurrentAddress = strAddress;
                         txtFLocation.text = strYourCurrentAddress;
+                        [self updateMapScreenFromLatitude:cordinatesLocation.latitude  andLongitude:cordinatesLocation.longitude];
+                        
                     }
                     
                 }];
-
+                
             }
             
         }
@@ -204,7 +210,6 @@
     [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:kUserId] forKey:kUserId];
     [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:kUserId] forKey:kUserId];
     [self plotPositions:arrShopsData];
-    [self updateMapScreenFromLatitude:appDeleg.myCurrentLocation.coordinate.latitude andLongitude:appDeleg.myCurrentLocation.coordinate.longitude];
 }
 
 #pragma mark - plotThePins
@@ -243,19 +248,38 @@
             pinPoint = nil;
         }
     }
-//
-//    
-//    CLLocationCoordinate2D theCoordinate;
-//    theCoordinate.latitude = 27.810000;
-//    theCoordinate.longitude = 82.477989;
-//
+    [self setRegionOfMap];
+
 }
 -(void)updateMapScreenFromLatitude:(CLLocationDegrees)Latitude andLongitude:(CLLocationDegrees)LongitudeValue
 {
+    for (id<MKAnnotation> annotation in mapViewLocation.annotations)
+    {
+        if ([annotation isKindOfClass:[Annotation class]]) {
+            Annotation *obj = (Annotation *)annotation;
+            if (obj.isMyLocation) {
+                MKAnnotationView* aView = [mapViewLocation viewForAnnotation: obj];
+                
+              for (UIView *subview in aView.subviews )
+              {
+                  [subview removeFromSuperview];
+              }
+
+                [mapViewLocation removeAnnotation:annotation];
+                break;
+            }
+        }
+    }
+    
     CLLocationCoordinate2D coordinateValue = CLLocationCoordinate2DMake(Latitude, LongitudeValue);
     Annotation *annotation = [[Annotation alloc]initWithName:@"You" Address:strYourCurrentAddress Coordinate:coordinateValue imageUrl:@"" showMyLocation:YES];
     [mapViewLocation addAnnotation:annotation];
     
+    [self setRegionOfMap];
+
+}
+-(void)setRegionOfMap
+{
     CLLocationCoordinate2D topLeftCoord;
     topLeftCoord.latitude = -90;
     topLeftCoord.longitude = 180;
@@ -315,8 +339,9 @@
              if ([annotation isKindOfClass:[Annotation class]]) {
                  Annotation *obj = (Annotation *)annotation;
                  if (obj.isMyLocation) {
-                     [self getAddressFromLatitude:annotation.coordinate.latitude andLongitude:annotation.coordinate.longitude];
-                    annotation.Address = strYourCurrentAddress;
+                     cordinatesLocation.latitude = annotation.coordinate.latitude;
+                     cordinatesLocation.longitude = annotation.coordinate.longitude;
+                     [self getAddressFromLatitude:cordinatesLocation.latitude andLongitude:cordinatesLocation.longitude];
                  }
              }
          }
@@ -336,6 +361,7 @@
     if ([annotation isKindOfClass:[Annotation class]]) {
         Annotation *objAnnotation = (Annotation *)annotation;
         if (objAnnotation.isMyLocation) {
+            
             if (draggablePinView) {
                 draggablePinView.annotation = annotation;
             }
@@ -367,6 +393,13 @@
     
     return draggablePinView;
 }
+//-(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+//{
+//    for (UIView *subview in view.subviews )
+//    {
+//        [subview removeFromSuperview];
+//    }
+//}
 
 #pragma mark-
 

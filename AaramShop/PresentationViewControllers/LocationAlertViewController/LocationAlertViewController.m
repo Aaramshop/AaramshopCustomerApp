@@ -19,13 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
-    // Do any additional setup after loading the view.
-    
-    
     [picker selectRow:0 inComponent:0 animated:YES];
-    viewBackAlert.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     
     subView.layer.cornerRadius = 5;
     subView.layer.masksToBounds = YES;

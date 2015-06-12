@@ -49,7 +49,7 @@ typedef enum
 @property NSInteger tag;
 
 @property (nonatomic, weak) id<CDRTranslucentSideBarDelegate> delegate;
-
+//@property(nonatomic,strong) RightCollectionViewController *rightSideBarClass;
 - (id)init;
 - (instancetype)initWithDirectionFromRight:(BOOL)showFromRight;
 

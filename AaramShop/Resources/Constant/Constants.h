@@ -1,7 +1,8 @@
 
 
-#define kMyriadProRegular   @"MyriadPro-Regular"
-#define kMyriadProBold      @"MyriadPro-Bold"
+#define kRobotoBold         @"Roboto-Bold"
+#define kRobotoRegular      @"Roboto-Regular"
+#define kRobotoMedium       @"Roboto-Medium"
 
 #pragma mark - Alert titles and Internet alerts
 

@@ -8,6 +8,7 @@
 
 #import "MobileVerificationViewController.h"
 
+#import "HomeStoreViewController.h"
 
 @interface MobileVerificationViewController ()
 {
@@ -91,8 +92,11 @@
 {
     if (aaramShop_ConnectionManager.currentTask == TASK_VERIFY_MOBILE) {
         if ([[responseObject objectForKey:kIsValid] isEqualToString:@"1"] && [[responseObject objectForKey:kstatus] intValue] == 1) {
-            UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-            [self.navigationController pushViewController:tabBarController animated:YES];
+            HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
+            [self.navigationController pushViewController:homeStoreVwController animated:YES];
+
+//            UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+//            [self.navigationController pushViewController:tabBarController animated:YES];
             
         }
         else

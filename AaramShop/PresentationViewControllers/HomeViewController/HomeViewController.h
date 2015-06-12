@@ -2,18 +2,21 @@
 //  HomeViewController.h
 //  AaramShop
 //
-//  Created by Pradeep Singh on 12/05/15.
 //  Copyright (c) 2015 Approutes. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "HomeTableCell.h"
-@interface HomeViewController : UIViewController<CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate>
-
+#import "SWTableViewCell.h"
+#import "CategoryViewController.h"
+@interface HomeViewController : UIViewController<CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,SWTableViewCellDelegate,CategoryViewControllerDelegate,HomeTableCellDelegate>
 {
-    NSMutableArray *dataSource;
-    __weak IBOutlet UITableView *tblView;
+    NSMutableArray *arrSubCategory;
+    __weak IBOutlet UITableView *tblVwCategory;
+    NSMutableArray *arrCategory;
+    CategoryViewController *objCategoryVwController;
 }
+@property (nonatomic) NSInteger mainCategoryIndex;
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
 @property (nonatomic, strong) CDRTranslucentSideBar *rightSideBar;
 

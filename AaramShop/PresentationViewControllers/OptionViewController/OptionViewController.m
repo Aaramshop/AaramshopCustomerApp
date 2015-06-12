@@ -9,6 +9,7 @@
 #import "OptionViewController.h"
 #import "LoginViewController.h"
 #import "MobileEnterViewController.h"
+#import "HomeStoreViewController.h"
 @interface OptionViewController ()
 {
     MPMoviePlayerController *theMoviPlayer;
@@ -54,9 +55,9 @@
 {
     [super viewWillAppear:YES];
     if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn]) {
-        UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-        [self.navigationController pushViewController:tabBarController animated:YES];
-
+        
+        HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
+        [self.navigationController pushViewController:homeStoreVwController animated:YES];
     }
 }
 

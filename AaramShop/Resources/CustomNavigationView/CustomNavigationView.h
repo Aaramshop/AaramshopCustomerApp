@@ -17,24 +17,20 @@
 
 @end
 
-
 @interface CustomNavigationView : UIView
 {
     UILabel *lblNavigationTitle;
     UILabel *lblRightButtonText;
     UILabel *lblLeftButtonText;
-    
     UILabel *lblBottomLine;
-    
-    
-    UIButton *btnRight;
+
     UIButton *btnLeft;
-    
-//    UIImageView *rightArrowImageView;
-//    UIImageView *leftArrowImageView;
     UIImage * effectImage;
 }
 @property (nonatomic) UIImage *image;
+@property(nonatomic,strong) UIButton *btnRight1;
+@property(nonatomic,strong) UIButton *btnRight2;
+@property(nonatomic,strong) UIButton *btnRight3;
 
 @property (nonatomic, weak) id <CustomNavigationDelegate> delegate;
 
@@ -58,14 +54,6 @@
 -(void)setCustomNavigationRightButtonIntraction:(BOOL)intractionType;
 -(void)setCustomNavigationLeftButtonIntraction:(BOOL)intractionType;
 
-// Hide Left and Right Button if Required
-// No requirement ( 07-11 -2014 )
-//-(void)setCustomNavigationRightButtonHidden:(BOOL)hiddenType;
-//-(void)setCustomNavigationLeftButtonHidden:(BOOL)hiddenType;
-
-
-
-// Show Right Nav Button on View Only Mode
 -(void)showCustomNavigationRightButtonOnViewOmlyMode;
 
 -(void)setCustomNavigationLeftArrowImageWithImageName :(NSString*)ImageName;

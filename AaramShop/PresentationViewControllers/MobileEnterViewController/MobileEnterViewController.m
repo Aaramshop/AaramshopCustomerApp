@@ -24,7 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     appDeleg = APP_DELEGATE;
     appManager = [[AppManager alloc]init];
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
