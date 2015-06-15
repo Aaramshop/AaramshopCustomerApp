@@ -155,9 +155,9 @@
 {
     CustomNavigationView* navView =[[CustomNavigationView alloc]init];
     [navView setCustomNavigationLeftArrowImageWithImageName:@"menuIcon.png"];
-    [navView.btnRight1 setImage:[UIImage imageNamed:@"searchIcon.png"] forState:UIControlStateNormal];
+    [navView.btnRight2 setImage:[UIImage imageNamed:@"searchIcon.png"] forState:UIControlStateNormal];
 
-    [navView.btnRight2 setImage:[UIImage imageNamed:@"addToCartIcon.png"] forState:UIControlStateNormal];
+    [navView.btnRight1 setImage:[UIImage imageNamed:@"addToCartIcon.png"] forState:UIControlStateNormal];
 
      navView.delegate=self;
     [self.view addSubview:navView];
@@ -221,6 +221,7 @@
     }
     [cell setRightUtilityButtons: [self leftButtons] WithButtonWidth:225];
 
+    cell.selectedCategory = self.mainCategoryIndex;
     cell.delegate=self;
     cell.delegateHomeCell = self;
     SubCategoryModel *objSubCategory = [arrSubCategory objectAtIndex: indexPath.row];
@@ -253,8 +254,9 @@
     }
 }
 
--(void)refreshSubCategoryData
+-(void)refreshSubCategoryData:(NSInteger)selectedCategory
 {
+    self.mainCategoryIndex = selectedCategory;
     [arrSubCategory removeAllObjects];
     [tblVwCategory reloadData];
     [self fillSubCategoryData];

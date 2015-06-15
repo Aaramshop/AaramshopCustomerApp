@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "CategoryModel.h"
-@interface RightCollectionViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface RightCollectionViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UISearchBarDelegate>
+{
+    UIToolbar *toolBarBehindView;
+    UICollectionView *collectionVwCategory;
+    UISearchBar *searchBarCategory;
+    NSMutableArray *arrSearchCategories;
+}
 @property(nonatomic,strong) NSMutableArray *arrCategories;
-@property(nonatomic,weak) IBOutlet UICollectionView *collectionVwCategory;
-@property(nonatomic,weak) IBOutlet UISearchBar *searchBarCategory;
-@property(nonatomic,strong) NSMutableArray *arrSearchCategories;
 @end

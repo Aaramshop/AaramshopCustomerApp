@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setUpNavigationView];
     NSString *strName = @"FOOD PLAZA";
     NSString *strTitle = [NSString stringWithFormat:@"you have choose %@ as your HOME STORE.",strName];
     NSMutableAttributedString *hogan = [[NSMutableAttributedString alloc] initWithString:strTitle];
@@ -30,6 +31,25 @@
 
     lblTitle.attributedText = hogan;
 
+}
+
+#pragma mark Navigation
+
+-(void)setUpNavigationView
+{
+    CustomNavigationView* navView =[[CustomNavigationView alloc]init];
+    navView.imgNavigationBlur.image = [UIImage imageNamed:@""];
+    [navView setCustomNavigationLeftArrowImageWithImageName:@"backBtn.png"];
+    navView.delegate=self;
+    [self.view addSubview:navView];
+}
+-(void)customNavigationLeftButtonClick:(UIButton *)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)customNavigationRightButtonClick:(UIButton *)sender
+{
+    
 }
 
 

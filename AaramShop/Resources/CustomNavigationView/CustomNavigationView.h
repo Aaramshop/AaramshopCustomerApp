@@ -28,6 +28,7 @@
     UIImage * effectImage;
 }
 @property (nonatomic) UIImage *image;
+@property(nonatomic,strong) UIImageView *imgNavigationBlur;
 @property(nonatomic,strong) UIButton *btnRight1;
 @property(nonatomic,strong) UIButton *btnRight2;
 @property(nonatomic,strong) UIButton *btnRight3;

@@ -39,8 +39,7 @@
     [self fillSubCategoriesArray];
     
     rightCollectionVwContrllr.view.frame = CGRectMake(0, 93, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-93);
-    [appDeleg.window addSubview:rightCollectionVwContrllr.view];
-    rightCollectionVwContrllr.view.hidden = YES;
+
     [rightCollectionVwContrllr.arrCategories addObjectsFromArray:arrListData];
 
 }
@@ -49,7 +48,7 @@
 -(void)setUpNavigationView
 {
     CustomNavigationView* navView =[[CustomNavigationView alloc]init];
-    [navView setCustomNavigationLeftArrowImageWithImageName:@"menuIcon.png"];
+    [navView setCustomNavigationLeftArrowImageWithImageName:@"backBtn.png"];
 
     [navView.btnRight1 setImage:[UIImage imageNamed:@"addToCartIcon.png"] forState:UIControlStateNormal];
 
@@ -63,6 +62,8 @@
 }
 -(void)customNavigationLeftButtonClick:(UIButton *)sender
 {
+    [rightCollectionVwContrllr.view removeFromSuperview];
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)customNavigationRightButtonClick:(UIButton *)sender
@@ -337,7 +338,11 @@
 {
     isSelected = !isSelected;
     [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-        rightCollectionVwContrllr.view.hidden = !isSelected;
+    if (isSelected) {
+        [appDeleg.window addSubview:rightCollectionVwContrllr.view];
+    }
+    else
+        [rightCollectionVwContrllr.view removeFromSuperview];
 }
 
 #pragma mark - HorizontalPickerView DataSource Methods

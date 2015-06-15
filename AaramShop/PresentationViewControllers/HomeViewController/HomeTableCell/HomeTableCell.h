@@ -19,10 +19,11 @@
 @interface HomeTableCell :  SWTableViewCell<UIGestureRecognizerDelegate>
 {
     UILabel *lblCategoryName, *lblRestaurantName,*lblDistance,*lblDeliveryType,*lblPriceValue;
-    UIImageView *imgvCategoryIcon,*imgVCategoryTypeIcon,*imgVLocationIcon,*imgVDeliveryIcon,*imgVPriceIcon,*imgVStatusTypeIcon;
+    UIImageView *imgvCategoryIcon,*imgVCategoryTypeIcon,*imgVLocationIcon,*imgVDeliveryIcon,*imgVPriceIcon,*imgVStatusTypeIcon,*imgVHomeIcon;
     UIButton *btnFavouriteType;
 }
-@property (nonatomic, strong) NSIndexPath *indexPath;
+@property(nonatomic, strong) NSIndexPath *indexPath;
+@property(nonatomic) NSInteger selectedCategory;
 @property(nonatomic,strong) SubCategoryModel *objSubCategoryModel;
 @property(nonatomic,strong) id<HomeTableCellDelegate> delegateHomeCell;
 -(void)updateCellWithData:(SubCategoryModel  *)objSubCategoryData;

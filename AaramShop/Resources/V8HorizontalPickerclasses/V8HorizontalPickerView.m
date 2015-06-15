@@ -405,7 +405,7 @@
 		_scrollView.scrollEnabled = YES;
 		_scrollView.scrollsToTop  = NO;
 		_scrollView.showsVerticalScrollIndicator   = NO;
-		_scrollView.showsHorizontalScrollIndicator = NO;
+		_scrollView.showsHorizontalScrollIndicator = YES;
 		_scrollView.bouncesZoom  = NO;
 		_scrollView.alwaysBounceHorizontal = YES;
 		_scrollView.alwaysBounceVertical   = NO;

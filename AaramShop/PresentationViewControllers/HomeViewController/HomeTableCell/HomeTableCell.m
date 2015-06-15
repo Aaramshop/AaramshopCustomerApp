@@ -8,7 +8,7 @@
 #import "HomeTableCell.h"
 
 @implementation HomeTableCell
-@synthesize objSubCategoryModel,indexPath,delegateHomeCell;
+@synthesize objSubCategoryModel,indexPath,delegateHomeCell,selectedCategory;
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -63,10 +63,12 @@
         btnFavouriteType = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnFavouriteType addTarget:self action:@selector(btnFavouriteTypeClick) forControlEvents:UIControlEventTouchUpInside];
         
+        imgVHomeIcon = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 35, 35)];
+        imgVHomeIcon.image = [UIImage imageNamed:@"homeScreenHomeIconRed"];
 
         imgvCategoryIcon.frame = CGRectMake(10, 15, 50, 50);
         imgVCategoryTypeIcon.frame = CGRectMake(70, 15, 20, 20);
-        imgVStatusTypeIcon.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-35, 10, 25, 25);
+        imgVStatusTypeIcon.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-35, 20, 25, 25);
         lblCategoryName.frame = CGRectMake(imgVCategoryTypeIcon.frame.origin.x+imgVCategoryTypeIcon.frame.size.width+10, 14, imgVStatusTypeIcon.frame.origin.x, 20);
         btnFavouriteType.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-35, 45, 25, 25);
         lblRestaurantName.frame = CGRectMake(70, lblCategoryName.frame.origin.y+lblCategoryName.frame.size.height, 200, 25);
@@ -81,6 +83,7 @@
         imgVPriceIcon.frame = CGRectMake(lblDeliveryType.frame.origin.x+lblDeliveryType.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height, 15, 15);
         lblPriceValue.frame = CGRectMake(imgVPriceIcon.frame.origin.x+imgVPriceIcon.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height-3, 50, 20);
 
+       // [self.contentView addSubview:imgVHomeIcon];
         [self.contentView addSubview:lblCategoryName];
         [self.contentView addSubview:lblDeliveryType];
         [self.contentView addSubview: lblDistance];

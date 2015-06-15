@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeStoreDetailViewController : UIViewController
+@interface HomeStoreDetailViewController : UIViewController<CustomNavigationDelegate>
 {
     
     __weak IBOutlet UILabel *lblTitle;

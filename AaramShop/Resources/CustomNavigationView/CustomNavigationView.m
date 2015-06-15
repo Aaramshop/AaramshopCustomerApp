@@ -28,7 +28,7 @@
 
 
 @implementation CustomNavigationView
-@synthesize btnRight3,btnRight2,btnRight1;
+@synthesize btnRight3,btnRight2,btnRight1,imgNavigationBlur;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -99,7 +99,7 @@
             self.image = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
         }
-        UIImageView *imgNavigationBlur= [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, NAVIGATIONHEIGHT)];
+        imgNavigationBlur= [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, NAVIGATIONHEIGHT)];
         
         effectImage = [UIImageEffects imageByApplyingLightEffectToImageOnNavigationBar:self.image];
         imgNavigationBlur.image=effectImage;

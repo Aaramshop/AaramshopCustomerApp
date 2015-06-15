@@ -11,7 +11,7 @@
 
 @protocol CategoryViewControllerDelegate <NSObject>
 
--(void)refreshSubCategoryData;
+-(void)refreshSubCategoryData:(NSInteger )selectedCategory;
 @end
 
 @interface CategoryViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,V8HorizontalPickerElementState,V8HorizontalPickerViewDataSource,V8HorizontalPickerViewDelegate>

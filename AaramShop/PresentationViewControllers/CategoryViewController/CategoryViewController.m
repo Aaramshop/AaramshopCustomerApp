@@ -126,9 +126,9 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
         self.mainCategoryIndex = indexPath.row;
         
         [pickerViewOfCategory scrollToElement:self.mainCategoryIndex animated:YES];
-        if (self.delegate && [self.delegate conformsToProtocol:@protocol(CategoryViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(refreshSubCategoryData)])
+        if (self.delegate && [self.delegate conformsToProtocol:@protocol(CategoryViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(refreshSubCategoryData:)])
         {
-            [self.delegate refreshSubCategoryData];
+            [self.delegate refreshSubCategoryData:self.mainCategoryIndex];
         }
     }
 }
@@ -162,9 +162,9 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
         self.mainCategoryIndex = index;
         
         [self.collectionViewCategory scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.mainCategoryIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
-        if (self.delegate && [self.delegate conformsToProtocol:@protocol(CategoryViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(refreshSubCategoryData)])
+        if (self.delegate && [self.delegate conformsToProtocol:@protocol(CategoryViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(refreshSubCategoryData:)])
         {
-            [self.delegate refreshSubCategoryData];
+            [self.delegate refreshSubCategoryData:self.mainCategoryIndex];
         }
 
     }

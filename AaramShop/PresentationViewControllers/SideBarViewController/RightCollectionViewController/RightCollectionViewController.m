@@ -18,7 +18,7 @@ static NSString *strCollectionCategory = @"collectionCategories";
 @end
 
 @implementation RightCollectionViewController
-@synthesize arrCategories,arrSearchCategories,searchBarCategory,collectionVwCategory;
+@synthesize arrCategories;
 - (void)viewDidLoad {
     [super viewDidLoad];
     isSearching = NO;
@@ -26,11 +26,44 @@ static NSString *strCollectionCategory = @"collectionCategories";
     arrSearchCategories = [[NSMutableArray alloc]init];
     arrCategories = [[NSMutableArray alloc]init];
     
+    searchBarCategory = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 10, [UIScreen mainScreen].bounds.size.width, 44)];
+    searchBarCategory.delegate = self;
+    
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
+    UITextField *searchField;
+    
+    for (UIView *subView in searchBarCategory.subviews){
+        for (UIView *ndLeveSubView in subView.subviews){
+            if ([ndLeveSubView isKindOfClass:[UITextField class]])
+            {
+                searchField = (UITextField *)ndLeveSubView;
+                break;
+            }
+        }
+    }
+    searchField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    
+    if(!(searchField == nil)) {
+        searchField.textColor = [UIColor whiteColor];
+        [searchField setBackground: [UIImage imageNamed:@"searchBox.png"]];
+        [searchField setBorderStyle:UITextBorderStyleNone];
+    }
+
+    searchBarCategory.placeholder = @"Search";
+    [searchBarCategory setSearchBarStyle:UISearchBarStyleMinimal];
+    searchBarCategory.barStyle = UIBarStyleDefault;
+    searchBarCategory.barTintColor = [UIColor whiteColor];
+    searchBarCategory.backgroundColor = [UIColor whiteColor];
+    searchBarCategory.translucent = YES;
+    toolBarBehindView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    
     UICollectionViewFlowLayout *flowLayout1= [[UICollectionViewFlowLayout alloc] init];
     flowLayout1.minimumLineSpacing = 0.0;
     flowLayout1.minimumInteritemSpacing = 1.0f;
     [flowLayout1  setScrollDirection:UICollectionViewScrollDirectionVertical];
-    
+
+    collectionVwCategory = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64) collectionViewLayout:flowLayout1];
+
     collectionVwCategory.allowsSelection=YES;
     collectionVwCategory.alwaysBounceVertical = YES;
     [collectionVwCategory setDataSource:self];
@@ -42,6 +75,13 @@ static NSString *strCollectionCategory = @"collectionCategories";
     collectionVwCategory.backgroundColor = [UIColor clearColor];
     collectionVwCategory.pagingEnabled = YES;
     
+    UIView *viewBehindToolBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 64)];
+    viewBehindToolBar.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:toolBarBehindView];
+    [self.view addSubview:viewBehindToolBar];
+    [self.view addSubview:searchBarCategory];
+    [self.view addSubview:collectionVwCategory];
 }
 #pragma mark - UICollectionView Delegate & DataSource Methods
 
