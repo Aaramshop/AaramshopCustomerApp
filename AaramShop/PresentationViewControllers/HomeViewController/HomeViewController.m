@@ -25,7 +25,6 @@
     self.rightSideBar = [Utils createRightBarWithDelegate:self];
     
     [self setUpNavigationView];
-    [self showLocationScreen];
     objCategoryVwController = (CategoryViewController *) [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"categoryScreen"];
 
     objCategoryVwController.delegate = self;
@@ -140,14 +139,6 @@
     [tblVwCategory reloadData];
 }
 
--(void)showLocationScreen
-{
-    [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
-
-    [[AppManager sharedManager] performSelector:@selector(createDefaultValuesForDictionay) withObject:nil];
-    LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
-    [self presentViewController:locationScreen animated:YES completion:nil];
-}
 
 #pragma mark Navigation
 
@@ -325,6 +316,7 @@
         }break;
             
     
+            
             
         default:
             break;

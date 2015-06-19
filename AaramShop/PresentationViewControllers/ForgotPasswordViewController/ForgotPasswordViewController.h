@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForgotPasswordViewController : BaseViewController<UIGestureRecognizerDelegate>
+@interface ForgotPasswordViewController : BaseViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
 {
     
     __weak IBOutlet UIScrollView *scrollViewForgotPassword;
     __weak IBOutlet UITextField *txtfEmail;
+    
+    __weak IBOutlet UIButton *btnSend;
 }
+@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+
 - (IBAction)btnBackClick:(UIButton *)sender;
+- (IBAction)btnSendClick:(UIButton *)sender;
 
 @end

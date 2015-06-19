@@ -79,7 +79,6 @@
     _hasShown = NO;
     self.isCurrentPanGestureTarget = NO;
     
-    //  self.sideBarWidth = 150;
     self.animationDuration = 0.35f;
     
     [self initTranslucentView];
@@ -148,34 +147,6 @@
         tblView.alwaysBounceVertical=YES;
         tblView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     }
-    else
-    {
-//        tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,250, [UIScreen mainScreen].bounds.size.height) style:UITableViewStyleGrouped];
-//        
-//        
-//        
-//        tblView.backgroundColor=[UIColor clearColor];
-//        tblView.separatorColor = [UIColor clearColor];
-//        
-//        UIButton *btnBack = [[UIButton alloc] initWithFrame:CGRectMake(16, 30, 35, 35)];
-//        [btnBack setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-//        [btnBack addTarget:self
-//                   action:@selector(backButtonAction)
-//         forControlEvents:UIControlEventTouchUpInside];
-//        
-//        [vContentView addSubview:tblView];
-//        [vContentView addSubview:btnBack];
-//        
-//        tblView.dataSource = self;
-//        tblView.delegate = self;
-//        tblView.scrollEnabled=YES;
-//        //    [tblView separatorInset:c]
-//        tblView.alwaysBounceVertical=YES;
-//        tblView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-       // [vContentView addSubview:rightSideBarClass.view];
-
-    }
-    // Set ContentView in SideBar
     [self setContentViewInSideBar:vContentView];
 }
 -(void)backButtonAction
@@ -218,10 +189,6 @@
                                                            constant:0.0]];
 }
 #pragma mark - UITableViewDataSource
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return 0;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -297,17 +264,15 @@
         UIImageView *imgProfile=[[UIImageView alloc]initWithFrame:CGRectMake((secView.frame.size.width - 101)/2, 39, 101, 101)];
         imgProfile.layer.cornerRadius = imgProfile.frame.size.width / 2;
         imgProfile.clipsToBounds=YES;
-        NSData* imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
-        if (imageData) {
-            image = [UIImage imageWithData:imageData];
-            effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
-            imgBackground.image = effectImage;
-            imgProfile.image = image;
-        }
-        else
-        {
-            imgBackground.image=[UIImage imageNamed:@"defaultImageMenuTop"];
-        }
+        imgBackground.image=[UIImage imageNamed:@"defaultImageMenuTop"];
+        [imgProfile sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_100],[[NSUserDefaults standardUserDefaults] valueForKey:kStore_image]]] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (image) {
+                effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
+                imgBackground.image = effectImage;
+                imgProfile.image = image;
+            }
+        }];
+        
         
         UILabel *lblName = [[UILabel alloc]initWithFrame:CGRectMake(0, imgProfile.frame.origin.y + imgProfile.frame.size.height +5, tblView.frame.size.width, 21)];
         lblName.textColor= [UIColor whiteColor];

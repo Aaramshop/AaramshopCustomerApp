@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 @interface AppDelegate ()
 {
     Reachability *aReachability;
@@ -18,6 +19,7 @@
 @synthesize navController,myCurrentLocation,locationManager,arrOptions;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+     [Fabric with:@[CrashlyticsKit]];
     [self initializeAllSingletonObjects];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -274,6 +276,7 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

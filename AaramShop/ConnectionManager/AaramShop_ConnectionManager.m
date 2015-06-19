@@ -19,14 +19,18 @@
     self.delegate = inputDelegate;
     self.currentTask = inputTask;
     
-    AFHTTPSessionManager *manager = [Utils InitSetUpForWebService];
+    NSURL *baseURL = [NSURL URLWithString:kBaseURL];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager.requestSerializer setTimeoutInterval:60];
     [manager POST:functionName parameters:aDict
           success:^(NSURLSessionDataTask *task, id responseObject)
      {
-         
          [AppManager stopStatusbarActivityIndicator];
-//        [loginView.loginClickBtn setEnabled:YES];
-         
          
          if(self.delegate != nil && [self.delegate respondsToSelector:@selector(responseReceived:)])
          {
@@ -51,8 +55,15 @@
     self.delegate = inputDelegate;
     self.currentTask = inputTask;
     
-    AFHTTPSessionManager *manager = [Utils InitSetUpForWebService];
-    [manager POST:@"" parameters:aDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
+    NSURL *baseURL = [NSURL URLWithString:kBaseURL];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];
+    
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager.requestSerializer setTimeoutInterval:60];
+    [manager POST:functionName parameters:aDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      {
          if (data) {
              [formData appendPartWithFileData:data name:kProfileImage fileName:@"profileImage.jpg" mimeType:@"image/jpg"];

@@ -8,26 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "CLocation.h"
+#import <AddressBook/AddressBook.h>
+
 typedef enum {
     eMapDefaultType =0,
     eMapSatelliteType,
     eMapHybridType
 }enMapViewType;
 
-
-typedef enum {
-    ADDRESSBOOK_CONTACT_REGISTERED_ON_UMMAPP=0,
-    ADDRESSBOOK_CONTACT_NOT_REGISTERED_ON_UMMAPP,
-}AddressBookContactType;
-typedef enum {
-    ADDRESSBOOK_DETAIL_BUTTON_TYPE_INVITE_TO_UMMAPP,
-    ADDRESSBOOK_DETAIL_BUTTON_TYPE_SEND_MESSAGE,
-    ADDRESSBOOK_DETAIL_BUTTON_TYPE_EMAIL_CONVERSTAION,
-    ADDRESSBOOK_DETAIL_BUTTON_TYPE_CLEAR_CONVERSATION,
-    ADDRESSBOOK_DETAIL_BUTTON_TYPE_VIEW_ALL_MEDIA
-}AddressBookDetailButtonType;
-
-#import <AddressBook/AddressBook.h>
 void MyAddressBookExternalChangeCallback (
                                           ABAddressBookRef addressBook,
                                           CFDictionaryRef info,
@@ -39,14 +27,16 @@ void MyAddressBookExternalChangeCallback (
     ABAddressBookRef addressBookRef;
 }
 @property(nonatomic,strong) NSMutableArray *arrImages;
-@property(nonatomic, assign) BOOL isFetchingContacts;
-@property(nonatomic , strong)   CMCountryList *cmCountryList;
+@property(nonatomic,assign)BOOL isFetchingContacts;
+@property(nonatomic,strong) CMCountryList *cmCountryList;
+@property(nonatomic, strong) UIImage *imgProfile;
 
 #pragma Methods
 +(AppManager *)sharedManager;
 +(CLocation *)getLocationByLocationStr:(NSString *)inLocationStr;
 +(void)saveUserDatainUserDefault;
-+(NSArray*)getCountryCodeList;
+-(void)countryCodeData;
+-(NSArray *)getcountryList;
 +(void)saveDataToNSUserDefaults:(NSDictionary*)responseDic;
 +(void)stopStatusbarActivityIndicator;
 +(void)startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:(BOOL)status;

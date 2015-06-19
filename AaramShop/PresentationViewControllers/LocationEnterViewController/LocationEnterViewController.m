@@ -10,7 +10,8 @@
 #import "DDAnnotationView.h"
 #import "ShopDataModel.h"
 #import "AaramShop_ConnectionManager.h"
-
+#import "HomeStoreViewController.h"
+#import "AddressModel.h"
 @interface LocationEnterViewController ()
 {
     AppDelegate *appDeleg;
@@ -18,6 +19,7 @@
     NSString *strYourCurrentAddress;
     LocationAlertViewController *locationAlert;
     CLLocationCoordinate2D cordinatesLocation;
+    AddressModel *addressModel;
 }
 - (void)coordinateChanged_:(NSNotification *)notification;
 @end
@@ -32,16 +34,23 @@
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate = self;
 
+    addressModel = [[AddressModel alloc]init];
+    
     txtFLocation.tintColor = [UIColor blackColor];
     arrShopsData = [[NSMutableArray alloc]init];
     mapViewLocation.delegate = self;
+    
+        [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
+    
+        [[AppManager sharedManager] performSelector:@selector(createDefaultValuesForDictionay) withObject:nil];
+
 }
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coordinateChanged_:) name:@"DDAnnotationCoordinateDidChangeNotification" object:nil];
-    [self createDataToGetAaramShops];
+   // [self createDataToGetAaramShops];
     
     cordinatesLocation = CLLocationCoordinate2DMake(appDeleg.myCurrentLocation.coordinate.latitude, appDeleg.myCurrentLocation.coordinate.longitude);
     
@@ -113,8 +122,55 @@
             {
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     
-                    NSArray *arr=[returnJsonValue objectAtIndex:0];
-                    NSString *stringTaggedLocationloc=[arr valueForKey:@"formatted_address"];
+                    NSDictionary *dict=[returnJsonValue objectAtIndex:0];
+                    NSArray * arr1 = [dict valueForKey:@"address_components"];
+                    NSString *shortAdministrativearea1= @"";
+                    for(int i=0;i<[arr1 count];i++)
+                    {
+                        if([[[[arr1 objectAtIndex:i] objectForKey:@"types"]objectAtIndex:0]isEqualToString:@"postal_code"])
+                        {
+                            addressModel.pincode = [[arr1 objectAtIndex:i] objectForKey:@"long_name"];
+                        }
+                        if([[[[arr1 objectAtIndex:i] objectForKey:@"types"]objectAtIndex:0]isEqualToString:@"administrative_area_level_1"])
+                        {
+                            addressModel.state = [[arr1 objectAtIndex:i] objectForKey:@"long_name"];
+                            shortAdministrativearea1 =[[arr1 objectAtIndex:i] objectForKey:@"short_name"];
+                        }
+                        if([[[[arr1 objectAtIndex:i] objectForKey:@"types"]objectAtIndex:0]isEqualToString:@"administrative_area_level_2"])
+                        {
+                            addressModel.city = [[arr1 objectAtIndex:i] objectForKey:@"long_name"];
+                        }
+                        if([[[[arr1 objectAtIndex:i] objectForKey:@"types"]objectAtIndex:0]isEqualToString:@"locality"])
+                        {
+                            addressModel.locality = [[arr1 objectAtIndex:i] objectForKey:@"long_name"];
+                        }
+                    }
+                    
+                    NSMutableArray *arrayFormattedAddress = [NSMutableArray arrayWithArray:[[dict objectForKey:@"formatted_address"] componentsSeparatedByString:@","]];
+                    if([arrayFormattedAddress containsObject:[NSString stringWithFormat:@" %@ %@",addressModel.state,addressModel.pincode]])
+                    {
+                        [arrayFormattedAddress removeObject:[NSString stringWithFormat:@" %@ %@",addressModel.state,addressModel.pincode]];
+                    }
+                    if([arrayFormattedAddress containsObject:[NSString stringWithFormat:@" %@ %@",shortAdministrativearea1,addressModel.pincode]])
+                    {
+                        [arrayFormattedAddress removeObject:[NSString stringWithFormat:@" %@ %@",shortAdministrativearea1,addressModel.pincode]];
+                    }
+                    
+                    if([arrayFormattedAddress containsObject:[NSString stringWithFormat:@" %@",addressModel.city]])
+                    {
+                        [arrayFormattedAddress removeObject:[NSString stringWithFormat:@" %@",addressModel.city]];
+                    }
+                    if([arrayFormattedAddress containsObject:[NSString stringWithFormat:@" %@",addressModel.locality]])
+                    {
+                        [arrayFormattedAddress removeObject:[NSString stringWithFormat:@" %@",addressModel.locality]];
+                    }
+                    [arrayFormattedAddress removeObject:[arrayFormattedAddress lastObject]];
+                    NSString *strAddressString = [[NSArray arrayWithArray:arrayFormattedAddress] componentsJoinedByString:@","];
+                    
+                    addressModel.address = strAddressString;
+              
+                    NSDictionary *dictAdd=[returnJsonValue objectAtIndex:0];
+                    NSString *stringTaggedLocationloc=[dictAdd valueForKey:@"formatted_address"];
                     
                     NSArray *items = [stringTaggedLocationloc componentsSeparatedByString:@","];
                     
@@ -126,12 +182,12 @@
                     if (strAddress.length>0) {
                         strYourCurrentAddress = strAddress;
                         txtFLocation.text = strYourCurrentAddress;
-                        [self updateMapScreenFromLatitude:cordinatesLocation.latitude  andLongitude:cordinatesLocation.longitude];
                         
                     }
+
+                [self updateMapScreenFromLatitude:cordinatesLocation.latitude  andLongitude:cordinatesLocation.longitude];
                     
                 }];
-                
             }
             
         }
@@ -141,11 +197,13 @@
         NSLog(@"%@",exception);
     }
 }
+
+
 -(void)createDataToGetAaramShops
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    [dict setObject:kOptionStore_listing forKey:kOption];
-    [dict removeObjectForKey:kSessionToken];
+//    [dict setObject:kOptionStore_listing forKey:kOption];
+//    [dict removeObjectForKey:kSessionToken];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     [dict setObject:@"5" forKey:kRadius];
@@ -161,7 +219,7 @@
         return;
     }
     
-    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_ENTER_LOCATION andDelegate:self];
+    [aaramShop_ConnectionManager getDataForFunction:kStoreListURL withInput:aDict withCurrentTask:TASK_ENTER_LOCATION andDelegate:self];
 }
 -(void) didFailWithError:(NSError *)error
 {
@@ -393,14 +451,6 @@
     
     return draggablePinView;
 }
-//-(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
-//{
-//    for (UIView *subview in view.subviews )
-//    {
-//        [subview removeFromSuperview];
-//    }
-//}
-
 #pragma mark-
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
@@ -463,22 +513,34 @@
 - (IBAction)btnDoneClick:(UIButton *)sender {
     
     [txtFLocation resignFirstResponder];
-    locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
-    locationAlert.delegate = self;
-    CGRect locationAlertViewRect = self.view.bounds;
-    locationAlert.strAddress = txtFLocation.text;
-    locationAlert.view.frame = locationAlertViewRect;
-    [appDeleg.window addSubview:locationAlert.view];
+    [self addLocationScreen];
 }
 
 - (IBAction)btnEditClick:(UIButton *)sender {
-    txtFLocation.userInteractionEnabled = YES;
-    [txtFLocation becomeFirstResponder];
+    txtFLocation.userInteractionEnabled = NO;
+    [txtFLocation resignFirstResponder];
+    addressModel.address = @"";
+    addressModel.state = @"";
+    addressModel.city = @"";
+    addressModel.locality = @"";
+    addressModel.pincode = @"";
+    [self addLocationScreen];
 }
+-(void)addLocationScreen
+{
+    locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
+    locationAlert.delegate = self;
+    locationAlert.objAddressModel = addressModel;
+    locationAlert.cordinatesLocation = cordinatesLocation;
+    CGRect locationAlertViewRect = [UIScreen mainScreen].bounds;
+    locationAlert.view.frame = locationAlertViewRect;
+    [appDeleg.window addSubview:locationAlert.view];
 
+}
 -(void)saveAddress
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+ HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
+ [self.navigationController pushViewController:homeStoreVwController animated:YES];
 }
 #pragma mark - 
 

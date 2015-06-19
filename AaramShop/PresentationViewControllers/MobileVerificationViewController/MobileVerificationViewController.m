@@ -8,7 +8,7 @@
 
 #import "MobileVerificationViewController.h"
 
-#import "HomeStoreViewController.h"
+#import "LocationEnterViewController.h"
 
 @interface MobileVerificationViewController ()
 {
@@ -30,13 +30,10 @@
     
     int mobLength = [strMobileNum length];
     lblMobileNumber.text = [NSString stringWithFormat:@"xxx xxx xx%@",[strMobileNum substringFromIndex:mobLength-2]];
-    
-    NSData* imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
-    if (imageData) {
-        UIImage* image = [UIImage imageWithData:imageData];
-        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
-        imgVBg.image = effectImage;
 
+    if (gAppManager.imgProfile) {
+        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:gAppManager.imgProfile];
+        imgVBg.image = effectImage;
     }
     else
         imgVBg.image = [UIImage imageNamed:@"bg4.jpg"];
@@ -45,21 +42,11 @@
 -(void)createDataForOtpSend
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    [dict removeObjectForKey:kSessionToken];
-    [dict setObject:kOptionLogin_otp_validate forKey:kOption];
+//    [dict removeObjectForKey:kSessionToken];
     [dict setObject:txtfVerificationCode.text forKey:kOtp];
     [dict setObject:strMobileNum forKey:kMobile];
     [self callWebserviceForOtpSend:dict];
 }
--(void)createDataForOtpResend
-{
-    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    [dict removeObjectForKey:kSessionToken];
-    [dict setObject:strMobileNum forKey:kMobile];
-    [dict setObject:kOptionResend_otp forKey:kOption];
-    [self callWebserviceForOtpResend:dict];
-}
-
 
 -(void)callWebserviceForOtpSend:(NSMutableDictionary *)aDict
 {
@@ -70,8 +57,17 @@
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
-    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_VERIFY_MOBILE andDelegate:self];
+    [aaramShop_ConnectionManager getDataForFunction:kOtpValidateURL withInput:aDict withCurrentTask:TASK_VERIFY_MOBILE andDelegate:self];
 }
+
+-(void)createDataForOtpResend
+{
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+//    [dict removeObjectForKey:kSessionToken];
+    [dict setObject:strMobileNum forKey:kMobile];
+    [self callWebserviceForOtpResend:dict];
+}
+
 -(void)callWebserviceForOtpResend:(NSMutableDictionary *)aDict
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
@@ -81,7 +77,7 @@
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
-    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_RESEND_OTP andDelegate:self];
+    [aaramShop_ConnectionManager getDataForFunction:kResendOtpURL withInput:aDict withCurrentTask:TASK_RESEND_OTP andDelegate:self];
 }
 
 -(void) didFailWithError:(NSError *)error
@@ -92,12 +88,10 @@
 {
     if (aaramShop_ConnectionManager.currentTask == TASK_VERIFY_MOBILE) {
         if ([[responseObject objectForKey:kIsValid] isEqualToString:@"1"] && [[responseObject objectForKey:kstatus] intValue] == 1) {
-            HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
-            [self.navigationController pushViewController:homeStoreVwController animated:YES];
-
-//            UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-//            [self.navigationController pushViewController:tabBarController animated:YES];
             
+            LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+            [self.navigationController pushViewController:locationScreen animated:YES];
+
         }
         else
         {

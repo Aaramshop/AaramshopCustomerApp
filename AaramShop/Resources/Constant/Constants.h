@@ -23,7 +23,8 @@
 
 #define APP_DELEGATE (AppDelegate*)[[UIApplication sharedApplication]delegate]
 
-#define kBaseURL                              @"https://www.aaramshop.com/android_app/android_app_api.php"
+//#define kBaseURL                              @"https://www.aaramshop.com/android_app/android_app_api.php"
+#define kBaseURL                                @"http://52.74.220.25/index.php/user/"
 
 #define kIsLoggedIn                           @"isLoggedIn"
 #define kDevice                               @"1"
@@ -38,11 +39,12 @@
 #define kOption                               @"option"
 #define kSessionToken                         @"sessionToken"
 #define kMobile                               @"mobile"
-#define kOptionLogin                          @"login"
+//#define kOptionLogin                          @"login"
 #define kstatus                               @"status"
-#define kOptionNew_user_login                 @"new_user_login"
-#define kImage                                @"Img"
+//#define kOptionNew_user_login                 @"new_user_login"
+#define kCountryName                          @"countryName"
 #define kPhoneNumbers                         @"phoneNumbers"
+#define kFullname                             @"fullname"
 
 #pragma mark - Existing User Keys
 
@@ -52,6 +54,9 @@
 #define kAdultMale                            @"adultMale"
 #define kChatUsername                         @"chatUsername"
 #define kCity                                 @"city"
+#define kLocality                             @"locality"
+#define kPincode                              @"pincode"
+#define kTitle                                @"title"
 #define kDob                                  @"dob"
 #define kEmail                                @"email"
 #define kFemaleChild                          @"femaleChild"
@@ -67,9 +72,21 @@
 #define kState                                @"state"
 #define kToddlers                             @"toddlers"
 
+#define kNewUserURL                           @"newUser"
+#define kOtpValidateURL                       @"otpValidate"
+#define kResendOtpURL                         @"resendOtp"
+#define kForgotPasswordURL                    @"forgotPassword"
+#define kUpdateAddressURL                     @"updateAddress"
+#define kExistingUserURL                      @"existingUser"
+
+#define kImage_url_100                        @"image_url_100"
+#define kImage_url_320                         @"image_url_320"
+#define kImage_url_640                          @"image_url_640"
+
 #pragma mark - AaramShopValues
 
-#define kOptionStore_listing                @"store_listing"
+//#define kOptionStore_listing                @"store_listing"
+#define kStoreListURL                       @"storeList"
 #define kRadius                             @"radius"
 #define kCity_name                          @"city_name"
 #define kDelivers                           @"delivers"
@@ -99,7 +116,7 @@
 
 #pragma mark UpdateMobile
 
-#define kOptionUpdate_user                    @"update_user"
+//#define kOptionUpdate_user                    @"update_user"
 
 #define kTextFieldDigitRange @"0123456789"
 
@@ -110,10 +127,10 @@
 
 #pragma mark - OTP Validation Keys
 
-#define kOptionLogin_otp_validate         @"login_otp_validate"
+//#define kOptionLogin_otp_validate         @"login_otp_validate"
 #define kOtp                              @"otp"
-#define kOptionResend_otp                 @"resend_otp"
-#define kOptionUser_mobile_data           @"user_mobile_data"
+//#define kOptionResend_otp                 @"resend_otp"
+//#define kOptionUser_mobile_data           @"user_mobile_data"
 //==================Sign Up============
 
 #define kFileType                                   @"fileType"
@@ -158,7 +175,7 @@
 
 #pragma mark - 
 #define kAddressForLocation                 @"addressForLocation"
-#define kAddressTitle                       @"addressTitle"
-#define kHomeAddress                        @"homeAddress"
-#define kOfficeAddress                      @"officeAddress"
-#define kAddressValue                       @"addressValue"
+//#define kAddressTitle                       @"addressTitle"
+//#define kHomeAddress                        @"homeAddress"
+//#define kOfficeAddress                      @"officeAddress"
+//#define kAddressValue                       @"addressValue"

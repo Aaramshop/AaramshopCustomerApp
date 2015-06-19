@@ -10,7 +10,7 @@
 #import "V8HorizontalPickerView.h"
 #import "RightCollectionViewController.h"
 
-@interface HomeSecondViewController : UIViewController<V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate>
+@interface HomeSecondViewController : UIViewController<V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,UISearchBarDelegate>
 {    
     __weak IBOutlet UITableView *tblVwCategory;
     RightCollectionViewController *rightCollectionVwContrllr;

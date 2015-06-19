@@ -10,8 +10,7 @@
 #import "ForgotPasswordViewController.h"
 #import "MobileEnterViewController.h"
 #import "MobileVerificationViewController.h"
-#import "HomeStoreViewController.h"
-
+#import "LocationEnterViewController.h"
 @interface LoginViewController ()
 {
     AppDelegate *appDeleg;
@@ -107,22 +106,21 @@
 }
 -(void)createDataForLogin
 {
-    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
-    [activityVw startAnimating];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    [dict setObject:kExisting_user forKey:kOption];
+    [dict removeObjectForKey:kUserId];
+//    [dict removeObjectForKey:kSessionToken];
     [dict setObject:txtUserName.text forKey:kUsername];
     [dict setObject:txtPassword.text forKey:kpassword];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
-    [dict removeObjectForKey:kUserId];
-    [dict removeObjectForKey:kSessionToken];
-//    [sender setEnabled:NO];
     [self callWebserviceForLogin:dict ];
 }
 # pragma webService Calling
 -(void)callWebserviceForLogin:(NSMutableDictionary*)aDict
 {
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    [activityVw startAnimating];
+
     if (![Utils isInternetAvailable])
     {
         [AppManager stopStatusbarActivityIndicator];
@@ -132,7 +130,7 @@
         return;
     }
     
-    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_LOGIN andDelegate:self ];
+    [aaramShop_ConnectionManager getDataForFunction:kExistingUserURL withInput:aDict withCurrentTask:TASK_LOGIN andDelegate:self ];
 }
 
 -(void) didFailWithError:(NSError *)error
@@ -158,12 +156,8 @@
             [[NSUserDefaults standardUserDefaults ]synchronize];
             [gCXMPPController connect];
             [AppManager saveUserDatainUserDefault];
-            
-            HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
-            [self.navigationController pushViewController:homeStoreVwController animated:YES];
-//            UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-//            
-//            [self.navigationController pushViewController:tabBarController animated:YES];
+                LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+                [self.navigationController pushViewController:locationScreen animated:YES];
         }
         else if ([[responseObject objectForKey:kMobile_verified] intValue] == 0 && [[responseObject objectForKey:kstatus] intValue] == 1)
         {
@@ -174,7 +168,7 @@
             [self.navigationController pushViewController:mobileEnterVwController animated:YES];
             
         }
-        else if ([[responseObject objectForKey:kstatus] intValue] == 0)
+        else
         {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         }

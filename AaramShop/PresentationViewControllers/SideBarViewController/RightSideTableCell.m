@@ -32,18 +32,6 @@
         lblName.textColor=[UIColor colorWithRed:89/255.0f green:89/255.0f blue:89/255.0f alpha:1.0f];
         lblName.textAlignment=NSTextAlignmentCenter;
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        self.backgroundColor=[UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f];
-        
-        
        
         [self addSubview:btnCategory];
         [self addSubview:lblName];
@@ -69,18 +57,12 @@
     btnCategoryRect.origin.y            =   (selfRect.size.height - imgSize - lblHeight)/2;
     btnCategory.frame                   =   btnCategoryRect;
     
-    
-    
     lblNameRect.size.width      =   selfRect.size.width;
     lblNameRect.size.height      =   lblHeight;
     lblNameRect.origin.x            =   0;
     lblNameRect.origin.y            =   btnCategoryRect.origin.y  + btnCategoryRect.size.width + 4;
     lblName.frame                   =   lblNameRect;
-    
-    
-    
-    
-    
+        
 }
 -(void)updateCellWithData:(NSDictionary  *)inDataDic
 {

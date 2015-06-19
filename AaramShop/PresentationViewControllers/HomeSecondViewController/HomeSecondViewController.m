@@ -205,7 +205,7 @@
     }
     else if (section == 1)
     {
-        headerHeight = 41;
+        headerHeight = 82;
     }
     return headerHeight;
 }
@@ -258,6 +258,38 @@
         NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"SubCategoryView"
                                                          owner:self options:nil];
         UIView * secView = (UIView *)[objects objectAtIndex:0];
+        UIView *secSubView1 = (UIView *)[secView viewWithTag:23237];
+        
+        UISearchBar *searchBarProducts = (UISearchBar *)[secSubView1 viewWithTag:102];
+        searchBarProducts.delegate = self;
+        
+        searchBarProducts.frame = CGRectMake(9, 4, [UIScreen mainScreen].bounds.size.width-18, 33);
+        UITextField *searchField;
+        
+        for (UIView *subView in searchBarProducts.subviews){
+            for (UIView *ndLeveSubView in subView.subviews){
+                if ([ndLeveSubView isKindOfClass:[UITextField class]])
+                {
+                    searchField = (UITextField *)ndLeveSubView;
+                    break;
+                }
+            }
+        }
+        searchField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+        
+        if(!(searchField == nil)) {
+            searchField.textColor = [UIColor blackColor];
+            [searchField setBackground: [UIImage imageNamed:@"searchBox.png"]];
+            [searchField setBorderStyle:UITextBorderStyleNone];
+        }
+        
+        searchBarProducts.placeholder = @"Search";
+        
+        UIView *secSubView2 = (UIView *)[secView viewWithTag:23235];
+        
+        UIButton *btn = (UIButton *)[secSubView2 viewWithTag:101];
+        [btn addTarget:self action:@selector(btnGoToCheckOutScreen) forControlEvents:UIControlEventTouchUpInside];
+        
         return secView;
     }
 }
@@ -286,8 +318,6 @@
         
         SubCategoryModel *objSubCategory = [arrSubCategory objectAtIndex: indexPath.row];
         cell.indexPath=indexPath;
-        //    cell.delegate=self;
-        //    [cell setRightUtilityButtons: [self leftButtons] WithButtonWidth:225];
         [cell updateCellWithSubCategory:objSubCategory];
         return cell;
 
@@ -345,6 +375,10 @@
         [rightCollectionVwContrllr.view removeFromSuperview];
 }
 
+-(void)btnGoToCheckOutScreen
+{
+    
+}
 #pragma mark - HorizontalPickerView DataSource Methods
 - (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker
 {

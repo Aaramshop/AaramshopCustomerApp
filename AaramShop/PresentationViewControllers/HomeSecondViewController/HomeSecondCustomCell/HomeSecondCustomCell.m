@@ -9,7 +9,7 @@
 #import "HomeSecondCustomCell.h"
 
 @implementation HomeSecondCustomCell
-@synthesize indexPath;
+@synthesize indexPath,subCategory,delegate;
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -31,7 +31,7 @@
         lblName = [[UILabel alloc] init];
         lblName.textColor = [UIColor whiteColor];
         lblName.numberOfLines = 0;
-        lblName.font = [UIFont fontWithName:kRobotoRegular size:18.0f];
+        lblName.font = [UIFont fontWithName:kRobotoRegular size:16.0f];
         lblName.textColor = [UIColor colorWithRed:63.0/255.0 green:63.0/255.0 blue:63.0/255.0 alpha:1.0];
         [lblName setTextAlignment:NSTextAlignmentLeft];
         [self addSubview:lblName];
@@ -40,7 +40,7 @@
         lblPrice = [[UILabel alloc] init];
         lblPrice.textColor = [UIColor whiteColor];
         lblPrice.numberOfLines = 0;
-        lblPrice.font = [UIFont fontWithName:kRobotoRegular size:19.0f];
+        lblPrice.font = [UIFont fontWithName:kRobotoRegular size:14.0f];
         lblPrice.textColor = [UIColor colorWithRed:121.0/255.0 green:121.0/255.0 blue:121.0/255.0 alpha:1.0];
         [lblPrice setTextAlignment:NSTextAlignmentLeft];
         [self addSubview:lblPrice];
@@ -55,9 +55,9 @@
         lblCount = [[UILabel alloc] init];
         lblCount.textColor = [UIColor whiteColor];
         lblCount.numberOfLines = 0;
-        lblCount.font = [UIFont fontWithName:kRobotoRegular size:20.0f];
+        lblCount.font = [UIFont fontWithName:kRobotoRegular size:18.0f];
         lblCount.textColor = [UIColor colorWithRed:121.0/255.0 green:121.0/255.0 blue:121.0/255.0 alpha:1.0];
-        [lblCount setTextAlignment:NSTextAlignmentLeft];
+        [lblCount setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:lblCount];
 
 
@@ -67,13 +67,13 @@
         
         [self addSubview:btnPlus];
 
-        int xPos = 10;
+        int xPos = 5;
         imgV.frame = CGRectMake(xPos, 4, 60, 60);
-        xPos+=imgV.frame.size.width+10;
+        xPos+=imgV.frame.size.width+5;
         
-        btnPlus.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-40, 14, 30, 40);
-        lblCount.frame = CGRectMake(btnPlus.frame.origin.x-30, 24, 20, 20);
-        btnMinus.frame = CGRectMake(lblCount.frame.origin.x-40, 14, 30, 40);
+        btnPlus.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-35, 14, 30, 40);
+        lblCount.frame = CGRectMake(btnPlus.frame.origin.x-30, 24, 30, 20);
+        btnMinus.frame = CGRectMake(lblCount.frame.origin.x-30, 14, 30, 40);
         lblName.frame = CGRectMake(xPos, 10, btnMinus.frame.origin.x-(xPos+10), 24);
         lblPrice.frame = CGRectMake(xPos, 34, 200, 20);
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -86,7 +86,18 @@
 }
 -(void)btnPlusClick
 {
-    
+    if ([subCategory.count intValue]>=0) {
+        int Counter = [subCategory.count intValue];
+        Counter++;
+        subCategory.count = [NSString stringWithFormat:@"%d",Counter];
+//        if (self.delegate && [self.delegate conformsToProtocol:@protocol(VenueViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(addedValueByCounter:atIndexPath:)])
+//        {
+//            [self.delegate addedValueByCounter:counter atIndexPath:self.indexPath];
+//        }
+//        
+
+    }
+
 }
 -(void)updateCellWithSubCategory:(SubCategoryModel *)objSubCategory
 {

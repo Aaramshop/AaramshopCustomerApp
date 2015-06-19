@@ -8,13 +8,14 @@
 //
 
 #import "AppManager.h"
+#import "CMCountryList.h"
 #define kMax_No_Of_contacts 300
 
 
 AppManager * gAppManager = nil;
 UIAlertView *alert = nil;
 @implementation AppManager
-
+@synthesize cmCountryList,imgProfile;
 +(AppManager *)sharedManager
 {
     static AppManager *instance = nil;
@@ -52,13 +53,24 @@ UIAlertView *alert = nil;
         for (int z=0; z<2; z++) {
             
             NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-            if (z==0)
-                [dict setObject:kHomeAddress forKey:kAddressTitle];
-            else
-                [dict setObject:kOfficeAddress forKey:kAddressTitle];
+            [dict setObject:@"" forKey:kAddress];
+            [dict setObject:@"" forKey:kState];
+            [dict setObject:@"" forKey:kCity];
+            [dict setObject:@"" forKey:kLocality];
+            [dict setObject:@"" forKey:kPincode];
             
-            [dict setObject:@"" forKey:kAddressValue];
-            [arrAddress addObject:dict];
+            if (z==0) {
+                [dict setObject:@"Home" forKey:kTitle];
+                [arrAddress addObject:dict];
+            }
+            else if (z==1) {
+                [dict setObject:@"Office" forKey:kTitle];
+                [arrAddress addObject:dict];
+            }
+            else if (z==2) {
+                [dict setObject:@"" forKey:kTitle];
+                [arrAddress addObject:dict];
+            }
         }
         
         [[NSUserDefaults standardUserDefaults] setObject:arrAddress forKey:kAddressForLocation];
@@ -69,6 +81,7 @@ UIAlertView *alert = nil;
 
 -(void)initializeObjects
 {
+    cmCountryList = [[CMCountryList alloc] init];
 }
 +(CLocation *)getLocationByLocationStr:(NSString *)inLocationStr
 {
@@ -125,12 +138,30 @@ UIAlertView *alert = nil;
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kUserId] forKey:kUserId];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+(NSArray*)getCountryCodeList{
-    // Read plist from bundle and get Root Dictionary out of it
-    NSArray *arrRoot = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CountryCodeList" ofType:@"plist"]];
-    
-    return arrRoot;
+-(NSArray *)getcountryList
+{
+    NSArray *arrCountryData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CountryList" ofType:@"plist"]];
+    return arrCountryData;
 }
+-(void)countryCodeData{
+
+   NSArray *arrCountryData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CountryList" ofType:@"plist"]];
+    
+  NSLocale *locale = [NSLocale currentLocale];
+  NSString *countryCode = [locale objectForKey: NSLocaleCountryCode];
+
+  NSString *countryName = [locale displayNameForKey: NSLocaleCountryCode value: countryCode];
+    
+    for (NSDictionary *dictCountry in arrCountryData) {
+        if ([[dictCountry objectForKey:@"CountryName"] isEqualToString:countryName]) {
+            self.cmCountryList.CountryName = [dictCountry objectForKey:@"CountryName"];
+            self.cmCountryList.CountryCode = [dictCountry objectForKey:@"CountryCode"];
+            self.cmCountryList.CountryFlag = [dictCountry objectForKey:@"CountryFlag"];
+            break;
+        }
+    }
+}
+
 
 #pragma mark - NetWork Indicator on status bar
 +(void)startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:(BOOL)status{
@@ -331,8 +362,8 @@ UIAlertView *alert = nil;
 +(void)createDataForAddressBook:(NSMutableArray *)arrAddressContacts
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    [dict removeObjectForKey:kSessionToken];
-    [dict setObject:kOptionUser_mobile_data forKey:kOption];
+   // [dict removeObjectForKey:kSessionToken];
+   // [dict setObject:kOptionUser_mobile_data forKey:kOption];
     [dict setObject:arrAddressContacts forKey:kMobile];
     [self callAddressBookWebService:dict];
 }
@@ -463,120 +494,6 @@ void MyAddressBookExternalChangeCallback (
 -(void)refreshAB{
     [[AppManager sharedManager] fetchAddressBookWithContactModel];
 }
-//+(void)callAddressBookWebService:(NSDictionary*)userData{
-//    if(![Utils isInternetAvailable])
-//    {
-//        [Utils showAlertView:kAlertTitle message:@"Check your internet connection." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//    }
-//    else
-//    {
-//        if (!userData) {
-//            return;
-//        }
-//        
-//        NetworkService *obj = [NetworkService sharedInstance];
-//        [obj sendAsynchRequestByPostToServer:@"friends" dataToSend:userData delegate:self contentType:eAppJsonType andReqParaType:eJson header:NO];
-//
-//    }
-//    
-//}
-#pragma mark - call web service to update settings
-//+(void)callUpdateUserAppSettingWebService:(NSDictionary *)dict serviceType:(NSString *)serviceType{
-//    if(![Utils isInternetAvailable])
-//    {
-//        [Utils showAlertView:kAlertTitle message:@"Check your internet connection." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//    }
-//    else
-//    {
-//        
-//        NetworkService *obj = [NetworkService sharedInstance];
-//        
-////        NSMutableDictionary *appSetting=[AppManager getUserAppSettingsFromPlist];
-//        if([serviceType isEqualToString:kUpdateUserSettings])
-//        {
-//            NSDictionary *aDict=[NSDictionary dictionaryWithObjectsAndKeys:kDevice,kDeviceType,[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceToken]],kDeviceToken,[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kSessionToken]],kSessionToken,[[NSUserDefaults standardUserDefaults] valueForKey:kUserId],kUserId,kUpdateUserSettings,kOption,dict,kUserSettings, nil];
-//        
-//            [obj sendAsynchRequestByPostToServer:kSettings dataToSend:aDict delegate:self contentType:eAppJsonType andReqParaType:eJson header:NO];
-//        }
-//        else
-//        {
-//            NSDictionary *aDict=[NSDictionary dictionaryWithObjectsAndKeys:kDevice,kDeviceType,[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceToken]],kDeviceToken,[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kSessionToken]],kSessionToken,[[NSUserDefaults standardUserDefaults] valueForKey:kUserId],kUserId,kResetUserSettings,kOption, nil];
-//            
-//            [obj sendAsynchRequestByPostToServer:kSettings dataToSend:aDict delegate:self contentType:eAppJsonType andReqParaType:eJson header:NO];
-//        }
-//    }
-//    
-//}
-
-
-#pragma mark - Wen Service response handler
-//+(void)responseHandler :(id)inResponseDic andRequestIdentifier:(NSString *)inReqIdentifier
-//{
-//    
-//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//    if ([[inResponseDic valueForKey:@"status"] integerValue] == RESPONSE_STATUS_SUCCESS) {
-//        
-//        
-//       if ([[inResponseDic valueForKey:kOption] isEqualToString:kGetPhoneBookFriends])
-//        {
-//            
-//            [[Database database] SaveAddressBookDataBase:[inResponseDic valueForKey:@"phoneData"]from:NO];
-//            [[Database database] DeleteAddressBookFromDatabase:[inResponseDic valueForKey:@"idsToBeDelete"]];
-//            [[Database database] SaveAddressBookDataBase:[inResponseDic valueForKey:@"updatedUserData"]from:YES];
-//            [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:@"modifiedDate"];
-//            [AppManager sharedManager].isFetchingContacts=NO;
-//            AppDelegate *appDel=(AppDelegate*)APP_DELEGATE;
-//            [appDel refreshFriendsTabbarView];
-//        }
-//        
-//
-//    }else if ([[inResponseDic valueForKey:@"status"] integerValue] == RESPONSE_STATUS_AUTHENTICATION_FAIL){
-//        
-//        [[AppManager sharedManager] showAuthenticationFailedAlertView];
-//    }
-//    
-//    else
-//    {
-//        
-//            [Utils showAlertView:kAlertTitle message:[inResponseDic valueForKey:@"message"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        
-//    }
-//    
-//}
-
-//+(void)requestErrorHandler :(NSError *)inError andRequestIdentifier :(NSString *)inReqIdentifier
-//{
-//    [AppManager stopStatusbarActivityIndicator];
-//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//    NSLog(@"*** requestErrorHandler Error : %@ and Request Udesntifier AppManager: %@ ****",[inError debugDescription],inReqIdentifier);
-//}
-
-//#pragma mark- create Url
-
-//+(NSMutableDictionary *)createDifferentUrlFromUrl:(NSString *)mainUrl{
-//    
-//    NSMutableArray *arrTemp = [NSMutableArray arrayWithArray:[mainUrl componentsSeparatedByString:@"."]];
-//    [arrTemp removeLastObject];
-//    NSString *strTempUrl = [arrTemp componentsJoinedByString:@"."];
-//    
-//    NSString *profilePic = mainUrl;
-//    
-//    NSString *profile105 = [[NSString stringWithFormat:@"%@%d.jpg",strTempUrl,IMAGE_URL_TYPE_CODE_105_PIXELS_IMAGE] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    
-//    NSString *profile210 = [[NSString stringWithFormat:@"%@%d.jpg",strTempUrl,IMAGE_URL_TYPE_CODE_210_PIXELS_IMAGE] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    
-//    NSString *profilePicOriginalCompress = [[NSString stringWithFormat:@"%@%d.jpg",strTempUrl,IMAGE_URL_TYPE_CODE_ORIGINAL_COMPRESS_IMAGE] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    
-//    NSString *profilePicBlur = [[NSString stringWithFormat:@"%@%d.jpg",strTempUrl,IMAGE_URL_TYPE_CODE_BLUR] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    
-//    
-//    
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//    
-//    
-//    [dict setObject:profilePic forKey:kProfilePic];
-//    return dict;
-//}
 +(CGSize)frameForText:(NSString*)text sizeWithFont:(UIFont*)font constrainedToSize:(CGSize)size{
     
     NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:

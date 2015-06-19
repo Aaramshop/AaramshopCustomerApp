@@ -16,36 +16,82 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view tag="23235" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-zv-P4a">
+                <view tag="23237" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TKu-Wl-zIk">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Amount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1A9-mQ-o7t">
+                        <searchBar tag="102" contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="7mV-Gr-0eb">
+                            <rect key="frame" x="0.0" y="-3" width="320" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                    </subviews>
+                    <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view tag="23235" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-zv-P4a">
+                    <rect key="frame" x="0.0" y="42" width="320" height="41"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeDetailAmountFirstBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dvb-dq-UXI">
+                            <rect key="frame" x="0.0" y="0.0" width="280" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="41" id="yNL-9c-eid"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Amount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1A9-mQ-o7t">
                             <rect key="frame" x="10" y="10" width="105" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="f74-ML-9yi"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                             <color key="textColor" red="0.28235294119999998" green="0.28235294119999998" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1500" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5a-Dq-eWo">
-                            <rect key="frame" x="230" y="10" width="50" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1500" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5a-Dq-eWo">
+                            <rect key="frame" x="225" y="10" width="50" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="Uqi-dv-my8"/>
+                                <constraint firstAttribute="height" constant="20" id="xJF-e4-Fwo"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                             <color key="textColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klk-Bb-qEl">
+                        <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klk-Bb-qEl">
                             <rect key="frame" x="280" y="0.0" width="40" height="41"/>
                             <color key="backgroundColor" red="0.95686274510000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" image="homeDeatilsWhiteArrow.png">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="Qbs-Rh-K5H"/>
+                                <constraint firstAttribute="height" constant="41" id="QgH-r3-054"/>
+                            </constraints>
+                            <state key="normal" image="homeDetailAmountSecondBox.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="E5a-Dq-eWo" firstAttribute="top" secondItem="tyz-zv-P4a" secondAttribute="top" constant="10" id="6lq-aM-9AH"/>
+                        <constraint firstItem="Dvb-dq-UXI" firstAttribute="top" secondItem="1A9-mQ-o7t" secondAttribute="bottom" constant="-30" id="C5f-hG-6Ny"/>
+                        <constraint firstAttribute="height" constant="41" id="D6g-2q-s21"/>
+                        <constraint firstItem="Dvb-dq-UXI" firstAttribute="leading" secondItem="tyz-zv-P4a" secondAttribute="leading" id="F4W-0N-oiW"/>
+                        <constraint firstItem="Dvb-dq-UXI" firstAttribute="leading" secondItem="1A9-mQ-o7t" secondAttribute="trailing" constant="-115" id="Q0I-TA-Fri"/>
+                        <constraint firstItem="Dvb-dq-UXI" firstAttribute="top" secondItem="tyz-zv-P4a" secondAttribute="top" id="WSw-lh-F1c"/>
+                        <constraint firstAttribute="trailing" secondItem="klk-Bb-qEl" secondAttribute="trailing" id="aQg-IO-Wb4"/>
+                        <constraint firstItem="klk-Bb-qEl" firstAttribute="leading" secondItem="E5a-Dq-eWo" secondAttribute="trailing" constant="5" id="dRJ-Qb-Pzv"/>
+                        <constraint firstItem="klk-Bb-qEl" firstAttribute="top" secondItem="tyz-zv-P4a" secondAttribute="top" id="nTS-uM-k5B"/>
+                        <constraint firstAttribute="trailing" secondItem="Dvb-dq-UXI" secondAttribute="trailing" constant="40" id="sQn-DO-PKt"/>
+                        <constraint firstItem="1A9-mQ-o7t" firstAttribute="leading" secondItem="tyz-zv-P4a" secondAttribute="leading" constant="10" id="w1R-sq-lWe"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="tyz-zv-P4a" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2Ku-3S-ew2"/>
+                <constraint firstItem="tyz-zv-P4a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="42" id="2tC-fM-PV7"/>
+                <constraint firstAttribute="trailing" secondItem="tyz-zv-P4a" secondAttribute="trailing" id="Lab-T1-asd"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -55,7 +101,8 @@
         </view>
     </objects>
     <resources>
-        <image name="homeDeatilsWhiteArrow.png" width="17" height="17"/>
+        <image name="homeDetailAmountFirstBox.png" width="279" height="41"/>
+        <image name="homeDetailAmountSecondBox.png" width="41" height="41"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

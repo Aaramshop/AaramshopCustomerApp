@@ -9,7 +9,7 @@
 #import "OptionViewController.h"
 #import "LoginViewController.h"
 #import "MobileEnterViewController.h"
-#import "HomeStoreViewController.h"
+#import "LocationEnterViewController.h"
 @interface OptionViewController ()
 {
     MPMoviePlayerController *theMoviPlayer;
@@ -28,8 +28,7 @@
     UIToolbar* bgToolbar = [[UIToolbar alloc] initWithFrame:blurView.frame];
     bgToolbar.barStyle = UIBarStyleDefault;
     [blurView.superview insertSubview:bgToolbar belowSubview:blurView];
-//    blurView = [[JCRBlurView alloc] initWithFrame:CGRectMake(0, -20, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height)];
-//    blurView.alpha = 0.65f;
+
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *moviePath1 = [bundle pathForResource:@"disc" ofType:@"mp4"];
     NSString *moviePath2 = [bundle pathForResource:@"disc2" ofType:@"mp4"];
@@ -38,7 +37,6 @@
     NSURL *movieURL2 = [NSURL fileURLWithPath:moviePath2];
     NSURL *movieURL3 = [NSURL fileURLWithPath:moviePath3];
     NSArray *arrMovieURLs = [[NSArray alloc]initWithObjects:movieURL1,movieURL2,movieURL3, nil];
-//    theMoviPlayer. = MPMovieFinishReasonPlaybackEnded;
     
     theMoviPlayer = [[MPMoviePlayerController alloc] initWithContentURL:[arrMovieURLs objectAtIndex:0]];
        theMoviPlayer.controlStyle = MPMovieControlStyleNone;
@@ -46,7 +44,6 @@
     theMoviPlayer.scalingMode = MPMovieScalingModeAspectFill;
     
     [theMoviPlayer.view setFrame:CGRectMake(0, -20, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height)];
-    [theMoviPlayer play];
     [subView addSubview:theMoviPlayer.view];
     [subView addSubview:blurView];
     
@@ -54,10 +51,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    [theMoviPlayer play];
+
     if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn]) {
         
-        HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
-        [self.navigationController pushViewController:homeStoreVwController animated:YES];
+        LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+        [self.navigationController pushViewController:locationScreen animated:YES];
     }
 }
 

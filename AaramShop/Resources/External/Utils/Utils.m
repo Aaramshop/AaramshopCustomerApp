@@ -946,8 +946,8 @@
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     
     //SessionToken
-    NSString *strSessionToken = [NSString stringWithFormat:@"%@",[self getUserDefaultValue:kSessionToken]];
-    [dict setValue:strSessionToken forKey:kSessionToken];
+//    NSString *strSessionToken = [NSString stringWithFormat:@"%@",[self getUserDefaultValue:kSessionToken]];
+//    [dict setValue:strSessionToken forKey:kSessionToken];
     
     //UserId
     

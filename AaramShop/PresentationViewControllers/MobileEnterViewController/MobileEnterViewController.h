@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "FlagListTableViewController.h"
-@interface MobileEnterViewController : BaseViewController<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,AaramShop_ConnectionManager_Delegate>
+#import "CMCountryList.h"
+
+@interface MobileEnterViewController : BaseViewController<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,AaramShop_ConnectionManager_Delegate,FlagListTableViewControllerDelegate>
 {
-    
     __weak IBOutlet UIImageView *imgVUser;
     __weak IBOutlet UIButton *btnProfile;
 
@@ -23,7 +24,6 @@
     NSData *imageData;
     
     __weak IBOutlet UILabel *lbltakeyourselfie;
-    __weak IBOutlet UIScrollView *scrollView;
     __weak IBOutlet UITextField *txtFullName;
     __weak IBOutlet UIButton *btnContinue;
 }
@@ -34,6 +34,5 @@
 - (IBAction)btnPickProfileClick:(UIButton *)sender;
 - (IBAction)btnCountryList:(id)sender;
 @property (strong, nonatomic) IBOutlet AKKeyboardAvoidingScrollView *scrollViewMobileEnter;
-
 
 @end

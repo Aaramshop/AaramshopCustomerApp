@@ -8,6 +8,9 @@
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Bold_0.ttf">
             <string>Roboto-Bold</string>
+            <string>Roboto-Bold</string>
+            <string>Roboto-Bold</string>
+            <string>Roboto-Bold</string>
         </mutableArray>
         <mutableArray key="Roboto-Medium_0.ttf">
             <string>Roboto-Medium</string>
@@ -21,8 +24,14 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular_0.ttf">
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -156,6 +165,9 @@
                                                 <state key="normal" title="SEND" backgroundImage="newUserBox.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="btnSendClick:" destination="aY7-3q-16N" eventType="touchUpInside" id="cyI-tb-mJT"/>
+                                                </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaramShopAppLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hp0-45-fO4">
                                                 <rect key="frame" x="14" y="-8" width="292" height="292"/>
@@ -217,6 +229,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="btnSend" destination="ugV-W5-EiX" id="0IA-aQ-RS0"/>
                         <outlet property="scrollViewForgotPassword" destination="5Wh-Xo-qPL" id="ZL4-zz-DVn"/>
                         <outlet property="txtfEmail" destination="2HE-tX-qmg" id="3dO-eP-3rA"/>
                     </connections>
@@ -446,11 +459,6 @@
                             <constraint firstItem="aXU-8t-J4H" firstAttribute="top" secondItem="NJ6-iD-vu4" secondAttribute="bottom" id="x0i-5R-mBt"/>
                             <constraint firstItem="d3W-cg-QXQ" firstAttribute="leading" secondItem="XC7-du-ujd" secondAttribute="leading" constant="18" id="zRU-d3-o3n"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="keyPath">
-                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="btnWhatsHomeStore" destination="NJ6-iD-vu4" id="4UU-7h-fAF"/>
@@ -623,12 +631,26 @@
                                     <constraint firstAttribute="height" constant="95" id="s8B-hF-fCf"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BK-lU-vgp">
+                                <rect key="frame" x="267" y="28" width="45" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="bgA-IU-rF7"/>
+                                    <constraint firstAttribute="height" constant="25" id="pAy-35-OH6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                                <state key="normal" title="Done" backgroundImage="doneBtn.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnDoneClick:" destination="Kva-dY-HCj" eventType="touchUpInside" id="3V0-RH-ezy"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to deliver, Please give us your address" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yer-4o-KdU">
                                 <rect key="frame" x="70" y="49" width="180" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LK2-xc-aXf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -638,7 +660,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Gbm-rm-Vjx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="Kva-dY-HCj" id="Tnc-Dh-KfM"/>
@@ -654,20 +676,6 @@
                                 </state>
                                 <connections>
                                     <action selector="btnEditClick:" destination="Kva-dY-HCj" eventType="touchUpInside" id="WFD-dT-TvG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BK-lU-vgp">
-                                <rect key="frame" x="267" y="28" width="45" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="bgA-IU-rF7"/>
-                                    <constraint firstAttribute="height" constant="25" id="pAy-35-OH6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                <state key="normal" title="Done" backgroundImage="doneBtn.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnDoneClick:" destination="Kva-dY-HCj" eventType="touchUpInside" id="3V0-RH-ezy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -723,11 +731,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gq-z7-tG1" customClass="AKKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gq-z7-tG1" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PI5-X5-zM4">
-                                        <rect key="frame" x="30" y="165" width="260" height="239"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PI5-X5-zM4">
+                                        <rect key="frame" x="30" y="127" width="260" height="313"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="locationPopupUpperRedBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="33w-Th-wLp">
                                                 <rect key="frame" x="0.0" y="0.0" width="260" height="37"/>
@@ -735,41 +743,115 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label your Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVo-b6-oy9">
                                                 <rect key="frame" x="0.0" y="0.0" width="260" height="37"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGX-Dk-1dv">
-                                                <rect key="frame" x="8" y="52" width="244" height="34"/>
-                                                <inset key="titleEdgeInsets" minX="-117" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" backgroundImage="loactionPopupDropDownBox.png">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guj-3z-OQc">
+                                                <rect key="frame" x="8" y="50" width="81" height="34"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Home" image="locationPopupRadioInactive.png" backgroundImage="locationPopupOp1.png">
+                                                    <color key="titleColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <state key="selected" title="Home" image="locationPopupRadioActive.png">
+                                                    <color key="titleColor" red="0.95686274510000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
-                                                    <action selector="btnDropDown:" destination="p9S-PA-MaK" eventType="touchUpInside" id="Eha-Xr-xpa"/>
+                                                    <action selector="btnActionClicked:" destination="p9S-PA-MaK" eventType="touchUpInside" id="YSm-op-Y4q"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="locationPopupBigBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="C70-xU-MNF">
-                                                <rect key="frame" x="8" y="92" width="243" height="51"/>
-                                            </imageView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfn-dZ-eaI">
-                                                <rect key="frame" x="12" y="94" width="235" height="47"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" background="alertSingleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="lSE-aX-ISo" customClass="PWTextField">
-                                                <rect key="frame" x="8" y="151" width="243" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <button opaque="NO" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IB6-4F-F76">
+                                                <rect key="frame" x="87" y="50" width="81" height="34"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Office" image="locationPopupRadioInactive.png" backgroundImage="locationPopupOp2.png">
+                                                    <color key="titleColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="locationPopupRadioActive.png">
+                                                    <color key="titleColor" red="0.95686274510000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnActionClicked:" destination="p9S-PA-MaK" eventType="touchUpInside" id="l8a-uZ-HGe"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHE-XB-Rjg">
+                                                <rect key="frame" x="166" y="50" width="81" height="34"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Others" image="locationPopupRadioInactive.png" backgroundImage="locationPopupOp3.png">
+                                                    <color key="titleColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="locationPopupRadioActive.png">
+                                                    <color key="titleColor" red="0.95686274510000002" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnActionClicked:" destination="p9S-PA-MaK" eventType="touchUpInside" id="NWd-ZE-4SY"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" minimumFontSize="17" background="locationPopupTxtField.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ezc-tX-SbJ" customClass="PWTextField">
+                                                <rect key="frame" x="8" y="92" width="243" height="34"/>
+                                                <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="p9S-PA-MaK" id="Yv3-hy-s43"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" minimumFontSize="17" background="locationPopupTxtFieldHalf.png" translatesAutoresizingMaskIntoConstraints="NO" id="eYm-NU-7ZW" customClass="PWTextField">
+                                                <rect key="frame" x="8" y="134" width="118" height="34"/>
+                                                <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="p9S-PA-MaK" id="ZrO-vl-dDz"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" minimumFontSize="17" background="locationPopupTxtFieldHalf.png" translatesAutoresizingMaskIntoConstraints="NO" id="S1S-Ve-gRs" customClass="PWTextField">
+                                                <rect key="frame" x="133" y="134" width="118" height="34"/>
+                                                <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="p9S-PA-MaK" id="qiw-Wn-iYP"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Locality" minimumFontSize="17" background="locationPopupTxtFieldHalf.png" translatesAutoresizingMaskIntoConstraints="NO" id="lSE-aX-ISo" customClass="PWTextField">
+                                                <rect key="frame" x="8" y="176" width="118" height="34"/>
+                                                <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="p9S-PA-MaK" id="hp7-nG-FHS"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pin Code" minimumFontSize="17" background="locationPopupTxtFieldHalf.png" translatesAutoresizingMaskIntoConstraints="NO" id="7b1-6S-dFF" customClass="PWTextField">
+                                                <rect key="frame" x="133" y="176" width="118" height="34"/>
+                                                <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="p9S-PA-MaK" id="lqJ-Lc-oyW"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" background="locationPopupTxtField.png" translatesAutoresizingMaskIntoConstraints="NO" id="KUx-aS-85N" customClass="PWTextField">
+                                                <rect key="frame" x="8" y="218" width="243" height="34"/>
+                                                <color key="textColor" red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="p9S-PA-MaK" id="i9U-mX-jrM"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7H-uQ-B85">
-                                                <rect key="frame" x="0.0" y="198" width="130" height="41"/>
+                                                <rect key="frame" x="0.0" y="272" width="130" height="41"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <state key="normal" title="Save" backgroundImage="locationPopupSaveBox.png">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -777,11 +859,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Dh-Q7-NlC">
-                                                <rect key="frame" x="130" y="198" width="130" height="41"/>
+                                                <rect key="frame" x="130" y="272" width="130" height="41"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <state key="normal" title="Cancel" backgroundImage="locationPopupCancelBox.png">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -790,28 +872,12 @@
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="239" id="3Gc-Nk-yVm"/>
-                                            <constraint firstAttribute="width" constant="260" id="Opr-sm-vZ3"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="PI5-X5-zM4" firstAttribute="leading" secondItem="0Gq-z7-tG1" secondAttribute="leading" constant="30" id="LCb-uQ-yXa"/>
-                                    <constraint firstItem="PI5-X5-zM4" firstAttribute="top" secondItem="0Gq-z7-tG1" secondAttribute="top" constant="165" id="OKh-qo-vU0"/>
-                                    <constraint firstAttribute="bottom" secondItem="PI5-X5-zM4" secondAttribute="bottom" constant="164" id="l8W-9K-iQW"/>
-                                    <constraint firstAttribute="trailing" secondItem="PI5-X5-zM4" secondAttribute="trailing" constant="30" id="oS1-fu-BBH"/>
-                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="0Gq-z7-tG1" firstAttribute="top" secondItem="QCa-jI-Ofa" secondAttribute="bottom" id="LlP-wH-gu1"/>
-                            <constraint firstAttribute="trailing" secondItem="0Gq-z7-tG1" secondAttribute="trailing" id="Qsj-Bz-sP8"/>
-                            <constraint firstItem="7tb-9K-teE" firstAttribute="top" secondItem="0Gq-z7-tG1" secondAttribute="bottom" id="SK1-M0-Uzg"/>
-                            <constraint firstItem="0Gq-z7-tG1" firstAttribute="leading" secondItem="1Km-fn-n1W" secondAttribute="leading" id="wYF-Tz-mp6"/>
-                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -819,11 +885,18 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="dropDownBtn" destination="xGX-Dk-1dv" id="btU-S6-hYT"/>
+                        <outlet property="btnHome" destination="guj-3z-OQc" id="Wv5-aA-Byq"/>
+                        <outlet property="btnOffice" destination="IB6-4F-F76" id="n5u-M5-Sol"/>
+                        <outlet property="btnOthers" destination="zHE-XB-Rjg" id="1fU-qn-7t1"/>
+                        <outlet property="btnSave" destination="t7H-uQ-B85" id="wFM-LM-HQT"/>
                         <outlet property="scrollView" destination="0Gq-z7-tG1" id="XuL-tH-KJp"/>
                         <outlet property="subView" destination="PI5-X5-zM4" id="QR4-gW-uU2"/>
-                        <outlet property="txtTitle" destination="lSE-aX-ISo" id="rEE-2q-lDV"/>
-                        <outlet property="txtVAddress" destination="mfn-dZ-eaI" id="YNs-bd-s4o"/>
+                        <outlet property="txtAddress" destination="Ezc-tX-SbJ" id="eWk-66-fXV"/>
+                        <outlet property="txtCity" destination="S1S-Ve-gRs" id="v9i-BP-J47"/>
+                        <outlet property="txtLocality" destination="lSE-aX-ISo" id="3IB-7s-EeB"/>
+                        <outlet property="txtPinCode" destination="7b1-6S-dFF" id="o2y-lQ-54Y"/>
+                        <outlet property="txtState" destination="eYm-NU-7ZW" id="UhV-VA-krM"/>
+                        <outlet property="txtTitle" destination="KUx-aS-85N" id="uRA-qj-Gvt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mIw-MU-dVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1366,47 +1439,7 @@ near hospital</string>
                     <view key="view" contentMode="scaleToFill" id="EGA-aT-2Se">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="4yf-bN-oAJ">
-                                <rect key="frame" x="0.0" y="10" width="320" height="44"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Dgj-1j-Svv"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yWM-eH-1QY">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="BOe-YH-Hav">
-                                    <size key="itemSize" width="166" height="100"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Gz2-7Y-Ezj">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="166" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="4yf-bN-oAJ" firstAttribute="leading" secondItem="EGA-aT-2Se" secondAttribute="leading" id="Djt-BO-yvK"/>
-                            <constraint firstItem="yWM-eH-1QY" firstAttribute="leading" secondItem="EGA-aT-2Se" secondAttribute="leading" id="FiV-d2-29l"/>
-                            <constraint firstItem="4yf-bN-oAJ" firstAttribute="width" secondItem="EGA-aT-2Se" secondAttribute="width" id="SAt-Ru-x7h"/>
-                            <constraint firstItem="4yf-bN-oAJ" firstAttribute="top" secondItem="475-8z-CHa" secondAttribute="bottom" constant="10" id="gQE-jH-Pqx"/>
-                            <constraint firstItem="byk-iQ-9FX" firstAttribute="top" secondItem="yWM-eH-1QY" secondAttribute="bottom" id="iEm-3g-cce"/>
-                            <constraint firstItem="yWM-eH-1QY" firstAttribute="top" secondItem="4yf-bN-oAJ" secondAttribute="bottom" constant="10" id="k6z-KF-x0z"/>
-                            <constraint firstItem="yWM-eH-1QY" firstAttribute="width" secondItem="EGA-aT-2Se" secondAttribute="width" id="wCf-8W-dDH"/>
-                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -1448,7 +1481,7 @@ near hospital</string>
                                     <constraint firstAttribute="height" constant="48" id="eyD-f4-aei"/>
                                     <constraint firstAttribute="width" constant="297" id="yW5-45-41t"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <state key="normal" title="NEW SHOPPER" backgroundImage="newUserBox.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1464,7 +1497,7 @@ near hospital</string>
                                     <constraint firstAttribute="width" constant="297" id="90a-oO-ANI"/>
                                     <constraint firstAttribute="height" constant="48" id="EBR-jQ-Xb9"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <state key="normal" title="RETURNING USER" backgroundImage="existingUserBox.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1694,6 +1727,57 @@ near hospital</string>
             </objects>
             <point key="canvasLocation" x="546" y="117"/>
         </scene>
+        <!--Flag List Table View Controller-->
+        <scene sceneID="FhB-pP-VSz">
+            <objects>
+                <viewController storyboardIdentifier="flagScreen" id="blW-Az-Gna" customClass="FlagListTableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QqM-il-hq2"/>
+                        <viewControllerLayoutGuide type="bottom" id="O9U-lx-fKT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SgL-Fw-Oz2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ow2-lH-zR3">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ynG-4Y-fjZ"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="blW-Az-Gna" id="xFG-vf-FRP"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="u3n-5E-isC">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="blW-Az-Gna" id="BrA-2U-dtJ"/>
+                                    <outlet property="delegate" destination="blW-Az-Gna" id="4vm-WI-xaY"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ow2-lH-zR3" firstAttribute="top" secondItem="QqM-il-hq2" secondAttribute="bottom" id="DVR-sm-Kgf"/>
+                            <constraint firstItem="u3n-5E-isC" firstAttribute="leading" secondItem="SgL-Fw-Oz2" secondAttribute="leading" id="VQ0-GV-uoh"/>
+                            <constraint firstItem="u3n-5E-isC" firstAttribute="width" secondItem="SgL-Fw-Oz2" secondAttribute="width" id="hpO-er-M6Y"/>
+                            <constraint firstItem="ow2-lH-zR3" firstAttribute="width" secondItem="SgL-Fw-Oz2" secondAttribute="width" id="k4D-Nq-wVg"/>
+                            <constraint firstItem="ow2-lH-zR3" firstAttribute="leading" secondItem="SgL-Fw-Oz2" secondAttribute="leading" id="rm4-zY-BkL"/>
+                            <constraint firstItem="u3n-5E-isC" firstAttribute="top" secondItem="ow2-lH-zR3" secondAttribute="bottom" id="wmp-0c-fUj"/>
+                            <constraint firstItem="O9U-lx-fKT" firstAttribute="top" secondItem="u3n-5E-isC" secondAttribute="bottom" id="zwr-c7-WYx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchCountry" destination="ow2-lH-zR3" id="t7D-SZ-KSc"/>
+                        <outlet property="tblCountryList" destination="u3n-5E-isC" id="xiK-I3-WrJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sPs-Ea-NVV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1293" y="308"/>
+        </scene>
         <!--Mobile Verification View Controller-->
         <scene sceneID="zFH-GI-Axd">
             <objects>
@@ -1734,7 +1818,7 @@ near hospital</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="TYR-Jc-GVB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1751,7 +1835,7 @@ near hospital</string>
                                     <constraint firstAttribute="height" constant="45" id="QEY-0U-skd"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="go"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -1819,8 +1903,6 @@ near hospital</string>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="btnContinue" destination="iTR-BH-ely" id="OVl-S7-WeG"/>
-                        <outlet property="btnResend" destination="Htr-Dr-4xw" id="3Jh-Oh-MzR"/>
                         <outlet property="imgVBg" destination="rFJ-54-HXO" id="Pkb-KP-VGI"/>
                         <outlet property="lblMobileNumber" destination="mNb-VP-QbQ" id="Cum-4T-J6A"/>
                         <outlet property="txtfVerificationCode" destination="hIz-UU-1CP" id="5uX-Tg-KhA"/>
@@ -1872,7 +1954,7 @@ near hospital</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="Xkp-LK-Z7Q"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1892,24 +1974,13 @@ near hospital</string>
                                                     <action selector="btnPickProfileClick:" destination="Hkb-MH-T1S" eventType="touchUpInside" id="GQT-24-Zhy"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5x-lM-n3h">
-                                                <rect key="frame" x="12" y="430" width="296" height="48"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
-                                                <state key="normal" title="CONTINUE" backgroundImage="newUserBox.png">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="btnContinueClick:" destination="Hkb-MH-T1S" eventType="touchUpInside" id="T4F-mi-rU5"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Phone number will only be used for verification &amp; shared with customers." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IP5-dH-Ci6">
                                                 <rect key="frame" x="19" y="220" width="280" height="40"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="indianFlag.png" translatesAutoresizingMaskIntoConstraints="NO" id="utt-JT-k4P">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="utt-JT-k4P">
                                                 <rect key="frame" x="25" y="275" width="23" height="15"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </imageView>
@@ -1917,7 +1988,7 @@ near hospital</string>
                                                 <rect key="frame" x="10" y="259" width="299" height="49"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="59" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="INDIA" backgroundImage="singleBox.png">
+                                                <state key="normal" backgroundImage="singleBox.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1956,14 +2027,25 @@ near hospital</string>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zKZ-Jc-pDG">
                                                 <rect key="frame" x="20" y="370" width="281" height="41"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5x-lM-n3h">
+                                                <rect key="frame" x="12" y="430" width="296" height="48"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                                <state key="normal" title="CONTINUE" backgroundImage="newUserBox.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnContinueClick:" destination="Hkb-MH-T1S" eventType="touchUpInside" id="T4F-mi-rU5"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
@@ -1987,7 +2069,7 @@ near hospital</string>
                             <constraint firstItem="cqh-hP-OyL" firstAttribute="leading" secondItem="ZtS-JD-5vv" secondAttribute="leadingMargin" constant="47" id="e20-1r-yw9"/>
                             <constraint firstItem="NFr-qh-kAe" firstAttribute="top" secondItem="lp9-QC-fTT" secondAttribute="bottom" constant="66" id="gEs-3e-2Xu"/>
                             <constraint firstItem="NFr-qh-kAe" firstAttribute="top" secondItem="cqh-hP-OyL" secondAttribute="top" constant="-151" id="iSp-hJ-Rpo"/>
-                            <constraint firstItem="aJU-gK-onQ" firstAttribute="leading" secondItem="ZtS-JD-5vv" secondAttribute="leadingMargin" constant="-5" id="jd4-NQ-uoG"/>
+                            <constraint firstItem="aJU-gK-onQ" firstAttribute="leading" secondItem="ZtS-JD-5vv" secondAttribute="leading" constant="11" id="jd4-NQ-uoG"/>
                             <constraint firstAttribute="trailing" secondItem="Kg9-Aj-nJL" secondAttribute="trailing" id="mWI-PD-lRY"/>
                             <constraint firstItem="Kg9-Aj-nJL" firstAttribute="top" secondItem="lp9-QC-fTT" secondAttribute="bottom" constant="44" id="uFR-3g-7R3"/>
                             <constraint firstItem="Kg9-Aj-nJL" firstAttribute="leading" secondItem="ZtS-JD-5vv" secondAttribute="leading" id="xmz-31-eH7"/>
@@ -2015,12 +2097,11 @@ near hospital</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHc-uX-g0U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1279" y="390"/>
+            <point key="canvasLocation" x="1099" y="380"/>
         </scene>
     </scenes>
     <resources>
         <image name="aaramShopAppLogo.png" width="292" height="292"/>
-        <image name="alertSingleBox.png" width="243" height="34"/>
         <image name="backBtn.png" width="25" height="25"/>
         <image name="bg2.jpg" width="320" height="568"/>
         <image name="bg4.jpg" width="320" height="568"/>
@@ -2034,12 +2115,16 @@ near hospital</string>
         <image name="homeStoreDetailsDeleversIcon.png" width="17" height="17"/>
         <image name="homeStoreDetailsGroceryCircle.png" width="20" height="20"/>
         <image name="homeStoreQuestionMarkIcon.png" width="17" height="17"/>
-        <image name="indianFlag.png" width="23" height="15"/>
-        <image name="loactionPopupDropDownBox.png" width="243" height="34"/>
         <image name="locationIcon.png" width="15" height="15"/>
-        <image name="locationPopupBigBox.png" width="243" height="51"/>
         <image name="locationPopupCancelBox.png" width="132" height="41"/>
+        <image name="locationPopupOp1.png" width="81" height="34"/>
+        <image name="locationPopupOp2.png" width="81" height="34"/>
+        <image name="locationPopupOp3.png" width="81" height="34"/>
+        <image name="locationPopupRadioActive.png" width="10" height="10"/>
+        <image name="locationPopupRadioInactive.png" width="10" height="10"/>
         <image name="locationPopupSaveBox.png" width="128" height="41"/>
+        <image name="locationPopupTxtField.png" width="243" height="36"/>
+        <image name="locationPopupTxtFieldHalf.png" width="118" height="36"/>
         <image name="locationPopupUpperRedBox.png" width="260" height="37"/>
         <image name="lowerBox.png" width="300" height="51"/>
         <image name="mapPopupBox.png" width="279" height="45"/>

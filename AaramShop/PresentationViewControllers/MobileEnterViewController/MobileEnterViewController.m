@@ -8,13 +8,11 @@
 
 #import "MobileEnterViewController.h"
 #import "MobileVerificationViewController.h"
-#import "CMCountryList.h"
 
 @interface MobileEnterViewController ()
 {
-    AppDelegate *appDeleg;
     UIImage * effectImage;
-    AppManager *appManager;
+    AppDelegate *appDeleg;
 }
 @property (nonatomic) UIImage *image;
 @end
@@ -25,7 +23,7 @@
     [super viewDidLoad];
     
     appDeleg = APP_DELEGATE;
-    appManager = [[AppManager alloc]init];
+    
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate = self;
 
@@ -52,27 +50,21 @@
     if (self.view.frame.size.height <=560 ) {
         [imgVUser setFrame:CGRectMake(0, 0, 160, 160)];
     }
-    scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
-    imageData = [[NSUserDefaults standardUserDefaults] objectForKey:kImage];
-    if (imageData) {
-        UIImage* image = [UIImage imageWithData:imageData];
-        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
+
+    if (gAppManager.imgProfile) {
+        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:gAppManager.imgProfile];
         imgBackground.image = effectImage;
-        imgVUser.image = image;
+        imgVUser.image = gAppManager.imgProfile;
         lbltakeyourselfie.text = @"Change Picture";
     }
     else
     {
         imgBackground.image = [UIImage imageNamed:@"bg4.jpg"];
-        lbltakeyourselfie.text = @"Take your selfie";
+        lbltakeyourselfie.text = @"Upload Picture";
     }
-    NSLocale *locale = [NSLocale currentLocale];
-    NSString *countryCode = [locale objectForKey: NSLocaleCountryCode];
-    
-    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    
-    NSString *country = [usLocale displayNameForKey: NSLocaleCountryCode value: countryCode];
-    [btnCountryName setTitle:country forState:UIControlStateNormal];
+    [imgBackground setClipsToBounds:YES];
+    [self parseCountryListData];
+
     NSString *firstName = [[NSUserDefaults standardUserDefaults]objectForKey:kFirstName];
     NSString *lastName = [[NSUserDefaults standardUserDefaults]objectForKey:kLastName];
     if ([firstName length]==0)
@@ -81,27 +73,23 @@
     }
     else
     {
-        
         NSString *fullName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
         txtFullName.text = fullName;
     }
-    
-    
-    
-}
--(void)parseCountryListData
-{
-    lblPhoneCode.text = gAppManager.cmCountryList.phoneCode;
-    imgFlagName.image = [UIImage imageNamed:gAppManager.cmCountryList.flagName];
-    [btnCountryName setTitle:gAppManager.cmCountryList.countryName forState:UIControlStateNormal];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
-//    [self parseCountryListData];
 }
 
+-(void)parseCountryListData
+{
+    [gAppManager countryCodeData];
+    lblPhoneCode.text = gAppManager.cmCountryList.CountryCode;
+    imgFlagName.image = [UIImage imageNamed:gAppManager.cmCountryList.CountryFlag];
+    [btnCountryName setTitle:gAppManager.cmCountryList.CountryName forState:UIControlStateNormal];
+}
 
 
 -(void)hideKeyboard
@@ -118,10 +106,12 @@
     if ([txtFMobileNumber.text length]==0 || [txtFMobileNumber.text length]>11 || [txtFMobileNumber.text length]<8) {
         [Utils showAlertView:kAlertTitle message:@"Please enter valid mobile number" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         [sender setEnabled:YES];
+        return;
     }
     else if ([txtFullName.text length]==0 || [txtFullName.text length]>50) {
         [Utils showAlertView:kAlertTitle message:@"Please enter your full name" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         [sender setEnabled:YES];
+        return;
     }
     else
     {
@@ -136,26 +126,33 @@
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    [dict removeObjectForKey:kUserId];
+//    [dict removeObjectForKey:kSessionToken];
+    
     [dict setObject:txtFMobileNumber.text forKey:kMobile];
+    [dict setObject:txtFullName.text forKey:kFullname];
+    [dict setObject:btnCountryName.titleLabel.text forKey:kCountryName];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
-    [dict setObject:kOptionNew_user_login forKey:kOption];
-    [dict removeObjectForKey:kUserId];
-    [dict removeObjectForKey:kSessionToken];
+    
     [self callWebserviceForEnterNewMobile:dict];
 }
 -(void)createDataToUpdateMobileNumber
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    [dict removeObjectForKey:kSessionToken];
+//    [dict removeObjectForKey:kSessionToken];
     [dict setObject:txtFMobileNumber.text forKey:kMobile];
-    [dict setObject:kOptionUpdate_user forKey:kOption];
+    [dict setObject:txtFullName.text forKey:kFullname];
+    [dict setObject:btnCountryName.titleLabel.text forKey:kCountryName];
+    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
+    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     [self callWebserviceForEnterNewMobile:dict];
 }
 # pragma webService Calling
 -(void)callWebserviceForEnterNewMobile:(NSMutableDictionary*)aDict
 {
+
     if (![Utils isInternetAvailable])
     {
         [btnContinue setEnabled:YES];
@@ -164,7 +161,7 @@
         return;
     }
     
-    [aaramShop_ConnectionManager getDataForFunction:@"" withInput:aDict withCurrentTask:TASK_ENTER_MOBILE_NUMBER Delegate:self andMultipartData:imageData];
+    [aaramShop_ConnectionManager getDataForFunction:kNewUserURL withInput:aDict withCurrentTask:TASK_ENTER_MOBILE_NUMBER Delegate:self andMultipartData:imageData];
 }
 -(void) didFailWithError:(NSError *)error
 {
@@ -183,8 +180,7 @@
             mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
             [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
         }
-        /*  stop the login because already registered */
-        else if ([[responseObject objectForKey:kstatus]intValue] == 0 &&[[responseObject objectForKey:kIsValid]intValue] == 1)
+        else
         {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         }
@@ -232,11 +228,17 @@
 }
 
 - (IBAction)btnCountryList:(id)sender {
-    FlagListTableViewController *viewController = [[FlagListTableViewController alloc] initWithNibName:NSStringFromClass([FlagListTableViewController class]) bundle:nil];
-//    backFromFlagList = YES;
-    [self.navigationController pushViewController:viewController animated:YES];
+    FlagListTableViewController *flagListVwController = (FlagListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"flagScreen"];
+    flagListVwController.delegate = self;
+    [self.navigationController pushViewController:flagListVwController animated:YES];
 }
-
+-(void)updateCountryData:(CMCountryList *)objCountryData
+{
+    gAppManager.cmCountryList = objCountryData;
+    lblPhoneCode.text = gAppManager.cmCountryList.CountryCode;
+    imgFlagName.image = [UIImage imageNamed:gAppManager.cmCountryList.CountryFlag];
+    [btnCountryName setTitle:gAppManager.cmCountryList.CountryName forState:UIControlStateNormal];
+}
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if((range.location >= 10))
@@ -293,20 +295,19 @@
     
     [pickerVw dismissViewControllerAnimated:YES completion:^{
         
-        imgUser = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-        //myImagePickerController.allowsEditing=YES;
-        imageData = [NSMutableData dataWithData:UIImageJPEGRepresentation(imgUser, 1.0)];
-        imgVUser.image = imgUser;
-        imgBackground.image = imgUser;
-        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:imgUser];
+        imgUser = [UIImage scaleDownOriginalImage:[info objectForKey:@"UIImagePickerControllerEditedImage"]];
+        
+        gAppManager.imgProfile = imgUser;
+        imageData = [NSMutableData dataWithData:UIImageJPEGRepresentation(gAppManager.imgProfile, 1.0)];
+        imgVUser.image = gAppManager.imgProfile;
+        imgBackground.image = gAppManager.imgProfile;
+        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:gAppManager.imgProfile];
         imgBackground.image=effectImage;
-        [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(imgUser)            forKey:kImage];
         imgBackground.contentMode = UIViewContentModeScaleAspectFill;
         lbltakeyourselfie.text = @"Change Picture";
     }];
     
 }
-
 #pragma mark - 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

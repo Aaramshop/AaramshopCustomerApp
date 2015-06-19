@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FlagListTableViewController : UITableViewController<UISearchBarDelegate, UISearchDisplayDelegate>
+@protocol FlagListTableViewControllerDelegate <NSObject>
+@optional
+-(void)updateCountryData:(CMCountryList *)objCountryData;
+@end
+
+
+@interface FlagListTableViewController : UIViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+{
+ IBOutlet UITableView *tblCountryList;
+ IBOutlet UISearchBar *searchCountry;
+}
+@property(nonatomic,weak) id<FlagListTableViewControllerDelegate> delegate;
 
 @end

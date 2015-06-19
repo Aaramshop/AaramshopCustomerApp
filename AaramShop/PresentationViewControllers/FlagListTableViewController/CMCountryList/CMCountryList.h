@@ -9,7 +9,7 @@
 
 @interface CMCountryList : NSObject
 
-@property(nonatomic,strong) NSString *flagName;
-@property(nonatomic,strong) NSString *phoneCode;
-@property(nonatomic,strong) NSString *countryName;
+@property(nonatomic,strong) NSString *CountryFlag;
+@property(nonatomic,strong) NSString *CountryCode;
+@property(nonatomic,strong) NSString *CountryName;
 @end

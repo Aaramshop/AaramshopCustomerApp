@@ -10,39 +10,30 @@
 #import "CMCountryList.h"
 #import "MobileEnterViewController.h"
 @interface FlagListTableViewController ()
-{
-    MobileEnterViewController *mobileEnterVC;
-}
+
 @end
 
 @implementation FlagListTableViewController{
-    NSArray *data;
-    NSArray *displayData;
+    NSArray *arrCountryList;
+    NSMutableArray *arrCountryDisplaylist;
+    BOOL isSearching;
+    NSString *strSearchTxt;
 }
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [SVProgressHUD dismiss];
-}
+@synthesize delegate;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    mobileEnterVC = [[MobileEnterViewController alloc]init];
-    NSString *path;
-    
-//    if([[[NSUserDefaults standardUserDefaults] objectForKey:kLanguageKey] isEqualToString:@"English"]){
-//        path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"CountryList-spanish.plist"];
-//    }
-//    else //if ([[[NSUserDefaults standardUserDefaults] objectForKey:kLanguageKey] isEqualToString:@"Spanish"])
-//    {
-        path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"CountryList-english.plist"];
-//    }
-    
-    data = [NSArray arrayWithContentsOfFile:path];
+
+    isSearching = NO;
+    strSearchTxt = @"";
+
+    arrCountryList = [gAppManager getcountryList];
+    arrCountryDisplaylist  = [[NSMutableArray alloc]init];
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"CountryName"  ascending:YES];
-    data=[data sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+    arrCountryList=[arrCountryList sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
     
-    for(id subview in self.tableView.subviews){
+    for(id subview in tblCountryList.subviews){
         if([subview isKindOfClass:[UITextField class]])
         {
             UITextField *searchFiled = (UITextField *) subview;
@@ -54,15 +45,9 @@
     [self setUpNavigationBar];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 #pragma mark - setUpNavigationBar
 -(void)setUpNavigationBar
 {
-   
     CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 150, 44);
     UIView* _headerTitleSubtitleView = [[UILabel alloc] initWithFrame:headerTitleSubtitleFrame];
     _headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
@@ -87,11 +72,16 @@
     [btnBack addTarget:self action:@selector(backBtnAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBackBtn = [[UIBarButtonItem alloc] initWithCustomView:btnBack];
     
-    
-    
     NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBackBtn, nil];
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 }
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+
+    [SVProgressHUD dismiss];
+}
+
 -(void)backBtnAction
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -105,10 +95,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView){
-        return [displayData count];
+    if (isSearching){
+        return [arrCountryDisplaylist count];
     }else{
-        return [data count];
+        return [arrCountryList count];
     }
     
 }
@@ -135,10 +125,10 @@
     }
     
     NSDictionary *flagDetail;
-    if (tableView == self.searchDisplayController.searchResultsTableView){
-        flagDetail = [displayData objectAtIndex:indexPath.row];
+    if (isSearching){
+        flagDetail = [arrCountryDisplaylist objectAtIndex:indexPath.row];
     }else{
-        flagDetail = [data objectAtIndex:indexPath.row];
+        flagDetail = [arrCountryList objectAtIndex:indexPath.row];
     }
     
     NSString *countryName = [flagDetail objectForKey:@"CountryName"];
@@ -150,67 +140,105 @@
     flagCountryName = (UILabel *)[cell.contentView viewWithTag:102];
     flagCountryName.text = countryName;
     [flagCountryName setBackgroundColor:[UIColor whiteColor]];
-    // Configure the cell...
     return cell;
     
 }
 
 - (void) tableView:(UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *flagDetail;
-    if (tableView == self.searchDisplayController.searchResultsTableView){
-        flagDetail = [displayData objectAtIndex:indexPath.row];
+    if (isSearching){
+        flagDetail = [arrCountryDisplaylist objectAtIndex:indexPath.row];
     }else{
-        flagDetail = [data objectAtIndex:indexPath.row];
+        flagDetail = [arrCountryList objectAtIndex:indexPath.row];
     }
     
     CMCountryList *cmCountryList = [[CMCountryList alloc] init];
-    cmCountryList.flagName = [flagDetail objectForKey:@"CountryFlag"];
-    cmCountryList.phoneCode = [flagDetail objectForKey:@"CountryCode"];
-    cmCountryList.countryName = [flagDetail objectForKey:@"CountryName"];
+    cmCountryList.CountryFlag = [flagDetail objectForKey:@"CountryFlag"];
+    cmCountryList.CountryCode = [flagDetail objectForKey:@"CountryCode"];
+    cmCountryList.CountryName = [flagDetail objectForKey:@"CountryName"];
     
-    gAppManager.cmCountryList = cmCountryList;
-//    backFromFlagList = YES;
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.delegate != nil && [self.delegate conformsToProtocol:@protocol(FlagListTableViewControllerDelegate)]  && [self.delegate respondsToSelector:@selector(updateCountryData:)]) {
+        
+        [[self navigationController] setNavigationBarHidden:YES animated:YES];
+
+        [self.delegate updateCountryData:cmCountryList];
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }
+
 }
 
 #pragma mark - search Delegate
 
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    [searchCountry resignFirstResponder];
+}
+
+#pragma mark - Search Bar Delegates
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
+    return YES;
+}
+
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    return YES;
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    // called only once
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if ([searchText length]==0)
+    {
+        isSearching =NO;
+        [arrCountryDisplaylist removeAllObjects];
+        [tblCountryList reloadData];
+        return;
+    }
+    
+    strSearchTxt = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    isSearching=YES;
+    if ([strSearchTxt length]>0)
+    {
+        [arrCountryDisplaylist removeAllObjects];
+        [tblCountryList reloadData];
+        [self filterContentForSearchText:strSearchTxt];
+        [tblCountryList reloadData];
+    }
+}
+
+
+
+- (void)filterContentForSearchText:(NSString*)searchText {
     NSPredicate *resultPredicate;
         resultPredicate = [NSPredicate
                            predicateWithFormat:@"SELF['CountryName'] contains[cd] %@",
                            searchText];
     
-    displayData = [data filteredArrayUsingPredicate:resultPredicate];
+    [arrCountryDisplaylist  addObjectsFromArray:[arrCountryList filteredArrayUsingPredicate:resultPredicate]] ;
 }
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+#pragma mark -
+- (void)didReceiveMemoryWarning
 {
-    [self filterContentForSearchText:searchString
-                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-                                      objectAtIndex:[self.searchDisplayController.searchBar
-                                                     selectedScopeButtonIndex]]];
-    
-    return YES;
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
--(void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller{
-    self.searchDisplayController.searchBar.showsCancelButton = YES;
-    UIButton *cancelButton;
-    UITextField *searchField;
-    UIView *topView = self.searchDisplayController.searchBar.subviews[0];
-    for (UIView *subView in topView.subviews) {
-        if ([subView isKindOfClass:[UIButton class]]) {
-            cancelButton = (UIButton*)subView;
-        }else if ([subView isKindOfClass:[UITextField class]]){
-            searchField = (UITextField *) subView;
-            searchField.placeholder = @"search";
-        }
-    }
-    if (cancelButton) {
-        //Set the new title of the cancel button
-        [cancelButton setTitle:@"cancel" forState:UIControlStateNormal];
-    }
-}
 @end
