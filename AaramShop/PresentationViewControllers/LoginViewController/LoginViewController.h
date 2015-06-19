@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : BaseViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
+@interface LoginViewController : BaseViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate,CustomNavigationDelegate>
 {
     
     __weak IBOutlet UITextField *txtUserName;

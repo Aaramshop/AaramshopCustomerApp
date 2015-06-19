@@ -48,7 +48,7 @@
 -(void)setNavigationBar
 {
     
-    UIImage *imgBack = [UIImage imageNamed:@"backBtn"];
+    UIImage *imgBack = [UIImage imageNamed:@"backBtn.png"];
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.bounds = CGRectMake( -10, 0, 20, 20);
     

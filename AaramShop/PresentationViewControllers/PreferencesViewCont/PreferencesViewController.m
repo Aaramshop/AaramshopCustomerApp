@@ -56,14 +56,9 @@
 -(void)setUpNavigationView
 {
     CustomNavigationView* navView =[[CustomNavigationView alloc]init];
-    
-    
     [navView setCustomNavigationLeftArrowImageWithImageName:@"backBtn"];
-    
     navView.delegate=self;
     [self.view addSubview:navView];
-    
-    
 }
 -(void)customNavigationLeftButtonClick:(UIButton *)sender
 {

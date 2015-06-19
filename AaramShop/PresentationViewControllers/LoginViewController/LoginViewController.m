@@ -30,8 +30,24 @@
     gst.delegate = self;
     [self.view addGestureRecognizer:gst];
     
-    
+  //  [self setUpNavigationView];
 }
+
+#pragma mark Navigation
+
+-(void)setUpNavigationView
+{
+    CustomNavigationView* navView =[[CustomNavigationView alloc]init];
+    [navView setCustomNavigationLeftArrowImageWithImageName:@"backBtn.png"];
+    navView.delegate=self;
+    [self.view addSubview:navView];
+}
+-(void)customNavigationLeftButtonClick:(UIButton *)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 -(BOOL)validateEmail:(NSString*)email andPassword:(NSString *)password
 {
     NSString *regex1 = @"\\A[a-z0-9]+([-._][a-z0-9]+)*@([a-z0-9]+(-[a-z0-9]+)*\\.)+[a-z]{2,4}\\z";
