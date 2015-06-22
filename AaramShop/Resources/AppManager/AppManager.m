@@ -9,6 +9,7 @@
 
 #import "AppManager.h"
 #import "CMCountryList.h"
+
 #define kMax_No_Of_contacts 300
 
 
@@ -16,6 +17,7 @@ AppManager * gAppManager = nil;
 UIAlertView *alert = nil;
 @implementation AppManager
 @synthesize cmCountryList,imgProfile;
+AppDelegate *appDeleg;
 +(AppManager *)sharedManager
 {
     static AppManager *instance = nil;
@@ -82,6 +84,7 @@ UIAlertView *alert = nil;
 -(void)initializeObjects
 {
     cmCountryList = [[CMCountryList alloc] init];
+    appDeleg = APP_DELEGATE;
 }
 +(CLocation *)getLocationByLocationStr:(NSString *)inLocationStr
 {
@@ -362,9 +365,8 @@ UIAlertView *alert = nil;
 +(void)createDataForAddressBook:(NSMutableArray *)arrAddressContacts
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-   // [dict removeObjectForKey:kSessionToken];
-   // [dict setObject:kOptionUser_mobile_data forKey:kOption];
-    [dict setObject:arrAddressContacts forKey:kMobile];
+    NSString *strMobile = [arrAddressContacts componentsJoinedByString:@","];
+    [dict setObject:strMobile forKey:kMobile];
     [self callAddressBookWebService:dict];
 }
 +(void)callAddressBookWebService:(NSDictionary*)userData
@@ -375,13 +377,13 @@ UIAlertView *alert = nil;
     }
     
     AFHTTPSessionManager *manager = [Utils InitSetUpForWebService];
-    [manager POST:@"" parameters:userData
+    [manager POST:kUserMobileDataURL parameters:userData
           success:^(NSURLSessionDataTask *task, id responseObject)
      {
          NSLog(@"Sucees");
          NSLog(@"value =%@",userData);
          if ([[responseObject objectForKey:kstatus] intValue] == 1) {
-             [[DataBase database] SaveAddressBookDataBase:[responseObject valueForKey:@"data"]from:YES];
+             [[DataBase database] SaveAddressBookDataBase:[responseObject valueForKey:@"users"]from:YES];
              [[NSUserDefaults standardUserDefaults] setValue:[NSDate date] forKey:@"modifiedDate"];
              [AppManager sharedManager].isFetchingContacts=NO;
 
@@ -389,6 +391,7 @@ UIAlertView *alert = nil;
      }
           failure:^(NSURLSessionDataTask *task, NSError *error)
      {
+         NSLog(@"error");
 //         if ([Utils isRequestTimeOut:error])
 //         {
 //             [Utils showAlertView:kAlertTitle message:kRequestTimeOutMessage delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
@@ -540,4 +543,28 @@ void MyAddressBookExternalChangeCallback (
         
     }
 }
+
+
++(NSString *)getDistance:(StoreModel *)objStoreModel
+{
+    double storeLat,storeLong;
+    
+    storeLat = (double)[objStoreModel.store_latitude doubleValue];
+    storeLong=(double)[objStoreModel.store_longitude doubleValue];
+    
+    
+    NSString* strStoreLoc = [NSString stringWithFormat:@"%f,%f", storeLat, storeLong];
+    NSString* strCurrentLoc = [NSString stringWithFormat:@"%f,%f", appDeleg.myCurrentLocation.coordinate.latitude, appDeleg.myCurrentLocation.coordinate.longitude];
+    
+    NSLog(@"store Location =%@  and my location %@",strStoreLoc,strCurrentLoc);
+    
+    
+    CLLocation *location1 = [[CLLocation alloc] initWithLatitude:storeLat longitude:storeLong];
+    CLLocation *location2 = [[CLLocation alloc] initWithLatitude:appDeleg.myCurrentLocation.coordinate.latitude longitude:appDeleg.myCurrentLocation.coordinate.longitude];
+    
+    NSString *toDistance =[NSString stringWithFormat:@"%.2f Km",[location1 distanceFromLocation:location2]/1000];
+    return toDistance;
+    
+}
+
 @end

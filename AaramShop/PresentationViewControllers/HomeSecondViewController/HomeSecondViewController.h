@@ -10,13 +10,17 @@
 #import "V8HorizontalPickerView.h"
 #import "RightCollectionViewController.h"
 
-@interface HomeSecondViewController : UIViewController<V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,UISearchBarDelegate>
+@interface HomeSecondViewController : UIViewController<V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,UISearchBarDelegate,AaramShop_ConnectionManager_Delegate,RightControllerDelegate>
 {    
     __weak IBOutlet UITableView *tblVwCategory;
     RightCollectionViewController *rightCollectionVwContrllr;
+    NSMutableArray *arrGetStoreProductCategories;
+    NSMutableArray *arrGetStoreProducts;
+    NSMutableArray *arrGetStoreProductSubCategory;
 }
-@property(nonatomic,strong) NSMutableArray *arrListData;
-@property(nonatomic,strong) NSMutableArray *arrSubCategory;
 @property (nonatomic) NSInteger mainCategoryIndexPicker;
-@property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
+@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+@property(nonatomic,strong) NSString *strStore_Id;
+@property(nonatomic,strong) NSString *strStore_CategoryName;
+
 @end

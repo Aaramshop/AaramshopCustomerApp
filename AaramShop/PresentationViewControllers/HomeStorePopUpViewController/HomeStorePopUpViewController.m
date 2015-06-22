@@ -13,22 +13,15 @@
 @end
 
 @implementation HomeStorePopUpViewController
-@synthesize delegate;
+@synthesize delegate,viewPopUp;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 
 - (IBAction)btncloseClick:(UIButton *)sender {
     
     [self.view removeFromSuperview];
-
-//    if (self.delegate && [self.delegate conformsToProtocol:@protocol(HomeStorePopUpViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(hidePopUp)])
-//    {
-//        [self.delegate hidePopUp];
-//    }
-
 }
 
 

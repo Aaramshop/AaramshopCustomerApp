@@ -7,7 +7,7 @@
 //
 
 #import "CategoryViewController.h"
-#import "CategoryModel.h"
+
 static NSString *strCollectionCellCategory = @"collectionCellCategories";
 
 @interface CategoryViewController ()
@@ -18,13 +18,13 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
 @synthesize arrCategory,collectionViewCategory,mainCategoryIndex,delegate,pickerViewOfCategory;
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
+    
     self.mainCategoryIndex = 0;
-     UICollectionViewFlowLayout *flowLayout1= [[UICollectionViewFlowLayout alloc] init];
-     flowLayout1.minimumLineSpacing = 0.0;
-     flowLayout1.minimumInteritemSpacing = 0.0f;
-     [flowLayout1  setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-  
+    UICollectionViewFlowLayout *flowLayout1= [[UICollectionViewFlowLayout alloc] init];
+    flowLayout1.minimumLineSpacing = 0.0;
+    flowLayout1.minimumInteritemSpacing = 0.0f;
+    [flowLayout1  setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    
     collectionViewCategory = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 233) collectionViewLayout:flowLayout1];
     collectionViewCategory.allowsSelection=YES;
     collectionViewCategory.alwaysBounceHorizontal = YES;
@@ -32,9 +32,9 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
     [collectionViewCategory setDelegate:self];
     
     [collectionViewCategory registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:strCollectionCellCategory];
-
-     collectionViewCategory.backgroundColor = [UIColor clearColor];
-     collectionViewCategory.pagingEnabled = YES;
+    
+    collectionViewCategory.backgroundColor = [UIColor clearColor];
+    collectionViewCategory.pagingEnabled = YES;
     
     UIImageView *imgVBg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 194, [UIScreen mainScreen].bounds.size.width, 40)];
     imgVBg.image = [UIImage imageNamed:@"homeDetailsBannerShade.png"];
@@ -50,7 +50,7 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
     
     pickerViewOfCategory.selectionPoint = CGPointMake([UIScreen mainScreen].bounds.size.width/3, 0);
     [pickerViewOfCategory scrollToElement:self.mainCategoryIndex animated:YES];
-
+    
     [self.view addSubview:collectionViewCategory];
     [self.view addSubview:imgVBg];
     [self.view addSubview:pickerViewOfCategory];
@@ -58,8 +58,11 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [pickerViewOfCategory scrollToElement:self.mainCategoryIndex animated:YES];
-    [self.collectionViewCategory scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.mainCategoryIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+    if (arrCategory.count>0) {
+        [pickerViewOfCategory scrollToElement:self.mainCategoryIndex animated:YES];
+        [self.collectionViewCategory scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.mainCategoryIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        
+    }
 }
 #pragma mark - UICollectionView Delegate & DataSource Methods
 
@@ -75,13 +78,13 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
 {
     NSInteger rowCount = 0;
     if (collectionView == collectionViewCategory)
-    rowCount = arrCategory.count;
+        rowCount = arrCategory.count;
     return rowCount;
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     CGSize sizeCell=CGSizeZero;
-        sizeCell=CGSizeMake([UIScreen mainScreen].bounds.size.width, 233);
+    sizeCell=CGSizeMake([UIScreen mainScreen].bounds.size.width, 233);
     return sizeCell;
 }
 
@@ -94,13 +97,17 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
             cell.backgroundColor = [UIColor clearColor];
         }
         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:nil];
-
         
-        CategoryModel *objCategoryModel = [arrCategory objectAtIndex:indexPath.row];
+        
+        StoreModel *objStoreModel = [arrCategory objectAtIndex:indexPath.row];
         UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234)];
-        imgV.image = [UIImage imageNamed:objCategoryModel.img];
+        
+        [imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreModel.store_main_category_banner_1]] placeholderImage:[UIImage imageNamed:@"homePageBannerImage.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (image) {
+            }
+        }];
         [cell.contentView addSubview:imgV];
-
+        
     }
     return cell;
 }
@@ -144,8 +151,8 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
 #pragma mark - HorizontalPickerView Delegate Methods
 - (NSString *)horizontalPickerView:(V8HorizontalPickerView *)picker titleForElementAtIndex:(NSInteger)index
 {
-    CategoryModel *objCategory = [arrCategory objectAtIndex:index];
-    NSString *strValue = objCategory.strCategoryName;
+    StoreModel *objStoreModel = [arrCategory objectAtIndex:index];
+    NSString *strValue = objStoreModel.store_main_category_name;
     return strValue;
 }
 
@@ -166,7 +173,7 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
         {
             [self.delegate refreshSubCategoryData:self.mainCategoryIndex];
         }
-
+        
     }
     
 }

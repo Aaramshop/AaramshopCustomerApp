@@ -51,6 +51,8 @@
     [self registerDeviceForDeviceToken:application];
     [self findCurrentLocation];
 
+    NSLog(@"value =%f",[UIScreen mainScreen].bounds.size.height);
+
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     

@@ -9,15 +9,25 @@
 #import "HomeTableCell.h"
 #import "SWTableViewCell.h"
 #import "CategoryViewController.h"
-@interface HomeViewController : UIViewController<CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,SWTableViewCellDelegate,CategoryViewControllerDelegate,HomeTableCellDelegate>
+#import "StoreModel.h"
+
+@interface HomeViewController : UIViewController<CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,SWTableViewCellDelegate,CategoryViewControllerDelegate,HomeTableCellDelegate,AaramShop_ConnectionManager_Delegate,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
+    UITableView *tblVwCategory;
+    UITableView *tblStores;
+    UIScrollView *mainScrollView;
     NSMutableArray *arrSubCategory;
-    __weak IBOutlet UITableView *tblVwCategory;
     NSMutableArray *arrCategory;
+    NSMutableArray *arrRecommendedStores;
+    
+    NSMutableArray *arrSubCategoryMyStores;
+    NSMutableArray *arrRecommendedStoresMyStores;
+
+    
     CategoryViewController *objCategoryVwController;
 }
 @property (nonatomic) NSInteger mainCategoryIndex;
+@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
-@property (nonatomic, strong) CDRTranslucentSideBar *rightSideBar;
 
 @end

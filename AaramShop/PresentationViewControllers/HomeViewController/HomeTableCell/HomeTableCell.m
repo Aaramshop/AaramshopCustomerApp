@@ -8,7 +8,7 @@
 #import "HomeTableCell.h"
 
 @implementation HomeTableCell
-@synthesize objSubCategoryModel,indexPath,delegateHomeCell,selectedCategory;
+@synthesize indexPath,delegateHomeCell,selectedCategory;
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -22,12 +22,13 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
-    
     if (self) {
         
         lblCategoryName = [[UILabel alloc]initWithFrame:CGRectZero];
         lblCategoryName.font = [UIFont fontWithName:kRobotoRegular size:14.0];
         lblCategoryName.textColor = [UIColor colorWithRed:63.0/255.0 green:63.0/255.0 blue:63.0/255.0 alpha:1.0];
+        lblCategoryName.backgroundColor = [UIColor clearColor];
+        lblCategoryName.numberOfLines=0;
 
         
         lblRestaurantName = [[UILabel alloc]initWithFrame:CGRectZero];
@@ -60,68 +61,88 @@
         
         imgVStatusTypeIcon = [[UIImageView alloc]initWithFrame:CGRectZero];
 
-        btnFavouriteType = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnFavouriteType addTarget:self action:@selector(btnFavouriteTypeClick) forControlEvents:UIControlEventTouchUpInside];
+        imgVIsFavourite = [[UIImageView alloc]initWithFrame:CGRectZero];
         
         imgVHomeIcon = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 35, 35)];
         imgVHomeIcon.image = [UIImage imageNamed:@"homeScreenHomeIconRed"];
 
-        imgvCategoryIcon.frame = CGRectMake(10, 15, 50, 50);
-        imgVCategoryTypeIcon.frame = CGRectMake(70, 15, 20, 20);
-        imgVStatusTypeIcon.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-35, 20, 25, 25);
-        lblCategoryName.frame = CGRectMake(imgVCategoryTypeIcon.frame.origin.x+imgVCategoryTypeIcon.frame.size.width+10, 14, imgVStatusTypeIcon.frame.origin.x, 20);
-        btnFavouriteType.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-35, 45, 25, 25);
-        lblRestaurantName.frame = CGRectMake(70, lblCategoryName.frame.origin.y+lblCategoryName.frame.size.height, 200, 25);
-        
-        imgVLocationIcon.frame = CGRectMake(70, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height, 15, 15);
-        lblDistance.frame = CGRectMake(imgVLocationIcon.frame.origin.x+imgVLocationIcon.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height-3, 40, 20);
-        
-        imgVDeliveryIcon.frame = CGRectMake(lblDistance.frame.origin.x+lblDistance.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height, 15, 15);
-        lblDeliveryType.frame = CGRectMake(imgVDeliveryIcon.frame.origin.x+imgVDeliveryIcon.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height-3, 50, 20);
-
-        
-        imgVPriceIcon.frame = CGRectMake(lblDeliveryType.frame.origin.x+lblDeliveryType.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height, 15, 15);
-        lblPriceValue.frame = CGRectMake(imgVPriceIcon.frame.origin.x+imgVPriceIcon.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height-3, 50, 20);
-
-       // [self.contentView addSubview:imgVHomeIcon];
         [self.contentView addSubview:lblCategoryName];
         [self.contentView addSubview:lblDeliveryType];
         [self.contentView addSubview: lblDistance];
         [self.contentView addSubview:lblPriceValue];
         [self.contentView addSubview:lblRestaurantName];
         
+        [self.contentView addSubview:imgVHomeIcon];
         [self.contentView addSubview:imgvCategoryIcon];
         [self.contentView addSubview:imgVCategoryTypeIcon];
         [self.contentView addSubview:imgVLocationIcon];
         [self.contentView addSubview:imgVDeliveryIcon];
         [self.contentView addSubview:imgVPriceIcon];
         [self.contentView addSubview:imgVStatusTypeIcon];
-        
-        [self.contentView addSubview:btnFavouriteType];
+        [self.contentView addSubview:imgVIsFavourite];
     }
     return self;
 }
 
--(void)updateCellWithData:(SubCategoryModel  *)objSubCategoryData
+-(void)updateCellWithData:(StoreModel*)objStoreData
 {
+    CGSize size= [Utils getLabelSizeByText:objStoreData.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
+    
+    if (size.height < 20) {
+        size.height = 20;
+    }
+
+    
+    imgvCategoryIcon.frame = CGRectMake(10, 15, 50, 50);
+    imgVCategoryTypeIcon.frame = CGRectMake(70, 15, 20, 20);
+    imgVStatusTypeIcon.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-35, 20, 25, 25);
+    lblCategoryName.frame = CGRectMake(imgVCategoryTypeIcon.frame.origin.x+imgVCategoryTypeIcon.frame.size.width+10, 14, [UIScreen mainScreen].bounds.size.width-150, size.height);
+    imgVIsFavourite.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-35, 45, 25, 25);
+    lblRestaurantName.frame = CGRectMake(70, lblCategoryName.frame.origin.y+lblCategoryName.frame.size.height, [UIScreen mainScreen].bounds.size.width-110, 25);
+    
+    imgVLocationIcon.frame = CGRectMake(70, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height, 15, 15);
+    lblDistance.frame = CGRectMake(imgVLocationIcon.frame.origin.x+imgVLocationIcon.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height-3, 60, 20);
+    
+    imgVDeliveryIcon.frame = CGRectMake(lblDistance.frame.origin.x+lblDistance.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height, 15, 15);
+    lblDeliveryType.frame = CGRectMake(imgVDeliveryIcon.frame.origin.x+imgVDeliveryIcon.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height-3, 50, 20);
+    
+    
+    imgVPriceIcon.frame = CGRectMake(lblDeliveryType.frame.origin.x+lblDeliveryType.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height, 15, 15);
+    lblPriceValue.frame = CGRectMake(imgVPriceIcon.frame.origin.x+imgVPriceIcon.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height-3, 50, 20);
+    
+
     imgVLocationIcon.image = [UIImage imageNamed:@"locationIcon.png"];
-    imgvCategoryIcon.image = [UIImage imageNamed:@"homeDetailsDefaultImgae.png"];
     imgVDeliveryIcon.image = [UIImage imageNamed:@""];
     imgVPriceIcon.image = [UIImage imageNamed:@"homeRupeesIcon.png"];
-    imgVCategoryTypeIcon.image = [UIImage imageNamed:@"homeChocklateIcon.png"];
     
-    lblCategoryName.text =objSubCategoryData.strCategoryName;
+    lblCategoryName.text =objStoreData.store_category_name;
     lblDeliveryType.text = @"Delivers";
-    lblDistance.text = objSubCategoryData.distance;
-    lblPriceValue.text =objSubCategoryData.price;
-    lblRestaurantName.text =objSubCategoryData.restaurantName;
-    if (objSubCategoryData.isAddedToFavourite) {
-        [btnFavouriteType setImage:[UIImage imageNamed:@"homeStarIconActive.png"] forState:UIControlStateNormal];
+    lblDistance.text = [AppManager getDistance:objStoreData];
+   // lblPriceValue.text =objSubCategoryData.price;
+    lblRestaurantName.text =objStoreData.store_name;
+    
+    [imgvCategoryIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreData.store_image]] placeholderImage:[UIImage imageNamed:@"homeDetailsDefaultImgae.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image) {
+        }
+    }];
+
+    if ([objStoreData.is_home_store isEqualToString:@"1"]) {
+        imgVHomeIcon.hidden = NO;
     }
     else
-        [btnFavouriteType setImage:[UIImage imageNamed:@"homeStarIconInactive.png"] forState:UIControlStateNormal];
+        imgVHomeIcon.hidden = YES;
     
-    if ([objSubCategoryData.status isEqualToString:@"1"]) {
+    [imgVCategoryTypeIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreData.store_category_icon]] placeholderImage:[UIImage imageNamed:@"homeChocklateIcon.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image) {
+        }
+    }];
+    if ([objStoreData.is_favorite isEqualToString:@"1"]) {
+        imgVIsFavourite.image = [UIImage imageNamed:@"homeStarIconActive.png"];
+    }
+    else
+        imgVIsFavourite.image = [UIImage imageNamed:@"homeStarIconInactive.png"];
+    
+    if ([objStoreData.is_open isEqualToString:@"1"]) {
         imgVStatusTypeIcon.image = [UIImage imageNamed:@"homeLockIconOpen.png"];
     }
     else
@@ -131,14 +152,4 @@
 {
     [self hideUtilityButtonsAnimated:YES];
 }
--(void)btnFavouriteTypeClick
-{
-    objSubCategoryModel.isAddedToFavourite = !objSubCategoryModel.isAddedToFavourite;
-    if (self.delegateHomeCell && [self.delegateHomeCell conformsToProtocol:@protocol(HomeTableCellDelegate)] && [self.delegateHomeCell respondsToSelector:@selector(refreshBtnFavouriteStatus:)])
-    {
-        [self.delegateHomeCell refreshBtnFavouriteStatus:indexPath];
-    }
-
-}
-
 @end

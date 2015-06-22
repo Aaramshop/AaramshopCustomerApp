@@ -50,15 +50,12 @@
     [super viewWillAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coordinateChanged_:) name:@"DDAnnotationCoordinateDidChangeNotification" object:nil];
-   // [self createDataToGetAaramShops];
+    [self createDataToGetAaramShops];
     
     cordinatesLocation = CLLocationCoordinate2DMake(appDeleg.myCurrentLocation.coordinate.latitude, appDeleg.myCurrentLocation.coordinate.longitude);
     
     [self getAddressFromLatitude:cordinatesLocation.latitude andLongitude:cordinatesLocation.longitude];
     
-    NSLocale *currentLocale = [NSLocale currentLocale];  // get the current locale.
-    NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -202,8 +199,6 @@
 -(void)createDataToGetAaramShops
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-//    [dict setObject:kOptionStore_listing forKey:kOption];
-//    [dict removeObjectForKey:kSessionToken];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     [dict setObject:@"5" forKey:kRadius];
@@ -229,7 +224,6 @@
 {
     if (aaramShop_ConnectionManager.currentTask == TASK_ENTER_LOCATION) {
         [self parseResponseForAaramShops:responseObject];
-
     }
 }
 
@@ -513,24 +507,26 @@
 - (IBAction)btnDoneClick:(UIButton *)sender {
     
     [txtFLocation resignFirstResponder];
-    [self addLocationScreen];
+    [self addLocationScreen:addressModel];
 }
 
 - (IBAction)btnEditClick:(UIButton *)sender {
     txtFLocation.userInteractionEnabled = NO;
     [txtFLocation resignFirstResponder];
-    addressModel.address = @"";
-    addressModel.state = @"";
-    addressModel.city = @"";
-    addressModel.locality = @"";
-    addressModel.pincode = @"";
-    [self addLocationScreen];
+    AddressModel *addressModelTemp ;
+    addressModelTemp.address = @"";
+    addressModelTemp.state = @"";
+    addressModelTemp.city = @"";
+    addressModelTemp.locality = @"";
+    addressModelTemp.pincode = @"";
+
+    [self addLocationScreen:addressModelTemp];
 }
--(void)addLocationScreen
+-(void)addLocationScreen:(AddressModel *)addModel
 {
     locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
     locationAlert.delegate = self;
-    locationAlert.objAddressModel = addressModel;
+    locationAlert.objAddressModel = addModel;
     locationAlert.cordinatesLocation = cordinatesLocation;
     CGRect locationAlertViewRect = [UIScreen mainScreen].bounds;
     locationAlert.view.frame = locationAlertViewRect;

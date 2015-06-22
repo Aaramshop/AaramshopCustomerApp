@@ -18,7 +18,7 @@ static NSString *strCollectionCategory = @"collectionCategories";
 @end
 
 @implementation RightCollectionViewController
-@synthesize arrCategories;
+@synthesize arrCategories,delegate;
 - (void)viewDidLoad {
     [super viewDidLoad];
     isSearching = NO;
@@ -61,17 +61,16 @@ static NSString *strCollectionCategory = @"collectionCategories";
     
     UITextField *searchField;
     UIView *subviews = [searchBarCategory.subviews lastObject];
-   // searchField = (id)[subviews.subviews objectAtIndex:1];
-    //    for (UIView *subView in searchBarCategory.subviews){
-    //        for (UIView *ndLeveSubView in subView.subviews){
-    //            if ([ndLeveSubView isKindOfClass:[UITextField class]])
-    //            {
-    //
-    //                searchField = (UITextField *)ndLeveSubView;
-    //                break;
-    //            }
-    //        }
-    //    }
+//    searchField = (id)[subviews.subviews objectAtIndex:1];
+//        for (UIView *subView in searchBarCategory.subviews){
+//            for (UIView *ndLeveSubView in subView.subviews){
+//                if ([ndLeveSubView isKindOfClass:[UITextField class]])
+//                {
+//                    searchField = (UITextField *)ndLeveSubView;
+//                    break;
+//                }
+//            }
+//        }
     searchField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     
     if(!(searchField == nil)) {
@@ -128,14 +127,19 @@ static NSString *strCollectionCategory = @"collectionCategories";
         objCategoryModel= [arrCategories objectAtIndex:indexPath.row];
     
     UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(((([UIScreen mainScreen].bounds.size.width)/3-2)-60)/2,10,60, 60)];
-    imgV.image = [UIImage imageNamed:objCategoryModel.img];
+    
+    [imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objCategoryModel.category_image]] placeholderImage:[UIImage imageNamed:@"homeDetailsDefaultImgae.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image) {
+        }
+    }];
+
     [cell.contentView addSubview:imgV];
     
     UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 80, (([UIScreen mainScreen].bounds.size.width)/3-22), 20)];
     lbl.textColor = [UIColor blackColor];
     lbl.textAlignment = NSTextAlignmentCenter;
     lbl.font = [UIFont fontWithName:kRobotoRegular size:13.0];
-    lbl.text = objCategoryModel.strCategoryName;
+    lbl.text = objCategoryModel.category_name;
     [cell.contentView addSubview:lbl];
     return cell;
 }
@@ -143,6 +147,22 @@ static NSString *strCollectionCategory = @"collectionCategories";
 - (void)collectionView:(UICollectionView *)collectionViewSelected didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionViewSelected deselectItemAtIndexPath:indexPath animated:YES];
+    
+    CategoryModel *objCategoryModel = nil;
+    
+    if (isSearching) {
+        objCategoryModel = [arrSearchCategories objectAtIndex:indexPath.row];
+    }
+    else
+        objCategoryModel= [arrCategories objectAtIndex:indexPath.row];
+
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:objCategoryModel.category_name,kCategory_name,objCategoryModel.category_id,kCategory_id, nil];
+    if (self.delegate && [self.delegate conformsToProtocol:@protocol(RightControllerDelegate)] && [self.delegate respondsToSelector:@selector(selectCategory:)])
+    {
+        [self.delegate selectCategory:dict];
+        [self.view removeFromSuperview];
+    }
+
 }
 -(BOOL) collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath{
     

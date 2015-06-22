@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CategoryModel.h"
+
+@protocol RightControllerDelegate <NSObject>
+
+-(void)selectCategory:(NSDictionary *)dict;
+@end
+
+
 @interface RightCollectionViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UISearchBarDelegate>
 {
     UIToolbar *toolBarBehindView;
@@ -16,4 +23,5 @@
     NSMutableArray *arrSearchCategories;
 }
 @property(nonatomic,strong) NSMutableArray *arrCategories;
+@property(nonatomic,weak) id<RightControllerDelegate> delegate;
 @end

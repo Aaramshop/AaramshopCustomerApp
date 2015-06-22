@@ -16,10 +16,11 @@
 
 @interface HomeStorePopUpViewController : UIViewController
 {
-    
-    __weak IBOutlet UITextView *txtVWhatsHomeStore;
+  __weak IBOutlet UITextView *txtVWhatsHomeStore;
 }
 @property(nonatomic,weak) id<HomeStorePopUpViewControllerDelegate> delegate;
+@property(nonatomic) __weak IBOutlet UIView *viewPopUp;
+
 - (IBAction)btncloseClick:(UIButton *)sender;
 
 @end

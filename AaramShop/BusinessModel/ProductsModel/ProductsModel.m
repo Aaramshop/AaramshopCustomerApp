@@ -1,13 +1,13 @@
 //
-//  CategoryModel.m
+//  ProductsModel.m
 //  AaramShop
 //
 //  Created by Approutes on 22/06/15.
 //  Copyright (c) 2015 Approutes. All rights reserved.
 //
 
-#import "CategoryModel.h"
+#import "ProductsModel.h"
 
-@implementation CategoryModel
+@implementation ProductsModel
 
 @end

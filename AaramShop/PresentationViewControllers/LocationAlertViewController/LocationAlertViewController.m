@@ -99,10 +99,7 @@
 
 - (IBAction)btnSave:(id)sender
 {
-    [btnSave setEnabled:NO];
-    [btnHome setEnabled:NO];
-    [btnOthers setEnabled:NO];
-    [btnOffice setEnabled:NO];
+    subView.userInteractionEnabled = NO;
     
     txtAddress.text = [txtAddress.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
@@ -118,10 +115,8 @@
     if ([txtAddress.text length] == 0) {
         
         [Utils showAlertView:kAlertTitle message:@"Enter address" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-        [btnSave setEnabled:YES];
-        [btnHome setEnabled:YES];
-        [btnOthers setEnabled:YES];
-        [btnOffice setEnabled:YES];
+        subView.userInteractionEnabled = YES;
+
 
         return;
     }
@@ -129,44 +124,32 @@
     else if ([txtState.text length] == 0) {
         
         [Utils showAlertView:kAlertTitle message:@"Enter state" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-        [btnSave setEnabled:YES];
-        [btnHome setEnabled:YES];
-        [btnOthers setEnabled:YES];
-        [btnOffice setEnabled:YES];
-        
+        subView.userInteractionEnabled = YES;
+
         return;
     }
     
     else if ([txtCity.text length] == 0) {
         
         [Utils showAlertView:kAlertTitle message:@"Enter city" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-        [btnSave setEnabled:YES];
-        [btnHome setEnabled:YES];
-        [btnOthers setEnabled:YES];
-        [btnOffice setEnabled:YES];
-        
+        subView.userInteractionEnabled = YES;
+
         return;
     }
     
     else if ([txtLocality.text length] == 0) {
         
         [Utils showAlertView:kAlertTitle message:@"Enter locality" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-        [btnSave setEnabled:YES];
-        [btnHome setEnabled:YES];
-        [btnOthers setEnabled:YES];
-        [btnOffice setEnabled:YES];
-        
+        subView.userInteractionEnabled = YES;
+
         return;
     }
     
     else if ([txtPinCode.text length] == 0) {
         
         [Utils showAlertView:kAlertTitle message:@"Enter pincode" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-        [btnSave setEnabled:YES];
-        [btnHome setEnabled:YES];
-        [btnOthers setEnabled:YES];
-        [btnOffice setEnabled:YES];
-        
+        subView.userInteractionEnabled = YES;
+
         return;
     }
     
@@ -177,10 +160,8 @@
         if ([txtTitle.text length] == 0) {
             
             [Utils showAlertView:kAlertTitle message:@"Enter title" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-            [btnSave setEnabled:YES];
-            [btnHome setEnabled:YES];
-            [btnOthers setEnabled:YES];
-            [btnOffice setEnabled:YES];
+            subView.userInteractionEnabled = YES;
+
             
             return;
         }
@@ -223,11 +204,8 @@
     if (![Utils isInternetAvailable])
     {
         [AppManager stopStatusbarActivityIndicator];
-        [btnSave setEnabled:YES];
-        [btnHome setEnabled:YES];
-        [btnOthers setEnabled:YES];
-        [btnOffice setEnabled:YES];
-        
+        subView.userInteractionEnabled = YES;
+
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
@@ -237,22 +215,16 @@
 
 -(void) didFailWithError:(NSError *)error
 {
-    [btnSave setEnabled:YES];
-    [btnHome setEnabled:YES];
-    [btnOthers setEnabled:YES];
-    [btnOffice setEnabled:YES];
-    
+    subView.userInteractionEnabled = YES;
+
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 -(void) responseReceived:(id)responseObject
 {
     if (aaramShop_ConnectionManager.currentTask == TASK_UPDATE_ADDRESS) {
         
-        [btnSave setEnabled:YES];
-        [btnHome setEnabled:YES];
-        [btnOthers setEnabled:YES];
-        [btnOffice setEnabled:YES];
-        
+        subView.userInteractionEnabled = YES;
+
         
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
             [self saveAddressIntoDataBase];

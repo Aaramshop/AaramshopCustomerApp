@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SubCategoryModel.h"
+#import "ProductsModel.h"
 
 @protocol HomeSecondCustomCellDelegate <NSObject>
 
@@ -21,8 +21,8 @@
     UILabel *lblPrice, *lblName, *lblCount;
     UIButton *btnPlus, *btnMinus;
 }
-@property(nonatomic,strong) SubCategoryModel *subCategory;
+@property(nonatomic,strong) ProductsModel *objProductsModelMain;
 @property(nonatomic,strong) id<HomeSecondCustomCellDelegate> delegate;
 @property(nonatomic,strong) NSIndexPath *indexPath;
--(void)updateCellWithSubCategory:(SubCategoryModel *)objSubCategory;
+-(void)updateCellWithSubCategory:(ProductsModel *)objProductsModel;
 @end

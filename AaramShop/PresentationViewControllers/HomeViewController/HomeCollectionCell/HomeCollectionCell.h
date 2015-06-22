@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CategoryModel.h"
+#import "StoreModel.h"
+
 @interface HomeCollectionCell : UICollectionViewCell{
     UIImageView *imgVCategory;
     UILabel *lblCategoryName;
 }
 @property(nonatomic,strong) NSIndexPath *selectedIndexPath;
--(void)updateCategoryCellWithCategoryData:(CategoryModel *)objCategoryModelTemp;
+-(void)updateCategoryCellWithCategoryData:(StoreModel *)objStoreModelTemp;
 @end

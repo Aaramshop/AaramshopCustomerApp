@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CLocation.h"
 #import <AddressBook/AddressBook.h>
+#import "StoreModel.h"
 
 typedef enum {
     eMapDefaultType =0,
@@ -49,6 +50,6 @@ void MyAddressBookExternalChangeCallback (
 +(void)callAddressBookWebService:(NSDictionary*)userData;
 +(void)clearAllConversation;
 -(void)createDefaultValuesForDictionay;
-
++(NSString *)getDistance:(StoreModel *)objStoreModel;
 @end
 extern AppManager *gAppManager;

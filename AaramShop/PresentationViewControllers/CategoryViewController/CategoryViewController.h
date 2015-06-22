@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "V8HorizontalPickerView.h"
-
+#import "StoreModel.h"
 @protocol CategoryViewControllerDelegate <NSObject>
 
 -(void)refreshSubCategoryData:(NSInteger )selectedCategory;
 @end
 
-@interface CategoryViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,V8HorizontalPickerElementState,V8HorizontalPickerViewDataSource,V8HorizontalPickerViewDelegate>
+@interface CategoryViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,V8HorizontalPickerViewDataSource,V8HorizontalPickerViewDelegate,V8HorizontalPickerElementState>
 @property(nonatomic,strong) id<CategoryViewControllerDelegate> delegate;
 @property(nonatomic) NSInteger mainCategoryIndex;
 @property(nonatomic,strong) NSMutableArray *arrCategory;

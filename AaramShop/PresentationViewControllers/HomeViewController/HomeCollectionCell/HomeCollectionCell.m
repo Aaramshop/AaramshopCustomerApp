@@ -25,9 +25,13 @@
     }
     return self;
 }
--(void)updateCategoryCellWithCategoryData:(CategoryModel *)objCategoryModelTemp
+-(void)updateCategoryCellWithCategoryData:(StoreModel *)objStoreModelTemp
 {
-    imgVCategory.image = [UIImage imageNamed:objCategoryModelTemp.img];
-    lblCategoryName.text = objCategoryModelTemp.strCategoryName;
+    [imgVCategory sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreModelTemp.store_image]] placeholderImage:[UIImage imageNamed:@"homeDetailsDefaultImgae.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image) {
+        }
+    }];
+
+    lblCategoryName.text = objStoreModelTemp.store_category_name;
 }
 @end

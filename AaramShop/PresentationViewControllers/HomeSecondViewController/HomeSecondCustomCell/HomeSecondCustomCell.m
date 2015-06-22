@@ -9,7 +9,7 @@
 #import "HomeSecondCustomCell.h"
 
 @implementation HomeSecondCustomCell
-@synthesize indexPath,subCategory,delegate;
+@synthesize indexPath,delegate;
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -86,25 +86,25 @@
 }
 -(void)btnPlusClick
 {
-    if ([subCategory.count intValue]>=0) {
-        int Counter = [subCategory.count intValue];
-        Counter++;
-        subCategory.count = [NSString stringWithFormat:@"%d",Counter];
-//        if (self.delegate && [self.delegate conformsToProtocol:@protocol(VenueViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(addedValueByCounter:atIndexPath:)])
-//        {
-//            [self.delegate addedValueByCounter:counter atIndexPath:self.indexPath];
-//        }
-//        
-
-    }
+//    if ([subCategory.count intValue]>=0) {
+//        int Counter = [subCategory.count intValue];
+//        Counter++;
+//        subCategory.count = [NSString stringWithFormat:@"%d",Counter];
+////        if (self.delegate && [self.delegate conformsToProtocol:@protocol(VenueViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(addedValueByCounter:atIndexPath:)])
+////        {
+////            [self.delegate addedValueByCounter:counter atIndexPath:self.indexPath];
+////        }
+////        
+//
+//    }
 
 }
--(void)updateCellWithSubCategory:(SubCategoryModel *)objSubCategory
-{
-    imgV.image = [UIImage imageNamed:objSubCategory.img];
-    lblName.text= objSubCategory.strCategoryName;
-    lblPrice.text = objSubCategory.price;
-    lblCount.text = objSubCategory.count;
-}
+//-(void)updateCellWithSubCategory:(SubCategoryModel *)objSubCategory
+//{
+//    imgV.image = [UIImage imageNamed:objSubCategory.img];
+//    lblName.text= objSubCategory.strCategoryName;
+//    lblPrice.text = objSubCategory.price;
+//    lblCount.text = objSubCategory.count;
+//}
 
 @end

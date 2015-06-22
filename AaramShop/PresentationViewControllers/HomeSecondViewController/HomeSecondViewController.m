@@ -7,179 +7,254 @@
 //
 
 #import "HomeSecondViewController.h"
-#import "SubCategoryModel.h"
-#import "CategoryModel.h"
 #import "HomeSecondCustomCell.h"
+#import "CategoryModel.h"
+#import "ProductsModel.h"
+#import "SubCategoryModel.h"
+
+
 @interface HomeSecondViewController ()
 {
     AppDelegate *appDeleg;
     BOOL isSelected;
+    NSString *strSelectedCategoryName;
+    NSString *strSelectedCategoryId;
 }
 @end
 
 @implementation HomeSecondViewController
-@synthesize arrSubCategory,arrListData,mainCategoryIndexPicker;
+@synthesize mainCategoryIndexPicker,strStore_Id,aaramShop_ConnectionManager,strStore_CategoryName;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     isSelected = NO;
     appDeleg = (AppDelegate *)APP_DELEGATE;
-    self.sideBar = [Utils createLeftBarWithDelegate:self];
     
-    rightCollectionVwContrllr = (RightCollectionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"rightCollectionView"];
-    rightCollectionVwContrllr.arrCategories = [[NSMutableArray alloc]init];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-
-    mainCategoryIndexPicker = 1;
-    arrListData = [[NSMutableArray alloc]init];
-    arrSubCategory = [[NSMutableArray alloc]init];
-    [self setUpNavigationView];
-    [self fillCategoriesArray];
-
-    [self fillSubCategoriesArray];
+    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
+    aaramShop_ConnectionManager.delegate= self;
+    mainCategoryIndexPicker = 0;
     
-    rightCollectionVwContrllr.view.frame = CGRectMake(0, 93, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-93);
+    arrGetStoreProductCategories = [[NSMutableArray alloc]init];
+    arrGetStoreProducts = [[NSMutableArray alloc]init];
+    arrGetStoreProductSubCategory = [[NSMutableArray alloc]init];
 
-    [rightCollectionVwContrllr.arrCategories addObjectsFromArray:arrListData];
+    [self setUpNavigationBar];
+    
+    tblVwCategory.hidden = NO;
+    
+    [self createDataToGetStoreProductCategories];
 
+}
+-(void)createDataToGetStoreProductCategories
+{
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    [dict removeObjectForKey:kUserId];
+    [dict setObject:strStore_Id forKey:kStore_id];
+    [self callWebserviceTogetStoreProductCategories:dict];
+}
+-(void)callWebserviceTogetStoreProductCategories:(NSMutableDictionary *)aDict
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kGetStoreProductCategoriesURL withInput:aDict withCurrentTask:TASK_GET_STORE_PRODUCT_CATEGORIES andDelegate:self ];
+}
+-(void)createDataToGetStoreProductSubCategory:(NSString *)strCategoryId
+{
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    [dict removeObjectForKey:kUserId];
+    [dict setObject:strStore_Id forKey:kStore_id];
+    [dict setObject:strCategoryId forKey:kCategory_id];
+    [self callWebserviceTogetStoreProductSubCategories:dict];
+}
+-(void)callWebserviceTogetStoreProductSubCategories:(NSMutableDictionary *)aDict
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kPOSTGetStoreProductSubCategoryURL withInput:aDict withCurrentTask:TASK_GET_STORE_PRODUCT_SUB_CATEGORIES andDelegate:self ];
+}
+
+-(void) didFailWithError:(NSError *)error
+{
+    [aaramShop_ConnectionManager failureBlockCalled:error];
+}
+-(void) responseReceived:(id)responseObject
+{
+    if (aaramShop_ConnectionManager.currentTask == TASK_GET_STORE_PRODUCT_CATEGORIES) {
+        
+        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
+            
+            [self parseStoresCategoryData:responseObject];
+        }
+        else
+        {
+            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        }
+    }
+    else     if (aaramShop_ConnectionManager.currentTask == TASK_GET_STORE_PRODUCT_SUB_CATEGORIES) {
+        
+        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
+            
+            [self parseStoresSubCategoryCategoryData:responseObject];
+        }
+        else
+        {
+            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        }
+    }
+
+}
+-(void)parseStoresCategoryData:(id)responseObject
+{
+    NSArray *categories = [responseObject objectForKey:@"categories"];
+    
+    for (NSDictionary *dict in categories) {
+        
+        CategoryModel *objCategoryModel = [[CategoryModel alloc]init];
+        objCategoryModel.category_banner = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_banner]];
+        objCategoryModel.category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_id]];
+        objCategoryModel.category_image = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_image]];
+        objCategoryModel.category_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_name]];
+        
+        [arrGetStoreProductCategories addObject:objCategoryModel];
+    }
+    
+        rightCollectionVwContrllr = (RightCollectionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"rightCollectionView"];
+        rightCollectionVwContrllr.arrCategories = [[NSMutableArray alloc]init];
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    
+        rightCollectionVwContrllr.view.frame = CGRectMake(0, 93, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-93);
+    rightCollectionVwContrllr.delegate=self;
+     [rightCollectionVwContrllr.arrCategories addObjectsFromArray:arrGetStoreProductCategories];
+    isSelected = YES;
+    [appDeleg.window addSubview:rightCollectionVwContrllr.view];
+}
+-(void)parseStoresSubCategoryCategoryData:(id)responseObject
+{
+    NSArray *subCategories = [responseObject objectForKey:@"sub_categories"];
+    
+    for (NSDictionary *dict in subCategories) {
+        
+        SubCategoryModel *objSubCategoryModel = [[SubCategoryModel alloc]init];
+        objSubCategoryModel.sub_category_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kSub_category_name]];
+        objSubCategoryModel.sub_category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kSub_category_id]];
+        
+        
+        NSArray *arrProductsTemp = [dict objectForKey:@"products"];
+        for (NSDictionary *dictProducts in arrProductsTemp) {
+            
+            ProductsModel *objProductsModel = [[ProductsModel alloc]init];
+            objProductsModel.category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kCategory_id]];
+            objProductsModel.product_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_id]];
+            objProductsModel.product_image = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_image]];
+            objProductsModel.product_name = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_name]];
+            objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
+            objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
+            objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
+            [arrGetStoreProducts addObject:objProductsModel];
+        }
+        
+        [arrGetStoreProductSubCategory addObject:objSubCategoryModel];
+    }
+    [tblVwCategory reloadData];
 }
 #pragma mark Navigation
 
--(void)setUpNavigationView
+-(void)setUpNavigationBar
 {
-    CustomNavigationView* navView =[[CustomNavigationView alloc]init];
-    [navView setCustomNavigationLeftArrowImageWithImageName:@"backBtn.png"];
-
-    [navView.btnRight1 setImage:[UIImage imageNamed:@"addToCartIcon.png"] forState:UIControlStateNormal];
-
-    [navView.btnRight2 setImage:[UIImage imageNamed:@"searchIcon.png"] forState:UIControlStateNormal];
+    CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 150, 44);
+    UIView* _headerTitleSubtitleView = [[UILabel alloc] initWithFrame:headerTitleSubtitleFrame];
+    _headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
+    _headerTitleSubtitleView.autoresizesSubviews = NO;
     
-    [navView.btnRight3 setImage:[UIImage imageNamed:@"homeDetailTabStarIcon.png"] forState:UIControlStateNormal];
+    CGRect titleFrame = CGRectMake(0,0, 150, 44);
+    UILabel* titleView = [[UILabel alloc] initWithFrame:titleFrame];
+    titleView.backgroundColor = [UIColor clearColor];
+    titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
+    titleView.textAlignment = NSTextAlignmentCenter;
+    titleView.textColor = [UIColor whiteColor];
+    titleView.text = strStore_CategoryName;
+    titleView.adjustsFontSizeToFitWidth = YES;
+    [_headerTitleSubtitleView addSubview:titleView];
+    self.navigationItem.titleView = _headerTitleSubtitleView;
+    
+    UIImage *imgBack = [UIImage imageNamed:@"backBtn.png"];
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.bounds = CGRectMake( -10, 0, 30, 30);
+    
+    [backBtn setImage:imgBack forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(btnBackClicked) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    
+    NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
+    self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+    
+    UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
+    
+    UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
+    
+    UIImage *imgFav = [UIImage imageNamed:@"homeDetailTabStarIcon.png"];
 
+    UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnCart.bounds = CGRectMake( -10, 0, 30, 30);
+    
+    [btnCart setImage:imgCart forState:UIControlStateNormal];
+    [btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
+    
+    UIButton *btnFav = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnFav.bounds = CGRectMake( -10, 0, 30, 30);
+    
+    [btnFav setImage:imgFav forState:UIControlStateNormal];
+    [btnFav addTarget:self action:@selector(btnFavClicked) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barBtnFav = [[UIBarButtonItem alloc] initWithCustomView:btnFav];
 
-    navView.delegate=self;
-    [self.view addSubview:navView];
+    UIButton *btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnSearch.bounds = CGRectMake( -10, 0, 30, 30);
+    
+    [btnSearch setImage:imgSearch forState:UIControlStateNormal];
+    [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
+    
+    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnFav, nil];
+    self.navigationItem.rightBarButtonItems = arrBtnsRight;
+    
+    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
+    {
+        
+        UIImage *image = [UIImage imageNamed:@"navigation.png"];
+        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    }
 }
--(void)customNavigationLeftButtonClick:(UIButton *)sender
+-(void)btnBackClicked
 {
-    [rightCollectionVwContrllr.view removeFromSuperview];
-
+  //  [rightCollectionVwContrllr.view removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)customNavigationRightButtonClick:(UIButton *)sender
-{
-    if (sender.tag == 1) {
-        
-    }
-    else if (sender.tag == 2)
-    {
-        
-    }
-    else if (sender.tag == 3)
-    {
-        
-    }
+-(void)btnCartClicked{
+}
+-(void)btnFavClicked{
+}
+-(void)btnSearchClicked{
 }
 - (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
     [self.navigationController pushViewController:viewC animated:YES];
 }
 
-
--(void)fillCategoriesArray
-{
-    for (int z=0; z<5; z++) {
-        CategoryModel *objCategoryModel = [[CategoryModel alloc]init];
-        switch (z) {
-            case 0:
-            {
-                objCategoryModel.strCategoryName = @"Energy Drinks";
-                objCategoryModel.img = @"homeDetailsBeverageIconInactive.png";
-            }
-                break;
-            case 1:
-            {
-                objCategoryModel.strCategoryName = @"Fruit Drinks";
-                objCategoryModel.img = @"homeDetailsCoffeeIconInactive.png";
-            }
-                break;
-                
-            case 2:
-            {
-                objCategoryModel.strCategoryName = @"Milk Products";
-                objCategoryModel.img = @"homeDetailsBeverageIconInactive.png";
-            }
-                break;
-                
-            case 3:
-            {
-                objCategoryModel.strCategoryName = @"Beers";
-                objCategoryModel.img = @"homeDetailsBeverageIconInactive.png";
-            }
-                break;
-                
-            case 4:
-            {
-                objCategoryModel.strCategoryName = @"Cocktails";
-                objCategoryModel.img = @"homeDetailsCoffeeIconInactive.png";
-            }
-                break;
-                
-        }
-        [arrListData addObject:objCategoryModel];
-    }
-}
--(void)fillSubCategoriesArray
-{
-    for (int z=0; z<5; z++) {
-        SubCategoryModel *objSubCategory = [[SubCategoryModel alloc]init];
-        switch (z) {
-            case 0:
-            {
-                objSubCategory.strCategoryName = @"Pineapple";
-                objSubCategory.img = @"productOne.png";
-                objSubCategory.count = @"6";
-                objSubCategory.price = @"26";
-            }
-                break;
-            case 1:
-            {
-                objSubCategory.strCategoryName = @"Drinkers";
-                objSubCategory.img = @"productTwo.png";
-                objSubCategory.count = @"2";
-                objSubCategory.price = @"60";
-            }
-                break;
-            case 2:
-            {
-                objSubCategory.strCategoryName = @"Coolio";
-                objSubCategory.img = @"productOne.png";
-                objSubCategory.count = @"2";
-                objSubCategory.price = @"6";
-            }
-                break;
-            case 3:
-            {
-                objSubCategory.strCategoryName = @"Coolio2";
-                objSubCategory.img = @"productThree.png";
-                objSubCategory.count = @"0";
-                objSubCategory.price = @"6";
-            }
-                break;
-            case 4:
-            {
-                objSubCategory.strCategoryName = @"Energy Drink";
-                objSubCategory.img = @"productTwo.png";
-                objSubCategory.count = @"2";
-                objSubCategory.price = @"21";
-            }
-                break;
-
-            default:
-                break;
-        }
-        [arrSubCategory addObject:objSubCategory];
-    }
-}
 
 #pragma mark - TableView Datasource & Delegates
 
@@ -193,7 +268,7 @@
     if (section == 0)
         rowsNum = 0;
     else if (section == 1)
-        rowsNum = arrSubCategory.count;
+        rowsNum = arrGetStoreProducts.count;
     
     return rowsNum;
 }
@@ -234,13 +309,16 @@
         }
         [btnCategory addTarget:self action:@selector(btnCategoryClick) forControlEvents:UIControlEventTouchUpInside];
         
+        UILabel *lblCategory = (UILabel *)[smallview1 viewWithTag:1001];
+
+        lblCategory.text = strSelectedCategoryName;
         if (isSelected)
             [btnCategory setImage:[UIImage imageNamed:@"homeDeatilsGreyArrowBack.png"] forState:UIControlStateNormal];
         else
         [btnCategory setImage:[UIImage imageNamed:@"homeDeatilsGreyArrow.png"] forState:UIControlStateNormal];
         
         
-        V8HorizontalPickerView *pickerViewOfCategory = (V8HorizontalPickerView *)[secView viewWithTag:23210];
+      /* V8HorizontalPickerView *pickerViewOfCategory = (V8HorizontalPickerView *)[secView viewWithTag:23210];
         pickerViewOfCategory.currentSelectedIndex = mainCategoryIndexPicker;
         pickerViewOfCategory.delegate =self;
         pickerViewOfCategory.dataSource = self;
@@ -249,7 +327,7 @@
         pickerViewOfCategory.elementFont = [UIFont fontWithName:kRobotoMedium size:14.0];
         
         pickerViewOfCategory.selectionPoint = CGPointMake([UIScreen mainScreen].bounds.size.width/3, 0);
-        [pickerViewOfCategory scrollToElement:mainCategoryIndexPicker animated:YES];
+        [pickerViewOfCategory scrollToElement:mainCategoryIndexPicker animated:YES];*/
         [tempView addSubview:secView];
         return tempView;
     }
@@ -316,9 +394,9 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
-        SubCategoryModel *objSubCategory = [arrSubCategory objectAtIndex: indexPath.row];
+        ProductsModel *objProductsModel = [arrGetStoreProducts objectAtIndex: indexPath.row];
         cell.indexPath=indexPath;
-        [cell updateCellWithSubCategory:objSubCategory];
+        [cell updateCellWithSubCategory:objProductsModel];
         return cell;
 
     }
@@ -367,6 +445,7 @@
 -(void)btnCategoryClick
 {
     isSelected = !isSelected;
+    
     [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     if (isSelected) {
         [appDeleg.window addSubview:rightCollectionVwContrllr.view];
@@ -383,15 +462,15 @@
 - (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker
 {
     NSInteger numberOfElements=0;
-    numberOfElements = arrListData.count;
+    numberOfElements = arrGetStoreProductCategories.count;
     return numberOfElements;
 }
 
 #pragma mark - HorizontalPickerView Delegate Methods
 - (NSString *)horizontalPickerView:(V8HorizontalPickerView *)picker titleForElementAtIndex:(NSInteger)index
 {
-    CategoryModel *objCategory = [arrListData objectAtIndex:index];
-    NSString *strValue = objCategory.strCategoryName;
+    CategoryModel *objCategoryModel = [arrGetStoreProductCategories objectAtIndex:index];
+    NSString *strValue = objCategoryModel.category_name;
     return strValue;
 }
 
@@ -411,7 +490,17 @@
     
 }
 
-
+-(void)selectCategory:(NSDictionary *)dict
+{
+    strSelectedCategoryName = [dict objectForKey:kCategory_name];
+    strSelectedCategoryId = [dict objectForKey:kCategory_id];
+    isSelected = NO;
+//    [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    [arrGetStoreProducts removeAllObjects];
+    [arrGetStoreProductSubCategory removeAllObjects];
+    [tblVwCategory reloadData];
+    [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
+}
 
 #pragma mark -
 - (void)didReceiveMemoryWarning {

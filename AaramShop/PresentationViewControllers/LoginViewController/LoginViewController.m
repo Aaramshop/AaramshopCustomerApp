@@ -29,24 +29,7 @@
     gst.cancelsTouchesInView = NO;
     gst.delegate = self;
     [self.view addGestureRecognizer:gst];
-    
-  //  [self setUpNavigationView];
 }
-
-#pragma mark Navigation
-
--(void)setUpNavigationView
-{
-    CustomNavigationView* navView =[[CustomNavigationView alloc]init];
-    [navView setCustomNavigationLeftArrowImageWithImageName:@"backBtn.png"];
-    navView.delegate=self;
-    [self.view addSubview:navView];
-}
--(void)customNavigationLeftButtonClick:(UIButton *)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 -(BOOL)validateEmail:(NSString*)email andPassword:(NSString *)password
 {
@@ -172,18 +155,20 @@
             [[NSUserDefaults standardUserDefaults ]synchronize];
             [gCXMPPController connect];
             [AppManager saveUserDatainUserDefault];
+            
                 LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
                 [self.navigationController pushViewController:locationScreen animated:YES];
         }
-        else if ([[responseObject objectForKey:kMobile_verified] intValue] == 0 && [[responseObject objectForKey:kstatus] intValue] == 1)
-        {
-            [AppManager saveDataToNSUserDefaults:responseObject];
-            
-            MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
-            mobileEnterVwController.isUpdateMobile = YES;
-            [self.navigationController pushViewController:mobileEnterVwController animated:YES];
-            
-        }
+//        else if (<#expression#>)
+//        else if ([[responseObject objectForKey:kMobile_verified] intValue] == 0 && [[responseObject objectForKey:kstatus] intValue] == 1)
+//        {
+//            [AppManager saveDataToNSUserDefaults:responseObject];
+//            
+//            MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
+//            mobileEnterVwController.isUpdateMobile = YES;
+//            [self.navigationController pushViewController:mobileEnterVwController animated:YES];
+//            
+//        }
         else
         {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];

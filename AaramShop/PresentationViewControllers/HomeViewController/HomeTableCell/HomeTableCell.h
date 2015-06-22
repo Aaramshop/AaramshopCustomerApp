@@ -8,8 +8,9 @@
 #import <UIKit/UIKit.h>
 #import "SWTableViewCell.h"
 #import "SWCellScrollView.h"
-#import "SubCategoryModel.h"
 #import <QuartzCore/QuartzCore.h>
+#import "StoreModel.h"
+
 @protocol HomeTableCellDelegate <NSObject>
 
 -(void)refreshBtnFavouriteStatus:(NSIndexPath *)indexPath;
@@ -19,13 +20,12 @@
 @interface HomeTableCell :  SWTableViewCell<UIGestureRecognizerDelegate>
 {
     UILabel *lblCategoryName, *lblRestaurantName,*lblDistance,*lblDeliveryType,*lblPriceValue;
-    UIImageView *imgvCategoryIcon,*imgVCategoryTypeIcon,*imgVLocationIcon,*imgVDeliveryIcon,*imgVPriceIcon,*imgVStatusTypeIcon,*imgVHomeIcon;
-    UIButton *btnFavouriteType;
+    UIImageView *imgvCategoryIcon,*imgVCategoryTypeIcon,*imgVLocationIcon,*imgVDeliveryIcon,*imgVPriceIcon,*imgVStatusTypeIcon,*imgVHomeIcon,*imgVIsFavourite;
 }
 @property(nonatomic, strong) NSIndexPath *indexPath;
 @property(nonatomic) NSInteger selectedCategory;
-@property(nonatomic,strong) SubCategoryModel *objSubCategoryModel;
+@property(nonatomic,strong) StoreModel *objStoreModel;
 @property(nonatomic,strong) id<HomeTableCellDelegate> delegateHomeCell;
--(void)updateCellWithData:(SubCategoryModel  *)objSubCategoryData;
+-(void)updateCellWithData:(StoreModel  *)objStoreData;
 -(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
 @end

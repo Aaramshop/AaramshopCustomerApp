@@ -16,7 +16,7 @@
 
 
 
-@interface LocationAlertViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate,AaramShop_ConnectionManager_Delegate>
+@interface LocationAlertViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
     __weak IBOutlet UIView *subView;
         __weak IBOutlet PWTextField *txtAddress;
