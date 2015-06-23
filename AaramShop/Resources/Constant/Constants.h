@@ -225,3 +225,7 @@
 //#define kHomeAddress                        @"homeAddress"
 //#define kOfficeAddress                      @"officeAddress"
 //#define kAddressValue                       @"addressValue"
+
+//==========Last Min Pick=========
+#define kURLGetPaymentPageData          @"getPaymentPageData"
+#define kPayment_page_info                  @"payment_page_info"
