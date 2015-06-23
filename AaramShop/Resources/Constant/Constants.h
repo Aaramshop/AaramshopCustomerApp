@@ -39,9 +39,7 @@
 #define kOption                               @"option"
 #define kSessionToken                         @"sessionToken"
 #define kMobile                               @"mobile"
-//#define kOptionLogin                          @"login"
 #define kstatus                               @"status"
-//#define kOptionNew_user_login                 @"new_user_login"
 #define kCountryName                          @"countryName"
 #define kPhoneNumbers                         @"phoneNumbers"
 #define kFullname                             @"fullname"
@@ -97,7 +95,6 @@
 
 #pragma mark - AaramShopValues
 
-//#define kOptionStore_listing                @"store_listing"
 #define kStoreListURL                       @"storeList"
 #define kRadius                             @"radius"
 #define kCity_name                          @"city_name"
@@ -168,7 +165,6 @@
 
 #pragma mark UpdateMobile
 
-//#define kOptionUpdate_user                    @"update_user"
 
 #define kTextFieldDigitRange @"0123456789"
 
@@ -179,10 +175,8 @@
 
 #pragma mark - OTP Validation Keys
 
-//#define kOptionLogin_otp_validate         @"login_otp_validate"
 #define kOtp                              @"otp"
-//#define kOptionResend_otp                 @"resend_otp"
-//#define kOptionUser_mobile_data           @"user_mobile_data"
+
 //==================Sign Up============
 
 #define kFileType                                   @"fileType"

@@ -187,8 +187,8 @@
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:nil];
     StoreModel *objStoreModel = [arrSuggestedStores objectAtIndex:indexPath.row];
     UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-56, 45)];
-    lblStoreName.font = [UIFont fontWithName:kRobotoMedium size:14.0];
-    lblStoreName.textColor = [UIColor blackColor];
+    lblStoreName.font = [UIFont fontWithName:kRobotoRegular size:16.0];
+    lblStoreName.textColor = [UIColor colorWithRed:45.0/255.0 green:45.0/255.0 blue:45.0/255.0 alpha:1.0];
     lblStoreName.text = objStoreModel.store_code;
     [cell.contentView addSubview:lblStoreName];
     return cell;
