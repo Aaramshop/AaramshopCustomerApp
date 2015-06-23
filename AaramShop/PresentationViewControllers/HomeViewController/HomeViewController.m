@@ -129,7 +129,7 @@
         tblVwCategory.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49-20);
         viewTable.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49);
         btnArrow.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-40)/2, viewTable.frame.size.height-15, 40, 15);
-        [btnArrow setImage:[UIImage imageNamed:@"upArr.png"] forState:UIControlStateNormal];
+        [btnArrow setImage:[UIImage imageNamed:@"upArrow.png"] forState:UIControlStateNormal];
 
         
         [tblVwCategory reloadData];
@@ -670,7 +670,7 @@
             secView.backgroundColor = [UIColor redColor];
             UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, 20)];
             lbl.textColor = [UIColor whiteColor];
-            lbl.font = [UIFont fontWithName:kRobotoMedium size:16];
+            lbl.font = [UIFont fontWithName:kRobotoMedium size:18];
             lbl.text = @"Recommended stores";
             [secView addSubview:lbl];
         }
@@ -768,10 +768,12 @@
     if (tableView == tblVwCategory) {
         cell.backgroundColor = [UIColor whiteColor];
         objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
+        cell.isRecommendedStore = YES;
 
     }
     else if (tableView == tblStores) {
-        cell.backgroundColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0];
+        cell.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
+        cell.isRecommendedStore = NO;
         objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
 
     }

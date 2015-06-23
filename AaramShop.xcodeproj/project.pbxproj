@@ -748,7 +748,6 @@
 		368AFECF1B38271300417836 /* appyCouponCodeBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 368AFECC1B38271300417836 /* appyCouponCodeBox@2x.png */; };
 		368AFED01B38271300417836 /* appyCouponCodeBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 368AFECD1B38271300417836 /* appyCouponCodeBox@3x.png */; };
 		368AFED41B38343C00417836 /* sideArrowGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 368AFED11B38343C00417836 /* sideArrowGrey.png */; };
-		368AFED51B38343C00417836 /* sideArrowGrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 368AFED21B38343C00417836 /* sideArrowGrey@2x.png */; };
 		368AFED61B38343C00417836 /* sideArrowGrey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 368AFED31B38343C00417836 /* sideArrowGrey@3x.png */; };
 		368AFEDA1B38393200417836 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AFED91B38393200417836 /* PaymentViewController.m */; };
 		368AFEDE1B383AEB00417836 /* shopingProductOne.png in Resources */ = {isa = PBXBuildFile; fileRef = 368AFEDB1B383AEB00417836 /* shopingProductOne.png */; };
@@ -814,6 +813,10 @@
 		6B1C0B821B04D25B009DD32D /* DPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1C0B811B04D25B009DD32D /* DPAnnotationView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6B1DFC1E1B30495800E5CAE8 /* CustomSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1DFC1D1B30495800E5CAE8 /* CustomSearchDisplayController.m */; };
 		6B388E191AFCC31800FF3CF3 /* LocationEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */; };
+		6B5CE4471B395A8C00CD009E /* handsean.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE4461B395A8C00CD009E /* handsean.ttf */; };
+		6B5CE44B1B395FD800CD009E /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE4481B395FD800CD009E /* upArrow.png */; };
+		6B5CE44C1B395FD800CD009E /* upArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE4491B395FD800CD009E /* upArrow@2x.png */; };
+		6B5CE44D1B395FD800CD009E /* upArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE44A1B395FD800CD009E /* upArrow@3x.png */; };
 		6B809DA41B31755D00E91673 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D841B31755D00E91673 /* MKAnnotationView+WebCache.m */; };
 		6B809DA51B31755D00E91673 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D861B31755D00E91673 /* NSData+ImageContentType.m */; };
 		6B809DA61B31755D00E91673 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D881B31755D00E91673 /* SDImageCache.m */; };
@@ -831,7 +834,6 @@
 		6B809DB21B31755D00E91673 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809DA11B31755D00E91673 /* UIImageView+WebCache.m */; };
 		6B809DB31B31755D00E91673 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809DA31B31755D00E91673 /* UIView+WebCacheOperation.m */; };
 		6B8536571B046B8300E60AA3 /* DDAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8536561B046B8300E60AA3 /* DDAnnotationView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		6B856F5A1B36A7D50043ECC3 /* upArr.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B856F591B36A7D50043ECC3 /* upArr.png */; };
 		6B87424C1B2ECAB200BED8A6 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B87424A1B2ECAB200BED8A6 /* Fabric.framework */; };
 		6B87424D1B2ECAB200BED8A6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B87424B1B2ECAB200BED8A6 /* Crashlytics.framework */; };
 		6B87C75C1B34206F002BC68C /* StoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B87C75B1B34206F002BC68C /* StoreModel.m */; };
@@ -2158,6 +2160,10 @@
 		6B1DFC1D1B30495800E5CAE8 /* CustomSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchDisplayController.m; sourceTree = "<group>"; };
 		6B388E171AFCC31800FF3CF3 /* LocationEnterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEnterViewController.h; sourceTree = "<group>"; };
 		6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEnterViewController.m; sourceTree = "<group>"; };
+		6B5CE4461B395A8C00CD009E /* handsean.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = handsean.ttf; sourceTree = "<group>"; };
+		6B5CE4481B395FD800CD009E /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArrow.png; sourceTree = "<group>"; };
+		6B5CE4491B395FD800CD009E /* upArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upArrow@2x.png"; sourceTree = "<group>"; };
+		6B5CE44A1B395FD800CD009E /* upArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upArrow@3x.png"; sourceTree = "<group>"; };
 		6B809D831B31755D00E91673 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		6B809D841B31755D00E91673 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		6B809D851B31755D00E91673 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -2193,7 +2199,6 @@
 		6B809DA31B31755D00E91673 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		6B8536551B046B8300E60AA3 /* DDAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAnnotationView.h; sourceTree = "<group>"; };
 		6B8536561B046B8300E60AA3 /* DDAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAnnotationView.m; sourceTree = "<group>"; };
-		6B856F591B36A7D50043ECC3 /* upArr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArr.png; sourceTree = "<group>"; };
 		6B87424A1B2ECAB200BED8A6 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
 		6B87424B1B2ECAB200BED8A6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		6B87C75A1B34206F002BC68C /* StoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreModel.h; sourceTree = "<group>"; };
@@ -3619,6 +3624,7 @@
 		274A5C451B05C4AA009112B5 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				6B5CE4461B395A8C00CD009E /* handsean.ttf */,
 				6B8EB25B1B230A7C00402CFC /* Roboto-Bold_0.ttf */,
 				6B8EB25C1B230A7C00402CFC /* Roboto-Medium_0.ttf */,
 				6B8EB25D1B230A7C00402CFC /* Roboto-Regular_0.ttf */,
@@ -4523,7 +4529,6 @@
 		6B12DC5D1AF2294D00245209 /* AaramShop */ = {
 			isa = PBXGroup;
 			children = (
-				6B856F591B36A7D50043ECC3 /* upArr.png */,
 				6BADA6131B0B717700BF7639 /* DataBaseClasses */,
 				6BA8F8FC1B08FCBD00EAA6A8 /* ConnectionManager */,
 				6B0676E01B06024B0002259E /* BusinessModel */,
@@ -5177,6 +5182,9 @@
 		6BD2D2D81B28408800EC6E54 /* HomeFirstScreen */ = {
 			isa = PBXGroup;
 			children = (
+				6B5CE4481B395FD800CD009E /* upArrow.png */,
+				6B5CE4491B395FD800CD009E /* upArrow@2x.png */,
+				6B5CE44A1B395FD800CD009E /* upArrow@3x.png */,
 				6BD2D2EB1B284C8900EC6E54 /* homeChocklateIcon.png */,
 				6BD2D2EC1B284C8900EC6E54 /* homeChocklateIcon@2x.png */,
 				6BD2D2ED1B284C8900EC6E54 /* homeChocklateIcon@3x.png */,
@@ -5616,6 +5624,7 @@
 				36820A2F1B1C46FA002AA93F /* united arab emirates.png in Resources */,
 				274F88B11B0D0E7400F85743 /* homePageBannerImageThree@2x.png in Resources */,
 				368209F61B1C46FA002AA93F /* saudi arabia.png in Resources */,
+				6B5CE44C1B395FD800CD009E /* upArrow@2x.png in Resources */,
 				6B1A9A591B03658C0005917B /* CustomMapAnnotationView.xib in Resources */,
 				368209E91B1C46FA002AA93F /* rwanda.png in Resources */,
 				3682099F1B1C46FA002AA93F /* kuwait.png in Resources */,
@@ -5784,6 +5793,7 @@
 				6B8EB2E31B26F95000402CFC /* homeDeatilsWhiteArrow.png in Resources */,
 				36820A121B1C46FA002AA93F /* swaziland.png in Resources */,
 				6BFFF9501B0236B800BB2B62 /* tabBarHomeIconActive@3x.png in Resources */,
+				6B5CE44D1B395FD800CD009E /* upArrow@3x.png in Resources */,
 				368209A51B1C46FA002AA93F /* lesotho.png in Resources */,
 				6BE4C9151B0351FD00EF1EDB /* mapPopupBox@3x.png in Resources */,
 				368209EC1B1C46FA002AA93F /* Saint Helena.png in Resources */,
@@ -5853,6 +5863,7 @@
 				2791DE2F1B036E5C000121BC /* menuAccountSettingsIcon.png in Resources */,
 				6BB50DE51B32ABE800990161 /* locationPopupTxtFieldHalf@2x.png in Resources */,
 				2791DE301B036E5C000121BC /* menuAccountSettingsIcon@2x.png in Resources */,
+				6B5CE44B1B395FD800CD009E /* upArrow.png in Resources */,
 				6BFFF95C1B0236B800BB2B62 /* tabBarOffersIconActive@3x.png in Resources */,
 				368209261B1C46FA002AA93F /* bhutan.png in Resources */,
 				368209AA1B1C46FA002AA93F /* los altos.png in Resources */,
@@ -5907,7 +5918,6 @@
 				2791DE311B036E5C000121BC /* menuAccountSettingsIcon@3x.png in Resources */,
 				6B8EB2B71B26B8BE00402CFC /* homeStoreDetailsGroceryCircle@3x.png in Resources */,
 				3682099E1B1C46FA002AA93F /* kuban people's republic.png in Resources */,
-				6B856F5A1B36A7D50043ECC3 /* upArr.png in Resources */,
 				368209721B1C46FA002AA93F /* Global Mobile Satellite System (GMSS).png in Resources */,
 				368209E21B1C46FA002AA93F /* qatar.png in Resources */,
 				368209D41B1C46FA002AA93F /* oman.png in Resources */,
@@ -6099,6 +6109,7 @@
 				274A5C761B05C4AA009112B5 /* FSWebLogin.xib in Resources */,
 				368209371B1C46FA002AA93F /* cameroon.png in Resources */,
 				368209E61B1C46FA002AA93F /* République démocratique du Congo (Zaire).png in Resources */,
+				6B5CE4471B395A8C00CD009E /* handsean.ttf in Resources */,
 				2791DE401B036E5C000121BC /* menuVouchersIcon@3x.png in Resources */,
 				6BD2D3111B284C8900EC6E54 /* homeHelathDrink@3x.png in Resources */,
 				36820A0D1B1C46FA002AA93F /* spain.png in Resources */,

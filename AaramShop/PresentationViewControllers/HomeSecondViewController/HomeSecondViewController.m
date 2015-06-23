@@ -550,7 +550,18 @@
         rowHeight = 0.0;
     }
     else
-        rowHeight = 68.0;
+    {
+        ProductsModel *objProductsModel = nil;
+        objProductsModel = [self getObjectOfProductForIndexPath:indexPath];
+        CGSize size= [Utils getLabelSizeByText:objProductsModel.product_name font:[UIFont fontWithName:kRobotoRegular size:16.0f] andConstraintWith:[UIScreen mainScreen].bounds.size.width-175];
+        if (size.height<24) {
+            rowHeight = 68.0;
+        }
+        else
+            
+        rowHeight = 44+size.height;
+
+    }
     return rowHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -641,10 +652,13 @@
 {
     isSelected = !isSelected;
     if (isSelected) {
-        [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
-        [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-
-        [appDeleg.window addSubview:rightCollectionVwContrllr.view];
+        if (strSelectedCategoryId.length>0) {
+            [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
+            [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+            
+            [appDeleg.window addSubview:rightCollectionVwContrllr.view];
+    
+        }
     }
     else
         [rightCollectionVwContrllr.view removeFromSuperview];

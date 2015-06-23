@@ -67,15 +67,6 @@
         
         [self addSubview:btnPlus];
 
-        int xPos = 5;
-        imgV.frame = CGRectMake(xPos, 4, 60, 60);
-        xPos+=imgV.frame.size.width+5;
-        
-        btnPlus.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-35, 14, 30, 40);
-        lblCount.frame = CGRectMake(btnPlus.frame.origin.x-30, 24, 30, 20);
-        btnMinus.frame = CGRectMake(lblCount.frame.origin.x-30, 14, 30, 40);
-        lblName.frame = CGRectMake(xPos, 10, btnMinus.frame.origin.x-(xPos+10), 24);
-        lblPrice.frame = CGRectMake(xPos, 34, 200, 20);
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
@@ -111,6 +102,21 @@
 }
 -(void)updateCellWithSubCategory:(ProductsModel *)objProductsModel
 {
+    CGSize size= [Utils getLabelSizeByText:objProductsModel.product_name font:[UIFont fontWithName:kRobotoRegular size:16.0f] andConstraintWith:[UIScreen mainScreen].bounds.size.width-175];
+
+    if (size.height<24) {
+        size.height = 24;
+    }
+    int xPos = 5;
+    imgV.frame = CGRectMake(xPos, 4, 60, 60);
+    xPos+=imgV.frame.size.width+5;
+    
+    btnPlus.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-35, 14, 30, 40);
+    lblCount.frame = CGRectMake(btnPlus.frame.origin.x-30, 24, 30, 20);
+    btnMinus.frame = CGRectMake(lblCount.frame.origin.x-30, 14, 30, 40);
+    lblName.frame = CGRectMake(xPos, 10, [UIScreen mainScreen].bounds.size.width-175, size.height);
+    lblPrice.frame = CGRectMake(xPos, size.height+10, 200, 20);
+
     if ([objProductsModelMain.strCount intValue]<=0) {
         btnMinus.enabled=NO;
     }

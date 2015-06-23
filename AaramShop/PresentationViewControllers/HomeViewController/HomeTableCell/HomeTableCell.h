@@ -23,6 +23,7 @@
     UIImageView *imgvCategoryIcon,*imgVCategoryTypeIcon,*imgVLocationIcon,*imgVDeliveryIcon,*imgVPriceIcon,*imgVStatusTypeIcon,*imgVHomeIcon,*imgVIsFavourite;
 }
 @property(nonatomic, strong) NSIndexPath *indexPath;
+@property(nonatomic,assign) BOOL isRecommendedStore;
 @property(nonatomic) NSInteger selectedCategory;
 @property(nonatomic,strong) StoreModel *objStoreModel;
 @property(nonatomic,strong) id<HomeTableCellDelegate> delegateHomeCell;
