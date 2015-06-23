@@ -18,14 +18,16 @@ static NSString *strCollectionCategory = @"collectionCategories";
 @end
 
 @implementation RightCollectionViewController
-@synthesize arrCategories,delegate;
+@synthesize arrCategories,delegate,strStore_Id,aaramShop_ConnectionManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
     isSearching = NO;
     strSearchTxt = @"";
     arrSearchCategories = [[NSMutableArray alloc]init];
     arrCategories = [[NSMutableArray alloc]init];
-    
+    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
+    aaramShop_ConnectionManager.delegate= self;
+
     searchBarCategory = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 5, [UIScreen mainScreen].bounds.size.width, 44)];
     searchBarCategory.delegate = self;
     
@@ -210,16 +212,75 @@ static NSString *strCollectionCategory = @"collectionCategories";
     
     strSearchTxt = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     isSearching=YES;
-    if ([strSearchTxt length]>0)
+    if ([strSearchTxt length]>2)
     {
         [arrSearchCategories removeAllObjects];
         [collectionVwCategory reloadData];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.strCategoryName contains[cd] %@",strSearchTxt];
-        [arrSearchCategories addObjectsFromArray:[arrCategories filteredArrayUsingPredicate:predicate]];
-        [collectionVwCategory reloadData];
+        [self createDataToGetSearchCategory];
     }
 }
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [searchBarCategory resignFirstResponder];
+}
 
+-(void)createDataToGetSearchCategory
+{
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    [dict removeObjectForKey:kUserId];
+    [dict setObject:strStore_Id forKey:kStore_id];
+    [dict setObject:strSearchTxt forKey:kSearch_term];
+    [self callWebserviceToGetSearchCategory:dict];
+}
+
+-(void)callWebserviceToGetSearchCategory:(NSMutableDictionary *)aDict
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kSearchStoreProductCategoriesURL withInput:aDict withCurrentTask:TASK_SEARCH_STORE_PRODUCT_CATEGORY andDelegate:self ];
+}
+
+-(void) didFailWithError:(NSError *)error
+{
+    [aaramShop_ConnectionManager failureBlockCalled:error];
+}
+-(void) responseReceived:(id)responseObject
+{
+    if (aaramShop_ConnectionManager.currentTask == TASK_SEARCH_STORE_PRODUCT_CATEGORY) {
+        
+        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
+            
+            [self parseSearchCategoryData:responseObject];
+        }
+        else
+        {
+          //  [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        }
+    }
+}
+-(void)parseSearchCategoryData:(id)responseObject
+{
+    NSArray *categories = [responseObject objectForKey:@"categories"];
+    
+    for (NSDictionary *dict in categories) {
+        
+        CategoryModel *objCategoryModel = [[CategoryModel alloc]init];
+        objCategoryModel.category_banner = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_banner]];
+        objCategoryModel.category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_id]];
+        objCategoryModel.category_image = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_image]];
+        objCategoryModel.category_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_name]];
+        
+        [arrSearchCategories addObject:objCategoryModel];
+    }
+    [collectionVwCategory reloadData];
+}
 
 
 #pragma mark -

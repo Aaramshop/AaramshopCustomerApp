@@ -87,6 +87,8 @@
 #define kGetStoresPaginationURL               @"getStoresPagination"
 #define kGetStoreProductCategoriesURL         @"getStoreProductCategories"
 #define kPOSTGetStoreProductSubCategoryURL    @"getStoreProductSubCategory"
+#define kSearchStoreProductCategoriesURL      @"searchStoreProductCategories"
+#define kPOSTGetStoreProductsURL              @"getStoreProducts"
 
 
 #define kImage_url_100                        @"image_url_100"
@@ -160,6 +162,9 @@
 #define kProduct_sku_id                     @"product_sku_id"
 
 
+#pragma mark - 
+
+#define kSearch_term                        @"search_term"
 
 #pragma mark UpdateMobile
 

@@ -61,6 +61,9 @@
     tblStores.dataSource = self;
     tblStores.backgroundColor = [UIColor clearColor];
     tblStores.scrollEnabled = YES;
+    tblStores.sectionHeaderHeight = 0.0;
+    tblStores.sectionFooterHeight = 0.0;
+
 
     [mainScrollView addSubview:tblStores];
     [mainScrollView addSubview:viewTable];
@@ -77,8 +80,6 @@
     [btnArrow setImage:[UIImage imageNamed:@"homeDownArrow.png"] forState:UIControlStateNormal];
     [btnArrow addTarget:self action:@selector(btnArrowClick) forControlEvents:UIControlEventTouchUpInside];
     [viewTable addSubview:btnArrow];
-
-    
     
     arrSubCategory = [[NSMutableArray alloc]init];
     arrCategory = [[NSMutableArray alloc]init];
@@ -87,7 +88,6 @@
     arrSubCategoryMyStores = [[NSMutableArray alloc]init];
     arrRecommendedStoresMyStores = [[NSMutableArray alloc]init];
 
-    
     self.mainCategoryIndex = 0;
     tblVwCategory.hidden = YES;
     tblStores.hidden = YES;
@@ -99,16 +99,7 @@
 {
     StoreModel *objStoreModel = nil;
     
-    if (self.mainCategoryIndex != 0) {
-        objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
-        NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
-        objStoreModel = [arrTemp objectAtIndex:0];
-    }
-    else
-    {
-        objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:0];
-    }
+    objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     
     CGSize size= [Utils getLabelSizeByText:objStoreModel.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
     
@@ -118,6 +109,7 @@
     else
         size.height+= 63;
 
+    [tblVwCategory scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 
     tblVwCategory.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 254+size.height);
     viewTable.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 254+size.height);
@@ -125,9 +117,6 @@
     imgVBg.frame = CGRectMake(0,viewTable.frame.size.height-78, [UIScreen mainScreen].bounds.size.width, 85);
     
     tblStores.frame = CGRectMake(0, 254+size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(254+size.height+49));
-
-
-
 }
 -(void)btnArrowClick
 {
@@ -293,8 +282,11 @@
     for (NSDictionary *dict in categories) {
         
         StoreModel *objStoreModel = [[StoreModel alloc]init];
-        objStoreModel.store_main_category_banner_1 = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_main_category_banner_1]];
-        objStoreModel.store_main_category_banner_2 = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_main_category_banner_2]];
+        objStoreModel.store_main_category_banner_1 = [NSString stringWithFormat:@"%@",[[dict objectForKey:kStore_main_category_banner_1]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
+
+        objStoreModel.store_main_category_banner_2 = [NSString stringWithFormat:@"%@",[[dict objectForKey:kStore_main_category_banner_2]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
         objStoreModel.store_main_category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_main_category_id]];
         objStoreModel.store_main_category_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_main_category_name]];
 
@@ -311,10 +303,10 @@
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_open]];
-            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_icon]];
+            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_id]];
-            objStore.store_image = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_image]];
+            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_latitude]];
             objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_longitude]];
             objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_mobile]];
@@ -333,10 +325,10 @@
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_open]];
-            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_icon]];
+            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_id]];
-            objStore.store_image = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_image]];
+            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_latitude]];
             objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_longitude]];
             objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_mobile]];
@@ -356,10 +348,10 @@
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_open]];
-            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_icon]];
+            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_id]];
-            objStore.store_image = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_image]];
+            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_latitude]];
             objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_longitude]];
             objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_mobile]];
@@ -386,7 +378,7 @@
     mainScrollView.hidden = NO;
     
     [tblVwCategory reloadData];
-    if (arrCategory.count>0) {
+    if (arrCategory.count>0 && isOffEffect) {
         [self setViewForRecomendedCells];
     }
     [tblStores reloadData];
@@ -410,10 +402,10 @@
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_open]];
-            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_icon]];
+            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_id]];
-            objStore.store_image = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_image]];
+            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_latitude]];
             objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_longitude]];
             objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_mobile]];
@@ -437,10 +429,10 @@
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_open]];
-            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_icon]];
+            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_id]];
-            objStore.store_image = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_image]];
+            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_latitude]];
             objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_longitude]];
             objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_mobile]];
@@ -465,10 +457,10 @@
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_open]];
-            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_icon]];
+            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_id]];
-            objStore.store_image = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_image]];
+            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_latitude]];
             objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_longitude]];
             objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_mobile]];
@@ -482,7 +474,7 @@
         }
     
     [tblVwCategory reloadData];
-    if (arrCategory.count>0) {
+    if (arrCategory.count>0 && isOffEffect) {
         [self setViewForRecomendedCells];
     }
 
@@ -578,61 +570,53 @@
         sectionNum = 1;
     return sectionNum;;
 }
+-(NSInteger )getArrayCountForRecommendedStores
+{
+    NSInteger rowsNum = 0;
+    if (self.mainCategoryIndex !=0) {
+        StoreModel *objStore = [arrCategory objectAtIndex:self.mainCategoryIndex];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStore.store_main_category_id];
+        NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
+        rowsNum = arrTemp.count;
+    }
+    else
+    {
+        rowsNum = arrRecommendedStoresMyStores.count;
+    }
+    return  rowsNum;
+}
+-(NSInteger )getArrayCountForOtherStores
+{
+    NSInteger rowsNum = 0;
+    if (self.mainCategoryIndex != 0) {
+        StoreModel *objStore = [arrCategory objectAtIndex:self.mainCategoryIndex];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStore.store_main_category_id];
+        NSArray *arrTemp = [arrSubCategory filteredArrayUsingPredicate:predicate];
+        rowsNum = arrTemp.count;
+        
+    }
+    else
+        rowsNum = arrSubCategoryMyStores.count;
+    return rowsNum;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger rowsNum = 0;
     if (tableView == tblVwCategory) {
         if (section == 1) {
-            if (isOffEffect) {
-                if (self.mainCategoryIndex !=0) {
-                    if (arrRecommendedStores.count == 0) {
-                        rowsNum = 0;
-                    }
-                    else
-                        rowsNum = 1;
-                }
-                else
-                {
-                    if (arrRecommendedStoresMyStores.count == 0) {
-                        rowsNum = 0;
-                    }
-                    else
-                        rowsNum = 1;
-   
-                }
+            if (arrCategory.count>0) {
+                rowsNum = [self getArrayCountForRecommendedStores];
             }
             else
-            {
-                StoreModel *objStore = nil;
-                
-                if (self.mainCategoryIndex != 0) {
-                    objStore = [arrCategory objectAtIndex:self.mainCategoryIndex];
-                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStore.store_main_category_id];
-                    NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
-                    rowsNum = arrTemp.count;
-                }
-                else
-                    rowsNum = arrRecommendedStoresMyStores.count;
-
-            }
+                rowsNum = 0;
         }
         else if (section == 0)
             rowsNum = 0;
     }
     else if (tableView == tblStores) {
         if (arrCategory.count>0) {
-            StoreModel *objStore = nil;
-            
-            if (self.mainCategoryIndex != 0) {
-                objStore = [arrCategory objectAtIndex:self.mainCategoryIndex];
-                
-                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStore.store_main_category_id];
-                NSArray *arrTemp = [arrSubCategory filteredArrayUsingPredicate:predicate];
-                rowsNum = arrTemp.count;
-
-            }
-            else
-                rowsNum = arrSubCategoryMyStores.count;
+          rowsNum =  [self getArrayCountForOtherStores];
         }
         else
             rowsNum = 0;
@@ -662,7 +646,6 @@
                 }
                 else
                     headerHeight = 20;
-
             }
         }
     }
@@ -704,15 +687,7 @@
     if (tableView == tblVwCategory) {
         if (indexPath.section == 1) {
             StoreModel *objStoreModel = nil;
-            if (self.mainCategoryIndex != 0) {
-                objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
-                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
-                NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
-                objStoreModel = [arrTemp objectAtIndex:indexPath.row];
-
-            }
-            else
-                objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
+            objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
             
             CGSize size= [Utils getLabelSizeByText:objStoreModel.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
             
@@ -728,17 +703,7 @@
     else if (tableView == tblStores) {
         
         StoreModel *objStoreModel = nil;
-        if (self.mainCategoryIndex != 0) {
-
-       objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
-        NSArray *arrTemp = [arrSubCategory filteredArrayUsingPredicate:predicate];
-        
-        objStoreModel = [arrTemp objectAtIndex:indexPath.row];
-        }
-        else
-            objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
+        objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
         
         CGSize size= [Utils getLabelSizeByText:objStoreModel.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
         
@@ -750,6 +715,40 @@
     }
     
     return rowHeight;
+}
+
+-(StoreModel *)getObjectOfStoreForRecommendedStoresForIndexPath:(NSIndexPath *)IndexPath
+{
+    StoreModel *objStoreModel = nil;
+    if (self.mainCategoryIndex != 0) {
+        objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
+        NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
+        objStoreModel = [arrTemp objectAtIndex:IndexPath.row];
+    }
+    else
+        objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:IndexPath.row];
+    return objStoreModel;
+
+}
+
+-(StoreModel*)getObjectOfStoreForOtherStoreForIndexPath:(NSIndexPath *)IndexPath
+{
+    StoreModel *objStoreModel = nil;
+
+    if (self.mainCategoryIndex !=0) {
+        objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
+        NSArray *arrTemp = [arrSubCategory filteredArrayUsingPredicate:predicate];
+        
+        objStoreModel = [arrTemp objectAtIndex:IndexPath.row];
+        
+    }
+    else
+        objStoreModel = [arrSubCategoryMyStores objectAtIndex:IndexPath.row];
+    
+    return objStoreModel;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -767,30 +766,13 @@
     StoreModel *objStoreModel = nil;
 
     if (tableView == tblVwCategory) {
-        if (self.mainCategoryIndex != 0) {
-            objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
-            NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
-            objStoreModel = [arrTemp objectAtIndex:indexPath.row];
-        }
-        else
-            objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
         cell.backgroundColor = [UIColor whiteColor];
+        objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
 
     }
     else if (tableView == tblStores) {
-        if (self.mainCategoryIndex !=0) {
-            objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
-            
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
-            NSArray *arrTemp = [arrSubCategory filteredArrayUsingPredicate:predicate];
-            
-            objStoreModel = [arrTemp objectAtIndex:indexPath.row];
-
-        }
-        else
-            objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
         cell.backgroundColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0];
+        objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
 
     }
     cell.objStoreModel = objStoreModel;
@@ -831,6 +813,8 @@
 -(void)refreshSubCategoryData:(NSInteger)selectedCategory
 {
     self.mainCategoryIndex = selectedCategory;
+    [tblVwCategory reloadData];
+    [tblStores reloadData];
     [self createDataToGetStoresFromCategories];
 
 }

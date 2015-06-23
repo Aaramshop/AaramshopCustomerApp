@@ -11,7 +11,8 @@
 
 @protocol HomeSecondCustomCellDelegate <NSObject>
 
--(void)addedValueByCounter:(int)inCount atIndexPath:(NSIndexPath *)inIndexPath;
+-(void)addedValueByPrice:(NSString*)strPrice atIndexPath:(NSIndexPath *)inIndexPath;
+-(void)minusValueByPrice:(NSString*)strPrice atIndexPath:(NSIndexPath *)inIndexPath;
 -(void)updateTableAtIndexPath:(NSIndexPath *)inIndexPath;
 @end
 

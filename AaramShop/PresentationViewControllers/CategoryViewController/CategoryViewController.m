@@ -100,12 +100,31 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
         
         
         StoreModel *objStoreModel = [arrCategory objectAtIndex:indexPath.row];
-        UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234)];
         
+        UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234)];
+
+        UIImageView *imgVSmall = [[UIImageView alloc]initWithFrame:CGRectMake(0, 92, [UIScreen mainScreen].bounds.size.width-180, 55)];
+
+        UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((imgV.frame.origin.x+imgV.frame.size.width-20)/2, (imgV.frame.origin.y+imgV.frame.size.height-20)/2, 20, 20)];
+      //  NSString *newString = [originalString stringByReplacingOccurancesOfString:@" " withString:@"%20"];
+
+        activityIndicatorView.hidesWhenStopped = YES;
+        
+        [activityIndicatorView startAnimating];
         [imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreModel.store_main_category_banner_1]] placeholderImage:[UIImage imageNamed:@"homePageBannerImage.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (image) {
+                
             }
+            [activityIndicatorView stopAnimating];
         }];
+        [imgVSmall sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreModel.store_main_category_banner_2]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (image) {
+                
+            }
+            [activityIndicatorView stopAnimating];
+        }];
+        [cell.contentView addSubview:imgV];
+        [cell.contentView addSubview:imgVSmall];
         [cell.contentView addSubview:imgV];
         
     }

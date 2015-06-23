@@ -9,7 +9,7 @@
 #import "HomeSecondCustomCell.h"
 
 @implementation HomeSecondCustomCell
-@synthesize indexPath,delegate;
+@synthesize indexPath,delegate,objProductsModelMain;
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -82,29 +82,47 @@
 }
 -(void)btnMinusClick
 {
-    
+    if ([objProductsModelMain.strCount intValue]>=0) {
+        int Counter = [objProductsModelMain.strCount intValue];
+        Counter--;
+        objProductsModelMain.strCount = [NSString stringWithFormat:@"%d",Counter];
+        if (self.delegate && [self.delegate conformsToProtocol:@protocol(HomeSecondCustomCellDelegate)] && [self.delegate respondsToSelector:@selector(minusValueByPrice:atIndexPath:)])
+        {
+            int TotalPrice =  1 * [objProductsModelMain.product_price intValue];
+
+            [self.delegate minusValueByPrice:[NSString stringWithFormat:@"%d",TotalPrice] atIndexPath:indexPath];
+        }
+    }
 }
 -(void)btnPlusClick
 {
-//    if ([subCategory.count intValue]>=0) {
-//        int Counter = [subCategory.count intValue];
-//        Counter++;
-//        subCategory.count = [NSString stringWithFormat:@"%d",Counter];
-////        if (self.delegate && [self.delegate conformsToProtocol:@protocol(VenueViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(addedValueByCounter:atIndexPath:)])
-////        {
-////            [self.delegate addedValueByCounter:counter atIndexPath:self.indexPath];
-////        }
-////        
-//
-//    }
+    if ([objProductsModelMain.strCount intValue]>=0) {
+        int Counter = [objProductsModelMain.strCount intValue];
+        Counter++;
+        objProductsModelMain.strCount = [NSString stringWithFormat:@"%d",Counter];
+        if (self.delegate && [self.delegate conformsToProtocol:@protocol(HomeSecondCustomCellDelegate)] && [self.delegate respondsToSelector:@selector(addedValueByPrice:atIndexPath:)])
+        {
+            int TotalPrice =  1 * [objProductsModelMain.product_price intValue];
+            
+            [self.delegate addedValueByPrice:[NSString stringWithFormat:@"%d",TotalPrice] atIndexPath:indexPath];
+        }
+    }
 
 }
-//-(void)updateCellWithSubCategory:(SubCategoryModel *)objSubCategory
-//{
-//    imgV.image = [UIImage imageNamed:objSubCategory.img];
-//    lblName.text= objSubCategory.strCategoryName;
-//    lblPrice.text = objSubCategory.price;
-//    lblCount.text = objSubCategory.count;
-//}
+-(void)updateCellWithSubCategory:(ProductsModel *)objProductsModel
+{
+    if ([objProductsModelMain.strCount intValue]<=0) {
+        btnMinus.enabled=NO;
+    }
+    else
+        btnMinus.enabled = YES;
+    [imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objProductsModel.product_image]] placeholderImage:[UIImage imageNamed:@"homeDetailsDefaultImgae.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (image) {
+        }
+    }];
+    lblName.text= objProductsModel.product_name;
+    lblPrice.text = objProductsModel.product_price;
+    lblCount.text = objProductsModel.strCount;
+}
 
 @end

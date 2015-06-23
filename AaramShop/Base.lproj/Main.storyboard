@@ -272,22 +272,9 @@
                     <view key="view" contentMode="scaleToFill" id="R8Y-0w-H2F">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="LwY-Nv-rNr">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Yc0-Ze-3Ji" id="Gns-ys-FxY"/>
-                                    <outlet property="delegate" destination="Yc0-Ze-3Ji" id="J0P-o6-Nww"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <connections>
-                        <outlet property="tblVwCategory" destination="LwY-Nv-rNr" id="wLQ-Fu-WgP"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MNG-aZ-GW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -412,6 +399,14 @@
                                                     <constraint firstAttribute="height" constant="200" id="03h-b5-X1S"/>
                                                 </constraints>
                                             </imageView>
+                                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="KR8-x3-73b">
+                                                <rect key="frame" x="18" y="250" width="284" height="295"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="I5R-kO-Iws" id="DAk-SJ-ddm"/>
+                                                    <outlet property="delegate" destination="I5R-kO-Iws" id="Gn4-73-zMK"/>
+                                                </connections>
+                                            </tableView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -423,9 +418,11 @@
                                             <constraint firstItem="qaf-oR-Eoh" firstAttribute="leading" secondItem="7AP-lG-sDM" secondAttribute="leading" constant="15" id="Eq4-bM-SSR"/>
                                             <constraint firstItem="iJf-fd-UeX" firstAttribute="top" secondItem="sxN-vc-sL7" secondAttribute="bottom" constant="-10" id="SeN-Fe-IaD"/>
                                             <constraint firstItem="NJ6-iD-vu4" firstAttribute="leading" secondItem="2aR-Y7-J9t" secondAttribute="trailing" constant="-20" id="T9h-mN-BDm"/>
+                                            <constraint firstItem="KR8-x3-73b" firstAttribute="leading" secondItem="d3W-cg-QXQ" secondAttribute="trailing" constant="-284" id="Xkp-31-sCi"/>
                                             <constraint firstItem="d3W-cg-QXQ" firstAttribute="leading" secondItem="7AP-lG-sDM" secondAttribute="leading" constant="18" id="YxT-Pa-d6s"/>
                                             <constraint firstItem="aXU-8t-J4H" firstAttribute="leading" secondItem="7AP-lG-sDM" secondAttribute="leading" constant="18" id="dGC-Ri-Uhk"/>
                                             <constraint firstItem="2aR-Y7-J9t" firstAttribute="leading" secondItem="7AP-lG-sDM" secondAttribute="leading" constant="18" id="jQh-xA-Sgh"/>
+                                            <constraint firstAttribute="bottom" secondItem="KR8-x3-73b" secondAttribute="bottom" constant="55" id="kgF-AQ-NXC"/>
                                             <constraint firstAttribute="bottom" secondItem="sCF-fI-ibE" secondAttribute="bottom" constant="55" id="ki3-X6-abZ"/>
                                             <constraint firstItem="qaf-oR-Eoh" firstAttribute="top" secondItem="iJf-fd-UeX" secondAttribute="bottom" constant="15" id="kog-hV-1cn"/>
                                             <constraint firstItem="ebQ-kw-Rbs" firstAttribute="leading" secondItem="7AP-lG-sDM" secondAttribute="leading" constant="18" id="lY9-Ko-BBP"/>
@@ -433,11 +430,13 @@
                                             <constraint firstItem="aXU-8t-J4H" firstAttribute="top" secondItem="2aR-Y7-J9t" secondAttribute="bottom" id="oqf-hy-JDW"/>
                                             <constraint firstAttribute="trailing" secondItem="d3W-cg-QXQ" secondAttribute="trailing" constant="18" id="pI4-9M-7Tf"/>
                                             <constraint firstAttribute="height" constant="600" id="ree-pX-uga"/>
+                                            <constraint firstItem="KR8-x3-73b" firstAttribute="top" secondItem="d3W-cg-QXQ" secondAttribute="bottom" constant="8" id="thu-WX-rwa"/>
                                             <constraint firstAttribute="trailing" secondItem="qaf-oR-Eoh" secondAttribute="trailing" constant="15" id="uKx-op-kBv"/>
                                             <constraint firstAttribute="trailing" secondItem="iJf-fd-UeX" secondAttribute="trailing" constant="18" id="uhr-lH-kjk"/>
                                             <constraint firstItem="aXU-8t-J4H" firstAttribute="top" secondItem="NJ6-iD-vu4" secondAttribute="bottom" id="vST-Ey-VfJ"/>
                                             <constraint firstItem="iJf-fd-UeX" firstAttribute="leading" secondItem="7AP-lG-sDM" secondAttribute="leading" constant="18" id="vbC-3Q-KOe"/>
                                             <constraint firstItem="sxN-vc-sL7" firstAttribute="top" secondItem="d3W-cg-QXQ" secondAttribute="bottom" constant="6" id="x6H-p0-30w"/>
+                                            <constraint firstAttribute="trailing" secondItem="KR8-x3-73b" secondAttribute="trailing" constant="18" id="y6i-BI-JvC"/>
                                             <constraint firstItem="sCF-fI-ibE" firstAttribute="leading" secondItem="7AP-lG-sDM" secondAttribute="leading" constant="18" id="zBL-34-5E1"/>
                                         </constraints>
                                     </view>
@@ -468,6 +467,7 @@
                         <outlet property="btnWhatsHomeStore" destination="NJ6-iD-vu4" id="4UU-7h-fAF"/>
                         <outlet property="imgVOffer" destination="sCF-fI-ibE" id="IG7-XL-vuQ"/>
                         <outlet property="lblHd" destination="2aR-Y7-J9t" id="kWv-W1-jta"/>
+                        <outlet property="tblSuggestedStores" destination="KR8-x3-73b" id="zyR-Jc-Lvi"/>
                         <outlet property="txtStoreId" destination="d3W-cg-QXQ" id="RXJ-t1-TaR"/>
                     </connections>
                 </viewController>

@@ -19,7 +19,7 @@
                 <view tag="23234" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BN5-cZ-YKJ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homePageBannerImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="ji1-E3-Dui">
+                        <imageView userInteractionEnabled="NO" tag="999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ji1-E3-Dui">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
                         </imageView>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2g5-Xb-thn">
@@ -45,6 +45,9 @@
                         <imageView userInteractionEnabled="NO" tag="1002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KFC-Zc-8jA">
                             <rect key="frame" x="121" y="124" width="60" height="60"/>
                         </imageView>
+                        <activityIndicatorView hidden="YES" opaque="NO" tag="998" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Fss-7U-6Wn">
+                            <rect key="frame" x="150" y="107" width="20" height="20"/>
+                        </activityIndicatorView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homeDetailsBannerShade.png" translatesAutoresizingMaskIntoConstraints="NO" id="aSK-FX-y3H">
                             <rect key="frame" x="0.0" y="194" width="320" height="40"/>
                         </imageView>
@@ -53,7 +56,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.81176477670000002" green="0.51372551919999998" blue="0.16078431900000001" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -68,7 +71,6 @@
     <resources>
         <image name="homeDeatilsGreyArrow.png" width="17" height="17"/>
         <image name="homeDetailsBannerShade.png" width="320" height="40"/>
-        <image name="homePageBannerImage.png" width="320" height="168"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
