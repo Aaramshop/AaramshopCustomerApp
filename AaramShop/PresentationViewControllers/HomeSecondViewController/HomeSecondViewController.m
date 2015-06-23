@@ -115,7 +115,7 @@
         }
         else
         {
-            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+         //   [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         }
     }
     else if (aaramShop_ConnectionManager.currentTask == TASK_GET_STORE_PRODUCT_SUB_CATEGORIES) {
@@ -126,7 +126,7 @@
         }
         else
         {
-            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+           // [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         }
     }
     else if (aaramShop_ConnectionManager.currentTask == TASK_GET_STORE_PRODUCTS) {
@@ -150,9 +150,9 @@
     for (NSDictionary *dict in categories) {
         
         CategoryModel *objCategoryModel = [[CategoryModel alloc]init];
-        objCategoryModel.category_banner = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_banner]];
+        objCategoryModel.category_banner = [NSString stringWithFormat:@"%@",[[dict objectForKey:kCategory_banner]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         objCategoryModel.category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_id]];
-        objCategoryModel.category_image = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_image]];
+        objCategoryModel.category_image = [NSString stringWithFormat:@"%@",[[dict objectForKey:kCategory_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         objCategoryModel.category_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_name]];
         
         [arrGetStoreProductCategories addObject:objCategoryModel];
@@ -175,10 +175,6 @@
 }
 -(void)parseStoresSubCategoryCategoryData:(id)responseObject
 {
-    [arrGetStoreProducts removeAllObjects];
-    [arrGetStoreProductSubCategory removeAllObjects];
-    [tblVwCategory reloadData];
-
     NSArray *subCategories = [responseObject objectForKey:@"sub_categories"];
     
     for (NSDictionary *dict in subCategories) {
@@ -194,7 +190,7 @@
             ProductsModel *objProductsModel = [[ProductsModel alloc]init];
             objProductsModel.category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kCategory_id]];
             objProductsModel.product_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_id]];
-            objProductsModel.product_image = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_image]];
+            objProductsModel.product_image = [NSString stringWithFormat:@"%@",[[dictProducts objectForKey:kProduct_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objProductsModel.product_name = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_name]];
             objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
             objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
@@ -210,19 +206,39 @@
 -(void)parseStoresProductsData:(NSDictionary *)responseObject
 {
         NSArray *arrProductsTemp = [responseObject objectForKey:@"products"];
-        for (NSDictionary *dictProducts in arrProductsTemp) {
+    for (NSDictionary *dictProducts in arrProductsTemp) {
+        
+        SubCategoryModel *objSubCategory = [arrGetStoreProductSubCategory objectAtIndex:self.mainCategoryIndexPicker];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@ AND SELF.product_id MATCHES %@",strSelectedCategoryId,objSubCategory.sub_category_id,[dictProducts objectForKey:kProduct_id]];
+        NSArray *arrTemp ;
+        if (isSearching) {
+            arrTemp =[arrSearchGetStoreProducts filteredArrayUsingPredicate:predicate];
+        }
+        else
+        {
+            arrTemp =[arrGetStoreProducts filteredArrayUsingPredicate:predicate];
+        }
+        if (arrTemp.count == 0) {
             
             ProductsModel *objProductsModel = [[ProductsModel alloc]init];
             objProductsModel.category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kCategory_id]];
             objProductsModel.product_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_id]];
-            objProductsModel.product_image = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_image]];
+            objProductsModel.product_image = [NSString stringWithFormat:@"%@",[[dictProducts objectForKey:kProduct_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objProductsModel.product_name = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_name]];
             objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
             objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
             objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
             objProductsModel.strCount = @"0";
-            [arrGetStoreProducts addObject:objProductsModel];
+            if (isSearching) {
+                [arrSearchGetStoreProducts addObject:objProductsModel];
+            }
+            else
+            {
+                [arrGetStoreProducts addObject:objProductsModel];
+            }
         }
+    }
     [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 }
 #pragma mark Navigation
@@ -314,8 +330,40 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    NSInteger secNum = 0;
+    if (arrGetStoreProducts.count >0) {
+        secNum = 2;
+    }
+    else
+        secNum = 1;
+    return secNum;
 }
+-(ProductsModel *)getObjectOfProductForIndexPath:(NSIndexPath *)IndexPath
+{
+    ProductsModel *objProductsModel = nil;
+    
+    if (isSearching) {
+        SubCategoryModel *objSubCategory = [arrGetStoreProductSubCategory objectAtIndex:self.mainCategoryIndexPicker];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,objSubCategory.sub_category_id];
+        NSArray *arrTemp = [arrSearchGetStoreProducts filteredArrayUsingPredicate:predicate];
+        objProductsModel = [arrTemp objectAtIndex: IndexPath.row];
+
+    }
+    else
+    {
+        SubCategoryModel *objSubCategory = [arrGetStoreProductSubCategory objectAtIndex:self.mainCategoryIndexPicker];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,objSubCategory.sub_category_id];
+        NSArray *arrTemp = [arrGetStoreProducts filteredArrayUsingPredicate:predicate];
+        objProductsModel = [arrTemp objectAtIndex: IndexPath.row];
+
+    }
+
+    return objProductsModel;
+    
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger rowsNum = 0;
@@ -323,24 +371,43 @@
         rowsNum = 0;
     else if (section == 1)
     {
-        if (isSearching)
-            rowsNum = arrSearchGetStoreProducts.count;
-        else
-        {
-            if (arrGetStoreProductSubCategory.count>0 && arrGetStoreProducts.count>0 && arrGetStoreProductCategories.count>0) {
-                SubCategoryModel *objSubCategory = [arrGetStoreProductSubCategory objectAtIndex:self.mainCategoryIndexPicker];
-                
-                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,objSubCategory.sub_category_id];
-                NSArray *arrTemp = [arrGetStoreProducts filteredArrayUsingPredicate:predicate];
-                rowsNum = arrTemp.count;
-            }
-            else
-                rowsNum = 0;
-        }
+    rowsNum = [self getArrayCountForProducts];
     }
     
     return rowsNum;
 }
+-(NSInteger )getArrayCountForProducts
+{
+    NSInteger rowsNum = 0;
+    if (isSearching)
+    {
+        if (arrGetStoreProductSubCategory.count>0 && arrSearchGetStoreProducts.count>0 && arrGetStoreProductCategories.count>0) {
+            
+            SubCategoryModel *objSubCategory = [arrGetStoreProductSubCategory objectAtIndex:self.mainCategoryIndexPicker];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,objSubCategory.sub_category_id];
+            NSArray *arrTemp = [arrSearchGetStoreProducts filteredArrayUsingPredicate:predicate];
+            rowsNum = arrTemp.count;
+        }
+        else
+            rowsNum = 0;
+  
+    }
+    else
+    {
+        if (arrGetStoreProductSubCategory.count>0 && arrGetStoreProducts.count>0 && arrGetStoreProductCategories.count>0) {
+            
+            SubCategoryModel *objSubCategory = [arrGetStoreProductSubCategory objectAtIndex:self.mainCategoryIndexPicker];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,objSubCategory.sub_category_id];
+            NSArray *arrTemp = [arrGetStoreProducts filteredArrayUsingPredicate:predicate];
+            rowsNum = arrTemp.count;
+        }
+        else
+            rowsNum = 0;
+
+    }
+    return  rowsNum;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     CGFloat headerHeight = 0.0;
@@ -500,18 +567,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         ProductsModel *objProductsModel = nil;
-        if (isSearching)
-            objProductsModel = [arrSearchGetStoreProducts objectAtIndex: indexPath.row];
-        else
-        {
-            SubCategoryModel *objSubCategory = [arrGetStoreProductSubCategory objectAtIndex:self.mainCategoryIndexPicker];
-            
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,objSubCategory.sub_category_id];
-            NSArray *arrTemp = [arrGetStoreProducts filteredArrayUsingPredicate:predicate];
-            objProductsModel = [arrTemp objectAtIndex: indexPath.row];
-
-        }
-        
+        objProductsModel = [self getObjectOfProductForIndexPath:indexPath];
         cell.indexPath=indexPath;
         cell.objProductsModelMain = objProductsModel;
         [cell updateCellWithSubCategory:objProductsModel];
@@ -626,7 +682,6 @@
     if (mainCategoryIndexPicker != index) {
         mainCategoryIndexPicker = index;
         [self createDataToGetStoreProducts];
-     //   [tblVwCategory reloadData];
     }
     
 }
@@ -636,6 +691,10 @@
     strSelectedCategoryName = [dict objectForKey:kCategory_name];
     strSelectedCategoryId = [dict objectForKey:kCategory_id];
     isSelected = NO;
+    [arrGetStoreProducts removeAllObjects];
+    [arrGetStoreProductSubCategory removeAllObjects];
+    [tblVwCategory reloadData];
+    
     [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
 }
 

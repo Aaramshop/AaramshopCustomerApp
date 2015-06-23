@@ -108,7 +108,25 @@ static NSString *strCollectionCategory = @"collectionCategories";
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     CGSize sizeCell=CGSizeZero;
-    sizeCell=CGSizeMake(([UIScreen mainScreen].bounds.size.width)/3-2, 110);
+    
+    CategoryModel *objCategoryModel = nil;
+
+    if (isSearching) {
+        objCategoryModel = [arrSearchCategories objectAtIndex:indexPath.row];
+    }
+    else
+        objCategoryModel= [arrCategories objectAtIndex:indexPath.row];
+
+    CGSize size= [Utils getLabelSizeByText:objCategoryModel.category_name font:[UIFont fontWithName:kRobotoRegular size:13.0] andConstraintWith:([UIScreen mainScreen].bounds.size.width)/3-22];
+    
+    if (size.height < 20) {
+        size.height = 110;
+    }
+    else
+        size.height = size.height+80;
+
+    
+    sizeCell=CGSizeMake(([UIScreen mainScreen].bounds.size.width)/3-2, size.height);
     return sizeCell;
 }
 
@@ -137,8 +155,15 @@ static NSString *strCollectionCategory = @"collectionCategories";
 
     [cell.contentView addSubview:imgV];
     
-    UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 80, (([UIScreen mainScreen].bounds.size.width)/3-22), 20)];
+    CGSize size= [Utils getLabelSizeByText:objCategoryModel.category_name font:[UIFont fontWithName:kRobotoRegular size:13.0] andConstraintWith:([UIScreen mainScreen].bounds.size.width)/3-22];
+    
+    if (size.height < 20) {
+        size.height = 20;
+    }
+
+    UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 80, (([UIScreen mainScreen].bounds.size.width)/3-22), size.height)];
     lbl.textColor = [UIColor blackColor];
+    lbl.numberOfLines = 0 ;
     lbl.textAlignment = NSTextAlignmentCenter;
     lbl.font = [UIFont fontWithName:kRobotoRegular size:13.0];
     lbl.text = objCategoryModel.category_name;
