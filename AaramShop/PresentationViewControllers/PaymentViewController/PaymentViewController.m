@@ -11,7 +11,7 @@
 @interface PaymentViewController ()
 {
     AaramShop_ConnectionManager *aaramShop_ConnectionManager;
-
+    
 }
 @end
 
@@ -20,11 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+    
     [self setNavigationBar];
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
     aaramShop_ConnectionManager.delegate = self;
     datasource = [[NSMutableArray alloc] init];
-    
     
     
 }
@@ -32,6 +33,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
 }
 -(void)setNavigationBar
 {
@@ -67,14 +72,164 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - TableView delegate methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 5;
 }
-*/
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    switch (indexPath.section) {
+        case 0:
+            return 130;
+            break;
+        case 1:
+            return 50;
+            break;
+        case 2:
+            return 78;
+            break;
+        case 3:
+            return 87;
+            break;
+        case 4:
+            return 97;
+            break;
+            
+        default:
+            return 0;
+            break;
+    }
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+        case 1:
+        case 2:
+        {
+            return CGFLOAT_MIN;
+        }
+            break;
+        case 3:
+        case 4:
+        {
+            return 10;
+        }
+        default:
+            return CGFLOAT_MIN;
+            break;
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return CGFLOAT_MIN;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+    
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *tableCell = nil;
+    
+    switch (indexPath.section) {
+        case 0:
+        {
+            static NSString *cellIdentifier = @"TotalPriceCell";
+            
+            TotalPriceTableCell *cell = [self createCellTotalPrice:cellIdentifier];
+            
+            cell.indexPath = indexPath;
+            //            [cell updateCellWithData:];
+            
+            tableCell = cell;
+        }
+            break;
+        case 1:
+        {
+            
+            static NSString *cellIdentifier = @"ApplyBtnCell";
+            
+            tableCell = [self createCell:cellIdentifier];
+            
+            UIButton *applyCoupon = (UIButton *)[tableCell.contentView viewWithTag:201];
+            
+            
+        }
+            break;
+        case 2:
+        {
+            static NSString *cellIdentifier = @"DateTimeSlotCell";
+            
+            tableCell = [self createCell:cellIdentifier];
+            
+            UIButton *btnImmdediate = (UIButton *)[tableCell.contentView viewWithTag:301];
+            UIButton *btnSlot = (UIButton *)[tableCell.contentView viewWithTag:302];
+            
+        }
+            break;
+            
+        case 3:
+        {
+            static NSString *cellIdentifier = @"AddressCell";
+            
+            tableCell = [self createCell:cellIdentifier];
+            
+            UILabel *lblTitle = (UILabel *)[tableCell.contentView viewWithTag:401];
+            
+        }
+            break;
+        case 4:
+        {
+            static NSString *cellIdentifier = @"PickCollectionCell";
+            
+            tableCell = [self createCell:cellIdentifier];
+            UILabel *lblTitle = (UILabel *)[tableCell.contentView viewWithTag:501];
+            UIView *subView = (UIView *)[tableCell.contentView viewWithTag:502];
+            
+            pickCollectionViewC =  [self.storyboard instantiateViewControllerWithIdentifier :@"PickCollectionView"];
+            CGRect pickCollectionViewRect = self.view.bounds;
+            pickCollectionViewC.view.frame = pickCollectionViewRect;
+            [subView addSubview:pickCollectionViewC.view];
+            
+        }
+            break;
+        default:
+            break;
+    }
+    return tableCell;
+}
+-(UITableViewCell*)createCell:(NSString*)cellIdentifier{
+    UITableViewCell *cell = (UITableViewCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    return cell;
+    
+}
+-(TotalPriceTableCell*)createCellTotalPrice:(NSString*)cellIdentifier{
+    TotalPriceTableCell *cell = (TotalPriceTableCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[TotalPriceTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    return cell;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tblView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 @end
