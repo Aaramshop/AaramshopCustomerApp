@@ -85,17 +85,20 @@
                                    else
                                    {
                                        data = [NSData dataWithContentsOfURL:url];
-                                       NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                                       NSLog(@"json=%@",json);
-                                       NSString *str=[json objectForKey:@"status"];
-                                       if ([str isEqualToString:@"OK"])
-                                       {
-                                           [self fetchedData:data];
+                                       if (data!=nil) {
+                                           NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                           NSLog(@"json=%@",json);
+                                           NSString *str=[json objectForKey:@"status"];
+                                           if ([str isEqualToString:@"OK"])
+                                           {
+                                               [self fetchedData:data];
+                                           }
+                                           else
+                                               [AppManager stopStatusbarActivityIndicator];
+                                           
+                                           
+   
                                        }
-                                       else
-                                           [AppManager stopStatusbarActivityIndicator];
-                                                                            
-                                       
                                    }
                                    
                                }];
@@ -462,7 +465,24 @@
                 viewOfCustomAnnotation.frame = calloutViewFrame;
                 
                 [viewOfCustomAnnotation.lblName setText:[(Annotation*)[view annotation] Name]];
-                
+                viewOfCustomAnnotation.imgProfile.layer.cornerRadius =  viewOfCustomAnnotation.imgProfile.frame.size.width / 2;
+                viewOfCustomAnnotation.imgProfile.clipsToBounds = YES;
+
+                if ([[[NSUserDefaults standardUserDefaults]valueForKey:kProfileImage] length]>0)
+                {
+                    [viewOfCustomAnnotation.activityIndicatorVw startAnimating];
+                    [viewOfCustomAnnotation.imgProfile sd_setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]] placeholderImage:[UIImage imageNamed:@"defaultProfilePic.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                        if (image) {
+                        }
+                        [viewOfCustomAnnotation.activityIndicatorVw stopAnimating];
+                    }];
+
+                }
+                else
+                {
+                    viewOfCustomAnnotation.imgProfile.image = gAppManager.imgProfile;
+                }
+
                 [viewOfCustomAnnotation.lblAddress setText:[(Annotation*)[view annotation] Address]];
                 [viewOfCustomAnnotation.lblAddress setNumberOfLines:2];
                 

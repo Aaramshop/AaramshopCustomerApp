@@ -19,5 +19,12 @@
 
     // Configure the view for the selected state
 }
+-(void)updateCellWithData:(NSDictionary *)inDataDic
+{
+    lblDeliveryCharges.text = [inDataDic objectForKey:kDeliveryCharges];
+    lblDiscount.text = [inDataDic objectForKey:kDiscount];
+    lblSubTotal.text = [inDataDic objectForKey:kSubTotalPrice];
+    lblTotal.text = [inDataDic objectForKey:kTotalPrice];
+}
 
 @end

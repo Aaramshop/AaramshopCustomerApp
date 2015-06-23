@@ -44,6 +44,8 @@
 #define kPhoneNumbers                         @"phoneNumbers"
 #define kFullname                             @"fullname"
 
+#define kDate                                 @"date"
+
 #pragma mark - Existing User Keys
 
 #define kExisting_user                        @"existing_user"
@@ -112,6 +114,7 @@
 #define kStore_email                        @"store_email"
 #define kStore_id                           @"store_id"
 #define kUser_address_id                    @"user_address_id"
+#define kUser_address_title                 @"user_address_title"
 #define kBanner                             @"banner"
 #define kBanner_2x                          @"banner_2x"
 #define kBanner_3x                          @"banner_3x"
@@ -159,6 +162,7 @@
 #define kProduct_sku_id                     @"product_sku_id"
 
 
+#define kPopup_message                      @"popup_message"
 #pragma mark - 
 
 #define kSearch_term                        @"search_term"
@@ -221,11 +225,19 @@
 
 #pragma mark - 
 #define kAddressForLocation                 @"addressForLocation"
-//#define kAddressTitle                       @"addressTitle"
-//#define kHomeAddress                        @"homeAddress"
-//#define kOfficeAddress                      @"officeAddress"
-//#define kAddressValue                       @"addressValue"
 
 //==========Last Min Pick=========
-#define kURLGetPaymentPageData          @"getPaymentPageData"
+#define kGetPaymentPageDataURL              @"getPaymentPageData"
 #define kPayment_page_info                  @"payment_page_info"
+#define KGetDeliverySlotURL                 @"getDeliverySlot"
+#define kcheckoutURL                        @"checkout"
+
+#define kTotalPrice                         @"totalPrice"
+#define kSubTotalPrice                      @"subTotalPrice"
+#define kDeliveryCharges                    @"deliveryCharges"
+#define kDiscount                           @"discount"
+
+#define DATE_FORMATTER_yyyy_mm_dd          @"yyyy-MM-dd"
+
+
+

@@ -425,8 +425,6 @@
 		36210B7F1B33F254005B8DFB /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 36210B7C1B33F254005B8DFB /* backBtn.png */; };
 		36210B801B33F254005B8DFB /* backBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36210B7D1B33F254005B8DFB /* backBtn@2x.png */; };
 		36210B811B33F254005B8DFB /* backBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36210B7E1B33F254005B8DFB /* backBtn@3x.png */; };
-		365F2FC01B394D96000F7108 /* PickCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365F2FBF1B394D96000F7108 /* PickCollectionViewController.m */; };
-		365F2FC41B395B63000F7108 /* CMPayment.m in Sources */ = {isa = PBXBuildFile; fileRef = 365F2FC31B395B63000F7108 /* CMPayment.m */; };
 		368209031B1C46FA002AA93F /* CMCountryList.m in Sources */ = {isa = PBXBuildFile; fileRef = 368207C21B1C46F8002AA93F /* CMCountryList.m */; };
 		368209041B1C46FA002AA93F /* CountryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 368207C31B1C46F8002AA93F /* CountryList.plist */; };
 		368209051B1C46FA002AA93F /* FlagListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368207C51B1C46F8002AA93F /* FlagListTableViewController.m */; };
@@ -815,6 +813,8 @@
 		6B5CE44B1B395FD800CD009E /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE4481B395FD800CD009E /* upArrow.png */; };
 		6B5CE44C1B395FD800CD009E /* upArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE4491B395FD800CD009E /* upArrow@2x.png */; };
 		6B5CE44D1B395FD800CD009E /* upArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE44A1B395FD800CD009E /* upArrow@3x.png */; };
+		6B5CE4521B39756400CD009E /* PickCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5CE4511B39756400CD009E /* PickCollectionViewController.m */; };
+		6B5CE4551B39758900CD009E /* PickLastTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5CE4541B39758900CD009E /* PickLastTableCell.m */; };
 		6B809DA41B31755D00E91673 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D841B31755D00E91673 /* MKAnnotationView+WebCache.m */; };
 		6B809DA51B31755D00E91673 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D861B31755D00E91673 /* NSData+ImageContentType.m */; };
 		6B809DA61B31755D00E91673 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D881B31755D00E91673 /* SDImageCache.m */; };
@@ -1740,10 +1740,6 @@
 		36210B7C1B33F254005B8DFB /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		36210B7D1B33F254005B8DFB /* backBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@2x.png"; sourceTree = "<group>"; };
 		36210B7E1B33F254005B8DFB /* backBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@3x.png"; sourceTree = "<group>"; };
-		365F2FBE1B394D96000F7108 /* PickCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickCollectionViewController.h; sourceTree = "<group>"; };
-		365F2FBF1B394D96000F7108 /* PickCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickCollectionViewController.m; sourceTree = "<group>"; };
-		365F2FC21B395B63000F7108 /* CMPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPayment.h; sourceTree = "<group>"; };
-		365F2FC31B395B63000F7108 /* CMPayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPayment.m; sourceTree = "<group>"; };
 		368207C11B1C46F8002AA93F /* CMCountryList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMCountryList.h; sourceTree = "<group>"; };
 		368207C21B1C46F8002AA93F /* CMCountryList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMCountryList.m; sourceTree = "<group>"; };
 		368207C31B1C46F8002AA93F /* CountryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CountryList.plist; sourceTree = "<group>"; };
@@ -2158,6 +2154,10 @@
 		6B5CE4481B395FD800CD009E /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArrow.png; sourceTree = "<group>"; };
 		6B5CE4491B395FD800CD009E /* upArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upArrow@2x.png"; sourceTree = "<group>"; };
 		6B5CE44A1B395FD800CD009E /* upArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upArrow@3x.png"; sourceTree = "<group>"; };
+		6B5CE4501B39756400CD009E /* PickCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickCollectionViewController.h; sourceTree = "<group>"; };
+		6B5CE4511B39756400CD009E /* PickCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickCollectionViewController.m; sourceTree = "<group>"; };
+		6B5CE4531B39758900CD009E /* PickLastTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickLastTableCell.h; sourceTree = "<group>"; };
+		6B5CE4541B39758900CD009E /* PickLastTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickLastTableCell.m; sourceTree = "<group>"; };
 		6B809D831B31755D00E91673 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		6B809D841B31755D00E91673 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		6B809D851B31755D00E91673 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -4020,24 +4020,6 @@
 			path = TabbarViewController;
 			sourceTree = "<group>";
 		};
-		365F2FBD1B394D86000F7108 /* PickCollectionViewController */ = {
-			isa = PBXGroup;
-			children = (
-				365F2FBE1B394D96000F7108 /* PickCollectionViewController.h */,
-				365F2FBF1B394D96000F7108 /* PickCollectionViewController.m */,
-			);
-			path = PickCollectionViewController;
-			sourceTree = "<group>";
-		};
-		365F2FC11B395B4B000F7108 /* PaymentModel */ = {
-			isa = PBXGroup;
-			children = (
-				365F2FC21B395B63000F7108 /* CMPayment.h */,
-				365F2FC31B395B63000F7108 /* CMPayment.m */,
-			);
-			path = PaymentModel;
-			sourceTree = "<group>";
-		};
 		368207BF1B1C46F8002AA93F /* FlagListTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -4409,7 +4391,7 @@
 		368AFED71B38391500417836 /* PaymentViewController */ = {
 			isa = PBXGroup;
 			children = (
-				365F2FBD1B394D86000F7108 /* PickCollectionViewController */,
+				6B5CE44E1B39756400CD009E /* PickLastTableCell */,
 				368AFEE11B383BBC00417836 /* TotalPriceTabelCell */,
 				368AFED81B38393200417836 /* PaymentViewController.h */,
 				368AFED91B38393200417836 /* PaymentViewController.m */,
@@ -4429,7 +4411,6 @@
 		6B0676E01B06024B0002259E /* BusinessModel */ = {
 			isa = PBXGroup;
 			children = (
-				365F2FC11B395B4B000F7108 /* PaymentModel */,
 				6BA0DCE81B3818DD00729443 /* ProductsModel */,
 				6BA0DCE91B3818DD00729443 /* SubCategoryModel */,
 				6BA0DCE41B37FCBE00729443 /* CategoryModel */,
@@ -4813,6 +4794,25 @@
 				6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */,
 			);
 			path = LocationEnterViewController;
+			sourceTree = "<group>";
+		};
+		6B5CE44E1B39756400CD009E /* PickLastTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				6B5CE44F1B39756400CD009E /* PickCollectionViewController */,
+				6B5CE4531B39758900CD009E /* PickLastTableCell.h */,
+				6B5CE4541B39758900CD009E /* PickLastTableCell.m */,
+			);
+			path = PickLastTableCell;
+			sourceTree = "<group>";
+		};
+		6B5CE44F1B39756400CD009E /* PickCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B5CE4501B39756400CD009E /* PickCollectionViewController.h */,
+				6B5CE4511B39756400CD009E /* PickCollectionViewController.m */,
+			);
+			path = PickCollectionViewController;
 			sourceTree = "<group>";
 		};
 		6B809D821B31755D00E91673 /* SDWebImage */ = {
@@ -6229,6 +6229,7 @@
 				274A5C581B05C4AA009112B5 /* UIProgressView+AFNetworking.m in Sources */,
 				274A5C8F1B05C4AA009112B5 /* NSData+XMPP.m in Sources */,
 				274A5C811B05C4AA009112B5 /* SHLog+.m in Sources */,
+				6B5CE4551B39758900CD009E /* PickLastTableCell.m in Sources */,
 				6BD2D3311B28693100EC6E54 /* LeftTableViewController.m in Sources */,
 				274A5C531B05C4AA009112B5 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				274A5CB21B05C4AA009112B5 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
@@ -6267,7 +6268,7 @@
 				6B1C0B821B04D25B009DD32D /* DPAnnotationView.m in Sources */,
 				274A5C8C1B05C4AA009112B5 /* XMPPSCRAMSHA1Authentication.m in Sources */,
 				274A5CB31B05C4AA009112B5 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
-				365F2FC01B394D96000F7108 /* PickCollectionViewController.m in Sources */,
+				6B5CE4521B39756400CD009E /* PickCollectionViewController.m in Sources */,
 				6BA0DCEF1B3818F900729443 /* SubCategoryModel.m in Sources */,
 				274A5C631B05C4AA009112B5 /* UIImage+Decompress.m in Sources */,
 				274A5C9A1B05C4AA009112B5 /* XMPPStream.m in Sources */,
@@ -6316,7 +6317,6 @@
 				6B8EB2821B25AFD600402CFC /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				274A5D011B05C4AA009112B5 /* DDContextFilterLogFormatter.m in Sources */,
 				274A5C601B05C4AA009112B5 /* NSString+SH.m in Sources */,
-				365F2FC41B395B63000F7108 /* CMPayment.m in Sources */,
 				6B809DA71B31755D00E91673 /* SDWebImageCompat.m in Sources */,
 				274A5C861B05C4AA009112B5 /* Utils.m in Sources */,
 				274A5CB01B05C4AA009112B5 /* XMPPRoom.xcdatamodeld in Sources */,
@@ -6536,7 +6536,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "06a8f1dc-2c7b-4367-90a9-bf72a7e0c76b";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -6572,7 +6572,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "06a8f1dc-2c7b-4367-90a9-bf72a7e0c76b";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6609,7 +6609,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "06a8f1dc-2c7b-4367-90a9-bf72a7e0c76b";
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -6645,7 +6645,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "06a8f1dc-2c7b-4367-90a9-bf72a7e0c76b";
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;

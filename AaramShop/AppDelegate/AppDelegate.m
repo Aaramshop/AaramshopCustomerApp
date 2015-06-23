@@ -528,5 +528,20 @@
     {
     }
 }
+-(id)getDateAndFromString:(NSString *)strDate andDate:(NSDate *)date needSting:(BOOL)needString dateFormat:(NSString *)dateFormat
+{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:dateFormat];
+    if(needString)
+    {
+        return [format stringFromDate:date];
+    }
+    else
+    {
+        return [format dateFromString:strDate];
+    }
+}
+
+
 
 @end

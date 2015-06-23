@@ -10,7 +10,7 @@
 #import "CategoryModel.h"
 #import "ProductsModel.h"
 #import "SubCategoryModel.h"
-
+#import "PaymentViewController.h"
 
 @interface HomeSecondViewController ()
 {
@@ -32,6 +32,7 @@
     
     isSelected = NO;
     strSearchTxt = @"";
+    strTotalPrice = @"0";
     isSearching=NO;
     appDeleg = (AppDelegate *)APP_DELEGATE;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -201,6 +202,7 @@
         
         [arrGetStoreProductSubCategory addObject:objSubCategoryModel];
     }
+    tblVwCategory.hidden = NO;
     [tblVwCategory reloadData];
 }
 -(void)parseStoresProductsData:(NSDictionary *)responseObject
@@ -256,8 +258,8 @@
     titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
     titleView.textAlignment = NSTextAlignmentCenter;
     titleView.textColor = [UIColor whiteColor];
+    titleView.numberOfLines = 0;
     titleView.text = strStore_CategoryName;
-    titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
     self.navigationItem.titleView = _headerTitleSubtitleView;
     
@@ -653,8 +655,12 @@
     isSelected = !isSelected;
     if (isSelected) {
         if (strSelectedCategoryId.length>0) {
+            tblVwCategory.hidden = YES;
+            [arrGetStoreProducts removeAllObjects];
+            [arrGetStoreProductSubCategory removeAllObjects];
+            [tblVwCategory reloadData];
             [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
-            [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+         //   [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
             
             [appDeleg.window addSubview:rightCollectionVwContrllr.view];
     
@@ -666,7 +672,25 @@
 
 -(void)btnGoToCheckOutScreen
 {
-    
+    if ([strTotalPrice isEqualToString:@"0"]) {
+        [Utils showAlertView:kAlertTitle message:@"Please select Products to continue" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
+    else
+    {
+    PaymentViewController *paymentScreen = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
+    paymentScreen.strStore_Id = strStore_Id;
+        paymentScreen.strTotalPrice = strTotalPrice;
+        NSMutableArray *arrSelectedProducts = [[NSMutableArray alloc]init];
+        for (ProductsModel *objProduct in arrGetStoreProducts) {
+            
+            if (objProduct.strCount.length>0) {
+                [arrSelectedProducts addObject:objProduct];
+            }
+        }
+        paymentScreen.arrSelectedProducts = [[NSMutableArray alloc]init];
+        paymentScreen.arrSelectedProducts = arrSelectedProducts;
+    [self.navigationController pushViewController:paymentScreen animated:YES];
+    }
 }
 #pragma mark - HorizontalPickerView DataSource Methods
 - (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker
@@ -708,7 +732,7 @@
     [arrGetStoreProducts removeAllObjects];
     [arrGetStoreProductSubCategory removeAllObjects];
     [tblVwCategory reloadData];
-    
+    tblVwCategory.hidden = YES;
     [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
 }
 
