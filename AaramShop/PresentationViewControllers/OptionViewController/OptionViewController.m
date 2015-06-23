@@ -63,12 +63,12 @@
 
 - (IBAction)btnNewUserClick:(UIButton *)sender {
     
-//    MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
-//    [self.navigationController pushViewController:mobileEnterVwController animated:YES];
+    MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
+    [self.navigationController pushViewController:mobileEnterVwController animated:YES];
     
 //    PaymentViewScene
-    PaymentViewController *paymentVwController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene" ];
-    [self.navigationController pushViewController:paymentVwController animated:YES];
+//    PaymentViewController *paymentVwController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene" ];
+//    [self.navigationController pushViewController:paymentVwController animated:YES];
 }
 
 - (IBAction)btnExistingUserClick:(UIButton *)sender {
