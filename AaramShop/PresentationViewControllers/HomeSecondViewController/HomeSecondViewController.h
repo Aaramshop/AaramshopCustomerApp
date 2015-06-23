@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "V8HorizontalPickerView.h"
 #import "RightCollectionViewController.h"
+#import "HomeSecondCustomCell.h"
 
-@interface HomeSecondViewController : UIViewController<V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,UISearchBarDelegate,AaramShop_ConnectionManager_Delegate,RightControllerDelegate>
+@interface HomeSecondViewController : UIViewController<V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,UISearchBarDelegate,AaramShop_ConnectionManager_Delegate,RightControllerDelegate,UITableViewDataSource,UITableViewDelegate,HomeSecondCustomCellDelegate>
 {    
-    __weak IBOutlet UITableView *tblVwCategory;
+    UITableView *tblVwCategory;
     RightCollectionViewController *rightCollectionVwContrllr;
     NSMutableArray *arrGetStoreProductCategories;
     NSMutableArray *arrGetStoreProducts;
+    NSMutableArray *arrSearchGetStoreProducts;
     NSMutableArray *arrGetStoreProductSubCategory;
 }
 @property (nonatomic) NSInteger mainCategoryIndexPicker;

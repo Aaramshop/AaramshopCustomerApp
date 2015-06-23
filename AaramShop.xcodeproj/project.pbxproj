@@ -909,15 +909,6 @@
 		6B8EB2F61B26FB6D00402CFC /* minusIconCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2EA1B26FB6D00402CFC /* minusIconCircle.png */; };
 		6B8EB2F71B26FB6D00402CFC /* minusIconCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2EB1B26FB6D00402CFC /* minusIconCircle@2x.png */; };
 		6B8EB2F81B26FB6D00402CFC /* minusIconCircle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2EC1B26FB6D00402CFC /* minusIconCircle@3x.png */; };
-		6B8EB2F91B26FB6D00402CFC /* productOne.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2ED1B26FB6D00402CFC /* productOne.png */; };
-		6B8EB2FA1B26FB6D00402CFC /* productOne@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2EE1B26FB6D00402CFC /* productOne@2x.png */; };
-		6B8EB2FB1B26FB6D00402CFC /* productOne@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2EF1B26FB6D00402CFC /* productOne@3x.png */; };
-		6B8EB2FC1B26FB6D00402CFC /* productThree.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2F01B26FB6D00402CFC /* productThree.png */; };
-		6B8EB2FD1B26FB6D00402CFC /* productThree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2F11B26FB6D00402CFC /* productThree@2x.png */; };
-		6B8EB2FE1B26FB6D00402CFC /* productThree@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2F21B26FB6D00402CFC /* productThree@3x.png */; };
-		6B8EB2FF1B26FB6D00402CFC /* productTwo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2F31B26FB6D00402CFC /* productTwo.png */; };
-		6B8EB3001B26FB6D00402CFC /* productTwo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2F41B26FB6D00402CFC /* productTwo@2x.png */; };
-		6B8EB3011B26FB6D00402CFC /* productTwo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB2F51B26FB6D00402CFC /* productTwo@3x.png */; };
 		6B8EB3051B27001600402CFC /* HomeSecondCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8EB3041B27001600402CFC /* HomeSecondCustomCell.m */; };
 		6B8EB3091B2708B100402CFC /* addIconCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB3061B2708B100402CFC /* addIconCircle.png */; };
 		6B8EB30A1B2708B100402CFC /* addIconCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB3071B2708B100402CFC /* addIconCircle@2x.png */; };
@@ -2291,15 +2282,6 @@
 		6B8EB2EA1B26FB6D00402CFC /* minusIconCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minusIconCircle.png; sourceTree = "<group>"; };
 		6B8EB2EB1B26FB6D00402CFC /* minusIconCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minusIconCircle@2x.png"; sourceTree = "<group>"; };
 		6B8EB2EC1B26FB6D00402CFC /* minusIconCircle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minusIconCircle@3x.png"; sourceTree = "<group>"; };
-		6B8EB2ED1B26FB6D00402CFC /* productOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = productOne.png; sourceTree = "<group>"; };
-		6B8EB2EE1B26FB6D00402CFC /* productOne@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "productOne@2x.png"; sourceTree = "<group>"; };
-		6B8EB2EF1B26FB6D00402CFC /* productOne@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "productOne@3x.png"; sourceTree = "<group>"; };
-		6B8EB2F01B26FB6D00402CFC /* productThree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = productThree.png; sourceTree = "<group>"; };
-		6B8EB2F11B26FB6D00402CFC /* productThree@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "productThree@2x.png"; sourceTree = "<group>"; };
-		6B8EB2F21B26FB6D00402CFC /* productThree@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "productThree@3x.png"; sourceTree = "<group>"; };
-		6B8EB2F31B26FB6D00402CFC /* productTwo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = productTwo.png; sourceTree = "<group>"; };
-		6B8EB2F41B26FB6D00402CFC /* productTwo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "productTwo@2x.png"; sourceTree = "<group>"; };
-		6B8EB2F51B26FB6D00402CFC /* productTwo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "productTwo@3x.png"; sourceTree = "<group>"; };
 		6B8EB3031B27001600402CFC /* HomeSecondCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSecondCustomCell.h; sourceTree = "<group>"; };
 		6B8EB3041B27001600402CFC /* HomeSecondCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSecondCustomCell.m; sourceTree = "<group>"; };
 		6B8EB3061B2708B100402CFC /* addIconCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addIconCircle.png; sourceTree = "<group>"; };
@@ -5066,15 +5048,6 @@
 				6B8EB2EA1B26FB6D00402CFC /* minusIconCircle.png */,
 				6B8EB2EB1B26FB6D00402CFC /* minusIconCircle@2x.png */,
 				6B8EB2EC1B26FB6D00402CFC /* minusIconCircle@3x.png */,
-				6B8EB2ED1B26FB6D00402CFC /* productOne.png */,
-				6B8EB2EE1B26FB6D00402CFC /* productOne@2x.png */,
-				6B8EB2EF1B26FB6D00402CFC /* productOne@3x.png */,
-				6B8EB2F01B26FB6D00402CFC /* productThree.png */,
-				6B8EB2F11B26FB6D00402CFC /* productThree@2x.png */,
-				6B8EB2F21B26FB6D00402CFC /* productThree@3x.png */,
-				6B8EB2F31B26FB6D00402CFC /* productTwo.png */,
-				6B8EB2F41B26FB6D00402CFC /* productTwo@2x.png */,
-				6B8EB2F51B26FB6D00402CFC /* productTwo@3x.png */,
 				6B8EB2E01B26F95000402CFC /* homeDeatilsWhiteArrow.png */,
 				6B8EB2E11B26F95000402CFC /* homeDeatilsWhiteArrow@2x.png */,
 				6B8EB2E21B26F95000402CFC /* homeDeatilsWhiteArrow@3x.png */,
@@ -5556,7 +5529,6 @@
 				6BFFF9531B0236B800BB2B62 /* tabBarMyListIcon@3x.png in Resources */,
 				368209B41B1C46FA002AA93F /* mari-EI.png in Resources */,
 				274929B71B03DC10008ACEFD /* indianFlag@3x.png in Resources */,
-				6B8EB3001B26FB6D00402CFC /* productTwo@2x.png in Resources */,
 				274A5A491B05C075009112B5 /* favourateIcon@2x.png in Resources */,
 				6BFFF9521B0236B800BB2B62 /* tabBarMyListIcon@2x.png in Resources */,
 				368AFEE01B383AEB00417836 /* shopingProductOne@3x.png in Resources */,
@@ -5740,7 +5712,6 @@
 				27EC67531B0326A5007D126E /* bg1@3x.jpg in Resources */,
 				368209651B1C46FA002AA93F /* Faroe Islands.png in Resources */,
 				274F88AB1B0D0E7400F85743 /* homePageBannerImage@2x.png in Resources */,
-				6B8EB2FA1B26FB6D00402CFC /* productOne@2x.png in Resources */,
 				368209F51B1C46FA002AA93F /* sark.png in Resources */,
 				6B8EB2CC1B26BDCE00402CFC /* homeDetailsDefaultImgae@3x.png in Resources */,
 				368209FE1B1C46FA002AA93F /* sikkim.png in Resources */,
@@ -5752,7 +5723,6 @@
 				274A5DBE1B05C88B009112B5 /* chatPauseIcon.png in Resources */,
 				368209421B1C46FA002AA93F /* china.png in Resources */,
 				6B8EB2BE1B26B8BE00402CFC /* ratingStarHalf.png in Resources */,
-				6B8EB2FB1B26FB6D00402CFC /* productOne@3x.png in Resources */,
 				368209BA1B1C46FA002AA93F /* Midway Island, USA.png in Resources */,
 				6B8EB2DD1B26F5DD00402CFC /* homeDeatilsGreyArrow.png in Resources */,
 				274A5A4A1B05C075009112B5 /* favourateIcon@3x.png in Resources */,
@@ -5897,7 +5867,6 @@
 				6B12DCF51AF2A53200245209 /* defaultProfilePic@3x.png in Resources */,
 				6BD2D3241B284C8900EC6E54 /* homeStarIconInactive.png in Resources */,
 				6BE4C9071B034CDE00EF1EDB /* locationIcon.png in Resources */,
-				6B8EB2F91B26FB6D00402CFC /* productOne.png in Resources */,
 				274A5DDD1B05C88B009112B5 /* Received.png in Resources */,
 				274A5DC31B05C88B009112B5 /* chatPlayIcon@2x.png in Resources */,
 				368209271B1C46FA002AA93F /* bolivia.png in Resources */,
@@ -5920,7 +5889,6 @@
 				6BFFF9461B0236B800BB2B62 /* tabBarChatIcon@2x.png in Resources */,
 				368209571B1C46FA002AA93F /* dominican republic.png in Resources */,
 				368209CC1B1C46FA002AA93F /* nicaragua.png in Resources */,
-				6B8EB2FC1B26FB6D00402CFC /* productThree.png in Resources */,
 				274A5DD91B05C88B009112B5 /* orange.png in Resources */,
 				6BD2D33C1B28A66500EC6E54 /* homeDetailsBeverageIconInactive@2x.png in Resources */,
 				36820A2D1B1C46FA002AA93F /* Uk.png in Resources */,
@@ -5949,8 +5917,6 @@
 				274A5DC81B05C88B009112B5 /* chatRecordBtnActive.png in Resources */,
 				6BB50DD91B32AB2300990161 /* locationPopupRadioInactive@2x.png in Resources */,
 				6B12DCCC1AF2720400245209 /* lowerBox@2x.png in Resources */,
-				6B8EB2FF1B26FB6D00402CFC /* productTwo.png in Resources */,
-				368AFED51B38343C00417836 /* sideArrowGrey@2x.png in Resources */,
 				3682099D1B1C46FA002AA93F /* kosovo.png in Resources */,
 				6BFFF94C1B0236B800BB2B62 /* tabBarHomeIcon@2x.png in Resources */,
 				6BD2D30E1B284C8900EC6E54 /* homeDownArrow@3x.png in Resources */,
@@ -5970,7 +5936,6 @@
 				6B8EB31C1B27098F00402CFC /* homeDetailsBannerShade@2x.png in Resources */,
 				274A5DAC1B05C88B009112B5 /* btnArrow.png in Resources */,
 				2791DE371B036E5C000121BC /* menuCartIcon@3x.png in Resources */,
-				6B8EB3011B26FB6D00402CFC /* productTwo@3x.png in Resources */,
 				6BA2F0A01B04B2F30074562F /* mapPinGreen@3x.png in Resources */,
 				6B8EB2D61B26E71600402CFC /* disc2.mp4 in Resources */,
 				274F88B01B0D0E7400F85743 /* homePageBannerImageThree.png in Resources */,
@@ -6027,7 +5992,6 @@
 				6BFFF95D1B0236B800BB2B62 /* tabBarOrdersIcon.png in Resources */,
 				6B0676EF1B0630580002259E /* locationPopupSaveBox.png in Resources */,
 				368209991B1C46FA002AA93F /* kiribati.png in Resources */,
-				6B8EB2FD1B26FB6D00402CFC /* productThree@2x.png in Resources */,
 				3682093B1B1C46FA002AA93F /* Cayman Islands.png in Resources */,
 				6B8EB2921B25BED000402CFC /* homeStoreQuestionMarkIcon@3x.png in Resources */,
 				276FFF201B0DADC200071B98 /* preferencesOffersIcon.png in Resources */,
@@ -6156,7 +6120,6 @@
 				6B8EB2981B25C17B00402CFC /* seprator@3x.png in Resources */,
 				368209541B1C46FA002AA93F /* denmark.png in Resources */,
 				6BB50DC61B32AAB300990161 /* locationPopupOp1.png in Resources */,
-				6B8EB2FE1B26FB6D00402CFC /* productThree@3x.png in Resources */,
 				6B8EB2CB1B26BDCE00402CFC /* homeDetailsDefaultImgae@2x.png in Resources */,
 				368209821B1C46FA002AA93F /* iceland.png in Resources */,
 				368209E11B1C46FA002AA93F /* Puerto Rico.png in Resources */,
