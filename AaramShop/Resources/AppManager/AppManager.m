@@ -118,6 +118,7 @@ AppDelegate *appDeleg;
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAdultFemale] forKey:kAdultFemale];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAdultMale] forKey:kAdultMale];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kChatUsername] forKey:kChatUsername];
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@@%@",[dict objectForKey:kChatUsername],STRChatServerURL] forKey:kXMPPmyJID1];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kCity] forKey:kCity];
     
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kDeviceId] forKey:kDeviceId];
@@ -562,7 +563,7 @@ void MyAddressBookExternalChangeCallback (
     CLLocation *location1 = [[CLLocation alloc] initWithLatitude:storeLat longitude:storeLong];
     CLLocation *location2 = [[CLLocation alloc] initWithLatitude:appDeleg.myCurrentLocation.coordinate.latitude longitude:appDeleg.myCurrentLocation.coordinate.longitude];
     
-    NSString *toDistance =[NSString stringWithFormat:@"%.2f Km",[location1 distanceFromLocation:location2]/1000];
+    NSString *toDistance =[NSString stringWithFormat:@"%.1f Km",[location1 distanceFromLocation:location2]/1000];
     return toDistance;
     
 }

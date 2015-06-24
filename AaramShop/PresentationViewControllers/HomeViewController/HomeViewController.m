@@ -188,6 +188,10 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if(![gCXMPPController isConnected])
+    {
+        [gCXMPPController connect];
+    }
 }
 
 #pragma mark - createDataToGetStores
@@ -891,41 +895,132 @@
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index
 {
+    NSIndexPath *indexPath = nil;
+    BOOL isHomeCell = NO;
+    if([cell isKindOfClass:[HomeTableCell class]])
+    {
+        indexPath= [(UITableView *)tblStores indexPathForCell: cell];
+        isHomeCell = YES;
+    }
+    else
+    {
+        indexPath= [(UITableView *)tblVwCategory indexPathForCell: cell];
+        isHomeCell = NO;
+    }
+    StoreModel *objStoreModel = nil;
+
     switch (index) {
         case 0:
         {
-           // StoreModel *objStoreModel = cell.st
-           // NSString *phoneNumber = [@"tel://" stringByAppendingString:strPhoneNumber];
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+            if(isHomeCell)
+            {
+                if (self.mainCategoryIndex !=0) {
+                    objStoreModel = [arrSubCategory objectAtIndex:indexPath.row];
+                    
+                }
+                else
+                {
+                    objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
+                }
+            }
+            else
+            {
+                if (self.mainCategoryIndex != 0) {
+                    objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+                }
+                else
+                {
+                    objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
+                }
+            }
+            NSString *mobileNo = objStoreModel.store_mobile; //pendingOrder.mobile_no;
+            
+            NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",mobileNo]];
+            
+            if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+                [[UIApplication sharedApplication] openURL:phoneUrl];
+            } else
+            {
+                [Utils showAlertView:kAlertTitle message:kAlertCallFacilityNotAvailable delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            }
 
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Call"
-                                                            message:@"message"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
+         }
             break;
         case 1:
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Chat"
-                                                            message:@"message"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }break;
+            if(isHomeCell)
+            {
+                if (self.mainCategoryIndex !=0) {
+                    objStoreModel = [arrSubCategory objectAtIndex:indexPath.row];
+                    
+                }
+                else
+                {
+                    objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
+                }
+                    AppDelegate *deleg = APP_DELEGATE;
+                    SMChatViewController *chatView = nil;
+                    chatView = [deleg createChatViewByChatUserNameIfNeeded:objStoreModel.chat_username];
+                    chatView.chatWithUser =[NSString stringWithFormat:@"%@@%@",objStoreModel.chat_username,STRChatServerURL];
+                    chatView.friendNameId = objStoreModel.store_id;
+                    chatView.imageString = objStoreModel.store_image;
+                    chatView.userName = objStoreModel.store_name;
+                    chatView.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:chatView animated:YES];
+            }
+            else
+            {
+                if (self.mainCategoryIndex != 0) {
+                    objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+                }
+                else
+                {
+                    objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
+                }
+                AppDelegate *deleg = APP_DELEGATE;
+                SMChatViewController *chatView = nil;
+                chatView = [deleg createChatViewByChatUserNameIfNeeded:objStoreModel.chat_username];
+                chatView.chatWithUser =[NSString stringWithFormat:@"%@@%@",objStoreModel.chat_username,STRChatServerURL];
+                chatView.friendNameId = objStoreModel.store_id;
+                chatView.imageString = objStoreModel.store_image;
+                chatView.userName = objStoreModel.store_name;
+                chatView.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:chatView animated:YES];
+
+            }
+        }
+            break;
         case 2:
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Shop"
-                                                            message:@"message"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }break;
+            if(isHomeCell)
+            {
+                if (self.mainCategoryIndex !=0) {
+                    objStoreModel = [arrSubCategory objectAtIndex:indexPath.row];
+                    
+                }
+                else
+                {
+                    objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
+                }
+            }
+            else
+            {
+                if (self.mainCategoryIndex != 0) {
+                    objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+                }
+                else
+                {
+                    objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
+                }
+            }
+            HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
+            homeSecondVwController.strStore_Id = objStoreModel.store_id;
+            homeSecondVwController.strStore_CategoryName = objStoreModel.store_category_name;
+            [self.navigationController pushViewController:homeSecondVwController animated:YES];
+        }
+            break;
             
-    
+            
             
             
         default:
