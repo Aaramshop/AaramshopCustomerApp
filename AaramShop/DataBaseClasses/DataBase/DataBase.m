@@ -130,8 +130,8 @@ AppDelegate *appDeleg;
                 addressBook.state = [obj valueForKey:kState];
                 addressBook.toddlers = [obj valueForKey:kToddlers];
                 addressBook.userId = [obj valueForKey:kUserId];
-                addressBook.firstNameServer =[obj valueForKey:kFirstName];
-                addressBook.lastNameServer = [obj valueForKey:kLastName];
+                addressBook.firstNameServer =[obj valueForKey:kFullname];
+                //addressBook.lastNameServer = [obj valueForKey:kLastName];
                 addressBook.isAppUser = YES;
             }
         }

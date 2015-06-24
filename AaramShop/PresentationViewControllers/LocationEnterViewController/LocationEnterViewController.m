@@ -327,7 +327,7 @@
     }
     
     CLLocationCoordinate2D coordinateValue = CLLocationCoordinate2DMake(Latitude, LongitudeValue);
-    Annotation *annotation = [[Annotation alloc]initWithName:@"You" Address:strYourCurrentAddress Coordinate:coordinateValue imageUrl:@"" showMyLocation:YES];
+    Annotation *annotation = [[Annotation alloc]initWithName:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kFullname]] Address:strYourCurrentAddress Coordinate:coordinateValue imageUrl:@"" showMyLocation:YES];
     [mapViewLocation addAnnotation:annotation];
     
     [self setRegionOfMap];
@@ -464,18 +464,41 @@
                 
                 viewOfCustomAnnotation.frame = calloutViewFrame;
                 
-                [viewOfCustomAnnotation.lblName setText:[(Annotation*)[view annotation] Name]];
+                [viewOfCustomAnnotation.lblName setText:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kFullname]]];
                 viewOfCustomAnnotation.imgProfile.layer.cornerRadius =  viewOfCustomAnnotation.imgProfile.frame.size.width / 2;
                 viewOfCustomAnnotation.imgProfile.clipsToBounds = YES;
 
                 if ([[[NSUserDefaults standardUserDefaults]valueForKey:kProfileImage] length]>0)
                 {
                     [viewOfCustomAnnotation.activityIndicatorVw startAnimating];
-                    [viewOfCustomAnnotation.imgProfile sd_setImageWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]] placeholderImage:[UIImage imageNamed:@"defaultProfilePic.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                        if (image) {
-                        }
-                        [viewOfCustomAnnotation.activityIndicatorVw stopAnimating];
-                    }];
+                    
+                    if ([UIScreen mainScreen].bounds.size.height == 480) {
+                        NSString *strImageUrl = [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_100],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]];
+
+                        [viewOfCustomAnnotation.imgProfile sd_setImageWithURL:[NSURL URLWithString:strImageUrl] placeholderImage:[UIImage imageNamed:@"defaultProfilePic.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                            if (image) {
+                            }
+                            [viewOfCustomAnnotation.activityIndicatorVw stopAnimating];
+                        }];
+                    }
+                    else if ([UIScreen mainScreen].bounds.size.height == 568) {
+                        NSString *strImageUrl = [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_320],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]];
+                        [viewOfCustomAnnotation.imgProfile sd_setImageWithURL:[NSURL URLWithString:strImageUrl] placeholderImage:[UIImage imageNamed:@"defaultProfilePic.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                            if (image) {
+                            }
+                            [viewOfCustomAnnotation.activityIndicatorVw stopAnimating];
+                        }];
+                    }
+                    else if ([UIScreen mainScreen].bounds.size.height == 667) {
+                        NSString *strImageUrl = [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_640],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]];
+
+                        [viewOfCustomAnnotation.imgProfile sd_setImageWithURL:[NSURL URLWithString:strImageUrl] placeholderImage:[UIImage imageNamed:@"defaultProfilePic.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                            if (image) {
+                            }
+                            [viewOfCustomAnnotation.activityIndicatorVw stopAnimating];
+                        }];
+                    }
+
 
                 }
                 else

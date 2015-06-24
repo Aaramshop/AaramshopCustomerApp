@@ -36,14 +36,12 @@
     tblSuggestedStores.layer.cornerRadius = 1.0;
     [self createDataToGetHomeStoreBanner];
     
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    [self.view addGestureRecognizer:gestureRecognizer];
 }
 #pragma mark - createDataToGetHomeStoreBanner
 -(void)hideKeyboard
 {
-//    [tblSuggestedStores setHidden:YES];
     [self.view endEditing:YES];
+    tblSuggestedStores.hidden = YES;
 }
 -(void)createDataToGetHomeStoreBanner
 {
@@ -281,7 +279,6 @@
 - (IBAction)btnWhatsHomeStoreClick:(UIButton *)sender {
 
     homeStorePopUpVwController =  [self.storyboard instantiateViewControllerWithIdentifier :@"homeStorePopUp"];
-    homeStorePopUpVwController.delegate = self;
     CGRect homeStorePopUpVwControllerRect = [UIScreen mainScreen].bounds;
     homeStorePopUpVwController.view.frame = homeStorePopUpVwControllerRect;
     homeStorePopUpVwController.viewPopUp.frame = CGRectMake(30, ([UIScreen mainScreen].bounds.size.height-295)/2, [UIScreen mainScreen].bounds.size.width-60, 295);
