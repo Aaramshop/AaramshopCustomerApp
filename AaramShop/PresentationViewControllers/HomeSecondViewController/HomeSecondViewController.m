@@ -39,13 +39,14 @@
     appDeleg = (AppDelegate *)APP_DELEGATE;
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    tblVwCategory = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49) style:UITableViewStyleGrouped];
+    tblVwCategory = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49-64) style:UITableViewStyleGrouped];
     tblVwCategory.delegate = self;
     tblVwCategory.dataSource = self;
     tblVwCategory.backgroundView = nil;
     tblVwCategory.backgroundColor = [UIColor clearColor];
     tblVwCategory.sectionHeaderHeight = 0.0;
     tblVwCategory.sectionFooterHeight = 0.0;
+    tblVwCategory.alwaysBounceVertical = NO;
     [self.view addSubview:tblVwCategory];
 
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
@@ -477,7 +478,7 @@
 {
     CGFloat headerHeight = 0.0;
     if (section == 0) {
-        headerHeight = 234;
+        headerHeight = 170;
     }
     else if (section == 1)
     {
@@ -491,7 +492,7 @@
         
         UIView *tempView = nil;
         
-        tempView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234)];
+        tempView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 170)];
         
         NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CategoryView"
                                                          owner:self options:nil];

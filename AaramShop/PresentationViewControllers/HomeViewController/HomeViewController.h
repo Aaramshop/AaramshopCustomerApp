@@ -11,7 +11,7 @@
 #import "CategoryViewController.h"
 #import "StoreModel.h"
 
-@interface HomeViewController : UIViewController<CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,SWTableViewCellDelegate,CategoryViewControllerDelegate,HomeTableCellDelegate,AaramShop_ConnectionManager_Delegate,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
+@interface HomeViewController : UIViewController<CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,SWTableViewCellDelegate,CategoryViewControllerDelegate,AaramShop_ConnectionManager_Delegate,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
     UITableView *tblVwCategory;
     UITableView *tblStores;
