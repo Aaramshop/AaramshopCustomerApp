@@ -744,6 +744,9 @@
 		36820A401B1C46FA002AA93F /* zanzibar.png in Resources */ = {isa = PBXBuildFile; fileRef = 368209011B1C46FA002AA93F /* zanzibar.png */; };
 		36820A411B1C46FA002AA93F /* zimbabwe.png in Resources */ = {isa = PBXBuildFile; fileRef = 368209021B1C46FA002AA93F /* zimbabwe.png */; };
 		36820A451B1C4709002AA93F /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 36820A441B1C4709002AA93F /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		36897D5C1B3B1D7F002F1485 /* searchIconGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 36897D591B3B1D7F002F1485 /* searchIconGrey.png */; };
+		36897D5D1B3B1D7F002F1485 /* searchIconGrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36897D5A1B3B1D7F002F1485 /* searchIconGrey@2x.png */; };
+		36897D5E1B3B1D7F002F1485 /* searchIconGrey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36897D5B1B3B1D7F002F1485 /* searchIconGrey@3x.png */; };
 		368AFECE1B38271300417836 /* appyCouponCodeBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 368AFECB1B38271300417836 /* appyCouponCodeBox.png */; };
 		368AFECF1B38271300417836 /* appyCouponCodeBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 368AFECC1B38271300417836 /* appyCouponCodeBox@2x.png */; };
 		368AFED01B38271300417836 /* appyCouponCodeBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 368AFECD1B38271300417836 /* appyCouponCodeBox@3x.png */; };
@@ -2125,6 +2128,9 @@
 		368209021B1C46FA002AA93F /* zimbabwe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zimbabwe.png; sourceTree = "<group>"; };
 		36820A431B1C4709002AA93F /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		36820A441B1C4709002AA93F /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		36897D591B3B1D7F002F1485 /* searchIconGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchIconGrey.png; sourceTree = "<group>"; };
+		36897D5A1B3B1D7F002F1485 /* searchIconGrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchIconGrey@2x.png"; sourceTree = "<group>"; };
+		36897D5B1B3B1D7F002F1485 /* searchIconGrey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchIconGrey@3x.png"; sourceTree = "<group>"; };
 		368AFECB1B38271300417836 /* appyCouponCodeBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appyCouponCodeBox.png; sourceTree = "<group>"; };
 		368AFECC1B38271300417836 /* appyCouponCodeBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appyCouponCodeBox@2x.png"; sourceTree = "<group>"; };
 		368AFECD1B38271300417836 /* appyCouponCodeBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appyCouponCodeBox@3x.png"; sourceTree = "<group>"; };
@@ -5270,6 +5276,9 @@
 		6B8EB2D91B26F5DD00402CFC /* HomeSecondScreen */ = {
 			isa = PBXGroup;
 			children = (
+				36897D591B3B1D7F002F1485 /* searchIconGrey.png */,
+				36897D5A1B3B1D7F002F1485 /* searchIconGrey@2x.png */,
+				36897D5B1B3B1D7F002F1485 /* searchIconGrey@3x.png */,
 				6BF1E32E1B3005BF0078DD2F /* homeDetailAmountSecondBox.png */,
 				6BF1E32F1B3005BF0078DD2F /* homeDetailAmountSecondBox@2x.png */,
 				6BF1E3301B3005BF0078DD2F /* homeDetailAmountSecondBox@3x.png */,
@@ -5796,6 +5805,7 @@
 				368209DD1B1C46FA002AA93F /* philippines.png in Resources */,
 				6B8EB25F1B230A7C00402CFC /* Roboto-Medium_0.ttf in Resources */,
 				6BFFF9511B0236B800BB2B62 /* tabBarMyListIcon.png in Resources */,
+				36897D5D1B3B1D7F002F1485 /* searchIconGrey@2x.png in Resources */,
 				3682097E1B1C46FA002AA93F /* herm.png in Resources */,
 				368209211B1C46FA002AA93F /* belarus.png in Resources */,
 				36820A371B1C46FA002AA93F /* vetican city.png in Resources */,
@@ -6118,6 +6128,7 @@
 				6BB50DD81B32AB2300990161 /* locationPopupRadioInactive.png in Resources */,
 				2791DE321B036E5C000121BC /* menuAwardsPointsIcon.png in Resources */,
 				274A5DE21B05C88B009112B5 /* stcker2@2x.png in Resources */,
+				36897D5E1B3B1D7F002F1485 /* searchIconGrey@3x.png in Resources */,
 				368209DE1B1C46FA002AA93F /* pitcairn islands.png in Resources */,
 				274A5DD01B05C88B009112B5 /* iconDownload.png in Resources */,
 				3682091F1B1C46FA002AA93F /* barbuda.png in Resources */,
@@ -6420,6 +6431,7 @@
 				368209F11B1C46FA002AA93F /* Saint Vincent and the Grenadines.png in Resources */,
 				6BFFF95F1B0236B800BB2B62 /* tabBarOrdersIcon@3x.png in Resources */,
 				6B8EB2E41B26F95000402CFC /* homeDeatilsWhiteArrow@2x.png in Resources */,
+				36897D5C1B3B1D7F002F1485 /* searchIconGrey.png in Resources */,
 				36820A081B1C46FA002AA93F /* south ossetia.png in Resources */,
 				27EC67521B0326A5007D126E /* bg1@2x.jpg in Resources */,
 				274A5DE11B05C88B009112B5 /* stcker1@2x.png in Resources */,
