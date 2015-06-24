@@ -76,8 +76,7 @@ static NSString *strCollectionItems = @"collectionItems";
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:strStore_Id forKey:kStore_id];
-    AddressModel *objAddress = [arrAddressData objectAtIndex:0];
-    [dict setObject:objAddress.user_address_id forKey:kUser_address_id];
+    [dict setObject:strSelectedUserAddress_Id forKey:kUser_address_id];
     
     if (arrSelectedLastMinPick.count>0) {
         [arrSelectedProducts addObjectsFromArray:arrSelectedLastMinPick];
@@ -119,6 +118,7 @@ static NSString *strCollectionItems = @"collectionItems";
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
     {
+        btnPay.enabled = NO;
         [AppManager stopStatusbarActivityIndicator];
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
@@ -186,6 +186,7 @@ static NSString *strCollectionItems = @"collectionItems";
     }
     else if(aaramShop_ConnectionManager.currentTask == TASK_CHECKOUT)
     {
+        btnPay.enabled = YES;
         if([[responseObject objectForKey:kstatus] intValue] == 1)
         {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
@@ -209,6 +210,7 @@ static NSString *strCollectionItems = @"collectionItems";
 
 - (void)didFailWithError:(NSError *)error
 {
+    btnPay.enabled = YES;
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 #pragma mark - Parsing Data
@@ -412,8 +414,9 @@ static NSString *strCollectionItems = @"collectionItems";
             
             tableCell = [self createCell:cellIdentifier];
             
-            UILabel *lblTitle = (UILabel *)[tableCell.contentView viewWithTag:401];
-            lblTitle.text = strSelectAddress;
+            UIButton *btnTitle = (UIButton *)[tableCell.contentView viewWithTag:401];
+            [btnTitle setTitle:strSelectAddress forState:UIControlStateNormal];
+            [btnTitle addTarget:self action:@selector(btnSelectAddressClick) forControlEvents:UIControlEventTouchUpInside];
         }
             break;
         case 4:
@@ -496,16 +499,17 @@ static NSString *strCollectionItems = @"collectionItems";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tblView deselectRowAtIndexPath:indexPath animated:YES];
-    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:3];
-    if (selectedIndexPath == indexPath) {
-        ePickerType = enPickerAddress;
-        [self showDatePickerView:NO];
-        [self showOptionPatch:YES];
-        [self showOptionPatch:YES];
-        [pickerViewSlots reloadAllComponents];
-    }
 }
+-(void)btnSelectAddressClick
+{
+    isPickerOpen = YES;
 
+    ePickerType = enPickerAddress;
+    [self showDatePickerView:NO];
+    [self showOptionPatch:YES];
+    [self showPickerView:YES];
+    [pickerViewSlots reloadAllComponents];
+}
 #pragma mark - UIPickerView Delegate
 
 #pragma mark-
@@ -555,9 +559,10 @@ static NSString *strCollectionItems = @"collectionItems";
         AddressModel *objaddressModel = [arrAddressData objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
         UITableViewCell *cell = (UITableViewCell *)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
         
-        UILabel *lblTitle = (UILabel *)[cell.contentView viewWithTag:401];
+        UIButton *btnTitle = (UIButton *)[cell.contentView viewWithTag:401];
+
         strSelectAddress = objaddressModel.address;
-        lblTitle.text = strSelectAddress;
+        [btnTitle setTitle:strSelectAddress forState:UIControlStateNormal];
         strSelectedUserAddress_Id = objaddressModel.user_address_id;
     }
     else
@@ -670,12 +675,16 @@ static NSString *strCollectionItems = @"collectionItems";
     [pickerViewSlots reloadAllComponents];
 }
 - (IBAction)btnPayClick:(UIButton *)sender {
-    
+    btnPay.enabled = NO;
     if ([strSelectSlot isEqualToString:@"Select Slot"]) {
+        btnPay.enabled = YES;
+
         [Utils showAlertView:kAlertTitle message:@"Please select Slot" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
     }
     else if([strSelectAddress isEqualToString:@"Select Address"])
     {
+        btnPay.enabled = YES;
+
         [Utils showAlertView:kAlertTitle message:@"Please select Address For Delivery" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 
     }

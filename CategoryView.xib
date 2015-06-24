@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Regular_0.ttf">
@@ -13,17 +13,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view tag="23234" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BN5-cZ-YKJ">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" tag="999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ji1-E3-Dui">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                         </imageView>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2g5-Xb-thn">
-                            <rect key="frame" x="0.0" y="64" width="320" height="29"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                             <subviews>
                                 <button opaque="NO" tag="1000" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yt-zc-0PP">
                                     <rect key="frame" x="0.0" y="0.0" width="40" height="29"/>
@@ -43,16 +43,16 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <imageView userInteractionEnabled="NO" tag="1002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KFC-Zc-8jA">
-                            <rect key="frame" x="121" y="124" width="60" height="60"/>
+                            <rect key="frame" x="121" y="48" width="60" height="60"/>
                         </imageView>
                         <activityIndicatorView hidden="YES" opaque="NO" tag="998" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Fss-7U-6Wn">
-                            <rect key="frame" x="150" y="107" width="20" height="20"/>
+                            <rect key="frame" x="150" y="43" width="20" height="20"/>
                         </activityIndicatorView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homeDetailsBannerShade.png" translatesAutoresizingMaskIntoConstraints="NO" id="aSK-FX-y3H">
-                            <rect key="frame" x="0.0" y="194" width="320" height="40"/>
+                        <imageView userInteractionEnabled="NO" tag="1110" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homeDetailsBannerShade.png" translatesAutoresizingMaskIntoConstraints="NO" id="aSK-FX-y3H">
+                            <rect key="frame" x="0.0" y="130" width="320" height="40"/>
                         </imageView>
                         <view tag="23210" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="te0-Vt-048" customClass="V8HorizontalPickerView">
-                            <rect key="frame" x="0.0" y="194" width="320" height="40"/>
+                            <rect key="frame" x="0.0" y="130" width="320" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
