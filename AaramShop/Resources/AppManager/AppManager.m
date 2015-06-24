@@ -114,7 +114,7 @@ AppDelegate *appDeleg;
     [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_640] forKey:kImage_url_640];
     [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kProfileImage] forKey:kProfileImage];
     
-    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAddress] forKey:kAddress];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kUser_address] forKey:kUser_address];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAdultFemale] forKey:kAdultFemale];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAdultMale] forKey:kAdultMale];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kChatUsername] forKey:kChatUsername];
@@ -563,7 +563,7 @@ void MyAddressBookExternalChangeCallback (
     CLLocation *location1 = [[CLLocation alloc] initWithLatitude:storeLat longitude:storeLong];
     CLLocation *location2 = [[CLLocation alloc] initWithLatitude:appDeleg.myCurrentLocation.coordinate.latitude longitude:appDeleg.myCurrentLocation.coordinate.longitude];
     
-    NSString *toDistance =[NSString stringWithFormat:@"%.2f Km",[location1 distanceFromLocation:location2]/1000];
+    NSString *toDistance =[NSString stringWithFormat:@"%.1f Km",[location1 distanceFromLocation:location2]/1000];
     return toDistance;
     
 }

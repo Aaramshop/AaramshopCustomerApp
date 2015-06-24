@@ -50,6 +50,7 @@
 
 #define kExisting_user                        @"existing_user"
 #define kAddress                              @"address"
+#define kUser_address                         @"user_address"
 #define kAdultFemale                          @"adultFemale"
 #define kAdultMale                            @"adultMale"
 #define kChatUsername                         @"chatUsername"

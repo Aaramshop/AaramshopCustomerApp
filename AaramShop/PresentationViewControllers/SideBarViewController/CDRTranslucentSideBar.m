@@ -265,7 +265,7 @@
         imgProfile.layer.cornerRadius = imgProfile.frame.size.width / 2;
         imgProfile.clipsToBounds=YES;
         imgBackground.image=[UIImage imageNamed:@"defaultImageMenuTop"];
-        [imgProfile sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_100],[[NSUserDefaults standardUserDefaults] valueForKey:kStore_image]]] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [imgProfile sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_100],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]]] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (image) {
                 effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:image];
                 imgBackground.image = effectImage;
@@ -278,14 +278,14 @@
         lblName.textColor= [UIColor whiteColor];
         lblName.textAlignment=NSTextAlignmentCenter;
         lblName.font=[UIFont fontWithName:kRobotoBold size:15];
-        lblName.text=@"Reena Sharma";
+        lblName.text=[[NSUserDefaults standardUserDefaults] objectForKey:kFullname];
         
         UILabel *lblSeperator = [[UILabel alloc]initWithFrame:CGRectMake(8, secView.frame.size.height - 47, secView.frame.size.width - 16, 2)];
         lblSeperator.backgroundColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:255/255.0f alpha:0.40];
                 
         UIImageView *imglocation=[[UIImageView alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 10, 20, 20)];
         imglocation.image=[UIImage imageNamed:@"locationIcon"];
-        
+        NSLog(@"%@", [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys]);
         UILabel *lblAddress = [[UILabel alloc]initWithFrame:CGRectMake(32, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-64, 40)];
         lblAddress.numberOfLines = 2;
         lblAddress.lineBreakMode = NSLineBreakByWordWrapping;

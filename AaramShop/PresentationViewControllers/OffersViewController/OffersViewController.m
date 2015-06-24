@@ -30,6 +30,22 @@
     self.navigationController.navigationBarHidden = NO;
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
+    CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 150, 44);
+    UIView* _headerTitleSubtitleView = [[UILabel alloc] initWithFrame:headerTitleSubtitleFrame];
+    _headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
+    _headerTitleSubtitleView.autoresizesSubviews = NO;
+    
+    CGRect titleFrame = CGRectMake(0,0, 150, 44);
+    UILabel* titleView = [[UILabel alloc] initWithFrame:titleFrame];
+    titleView.backgroundColor = [UIColor clearColor];
+    titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
+    titleView.textAlignment = NSTextAlignmentCenter;
+    titleView.textColor = [UIColor whiteColor];
+    titleView.text = @"Offers";
+    titleView.adjustsFontSizeToFitWidth = YES;
+    [_headerTitleSubtitleView addSubview:titleView];
+    self.navigationItem.titleView = _headerTitleSubtitleView;
+    
     UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
     sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
     [sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];

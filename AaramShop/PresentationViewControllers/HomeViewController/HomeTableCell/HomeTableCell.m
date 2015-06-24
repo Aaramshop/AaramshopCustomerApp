@@ -8,7 +8,7 @@
 #import "HomeTableCell.h"
 
 @implementation HomeTableCell
-@synthesize indexPath,delegateHomeCell,selectedCategory,isRecommendedStore;
+@synthesize indexPath,selectedCategory,isRecommendedStore;
 - (void)awakeFromNib {
     // Initialization code
 }

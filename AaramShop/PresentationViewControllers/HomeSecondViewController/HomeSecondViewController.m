@@ -28,7 +28,7 @@
 @end
 
 @implementation HomeSecondViewController
-@synthesize mainCategoryIndexPicker,strStore_Id,aaramShop_ConnectionManager,strStore_CategoryName;
+@synthesize mainCategoryIndexPicker,strStore_Id,aaramShop_ConnectionManager,strStore_CategoryName,strStoreImage;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -39,13 +39,14 @@
     appDeleg = (AppDelegate *)APP_DELEGATE;
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    tblVwCategory = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49) style:UITableViewStyleGrouped];
+    tblVwCategory = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49-64) style:UITableViewStyleGrouped];
     tblVwCategory.delegate = self;
     tblVwCategory.dataSource = self;
     tblVwCategory.backgroundView = nil;
     tblVwCategory.backgroundColor = [UIColor clearColor];
     tblVwCategory.sectionHeaderHeight = 0.0;
     tblVwCategory.sectionFooterHeight = 0.0;
+    tblVwCategory.alwaysBounceVertical = NO;
     [self.view addSubview:tblVwCategory];
 
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
@@ -477,7 +478,7 @@
 {
     CGFloat headerHeight = 0.0;
     if (section == 0) {
-        headerHeight = 234;
+        headerHeight = 170;
     }
     else if (section == 1)
     {
@@ -491,7 +492,7 @@
         
         UIView *tempView = nil;
         
-        tempView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234)];
+        tempView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 170)];
         
         NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CategoryView"
                                                          owner:self options:nil];
@@ -521,11 +522,18 @@
         UIImageView *imgVCategoryBanner = (UIImageView *)[secView viewWithTag:999];
 
         UIImageView *imgVPerson = (UIImageView *)[secView viewWithTag:1002];
-        
+
+        imgVPerson.layer.cornerRadius =  imgVPerson.frame.size.width / 2;
+        imgVPerson.clipsToBounds = YES;
+
+        UIImageView *imgVBg = (UIImageView *)[secView viewWithTag:1110];
+        imgVBg.hidden = YES;
         if (arrOnlySubCategoryPicker.count>0) {
 
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@",strSelectedCategoryId];
             NSArray *arrTemp = [arrGetStoreProductCategories filteredArrayUsingPredicate:predicate];
+
+            imgVBg.hidden = NO;
             if (arrTemp.count == 1) {
                 CategoryModel *objCategoryModel = [arrTemp objectAtIndex:0];
                 UIActivityIndicatorView *activity = (UIActivityIndicatorView *)[secView viewWithTag:998];
@@ -536,16 +544,17 @@
                     }
                 }];
                 
-                /*   [imgVPerson sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreData.store_image]] placeholderImage:[UIImage imageNamed:@"defaultProfilePic.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                   [imgVPerson sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",strStoreImage]] placeholderImage:[UIImage imageNamed:@"defaultProfilePic.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                  if (image) {
                  }
                  }];
-                 */
+                
             }
 
         }
         
         if (arrOnlySubCategoryPicker.count>0) {
+
             V8HorizontalPickerView *pickerViewOfCategory = (V8HorizontalPickerView *)[secView viewWithTag:23210];
             pickerViewOfCategory.currentSelectedIndex = self.mainCategoryIndexPicker;
             pickerViewOfCategory.delegate =self;
@@ -571,26 +580,27 @@
         UISearchBar *searchBarProducts = (UISearchBar *)[secSubView1 viewWithTag:102];
         searchBarProducts.delegate = self;
         
-        searchBarProducts.frame = CGRectMake(9, 4, [UIScreen mainScreen].bounds.size.width-18, 33);
-        UITextField *searchField;
+//        searchBarProducts.frame = CGRectMake(9, 4, [UIScreen mainScreen].bounds.size.width-18, 33);
+//        UITextField *searchField;
+//        
+//        for (UIView *subView in searchBarProducts.subviews){
+//            for (UIView *ndLeveSubView in subView.subviews){
+//                if ([ndLeveSubView isKindOfClass:[UITextField class]])
+//                {
+//                    searchField = (UITextField *)ndLeveSubView;
+//                    break;
+//                }
+//            }
+//        }
+//        searchField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
         
-        for (UIView *subView in searchBarProducts.subviews){
-            for (UIView *ndLeveSubView in subView.subviews){
-                if ([ndLeveSubView isKindOfClass:[UITextField class]])
-                {
-                    searchField = (UITextField *)ndLeveSubView;
-                    break;
-                }
-            }
-        }
-        searchField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-        
-        if(!(searchField == nil)) {
-            searchField.textColor = [UIColor blackColor];
-            [searchField setBackground: [UIImage imageNamed:@"searchBox.png"]];
-            [searchField setBorderStyle:UITextBorderStyleNone];
-        }
-        
+//        if(searchField == nil) {
+//            searchField.textColor = [UIColor blackColor];
+//            [searchField setBackground: [UIImage imageNamed:@"searchBox.png"]];
+//            [searchField setBorderStyle:UITextBorderStyleNone];
+//        }
+        [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor colorWithRed:207/255.0f green:207/255.0f blue:207/255.0f alpha:1.0f]];
+//        [searchBarProducts setImage:[UIImage imageNamed:@"searchIcon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
         searchBarProducts.placeholder = @"Search";
         searchBarProducts.text = strSearchTxt;
         
@@ -723,6 +733,7 @@
     }
     else
         [rightCollectionVwContrllr.view removeFromSuperview];
+    [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)btnGoToCheckOutScreen
@@ -858,10 +869,10 @@
 //    strSearchTxt = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     strSearchTxt = searchText;
     isSearching=YES;
-    if ([strSearchTxt length]>0)
+    if ([searchText length]>0)
     {
         [arrSearchGetStoreProducts removeAllObjects];
-        [tblVwCategory reloadData];
+//        [tblVwCategory reloadData];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.product_name contains[cd] %@",strSearchTxt];
         [arrSearchGetStoreProducts addObjectsFromArray:[arrGetStoreProducts filteredArrayUsingPredicate:predicate]];
         [tblVwCategory reloadData];
@@ -870,7 +881,7 @@
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-   // [searchBarCategory resignFirstResponder];
+//    [searchBarCategory resignFirstResponder];
 }
 
 #pragma mark -

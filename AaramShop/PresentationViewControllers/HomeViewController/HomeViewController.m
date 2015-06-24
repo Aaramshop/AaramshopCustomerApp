@@ -18,6 +18,7 @@
     UIView *viewTable ;
     UIImageView *imgVBg;
     UIButton *btnArrow;
+    BOOL isRefreshing;
 }
 @end
 
@@ -29,6 +30,7 @@
     
     appDeleg = APP_DELEGATE;
     isOffEffect = YES;
+    isRefreshing= NO;
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate= self;
     self.sideBar = [Utils createLeftBarWithDelegate:self];
@@ -155,7 +157,7 @@
         imgVBg.hidden = YES;
     }
     
-    tblStores.frame = CGRectMake(0, 234+size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(254+size.height+49));
+    tblStores.frame = CGRectMake(0, 234+size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(234+size.height+49));
 }
 -(void)btnArrowClick
 {
@@ -237,7 +239,6 @@
     if (![Utils isInternetAvailable])
     {
         [AppManager stopStatusbarActivityIndicator];
-        
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
@@ -421,7 +422,7 @@
     mainScrollView.hidden = NO;
     
     [tblVwCategory reloadData];
-    if (arrCategory.count>0 && isOffEffect && arrRecommendedStoresMyStores.count>0 ) {
+    if (arrCategory.count>0 && isOffEffect) {
         [self setViewForRecomendedCells];
     }
     [tblStores reloadData];
@@ -515,7 +516,7 @@
             [arrSubCategory addObject:objStore];
             }
         }
-    
+    isRefreshing = NO;
     [tblVwCategory reloadData];
     if (arrCategory.count>0 && isOffEffect && arrRecommendedStores.count>0) {
         [self setViewForRecomendedCells];
@@ -648,18 +649,31 @@
     NSInteger rowsNum = 0;
     if (tableView == tblVwCategory) {
         if (section == 1) {
-            if (arrCategory.count>0) {
-                rowsNum = [self getArrayCountForRecommendedStores];
+            if (isRefreshing) {
+                rowsNum = 0;
             }
             else
-                rowsNum = 0;
+            {
+                if (arrCategory.count>0) {
+                    rowsNum = [self getArrayCountForRecommendedStores];
+                }
+                else
+                    rowsNum = 0;
+   
+            }
         }
         else if (section == 0)
             rowsNum = 0;
     }
     else if (tableView == tblStores) {
         if (arrCategory.count>0) {
-          rowsNum =  [self getArrayCountForOtherStores];
+            if (isRefreshing) {
+                rowsNum = 0;
+            }
+            else
+            {
+                rowsNum =  [self getArrayCountForOtherStores];
+            }
         }
         else
             rowsNum = 0;
@@ -805,7 +819,6 @@
 
     cell.selectedCategory = self.mainCategoryIndex;
     cell.delegate=self;
-    cell.delegateHomeCell = self;
     StoreModel *objStoreModel = nil;
 
     if (tableView == tblVwCategory) {
@@ -848,7 +861,8 @@
     }
     
     homeSecondVwController.strStore_Id = objStoreModel.store_id;
-    homeSecondVwController.strStore_CategoryName = objStoreModel.store_category_name;
+    homeSecondVwController.strStoreImage = objStoreModel.store_image;
+    homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
     [self.navigationController pushViewController:homeSecondVwController animated:YES];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -857,12 +871,24 @@
 }
 -(void)refreshSubCategoryData:(NSInteger)selectedCategory
 {
+    isRefreshing = YES;
     self.mainCategoryIndex = selectedCategory;
     [tblVwCategory reloadData];
     [tblStores reloadData];
+    
+    tblVwCategory.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234);
+    viewTable.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234);
+    btnArrow.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-40)/2, viewTable.frame.size.height-15, 40, 25);
+    imgVBg.frame = CGRectMake(0,viewTable.frame.size.height-78, [UIScreen mainScreen].bounds.size.width, 85);
+    btnArrow.hidden = YES;
+    imgVBg.hidden = YES;
+    tblStores.frame = CGRectMake(0, 234,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(234+49));
+    
+    
     [self createDataToGetStoresFromCategories];
-
+    
 }
+
 -(void)refreshBtnFavouriteStatus:(NSIndexPath *)indexPath
 {
     [tblVwCategory reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];

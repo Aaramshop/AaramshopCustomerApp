@@ -11,12 +11,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "StoreModel.h"
 
-@protocol HomeTableCellDelegate <NSObject>
-
--(void)refreshBtnFavouriteStatus:(NSIndexPath *)indexPath;
-@end
-
-
 @interface HomeTableCell :  SWTableViewCell<UIGestureRecognizerDelegate>
 {
     UILabel *lblCategoryName, *lblRestaurantName,*lblDistance,*lblDeliveryType,*lblPriceValue;
@@ -26,7 +20,6 @@
 @property(nonatomic,assign) BOOL isRecommendedStore;
 @property(nonatomic) NSInteger selectedCategory;
 @property(nonatomic,strong) StoreModel *objStoreModel;
-@property(nonatomic,strong) id<HomeTableCellDelegate> delegateHomeCell;
 -(void)updateCellWithData:(StoreModel  *)objStoreData;
 -(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
 @end

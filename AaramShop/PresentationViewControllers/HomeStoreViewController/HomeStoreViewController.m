@@ -259,10 +259,15 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
 {
-    if (arrSuggestedStores.count>0 || textField == txtStoreId) {
+    if (arrSuggestedStores.count>0 && textField == txtStoreId) {
         tblSuggestedStores.hidden = NO;
         [tblSuggestedStores reloadData];
         return NO;
+    }
+    else if (arrSuggestedStores.count == 0 && textField == txtStoreId)
+    {
+        tblSuggestedStores.hidden = YES;
+        return YES;
     }
     return NO;
 }
