@@ -562,7 +562,7 @@ void MyAddressBookExternalChangeCallback (
     CLLocation *location1 = [[CLLocation alloc] initWithLatitude:storeLat longitude:storeLong];
     CLLocation *location2 = [[CLLocation alloc] initWithLatitude:appDeleg.myCurrentLocation.coordinate.latitude longitude:appDeleg.myCurrentLocation.coordinate.longitude];
     
-    NSString *toDistance =[NSString stringWithFormat:@"%.2f Km",[location1 distanceFromLocation:location2]/1000];
+    NSString *toDistance =[NSString stringWithFormat:@"%.1f Km",[location1 distanceFromLocation:location2]/1000];
     return toDistance;
     
 }

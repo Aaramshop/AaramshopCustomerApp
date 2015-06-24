@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -87,6 +87,11 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+        </mutableArray>
+        <mutableArray key="RocketDinerCondensed_0.otf">
+            <string>RocketDiner-CondensedRegular</string>
+            <string>RocketDiner-CondensedRegular</string>
+            <string>RocketDiner-CondensedRegular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -580,6 +585,47 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
             </objects>
             <point key="canvasLocation" x="1865" y="1170"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="vXC-39-gWM">
+            <objects>
+                <viewController id="ejk-fx-7Os" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fsD-q7-HsC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tik-ec-RGq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rQ9-dX-Nch">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="vKC-hc-beg">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="shopppingListCell" rowHeight="198" id="9Us-JA-aPz">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Us-JA-aPz" id="86R-vG-Khy">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ibH-1P-gqa" id="8c2-xa-2Aw"/>
+                                    <outlet property="delegate" destination="ibH-1P-gqa" id="q5f-xO-jfN"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jGG-oy-URh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="649" y="4115"/>
+        </scene>
         <!--Shoplist View Controller-->
         <scene sceneID="w3B-Z8-AHM">
             <objects>
@@ -592,16 +638,16 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="bZe-qd-9nV">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Y8o-Kh-5gf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="shopppingListCell" rowHeight="198" id="yYU-4z-yIe">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="shopppingListCell" rowHeight="198" id="O4c-W4-udt">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yYU-4z-yIe" id="bFL-qP-w6O">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O4c-W4-udt" id="EcO-em-GWX">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
@@ -609,23 +655,41 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="ibH-1P-gqa" id="Zk4-Ld-wRe"/>
-                                    <outlet property="delegate" destination="ibH-1P-gqa" id="oJp-96-2wB"/>
+                                    <outlet property="dataSource" destination="ibH-1P-gqa" id="wAj-wz-UGc"/>
+                                    <outlet property="delegate" destination="ibH-1P-gqa" id="bFF-7q-hu6"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatScreenMyListLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="jUy-ao-3XU">
+                                <rect key="frame" x="70" y="84" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="JYH-71-BVn"/>
+                                    <constraint firstAttribute="width" constant="180" id="Q9m-rP-kOC"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3L-Zi-Ob9">
+                                <rect key="frame" x="70" y="272" width="180" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="BGY-Up-bVX"/>
+                                    <constraint firstAttribute="width" constant="180" id="jW5-B7-6To"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="RocketDiner-CondensedRegular" family="Rocket Diner" pointSize="30"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bZe-qd-9nV" firstAttribute="top" secondItem="aWM-E5-3nU" secondAttribute="bottom" id="5Pg-Pe-xXC"/>
-                            <constraint firstAttribute="trailing" secondItem="bZe-qd-9nV" secondAttribute="trailing" id="BcV-70-If3"/>
-                            <constraint firstItem="bmg-iA-84C" firstAttribute="top" secondItem="bZe-qd-9nV" secondAttribute="bottom" id="MM0-IX-LII"/>
-                            <constraint firstItem="bZe-qd-9nV" firstAttribute="leading" secondItem="rhm-xo-8iJ" secondAttribute="leading" id="gey-6b-8r6"/>
+                            <constraint firstAttribute="width" secondItem="Y8o-Kh-5gf" secondAttribute="width" id="MKs-m9-vTs"/>
+                            <constraint firstItem="jUy-ao-3XU" firstAttribute="top" secondItem="aWM-E5-3nU" secondAttribute="bottom" constant="84" id="QLB-UE-8GG"/>
+                            <constraint firstAttribute="centerX" secondItem="N3L-Zi-Ob9" secondAttribute="centerX" id="bfJ-YZ-joF"/>
+                            <constraint firstAttribute="centerX" secondItem="jUy-ao-3XU" secondAttribute="centerX" id="dde-RT-kSp"/>
+                            <constraint firstAttribute="centerY" secondItem="Y8o-Kh-5gf" secondAttribute="centerY" id="fFW-X3-wTD"/>
+                            <constraint firstAttribute="centerX" secondItem="Y8o-Kh-5gf" secondAttribute="centerX" id="ff9-8F-SFV"/>
+                            <constraint firstItem="N3L-Zi-Ob9" firstAttribute="top" secondItem="jUy-ao-3XU" secondAttribute="top" constant="188" id="xzD-NR-41d"/>
+                            <constraint firstAttribute="height" secondItem="Y8o-Kh-5gf" secondAttribute="height" id="ygd-wE-hNj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jI8-w9-ASm"/>
-                    <connections>
-                        <outlet property="tblView" destination="bZe-qd-9nV" id="6eS-RW-oht"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcu-F1-ONw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1361,7 +1425,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Zix-YC-Ca4">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Zix-YC-Ca4">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -1689,12 +1753,33 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                     <outlet property="delegate" destination="9p8-UL-HFn" id="pXz-XQ-yUK"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="historyScreenOderHistoryIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="q5i-lz-WcH">
+                                <rect key="frame" x="70" y="84" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="DDk-Te-0eC"/>
+                                    <constraint firstAttribute="height" constant="180" id="jVX-va-1ra"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kaf-Je-x8c">
+                                <rect key="frame" x="70" y="272" width="180" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="i19-3f-KbO"/>
+                                    <constraint firstAttribute="height" constant="42" id="whI-5e-As2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="RocketDiner-CondensedRegular" family="Rocket Diner" pointSize="30"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Zix-YC-Ca4" secondAttribute="width" id="9HA-Wn-aPA"/>
+                            <constraint firstAttribute="centerX" secondItem="Kaf-Je-x8c" secondAttribute="centerX" id="EPp-xZ-HpS"/>
+                            <constraint firstAttribute="centerX" secondItem="q5i-lz-WcH" secondAttribute="centerX" id="NNw-uA-Zxk"/>
                             <constraint firstAttribute="centerY" secondItem="Zix-YC-Ca4" secondAttribute="centerY" id="VxF-WN-Fez"/>
                             <constraint firstAttribute="height" secondItem="Zix-YC-Ca4" secondAttribute="height" id="ezr-Es-bBL"/>
+                            <constraint firstItem="Kaf-Je-x8c" firstAttribute="top" secondItem="q5i-lz-WcH" secondAttribute="top" constant="188" id="g50-Mn-ljp"/>
+                            <constraint firstItem="q5i-lz-WcH" firstAttribute="top" secondItem="sCf-TO-PDf" secondAttribute="bottom" constant="84" id="rav-wc-mVH"/>
                             <constraint firstAttribute="centerX" secondItem="Zix-YC-Ca4" secondAttribute="centerX" id="s0Y-qM-1Ym"/>
                         </constraints>
                     </view>
@@ -1718,7 +1803,32 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                     <view key="view" contentMode="scaleToFill" id="rtf-Vl-aWd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OffersLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="ITO-Hg-S5P">
+                                <rect key="frame" x="70" y="84" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="UzB-Me-yFL"/>
+                                    <constraint firstAttribute="width" constant="180" id="m3Z-Nr-mTj"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIa-b0-IQ4">
+                                <rect key="frame" x="70" y="272" width="180" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="HIl-Rl-CMN"/>
+                                    <constraint firstAttribute="height" constant="42" id="UxV-Rv-lYp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="RocketDiner-CondensedRegular" family="Rocket Diner" pointSize="30"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="ITO-Hg-S5P" secondAttribute="centerX" id="L3M-nv-luq"/>
+                            <constraint firstAttribute="centerX" secondItem="LIa-b0-IQ4" secondAttribute="centerX" id="Zmu-pl-dWn"/>
+                            <constraint firstItem="ITO-Hg-S5P" firstAttribute="top" secondItem="fFX-6U-B1y" secondAttribute="bottom" constant="84" id="nWC-JS-ozW"/>
+                            <constraint firstItem="ITO-Hg-S5P" firstAttribute="top" secondItem="LIa-b0-IQ4" secondAttribute="top" constant="-188" id="snC-NX-Rp1"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jAc-Yg-mP2"/>
                 </viewController>
@@ -3139,6 +3249,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
         </scene>
     </scenes>
     <resources>
+        <image name="OffersLogo.png" width="180" height="180"/>
         <image name="aaramShopAppLogo.png" width="292" height="292"/>
         <image name="appyCouponCodeBox.png" width="300" height="39"/>
         <image name="arrowBox.png" width="300" height="46"/>
@@ -3149,10 +3260,12 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
         <image name="bgImageNew.png" width="320" height="480"/>
         <image name="callIconGreenCircle.png" width="35" height="35"/>
         <image name="chatNumberingCircle.png" width="30" height="30"/>
+        <image name="chatScreenMyListLogo.png" width="180" height="180"/>
         <image name="defalutCameraIconNew.png" width="130" height="130"/>
         <image name="doneBtn.png" width="45" height="25"/>
         <image name="enterMobileNoBox.png" width="297" height="50"/>
         <image name="existingUserBox.png" width="297" height="48"/>
+        <image name="historyScreenOderHistoryIcon.png" width="180" height="180"/>
         <image name="homeDetailStoreBox.png" width="271" height="136"/>
         <image name="homeStoreDetailsDeleversIcon.png" width="17" height="17"/>
         <image name="homeStoreIdBox.png" width="271" height="46"/>
