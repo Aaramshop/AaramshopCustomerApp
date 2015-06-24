@@ -229,3 +229,7 @@
 //==========Last Min Pick=========
 #define kURLGetPaymentPageData          @"getPaymentPageData"
 #define kPayment_page_info                  @"payment_page_info"
+
+//==========Order History========
+#define kURLOrderHist                           @""
+#define kAlertCallFacilityNotAvailable      @"Call facility is not available!!!"
