@@ -129,7 +129,7 @@
         tblVwCategory.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49-20);
         viewTable.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49);
         btnArrow.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-40)/2, viewTable.frame.size.height-15, 40, 15);
-        [btnArrow setImage:[UIImage imageNamed:@"upArr.png"] forState:UIControlStateNormal];
+        [btnArrow setImage:[UIImage imageNamed:@"upArrow.png"] forState:UIControlStateNormal];
 
         
         [tblVwCategory reloadData];
@@ -299,7 +299,7 @@
             
             StoreModel *objStore = [[StoreModel alloc]init];
             objStore.chat_username = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kChat_username]];
-            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kHome_delivey]];
+            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kHome_delivery]];
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_open]];
@@ -321,7 +321,7 @@
             
             StoreModel *objStore = [[StoreModel alloc]init];
             objStore.chat_username = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kChat_username]];
-            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kHome_delivey]];
+            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kHome_delivery]];
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_open]];
@@ -344,7 +344,7 @@
             
             StoreModel *objStore = [[StoreModel alloc]init];
             objStore.chat_username = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kChat_username]];
-            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kHome_delivey]];
+            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kHome_delivery]];
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_open]];
@@ -398,7 +398,7 @@
                 StoreModel *objStore = [[StoreModel alloc]init];
 
             objStore.chat_username = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kChat_username]];
-            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kHome_delivey]];
+            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kHome_delivery]];
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_open]];
@@ -425,7 +425,7 @@
 
             StoreModel *objStore = [[StoreModel alloc]init];
             objStore.chat_username = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kChat_username]];
-            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kHome_delivey]];
+            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kHome_delivery]];
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_open]];
@@ -453,7 +453,7 @@
             if (arrTemp.count == 0) {
             StoreModel *objStore = [[StoreModel alloc]init];
             objStore.chat_username = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kChat_username]];
-            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kHome_delivey]];
+            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kHome_delivery]];
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_open]];
@@ -670,7 +670,7 @@
             secView.backgroundColor = [UIColor redColor];
             UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, 20)];
             lbl.textColor = [UIColor whiteColor];
-            lbl.font = [UIFont fontWithName:kRobotoMedium size:16];
+            lbl.font = [UIFont fontWithName:kRobotoMedium size:18];
             lbl.text = @"Recommended stores";
             [secView addSubview:lbl];
         }
@@ -768,10 +768,12 @@
     if (tableView == tblVwCategory) {
         cell.backgroundColor = [UIColor whiteColor];
         objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
+        cell.isRecommendedStore = YES;
 
     }
     else if (tableView == tblStores) {
-        cell.backgroundColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0];
+        cell.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
+        cell.isRecommendedStore = NO;
         objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
 
     }
@@ -852,6 +854,10 @@
     switch (index) {
         case 0:
         {
+           // StoreModel *objStoreModel = cell.st
+           // NSString *phoneNumber = [@"tel://" stringByAppendingString:strPhoneNumber];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Call"
                                                             message:@"message"
                                                            delegate:self

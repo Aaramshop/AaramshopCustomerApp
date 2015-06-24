@@ -8,7 +8,7 @@
 #import "HomeTableCell.h"
 
 @implementation HomeTableCell
-@synthesize indexPath,delegateHomeCell,selectedCategory;
+@synthesize indexPath,delegateHomeCell,selectedCategory,isRecommendedStore;
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -111,16 +111,24 @@
     lblPriceValue.frame = CGRectMake(imgVPriceIcon.frame.origin.x+imgVPriceIcon.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height-3, 50, 20);
     
 
-    imgVLocationIcon.image = [UIImage imageNamed:@"locationIcon.png"];
+    imgVLocationIcon.image = [UIImage imageNamed:@"locationIconHome"];
     imgVDeliveryIcon.image = [UIImage imageNamed:@""];
     imgVPriceIcon.image = [UIImage imageNamed:@"homeRupeesIcon.png"];
     
     lblCategoryName.text =objStoreData.store_category_name;
     lblDeliveryType.text = @"Delivers";
     lblDistance.text = [AppManager getDistance:objStoreData];
-   // lblPriceValue.text =objSubCategoryData.price;
     lblRestaurantName.text =objStoreData.store_name;
     
+    if (isRecommendedStore) {
+        imgvCategoryIcon.layer.cornerRadius = 2.0;
+    }
+    else
+    {
+        imgvCategoryIcon.layer.cornerRadius = imgvCategoryIcon.frame.size.width / 2;
+        imgvCategoryIcon.clipsToBounds = YES;
+
+    }
     [imgvCategoryIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreData.store_image]] placeholderImage:[UIImage imageNamed:@"homeDetailsDefaultImgae.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
         }

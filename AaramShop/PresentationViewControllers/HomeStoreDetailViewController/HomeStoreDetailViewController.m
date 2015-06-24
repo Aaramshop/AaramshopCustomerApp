@@ -43,6 +43,16 @@
     lblStoreDistance.text = objStoreModel.store_distance;
     lblStoreAddress.text = objStoreModel.store_address;
     
+    if ([objStoreModel.home_delivey isEqualToString:@"1"]) {
+        [imgDelivery setHidden:NO];
+        [lblDelivery setHidden:NO];
+    }
+    else
+    {
+        [imgDelivery setHidden:YES];
+        [lblDelivery setHidden:YES];
+    }
+    
     NSLog(@"value =%f",[UIScreen mainScreen].bounds.size.height);
     if ([UIScreen mainScreen].bounds.size.height == 480) {
         [imgVOfferImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreModel.banner]] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {

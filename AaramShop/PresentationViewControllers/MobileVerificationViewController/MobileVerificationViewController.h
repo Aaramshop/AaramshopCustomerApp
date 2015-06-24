@@ -10,7 +10,10 @@
 
 @interface MobileVerificationViewController : BaseViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
 {
+    __weak IBOutlet UIButton *backBtn;
     
+    __weak IBOutlet UIButton *continueBtn;
+    __weak IBOutlet UIButton *resendBtn;
     __weak IBOutlet UITextField *txtfVerificationCode;
     __weak IBOutlet UILabel *lblMobileNumber;
     __weak IBOutlet UIImageView *imgVBg;

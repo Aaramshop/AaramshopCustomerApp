@@ -109,6 +109,11 @@ AppDelegate *appDeleg;
 {
     NSDictionary *dict = (NSDictionary *)responseDic;
     
+    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_100] forKey:kImage_url_100];
+    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_320] forKey:kImage_url_320];
+    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_640] forKey:kImage_url_640];
+    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kProfileImage] forKey:kProfileImage];
+    
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAddress] forKey:kAddress];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAdultFemale] forKey:kAdultFemale];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAdultMale] forKey:kAdultMale];
@@ -121,20 +126,15 @@ AppDelegate *appDeleg;
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kEmail] forKey:kEmail];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kFemaleChild] forKey:kFemaleChild];
     
-    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kFirstName] forKey:kFirstName];
     
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kGender] forKey:kGender];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kIncome] forKey:kIncome];
-    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kLastName] forKey:kLastName];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kFullname] forKey:kFullname];
     
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kMaleChild] forKey:kMaleChild];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kMobile] forKey:kMobile];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kMobile_verified] forKey:kMobile_verified];
     
-    if([[dict objectForKey:kProfileImage]length]>0)
-    {
-        [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kProfileImage] forKey:kProfileImage];
-    }
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kQualification] forKey:kQualification];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kState] forKey:kState];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kToddlers] forKey:kToddlers];

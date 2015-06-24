@@ -15,5 +15,5 @@
 @property(nonatomic,strong) NSString *locality;
 @property(nonatomic,strong) NSString *pincode;
 @property(nonatomic,strong) NSString *title;
-
+@property(nonatomic,strong) NSString *user_address_id;
 @end

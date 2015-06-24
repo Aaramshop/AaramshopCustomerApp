@@ -39,12 +39,12 @@
 #define kOption                               @"option"
 #define kSessionToken                         @"sessionToken"
 #define kMobile                               @"mobile"
-//#define kOptionLogin                          @"login"
 #define kstatus                               @"status"
-//#define kOptionNew_user_login                 @"new_user_login"
 #define kCountryName                          @"countryName"
 #define kPhoneNumbers                         @"phoneNumbers"
 #define kFullname                             @"fullname"
+
+#define kDate                                 @"date"
 
 #pragma mark - Existing User Keys
 
@@ -60,10 +60,10 @@
 #define kDob                                  @"dob"
 #define kEmail                                @"email"
 #define kFemaleChild                          @"femaleChild"
-#define kFirstName                            @"firstName"
+//#define kFirstName                            @"firstName"
 #define kGender                               @"gender"
 #define kIncome                               @"income"
-#define kLastName                             @"lastName"
+//#define kLastName                             @"lastName"
 #define kMaleChild                            @"maleChild"
 #define kMessage                              @"message"
 #define kMobile_verified                      @"mobile_verified"
@@ -92,12 +92,11 @@
 
 
 #define kImage_url_100                        @"image_url_100"
-#define kImage_url_320                         @"image_url_320"
-#define kImage_url_640                          @"image_url_640"
+#define kImage_url_320                        @"image_url_320"
+#define kImage_url_640                        @"image_url_640"
 
 #pragma mark - AaramShopValues
 
-//#define kOptionStore_listing                @"store_listing"
 #define kStoreListURL                       @"storeList"
 #define kRadius                             @"radius"
 #define kCity_name                          @"city_name"
@@ -115,6 +114,7 @@
 #define kStore_email                        @"store_email"
 #define kStore_id                           @"store_id"
 #define kUser_address_id                    @"user_address_id"
+#define kUser_address_title                 @"user_address_title"
 #define kBanner                             @"banner"
 #define kBanner_2x                          @"banner_2x"
 #define kBanner_3x                          @"banner_3x"
@@ -133,7 +133,7 @@
 #define kStore_working_to                   @"store_working_to"
 #define kData                               @"data"
 #define kChat_username                      @"chat_username"
-#define kHome_delivey                       @"home_delivey"
+#define kHome_delivery                       @"home_delivery"
 #define kIs_favorite                        @"is_favorite"
 #define kIs_home_store                      @"is_home_store"
 #define kIs_open                            @"is_open"
@@ -162,13 +162,13 @@
 #define kProduct_sku_id                     @"product_sku_id"
 
 
+#define kPopup_message                      @"popup_message"
 #pragma mark - 
 
 #define kSearch_term                        @"search_term"
 
 #pragma mark UpdateMobile
 
-//#define kOptionUpdate_user                    @"update_user"
 
 #define kTextFieldDigitRange @"0123456789"
 
@@ -179,10 +179,8 @@
 
 #pragma mark - OTP Validation Keys
 
-//#define kOptionLogin_otp_validate         @"login_otp_validate"
 #define kOtp                              @"otp"
-//#define kOptionResend_otp                 @"resend_otp"
-//#define kOptionUser_mobile_data           @"user_mobile_data"
+
 //==================Sign Up============
 
 #define kFileType                                   @"fileType"
@@ -227,7 +225,30 @@
 
 #pragma mark - 
 #define kAddressForLocation                 @"addressForLocation"
-//#define kAddressTitle                       @"addressTitle"
-//#define kHomeAddress                        @"homeAddress"
-//#define kOfficeAddress                      @"officeAddress"
-//#define kAddressValue                       @"addressValue"
+
+//==========Last Min Pick=========
+#define kURLGetPaymentPageData          @"getPaymentPageData"
+#define kPayment_page_info                  @"payment_page_info"
+
+//==========Order History========
+#define kURLOrderHist                           @""
+#define kAlertCallFacilityNotAvailable      @"Call facility is not available!!!"
+#define kGetPaymentPageDataURL              @"getPaymentPageData"
+#define kPayment_page_info                  @"payment_page_info"
+#define KGetDeliverySlotURL                 @"getDeliverySlot"
+#define kcheckoutURL                        @"checkout"
+
+#define kTotalPrice                         @"totalPrice"
+#define kSubTotalPrice                      @"subTotalPrice"
+#define kDeliveryCharges                    @"deliveryCharges"
+#define kDiscount                           @"discount"
+
+#define DATE_FORMATTER_yyyy_mm_dd          @"yyyy-MM-dd"
+
+//========== Payment Modes==========
+#define kPaymentModeURL                         @"paymentModes"
+#define kPaymentMode_Id                             @"payment_mode_id"
+#define kPayment_modes                                   @"payment_modes"
+#define kPaymentMode_Name                       @"payment_mode"
+
+

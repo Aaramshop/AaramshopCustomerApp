@@ -30,6 +30,7 @@ CLGeocoder *geocoder;
 @property (nonatomic, strong) CLLocation *myCurrentLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic,  strong) NSArray *arrOptions;
+-(id)getDateAndFromString:(NSString *)strDate andDate:(NSDate *)date needSting:(BOOL)needString dateFormat:(NSString *)dateFormat;
 
 
 #pragma mark - chat

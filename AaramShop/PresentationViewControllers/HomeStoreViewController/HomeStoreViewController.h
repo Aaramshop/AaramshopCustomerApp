@@ -8,10 +8,11 @@
 #import <UIKit/UIKit.h>
 #import "HomeStorePopUpViewController.h"
 
-@interface HomeStoreViewController : UIViewController<HomeStorePopUpViewControllerDelegate,AaramShop_ConnectionManager_Delegate>
+@interface HomeStoreViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
     
     __weak IBOutlet UITableView *tblSuggestedStores;
+    __weak IBOutlet UIScrollView *scrollView;
     __weak IBOutlet UITextField *txtStoreId;
     __weak IBOutlet UIImageView *imgVOffer;
     __weak IBOutlet UILabel *lblHd;

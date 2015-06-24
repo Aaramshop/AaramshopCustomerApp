@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface TotalPriceTableCell : UITableViewCell
-
+{
+    
+    __weak IBOutlet UILabel *lblTotal;
+    __weak IBOutlet UILabel *lblSubTotal;
+    __weak IBOutlet UILabel *lblDeliveryCharges;
+    __weak IBOutlet UILabel *lblDiscount;
+}
+@property (nonatomic, strong) NSIndexPath *indexPath;
+-(void)updateCellWithData:(NSDictionary  *)inDataDic;
 @end

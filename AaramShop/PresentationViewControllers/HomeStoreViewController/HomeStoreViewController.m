@@ -32,10 +32,17 @@
     [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoBold size:15.0],NSFontAttributeName,[UIColor whiteColor],NSForegroundColorAttributeName, nil] range:NSMakeRange(3, strTitle.length-3)];
 
     lblHd.attributedText = hogan;
+    
+    tblSuggestedStores.layer.cornerRadius = 1.0;
     [self createDataToGetHomeStoreBanner];
+    
 }
 #pragma mark - createDataToGetHomeStoreBanner
-
+-(void)hideKeyboard
+{
+    [self.view endEditing:YES];
+    tblSuggestedStores.hidden = YES;
+}
 -(void)createDataToGetHomeStoreBanner
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
@@ -120,6 +127,7 @@
         objStoreModel.store_code = [NSString stringWithFormat:@"%@",[obj valueForKey:kStore_code]];
         objStoreModel.store_distance = [NSString stringWithFormat:@"%@",[obj valueForKey:kStore_distance]];
         objStoreModel.store_id = [NSString stringWithFormat:@"%@",[obj valueForKey:kStore_id]];
+        
         [arrSuggestedStores addObject:objStoreModel];
     }
     if (arrSuggestedStores.count>0) {
@@ -151,7 +159,7 @@
     objStoreModel.store_distance = [NSString stringWithFormat:@"%@",[AppManager getDistance:objStoreModel]];
     objStoreModel.store_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_name]];
     objStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_rating]];
-
+    objStoreModel.home_delivey = [NSString stringWithFormat:@"%@",[dict valueForKey:kHome_delivery]];
 
     HomeStoreDetailViewController *homeStoreDetailVwController = (HomeStoreDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreDetailScreen"];
     homeStoreDetailVwController.objStoreModel = objStoreModel;
@@ -187,8 +195,8 @@
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:nil];
     StoreModel *objStoreModel = [arrSuggestedStores objectAtIndex:indexPath.row];
     UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-56, 45)];
-    lblStoreName.font = [UIFont fontWithName:kRobotoMedium size:14.0];
-    lblStoreName.textColor = [UIColor blackColor];
+    lblStoreName.font = [UIFont fontWithName:kRobotoRegular size:16.0];
+    lblStoreName.textColor = [UIColor colorWithRed:45.0/255.0 green:45.0/255.0 blue:45.0/255.0 alpha:1.0];
     lblStoreName.text = objStoreModel.store_code;
     [cell.contentView addSubview:lblStoreName];
     return cell;
@@ -272,7 +280,6 @@
 - (IBAction)btnWhatsHomeStoreClick:(UIButton *)sender {
 
     homeStorePopUpVwController =  [self.storyboard instantiateViewControllerWithIdentifier :@"homeStorePopUp"];
-    homeStorePopUpVwController.delegate = self;
     CGRect homeStorePopUpVwControllerRect = [UIScreen mainScreen].bounds;
     homeStorePopUpVwController.view.frame = homeStorePopUpVwControllerRect;
     homeStorePopUpVwController.viewPopUp.frame = CGRectMake(30, ([UIScreen mainScreen].bounds.size.height-295)/2, [UIScreen mainScreen].bounds.size.width-60, 295);

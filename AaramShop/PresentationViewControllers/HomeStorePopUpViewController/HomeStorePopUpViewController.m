@@ -13,7 +13,7 @@
 @end
 
 @implementation HomeStorePopUpViewController
-@synthesize delegate,viewPopUp;
+@synthesize viewPopUp;
 - (void)viewDidLoad {
     [super viewDidLoad];
 }

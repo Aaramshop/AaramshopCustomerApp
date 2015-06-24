@@ -15,6 +15,8 @@
     __weak IBOutlet UILabel *lblStoreName;
     __weak IBOutlet UILabel *lblStoreDistance;
     __weak IBOutlet UILabel *lblStoreAddress;
+    __weak IBOutlet UILabel *lblDelivery;
+    __weak IBOutlet UIImageView *imgDelivery;
     __weak IBOutlet UIImageView *imgVOfferImage;
     __weak IBOutlet UIImageView *imgVStoreCategoryImage;
     __weak IBOutlet UIImageView *imgVStoreImage;
