@@ -11,4 +11,5 @@
 @interface SubCategoryModel : NSObject
 @property(nonatomic,strong) NSString *sub_category_id;
 @property(nonatomic,strong) NSString *sub_category_name;
+@property(nonatomic,strong) NSString *category_id;
 @end

@@ -854,6 +854,10 @@
     switch (index) {
         case 0:
         {
+           // StoreModel *objStoreModel = cell.st
+           // NSString *phoneNumber = [@"tel://" stringByAppendingString:strPhoneNumber];
+//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Call"
                                                             message:@"message"
                                                            delegate:self
