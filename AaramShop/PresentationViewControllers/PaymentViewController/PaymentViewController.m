@@ -24,18 +24,22 @@ static NSString *strCollectionItems = @"collectionItems";
     NSString *strDeliveryDate;
     NSString *strSelectSlot;
     NSMutableArray *arrSelectedLastMinPick;
+    NSString *strSelectAddress;
+    NSString *strSelectedUserAddress_Id;
 }
 @end
 
 @implementation PaymentViewController
-@synthesize strStore_Id,strTotalPrice,arrSelectedProducts;
+@synthesize strStore_Id,strTotalPrice,arrSelectedProducts,ePickerType;
 - (void)viewDidLoad {
     [super viewDidLoad];
     appDel = APP_DELEGATE;
     [self setNavigationBar];
     isPickerOpen = NO;
+    ePickerType = enPickerSlots;
     strDeliveryDate = @"Immediate";
     strSelectSlot = @"Select Slot";
+    strSelectAddress = @"Select Address";
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
     aaramShop_ConnectionManager.delegate = self;
     arrAddressData = [[NSMutableArray alloc] init];
@@ -409,11 +413,7 @@ static NSString *strCollectionItems = @"collectionItems";
             tableCell = [self createCell:cellIdentifier];
             
             UILabel *lblTitle = (UILabel *)[tableCell.contentView viewWithTag:401];
-            if (arrAddressData.count>0) {
-                AddressModel *objAddress = [arrAddressData objectAtIndex:0];
-                lblTitle.text = objAddress.address;
-            }
-            
+            lblTitle.text = strSelectAddress;
         }
             break;
         case 4:
@@ -496,6 +496,14 @@ static NSString *strCollectionItems = @"collectionItems";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tblView deselectRowAtIndexPath:indexPath animated:YES];
+    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:3];
+    if (selectedIndexPath == indexPath) {
+        ePickerType = enPickerAddress;
+        [self showDatePickerView:NO];
+        [self showOptionPatch:YES];
+        [self showOptionPatch:YES];
+        [pickerViewSlots reloadAllComponents];
+    }
 }
 
 #pragma mark - UIPickerView Delegate
@@ -509,7 +517,13 @@ static NSString *strCollectionItems = @"collectionItems";
 }
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return arrDeliverySlot.count;
+    NSInteger rowsNum = 0;
+    if (ePickerType == enPickerAddress) {
+        rowsNum = arrAddressData.count;
+    }
+    else
+        rowsNum = arrDeliverySlot.count;
+    return rowsNum;
 }
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -518,8 +532,16 @@ static NSString *strCollectionItems = @"collectionItems";
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NSString *strTitle =@"";
-    NSDictionary *dict = [arrDeliverySlot objectAtIndex:row];
-    strTitle = [dict objectForKey:@"slot"];
+    if (ePickerType == enPickerAddress) {
+        
+        AddressModel *objAddressModel = [arrAddressData objectAtIndex:row];
+        strTitle =  objAddressModel.title;
+    }
+    else
+    {
+        NSDictionary *dict = [arrDeliverySlot objectAtIndex:row];
+        strTitle = [dict objectForKey:@"slot"];
+    }
     return strTitle;
 }
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
@@ -528,12 +550,24 @@ static NSString *strCollectionItems = @"collectionItems";
 }
 -(void)setSlot
 {
-    NSDictionary *dict = [arrDeliverySlot objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
-    UITableViewCell *cell = (UITableViewCell *)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
-    UIButton *btnSlot = (UIButton *)[cell.contentView viewWithTag:302];
-    strSelectSlot = [dict objectForKey:@"slot"];
-    [btnSlot setTitle:strSelectSlot forState:UIControlStateNormal];
-
+    if (ePickerType == enPickerAddress) {
+        
+        AddressModel *objaddressModel = [arrAddressData objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
+        UITableViewCell *cell = (UITableViewCell *)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
+        
+        UILabel *lblTitle = (UILabel *)[cell.contentView viewWithTag:401];
+        strSelectAddress = objaddressModel.address;
+        lblTitle.text = strSelectAddress;
+        strSelectedUserAddress_Id = objaddressModel.user_address_id;
+    }
+    else
+    {
+        NSDictionary *dict = [arrDeliverySlot objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
+        UITableViewCell *cell = (UITableViewCell *)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
+        UIButton *btnSlot = (UIButton *)[cell.contentView viewWithTag:302];
+        strSelectSlot = [dict objectForKey:@"slot"];
+        [btnSlot setTitle:strSelectSlot forState:UIControlStateNormal];
+    }
 }
 
 
@@ -630,6 +664,7 @@ static NSString *strCollectionItems = @"collectionItems";
 -(void)btnSlotClick
 {
     isPickerOpen = YES;
+    ePickerType = enPickerSlots;
     [self showPickerView:YES];
     [self showOptionPatch:YES];
     [pickerViewSlots reloadAllComponents];
@@ -638,6 +673,11 @@ static NSString *strCollectionItems = @"collectionItems";
     
     if ([strSelectSlot isEqualToString:@"Select Slot"]) {
         [Utils showAlertView:kAlertTitle message:@"Please select Slot" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
+    else if([strSelectAddress isEqualToString:@"Select Address"])
+    {
+        [Utils showAlertView:kAlertTitle message:@"Please select Address For Delivery" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+
     }
     else
     [self createDataForCheckout];

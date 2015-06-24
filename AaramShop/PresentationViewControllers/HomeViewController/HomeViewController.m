@@ -573,7 +573,7 @@
 -(NSInteger )getArrayCountForRecommendedStores
 {
     NSInteger rowsNum = 0;
-    if (self.mainCategoryIndex !=0) {
+    if (self.mainCategoryIndex !=0 && arrRecommendedStores.count>0) {
         StoreModel *objStore = [arrCategory objectAtIndex:self.mainCategoryIndex];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStore.store_main_category_id];
         NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
@@ -720,7 +720,7 @@
 -(StoreModel *)getObjectOfStoreForRecommendedStoresForIndexPath:(NSIndexPath *)IndexPath
 {
     StoreModel *objStoreModel = nil;
-    if (self.mainCategoryIndex != 0) {
+    if (self.mainCategoryIndex != 0 && arrRecommendedStores.count>0) {
         objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
         NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
