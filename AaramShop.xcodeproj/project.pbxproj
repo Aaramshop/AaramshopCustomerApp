@@ -782,8 +782,6 @@
 		36D8C4FA1B3A9B8E00C255EE /* CMPaymentMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C4F91B3A9B8E00C255EE /* CMPaymentMode.m */; };
 		36D8C4FD1B3A9E8700C255EE /* PaymentModeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C4FC1B3A9E8700C255EE /* PaymentModeTableCell.m */; };
 		36D8C5001B3A9EB000C255EE /* TotalAmtTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C4FF1B3A9EAF00C255EE /* TotalAmtTableCell.m */; };
-		36D8C5061B3ADDB700C255EE /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C5031B3ADDB700C255EE /* CustomBadge.m */; };
-		36D8C5071B3ADDB700C255EE /* MESegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C5051B3ADDB700C255EE /* MESegmentedControl.m */; };
 		36D8C50C1B3AF79C00C255EE /* OffersLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C5091B3AF79C00C255EE /* OffersLogo.png */; };
 		36D8C50D1B3AF79C00C255EE /* OffersLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C50A1B3AF79C00C255EE /* OffersLogo@2x.png */; };
 		36D8C50E1B3AF79C00C255EE /* OffersLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C50B1B3AF79C00C255EE /* OffersLogo@3x.png */; };
@@ -2174,10 +2172,6 @@
 		36D8C4FC1B3A9E8700C255EE /* PaymentModeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentModeTableCell.m; sourceTree = "<group>"; };
 		36D8C4FE1B3A9EAF00C255EE /* TotalAmtTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalAmtTableCell.h; sourceTree = "<group>"; };
 		36D8C4FF1B3A9EAF00C255EE /* TotalAmtTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalAmtTableCell.m; sourceTree = "<group>"; };
-		36D8C5021B3ADDB700C255EE /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
-		36D8C5031B3ADDB700C255EE /* CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBadge.m; sourceTree = "<group>"; };
-		36D8C5041B3ADDB700C255EE /* MESegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MESegmentedControl.h; sourceTree = "<group>"; };
-		36D8C5051B3ADDB700C255EE /* MESegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MESegmentedControl.m; sourceTree = "<group>"; };
 		36D8C5091B3AF79C00C255EE /* OffersLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OffersLogo.png; sourceTree = "<group>"; };
 		36D8C50A1B3AF79C00C255EE /* OffersLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OffersLogo@2x.png"; sourceTree = "<group>"; };
 		36D8C50B1B3AF79C00C255EE /* OffersLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OffersLogo@3x.png"; sourceTree = "<group>"; };
@@ -4599,17 +4593,6 @@
 			path = CMPaymentMode;
 			sourceTree = "<group>";
 		};
-		36D8C5011B3ADDB700C255EE /* NSSegmentBadgeControl */ = {
-			isa = PBXGroup;
-			children = (
-				36D8C5021B3ADDB700C255EE /* CustomBadge.h */,
-				36D8C5031B3ADDB700C255EE /* CustomBadge.m */,
-				36D8C5041B3ADDB700C255EE /* MESegmentedControl.h */,
-				36D8C5051B3ADDB700C255EE /* MESegmentedControl.m */,
-			);
-			path = NSSegmentBadgeControl;
-			sourceTree = "<group>";
-		};
 		36D8C5081B3AF79C00C255EE /* ComingSoonImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -6608,7 +6591,6 @@
 				6BA0DCEF1B3818F900729443 /* SubCategoryModel.m in Sources */,
 				274A5C631B05C4AA009112B5 /* UIImage+Decompress.m in Sources */,
 				274A5C9A1B05C4AA009112B5 /* XMPPStream.m in Sources */,
-				36D8C5071B3ADDB700C255EE /* MESegmentedControl.m in Sources */,
 				274A5C681B05C4AA009112B5 /* UITableViewController+SH.m in Sources */,
 				274A5CB81B05C4AA009112B5 /* XMPPRoomMemoryStorage.m in Sources */,
 				274A5C931B05C4AA009112B5 /* XMPPElement.m in Sources */,
@@ -6747,7 +6729,6 @@
 				274A5CF91B05C4AA009112B5 /* XMPPSRVResolver.m in Sources */,
 				6B12DCE31AF2A47D00245209 /* MobileVerificationViewController.m in Sources */,
 				274A5C911B05C4AA009112B5 /* NSXMLElement+XMPP.m in Sources */,
-				36D8C5061B3ADDB700C255EE /* CustomBadge.m in Sources */,
 				274A5C571B05C4AA009112B5 /* UIImageView+AFNetworking.m in Sources */,
 				274A5CAE1B05C4AA009112B5 /* XMPPLastActivity.m in Sources */,
 				274A5C551B05C4AA009112B5 /* UIAlertView+AFNetworking.m in Sources */,

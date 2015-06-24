@@ -585,47 +585,6 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
             </objects>
             <point key="canvasLocation" x="1865" y="1170"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="vXC-39-gWM">
-            <objects>
-                <viewController id="ejk-fx-7Os" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fsD-q7-HsC"/>
-                        <viewControllerLayoutGuide type="bottom" id="Tik-ec-RGq"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rQ9-dX-Nch">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="vKC-hc-beg">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="shopppingListCell" rowHeight="198" id="9Us-JA-aPz">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Us-JA-aPz" id="86R-vG-Khy">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="ibH-1P-gqa" id="8c2-xa-2Aw"/>
-                                    <outlet property="delegate" destination="ibH-1P-gqa" id="q5f-xO-jfN"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jGG-oy-URh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="649" y="4115"/>
-        </scene>
         <!--Shoplist View Controller-->
         <scene sceneID="w3B-Z8-AHM">
             <objects>
@@ -1379,39 +1338,6 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pM9-T2-Vhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3567" y="1194"/>
-        </scene>
-        <!--Chat View Controller-->
-        <scene sceneID="Vpm-6P-NmU">
-            <objects>
-                <viewController storyboardIdentifier="ChatViewScreen" id="vLF-Vy-zDX" customClass="ChatViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3ce-Ab-Ai8"/>
-                        <viewControllerLayoutGuide type="bottom" id="T9U-yj-cBa"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="FYI-f2-4CK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="fDh-2b-xsu">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="AhA-5e-pRQ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kt6-p4-zgU">
-                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Chat">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnChatClicked:" destination="vLF-Vy-zDX" eventType="touchUpInside" id="4yy-YT-GBD"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vqY-MX-LUd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1011" y="3466"/>
         </scene>
         <!--Order Hist View Controller-->
         <scene sceneID="2l5-iM-eii">
