@@ -60,10 +60,10 @@
 #define kDob                                  @"dob"
 #define kEmail                                @"email"
 #define kFemaleChild                          @"femaleChild"
-#define kFirstName                            @"firstName"
+//#define kFirstName                            @"firstName"
 #define kGender                               @"gender"
 #define kIncome                               @"income"
-#define kLastName                             @"lastName"
+//#define kLastName                             @"lastName"
 #define kMaleChild                            @"maleChild"
 #define kMessage                              @"message"
 #define kMobile_verified                      @"mobile_verified"
@@ -92,8 +92,8 @@
 
 
 #define kImage_url_100                        @"image_url_100"
-#define kImage_url_320                         @"image_url_320"
-#define kImage_url_640                          @"image_url_640"
+#define kImage_url_320                        @"image_url_320"
+#define kImage_url_640                        @"image_url_640"
 
 #pragma mark - AaramShopValues
 

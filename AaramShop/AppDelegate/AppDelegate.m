@@ -21,15 +21,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
      [Fabric with:@[CrashlyticsKit]];
     [self initializeAllSingletonObjects];
-//    for(NSString *fontfamilyname in [UIFont familyNames])
-//    {
-//        NSLog(@"Family:'%@'",fontfamilyname);
-//        for(NSString *fontName in [UIFont fontNamesForFamilyName:fontfamilyname])
-//        {
-//            NSLog(@"\tfont:'%@'",fontName);
-//        }
-//        NSLog(@"~~~~~~~~");
-//    }
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -49,8 +40,21 @@
             [[NSUserDefaults standardUserDefaults] setValue:@"1234567890" forKey:kDeviceId];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
+        
+        
+        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
+        {
+            [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        }
+        else
+        {
+            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+             (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+            
+        }
+        
+        
     }
-    
     if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn] == YES) {
         [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
 
@@ -88,6 +92,51 @@
         [locationManager startUpdatingLocation];
         
     }
+}
+#pragma mark - Register Device For Device Token
+#pragma mark - Remote Notification Methods
+- (void)application:(UIApplication *)application   didRegisterUserNotificationSettings:   (UIUserNotificationSettings *)notificationSettings
+{
+    //register to receive notifications
+    [application registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSString *deviceTokenStr = [[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""] stringByReplacingOccurrencesOfString: @">" withString: @""] stringByReplacingOccurrencesOfString: @" " withString: @""];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:deviceTokenStr forKey:kDeviceId];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    // NSLog(@"Registered");
+    
+    NSLog(@"Device Token: %@ ", deviceTokenStr);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err
+{
+    //    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    // NSLog(@"Fail To Register for Push Notification.");
+    
+    [[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary* )userInfo
+{
+    // NSLog(@"%@",[[userInfo valueForKey:@"aps"] valueForKey:@"alert"]);
+    
+    
+    //When app is active than only home screen counts should be refreshed
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
+        
+    }// If app is in Background or in inactive state than in this case we have to open NotificationViewcontroller or friend request received
+    else
+    {
+        NSInteger badgeCount = [UIApplication sharedApplication].applicationIconBadgeNumber;
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
+    }
+    
 }
 #pragma mark - CLLocationManagerDelegate
 
@@ -221,60 +270,6 @@
             [application registerForRemoteNotificationTypes:myTypes];
         }
     }
-}
- #pragma mark - Remote Notification Methods
-
-
-////////////////////// FOR iOS 8 & iOS 7 /////////////////////
-
-#ifdef __IPHONE_8_0
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings*)notificationSettings
-{
-    //register to receive notifications
-    [application registerForRemoteNotifications];
-}
-
-- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
-{
-    //handle the actions
-    if ([identifier isEqualToString:@"declineAction"])
-    {
-        
-    }
-    else if ([identifier isEqualToString:@"answerAction"])
-    {
-       // [[NSNotificationCenter defaultCenter] postNotificationName:KGetPush object:nil];
-        
-    }
-}
-
-#endif
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    NSString *deviceTokenStr = [[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""] stringByReplacingOccurrencesOfString: @">" withString: @""] stringByReplacingOccurrencesOfString: @" " withString: @""];
-    
-    [[NSUserDefaults standardUserDefaults] setValue:deviceTokenStr forKey:kDeviceId];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRecieveDeviceToken object:nil];
-    
-    
-    NSLog(@"Device Token: %@ ", deviceTokenStr);
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err
-{
-    
-    [[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-}
-
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
-{
-    
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

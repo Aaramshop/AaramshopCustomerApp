@@ -64,16 +64,17 @@
     }
     [imgBackground setClipsToBounds:YES];
     [self parseCountryListData];
-    
-    NSString *firstName = [[NSUserDefaults standardUserDefaults]objectForKey:kFirstName];
-    NSString *lastName = [[NSUserDefaults standardUserDefaults]objectForKey:kLastName];
+
+
+    NSString *firstName = [[NSUserDefaults standardUserDefaults]objectForKey:kFullname];
+   // NSString *lastName = [[NSUserDefaults standardUserDefaults]objectForKey:kLastName];
     if ([firstName length]==0)
     {
         txtFullName.text = nil;
     }
     else
     {
-        NSString *fullName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+        NSString *fullName = [NSString stringWithFormat:@"%@", firstName];
         txtFullName.text = fullName;
     }
 }
@@ -143,9 +144,8 @@
 }
 -(void)createDataToUpdateMobileNumber
 {
-    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    //    [dict removeObjectForKey:kSessionToken];
+
     [dict setObject:txtFMobileNumber.text forKey:kMobile];
     [dict setObject:txtFullName.text forKey:kFullname];
     [dict setObject:btnCountryName.titleLabel.text forKey:kCountryName];
@@ -156,7 +156,8 @@
 # pragma webService Calling
 -(void)callWebserviceForEnterNewMobile:(NSMutableDictionary*)aDict
 {
-    
+
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
     {
         [btnContinue setEnabled:YES];
@@ -201,6 +202,13 @@
     NSDictionary *dict = (NSDictionary*)responseObject;
     [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kUserId] forKey:kUserId];
     [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kDeviceId] forKey:kDeviceId];
+    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_100] forKey:kImage_url_100];
+    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_320] forKey:kImage_url_320];
+    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_640] forKey:kImage_url_640];
+    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kFullname] forKey:kFullname];
+    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kProfileImage] forKey:kProfileImage];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+
 }
 
 -(void)createDataForOTPValidation
@@ -256,6 +264,7 @@
             return NO;
     }
     
+
     return YES;
 }
 

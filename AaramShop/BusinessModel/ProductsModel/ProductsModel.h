@@ -17,4 +17,5 @@
 @property(nonatomic,strong) NSString *product_sku_id;
 @property(nonatomic,strong) NSString *sub_category_id;
 @property(nonatomic,strong) NSString *strCount;
+@property(nonatomic,assign) BOOL isSelected;
 @end

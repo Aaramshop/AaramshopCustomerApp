@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "HomeStorePopUpViewController.h"
 
-@interface HomeStoreViewController : UIViewController<HomeStorePopUpViewControllerDelegate,AaramShop_ConnectionManager_Delegate>
+@interface HomeStoreViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
     
     __weak IBOutlet UITableView *tblSuggestedStores;

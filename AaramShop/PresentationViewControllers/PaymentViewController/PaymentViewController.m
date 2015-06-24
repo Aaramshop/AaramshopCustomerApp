@@ -23,6 +23,7 @@ static NSString *strCollectionItems = @"collectionItems";
     BOOL isPickerOpen;
     NSString *strDeliveryDate;
     NSString *strSelectSlot;
+    NSMutableArray *arrSelectedLastMinPick;
 }
 @end
 
@@ -40,6 +41,7 @@ static NSString *strCollectionItems = @"collectionItems";
     arrAddressData = [[NSMutableArray alloc] init];
     arrLastMinPick = [[NSMutableArray alloc]init];
     arrDeliverySlot = [[NSMutableArray alloc]init];
+    arrSelectedLastMinPick = [[NSMutableArray alloc]init];
     tblView.sectionFooterHeight= 0.0;
     tblView.sectionHeaderHeight = 0.0;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -73,6 +75,9 @@ static NSString *strCollectionItems = @"collectionItems";
     AddressModel *objAddress = [arrAddressData objectAtIndex:0];
     [dict setObject:objAddress.user_address_id forKey:kUser_address_id];
     
+    if (arrSelectedLastMinPick.count>0) {
+        [arrSelectedProducts addObjectsFromArray:arrSelectedLastMinPick];
+    }
     NSArray *arrayProductId = [arrSelectedProducts valueForKey:kProduct_id];
     NSString *strProductId = [arrayProductId componentsJoinedByString:@","];
     [dict setObject:strProductId forKey:@"product_ids"];
@@ -236,6 +241,7 @@ static NSString *strCollectionItems = @"collectionItems";
         objProducts.product_name = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_name]];
         objProducts.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
         objProducts.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
+        objProducts.isSelected = NO;
         [arrLastMinPick addObject:objProducts];
     }
     strPopUpMessage = [data objectForKey:kPopup_message];
@@ -577,6 +583,35 @@ static NSString *strCollectionItems = @"collectionItems";
     [cell.contentView addSubview:imgProfilePic];
     [cell.contentView addSubview:lblPrice];
     return cell;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    
+    ProductsModel *objProduct = [arrLastMinPick objectAtIndex:indexPath.row];
+    objProduct.isSelected = !objProduct.isSelected;
+    
+    if (objProduct.isSelected) {
+        objProduct.strCount = [NSString stringWithFormat:@"1"];
+        int selectedPrice =  1 * [objProduct.product_price intValue];
+        
+        int priceValue = [strTotalPrice intValue];
+        priceValue+=selectedPrice;
+        strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
+
+        [arrSelectedLastMinPick addObject:objProduct];
+        [tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    else if (objProduct.isSelected == NO)
+    {
+        int selectedPrice =  1 * [objProduct.product_price intValue];
+
+        int priceValue = [strTotalPrice intValue];
+        priceValue-=selectedPrice;
+        strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
+        [arrSelectedLastMinPick removeObject:objProduct];
+        [tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 
 
