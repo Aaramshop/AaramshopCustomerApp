@@ -71,6 +71,9 @@
 -(void)callWebserviceForOtpResend:(NSMutableDictionary *)aDict
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    [continueBtn setEnabled:YES];
+    [resendBtn setEnabled:YES];
+    [backBtn setEnabled:YES];
     if (![Utils isInternetAvailable])
     {
         [AppManager stopStatusbarActivityIndicator];
@@ -83,9 +86,13 @@
 -(void) didFailWithError:(NSError *)error
 {
     [aaramShop_ConnectionManager failureBlockCalled:error];
+    [continueBtn setEnabled:YES];
+    [resendBtn setEnabled:YES];
+    [backBtn setEnabled:YES];
 }
 -(void) responseReceived:(id)responseObject
 {
+    
     if (aaramShop_ConnectionManager.currentTask == TASK_VERIFY_MOBILE) {
         if ([[responseObject objectForKey:kIsValid] isEqualToString:@"1"] && [[responseObject objectForKey:kstatus] intValue] == 1) {
             [AppManager saveUserDatainUserDefault];
@@ -106,6 +113,9 @@
 
         }
     }
+    [continueBtn setEnabled:YES];
+    [resendBtn setEnabled:YES];
+    [backBtn setEnabled:YES];
 }
 
 #pragma mark - UITextfield Delegates
@@ -128,6 +138,9 @@
 }
 
 - (IBAction)btnContinueVerificationClick:(UIButton *)sender {
+    [sender setEnabled:NO];
+    [resendBtn setEnabled:NO];
+    [backBtn setEnabled:NO];
       [self createDataForOtpSend];
     /*
     if ([txtfVerificationCode.text length] == 0) {
@@ -141,6 +154,9 @@
 }
 
 - (IBAction)btnResendVerificationClick:(UIButton *)sender {
+    [sender setEnabled:NO];
+    [resendBtn setEnabled:NO];
+    [backBtn setEnabled:NO];
     [self createDataForOtpResend];
 }
 

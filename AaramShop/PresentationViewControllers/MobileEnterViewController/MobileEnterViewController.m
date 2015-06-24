@@ -26,7 +26,7 @@
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate = self;
-
+    
     imgVUser.layer.cornerRadius = imgVUser.frame.size.height/2;
     imgVUser.clipsToBounds = YES;
     
@@ -50,7 +50,7 @@
     if (self.view.frame.size.height <=560 ) {
         [imgVUser setFrame:CGRectMake(0, 0, 160, 160)];
     }
-
+    
     if (gAppManager.imgProfile) {
         effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:gAppManager.imgProfile];
         imgBackground.image = effectImage;
@@ -64,12 +64,12 @@
     }
     [imgBackground setClipsToBounds:YES];
     [self parseCountryListData];
-
+    
     NSString *firstName = [[NSUserDefaults standardUserDefaults]objectForKey:kFirstName];
     NSString *lastName = [[NSUserDefaults standardUserDefaults]objectForKey:kLastName];
     if ([firstName length]==0)
     {
-       txtFullName.text = nil;
+        txtFullName.text = nil;
     }
     else
     {
@@ -102,15 +102,19 @@
 - (IBAction)btnContinueClick:(UIButton *)sender {
     
     [sender setEnabled:NO];
-    
+    [backBtn setEnabled:NO];
     if ([txtFMobileNumber.text length]==0 || [txtFMobileNumber.text length]>11 || [txtFMobileNumber.text length]<8) {
         [Utils showAlertView:kAlertTitle message:@"Please enter valid mobile number" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         [sender setEnabled:YES];
+        [backBtn setEnabled:YES];
+
         return;
     }
     else if ([txtFullName.text length]==0 || [txtFullName.text length]>50) {
         [Utils showAlertView:kAlertTitle message:@"Please enter your full name" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         [sender setEnabled:YES];
+        [backBtn setEnabled:YES];
+
         return;
     }
     else
@@ -127,7 +131,7 @@
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict removeObjectForKey:kUserId];
-//    [dict removeObjectForKey:kSessionToken];
+    //    [dict removeObjectForKey:kSessionToken];
     
     [dict setObject:txtFMobileNumber.text forKey:kMobile];
     [dict setObject:txtFullName.text forKey:kFullname];
@@ -141,7 +145,7 @@
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-//    [dict removeObjectForKey:kSessionToken];
+    //    [dict removeObjectForKey:kSessionToken];
     [dict setObject:txtFMobileNumber.text forKey:kMobile];
     [dict setObject:txtFullName.text forKey:kFullname];
     [dict setObject:btnCountryName.titleLabel.text forKey:kCountryName];
@@ -152,10 +156,12 @@
 # pragma webService Calling
 -(void)callWebserviceForEnterNewMobile:(NSMutableDictionary*)aDict
 {
-
+    
     if (![Utils isInternetAvailable])
     {
         [btnContinue setEnabled:YES];
+        [backBtn setEnabled:YES];
+
         [AppManager stopStatusbarActivityIndicator];
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
@@ -166,12 +172,15 @@
 -(void) didFailWithError:(NSError *)error
 {
     [btnContinue setEnabled:YES];
+    [backBtn setEnabled:YES];
+
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 -(void) responseReceived:(id)responseObject
 {
     if (aaramShop_ConnectionManager.currentTask == TASK_ENTER_MOBILE_NUMBER) {
         [btnContinue setEnabled:YES];
+        [backBtn setEnabled:YES];
 
         if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 ) {
             
@@ -196,15 +205,15 @@
 
 -(void)createDataForOTPValidation
 {
-//    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-//    [dict setObject:txtFMobileNumber.text forKey:kMobile];
-//    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
-//    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
-//    [dict removeObjectForKey:kUserId];
-//    [dict removeObjectForKey:kSessionToken];
-//    [self callWebserviceForSignUp:dict];
+    //    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    //    [dict setObject:txtFMobileNumber.text forKey:kMobile];
+    //    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
+    //    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+    //    [dict removeObjectForKey:kUserId];
+    //    [dict removeObjectForKey:kSessionToken];
+    //    [self callWebserviceForSignUp:dict];
     
-   
+    
 }
 
 - (IBAction)btnBackClick:(UIButton *)sender {
@@ -241,8 +250,12 @@
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if((range.location >= 10))
-        return NO;
+    if(textField == txtFMobileNumber)
+    {
+        if((range.location >= 10))
+            return NO;
+    }
+    
     return YES;
 }
 
@@ -308,7 +321,7 @@
     }];
     
 }
-#pragma mark - 
+#pragma mark -
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

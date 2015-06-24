@@ -133,7 +133,7 @@
 #define kStore_working_to                   @"store_working_to"
 #define kData                               @"data"
 #define kChat_username                      @"chat_username"
-#define kHome_delivey                       @"home_delivey"
+#define kHome_delivery                       @"home_delivery"
 #define kIs_favorite                        @"is_favorite"
 #define kIs_home_store                      @"is_home_store"
 #define kIs_open                            @"is_open"

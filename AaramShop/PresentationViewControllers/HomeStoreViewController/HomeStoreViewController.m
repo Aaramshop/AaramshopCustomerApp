@@ -129,6 +129,7 @@
         objStoreModel.store_code = [NSString stringWithFormat:@"%@",[obj valueForKey:kStore_code]];
         objStoreModel.store_distance = [NSString stringWithFormat:@"%@",[obj valueForKey:kStore_distance]];
         objStoreModel.store_id = [NSString stringWithFormat:@"%@",[obj valueForKey:kStore_id]];
+        
         [arrSuggestedStores addObject:objStoreModel];
     }
     if (arrSuggestedStores.count>0) {
@@ -160,7 +161,7 @@
     objStoreModel.store_distance = [NSString stringWithFormat:@"%@",[AppManager getDistance:objStoreModel]];
     objStoreModel.store_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_name]];
     objStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_rating]];
-
+    objStoreModel.home_delivey = [NSString stringWithFormat:@"%@",[dict valueForKey:kHome_delivery]];
 
     HomeStoreDetailViewController *homeStoreDetailVwController = (HomeStoreDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreDetailScreen"];
     homeStoreDetailVwController.objStoreModel = objStoreModel;

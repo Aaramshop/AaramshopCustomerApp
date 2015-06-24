@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1055,13 +1055,13 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeStoreDetailsDeleversIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="nfN-ID-uhB">
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeStoreDetailsDeleversIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="nfN-ID-uhB">
                                                 <rect key="frame" x="208" y="223" width="17" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="17" id="4b3-Rp-hqk"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delievers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opv-PU-s2m">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delievers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opv-PU-s2m">
                                                 <rect key="frame" x="232" y="223" width="60" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="TBJ-E8-nNr"/>
@@ -1180,9 +1180,11 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imgDelivery" destination="nfN-ID-uhB" id="qgu-F9-Pnl"/>
                         <outlet property="imgVOfferImage" destination="x10-d2-DfS" id="yhB-Ww-mo1"/>
                         <outlet property="imgVStoreCategoryImage" destination="UI6-Sf-aG1" id="j7a-d5-tCX"/>
                         <outlet property="imgVStoreImage" destination="UuN-CB-xfV" id="XJW-ZP-rVz"/>
+                        <outlet property="lblDelivery" destination="opv-PU-s2m" id="9XL-7K-jtH"/>
                         <outlet property="lblStoreAddress" destination="1WG-ZA-3sX" id="Gpk-dM-80x"/>
                         <outlet property="lblStoreCategoryName" destination="xAC-rk-OWM" id="DoO-Nz-R0f"/>
                         <outlet property="lblStoreDistance" destination="8ga-rH-J9t" id="dDU-to-Dwr"/>
@@ -2424,8 +2426,11 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="backBtn" destination="36c-mR-79h" id="Awa-55-9jp"/>
+                        <outlet property="continueBtn" destination="iTR-BH-ely" id="Mxu-Ym-ccR"/>
                         <outlet property="imgVBg" destination="rFJ-54-HXO" id="Pkb-KP-VGI"/>
                         <outlet property="lblMobileNumber" destination="mNb-VP-QbQ" id="Cum-4T-J6A"/>
+                        <outlet property="resendBtn" destination="Htr-Dr-4xw" id="6Xa-hm-p9z"/>
                         <outlet property="txtfVerificationCode" destination="hIz-UU-1CP" id="5uX-Tg-KhA"/>
                     </connections>
                 </viewController>
