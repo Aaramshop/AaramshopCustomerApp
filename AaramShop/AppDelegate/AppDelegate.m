@@ -307,49 +307,49 @@
 
 -(SMChatViewController *)createChatViewByChatUserNameIfNeeded:(NSString *)inChatUser
 {
-    //    UINavigationController *navcon = (UINavigationController*)self.tabBarController.selectedViewController;
-    //
-    //    if (self.AllChatViewConDic == nil)
-    //    {
-    //        self.AllChatViewConDic = [[NSMutableDictionary alloc] init];
-    //
-    //    }
-    //    SMChatViewController *aChatViewCon = [self.AllChatViewConDic objectForKey: inChatUser];
-    //    NSUInteger index=[[navcon childViewControllers] indexOfObject:aChatViewCon];
-    //
-    //
-    //    if (aChatViewCon)
-    //    {
-    //        if (index == NSNotFound)
-    //        {
-    //            aChatViewCon.isAlreadyInStack= NO;
-    //            aChatViewCon.eSMChatStatus = SMCHAT_NOT_IN_STACK;
-    //
-    //        }
-    //        else if (index == [[navcon childViewControllers] count]-1)
-    //        {
-    //            aChatViewCon.isAlreadyInStack= YES;
-    //            aChatViewCon.eSMChatStatus = SMCHAT_AT_TOP_OF_STACK;
-    //
-    //        }
-    //        else
-    //        {
-    //            aChatViewCon.isAlreadyInStack= YES;
-    //            aChatViewCon.eSMChatStatus = SMCHAT_EXIST_BUT_NOT_ON_TOP;
-    //
-    //        }
-    //    }
-    //    else
-    //    {
-    //
-    //        aChatViewCon = [[SMChatViewController alloc] initWithNibName:@"SMChatViewController" bundle:nil];
-    //        [self.AllChatViewConDic setObject: aChatViewCon forKey: inChatUser];
-    //
-    //        aChatViewCon.isAlreadyInStack= NO;
-    //        aChatViewCon.eSMChatStatus=SMCHAT_NOT_IN_STACK;
-    //    }
-    //    return  aChatViewCon;
-    return nil;
+    UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+    UINavigationController *navcon = (UINavigationController*)tabBarController.selectedViewController;
+    
+    if (self.AllChatViewConDic == nil)
+    {
+        self.AllChatViewConDic = [[NSMutableDictionary alloc] init];
+        
+    }
+    SMChatViewController *aChatViewCon = [self.AllChatViewConDic objectForKey: inChatUser];
+    NSUInteger index=[[navcon childViewControllers] indexOfObject:aChatViewCon];
+    
+    
+    if (aChatViewCon)
+    {
+        if (index == NSNotFound)
+        {
+            aChatViewCon.isAlreadyInStack= NO;
+            aChatViewCon.eSMChatStatus = SMCHAT_NOT_IN_STACK;
+            
+        }
+        else if (index == [[navcon childViewControllers] count]-1)
+        {
+            aChatViewCon.isAlreadyInStack= YES;
+            aChatViewCon.eSMChatStatus = SMCHAT_AT_TOP_OF_STACK;
+            
+        }
+        else
+        {
+            aChatViewCon.isAlreadyInStack= YES;
+            aChatViewCon.eSMChatStatus = SMCHAT_EXIST_BUT_NOT_ON_TOP;
+            
+        }
+    }
+    else
+    {
+        
+        aChatViewCon = [[SMChatViewController alloc] initWithNibName:@"SMChatViewController" bundle:nil];
+        [self.AllChatViewConDic setObject: aChatViewCon forKey: inChatUser];
+        
+        aChatViewCon.isAlreadyInStack= NO;
+        aChatViewCon.eSMChatStatus=SMCHAT_NOT_IN_STACK;
+    }
+    return  aChatViewCon;
 }
 
 -(SMChatViewController *)getChatViewDelegateByChatUserName:(NSString *)inChatUser

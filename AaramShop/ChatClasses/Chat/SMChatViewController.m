@@ -2211,7 +2211,7 @@
         [body setStringValue:messageStr];
         NSXMLElement *request = [NSXMLElement elementWithName:@"request" xmlns:@"urn:xmpp:receipts"];
         [message addChild:body];
-        NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_name]];
+        NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kFullname]];
         [message addChild:fullName];
         
         NSXMLElement *chatFlow = [NSXMLElement elementWithName:@"chatFlow" stringValue:@"anonymous"];
@@ -3322,7 +3322,7 @@ didFinishSavingWithError:(NSError *)error
     
     [body addChild:media];
 
-    NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_name]];
+    NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kFullname]];
     [message addChild:fullName];
     
     NSXMLElement *chatFlow = [NSXMLElement elementWithName:@"chatFlow" stringValue:@"anonymous"];
@@ -4727,7 +4727,7 @@ didFinishSavingWithError:(NSError *)error
     //27-3-14
     [body addChild:mediaOrientation];
     //end
-    NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_name]];
+    NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kFullname]];
     [message addChild:fullName];
     
     NSXMLElement *chatFlow = [NSXMLElement elementWithName:@"chatFlow" stringValue:@"anonymous"];
@@ -6234,7 +6234,7 @@ didFinishSavingWithError:(NSError *)error
         [body addChild:media];
          [body addChild:mediaOrientation];
 
-        NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_name]];
+        NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kFullname]];
         [message addChild:fullName];
         
         NSXMLElement *chatFlow = [NSXMLElement elementWithName:@"chatFlow" stringValue:@"anonymous"];
