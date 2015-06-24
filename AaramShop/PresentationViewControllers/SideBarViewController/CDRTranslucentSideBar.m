@@ -260,11 +260,11 @@
     if (self.tag == 0) {
         UIImage* image;
         NSArray *arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
-        AddressModel *objAddressModel = nil;
-        for (AddressModel *objTemp in arrAddress) {
-
-            if ([objTemp.title isEqualToString:@"Home"]) {
-                objAddressModel = objTemp;
+        NSMutableDictionary *dictAddress  = nil;
+        for (NSMutableDictionary *dict in arrAddress) {
+            
+            if ([[dict objectForKey:kUser_address_title] isEqualToString:@"Home"]) {
+                dictAddress = dict;
                 break;
             }
         }
@@ -300,7 +300,7 @@
         lblAddress.numberOfLines = 2;
         lblAddress.lineBreakMode = NSLineBreakByWordWrapping;
         lblAddress.font=[UIFont fontWithName:kRobotoRegular size:15];
-        lblAddress.text = objAddressModel.address;
+        lblAddress.text = [dictAddress objectForKey:kAddress];
         lblAddress.textColor=[UIColor whiteColor];
         
         UIButton *btnEdit=[[UIButton alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-16, 34)];

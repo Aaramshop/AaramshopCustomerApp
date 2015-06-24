@@ -184,7 +184,7 @@
         [backBtn setEnabled:YES];
 
         if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 ) {
-            
+//            NSLog(@"%@,")
             [self saveDataToLocal:responseObject];
             MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
             mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
