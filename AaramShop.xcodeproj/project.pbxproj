@@ -763,6 +763,8 @@
 		36D8C4CF1B3996DE00C255EE /* smsIconDarkGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C4C71B3996DE00C255EE /* smsIconDarkGrey.png */; };
 		36D8C4D01B3996DE00C255EE /* smsIconDarkGrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C4C81B3996DE00C255EE /* smsIconDarkGrey@2x.png */; };
 		36D8C4D11B3996DE00C255EE /* smsIconDarkGrey@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C4C91B3996DE00C255EE /* smsIconDarkGrey@3x.png */; };
+		36D8C4D41B39B1DF00C255EE /* OrderHistTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C4D31B39B1DF00C255EE /* OrderHistTableCell.m */; };
+		36D8C4D81B39B4B100C255EE /* CMOrderHist.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C4D71B39B4B100C255EE /* CMOrderHist.m */; };
 		36EE08E11B1D7CC400906277 /* CurLocationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EE08E01B1D7CC400906277 /* CurLocationTableCell.m */; };
 		36EE08E71B1DA60200906277 /* UserContactTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EE08E61B1DA60200906277 /* UserContactTableCell.m */; };
 		36EE08EA1B1DA61800906277 /* UserInfoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EE08E91B1DA61800906277 /* UserInfoTableCell.m */; };
@@ -2093,6 +2095,10 @@
 		36D8C4C71B3996DE00C255EE /* smsIconDarkGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smsIconDarkGrey.png; sourceTree = "<group>"; };
 		36D8C4C81B3996DE00C255EE /* smsIconDarkGrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smsIconDarkGrey@2x.png"; sourceTree = "<group>"; };
 		36D8C4C91B3996DE00C255EE /* smsIconDarkGrey@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smsIconDarkGrey@3x.png"; sourceTree = "<group>"; };
+		36D8C4D21B39B1DF00C255EE /* OrderHistTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderHistTableCell.h; sourceTree = "<group>"; };
+		36D8C4D31B39B1DF00C255EE /* OrderHistTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderHistTableCell.m; sourceTree = "<group>"; };
+		36D8C4D61B39B4B100C255EE /* CMOrderHist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMOrderHist.h; sourceTree = "<group>"; };
+		36D8C4D71B39B4B100C255EE /* CMOrderHist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMOrderHist.m; sourceTree = "<group>"; };
 		36EE08DF1B1D7CC400906277 /* CurLocationTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurLocationTableCell.h; sourceTree = "<group>"; };
 		36EE08E01B1D7CC400906277 /* CurLocationTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurLocationTableCell.m; sourceTree = "<group>"; };
 		36EE08E51B1DA60200906277 /* UserContactTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserContactTableCell.h; sourceTree = "<group>"; };
@@ -4014,6 +4020,8 @@
 		27BE657A1B0203CC004FA4B4 /* OrderHistViewController */ = {
 			isa = PBXGroup;
 			children = (
+				36D8C4D21B39B1DF00C255EE /* OrderHistTableCell.h */,
+				36D8C4D31B39B1DF00C255EE /* OrderHistTableCell.m */,
 				27BE65881B020432004FA4B4 /* OrderHistViewController.h */,
 				27BE65891B020432004FA4B4 /* OrderHistViewController.m */,
 			);
@@ -4442,9 +4450,20 @@
 			path = OrderImages;
 			sourceTree = "<group>";
 		};
+		36D8C4D51B39B49A00C255EE /* OrderHistModel */ = {
+			isa = PBXGroup;
+			children = (
+				36D8C4D61B39B4B100C255EE /* CMOrderHist.h */,
+				36D8C4D71B39B4B100C255EE /* CMOrderHist.m */,
+			);
+			path = OrderHistModel;
+			sourceTree = "<group>";
+		};
 		6B0676E01B06024B0002259E /* BusinessModel */ = {
 			isa = PBXGroup;
 			children = (
+				36D8C4D51B39B49A00C255EE /* OrderHistModel */,
+				365F2FC11B395B4B000F7108 /* PaymentModel */,
 				6BA0DCE81B3818DD00729443 /* ProductsModel */,
 				6BA0DCE91B3818DD00729443 /* SubCategoryModel */,
 				6BA0DCE41B37FCBE00729443 /* CategoryModel */,
@@ -6506,6 +6525,7 @@
 				274A5D001B05C4AA009112B5 /* DDTTYLogger.m in Sources */,
 				274A5C4A1B05C4AA009112B5 /* AFHTTPRequestOperation.m in Sources */,
 				274A5CBD1B05C4AA009112B5 /* XMPPRoom.m in Sources */,
+				36D8C4D81B39B4B100C255EE /* CMOrderHist.m in Sources */,
 				274A5CA31B05C4AA009112B5 /* XMPPRosterCoreDataStorage.m in Sources */,
 				274A5DE81B05C88B009112B5 /* UIInputToolbar.m in Sources */,
 				274A5CE31B05C4AA009112B5 /* XMPPMessage+XEP_0172.m in Sources */,
@@ -6520,6 +6540,7 @@
 				274A5DEF1B05C88B009112B5 /* ShowLargePhotoViewController.m in Sources */,
 				274A5CA51B05C4AA009112B5 /* XMPPResourceMemoryStorageObject.m in Sources */,
 				274A5CF11B05C4AA009112B5 /* XMPPMessage+XEP_0308.m in Sources */,
+				36D8C4D41B39B1DF00C255EE /* OrderHistTableCell.m in Sources */,
 				274A5CDD1B05C4AA009112B5 /* XMPPMessageArchiving.xcdatamodeld in Sources */,
 				274A5C481B05C4AA009112B5 /* AppManager.m in Sources */,
 				6B809DAA1B31755D00E91673 /* SDWebImageDownloaderOperation.m in Sources */,

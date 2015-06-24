@@ -1009,4 +1009,16 @@
     rightSideBar.tag = 1;
     return rightSideBar;
 }
+
++ (NSString *)getFinalStringFromDate:(NSDate *)date
+{
+    NSString *strTime = [Utils convertedDate:date];
+    
+    if ([strTime hasPrefix:@"Today,"])
+    {
+        strTime = [strTime substringFromIndex:6];
+    }
+    
+    return strTime;
+}
 @end

@@ -6,11 +6,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface OrderHistViewController : UIViewController<CDRTranslucentSideBarDelegate>
+#import "OrderHistTableCell.h"
+#import "CMOrderHist.h"
+@interface OrderHistViewController : UIViewController<CDRTranslucentSideBarDelegate,AaramShop_ConnectionManager_Delegate,CallAndChatDelegate>
 {
     
     __weak IBOutlet UITableView *tblView;
+    NSMutableArray *arrOrderHist;
+    UIRefreshControl *refreshCustomerList;
 }
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
 
