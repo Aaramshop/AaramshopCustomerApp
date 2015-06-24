@@ -31,7 +31,7 @@ CLGeocoder *geocoder;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic,  strong) NSArray *arrOptions;
 -(id)getDateAndFromString:(NSString *)strDate andDate:(NSDate *)date needSting:(BOOL)needString dateFormat:(NSString *)dateFormat;
-
+-(void)findCurrentLocation;
 
 #pragma mark - chat
 @property(nonatomic,assign)BOOL isChatViewOpened;

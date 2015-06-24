@@ -90,7 +90,7 @@
 #define kPOSTGetStoreProductSubCategoryURL    @"getStoreProductSubCategory"
 #define kSearchStoreProductCategoriesURL      @"searchStoreProductCategories"
 #define kPOSTGetStoreProductsURL              @"getStoreProducts"
-
+#define kGetUserAddressURL                    @"getUserAddress"
 
 #define kImage_url_100                        @"image_url_100"
 #define kImage_url_320                        @"image_url_320"

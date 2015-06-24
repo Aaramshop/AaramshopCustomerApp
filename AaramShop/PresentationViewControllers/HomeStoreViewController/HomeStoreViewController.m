@@ -35,6 +35,7 @@
     
     tblSuggestedStores.layer.cornerRadius = 1.0;
     [self createDataToGetHomeStoreBanner];
+    [self createDataToGetAddress];
     
 }
 #pragma mark - createDataToGetHomeStoreBanner
@@ -42,6 +43,26 @@
 {
     [self.view endEditing:YES];
     tblSuggestedStores.hidden = YES;
+}
+-(void)createDataToGetAddress
+{
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+    [self callWebserviceToGetAddress:dict];
+}
+-(void)callWebserviceToGetAddress:(NSMutableDictionary *)aDict
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kGetUserAddressURL withInput:aDict withCurrentTask:TASK_GET_USER_ADDRESS andDelegate:self ];
+
 }
 -(void)createDataToGetHomeStoreBanner
 {
@@ -96,6 +117,16 @@
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         }
     }
+    else if (aaramShop_ConnectionManager.currentTask == TASK_GET_USER_ADDRESS)
+    {
+        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
+            [self parseAddressData:responseObject];
+        }
+        else
+        {
+//            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        }
+    }
 }
 
 -(void)parseHomeStoreResponseData:(NSMutableDictionary *)responseObject
@@ -131,6 +162,12 @@
         [arrSuggestedStores addObject:objStoreModel];
     }
 }
+-(void)parseAddressData:(NSDictionary *)responseObject
+{
+//    NSDictionary *dict = [responseObject objectForKey:kUser_address];
+    [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:kUser_address] forKey:kUser_address];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 -(void)parseHomeStoreResponseDetailData:(NSMutableDictionary *)responseObject
 {
     NSDictionary *dict = [responseObject objectForKey:kStore_data];
@@ -160,6 +197,7 @@
     HomeStoreDetailViewController *homeStoreDetailVwController = (HomeStoreDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreDetailScreen"];
     homeStoreDetailVwController.objStoreModel = objStoreModel;
     [self.navigationController pushViewController:homeStoreDetailVwController animated:YES];
+    
 }
 #pragma mark - TableView Datasource & Delegates
 
