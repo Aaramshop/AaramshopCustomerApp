@@ -13,7 +13,6 @@
 @property(nonatomic,strong) NSString *banner;
 @property(nonatomic,strong) NSString *banner_2x;
 @property(nonatomic,strong) NSString *banner_3x;
-
 @property(nonatomic,strong) NSString *store_address;
 @property(nonatomic,strong) NSString *store_category_image;
 @property(nonatomic,strong) NSString *store_category_name;
