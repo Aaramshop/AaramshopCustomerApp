@@ -3042,7 +3042,7 @@
     
     if(isImage == 1)
     {
-        NSMutableDictionary *aDict=[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:kStore_id],@"userId",@"1",@"fileType",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceId]],kDeviceId,kDevice,kDeviceType,mediaData ,@"profileImage",nil];
+        NSMutableDictionary *aDict=[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:kUserId],@"userId",@"1",@"fileType",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceId]],kDeviceId,kDevice,kDeviceType,mediaData ,@"profileImage",nil];
         [[NetworkService sharedInstance] sendAsynchronusUploadImageByGetUsingMultiPart:api dataToSend:aDict boundry:@"111000111" header:NO andDelegate:self andChatId:chatId andMediaType:mediaType andfileName:fileNameWihExt];
     }
     //    else if (isImage == 2)
@@ -6188,14 +6188,14 @@ didFinishSavingWithError:(NSError *)error
     
     if([[inResponseDic objectForKey:@"status"] isEqualToString:@"1"]){
 
-        if([[inResponseDic objectForKey:@"file"]rangeOfString:kThumbUrlDelimeter].length >0)
+        if([[inResponseDic objectForKey:@"file_url"]rangeOfString:kThumbUrlDelimeter].length >0)
         {
             NSArray *thumbArray = [[inResponseDic objectForKey:@"file"] componentsSeparatedByString:kThumbUrlDelimeter];
             mainFile = [NSString stringWithFormat:@"%@%@%@%@%@",[inResponseDic objectForKey:@"serverUrl"],[thumbArray objectAtIndex:0],kThumbUrlDelimeter,[inResponseDic objectForKey:@"serverUrl"],[thumbArray objectAtIndex:1]];
         }
         else
         {
-            mainFile = [NSString stringWithFormat:@"%@%@",[inResponseDic objectForKey:@"serverUrl"],[inResponseDic objectForKey:@"file"]];
+            mainFile = [inResponseDic objectForKey:@"file_url"];
         }
         
         if (aDic)
