@@ -782,6 +782,8 @@
 		36D8C4FA1B3A9B8E00C255EE /* CMPaymentMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C4F91B3A9B8E00C255EE /* CMPaymentMode.m */; };
 		36D8C4FD1B3A9E8700C255EE /* PaymentModeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C4FC1B3A9E8700C255EE /* PaymentModeTableCell.m */; };
 		36D8C5001B3A9EB000C255EE /* TotalAmtTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C4FF1B3A9EAF00C255EE /* TotalAmtTableCell.m */; };
+		36D8C5061B3ADDB700C255EE /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C5031B3ADDB700C255EE /* CustomBadge.m */; };
+		36D8C5071B3ADDB700C255EE /* MESegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D8C5051B3ADDB700C255EE /* MESegmentedControl.m */; };
 		36EE08E11B1D7CC400906277 /* CurLocationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EE08E01B1D7CC400906277 /* CurLocationTableCell.m */; };
 		36EE08E71B1DA60200906277 /* UserContactTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EE08E61B1DA60200906277 /* UserContactTableCell.m */; };
 		36EE08EA1B1DA61800906277 /* UserInfoTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36EE08E91B1DA61800906277 /* UserInfoTableCell.m */; };
@@ -843,6 +845,31 @@
 		6B5CE44D1B395FD800CD009E /* upArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE44A1B395FD800CD009E /* upArrow@3x.png */; };
 		6B5CE4521B39756400CD009E /* PickCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5CE4511B39756400CD009E /* PickCollectionViewController.m */; };
 		6B5CE4551B39758900CD009E /* PickLastTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5CE4541B39758900CD009E /* PickLastTableCell.m */; };
+		6B60989F1B395CAB00277D03 /* bground-568@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098891B395CAB00277D03 /* bground-568@2x.jpg */; };
+		6B6098A01B395CAB00277D03 /* bground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B60988A1B395CAB00277D03 /* bground.jpg */; };
+		6B6098A11B395CAB00277D03 /* bground@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B60988B1B395CAB00277D03 /* bground@2x.jpg */; };
+		6B6098A21B395CAB00277D03 /* bground@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B60988C1B395CAB00277D03 /* bground@3x.jpg */; };
+		6B6098A31B395CAB00277D03 /* chatBubbleRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B60988D1B395CAB00277D03 /* chatBubbleRed.png */; };
+		6B6098A41B395CAB00277D03 /* chatBubbleRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B60988E1B395CAB00277D03 /* chatBubbleRed@2x.png */; };
+		6B6098A51B395CAB00277D03 /* chatBubbleRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B60988F1B395CAB00277D03 /* chatBubbleRed@3x.png */; };
+		6B6098A61B395CAB00277D03 /* chatBubbleWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098901B395CAB00277D03 /* chatBubbleWhite.png */; };
+		6B6098A71B395CAB00277D03 /* chatBubbleWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098911B395CAB00277D03 /* chatBubbleWhite@2x.png */; };
+		6B6098A81B395CAB00277D03 /* chatBubbleWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098921B395CAB00277D03 /* chatBubbleWhite@3x.png */; };
+		6B6098A91B395CAB00277D03 /* chatDefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098931B395CAB00277D03 /* chatDefaultImage.png */; };
+		6B6098AA1B395CAB00277D03 /* chatDefaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098941B395CAB00277D03 /* chatDefaultImage@2x.png */; };
+		6B6098AB1B395CAB00277D03 /* chatDefaultImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098951B395CAB00277D03 /* chatDefaultImage@3x.png */; };
+		6B6098AC1B395CAB00277D03 /* chatNumberingCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098961B395CAB00277D03 /* chatNumberingCircle.png */; };
+		6B6098AD1B395CAB00277D03 /* chatNumberingCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098971B395CAB00277D03 /* chatNumberingCircle@2x.png */; };
+		6B6098AE1B395CAB00277D03 /* chatNumberingCircle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098981B395CAB00277D03 /* chatNumberingCircle@3x.png */; };
+		6B6098AF1B395CAB00277D03 /* chatScreenChatLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098991B395CAB00277D03 /* chatScreenChatLogo.png */; };
+		6B6098B01B395CAB00277D03 /* chatScreenChatLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B60989A1B395CAB00277D03 /* chatScreenChatLogo@2x.png */; };
+		6B6098B11B395CAB00277D03 /* chatScreenChatLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B60989B1B395CAB00277D03 /* chatScreenChatLogo@3x.png */; };
+		6B6098B21B395CAB00277D03 /* sendBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B60989C1B395CAB00277D03 /* sendBtn.png */; };
+		6B6098B31B395CAB00277D03 /* sendBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B60989D1B395CAB00277D03 /* sendBtn@2x.png */; };
+		6B6098B41B395CAB00277D03 /* sendBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B60989E1B395CAB00277D03 /* sendBtn@3x.png */; };
+		6B6098BF1B39647400277D03 /* chatAaramShopIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098BC1B39647400277D03 /* chatAaramShopIcon.png */; };
+		6B6098C01B39647400277D03 /* chatAaramShopIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098BD1B39647400277D03 /* chatAaramShopIcon@2x.png */; };
+		6B6098C11B39647400277D03 /* chatAaramShopIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098BE1B39647400277D03 /* chatAaramShopIcon@3x.png */; };
 		6B809DA41B31755D00E91673 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D841B31755D00E91673 /* MKAnnotationView+WebCache.m */; };
 		6B809DA51B31755D00E91673 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D861B31755D00E91673 /* NSData+ImageContentType.m */; };
 		6B809DA61B31755D00E91673 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D881B31755D00E91673 /* SDImageCache.m */; };
@@ -2134,6 +2161,10 @@
 		36D8C4FC1B3A9E8700C255EE /* PaymentModeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentModeTableCell.m; sourceTree = "<group>"; };
 		36D8C4FE1B3A9EAF00C255EE /* TotalAmtTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalAmtTableCell.h; sourceTree = "<group>"; };
 		36D8C4FF1B3A9EAF00C255EE /* TotalAmtTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalAmtTableCell.m; sourceTree = "<group>"; };
+		36D8C5021B3ADDB700C255EE /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
+		36D8C5031B3ADDB700C255EE /* CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBadge.m; sourceTree = "<group>"; };
+		36D8C5041B3ADDB700C255EE /* MESegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MESegmentedControl.h; sourceTree = "<group>"; };
+		36D8C5051B3ADDB700C255EE /* MESegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MESegmentedControl.m; sourceTree = "<group>"; };
 		36EE08DF1B1D7CC400906277 /* CurLocationTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurLocationTableCell.h; sourceTree = "<group>"; };
 		36EE08E01B1D7CC400906277 /* CurLocationTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurLocationTableCell.m; sourceTree = "<group>"; };
 		36EE08E51B1DA60200906277 /* UserContactTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserContactTableCell.h; sourceTree = "<group>"; };
@@ -2217,6 +2248,31 @@
 		6B5CE4511B39756400CD009E /* PickCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickCollectionViewController.m; sourceTree = "<group>"; };
 		6B5CE4531B39758900CD009E /* PickLastTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickLastTableCell.h; sourceTree = "<group>"; };
 		6B5CE4541B39758900CD009E /* PickLastTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickLastTableCell.m; sourceTree = "<group>"; };
+		6B6098891B395CAB00277D03 /* bground-568@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bground-568@2x.jpg"; sourceTree = "<group>"; };
+		6B60988A1B395CAB00277D03 /* bground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bground.jpg; sourceTree = "<group>"; };
+		6B60988B1B395CAB00277D03 /* bground@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bground@2x.jpg"; sourceTree = "<group>"; };
+		6B60988C1B395CAB00277D03 /* bground@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bground@3x.jpg"; sourceTree = "<group>"; };
+		6B60988D1B395CAB00277D03 /* chatBubbleRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatBubbleRed.png; sourceTree = "<group>"; };
+		6B60988E1B395CAB00277D03 /* chatBubbleRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatBubbleRed@2x.png"; sourceTree = "<group>"; };
+		6B60988F1B395CAB00277D03 /* chatBubbleRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatBubbleRed@3x.png"; sourceTree = "<group>"; };
+		6B6098901B395CAB00277D03 /* chatBubbleWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatBubbleWhite.png; sourceTree = "<group>"; };
+		6B6098911B395CAB00277D03 /* chatBubbleWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatBubbleWhite@2x.png"; sourceTree = "<group>"; };
+		6B6098921B395CAB00277D03 /* chatBubbleWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatBubbleWhite@3x.png"; sourceTree = "<group>"; };
+		6B6098931B395CAB00277D03 /* chatDefaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatDefaultImage.png; sourceTree = "<group>"; };
+		6B6098941B395CAB00277D03 /* chatDefaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatDefaultImage@2x.png"; sourceTree = "<group>"; };
+		6B6098951B395CAB00277D03 /* chatDefaultImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatDefaultImage@3x.png"; sourceTree = "<group>"; };
+		6B6098961B395CAB00277D03 /* chatNumberingCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatNumberingCircle.png; sourceTree = "<group>"; };
+		6B6098971B395CAB00277D03 /* chatNumberingCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatNumberingCircle@2x.png"; sourceTree = "<group>"; };
+		6B6098981B395CAB00277D03 /* chatNumberingCircle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatNumberingCircle@3x.png"; sourceTree = "<group>"; };
+		6B6098991B395CAB00277D03 /* chatScreenChatLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatScreenChatLogo.png; sourceTree = "<group>"; };
+		6B60989A1B395CAB00277D03 /* chatScreenChatLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatScreenChatLogo@2x.png"; sourceTree = "<group>"; };
+		6B60989B1B395CAB00277D03 /* chatScreenChatLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatScreenChatLogo@3x.png"; sourceTree = "<group>"; };
+		6B60989C1B395CAB00277D03 /* sendBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sendBtn.png; sourceTree = "<group>"; };
+		6B60989D1B395CAB00277D03 /* sendBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sendBtn@2x.png"; sourceTree = "<group>"; };
+		6B60989E1B395CAB00277D03 /* sendBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sendBtn@3x.png"; sourceTree = "<group>"; };
+		6B6098BC1B39647400277D03 /* chatAaramShopIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatAaramShopIcon.png; sourceTree = "<group>"; };
+		6B6098BD1B39647400277D03 /* chatAaramShopIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatAaramShopIcon@2x.png"; sourceTree = "<group>"; };
+		6B6098BE1B39647400277D03 /* chatAaramShopIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatAaramShopIcon@3x.png"; sourceTree = "<group>"; };
 		6B809D831B31755D00E91673 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		6B809D841B31755D00E91673 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		6B809D851B31755D00E91673 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -4513,6 +4569,17 @@
 			path = CMPaymentMode;
 			sourceTree = "<group>";
 		};
+		36D8C5011B3ADDB700C255EE /* NSSegmentBadgeControl */ = {
+			isa = PBXGroup;
+			children = (
+				36D8C5021B3ADDB700C255EE /* CustomBadge.h */,
+				36D8C5031B3ADDB700C255EE /* CustomBadge.m */,
+				36D8C5041B3ADDB700C255EE /* MESegmentedControl.h */,
+				36D8C5051B3ADDB700C255EE /* MESegmentedControl.m */,
+			);
+			path = NSSegmentBadgeControl;
+			sourceTree = "<group>";
+		};
 		6B0676E01B06024B0002259E /* BusinessModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -4619,6 +4686,7 @@
 		6B12DC861AF22C8100245209 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				36D8C5011B3ADDB700C255EE /* NSSegmentBadgeControl */,
 				6B8EB2CD1B26E71600402CFC /* Videos */,
 				6B8EB2D11B26E71600402CFC /* V8HorizontalPickerclasses */,
 				6B8EB2711B25AFD600402CFC /* SwipeViewController */,
@@ -4637,6 +4705,7 @@
 		6B12DC871AF22C8100245209 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6B6098881B395CAB00277D03 /* ChatImages */,
 				36D8C4BF1B3996A200C255EE /* OrderImages */,
 				368AFECA1B38271300417836 /* PaymentImages */,
 				6B87C75D1B34272E002BC68C /* chooseHomeStoreBannerImage.png */,
@@ -4932,6 +5001,38 @@
 				6B5CE4511B39756400CD009E /* PickCollectionViewController.m */,
 			);
 			path = PickCollectionViewController;
+			sourceTree = "<group>";
+		};
+		6B6098881B395CAB00277D03 /* ChatImages */ = {
+			isa = PBXGroup;
+			children = (
+				6B6098BC1B39647400277D03 /* chatAaramShopIcon.png */,
+				6B6098BD1B39647400277D03 /* chatAaramShopIcon@2x.png */,
+				6B6098BE1B39647400277D03 /* chatAaramShopIcon@3x.png */,
+				6B6098891B395CAB00277D03 /* bground-568@2x.jpg */,
+				6B60988A1B395CAB00277D03 /* bground.jpg */,
+				6B60988B1B395CAB00277D03 /* bground@2x.jpg */,
+				6B60988C1B395CAB00277D03 /* bground@3x.jpg */,
+				6B60988D1B395CAB00277D03 /* chatBubbleRed.png */,
+				6B60988E1B395CAB00277D03 /* chatBubbleRed@2x.png */,
+				6B60988F1B395CAB00277D03 /* chatBubbleRed@3x.png */,
+				6B6098901B395CAB00277D03 /* chatBubbleWhite.png */,
+				6B6098911B395CAB00277D03 /* chatBubbleWhite@2x.png */,
+				6B6098921B395CAB00277D03 /* chatBubbleWhite@3x.png */,
+				6B6098931B395CAB00277D03 /* chatDefaultImage.png */,
+				6B6098941B395CAB00277D03 /* chatDefaultImage@2x.png */,
+				6B6098951B395CAB00277D03 /* chatDefaultImage@3x.png */,
+				6B6098961B395CAB00277D03 /* chatNumberingCircle.png */,
+				6B6098971B395CAB00277D03 /* chatNumberingCircle@2x.png */,
+				6B6098981B395CAB00277D03 /* chatNumberingCircle@3x.png */,
+				6B6098991B395CAB00277D03 /* chatScreenChatLogo.png */,
+				6B60989A1B395CAB00277D03 /* chatScreenChatLogo@2x.png */,
+				6B60989B1B395CAB00277D03 /* chatScreenChatLogo@3x.png */,
+				6B60989C1B395CAB00277D03 /* sendBtn.png */,
+				6B60989D1B395CAB00277D03 /* sendBtn@2x.png */,
+				6B60989E1B395CAB00277D03 /* sendBtn@3x.png */,
+			);
+			path = ChatImages;
 			sourceTree = "<group>";
 		};
 		6B809D821B31755D00E91673 /* SDWebImage */ = {
@@ -5543,6 +5644,7 @@
 				6BFFF9481B0236B800BB2B62 /* tabBarChatIconActive.png in Resources */,
 				6BB50DE41B32ABE800990161 /* locationPopupTxtFieldHalf.png in Resources */,
 				274A5DAB1B05C88B009112B5 /* aqua.png in Resources */,
+				6B6098A31B395CAB00277D03 /* chatBubbleRed.png in Resources */,
 				274A5DC61B05C88B009112B5 /* chatRecordBtn.png in Resources */,
 				36D8C4CB1B3996DE00C255EE /* callIconGreenCircle@2x.png in Resources */,
 				27EC674C1B031FE0007D126E /* aaramShopAppLogo@2x.png in Resources */,
@@ -5552,6 +5654,7 @@
 				6BE9A94A1B29B31900B960C0 /* homeDeatilsGreyArrowBack@2x.png in Resources */,
 				276FFF1E1B0DADC200071B98 /* preferencesLocationIcon@2x.png in Resources */,
 				274A5A451B05C075009112B5 /* addToCardNoBox.png in Resources */,
+				6B6098AD1B395CAB00277D03 /* chatNumberingCircle@2x.png in Resources */,
 				6BA2F09E1B04B2F30074562F /* mapPinGreen.png in Resources */,
 				2786559E1B0467F400A262A3 /* menuEditIcon@2x.png in Resources */,
 				274A5DFB1B05C88B009112B5 /* ShowFullProfileImageViewController.xib in Resources */,
@@ -5579,6 +5682,7 @@
 				36820A101B1C46FA002AA93F /* suriname.png in Resources */,
 				274A5C791B05C4AA009112B5 /* poweredByFoursquare_gray.png in Resources */,
 				6BD2D32C1B28631A00EC6E54 /* homeDetailTabStarIcon@3x.png in Resources */,
+				6B6098AB1B395CAB00277D03 /* chatDefaultImage@3x.png in Resources */,
 				274A5DDE1B05C88B009112B5 /* ReceivedMessage.wav in Resources */,
 				274A5A4D1B05C075009112B5 /* homeOfferBox@3x.png in Resources */,
 				6BD2D30D1B284C8900EC6E54 /* homeDownArrow@2x.png in Resources */,
@@ -5586,6 +5690,7 @@
 				2791DE361B036E5C000121BC /* menuCartIcon@2x.png in Resources */,
 				6BD2D3221B284C8900EC6E54 /* homeStarIconActive@2x.png in Resources */,
 				3682093C1B1C46FA002AA93F /* central african republic.png in Resources */,
+				6B6098BF1B39647400277D03 /* chatAaramShopIcon.png in Resources */,
 				368209C91B1C46FA002AA93F /* netherlands.png in Resources */,
 				6B8EB2541B23087400402CFC /* shoppingListCloseCircle@3x.png in Resources */,
 				6BFFF9571B0236B800BB2B62 /* tabBarOffersIcon.png in Resources */,
@@ -5658,6 +5763,7 @@
 				6BFFF9531B0236B800BB2B62 /* tabBarMyListIcon@3x.png in Resources */,
 				368209B41B1C46FA002AA93F /* mari-EI.png in Resources */,
 				274929B71B03DC10008ACEFD /* indianFlag@3x.png in Resources */,
+				6B6098A61B395CAB00277D03 /* chatBubbleWhite.png in Resources */,
 				274A5A491B05C075009112B5 /* favourateIcon@2x.png in Resources */,
 				6BFFF9521B0236B800BB2B62 /* tabBarMyListIcon@2x.png in Resources */,
 				368AFEE01B383AEB00417836 /* shopingProductOne@3x.png in Resources */,
@@ -5702,6 +5808,7 @@
 				274A5DD71B05C88B009112B5 /* msgChatMapImg@2x.png in Resources */,
 				2791DE3E1B036E5C000121BC /* menuVouchersIcon.png in Resources */,
 				274A5DB51B05C88B009112B5 /* chatCloseCircular@2x.png in Resources */,
+				6B6098AA1B395CAB00277D03 /* chatDefaultImage@2x.png in Resources */,
 				368209ED1B1C46FA002AA93F /* Saint Kitts and Nevis.png in Resources */,
 				6B8EB2961B25C17B00402CFC /* seprator.png in Resources */,
 				274A5DCC1B05C88B009112B5 /* feedsViewerBar.png in Resources */,
@@ -5732,6 +5839,7 @@
 				36820A191B1C46FA002AA93F /* tanzania.png in Resources */,
 				6BEB72D11B2B070F006BFB55 /* searchBox.png in Resources */,
 				6B8EB2BB1B26B8BE00402CFC /* ratingStarFull.png in Resources */,
+				6B6098B21B395CAB00277D03 /* sendBtn.png in Resources */,
 				6B12DCAD1AF26B4100245209 /* existingUserBox@2x.png in Resources */,
 				3682094D1B1C46FA002AA93F /* Crna Gora.png in Resources */,
 				368209AE1B1C46FA002AA93F /* madagascar.png in Resources */,
@@ -5806,6 +5914,7 @@
 				3682093D1B1C46FA002AA93F /* chad.png in Resources */,
 				368209BB1B1C46FA002AA93F /* moldova.png in Resources */,
 				6BE4C9081B034CDE00EF1EDB /* locationIcon@2x.png in Resources */,
+				6B6098A21B395CAB00277D03 /* bground@3x.jpg in Resources */,
 				368209451B1C46FA002AA93F /* colombia.png in Resources */,
 				6B8EB25E1B230A7C00402CFC /* Roboto-Bold_0.ttf in Resources */,
 				3682098E1B1C46FA002AA93F /* japan.png in Resources */,
@@ -5855,6 +5964,7 @@
 				368209421B1C46FA002AA93F /* china.png in Resources */,
 				6B8EB2BE1B26B8BE00402CFC /* ratingStarHalf.png in Resources */,
 				368209BA1B1C46FA002AA93F /* Midway Island, USA.png in Resources */,
+				6B6098B01B395CAB00277D03 /* chatScreenChatLogo@2x.png in Resources */,
 				6B8EB2DD1B26F5DD00402CFC /* homeDeatilsGreyArrow.png in Resources */,
 				274A5A4A1B05C075009112B5 /* favourateIcon@3x.png in Resources */,
 				6BE4C8FB1B034BB600EF1EDB /* doneBtn.png in Resources */,
@@ -5943,6 +6053,7 @@
 				36D8C4CF1B3996DE00C255EE /* smsIconDarkGrey.png in Resources */,
 				6BD2D31E1B284C8900EC6E54 /* homeScreenHomeIconRed.png in Resources */,
 				6BD2D2E61B28408800EC6E54 /* homeRecomondedStoreChatIcon@2x.png in Resources */,
+				6B6098B31B395CAB00277D03 /* sendBtn@2x.png in Resources */,
 				2786559D1B0467F400A262A3 /* menuEditIcon.png in Resources */,
 				3682096E1B1C46FA002AA93F /* georgia.png in Resources */,
 				6B12DC8C1AF22C8100245209 /* welcomeScreenBackground.png in Resources */,
@@ -5966,6 +6077,7 @@
 				2791DE301B036E5C000121BC /* menuAccountSettingsIcon@2x.png in Resources */,
 				6B5CE44B1B395FD800CD009E /* upArrow.png in Resources */,
 				6BFFF95C1B0236B800BB2B62 /* tabBarOffersIconActive@3x.png in Resources */,
+				6B6098B41B395CAB00277D03 /* sendBtn@3x.png in Resources */,
 				368209261B1C46FA002AA93F /* bhutan.png in Resources */,
 				368209AA1B1C46FA002AA93F /* los altos.png in Resources */,
 				274F88B51B0D0E7400F85743 /* homePageBannerImageTwo@3x.png in Resources */,
@@ -5982,6 +6094,7 @@
 				3682096A1B1C46FA002AA93F /* french polynesia.png in Resources */,
 				6BF1E3331B3005BF0078DD2F /* homeDetailAmountSecondBox@3x.png in Resources */,
 				6B8EB2BC1B26B8BE00402CFC /* ratingStarFull@2x.png in Resources */,
+				6B6098AC1B395CAB00277D03 /* chatNumberingCircle.png in Resources */,
 				6B87C7671B342B29002BC68C /* homeStoreIdBox@2x.png in Resources */,
 				368209481B1C46FA002AA93F /* Congo.png in Resources */,
 				274A5DD51B05C88B009112B5 /* micRed@2x.png in Resources */,
@@ -6017,6 +6130,7 @@
 				6BFFF95E1B0236B800BB2B62 /* tabBarOrdersIcon@2x.png in Resources */,
 				36820A361B1C46FA002AA93F /* Venezuela.png in Resources */,
 				274F88BB1B0D0E7400F85743 /* imageThree@3x.png in Resources */,
+				6B6098A91B395CAB00277D03 /* chatDefaultImage.png in Resources */,
 				36D8C4EC1B3A85CB00C255EE /* arrowBox@3x.png in Resources */,
 				6BFFF9611B0236B800BB2B62 /* tabBarOrdersIconActive@2x.png in Resources */,
 				2791DE311B036E5C000121BC /* menuAccountSettingsIcon@3x.png in Resources */,
@@ -6067,6 +6181,7 @@
 				368209171B1C46FA002AA93F /* Australia.png in Resources */,
 				368209431B1C46FA002AA93F /* chuvashia.png in Resources */,
 				36820A291B1C46FA002AA93F /* tuva.png in Resources */,
+				6B6098C01B39647400277D03 /* chatAaramShopIcon@2x.png in Resources */,
 				6B12DCD91AF2A09700245209 /* singleBox.png in Resources */,
 				274A5DBB1B05C88B009112B5 /* chatLoadMessages@2x.png in Resources */,
 				6BB50DC81B32AAB300990161 /* locationPopupOp1@3x.png in Resources */,
@@ -6112,6 +6227,7 @@
 				368209C11B1C46FA002AA93F /* morocco.png in Resources */,
 				6BD2D30F1B284C8900EC6E54 /* homeHelathDrink.png in Resources */,
 				368209411B1C46FA002AA93F /* chile.png in Resources */,
+				6B6098A11B395CAB00277D03 /* bground@2x.jpg in Resources */,
 				368209BF1B1C46FA002AA93F /* montserrat.png in Resources */,
 				368209EE1B1C46FA002AA93F /* Saint Lucia.png in Resources */,
 				6BE4C90F1B034CDE00EF1EDB /* pencilIcon@3x.png in Resources */,
@@ -6126,6 +6242,7 @@
 				6BD2D32A1B28631A00EC6E54 /* homeDetailTabStarIcon.png in Resources */,
 				368209B61B1C46FA002AA93F /* martinique.png in Resources */,
 				368209731B1C46FA002AA93F /* greece.png in Resources */,
+				6B6098C11B39647400277D03 /* chatAaramShopIcon@3x.png in Resources */,
 				274A5DD61B05C88B009112B5 /* msgChatMapImg.png in Resources */,
 				3682098F1B1C46FA002AA93F /* jersey.png in Resources */,
 				368209311B1C46FA002AA93F /* bulgaria.png in Resources */,
@@ -6137,6 +6254,7 @@
 				368209991B1C46FA002AA93F /* kiribati.png in Resources */,
 				3682093B1B1C46FA002AA93F /* Cayman Islands.png in Resources */,
 				6B8EB2921B25BED000402CFC /* homeStoreQuestionMarkIcon@3x.png in Resources */,
+				6B60989F1B395CAB00277D03 /* bground-568@2x.jpg in Resources */,
 				276FFF201B0DADC200071B98 /* preferencesOffersIcon.png in Resources */,
 				274A5DEB1B05C88B009112B5 /* MapViewController.xib in Resources */,
 				36820A131B1C46FA002AA93F /* sweden.png in Resources */,
@@ -6144,9 +6262,11 @@
 				274A5E001B05C88B009112B5 /* SMChatViewController.xib in Resources */,
 				6B12DCF41AF2A53200245209 /* defaultProfilePic@2x.png in Resources */,
 				274A5DCF1B05C88B009112B5 /* iconAttach@2x.png in Resources */,
+				6B6098A01B395CAB00277D03 /* bground.jpg in Resources */,
 				27EC67511B0326A5007D126E /* bg1.jpg in Resources */,
 				3682094B1B1C46FA002AA93F /* côte d'Ivoire.png in Resources */,
 				368209551B1C46FA002AA93F /* djibouti.png in Resources */,
+				6B6098A51B395CAB00277D03 /* chatBubbleRed@3x.png in Resources */,
 				2791DE3D1B036E5C000121BC /* menuPreferencesIcon@3x.png in Resources */,
 				2791DE3B1B036E5C000121BC /* menuPreferencesIcon.png in Resources */,
 				6B8EB2521B23087400402CFC /* shoppingListCloseCircle.png in Resources */,
@@ -6186,9 +6306,11 @@
 				2791DE3C1B036E5C000121BC /* menuPreferencesIcon@2x.png in Resources */,
 				36820A061B1C46FA002AA93F /* somalia.png in Resources */,
 				6B8EB2B51B26B8BE00402CFC /* homeStoreDetailsGroceryCircle.png in Resources */,
+				6B6098B11B395CAB00277D03 /* chatScreenChatLogo@3x.png in Resources */,
 				368209A31B1C46FA002AA93F /* latvia.png in Resources */,
 				3682095B1B1C46FA002AA93F /* el-salvador.png in Resources */,
 				2791DE341B036E5C000121BC /* menuAwardsPointsIcon@3x.png in Resources */,
+				6B6098A41B395CAB00277D03 /* chatBubbleRed@2x.png in Resources */,
 				6B0676EC1B0630580002259E /* locationPopupCancelBox.png in Resources */,
 				274A5A461B05C075009112B5 /* addToCardNoBox@2x.png in Resources */,
 				6B8EB2551B23087400402CFC /* shoppingListCoverImage.png in Resources */,
@@ -6214,6 +6336,7 @@
 				274A5DB61B05C88B009112B5 /* chatDateBackground.png in Resources */,
 				274F88B71B0D0E7400F85743 /* imageOne@2x.png in Resources */,
 				274F88AD1B0D0E7400F85743 /* homePageBannerImageFour.png in Resources */,
+				6B6098AF1B395CAB00277D03 /* chatScreenChatLogo.png in Resources */,
 				274F88AE1B0D0E7400F85743 /* homePageBannerImageFour@2x.png in Resources */,
 				274A5C761B05C4AA009112B5 /* FSWebLogin.xib in Resources */,
 				368209371B1C46FA002AA93F /* cameroon.png in Resources */,
@@ -6240,6 +6363,7 @@
 				6BFFF9621B0236B800BB2B62 /* tabBarOrdersIconActive@3x.png in Resources */,
 				6BD2D30C1B284C8900EC6E54 /* homeDownArrow.png in Resources */,
 				6BFFF94F1B0236B800BB2B62 /* tabBarHomeIconActive@2x.png in Resources */,
+				6B6098AE1B395CAB00277D03 /* chatNumberingCircle@3x.png in Resources */,
 				368209711B1C46FA002AA93F /* gibraltar.png in Resources */,
 				6BD2D2E51B28408800EC6E54 /* homeRecomondedStoreChatIcon.png in Resources */,
 				368209F11B1C46FA002AA93F /* Saint Vincent and the Grenadines.png in Resources */,
@@ -6255,9 +6379,11 @@
 				3682097F1B1C46FA002AA93F /* honduras.png in Resources */,
 				6BB50DCB1B32AAB300990161 /* locationPopupOp2@3x.png in Resources */,
 				6B8EB2CA1B26BDCE00402CFC /* homeDetailsDefaultImgae.png in Resources */,
+				6B6098A81B395CAB00277D03 /* chatBubbleWhite@3x.png in Resources */,
 				368209CD1B1C46FA002AA93F /* niger.png in Resources */,
 				368209281B1C46FA002AA93F /* bonaire.png in Resources */,
 				368209661B1C46FA002AA93F /* fiji.png in Resources */,
+				6B6098A71B395CAB00277D03 /* chatBubbleWhite@2x.png in Resources */,
 				6B8EB2511B23087400402CFC /* shoppingListAddCircle@3x.png in Resources */,
 				274F88B91B0D0E7400F85743 /* imageThree.png in Resources */,
 				36820A2E1B1C46FA002AA93F /* ukraine.png in Resources */,
@@ -6412,6 +6538,7 @@
 				6BA0DCEF1B3818F900729443 /* SubCategoryModel.m in Sources */,
 				274A5C631B05C4AA009112B5 /* UIImage+Decompress.m in Sources */,
 				274A5C9A1B05C4AA009112B5 /* XMPPStream.m in Sources */,
+				36D8C5071B3ADDB700C255EE /* MESegmentedControl.m in Sources */,
 				274A5C681B05C4AA009112B5 /* UITableViewController+SH.m in Sources */,
 				274A5CB81B05C4AA009112B5 /* XMPPRoomMemoryStorage.m in Sources */,
 				274A5C931B05C4AA009112B5 /* XMPPElement.m in Sources */,
@@ -6549,6 +6676,7 @@
 				274A5CF91B05C4AA009112B5 /* XMPPSRVResolver.m in Sources */,
 				6B12DCE31AF2A47D00245209 /* MobileVerificationViewController.m in Sources */,
 				274A5C911B05C4AA009112B5 /* NSXMLElement+XMPP.m in Sources */,
+				36D8C5061B3ADDB700C255EE /* CustomBadge.m in Sources */,
 				274A5C571B05C4AA009112B5 /* UIImageView+AFNetworking.m in Sources */,
 				274A5CAE1B05C4AA009112B5 /* XMPPLastActivity.m in Sources */,
 				274A5C551B05C4AA009112B5 /* UIAlertView+AFNetworking.m in Sources */,
@@ -6727,8 +6855,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -6753,7 +6881,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a14c3540-2b04-4c91-8d71-5225ad7edbed";
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -6763,8 +6891,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -6789,7 +6917,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a14c3540-2b04-4c91-8d71-5225ad7edbed";
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;

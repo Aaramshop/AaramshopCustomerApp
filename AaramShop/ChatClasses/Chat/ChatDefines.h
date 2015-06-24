@@ -28,10 +28,12 @@ typedef enum {
 #define kXMPPmyJID1            @"kXMPPmyJID"
 #define kXMPPmyPassword1  @"kXMPPmyPassword"
 #define STRChatServerURL    @"chataaram.approutes.com" // live
-#define kchatUserName           @"chatUsername"
+//#define STRChatServerURL    @"devchatmcare.approutes.com" //Mcare
+
+#define kchatUserName           @"chat_username"
 
 
-#define kUMMAPPFORWARD @"W1231@UMMAPP%#@#UMMAPP"
+#define kMESSAGEFORWARD @"W1231@MESSAGE%#@#MESSAGE"
 #define KMediaOrientation @"MediaOrientation"
 #define KThumbBase64String @"ThumbBase64String"
 #define KImageSizePortraitHeight 160.0
@@ -49,7 +51,6 @@ if(f){width = KImageSizeLandscapeHeight;}else{width = KImageSizeWidth;}
 #define MESSAGE_IN_TEXTFIELD @"TextInTextField"
 #define MESSAGE_COUNTER @"MessageCounter"
 #define kMessageChatWithUser @"messageChatWithUser"
-#define kUMMAPPFORWARD @"W1231@UMMAPP%#@#UMMAPP"
 //=================== FourSquare =================
 #define kFourSquareClientId @"5P1OVCFK0CCVCQ5GBBCWRFGUVNX5R4WGKHL2DGJGZ32FDFKT"
 #define kFourSquareSecretId @"UPZJO0A0XL44IHCD1KQBMAYGCZ45Z03BORJZZJXELPWHPSAR"

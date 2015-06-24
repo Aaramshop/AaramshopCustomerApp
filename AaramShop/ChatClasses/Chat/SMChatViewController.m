@@ -85,7 +85,7 @@
 #define VericalPaddingChatV 3.0
 #define LeftPaddingForChatV 10.0
 #define RightPaddingForChatV 10.0
-#define BubblePadding 6
+#define BubblePadding 8
 #define kFingerGrabHandleHeight     (20.0f)
 
 #define kMaxMessageTextLength  2000
@@ -377,13 +377,10 @@
     [self setLastDeliveredDate:nil];
     NSLog(@"%@",self.imageString);
     
-//    NSDictionary *dict = [AppManager createDifferentUrlFromUrl:self.imageString];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:self.imageString] placeholderImage:[UIImage imageNamed:@"homeScreenAaramShopLogo"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        //
+    }] ;
     
-    [self.imgView setImageWithURL:[NSURL URLWithString:self.imageString]
-                 placeholderImage:[UIImage imageNamed:@"chatDefault"]
-                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                            
-                        }];
     self.imgView.layer.cornerRadius = self.imgView.bounds.size.width/2;
     self.imgView.backgroundColor = [UIColor clearColor];
     self.imgView.clipsToBounds = YES;
@@ -391,9 +388,9 @@
     
     UIPasteboard *pb = [UIPasteboard generalPasteboard];
     NSMutableArray *aPasteArr =  [NSMutableArray arrayWithArray: [pb strings]];
-    if ([aPasteArr containsObject:kUMMAPPFORWARD])
+    if ([aPasteArr containsObject:kMESSAGEFORWARD])
     {
-        [aPasteArr removeObject:kUMMAPPFORWARD];
+        [aPasteArr removeObject:kMESSAGEFORWARD];
         if (aPasteArr && aPasteArr.count > 1)
         {
             for (NSString *aMsg in aPasteArr)
@@ -426,14 +423,6 @@
         self.inputToolbar.btnRecord.enabled = NO;
         
         gCXMPPController._messageDelegate = self;
-    }
-    if([UIScreen mainScreen].bounds.size.height>480)
-    {
-        [tView setFrame:CGRectMake(0,64, 320, 464)];
-    }
-    else
-    {
-        [tView setFrame:CGRectMake(0,64, 320, 376)];
     }
 
 }
@@ -2125,7 +2114,7 @@
 
 - (IBAction) closeChat
 {
-    [self.navigationController popToRootViewControllerAnimated: YES];
+        [self.navigationController popToRootViewControllerAnimated: YES];
 
     //[NSObject cancelPreviousPerformRequestsWithTarget:self];
 //        NSArray *arr = [self.navigationController viewControllers];
@@ -2222,8 +2211,19 @@
         [body setStringValue:messageStr];
         NSXMLElement *request = [NSXMLElement elementWithName:@"request" xmlns:@"urn:xmpp:receipts"];
         [message addChild:body];
+        NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_name]];
+        [message addChild:fullName];
         
+        NSXMLElement *chatFlow = [NSXMLElement elementWithName:@"chatFlow" stringValue:@"anonymous"];
+        [message addChild:chatFlow];
         
+        NSXMLElement *userId = [NSXMLElement elementWithName:@"userId"];
+        [userId setStringValue:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kUserId]]];
+        [message addChild:userId];
+        NSXMLElement *imageURL = [NSXMLElement elementWithName:@"imgURL"];
+        [imageURL setStringValue:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_100],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]]];
+        [message addChild:imageURL];
+
         //9-5-14
         NSXMLElement *sendTimestampDateTag = [NSXMLElement elementWithName:@"sendTimestampDate"];
         [sendTimestampDateTag setStringValue: [NSString stringWithFormat:@"%f",[sendTimestampDate timeIntervalSince1970]]];
@@ -3321,6 +3321,20 @@ didFinishSavingWithError:(NSError *)error
     [message addAttributeWithName:@"attachment" stringValue:[NSString stringWithFormat:@"%@$$$%@",[dict objectForKey:@"link"],[dict objectForKey:@"title"]]];
     
     [body addChild:media];
+
+    NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_name]];
+    [message addChild:fullName];
+    
+    NSXMLElement *chatFlow = [NSXMLElement elementWithName:@"chatFlow" stringValue:@"anonymous"];
+    [message addChild:chatFlow];
+    
+    NSXMLElement *userId = [NSXMLElement elementWithName:@"userId"];
+    [userId setStringValue:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kUserId]]];
+    [message addChild:userId];
+    NSXMLElement *imageURL = [NSXMLElement elementWithName:@"imgURL"];
+    [imageURL setStringValue:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_100],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]]];
+    [message addChild:imageURL];
+
     
     [message addChild:body];
     [message addChild:request];
@@ -3432,7 +3446,7 @@ didFinishSavingWithError:(NSError *)error
     
     UILabel *lblTimeStamp = [[UILabel alloc] initWithFrame: CGRectZero];
     lblTimeStamp.backgroundColor = [UIColor clearColor];
-    lblTimeStamp.font = [UIFont systemFontOfSize:9.0];
+    lblTimeStamp.font = [UIFont fontWithName:@"Roboto-Regular" size:9.0];
     if([speaker isEqualToString:@"self"])
     {
         lblTimeStamp.textColor = [UIColor whiteColor];
@@ -3501,14 +3515,14 @@ didFinishSavingWithError:(NSError *)error
             
             pendingRect.origin.y = bubbleView.frame.size.height - pendingRect.size.height - 5 + siftedPad;
             
-            pendingRect.origin.x = bubbleView.frame.size.width - pendingRect.size.width - 20;
+            pendingRect.origin.x = bubbleView.frame.size.width - pendingRect.size.width - 12;
             
             aPendingImgView.frame = pendingRect;
             
             
             
             timeStampRect.origin.y = aRectBubble.size.height - 18 + siftedPad;
-            timeStampRect.origin.x = aRectBubble.size.width - timeStampRect.size.width - pendingRect.size.width - 27;
+            timeStampRect.origin.x = aRectBubble.size.width - timeStampRect.size.width - pendingRect.size.width - 19;
             lblTimeStamp.frame = timeStampRect;
             
             
@@ -3621,7 +3635,7 @@ didFinishSavingWithError:(NSError *)error
             
             timeStampRect.origin.y = aRectBubble.size.height - timeStampRect.size.height + 3 ;
 
-            timeStampRect.origin.x = aRectBubble.size.width - timeStampRect.size.width - 15;
+            timeStampRect.origin.x = aRectBubble.size.width - timeStampRect.size.width - 7;
             
             lblTimeStamp.frame = timeStampRect;
             
@@ -3792,13 +3806,12 @@ didFinishSavingWithError:(NSError *)error
     }
     else
     {
-        UIFont *font =  [UIFont systemFontOfSize:FontSise];
+        UIFont *font =  [UIFont fontWithName:@"Roboto-Regular" size:9];
         
         CGRect rectHeaderlbl;
-        rectHeaderlbl.size.width = 120.0;
-        rectHeaderlbl.size.height = 26.0;
-        rectHeaderlbl.origin.x = (320 - rectHeaderlbl.size.width)/2;
-        
+        rectHeaderlbl.size.width = [[UIScreen mainScreen] bounds].size.width;
+        rectHeaderlbl.size.height = 18.0;
+        rectHeaderlbl.origin.x = 0;
         
         rectHeaderlbl.origin.y = 0;
         
@@ -4312,7 +4325,18 @@ didFinishSavingWithError:(NSError *)error
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     NSLog(@"viewdidappear");
+    if([UIScreen mainScreen].bounds.size.height>480)
+    {
+        [tView setFrame:CGRectMake(0,64, 320, 464)];
+    }
+    else
+    {
+        [tView setFrame:CGRectMake(0,64, 320, 376)];
+    }
+
+    
     [self.loadingMsgIndicator setHidden:YES];
     if (self.isMediaOpened == YES)
     {
@@ -4703,6 +4727,19 @@ didFinishSavingWithError:(NSError *)error
     //27-3-14
     [body addChild:mediaOrientation];
     //end
+    NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_name]];
+    [message addChild:fullName];
+    
+    NSXMLElement *chatFlow = [NSXMLElement elementWithName:@"chatFlow" stringValue:@"anonymous"];
+    [message addChild:chatFlow];
+    
+    NSXMLElement *userId = [NSXMLElement elementWithName:@"userId"];
+    [userId setStringValue:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kUserId]]];
+    [message addChild:userId];
+    NSXMLElement *imageURL = [NSXMLElement elementWithName:@"imgURL"];
+    [imageURL setStringValue:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_100],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]]];
+    [message addChild:imageURL];
+
     [message addChild:body];
     [message addChild:request];
     [self.xmppStream sendElement:message];
@@ -5391,7 +5428,7 @@ didFinishSavingWithError:(NSError *)error
     
     getImageHeightByOrientationFlag(inMediaOrient,imageHeight);
     
-    UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"chatBubbleBlue":@"chatBubbleGrey" ofType:@"png"]];
+    UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"chatBubbleRed":@"chatBubbleWhite" ofType:@"png"]];
     UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:26 topCapHeight:18]];
     
     bubbleImageView.tag = 100;
@@ -5477,7 +5514,7 @@ didFinishSavingWithError:(NSError *)error
                 returnView.frame = animatedVRect;
                 cellView.frame = CGRectMake(0.0f, 0.0f,320,bubbleImageView.frame.size.height+10 );
                 UIImageView *imgView = [returnView.subviews objectAtIndex:2];
-                [imgView setImageWithURL:[NSURL URLWithString:self.imageString] placeholderImage:[UIImage imageNamed:@"chatDefault"]];
+                [imgView sd_setImageWithURL:[NSURL URLWithString:self.imageString] placeholderImage:[UIImage imageNamed:@"chatDefault"]];
                 
                 
             }
@@ -5499,8 +5536,8 @@ didFinishSavingWithError:(NSError *)error
         else
         {
             
-            returnView.frame= CGRectMake(13.0f, VericalPaddingChatV, returnView.frame.size.width, returnView.frame.size.height);
-            bubbleImageView.frame = CGRectMake(returnView.frame.origin.x - 7 - BubblePadding/2,
+            returnView.frame= CGRectMake(10.0f, VericalPaddingChatV, returnView.frame.size.width, returnView.frame.size.height);
+            bubbleImageView.frame = CGRectMake(returnView.frame.origin.x - 4 - BubblePadding/2,
                                                returnView.frame.origin.y - BubblePadding/2,
                                                returnView.frame.size.width+(BubblePadding*2),
                                                returnView.frame.size.height+(BubblePadding*1.2));
@@ -6196,7 +6233,22 @@ didFinishSavingWithError:(NSError *)error
         
         [body addChild:media];
          [body addChild:mediaOrientation];
+
+        NSXMLElement *fullName = [NSXMLElement elementWithName:@"fullName" stringValue:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_name]];
+        [message addChild:fullName];
+        
+        NSXMLElement *chatFlow = [NSXMLElement elementWithName:@"chatFlow" stringValue:@"anonymous"];
+        [message addChild:chatFlow];
+        
+        NSXMLElement *userId = [NSXMLElement elementWithName:@"userId"];
+        [userId setStringValue:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kUserId]]];
+        [message addChild:userId];
+        NSXMLElement *imageURL = [NSXMLElement elementWithName:@"imgURL"];
+        [imageURL setStringValue:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_100],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]]];
+        [message addChild:imageURL];
+
          [message addChild:body];
+        
         [message addChild:request];
         
         [self.xmppStream sendElement:message];
@@ -7622,7 +7674,7 @@ didFinishSavingWithError:(NSError *)error
         
         UIPasteboard *pb = [UIPasteboard generalPasteboard];
         
-        [pb setStrings:[NSArray arrayWithObjects:msg,kUMMAPPFORWARD, nil] ];
+        [pb setStrings:[NSArray arrayWithObjects:msg,kMESSAGEFORWARD, nil] ];
         
         //        [self.navigationController popViewControllerAnimated: YES];
 //        NSArray *arr = [self.navigationController viewControllers];

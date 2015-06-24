@@ -1,13 +1,18 @@
 //
 //  ChatViewController.h
-//  AaramShop
+//  AaramShop_Merchant
 //
-//  Copyright (c) 2015 Approutes. All rights reserved.
+//  Created by Arbab Khan on 25/05/15.
+//  Copyright (c) 2015 Arbab. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ChatViewController : UIViewController<CDRTranslucentSideBarDelegate>
+#import "MESegmentedControl.h"
+@interface ChatViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,CDRTranslucentSideBarDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *tViewChat;
+@property (weak, nonatomic) IBOutlet MESegmentedControl *segChatSelection;
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
-- (IBAction)btnChatClicked:(id)sender;
+@property (nonatomic, strong) NSMutableArray *arrCustomers;
+- (IBAction)sideBarLeft:(id)sender;
+- (IBAction)selectionChange:(id)sender;
 @end
