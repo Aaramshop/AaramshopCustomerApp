@@ -7,8 +7,10 @@
 //
 
 #import "HomeStoreDetailViewController.h"
-
 @interface HomeStoreDetailViewController ()
+{
+    AppDelegate *appDeleg;
+}
 
 @end
 
@@ -18,6 +20,7 @@
     [super viewDidLoad];
     
     [self setUpNavigationView];
+    appDeleg = APP_DELEGATE;
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate = self;
     [self bindData];
@@ -142,8 +145,10 @@
     if (aaramShop_ConnectionManager.currentTask == TASK_TO_MAKE_HOME_STORE) {
         
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
+            
             UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-             [self.navigationController pushViewController:tabBarController animated:YES];
+            tabBarController.selectedIndex = 0;
+            appDeleg.window.rootViewController = tabBarController;
         }
         else
         {

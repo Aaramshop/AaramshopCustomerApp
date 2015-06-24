@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "TotalPriceTableCell.h"
 #import "PickLastTableCell.h"
+typedef enum
+{
+    enPickerSlots,
+    enPickerAddress
+}enPickerType;
+
 
 @interface PaymentViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UICollectionViewDelegate,UICollectionViewDataSource,UIPickerViewDataSource,UIPickerViewDelegate>
 {
@@ -24,6 +30,8 @@
 @property(nonatomic,strong) NSString *strStore_Id;
 @property(nonatomic,strong) NSString *strTotalPrice;
 @property(nonatomic,strong) NSMutableArray *arrSelectedProducts;
+@property(nonatomic,assign) enPickerType ePickerType;
+
 - (IBAction)btnPayClick:(UIButton *)sender;
 
 @end

@@ -130,10 +130,6 @@
         
         [arrSuggestedStores addObject:objStoreModel];
     }
-    if (arrSuggestedStores.count>0) {
-        tblSuggestedStores.hidden = NO;
-        [tblSuggestedStores reloadData];
-    }
 }
 -(void)parseHomeStoreResponseDetailData:(NSMutableDictionary *)responseObject
 {
@@ -259,10 +255,16 @@
     [aaramShop_ConnectionManager getDataForFunction:kGetHomeStoreDetailsURL withInput:aDict withCurrentTask:TASK_TO_GET_HOME_STORE_DETAILS andDelegate:self ];
 }
 
-#pragma mark - 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
+#pragma mark -
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
+{
+    if (arrSuggestedStores.count>0 || textField == txtStoreId) {
+        tblSuggestedStores.hidden = NO;
+        [tblSuggestedStores reloadData];
+        return NO;
+    }
+    return NO;
 }
 
 #pragma mark - UIButton Actions
@@ -273,7 +275,9 @@
     else
     {
         UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-        [self.navigationController pushViewController:tabBarController animated:YES];
+        tabBarController.selectedIndex = 0;
+        appDeleg.window.rootViewController = tabBarController;
+
     }
 }
 

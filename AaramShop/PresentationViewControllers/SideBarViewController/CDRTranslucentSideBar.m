@@ -378,85 +378,85 @@
     storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     [self dismiss];
     
-    if (self.tag == 0) {
-        
-        
-        
-        switch (indexPath.row) {
-            case eAccountSettings:
-            {
-                
-                AccountSettingsViewC *accSettingsVCon = [storyboard instantiateViewControllerWithIdentifier:@"AccountSettViewScreen"];
-                
-                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
-                    [self.delegate sideBarDelegatePushMethod:accSettingsVCon];
-                }
-                
-            }
-                break;
-            case ePreferences:
-            {
-                PreferencesViewController *preferncesVCon = [storyboard instantiateViewControllerWithIdentifier:@"PreferencesViewScene"];
-                
-                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
-                    [self.delegate sideBarDelegatePushMethod:preferncesVCon];
-                }
-            }
-                break;
-            case eCart:
-            {
-                CartViewController *cartVCon = [storyboard instantiateViewControllerWithIdentifier:@"CartViewScene"];
-                
-                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
-                    [self.delegate sideBarDelegatePushMethod:cartVCon];
-                }
-                
-            }
-                break;
-                
-            default:
-                break;
-        }
-    }
-    else
-    {
-        switch (indexPath.row) {
-            case eBeverages:
-            {
-                
-            }
-                break;
-            case eBakery:
-            {
-                
-            }
-                break;
-            case eSoap:
-            {
-                
-            }
-                break;
-            case eTea:
-            {
-                
-            }
-                break;
-            case eSnacks:
-            {
-                
-            }
-                break;
-                
-            default:
-                break;
-        }
-    }
+//    if (self.tag == 0) {
+//        
+//        
+//        
+////        switch (indexPath.row) {
+////            case eAccountSettings:
+////            {
+////                
+////                AccountSettingsViewC *accSettingsVCon = [storyboard instantiateViewControllerWithIdentifier:@"AccountSettViewScreen"];
+////                
+////                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
+////                    [self.delegate sideBarDelegatePushMethod:accSettingsVCon];
+////                }
+////                
+////            }
+////                break;
+////            case ePreferences:
+////            {
+////                PreferencesViewController *preferncesVCon = [storyboard instantiateViewControllerWithIdentifier:@"PreferencesViewScene"];
+////                
+////                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
+////                    [self.delegate sideBarDelegatePushMethod:preferncesVCon];
+////                }
+////            }
+////                break;
+////            case eCart:
+////            {
+////                CartViewController *cartVCon = [storyboard instantiateViewControllerWithIdentifier:@"CartViewScene"];
+////                
+////                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
+////                    [self.delegate sideBarDelegatePushMethod:cartVCon];
+////                }
+////                
+////            }
+////                break;
+////                
+////            default:
+////                break;
+////        }
+//    }
+//    else
+//    {
+//        switch (indexPath.row) {
+//            case eBeverages:
+//            {
+//                
+//            }
+//                break;
+//            case eBakery:
+//            {
+//                
+//            }
+//                break;
+//            case eSoap:
+//            {
+//                
+//            }
+//                break;
+//            case eTea:
+//            {
+//                
+//            }
+//                break;
+//            case eSnacks:
+//            {
+//                
+//            }
+//                break;
+//                
+//            default:
+//                break;
+//        }
+//    }
     
 }
 -(void)EditAddress
 {
-    LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
-    [self presentViewController:locationScreen animated:YES completion:nil];
+  /*  LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+    [self presentViewController:locationScreen animated:YES completion:nil];*/
 }
 -(void)btnAppliedClicked
 {

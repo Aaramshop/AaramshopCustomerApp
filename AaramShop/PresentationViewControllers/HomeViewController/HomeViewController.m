@@ -98,25 +98,64 @@
 -(void)setViewForRecomendedCells
 {
     StoreModel *objStoreModel = nil;
+    NSInteger rowCount = 0;
     
-    objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    
-    CGSize size= [Utils getLabelSizeByText:objStoreModel.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
-    
-    if (size.height < 20) {
-        size.height = 83;
+    if (self.mainCategoryIndex != 0 && arrRecommendedStores.count>0) {
+        objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
+        
+        NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
+        rowCount = arrTemp.count;
     }
     else
-        size.height+= 63;
+    {
+        rowCount = arrRecommendedStoresMyStores.count;
+    }
+
+    CGSize size = CGSizeZero;
+    if (rowCount>0) {
+        if(self.mainCategoryIndex != 0 && arrRecommendedStores.count>0)
+        {
+            objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
+            
+            NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
+            objStoreModel = [arrTemp objectAtIndex:0];
+        }
+        else
+        {
+            objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:0];
+            
+        }
+        
+        size= [Utils getLabelSizeByText:objStoreModel.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
+        
+        if (size.height < 20) {
+            size.height = 83;
+        }
+        else
+            size.height+= 63;
+        
+        size.height+=20;
+    }
 
     [tblVwCategory scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 
-    tblVwCategory.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 254+size.height);
-    viewTable.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 254+size.height);
-    btnArrow.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-40)/2, viewTable.frame.size.height-15, 40, 25);
-    imgVBg.frame = CGRectMake(0,viewTable.frame.size.height-78, [UIScreen mainScreen].bounds.size.width, 85);
+    tblVwCategory.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234+size.height);
+    viewTable.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234+size.height);
+    if (rowCount>0) {
+        btnArrow.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-40)/2, viewTable.frame.size.height-15, 40, 25);
+        imgVBg.frame = CGRectMake(0,viewTable.frame.size.height-78, [UIScreen mainScreen].bounds.size.width, 85);
+        btnArrow.hidden = NO;
+        imgVBg.hidden = NO;
+    }
+    else
+    {
+        btnArrow.hidden = YES;
+        imgVBg.hidden = YES;
+    }
     
-    tblStores.frame = CGRectMake(0, 254+size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(254+size.height+49));
+    tblStores.frame = CGRectMake(0, 234+size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(254+size.height+49));
 }
 -(void)btnArrowClick
 {
@@ -382,7 +421,7 @@
     mainScrollView.hidden = NO;
     
     [tblVwCategory reloadData];
-    if (arrCategory.count>0 && isOffEffect) {
+    if (arrCategory.count>0 && isOffEffect && arrRecommendedStoresMyStores.count>0 ) {
         [self setViewForRecomendedCells];
     }
     [tblStores reloadData];
@@ -478,7 +517,7 @@
         }
     
     [tblVwCategory reloadData];
-    if (arrCategory.count>0 && isOffEffect) {
+    if (arrCategory.count>0 && isOffEffect && arrRecommendedStores.count>0) {
         [self setViewForRecomendedCells];
     }
 
@@ -577,7 +616,7 @@
 -(NSInteger )getArrayCountForRecommendedStores
 {
     NSInteger rowsNum = 0;
-    if (self.mainCategoryIndex !=0) {
+    if (self.mainCategoryIndex !=0 && arrRecommendedStores.count>0) {
         StoreModel *objStore = [arrCategory objectAtIndex:self.mainCategoryIndex];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStore.store_main_category_id];
         NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
@@ -724,7 +763,7 @@
 -(StoreModel *)getObjectOfStoreForRecommendedStoresForIndexPath:(NSIndexPath *)IndexPath
 {
     StoreModel *objStoreModel = nil;
-    if (self.mainCategoryIndex != 0) {
+    if (self.mainCategoryIndex != 0 && arrRecommendedStores.count>0) {
         objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
         NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
@@ -762,7 +801,7 @@
         cell = [[HomeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [cell setRightUtilityButtons: [self leftButtons] WithButtonWidth:225];
+    [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
 
     cell.selectedCategory = self.mainCategoryIndex;
     cell.delegate=self;

@@ -9,13 +9,13 @@
 #import "OptionViewController.h"
 #import "LoginViewController.h"
 #import "MobileEnterViewController.h"
-#import "LocationEnterViewController.h"
 #import "PaymentViewController.h"
 
 @interface OptionViewController ()
 {
     MPMoviePlayerController *theMoviPlayer;
     UIView *blurView;
+    AppDelegate *appDeleg;
 }
 @end
 
@@ -23,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    appDeleg = APP_DELEGATE;
     blurView = [[UIView alloc]initWithFrame:CGRectMake(0, -20, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height)];
     blurView.backgroundColor = [UIColor grayColor];
     blurView.alpha = 0.65f;
@@ -56,9 +56,9 @@
     [theMoviPlayer play];
 
     if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn]) {
-        
-        LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
-        [self.navigationController pushViewController:locationScreen animated:YES];
+        UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+        tabBarController.selectedIndex = 0;
+        appDeleg.window.rootViewController = tabBarController;
     }
 }
 
@@ -66,10 +66,6 @@
     
     MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
     [self.navigationController pushViewController:mobileEnterVwController animated:YES];
-    
-//    PaymentViewController *paymentModeVwController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentModeView" ];
-//    [self.navigationController pushViewController:paymentModeVwController animated:YES];
-
 }
 
 - (IBAction)btnExistingUserClick:(UIButton *)sender {

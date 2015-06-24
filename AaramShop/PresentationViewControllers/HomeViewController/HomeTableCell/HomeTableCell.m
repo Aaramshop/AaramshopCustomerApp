@@ -47,6 +47,8 @@
         lblPriceValue.font = [UIFont fontWithName:kRobotoRegular size:12.0];
         lblPriceValue.textColor = [UIColor colorWithRed:121.0/255.0 green:121.0/255.0 blue:121.0/255.0 alpha:1.0];
 
+
+        
         imgvCategoryIcon = [[UIImageView alloc]initWithFrame:CGRectZero];
         imgvCategoryIcon.layer.cornerRadius =2.0;
         imgvCategoryIcon.clipsToBounds=YES;
@@ -65,6 +67,8 @@
         
         imgVHomeIcon = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 35, 35)];
         imgVHomeIcon.image = [UIImage imageNamed:@"homeScreenHomeIconRed"];
+        
+        
 
         [self.contentView addSubview:lblCategoryName];
         [self.contentView addSubview:lblDeliveryType];
@@ -108,11 +112,14 @@
     
     
     imgVPriceIcon.frame = CGRectMake(lblDeliveryType.frame.origin.x+lblDeliveryType.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height, 15, 15);
+    
+   
+    
     lblPriceValue.frame = CGRectMake(imgVPriceIcon.frame.origin.x+imgVPriceIcon.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height-3, 50, 20);
     
 
     imgVLocationIcon.image = [UIImage imageNamed:@"locationIconHome"];
-    imgVDeliveryIcon.image = [UIImage imageNamed:@""];
+    imgVDeliveryIcon.image = [UIImage imageNamed:@"homeStoreDetailsDeleversIcon"];
     imgVPriceIcon.image = [UIImage imageNamed:@"homeRupeesIcon.png"];
     
     lblCategoryName.text =objStoreData.store_category_name;
@@ -139,6 +146,25 @@
     }
     else
         imgVHomeIcon.hidden = YES;
+    if ([objStoreData.home_delivey isEqualToString:@"1"]) {
+        [imgVDeliveryIcon setHidden:NO];
+        [lblDeliveryType setHidden:NO];
+    }
+    else
+    {
+        [imgVDeliveryIcon setHidden:YES];
+        [lblDeliveryType setHidden:YES];
+    }
+    if ([objStoreData.total_orders isEqualToString:@"0"]) {
+        [imgVPriceIcon setHidden:YES];
+        [lblPriceValue setHidden:YES];
+    }
+    else
+    {
+        [imgVPriceIcon setHidden:NO];
+        [lblPriceValue setHidden:NO];
+        lblPriceValue.text = [NSString stringWithFormat:@"%@ Times",objStoreData.total_orders];
+    }
     
     [imgVCategoryTypeIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreData.store_category_icon]] placeholderImage:[UIImage imageNamed:@"homeChocklateIcon.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
