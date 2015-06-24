@@ -82,6 +82,7 @@
 }
 -(void)createDataToGetStoreProductSubCategory:(NSString *)strCategoryId
 {
+    self.mainCategoryIndexPicker = 0;
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict removeObjectForKey:kUserId];
     [dict setObject:strStore_Id forKey:kStore_id];
