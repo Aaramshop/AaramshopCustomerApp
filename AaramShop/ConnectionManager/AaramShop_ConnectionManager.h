@@ -31,7 +31,8 @@ typedef enum
     TASK_GET_ORDER_HISTORY,
     TASK_GET_DELIVERY_SLOTS,
     TASK_CHECKOUT,
-    TASK_USER_PAYMENTMODE
+    TASK_USER_PAYMENTMODE,
+    TASK_GET_USER_ADDRESS
 }CURRENT_TASK;
 
 @protocol AaramShop_ConnectionManager_Delegate <NSObject>

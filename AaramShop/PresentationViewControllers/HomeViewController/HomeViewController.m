@@ -29,6 +29,7 @@
     self.navigationController.navigationBarHidden = NO;
     
     appDeleg = APP_DELEGATE;
+    [appDeleg findCurrentLocation];
     isOffEffect = YES;
     isRefreshing= NO;
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
@@ -190,6 +191,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSLog(@"value = %f",appDeleg.myCurrentLocation.coordinate.latitude);
     if(![gCXMPPController isConnected])
     {
         [gCXMPPController connect];

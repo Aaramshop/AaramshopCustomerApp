@@ -14,7 +14,7 @@
 #import "RightSideTableCell.h"
 #import "UIImageEffects.h"
 #import "LocationEnterViewController.h"
-
+#import "AddressModel.h"
 
 #define kDefaultHeaderFrame CGRectMake(0, 0, tblView.frame.size.width, tblView.frame.size.height)
 
@@ -259,6 +259,16 @@
 {
     if (self.tag == 0) {
         UIImage* image;
+        NSArray *arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+        NSMutableDictionary *dictAddress  = nil;
+        for (NSMutableDictionary *dict in arrAddress) {
+            
+            if ([[dict objectForKey:kUser_address_title] isEqualToString:@"Home"]) {
+                dictAddress = dict;
+                break;
+            }
+        }
+        
         secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 216)];
         UIImageView *imgBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, secView.frame.size.width, 216)];
         UIImageView *imgProfile=[[UIImageView alloc]initWithFrame:CGRectMake((secView.frame.size.width - 101)/2, 39, 101, 101)];
@@ -290,7 +300,7 @@
         lblAddress.numberOfLines = 2;
         lblAddress.lineBreakMode = NSLineBreakByWordWrapping;
         lblAddress.font=[UIFont fontWithName:kRobotoRegular size:15];
-        lblAddress.text=@"Noida, Sec - 18, Near Hospital, Uttar pradesh";
+        lblAddress.text = [dictAddress objectForKey:kAddress];
         lblAddress.textColor=[UIColor whiteColor];
         
         UIButton *btnEdit=[[UIButton alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-16, 34)];
