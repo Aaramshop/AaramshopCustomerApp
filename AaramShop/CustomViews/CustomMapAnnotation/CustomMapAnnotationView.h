@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgProfile;
 @property (weak, nonatomic) IBOutlet UILabel *lblName;
 @property (weak, nonatomic) IBOutlet UILabel *lblAddress;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorVw;
 
 
 @end

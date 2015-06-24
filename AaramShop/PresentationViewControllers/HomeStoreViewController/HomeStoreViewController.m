@@ -32,6 +32,8 @@
     [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoBold size:15.0],NSFontAttributeName,[UIColor whiteColor],NSForegroundColorAttributeName, nil] range:NSMakeRange(3, strTitle.length-3)];
 
     lblHd.attributedText = hogan;
+    
+    tblSuggestedStores.layer.cornerRadius = 1.0;
     [self createDataToGetHomeStoreBanner];
 }
 #pragma mark - createDataToGetHomeStoreBanner

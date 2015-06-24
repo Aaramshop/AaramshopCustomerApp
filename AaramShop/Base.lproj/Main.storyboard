@@ -84,7 +84,6 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -1323,11 +1322,11 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="LZg-XN-u8T"/>
-                                                            <exclude reference="t2Q-3i-gQM"/>
-                                                            <exclude reference="og7-q6-GFm"/>
-                                                            <exclude reference="lr7-vi-9GT"/>
-                                                            <exclude reference="lQb-ol-Qcp"/>
                                                             <exclude reference="Ns5-As-37n"/>
+                                                            <exclude reference="lQb-ol-Qcp"/>
+                                                            <exclude reference="lr7-vi-9GT"/>
+                                                            <exclude reference="og7-q6-GFm"/>
+                                                            <exclude reference="t2Q-3i-gQM"/>
                                                         </mask>
                                                     </variation>
                                                 </imageView>
@@ -1344,8 +1343,8 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="ggu-RB-XPc"/>
                                                             <exclude reference="GgK-KQ-Jhm"/>
+                                                            <exclude reference="ggu-RB-XPc"/>
                                                             <exclude reference="jLD-JQ-YOf"/>
                                                         </mask>
                                                     </variation>
@@ -1386,8 +1385,8 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     </state>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="A7W-db-pln"/>
                                                             <exclude reference="6OC-q8-2ye"/>
+                                                            <exclude reference="A7W-db-pln"/>
                                                         </mask>
                                                     </variation>
                                                     <connections>
@@ -1457,8 +1456,8 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     </state>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="gK4-ck-qVR"/>
                                                             <exclude reference="WWA-GG-QV3"/>
+                                                            <exclude reference="gK4-ck-qVR"/>
                                                         </mask>
                                                     </variation>
                                                 </button>
@@ -1553,61 +1552,61 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="arE-gX-cZf"/>
-                                                    <exclude reference="cJP-2T-hMr"/>
-                                                    <exclude reference="ZJY-Kd-goc"/>
-                                                    <exclude reference="rAe-qm-NMP"/>
-                                                    <exclude reference="bC9-DR-UeE"/>
-                                                    <exclude reference="iGZ-jw-TYb"/>
                                                     <exclude reference="4Y8-fP-PZh"/>
-                                                    <exclude reference="Z3P-Hn-ewa"/>
-                                                    <exclude reference="dFf-Bg-R6j"/>
+                                                    <exclude reference="ZJY-Kd-goc"/>
+                                                    <exclude reference="arE-gX-cZf"/>
+                                                    <exclude reference="bC9-DR-UeE"/>
+                                                    <exclude reference="cJP-2T-hMr"/>
+                                                    <exclude reference="iGZ-jw-TYb"/>
+                                                    <exclude reference="rAe-qm-NMP"/>
                                                     <exclude reference="MAl-8j-NQn"/>
                                                     <exclude reference="YWG-Xg-0Sp"/>
-                                                    <exclude reference="wef-se-8Ha"/>
-                                                    <exclude reference="umP-x8-hwF"/>
-                                                    <exclude reference="jY0-n6-8Uj"/>
-                                                    <exclude reference="OvZ-4f-H8h"/>
-                                                    <exclude reference="xud-qg-Ggo"/>
+                                                    <exclude reference="Z3P-Hn-ewa"/>
+                                                    <exclude reference="dFf-Bg-R6j"/>
                                                     <exclude reference="3D7-Cl-Vd4"/>
-                                                    <exclude reference="7Gc-Wb-Us1"/>
-                                                    <exclude reference="wfh-oP-KC4"/>
-                                                    <exclude reference="9Vh-gd-Cen"/>
+                                                    <exclude reference="OvZ-4f-H8h"/>
+                                                    <exclude reference="jY0-n6-8Uj"/>
+                                                    <exclude reference="umP-x8-hwF"/>
+                                                    <exclude reference="wef-se-8Ha"/>
+                                                    <exclude reference="xud-qg-Ggo"/>
                                                     <exclude reference="0Im-w2-HUW"/>
-                                                    <exclude reference="dx4-tm-hQF"/>
+                                                    <exclude reference="7Gc-Wb-Us1"/>
+                                                    <exclude reference="9Vh-gd-Cen"/>
                                                     <exclude reference="Udf-QS-UUv"/>
+                                                    <exclude reference="dx4-tm-hQF"/>
                                                     <exclude reference="od2-SA-Bi3"/>
-                                                    <exclude reference="Js3-sI-5zU"/>
+                                                    <exclude reference="wfh-oP-KC4"/>
                                                     <exclude reference="5Xd-cv-WOT"/>
-                                                    <exclude reference="ye9-j0-uLL"/>
                                                     <exclude reference="7mw-lt-RwR"/>
-                                                    <exclude reference="fv2-fu-y8Q"/>
+                                                    <exclude reference="Js3-sI-5zU"/>
                                                     <exclude reference="dB1-aX-fh7"/>
+                                                    <exclude reference="fv2-fu-y8Q"/>
+                                                    <exclude reference="ye9-j0-uLL"/>
                                                     <exclude reference="3M2-fr-SId"/>
-                                                    <exclude reference="gQe-Hu-NNb"/>
+                                                    <exclude reference="LYN-V6-Q6s"/>
                                                     <exclude reference="PKx-0r-1s5"/>
                                                     <exclude reference="dvY-O0-meu"/>
-                                                    <exclude reference="LYN-V6-Q6s"/>
-                                                    <exclude reference="sk0-R2-rlm"/>
+                                                    <exclude reference="gQe-Hu-NNb"/>
                                                     <exclude reference="8AB-1J-DVj"/>
                                                     <exclude reference="CUg-Zs-TNV"/>
+                                                    <exclude reference="H0V-gU-MpC"/>
                                                     <exclude reference="Lah-ry-mN4"/>
                                                     <exclude reference="ZEx-XB-Dl3"/>
-                                                    <exclude reference="H0V-gU-MpC"/>
                                                     <exclude reference="s2c-Hf-kah"/>
-                                                    <exclude reference="hPs-13-3iG"/>
-                                                    <exclude reference="ESW-Eo-Rpz"/>
-                                                    <exclude reference="KC4-6K-xp5"/>
+                                                    <exclude reference="sk0-R2-rlm"/>
                                                     <exclude reference="6ZS-15-syJ"/>
-                                                    <exclude reference="kOB-mP-l4c"/>
-                                                    <exclude reference="eCE-n2-4fZ"/>
-                                                    <exclude reference="yMK-eF-b9v"/>
                                                     <exclude reference="9R0-q5-tf1"/>
                                                     <exclude reference="CWW-em-ElI"/>
-                                                    <exclude reference="S6t-6Q-fvk"/>
-                                                    <exclude reference="OaL-eW-eGq"/>
-                                                    <exclude reference="coI-xt-18S"/>
+                                                    <exclude reference="ESW-Eo-Rpz"/>
+                                                    <exclude reference="KC4-6K-xp5"/>
+                                                    <exclude reference="eCE-n2-4fZ"/>
+                                                    <exclude reference="hPs-13-3iG"/>
+                                                    <exclude reference="kOB-mP-l4c"/>
+                                                    <exclude reference="yMK-eF-b9v"/>
                                                     <exclude reference="5zo-sr-EDO"/>
+                                                    <exclude reference="OaL-eW-eGq"/>
+                                                    <exclude reference="S6t-6Q-fvk"/>
+                                                    <exclude reference="coI-xt-18S"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -2318,7 +2317,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="owd-6E-OdS">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="503"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TotalPriceCell" rowHeight="130" id="bkf-A0-Pye" customClass="TotalPriceTableCell">
@@ -2338,7 +2337,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                             <color key="textColor" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3759" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0P8-Q4-0PW">
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0P8-Q4-0PW">
                                                             <rect key="frame" x="219" y="0.0" width="91" height="42"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="42" id="Pnw-gf-0Cl"/>
@@ -2368,7 +2367,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3759" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff0-9M-u7m">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff0-9M-u7m">
                                                     <rect key="frame" x="247" y="50" width="63" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="XiM-dL-X5c"/>
@@ -2386,7 +2385,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67U-8Y-jjR">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67U-8Y-jjR">
                                                     <rect key="frame" x="247" y="75" width="63" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="DtU-xE-LZx"/>
@@ -2395,7 +2394,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount(1)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFS-DQ-aA9">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFS-DQ-aA9">
                                                     <rect key="frame" x="10" y="100" width="229" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="DlW-HB-Rkr"/>
@@ -2404,7 +2403,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <color key="textColor" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOA-4f-h2N">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOA-4f-h2N">
                                                     <rect key="frame" x="247" y="100" width="63" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="lhi-G5-zAc"/>
@@ -2498,7 +2497,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                         <constraint firstAttribute="height" constant="44" id="zuo-4t-J6S"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                                    <state key="normal" title="Immediate">
+                                                    <state key="normal">
                                                         <color key="titleColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -2509,7 +2508,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                         <constraint firstAttribute="height" constant="44" id="AdA-mY-OaK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                                    <state key="normal" title="2:00 - 4:00 pm">
+                                                    <state key="normal">
                                                         <color key="titleColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -2568,7 +2567,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <color key="textColor" red="0.83529411760000005" green="0.83529411760000005" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="401" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjQ-sH-TAb">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="401" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjQ-sH-TAb">
                                                     <rect key="frame" x="10" y="39" width="281" height="42"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="42" id="0md-ec-gkG"/>
@@ -2601,7 +2600,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PickCollectionCell" rowHeight="97" id="E33-gc-Acl" customClass="PickCollectionTableCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="97" id="E33-gc-Acl" customClass="PickLastTableCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E33-gc-Acl" id="4ED-6h-Mm7">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -2615,8 +2614,8 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view tag="501" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CNK-Ar-nJt">
-                                                    <rect key="frame" x="0.0" y="21" width="320" height="75"/>
+                                                <view tag="501" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CNK-Ar-nJt">
+                                                    <rect key="frame" x="8" y="21" width="320" height="75"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="75" id="9jk-L5-HLf"/>
@@ -2632,11 +2631,14 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                 <constraint firstAttribute="trailingMargin" secondItem="xgo-nC-RAB" secondAttribute="trailing" constant="2" id="rhF-NZ-Qux"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="subview" destination="4ED-6h-Mm7" id="kS8-FX-ynV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="7Fv-Uz-q9I" id="iyt-oC-in2"/>
-                                    <outlet property="delegate" destination="7Fv-Uz-q9I" id="y3b-RS-dmf"/>
+                                    <outlet property="dataSource" destination="7Fv-Uz-q9I" id="8BA-3f-8Gb"/>
+                                    <outlet property="delegate" destination="7Fv-Uz-q9I" id="oLv-k5-5lm"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qn3-R3-ILi">
@@ -2650,26 +2652,29 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnPayClick:" destination="7Fv-Uz-q9I" eventType="touchUpInside" id="5DR-of-z4T"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="owd-6E-OdS" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leading" id="Hp5-FK-6nd"/>
-                            <constraint firstAttribute="trailing" secondItem="owd-6E-OdS" secondAttribute="trailing" id="Qca-Ix-3BT"/>
-                            <constraint firstItem="owd-6E-OdS" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="-20" id="UwO-hl-doo"/>
-                            <constraint firstItem="qn3-R3-ILi" firstAttribute="bottom" secondItem="owd-6E-OdS" secondAttribute="bottom" constant="44" id="axz-vV-9Vb"/>
+                            <constraint firstAttribute="trailing" secondItem="owd-6E-OdS" secondAttribute="trailing" id="1bb-8M-9FQ"/>
+                            <constraint firstItem="qn3-R3-ILi" firstAttribute="top" secondItem="owd-6E-OdS" secondAttribute="bottom" constant="1" id="AEI-Av-NeR"/>
+                            <constraint firstItem="owd-6E-OdS" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leading" id="MN7-8d-shP"/>
+                            <constraint firstItem="owd-6E-OdS" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" id="Ydo-Oa-181"/>
                             <constraint firstItem="qn3-R3-ILi" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leadingMargin" constant="-16" id="cHc-rH-HRm"/>
                             <constraint firstItem="wIn-xs-BLK" firstAttribute="top" secondItem="qn3-R3-ILi" secondAttribute="bottom" id="dQ3-tg-O6O"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qn3-R3-ILi" secondAttribute="trailing" constant="-16" id="olj-qD-e5x"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tblView" destination="owd-6E-OdS" id="9OK-by-4Bw"/>
+                        <outlet property="tblView" destination="owd-6E-OdS" id="CZH-Yw-zms"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f56-7B-nEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2877" y="3495"/>
+            <point key="canvasLocation" x="2655" y="3495"/>
         </scene>
         <!--Pick Collection View Controller-->
         <scene sceneID="2ou-Mb-JCg">
@@ -2692,29 +2697,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LastPickOfferCell" id="qgF-UA-lXQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="75"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shopingProductOne.png" translatesAutoresizingMaskIntoConstraints="NO" id="xca-Yf-DnM" customClass="shopingProductOne">
-                                                    <rect key="frame" x="12" y="0.0" width="56" height="56"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="80.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLG-hb-PfH">
-                                                    <rect key="frame" x="0.0" y="54" width="80" height="21"/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
-                                                    <color key="textColor" red="0.92156862750000001" green="0.078431372550000003" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="VeP-HY-2zC" id="7go-eZ-srF"/>
                                     <outlet property="delegate" destination="VeP-HY-2zC" id="ZFo-eo-VfX"/>
@@ -2959,7 +2942,6 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
         <image name="pencilIcon.png" width="42" height="45"/>
         <image name="popupCloseIcon.png" width="20" height="20"/>
         <image name="seprator.png" width="271" height="1"/>
-        <image name="shopingProductOne.png" width="54" height="54"/>
         <image name="sideArrowGrey.png" width="13" height="13"/>
         <image name="singleBox.png" width="300" height="50"/>
         <image name="smsIconDarkGrey.png" width="35" height="35"/>

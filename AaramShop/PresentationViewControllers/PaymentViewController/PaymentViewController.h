@@ -7,14 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PickCollectionViewController.h"
 #import "TotalPriceTableCell.h"
+#import "PickLastTableCell.h"
 
-@interface PaymentViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
+@interface PaymentViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UICollectionViewDelegate,UICollectionViewDataSource,UIPickerViewDataSource,UIPickerViewDelegate>
 {
-    
     __weak IBOutlet UITableView *tblView;
-    NSMutableArray *datasource;
-    PickCollectionViewController *pickCollectionViewC;
+    NSMutableArray *arrAddressData;
+    NSMutableArray *arrLastMinPick;
+    NSString *strPopUpMessage;
+    NSMutableArray *arrDeliverySlot;
+    UIDatePicker *datePicker;
+    UIToolbar *keyBoardToolBar;
+    UIPickerView *pickerViewSlots;
 }
+@property(nonatomic,strong) NSString *strStore_Id;
+@property(nonatomic,strong) NSString *strTotalPrice;
+@property(nonatomic,strong) NSMutableArray *arrSelectedProducts;
+- (IBAction)btnPayClick:(UIButton *)sender;
+
 @end

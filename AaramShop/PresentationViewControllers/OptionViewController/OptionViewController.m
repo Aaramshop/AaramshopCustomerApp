@@ -10,7 +10,7 @@
 #import "LoginViewController.h"
 #import "MobileEnterViewController.h"
 #import "LocationEnterViewController.h"
-#import "PaymentViewController.h"
+
 @interface OptionViewController ()
 {
     MPMoviePlayerController *theMoviPlayer;
@@ -65,10 +65,7 @@
     
     MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
     [self.navigationController pushViewController:mobileEnterVwController animated:YES];
-    
-//    PaymentViewScene
-//    PaymentViewController *paymentVwController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene" ];
-//    [self.navigationController pushViewController:paymentVwController animated:YES];
+
 }
 
 - (IBAction)btnExistingUserClick:(UIButton *)sender {
