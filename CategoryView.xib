@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Regular_0.ttf">
@@ -43,12 +43,12 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <imageView userInteractionEnabled="NO" tag="1002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KFC-Zc-8jA">
-                            <rect key="frame" x="121" y="124" width="60" height="60"/>
+                            <rect key="frame" x="121" y="112" width="60" height="60"/>
                         </imageView>
                         <activityIndicatorView hidden="YES" opaque="NO" tag="998" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Fss-7U-6Wn">
                             <rect key="frame" x="150" y="107" width="20" height="20"/>
                         </activityIndicatorView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homeDetailsBannerShade.png" translatesAutoresizingMaskIntoConstraints="NO" id="aSK-FX-y3H">
+                        <imageView userInteractionEnabled="NO" tag="1110" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homeDetailsBannerShade.png" translatesAutoresizingMaskIntoConstraints="NO" id="aSK-FX-y3H">
                             <rect key="frame" x="0.0" y="194" width="320" height="40"/>
                         </imageView>
                         <view tag="23210" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="te0-Vt-048" customClass="V8HorizontalPickerView">

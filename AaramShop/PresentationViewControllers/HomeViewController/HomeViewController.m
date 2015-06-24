@@ -155,7 +155,7 @@
         imgVBg.hidden = YES;
     }
     
-    tblStores.frame = CGRectMake(0, 234+size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(254+size.height+49));
+    tblStores.frame = CGRectMake(0, 234+size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(234+size.height+49));
 }
 -(void)btnArrowClick
 {
@@ -844,7 +844,8 @@
     }
     
     homeSecondVwController.strStore_Id = objStoreModel.store_id;
-    homeSecondVwController.strStore_CategoryName = objStoreModel.store_category_name;
+    homeSecondVwController.strStoreImage = objStoreModel.store_image;
+    homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
     [self.navigationController pushViewController:homeSecondVwController animated:YES];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView

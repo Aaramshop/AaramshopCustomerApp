@@ -24,5 +24,6 @@
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 @property(nonatomic,strong) NSString *strStore_Id;
 @property(nonatomic,strong) NSString *strStore_CategoryName;
+@property(nonatomic,strong) NSString *strStoreImage;
 
 @end

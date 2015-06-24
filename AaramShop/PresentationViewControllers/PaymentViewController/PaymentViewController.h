@@ -26,6 +26,9 @@ typedef enum
     UIDatePicker *datePicker;
     UIToolbar *keyBoardToolBar;
     UIPickerView *pickerViewSlots;
+    
+    __weak IBOutlet UIButton *btnPay;
+    
 }
 @property(nonatomic,strong) NSString *strStore_Id;
 @property(nonatomic,strong) NSString *strTotalPrice;
