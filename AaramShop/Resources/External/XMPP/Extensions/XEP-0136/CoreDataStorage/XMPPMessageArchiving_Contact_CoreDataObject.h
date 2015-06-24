@@ -13,7 +13,9 @@
 @property (nonatomic, strong) NSNumber * mostRecentMessageOutgoing;
 
 @property (nonatomic, strong) NSString * streamBareJidStr;
-
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *nickname;
+@property (nonatomic, strong) NSString *imgURL;
 /**
  * This method is called immediately before the object is inserted into the managedObjectContext.
  * At this point, all normal properties have been set.

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Bold_0.ttf">
+        <mutableArray key="Roboto_Bold.ttf">
+            <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
@@ -18,7 +19,7 @@
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
         </mutableArray>
-        <mutableArray key="Roboto-Medium_0.ttf">
+        <mutableArray key="Roboto_Medium.ttf">
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
@@ -38,7 +39,10 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
         </mutableArray>
-        <mutableArray key="Roboto-Regular_0.ttf">
+        <mutableArray key="Roboto_Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -508,7 +512,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIh-fd-D0d">
@@ -621,7 +625,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcu-F1-ONw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="694" y="3495"/>
+            <point key="canvasLocation" x="638" y="3447"/>
         </scene>
         <!--Location Enter View Controller-->
         <scene sceneID="JXd-yf-i82">
@@ -1249,39 +1253,6 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
             </objects>
             <point key="canvasLocation" x="3171" y="1231"/>
         </scene>
-        <!--Chat View Controller-->
-        <scene sceneID="Vpm-6P-NmU">
-            <objects>
-                <viewController storyboardIdentifier="ChatViewScreen" id="vLF-Vy-zDX" customClass="ChatViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3ce-Ab-Ai8"/>
-                        <viewControllerLayoutGuide type="bottom" id="T9U-yj-cBa"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="FYI-f2-4CK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="fDh-2b-xsu">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="AhA-5e-pRQ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kt6-p4-zgU">
-                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Chat">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnChatClicked:" destination="vLF-Vy-zDX" eventType="touchUpInside" id="4yy-YT-GBD"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vqY-MX-LUd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1011" y="3466"/>
-        </scene>
         <!--Order Hist View Controller-->
         <scene sceneID="2l5-iM-eii">
             <objects>
@@ -1393,14 +1364,14 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rG4-AE-yme" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="ZXv-Rn-Pny"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pWF-bV-g9f">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="pWF-bV-g9f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vLF-Vy-zDX" kind="relationship" relationship="rootViewController" id="9Ym-ph-t8c"/>
+                        <segue destination="mEE-eG-DXy" kind="relationship" relationship="rootViewController" id="gfY-CS-uk2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2n-fM-pbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2388,6 +2359,100 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
             </objects>
             <point key="canvasLocation" x="1099" y="380"/>
         </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="hnG-Lq-4DF">
+            <objects>
+                <viewController id="mEE-eG-DXy" customClass="ChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yz5-Sk-4hn"/>
+                        <viewControllerLayoutGuide type="bottom" id="t39-Jw-Oc9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FbD-e9-g2P">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="59" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="YhP-de-dhB">
+                                <rect key="frame" x="0.0" y="44" width="320" height="411"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellChatList" rowHeight="80" id="djO-bv-Rq6">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="djO-bv-Rq6" id="h6H-OH-6sR">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRe-HI-b2B">
+                                                    <rect key="frame" x="15" y="12" width="55" height="55"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lMh-Tr-e91">
+                                                    <rect key="frame" x="80" y="12" width="144" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDO-5l-Gia">
+                                                    <rect key="frame" x="80" y="33" width="166" height="33"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Just Now" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYZ-bP-OZK">
+                                                    <rect key="frame" x="227" y="12" width="85" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="9"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" tag="104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSs-fu-lK9">
+                                                    <rect key="frame" x="287" y="41" width="25" height="25"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="12"/>
+                                                    <state key="normal" title="1" backgroundImage="chatNumberingCircle.png">
+                                                        <color key="titleColor" red="0.99607843139999996" green="0.21960784310000001" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mEE-eG-DXy" id="AYs-Cc-4YW"/>
+                                    <outlet property="delegate" destination="mEE-eG-DXy" id="Lqj-2D-YeM"/>
+                                </connections>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="MeP-mD-9kh" customClass="MESegmentedControl">
+                                <rect key="frame" x="16" y="8" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Support Team"/>
+                                    <segment title="Retailers"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="0.058533270399999997" blue="0.063789482760000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="selectionChange:" destination="mEE-eG-DXy" eventType="valueChanged" id="2h8-ka-7hO"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725496529999996" green="0.93725496529999996" blue="0.95686280729999995" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="MeP-mD-9kh" firstAttribute="top" secondItem="Yz5-Sk-4hn" secondAttribute="bottom" constant="8" id="0Wm-mv-byl"/>
+                            <constraint firstItem="YhP-de-dhB" firstAttribute="leading" secondItem="FbD-e9-g2P" secondAttribute="leadingMargin" constant="-16" id="0Xe-Az-Nbg"/>
+                            <constraint firstItem="MeP-mD-9kh" firstAttribute="trailing" secondItem="FbD-e9-g2P" secondAttribute="trailingMargin" id="IKt-GL-ohb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YhP-de-dhB" secondAttribute="trailing" constant="-16" id="NSR-wk-fig"/>
+                            <constraint firstItem="t39-Jw-Oc9" firstAttribute="top" secondItem="YhP-de-dhB" secondAttribute="bottom" id="lFw-Ab-cXB"/>
+                            <constraint firstItem="MeP-mD-9kh" firstAttribute="leading" secondItem="FbD-e9-g2P" secondAttribute="leadingMargin" id="xCZ-9C-Rh2"/>
+                            <constraint firstItem="MeP-mD-9kh" firstAttribute="top" secondItem="YhP-de-dhB" secondAttribute="top" constant="-36" id="zJF-hw-7Gg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="KCk-qN-Ymz"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="segChatSelection" destination="MeP-mD-9kh" id="OAf-SQ-z7a"/>
+                        <outlet property="tViewChat" destination="YhP-de-dhB" id="NgI-Ia-FmX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jez-5H-pA2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1011" y="3357"/>
+        </scene>
     </scenes>
     <resources>
         <image name="aaramShopAppLogo.png" width="292" height="292"/>
@@ -2396,6 +2461,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
         <image name="bg2.jpg" width="320" height="568"/>
         <image name="bg4.jpg" width="320" height="568"/>
         <image name="bg5.jpg" width="320" height="568"/>
+        <image name="chatNumberingCircle.png" width="30" height="30"/>
         <image name="doneBtn.png" width="45" height="25"/>
         <image name="enterMobileNoBox.png" width="297" height="50"/>
         <image name="enterMobileNoDefaultCameraIcon.png" width="150" height="150"/>
