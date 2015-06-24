@@ -61,7 +61,7 @@ static NSString *strCollectionCategory = @"collectionCategories";
     [self.view addSubview:collectionVwCategory];
     
     
-    UITextField *searchField;
+//    UITextField *searchField;
     UIView *subviews = [searchBarCategory.subviews lastObject];
 //    searchField = (id)[subviews.subviews objectAtIndex:1];
 //        for (UIView *subView in searchBarCategory.subviews){
@@ -73,18 +73,46 @@ static NSString *strCollectionCategory = @"collectionCategories";
 //                }
 //            }
 //        }
-    searchField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-    
-    if(!(searchField == nil)) {
-        searchField.textColor = [UIColor blackColor];
-        [searchField setBackground: [UIImage imageNamed:@"searchBox.png"]];
-        [searchField setBorderStyle:UITextBorderStyleNone];
-    }
-    
+//    searchField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+//    
+//    if(!(searchField == nil)) {
+//        searchField.textColor = [UIColor blackColor];
+//        [searchField setBackground: [UIImage imageNamed:@"searchBox.png"]];
+//        [searchField setBorderStyle:UITextBorderStyleNone];
+//    }
+    [[UISearchBar appearance] setSearchFieldBackgroundImage:[UIImage imageNamed:@"searchBox.png"]forState:UIControlStateNormal];
+    [searchBarCategory setBackgroundImage:[UIImage new]];
+    [searchBarCategory setTranslucent:YES];
+    searchBarCategory.layer.cornerRadius  = 4;
+    searchBarCategory.layer.masksToBounds= YES;
     searchBarCategory.placeholder = @"Search";
-    searchBarCategory.searchBarStyle = UISearchBarStyleMinimal;
-    searchBarCategory.translucent = YES;
-    searchBarCategory.barStyle = UIBarStyleDefault;
+//    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
+    [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor colorWithRed:207/255.0f green:207/255.0f blue:207/255.0f alpha:1.0f]];
+    [searchBarCategory setImage:[UIImage imageNamed:@"searchIconGrey"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+
+    
+//    [[UISearchBar appearance] setSearchFieldBackgroundImage:[UIImage imageNamed:@"searchBox.png"]forState:UIControlStateNormal];
+//    [searchBarr setTranslucent:YES];
+//    [searchBarCategory setBackgroundImage:[UIImage new]];
+//    searchBarCategory.layer.masksToBounds= YES;
+
+//    searchBarr.layer.cornerRadius  = 4;
+//    searchBarr.clipsToBounds= YES;
+//    searchBarr.delegate=self;
+//    searchBarr.placeholder = @"Search";
+//    
+//    searchBarr.tintColor =[UIColor colorWithRed:207/255.0f green:207/255.0f blue:207/255.0f alpha:1.0f];
+    
+    
+    
+    
+ 
+    
+//    [searchBarr setImage:[UIImage imageNamed:@"searchIcon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+//    searchBarCategory.placeholder = @"Search";
+//    searchBarCategory.searchBarStyle = UISearchBarStyleMinimal;
+//    searchBarCategory.translucent = YES;
+//    searchBarCategory.barStyle = UIBarStyleDefault;
 
 }
 #pragma mark - UICollectionView Delegate & DataSource Methods

@@ -580,26 +580,27 @@
         UISearchBar *searchBarProducts = (UISearchBar *)[secSubView1 viewWithTag:102];
         searchBarProducts.delegate = self;
         
-        searchBarProducts.frame = CGRectMake(9, 4, [UIScreen mainScreen].bounds.size.width-18, 33);
-        UITextField *searchField;
+//        searchBarProducts.frame = CGRectMake(9, 4, [UIScreen mainScreen].bounds.size.width-18, 33);
+//        UITextField *searchField;
+//        
+//        for (UIView *subView in searchBarProducts.subviews){
+//            for (UIView *ndLeveSubView in subView.subviews){
+//                if ([ndLeveSubView isKindOfClass:[UITextField class]])
+//                {
+//                    searchField = (UITextField *)ndLeveSubView;
+//                    break;
+//                }
+//            }
+//        }
+//        searchField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
         
-        for (UIView *subView in searchBarProducts.subviews){
-            for (UIView *ndLeveSubView in subView.subviews){
-                if ([ndLeveSubView isKindOfClass:[UITextField class]])
-                {
-                    searchField = (UITextField *)ndLeveSubView;
-                    break;
-                }
-            }
-        }
-        searchField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-        
-        if(!(searchField == nil)) {
-            searchField.textColor = [UIColor blackColor];
-            [searchField setBackground: [UIImage imageNamed:@"searchBox.png"]];
-            [searchField setBorderStyle:UITextBorderStyleNone];
-        }
-        
+//        if(searchField == nil) {
+//            searchField.textColor = [UIColor blackColor];
+//            [searchField setBackground: [UIImage imageNamed:@"searchBox.png"]];
+//            [searchField setBorderStyle:UITextBorderStyleNone];
+//        }
+        [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor colorWithRed:207/255.0f green:207/255.0f blue:207/255.0f alpha:1.0f]];
+//        [searchBarProducts setImage:[UIImage imageNamed:@"searchIcon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
         searchBarProducts.placeholder = @"Search";
         searchBarProducts.text = strSearchTxt;
         
@@ -868,10 +869,10 @@
 //    strSearchTxt = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     strSearchTxt = searchText;
     isSearching=YES;
-    if ([strSearchTxt length]>0)
+    if ([searchText length]>0)
     {
         [arrSearchGetStoreProducts removeAllObjects];
-        [tblVwCategory reloadData];
+//        [tblVwCategory reloadData];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.product_name contains[cd] %@",strSearchTxt];
         [arrSearchGetStoreProducts addObjectsFromArray:[arrGetStoreProducts filteredArrayUsingPredicate:predicate]];
         [tblVwCategory reloadData];
@@ -880,7 +881,7 @@
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-   // [searchBarCategory resignFirstResponder];
+//    [searchBarCategory resignFirstResponder];
 }
 
 #pragma mark -
