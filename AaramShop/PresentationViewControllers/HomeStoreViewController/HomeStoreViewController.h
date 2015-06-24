@@ -12,6 +12,7 @@
 {
     
     __weak IBOutlet UITableView *tblSuggestedStores;
+    __weak IBOutlet UIScrollView *scrollView;
     __weak IBOutlet UITextField *txtStoreId;
     __weak IBOutlet UIImageView *imgVOffer;
     __weak IBOutlet UILabel *lblHd;

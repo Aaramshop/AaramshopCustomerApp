@@ -245,5 +245,10 @@
 
 #define DATE_FORMATTER_yyyy_mm_dd          @"yyyy-MM-dd"
 
+//========== Payment Modes==========
+#define kPaymentModeURL                         @"paymentModes"
+#define kPaymentMode_Id                             @"payment_mode_id"
+#define kPayment_modes                                   @"payment_modes"
+#define kPaymentMode_Name                       @"payment_mode"
 
 

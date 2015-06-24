@@ -178,9 +178,9 @@
 
 
 #pragma mark - Parse Pending Orders List response data
--(void)parsePendingOrdersListData:(id)pendingOrders
+-(void)parsePendingOrdersListData:(id)OrderHist
 {
-    if (![pendingOrders isKindOfClass:[NSArray class]])
+    if (![OrderHist isKindOfClass:[NSArray class]])
     {
         return;
     }
@@ -191,7 +191,7 @@
     }
     [arrOrderHist removeAllObjects];
     
-    [pendingOrders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+    [OrderHist enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
      {
          CMOrderHist *orderHistModal = [[CMOrderHist alloc]init];
          
