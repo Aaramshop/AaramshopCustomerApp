@@ -8,6 +8,10 @@
 #import <UIKit/UIKit.h>
 
 @interface OrderHistViewController : UIViewController<CDRTranslucentSideBarDelegate>
+{
+    
+    __weak IBOutlet UITableView *tblView;
+}
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
 
 @end
