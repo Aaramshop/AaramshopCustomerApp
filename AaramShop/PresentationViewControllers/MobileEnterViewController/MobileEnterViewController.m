@@ -59,8 +59,8 @@
     }
     else
     {
-        imgBackground.image = [UIImage imageNamed:@"bg4.jpg"];
-        lbltakeyourselfie.text = @"Upload Picture";
+        imgBackground.image = [UIImage imageNamed:@"bgImageNew"];
+        lbltakeyourselfie.text = @"Take a Selfie";
     }
     [imgBackground setClipsToBounds:YES];
     [self parseCountryListData];

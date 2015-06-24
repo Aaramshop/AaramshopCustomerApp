@@ -35,9 +35,16 @@
     
     tblSuggestedStores.layer.cornerRadius = 1.0;
     [self createDataToGetHomeStoreBanner];
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:gestureRecognizer];
 }
 #pragma mark - createDataToGetHomeStoreBanner
-
+-(void)hideKeyboard
+{
+//    [tblSuggestedStores setHidden:YES];
+    [self.view endEditing:YES];
+}
 -(void)createDataToGetHomeStoreBanner
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];

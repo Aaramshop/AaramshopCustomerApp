@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "MobileEnterViewController.h"
 #import "LocationEnterViewController.h"
+#import "PaymentViewController.h"
 
 @interface OptionViewController ()
 {
@@ -65,6 +66,9 @@
     
     MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
     [self.navigationController pushViewController:mobileEnterVwController animated:YES];
+    
+//    PaymentViewController *paymentModeVwController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentModeView" ];
+//    [self.navigationController pushViewController:paymentModeVwController animated:YES];
 
 }
 

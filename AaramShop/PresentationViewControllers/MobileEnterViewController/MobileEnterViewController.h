@@ -16,6 +16,7 @@
     __weak IBOutlet UIButton *btnProfile;
 
     __weak IBOutlet UITextField *txtFMobileNumber;
+    __weak IBOutlet UIButton *backBtn;
     __weak IBOutlet UIImageView *imgFlagName;
     __weak IBOutlet UILabel *lblPhoneCode;
     __weak IBOutlet UIButton *btnCountryName;

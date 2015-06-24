@@ -111,7 +111,7 @@
     lblPriceValue.frame = CGRectMake(imgVPriceIcon.frame.origin.x+imgVPriceIcon.frame.size.width+5, lblRestaurantName.frame.origin.y+lblRestaurantName.frame.size.height-3, 50, 20);
     
 
-    imgVLocationIcon.image = [UIImage imageNamed:@"locationIcon.png"];
+    imgVLocationIcon.image = [UIImage imageNamed:@"locationIconHome"];
     imgVDeliveryIcon.image = [UIImage imageNamed:@""];
     imgVPriceIcon.image = [UIImage imageNamed:@"homeRupeesIcon.png"];
     
