@@ -31,6 +31,7 @@
 //3-2-14
 #import "XMPPDateTimeProfiles.H"
 //END
+#import "MHGallery.h"
 #import "JCRBlurView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ShowLargePhotoViewController.h"
@@ -489,6 +490,7 @@
 //end
 - (void)getDatabaseImages
 {
+    
     [arrPhotos removeAllObjects];
     NSManagedObjectContext *moc = [gCXMPPController messagesStoreMainThreadManagedObjectContext];
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"XMPPMessageArchiving_Message_CoreDataObject"
@@ -502,7 +504,7 @@
     {
         user = chatWithUser;
     }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bareJidStr == %@ and streamBareJidStr == %@ and mediaType == \"image\" and konnect == 0 and blackMessage = 'no'",user, [[[NSString stringWithFormat:@"%@",[gCXMPPController.xmppStream myJID]]componentsSeparatedByString:@"/"] objectAtIndex:0]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"bareJidStr == %@ and streamBareJidStr == %@ and (mediaType == \"image\" or mediaType == \"video\") and konnect == 0",user, [[[NSString stringWithFormat:@"%@",[gCXMPPController.xmppStream myJID]]componentsSeparatedByString:@"/"] objectAtIndex:0]];
     
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
     
@@ -523,17 +525,37 @@
         {
             if([message.outgoing boolValue]==YES)
             {
-                NewPhoto *photo = [[NewPhoto alloc] init];
-                photo.originalUrl = message.filelocalpath;
-                [arrPhotos addObject:photo];
+                if([message.mediaType isEqualToString:@"video"])
+                {
+                    MHGalleryItem *video = [[MHGalleryItem alloc] initWithURL:[NSString stringWithFormat:@"%@",[NSURL fileURLWithPath:[SHFileUtil getFullPathFromPath:message.filelocalpath]]] galleryType:MHGalleryTypeVideo];
+                    [arrPhotos addObject:video];
+                }
+                else
+                {
+                    //                    UIImage *image = [UIImage imageWithContentsOfFile:[SHFileUtil getFullPathFromPath: message.filelocalpath]];
+                    MHGalleryItem *landschaft = [[MHGalleryItem alloc] initWithURL:[NSString stringWithFormat:@"%@",[NSURL fileURLWithPath:[SHFileUtil getFullPathFromPath:message.filelocalpath]]] galleryType:MHGalleryTypeImage];
+                    [arrPhotos addObject:landschaft];
+                }
             }
             else
             {
                 if([message.fileaction isEqualToString:@"downloaded"])
                 {
-                    NewPhoto *photo = [[NewPhoto alloc] init];
-                    photo.originalUrl = message.filelocalpath;
-                    [arrPhotos addObject:photo];
+                    if([message.mediaType isEqualToString:@"video"])
+                    {
+                        
+                        MHGalleryItem *video = [[MHGalleryItem alloc] initWithURL:[NSString stringWithFormat:@"%@",[NSURL fileURLWithPath:[SHFileUtil getFullPathFromPath:message.filelocalpath]]] galleryType:MHGalleryTypeVideo];
+                        [arrPhotos addObject:video];
+                    }
+                    
+                    else
+                    {
+                        //                        UIImage *image = [UIImage imageWithContentsOfFile:[SHFileUtil getFullPathFromPath: message.filelocalpath]];
+                        
+                        MHGalleryItem *landschatf = [[MHGalleryItem alloc] initWithURL:[NSString stringWithFormat:@"%@",[NSURL fileURLWithPath:[SHFileUtil getFullPathFromPath:message.filelocalpath]]] galleryType:MHGalleryTypeImage];
+                        [arrPhotos addObject:landschatf];
+                    }
+                    
                 }
             }
         }
@@ -2796,7 +2818,7 @@
         
         filePath = [[[NSString stringWithFormat:@"%@",url] componentsSeparatedByString:@"/"] lastObject];
         fileNameWihExt = filePath;
-     }
+    }
     
     if ([mediaType isEqualToString:@"audio"])//for Audio file
     {
@@ -2853,7 +2875,7 @@
                 }
                 UIImage *aThumbNailImage = [UIImage scaleDownOriginalImage: [info objectForKey:@"UIImagePickerControllerOriginalImage"] ProportionateTo: 180];
                 
-                thumbnailImageData = UIImageJPEGRepresentation(aThumbNailImage, 0.4);
+                thumbnailImageData = UIImageJPEGRepresentation(aThumbNailImage, 0.5);
                 
                 [SHFileUtil writeFileInCache: mediaData toPartialPath: filePath];
             }
@@ -2890,7 +2912,7 @@
             
             
         }
-     }
+    }
     
     NSDate *sendTimestampDate = [NSDate date];
     NSString *chatId = [self chatID];
@@ -2906,7 +2928,7 @@
     
     [m setObject:dateString forKey:@"time"];
     
-     [m setObject: sendTimestampDate forKey:@"sendTimestampDate"];
+    [m setObject: sendTimestampDate forKey:@"sendTimestampDate"];
     
     NSDateFormatter *date_formater=[[NSDateFormatter alloc]init];
     [date_formater setDateFormat:@"yyyy-MM-dd"];
@@ -3015,26 +3037,28 @@
         
         
     }
-    NSString *api = [NSString stringWithFormat:@"%@chat",kBaseURL];
+    NSString *api = [NSString stringWithFormat:@"http://52.74.220.25:80/index.php/merchant/chatMedia"];
     
     
-//    if(isImage == 1)
-//    {
-//        NSMutableDictionary *aDict=[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"userId"],@"userId",@"1",@"fileType",[[NSUserDefaults standardUserDefaults] objectForKey:@"sessionToken"],@"sessionToken",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceToken]],kDeviceToken,kDevice,kDeviceType,@"uploadChatFiles",@"option",mediaData ,@"profileImage",thumbnailImageData,@"postThumb",nil];
-//        [[NetworkService sharedInstance] sendAsynchronusUploadImageByGetUsingMultiPart:api dataToSend:aDict boundry:@"111000111" header:NO andDelegate:self andChatId:chatId andMediaType:mediaType andfileName:fileNameWihExt];
-//    }
-//    else if (isImage == 2)
-//    {
-//        NSMutableDictionary *aDict=[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"userId"],@"userId",@"2",@"fileType",[[NSUserDefaults standardUserDefaults] objectForKey:@"sessionToken"],@"sessionToken",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceToken]],kDeviceToken,kDevice,kDeviceType,@"uploadChatFiles",@"option",mediaData ,@"profileData",videoThumbnailImageData,@"postThumb",nil];
-//        
-//        [[NetworkService sharedInstance] sendAsynchronusUploadImageByGetUsingMultiPart:api dataToSend:aDict boundry:@"111000111" header:NO andDelegate:self andChatId:chatId andMediaType:mediaType andfileName:fileNameWihExt];
-//    }
-//    else
-//    {
-//        NSMutableDictionary *aDict=[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"userId"],@"userId",@"3",@"fileType",[[NSUserDefaults standardUserDefaults] objectForKey:@"sessionToken"],@"sessionToken",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceToken]],kDeviceToken,kDevice,kDeviceType,@"uploadChatFiles",@"option",mediaData,@"profileData",nil];
-//        
-//        [[NetworkService sharedInstance] sendAsynchronusUploadImageByGetUsingMultiPart:api dataToSend:aDict boundry:@"111000111" header:NO andDelegate:self andChatId:chatId andMediaType:mediaType andfileName:fileNameWihExt];
-//    }
+    if(isImage == 1)
+    {
+        NSMutableDictionary *aDict=[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:kStore_id],@"userId",@"1",@"fileType",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceId]],kDeviceId,kDevice,kDeviceType,mediaData ,@"profileImage",nil];
+        [[NetworkService sharedInstance] sendAsynchronusUploadImageByGetUsingMultiPart:api dataToSend:aDict boundry:@"111000111" header:NO andDelegate:self andChatId:chatId andMediaType:mediaType andfileName:fileNameWihExt];
+    }
+    //    else if (isImage == 2)
+    //    {
+    //        [[NetworkService sharedInstance] sendImage:self :chatId :mediaData mediaType:2];
+    //        //        NSMutableDictionary *aDict=[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"userId"],@"userId",@"2",@"fileType",[[NSUserDefaults standardUserDefaults] objectForKey:@"sessionToken"],@"sessionToken",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceToken]],kDeviceToken,kDevice,kDeviceType,@"uploadChatFiles",@"option",mediaData ,@"profileData",videoThumbnailImageData,@"postThumb",nil];
+    //        //
+    //        //        [[NetworkService sharedInstance] sendAsynchronusUploadImageByGetUsingMultiPart:api dataToSend:aDict boundry:@"111000111" header:NO andDelegate:self andChatId:chatId andMediaType:mediaType andfileName:fileNameWihExt];
+    //    }
+    //    else
+    //    {
+    //        [[NetworkService sharedInstance] sendImage:self :chatId :mediaData mediaType:3];
+    //        //        NSMutableDictionary *aDict=[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:@"userId"],@"userId",@"3",@"fileType",[[NSUserDefaults standardUserDefaults] objectForKey:@"sessionToken"],@"sessionToken",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceToken]],kDeviceToken,kDevice,kDeviceType,@"uploadChatFiles",@"option",mediaData,@"profileData",nil];
+    //        //
+    //        //        [[NetworkService sharedInstance] sendAsynchronusUploadImageByGetUsingMultiPart:api dataToSend:aDict boundry:@"111000111" header:NO andDelegate:self andChatId:chatId andMediaType:mediaType andfileName:fileNameWihExt];
+    //    }
     
     //Set for background task
     UIApplication *app = [UIApplication sharedApplication];
@@ -4493,8 +4517,27 @@ didFinishSavingWithError:(NSError *)error
     switch (inSender.tag)
     {
         case eKeyBoardCustom:
+            [self hideBothKeyBoard];
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Media" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Camera" otherButtonTitles:@"Library"/*,@"Video",@"Audio"*/,nil];
+                [action setActionSheetStyle:UIActionSheetStyleBlackOpaque];
+                [action setTag:99];
+                [action showInView:self.view];
+                return;
+            }
+            [self setPicker:nil];
+            if(!self.picker)
+            {
+                self.picker = [[UIImagePickerController alloc] init];
+                self.picker.delegate = self;
+            }
+            self.picker.sourceType= UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            self.picker.mediaTypes = [[NSArray alloc]initWithObjects:(NSString*) kUTTypeImage, nil];
             
-            [self showKeyBoardWithSender:  inSender];
+            [self presentViewController:self.picker animated:YES completion:nil];
+            
+//
+//            [self showKeyBoardWithSender:  inSender];
             break;
             
         case eKeyBoardUpload:
@@ -7122,35 +7165,89 @@ didFinishSavingWithError:(NSError *)error
     //end
     [self hideBothKeyBoard];
     
-    
-    NSLog(@"%@",inFileLocalPath);
+    [AppManager sharedManager].isComingFromChat = YES;
     
     [self getDatabaseImages];
-    
-    ShowLargePhotoViewController *showLargeImageView;
-    if ([Utils isIPhone5]) {
-        showLargeImageView = [[ShowLargePhotoViewController alloc] initWithNibName:@"ShowLargePhotoViewController" bundle:nil];
-    }else{
-        showLargeImageView = [[ShowLargePhotoViewController alloc] initWithNibName:@"ShowLargePhotoViewController_iPhone4" bundle:nil];
-    }
-    showLargeImageView.hidesBottomBarWhenPushed=YES;
-    
-    showLargeImageView.arrayImages = [NSArray arrayWithArray:arrPhotos];
-    [AppManager sharedManager].arrImages=[NSMutableArray arrayWithArray:arrPhotos];
-    showLargeImageView.strTotalPhotoCount=[NSString stringWithFormat:@"%i",arrPhotos.count];
-    
-    //    NSInteger index = 0;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"originalUrl == %@",inFileLocalPath];
-    NSArray *filteredArr =[arrPhotos filteredArrayUsingPredicate:predicate];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"filelocalpath == %@",inFileLocalPath];
+    NSArray *filteredArr =[messages filteredArrayUsingPredicate:predicate];
+    NSDictionary *dict = nil;
     if (filteredArr.count > 0)
     {
-        NewPhoto *photo = [filteredArr objectAtIndex:0];
-        showLargeImageView.intArrayIndex = [arrPhotos indexOfObject:photo];
-        
-        [showLargeImageView setInitializePageViewController];
-        [self.navigationController pushViewController:showLargeImageView animated:YES];
-        
+        dict = [NSDictionary dictionaryWithDictionary:[filteredArr objectAtIndex:0]];
     }
+    else
+    {
+        return;
+    }
+    
+    predicate = [NSPredicate predicateWithFormat:@"SELF.URLString == %@",[NSString stringWithFormat:@"%@",[NSURL fileURLWithPath:[SHFileUtil getFullPathFromPath:inFileLocalPath]]]];
+    filteredArr =[arrPhotos filteredArrayUsingPredicate:predicate];
+    if (filteredArr.count == 0)
+    {
+        return;
+    }
+    
+    //    UIImage *aThumbImage;
+    //    NSData*thumbData = [NSData dataWithBase64EncodedString:self.imageString];
+    //    aThumbImage = [UIImage imageWithData: thumbData scale: 1.0];
+    UIImageView *imageView = nil;
+    UIView *view = [dict objectForKey:@"view"];
+    CustomUplaodingView *cstView = (CustomUplaodingView *)[[view subviews] objectAtIndex:1];
+    if([[dict objectForKey:@"media"]isEqualToString:@"image"])
+    {
+        imageView = cstView.imgView;
+    }
+    NSArray *galleryData = [NSArray arrayWithArray:arrPhotos];
+    
+    MHGalleryController *gallery = [MHGalleryController galleryWithPresentationStyle:MHGalleryViewModeImageViewerNavigationBarShown];
+    gallery.galleryItems = galleryData;
+    //    gallery.presentingFromImageView = imageView;
+    gallery.presentationIndex = [arrPhotos indexOfObject:[filteredArr objectAtIndex:0]];
+    gallery.UICustomization.hideShare = YES;
+    //  gallery.galleryDelegate = self;
+    //  gallery.dataSource = self;
+    __weak MHGalleryController *blockGallery = gallery;
+    
+    gallery.finishedCallback = ^(NSUInteger currentIndex,UIImage *image,MHTransitionDismissMHGallery *interactiveTransition,MHGalleryViewMode viewMode){
+        if (viewMode == MHGalleryViewModeOverView) {
+            [blockGallery dismissViewControllerAnimated:YES completion:^{
+                [self setNeedsStatusBarAppearanceUpdate];
+            }];
+        }else{
+            [blockGallery dismissViewControllerAnimated:YES completion:^{
+                
+                [self setNeedsStatusBarAppearanceUpdate];
+            }];
+        }
+    };
+    [self presentMHGalleryController:gallery animated:YES completion:nil];
+    
+    //
+    
+    //    ShowLargePhotoViewController *showLargeImageView;
+    //    if ([Utils isIPhone5]) {
+    //        showLargeImageView = [[ShowLargePhotoViewController alloc] initWithNibName:@"ShowLargePhotoViewController" bundle:nil];
+    //    }else{
+    //        showLargeImageView = [[ShowLargePhotoViewController alloc] initWithNibName:@"ShowLargePhotoViewController_iPhone4" bundle:nil];
+    //    }
+    //    showLargeImageView.hidesBottomBarWhenPushed=YES;
+    //
+    //    showLargeImageView.arrayImages = [NSMutableArray arrayWithArray:arrPhotos];
+    //    [AppManager sharedManager].arrImages=[NSMutableArray arrayWithArray:arrPhotos];
+    //    showLargeImageView.strTotalPhotoCount=[NSString stringWithFormat:@"%i",arrPhotos.count];
+    //
+    //    //    NSInteger index = 0;
+    //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"originalUrl == %@",inFileLocalPath];
+    //    NSArray *filteredArr =[arrPhotos filteredArrayUsingPredicate:predicate];
+    //    if (filteredArr.count > 0)
+    //    {
+    //        NewPhoto *photo = [filteredArr objectAtIndex:0];
+    //        showLargeImageView.intArrayIndex = [arrPhotos indexOfObject:photo];
+    //
+    //        [showLargeImageView setInitializePageViewController];
+    //        [self.navigationController pushViewController:showLargeImageView animated:YES];
+    //        
+    //    }
 }
 
 -(void)doPlayVideoByFileLocalPath:(NSString *)inFileLocalPath

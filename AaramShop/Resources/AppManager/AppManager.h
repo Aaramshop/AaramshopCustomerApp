@@ -27,6 +27,7 @@ void MyAddressBookExternalChangeCallback (
 @interface AppManager : NSObject{
     ABAddressBookRef addressBookRef;
 }
+@property (nonatomic , assign) BOOL isComingFromChat;
 @property(nonatomic,strong) NSMutableArray *arrImages;
 @property(nonatomic,assign)BOOL isFetchingContacts;
 @property(nonatomic,strong) CMCountryList *cmCountryList;
