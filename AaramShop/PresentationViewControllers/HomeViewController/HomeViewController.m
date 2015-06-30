@@ -206,6 +206,11 @@
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     
+//    [dict setObject:[NSString stringWithFormat:@"%f",19.0176147] forKey:kLatitude];
+//    [dict setObject:[NSString stringWithFormat:@"%f",72.8561644] forKey:kLongitude];
+
+    
+    
     [self callWebserviceToGetStores:dict];
 }
 
@@ -255,6 +260,11 @@
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+
+    
+//    [dict setObject:[NSString stringWithFormat:@"%f",19.0176147] forKey:kLatitude];
+//    [dict setObject:[NSString stringWithFormat:@"%f",72.8561644] forKey:kLongitude];
+
     
     StoreModel *objStore = nil;
     if (self.mainCategoryIndex !=0) {
