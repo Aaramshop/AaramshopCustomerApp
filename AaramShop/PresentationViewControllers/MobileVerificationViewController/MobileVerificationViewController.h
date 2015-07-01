@@ -20,8 +20,12 @@
 }
 @property(nonatomic,strong) NSString *strMobileNum;
 @property(nonatomic,strong)AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+
+@property (nonatomic,strong) NSString *strIsRegistered;
+
 - (IBAction)btnBackClick:(UIButton *)sender;
 - (IBAction)btnContinueVerificationClick:(UIButton *)sender;
 - (IBAction)btnResendVerificationClick:(UIButton *)sender;
+
 
 @end

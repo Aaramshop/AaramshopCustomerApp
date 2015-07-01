@@ -29,7 +29,7 @@
 -(void)bindData
 {
     NSString *strName = objStoreModel.store_name;
-    NSString *strTitle = [NSString stringWithFormat:@"you have choose %@ as your HOME STORE.",strName];
+    NSString *strTitle = [NSString stringWithFormat:@"you have choosen %@ as your HOME STORE.",strName];
     NSMutableAttributedString *hogan = [[NSMutableAttributedString alloc] initWithString:strTitle];
     [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:15.0],NSFontAttributeName,[UIColor colorWithRed:189.0/255.0 green:189.0/255.0 blue:189.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(0, 15)];
     
@@ -80,6 +80,15 @@
         if (image) {
         }
     }];
+    
+    
+    imgVStoreImage.layer.cornerRadius = imgVStoreImage.frame.size.height/2;
+    imgVStoreImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    imgVStoreImage.layer.borderWidth = 1.0;
+    imgVStoreImage.clipsToBounds = YES;
+    
+    
+    
     
     [imgVStoreImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreModel.store_image]] placeholderImage:[UIImage imageNamed:@"homeDetailsDefaultImgae.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {

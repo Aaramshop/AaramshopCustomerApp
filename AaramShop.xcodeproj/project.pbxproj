@@ -1194,6 +1194,9 @@
 		6BFFF9601B0236B800BB2B62 /* tabBarOrdersIconActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BFFF9421B0236B800BB2B62 /* tabBarOrdersIconActive.png */; };
 		6BFFF9611B0236B800BB2B62 /* tabBarOrdersIconActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BFFF9431B0236B800BB2B62 /* tabBarOrdersIconActive@2x.png */; };
 		6BFFF9621B0236B800BB2B62 /* tabBarOrdersIconActive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BFFF9441B0236B800BB2B62 /* tabBarOrdersIconActive@3x.png */; };
+		AC2985AD1B43C817003F06E0 /* homeStoreEnterHomeStoreBox.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2985AA1B43C817003F06E0 /* homeStoreEnterHomeStoreBox.png */; };
+		AC2985AE1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2985AB1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@2x.png */; };
+		AC2985AF1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2985AC1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2733,6 +2736,9 @@
 		6BFFF9421B0236B800BB2B62 /* tabBarOrdersIconActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarOrdersIconActive.png; sourceTree = "<group>"; };
 		6BFFF9431B0236B800BB2B62 /* tabBarOrdersIconActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarOrdersIconActive@2x.png"; sourceTree = "<group>"; };
 		6BFFF9441B0236B800BB2B62 /* tabBarOrdersIconActive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarOrdersIconActive@3x.png"; sourceTree = "<group>"; };
+		AC2985AA1B43C817003F06E0 /* homeStoreEnterHomeStoreBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeStoreEnterHomeStoreBox.png; sourceTree = "<group>"; };
+		AC2985AB1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeStoreEnterHomeStoreBox@2x.png"; sourceTree = "<group>"; };
+		AC2985AC1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeStoreEnterHomeStoreBox@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5336,6 +5342,9 @@
 				36D8C4EE1B3A896F00C255EE /* locationIconHome@2x.png */,
 				36D8C4EF1B3A896F00C255EE /* locationIconHome@3x.png */,
 				6B87C7631B342B29002BC68C /* homeStoreIdBox.png */,
+				AC2985AA1B43C817003F06E0 /* homeStoreEnterHomeStoreBox.png */,
+				AC2985AB1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@2x.png */,
+				AC2985AC1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@3x.png */,
 				6B87C7641B342B29002BC68C /* homeStoreIdBox@2x.png */,
 				6B87C7651B342B29002BC68C /* homeStoreIdBox@3x.png */,
 				6B8EB2C71B26BDCE00402CFC /* homeDetailsDefaultImgae.png */,
@@ -6210,6 +6219,7 @@
 				3682099F1B1C46FA002AA93F /* kuwait.png in Resources */,
 				6B8EB2F81B26FB6D00402CFC /* minusIconCircle@3x.png in Resources */,
 				6BD2D3231B284C8900EC6E54 /* homeStarIconActive@3x.png in Resources */,
+				AC2985AF1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@3x.png in Resources */,
 				36820A341B1C46FA002AA93F /* uzbekistan.png in Resources */,
 				274A5DB11B05C88B009112B5 /* chatBubbleGrey@2x.png in Resources */,
 				3682091E1B1C46FA002AA93F /* barbados.png in Resources */,
@@ -6680,6 +6690,7 @@
 				368209951B1C46FA002AA93F /* karelia.png in Resources */,
 				36820A351B1C46FA002AA93F /* vanuatu.png in Resources */,
 				6BE474551B3B21CE00C09AFD /* MHGallery.bundle in Resources */,
+				AC2985AD1B43C817003F06E0 /* homeStoreEnterHomeStoreBox.png in Resources */,
 				6BE4C91B1B035DEF00EF1EDB /* mapPopup@3x.png in Resources */,
 				27EC67651B03316F007D126E /* enterMobileNoDefaultCameraIcon@3x.png in Resources */,
 				274F88B61B0D0E7400F85743 /* imageOne.png in Resources */,
@@ -6777,6 +6788,7 @@
 				6BD2D2E51B28408800EC6E54 /* homeRecomondedStoreChatIcon.png in Resources */,
 				368209F11B1C46FA002AA93F /* Saint Vincent and the Grenadines.png in Resources */,
 				6BFFF95F1B0236B800BB2B62 /* tabBarOrdersIcon@3x.png in Resources */,
+				AC2985AE1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@2x.png in Resources */,
 				6B8EB2E41B26F95000402CFC /* homeDeatilsWhiteArrow@2x.png in Resources */,
 				6BE4743B1B3B21CE00C09AFD /* ic_square@2x.png in Resources */,
 				36897D5C1B3B1D7F002F1485 /* searchIconGrey.png in Resources */,
