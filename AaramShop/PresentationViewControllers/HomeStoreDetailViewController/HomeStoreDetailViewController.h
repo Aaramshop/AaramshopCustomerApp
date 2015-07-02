@@ -20,6 +20,7 @@
     __weak IBOutlet UIImageView *imgVOfferImage;
     __weak IBOutlet UIImageView *imgVStoreCategoryImage;
     __weak IBOutlet UIImageView *imgVStoreImage;
+    
 
 }
 @property(nonatomic,strong) StoreModel *objStoreModel;

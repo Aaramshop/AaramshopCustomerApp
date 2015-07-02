@@ -12,6 +12,7 @@
 #import "PaymentViewController.h"
 
 #import "HomeStoreViewController.h" // temp
+#import "LocationEnterViewController.h" // temp
 
 @interface OptionViewController ()
 {
@@ -75,6 +76,12 @@
     /*
     HomeStoreViewController *homeStoreViewController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
     [self.navigationController pushViewController:homeStoreViewController animated:YES];
+//*/
+    
+    
+    /*
+    LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+    [self.navigationController pushViewController:locationScreen animated:YES];
 //*/
     
     

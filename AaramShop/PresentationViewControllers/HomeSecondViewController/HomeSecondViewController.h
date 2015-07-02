@@ -19,6 +19,9 @@
     NSMutableArray *arrGetStoreProducts;
     NSMutableArray *arrSearchGetStoreProducts;
     NSMutableArray *arrGetStoreProductSubCategory;
+    
+    BOOL isViewActive;
+
 }
 @property (nonatomic) NSInteger mainCategoryIndexPicker;
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

@@ -880,16 +880,24 @@
     if (mainCategoryIndex != 0)
     {
         if (tableView == tblStores)
-            objStoreModel = [arrSubCategory objectAtIndex:indexPath.row];
+            objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
+        
         else if (tableView == tblVwCategory)
-            objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+//            objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+            
+            objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
+
     }
     else
     {
         if (tableView == tblStores)
-            objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
+//            objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
+            objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
+
         else if (tableView == tblVwCategory)
-            objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
+//            objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
+            objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
+
     }
     
     homeSecondVwController.strStore_Id = objStoreModel.store_id;
@@ -1074,7 +1082,7 @@
             }
             HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
             homeSecondVwController.strStore_Id = objStoreModel.store_id;
-            homeSecondVwController.strStore_CategoryName = objStoreModel.store_category_name;
+            homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
             [self.navigationController pushViewController:homeSecondVwController animated:YES];
         }
             break;

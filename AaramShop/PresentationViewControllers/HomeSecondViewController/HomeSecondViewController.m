@@ -64,6 +64,24 @@
     [self createDataToGetStoreProductCategories];
 
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    isViewActive = YES;
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    
+    isViewActive = NO;
+    [super viewWillDisappear:YES];
+}
+
+
+
 -(void)createDataToGetStoreProductCategories
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
@@ -113,6 +131,12 @@
 }
 -(void) responseReceived:(id)responseObject
 {
+    if (!isViewActive)
+    {
+        return;
+    }
+    
+    
     if (aaramShop_ConnectionManager.currentTask == TASK_GET_STORE_PRODUCT_CATEGORIES) {
         
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
@@ -383,6 +407,8 @@
 }
 -(void)btnBackClicked
 {
+    isViewActive = NO;
+    
     [rightCollectionVwContrllr.view removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
 }
