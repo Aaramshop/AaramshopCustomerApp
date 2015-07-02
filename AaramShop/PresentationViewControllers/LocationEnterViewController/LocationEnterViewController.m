@@ -40,6 +40,9 @@
     arrShopsData = [[NSMutableArray alloc]init];
     mapViewLocation.delegate = self;
     
+//    [mapViewLocation setShowsUserLocation:YES];
+    
+    
         [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
     
         [[AppManager sharedManager] performSelector:@selector(createDefaultValuesForDictionay) withObject:nil];
@@ -373,6 +376,25 @@
         NSLog(@"Invalid region!");
     else
         [mapViewLocation setRegion:region animated:YES];
+    
+    
+    
+    [mapViewLocation setCenterCoordinate:mapViewLocation.userLocation.location.coordinate animated:YES];
+    [mapViewLocation setRegion:region animated:YES];
+    
+    
+    
+//    region.span.longitudeDelta  = 0.005;
+//    region.span.latitudeDelta  = 0.005;
+//    
+//    [mapViewLocation setRegion:region animated:YES];
+
+    
+//    CLLocationCoordinate2D noLocation;
+//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 500, 500);
+//    MKCoordinateRegion adjustedRegion = [mapViewLocation regionThatFits:viewRegion];
+//    [mapViewLocation setRegion:adjustedRegion animated:YES];
+//    mapViewLocation.showsUserLocation = YES;
 
 }
 #pragma mark -
@@ -397,12 +419,21 @@
                      cordinatesLocation.latitude = annotation.coordinate.latitude;
                      cordinatesLocation.longitude = annotation.coordinate.longitude;
                      [self getAddressFromLatitude:cordinatesLocation.latitude andLongitude:cordinatesLocation.longitude];
+                     
+//                     [mapViewLocation selectAnnotation:obj animated:YES];
+                     
                  }
              }
          }
 
     }
 }
+
+//-(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+//{
+//    MKAnnotationView *note= [mapView viewForAnnotation:mapView.userLocation];
+//    note.hidden = YES;
+//}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     

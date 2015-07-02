@@ -16,10 +16,11 @@
     UITableView *tblVwCategory;
     UITableView *tblStores;
     UIScrollView *mainScrollView;
-    NSMutableArray *arrSubCategory;
     NSMutableArray *arrCategory;
-    NSMutableArray *arrRecommendedStores;
     
+    NSMutableArray *arrRecommendedStores;
+    NSMutableArray *arrSubCategory;
+
     NSMutableArray *arrSubCategoryMyStores;
     NSMutableArray *arrRecommendedStoresMyStores;
 

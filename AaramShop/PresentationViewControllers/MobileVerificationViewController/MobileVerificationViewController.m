@@ -97,8 +97,23 @@
         if ([[responseObject objectForKey:kIsValid] isEqualToString:@"1"] && [[responseObject objectForKey:kstatus] intValue] == 1) {
             [AppManager saveUserDatainUserDefault];
 
-            LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
-            [self.navigationController pushViewController:locationScreen animated:YES];
+            
+            if ([_strIsRegistered intValue]==1)
+            {
+                UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+                tabBarController.selectedIndex = 0;
+                
+                AppDelegate *appDeleg = APP_DELEGATE;
+                
+                appDeleg.window.rootViewController = tabBarController;
+            }
+            else
+            {
+                LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+                [self.navigationController pushViewController:locationScreen animated:YES];
+            }
+            
+            
 
         }
         else

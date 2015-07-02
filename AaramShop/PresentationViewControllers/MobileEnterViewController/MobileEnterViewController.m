@@ -184,11 +184,14 @@
         [backBtn setEnabled:YES];
 
         if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 ) {
-//            NSLog(@"%@,")
+            
             [self saveDataToLocal:responseObject];
+            
             MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
             mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
+            mobileVerificationVwController.strIsRegistered = [responseObject objectForKey:@"isRegistered"];
             [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
+        
         }
         else
         {
@@ -199,8 +202,10 @@
 }
 -(void)saveDataToLocal:(id)responseObject{
     
+    
     NSDictionary *dict = (NSDictionary*)responseObject;
     [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kUserId] forKey:kUserId];
+    
     [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kDeviceId] forKey:kDeviceId];
     [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_100] forKey:kImage_url_100];
     [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_320] forKey:kImage_url_320];

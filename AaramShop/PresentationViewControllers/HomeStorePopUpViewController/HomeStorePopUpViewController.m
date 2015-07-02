@@ -16,6 +16,9 @@
 @synthesize viewPopUp;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    viewPopUp.layer.cornerRadius = 3.0;
+    viewPopUp.clipsToBounds = YES;
 }
 
 

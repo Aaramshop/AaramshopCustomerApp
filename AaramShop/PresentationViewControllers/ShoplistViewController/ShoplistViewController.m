@@ -20,6 +20,8 @@
     arrShoppingList = [[NSMutableArray alloc]init];
     self.sideBar = [Utils createLeftBarWithDelegate:self];
     [self setNavigationBar];
+    
+    tblView.backgroundColor = [UIColor whiteColor];
 }
 
 #pragma mark Navigation
