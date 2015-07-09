@@ -1024,6 +1024,13 @@
 		6BB50DE51B32ABE800990161 /* locationPopupTxtFieldHalf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BB50DDF1B32ABE800990161 /* locationPopupTxtFieldHalf@2x.png */; };
 		6BB50DE61B32ABE800990161 /* locationPopupTxtFieldHalf@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BB50DE01B32ABE800990161 /* locationPopupTxtFieldHalf@3x.png */; };
 		6BB50DEA1B32B0CA00990161 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB50DE91B32B0CA00990161 /* AddressModel.m */; };
+		6BCB093F1B4E67AD00F1A502 /* HomeCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB093E1B4E67AD00F1A502 /* HomeCategoriesViewController.m */; };
+		6BCB09451B4E76FC00F1A502 /* YSLContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB09421B4E76FC00F1A502 /* YSLContainerViewController.m */; };
+		6BCB09461B4E76FC00F1A502 /* YSLScrollMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB09441B4E76FC00F1A502 /* YSLScrollMenuView.m */; };
+		6BCB094B1B4E8C5900F1A502 /* ArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB09491B4E8C5900F1A502 /* ArtistsViewController.m */; };
+		6BCB094C1B4E8C5900F1A502 /* ArtistsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BCB094A1B4E8C5900F1A502 /* ArtistsViewController.xib */; };
+		6BCB09501B4E8D1900F1A502 /* ArtistsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB094E1B4E8D1900F1A502 /* ArtistsCell.m */; };
+		6BCB09511B4E8D1900F1A502 /* ArtistsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BCB094F1B4E8D1900F1A502 /* ArtistsCell.xib */; };
 		6BD2D2E21B28408800EC6E54 /* homeRecomondedStoreCallIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2D2D91B28408800EC6E54 /* homeRecomondedStoreCallIcon.png */; };
 		6BD2D2E31B28408800EC6E54 /* homeRecomondedStoreCallIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2D2DA1B28408800EC6E54 /* homeRecomondedStoreCallIcon@2x.png */; };
 		6BD2D2E41B28408800EC6E54 /* homeRecomondedStoreCallIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2D2DB1B28408800EC6E54 /* homeRecomondedStoreCallIcon@3x.png */; };
@@ -2538,6 +2545,18 @@
 		6BB50DE81B32B0CA00990161 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
 		6BB50DE91B32B0CA00990161 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
 		6BC2B8611AF3AC71009E77E3 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		6BCB093D1B4E67AD00F1A502 /* HomeCategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoriesViewController.h; sourceTree = "<group>"; };
+		6BCB093E1B4E67AD00F1A502 /* HomeCategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoriesViewController.m; sourceTree = "<group>"; };
+		6BCB09411B4E76FC00F1A502 /* YSLContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSLContainerViewController.h; sourceTree = "<group>"; };
+		6BCB09421B4E76FC00F1A502 /* YSLContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSLContainerViewController.m; sourceTree = "<group>"; };
+		6BCB09431B4E76FC00F1A502 /* YSLScrollMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSLScrollMenuView.h; sourceTree = "<group>"; };
+		6BCB09441B4E76FC00F1A502 /* YSLScrollMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSLScrollMenuView.m; sourceTree = "<group>"; };
+		6BCB09481B4E8C5900F1A502 /* ArtistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistsViewController.h; sourceTree = "<group>"; };
+		6BCB09491B4E8C5900F1A502 /* ArtistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistsViewController.m; sourceTree = "<group>"; };
+		6BCB094A1B4E8C5900F1A502 /* ArtistsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArtistsViewController.xib; sourceTree = "<group>"; };
+		6BCB094D1B4E8D1900F1A502 /* ArtistsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistsCell.h; sourceTree = "<group>"; };
+		6BCB094E1B4E8D1900F1A502 /* ArtistsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistsCell.m; sourceTree = "<group>"; };
+		6BCB094F1B4E8D1900F1A502 /* ArtistsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArtistsCell.xib; sourceTree = "<group>"; };
 		6BD2D2D91B28408800EC6E54 /* homeRecomondedStoreCallIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeRecomondedStoreCallIcon.png; sourceTree = "<group>"; };
 		6BD2D2DA1B28408800EC6E54 /* homeRecomondedStoreCallIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeRecomondedStoreCallIcon@2x.png"; sourceTree = "<group>"; };
 		6BD2D2DB1B28408800EC6E54 /* homeRecomondedStoreCallIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeRecomondedStoreCallIcon@3x.png"; sourceTree = "<group>"; };
@@ -2840,6 +2859,7 @@
 		274A5A661B05C4A9009112B5 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				6BCB09401B4E76FC00F1A502 /* YSLContainerViewController */,
 				6B809D821B31755D00E91673 /* SDWebImage */,
 				36820A421B1C4709002AA93F /* SVProgressHUD */,
 				274A5E061B05CA22009112B5 /* FXBlurView */,
@@ -4953,6 +4973,7 @@
 		6B12DC9D1AF2543A00245209 /* PresentationViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6BCB093C1B4E66C400F1A502 /* HomeCategoriesViewController */,
 				36D8C4F31B3A934000C255EE /* PaymentModeViewController */,
 				368AFED71B38391500417836 /* PaymentViewController */,
 				6B1DFC1B1B30493400E5CAE8 /* SearchDisplayController */,
@@ -5544,6 +5565,40 @@
 				6BB50DE91B32B0CA00990161 /* AddressModel.m */,
 			);
 			path = AddressModel;
+			sourceTree = "<group>";
+		};
+		6BCB093C1B4E66C400F1A502 /* HomeCategoriesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6BCB093D1B4E67AD00F1A502 /* HomeCategoriesViewController.h */,
+				6BCB09471B4E8C5900F1A502 /* sampleClass */,
+				6BCB093E1B4E67AD00F1A502 /* HomeCategoriesViewController.m */,
+			);
+			path = HomeCategoriesViewController;
+			sourceTree = "<group>";
+		};
+		6BCB09401B4E76FC00F1A502 /* YSLContainerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6BCB09411B4E76FC00F1A502 /* YSLContainerViewController.h */,
+				6BCB09421B4E76FC00F1A502 /* YSLContainerViewController.m */,
+				6BCB09431B4E76FC00F1A502 /* YSLScrollMenuView.h */,
+				6BCB09441B4E76FC00F1A502 /* YSLScrollMenuView.m */,
+			);
+			path = YSLContainerViewController;
+			sourceTree = "<group>";
+		};
+		6BCB09471B4E8C5900F1A502 /* sampleClass */ = {
+			isa = PBXGroup;
+			children = (
+				6BCB094D1B4E8D1900F1A502 /* ArtistsCell.h */,
+				6BCB094E1B4E8D1900F1A502 /* ArtistsCell.m */,
+				6BCB094F1B4E8D1900F1A502 /* ArtistsCell.xib */,
+				6BCB09481B4E8C5900F1A502 /* ArtistsViewController.h */,
+				6BCB09491B4E8C5900F1A502 /* ArtistsViewController.m */,
+				6BCB094A1B4E8C5900F1A502 /* ArtistsViewController.xib */,
+			);
+			path = sampleClass;
 			sourceTree = "<group>";
 		};
 		6BD2D2D81B28408800EC6E54 /* HomeFirstScreen */ = {
@@ -6507,6 +6562,7 @@
 				6BD2D3161B284C8900EC6E54 /* homeLockIconOpen@2x.png in Resources */,
 				274A5A4B1B05C075009112B5 /* homeOfferBox.png in Resources */,
 				6BA2F0A21B04B9300074562F /* PinShadow.png in Resources */,
+				6BCB09511B4E8D1900F1A502 /* ArtistsCell.xib in Resources */,
 				36820A2B1B1C46FA002AA93F /* udmurtia.png in Resources */,
 				6BFFF9491B0236B800BB2B62 /* tabBarChatIconActive@2x.png in Resources */,
 				6B8EB24F1B23087400402CFC /* shoppingListAddCircle.png in Resources */,
@@ -6792,6 +6848,7 @@
 				6B8EB2E41B26F95000402CFC /* homeDeatilsWhiteArrow@2x.png in Resources */,
 				6BE4743B1B3B21CE00C09AFD /* ic_square@2x.png in Resources */,
 				36897D5C1B3B1D7F002F1485 /* searchIconGrey.png in Resources */,
+				6BCB094C1B4E8C5900F1A502 /* ArtistsViewController.xib in Resources */,
 				36820A081B1C46FA002AA93F /* south ossetia.png in Resources */,
 				27EC67521B0326A5007D126E /* bg1@2x.jpg in Resources */,
 				274A5DE11B05C88B009112B5 /* stcker1@2x.png in Resources */,
@@ -6921,6 +6978,7 @@
 				274A5CD01B05C4AA009112B5 /* XMPPIQ+XEP_0066.m in Sources */,
 				274A5CC01B05C4AA009112B5 /* XMPPvCardCoreDataStorage.m in Sources */,
 				274A5C961B05C4AA009112B5 /* XMPPMessage.m in Sources */,
+				6BCB09501B4E8D1900F1A502 /* ArtistsCell.m in Sources */,
 				274A5C581B05C4AA009112B5 /* UIProgressView+AFNetworking.m in Sources */,
 				274A5C8F1B05C4AA009112B5 /* NSData+XMPP.m in Sources */,
 				274A5C811B05C4AA009112B5 /* SHLog+.m in Sources */,
@@ -7068,6 +7126,7 @@
 				274A5DFA1B05C88B009112B5 /* ShowFullProfileImageViewController.m in Sources */,
 				274A5C6A1B05C4AA009112B5 /* UIView+DownSubviews.m in Sources */,
 				274A5C6C1B05C4AA009112B5 /* UIWebView+SH.m in Sources */,
+				6BCB09461B4E76FC00F1A502 /* YSLScrollMenuView.m in Sources */,
 				36EE08EA1B1DA61800906277 /* UserInfoTableCell.m in Sources */,
 				6BD2D3341B28694500EC6E54 /* RightCollectionViewController.m in Sources */,
 				274A5C9F1B05C4AA009112B5 /* XMPPReconnect.m in Sources */,
@@ -7085,6 +7144,7 @@
 				6B809DB11B31755D00E91673 /* UIImageView+HighlightedWebCache.m in Sources */,
 				6B809DB21B31755D00E91673 /* UIImageView+WebCache.m in Sources */,
 				274A5C991B05C4AA009112B5 /* XMPPPresence.m in Sources */,
+				6BCB094B1B4E8C5900F1A502 /* ArtistsViewController.m in Sources */,
 				6BE4745A1B3B21CE00C09AFD /* MHGallerySharedManager.m in Sources */,
 				274A5DA61B05C88B009112B5 /* ChatComponent.m in Sources */,
 				274A5C521B05C4AA009112B5 /* AFURLSessionManager.m in Sources */,
@@ -7124,6 +7184,7 @@
 				274A5C511B05C4AA009112B5 /* AFURLResponseSerialization.m in Sources */,
 				6B12DCD41AF29E8200245209 /* ForgotPasswordViewController.m in Sources */,
 				274A5CC91B05C4AA009112B5 /* XMPPvCardTempModule.m in Sources */,
+				6BCB09451B4E76FC00F1A502 /* YSLContainerViewController.m in Sources */,
 				274A5E0B1B05CA22009112B5 /* FXBlurView.m in Sources */,
 				274A5CF61B05C4AA009112B5 /* GCDMulticastDelegate.m in Sources */,
 				274A5CCF1B05C4AA009112B5 /* TURNSocket.m in Sources */,
@@ -7192,6 +7253,7 @@
 				274A5CF11B05C4AA009112B5 /* XMPPMessage+XEP_0308.m in Sources */,
 				6BE4745F1B3B21CE00C09AFD /* MHTransitionDismissMHGallery.m in Sources */,
 				36D8C4D41B39B1DF00C255EE /* OrderHistTableCell.m in Sources */,
+				6BCB093F1B4E67AD00F1A502 /* HomeCategoriesViewController.m in Sources */,
 				274A5CDD1B05C4AA009112B5 /* XMPPMessageArchiving.xcdatamodeld in Sources */,
 				274A5C481B05C4AA009112B5 /* AppManager.m in Sources */,
 				6B809DAA1B31755D00E91673 /* SDWebImageDownloaderOperation.m in Sources */,
