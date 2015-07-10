@@ -42,6 +42,7 @@ static const CGFloat kYSLIndicatorHeight = 3;
         self.backgroundColor = _viewbackgroudColor;
         _scrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
         _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.pagingEnabled = YES;
         [self addSubview:_scrollView];
     }
     return self;

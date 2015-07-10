@@ -7,11 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomeCategoriesCollectionCell.h"
+#import "YSLContainerViewController.h"
 
 @interface HomeCategoriesViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
+    YSLContainerViewController *containerVC;
+
     IBOutlet UICollectionView *collectionMaster;
+    IBOutlet UIView *viewOverlay;
     IBOutlet UIView *viewSubcategories;
+    
+    NSMutableArray *arrCategories;
+    
+    NSInteger indexMasterCategory;
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

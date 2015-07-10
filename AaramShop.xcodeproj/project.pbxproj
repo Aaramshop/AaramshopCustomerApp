@@ -995,6 +995,11 @@
 		6BA2F09F1B04B2F30074562F /* mapPinGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09C1B04B2F30074562F /* mapPinGreen@2x.png */; };
 		6BA2F0A01B04B2F30074562F /* mapPinGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09D1B04B2F30074562F /* mapPinGreen@3x.png */; };
 		6BA2F0A21B04B9300074562F /* PinShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F0A11B04B9300074562F /* PinShadow.png */; };
+		6BA894001B4F9EFB0014519C /* HomeCategoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA893FF1B4F9EFB0014519C /* HomeCategoriesModel.m */; };
+		6BA894061B4F9F850014519C /* HomeStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA894051B4F9F850014519C /* HomeStoreModel.m */; };
+		6BA894091B4F9F970014519C /* RecommendedStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA894081B4F9F970014519C /* RecommendedStoreModel.m */; };
+		6BA8940C1B4F9FAC0014519C /* ShoppingStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA8940B1B4F9FAC0014519C /* ShoppingStoreModel.m */; };
+		6BA894101B4FC0350014519C /* HomeCategoriesCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA8940F1B4FC0350014519C /* HomeCategoriesCollectionCell.m */; };
 		6BA8F8FF1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA8F8FE1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m */; };
 		6BA8F92B1B0A226000EAA6A8 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA8F92A1B0A226000EAA6A8 /* AddressBook.framework */; };
 		6BA8F92D1B0A226D00EAA6A8 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BA8F92C1B0A226D00EAA6A8 /* AddressBookUI.framework */; };
@@ -2511,6 +2516,16 @@
 		6BA2F09C1B04B2F30074562F /* mapPinGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPinGreen@2x.png"; sourceTree = "<group>"; };
 		6BA2F09D1B04B2F30074562F /* mapPinGreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPinGreen@3x.png"; sourceTree = "<group>"; };
 		6BA2F0A11B04B9300074562F /* PinShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinShadow.png; sourceTree = "<group>"; };
+		6BA893FE1B4F9EFB0014519C /* HomeCategoriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoriesModel.h; sourceTree = "<group>"; };
+		6BA893FF1B4F9EFB0014519C /* HomeCategoriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoriesModel.m; sourceTree = "<group>"; };
+		6BA894041B4F9F850014519C /* HomeStoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeStoreModel.h; sourceTree = "<group>"; };
+		6BA894051B4F9F850014519C /* HomeStoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeStoreModel.m; sourceTree = "<group>"; };
+		6BA894071B4F9F970014519C /* RecommendedStoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedStoreModel.h; sourceTree = "<group>"; };
+		6BA894081B4F9F970014519C /* RecommendedStoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedStoreModel.m; sourceTree = "<group>"; };
+		6BA8940A1B4F9FAC0014519C /* ShoppingStoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingStoreModel.h; sourceTree = "<group>"; };
+		6BA8940B1B4F9FAC0014519C /* ShoppingStoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingStoreModel.m; sourceTree = "<group>"; };
+		6BA8940E1B4FC0350014519C /* HomeCategoriesCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoriesCollectionCell.h; sourceTree = "<group>"; };
+		6BA8940F1B4FC0350014519C /* HomeCategoriesCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoriesCollectionCell.m; sourceTree = "<group>"; };
 		6BA8F8FD1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AaramShop_ConnectionManager.h; sourceTree = "<group>"; };
 		6BA8F8FE1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AaramShop_ConnectionManager.m; sourceTree = "<group>"; };
 		6BA8F92A1B0A226000EAA6A8 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -5522,6 +5537,51 @@
 			path = SubCategoryModel;
 			sourceTree = "<group>";
 		};
+		6BA893FD1B4F9EB10014519C /* HomeCategoriesModel */ = {
+			isa = PBXGroup;
+			children = (
+				6BA893FE1B4F9EFB0014519C /* HomeCategoriesModel.h */,
+				6BA893FF1B4F9EFB0014519C /* HomeCategoriesModel.m */,
+			);
+			path = HomeCategoriesModel;
+			sourceTree = "<group>";
+		};
+		6BA894011B4F9F680014519C /* HomeStoreModel */ = {
+			isa = PBXGroup;
+			children = (
+				6BA894041B4F9F850014519C /* HomeStoreModel.h */,
+				6BA894051B4F9F850014519C /* HomeStoreModel.m */,
+			);
+			path = HomeStoreModel;
+			sourceTree = "<group>";
+		};
+		6BA894021B4F9F680014519C /* RecommendedStoreModel */ = {
+			isa = PBXGroup;
+			children = (
+				6BA894071B4F9F970014519C /* RecommendedStoreModel.h */,
+				6BA894081B4F9F970014519C /* RecommendedStoreModel.m */,
+			);
+			path = RecommendedStoreModel;
+			sourceTree = "<group>";
+		};
+		6BA894031B4F9F680014519C /* ShoppingStoreModel */ = {
+			isa = PBXGroup;
+			children = (
+				6BA8940A1B4F9FAC0014519C /* ShoppingStoreModel.h */,
+				6BA8940B1B4F9FAC0014519C /* ShoppingStoreModel.m */,
+			);
+			path = ShoppingStoreModel;
+			sourceTree = "<group>";
+		};
+		6BA8940D1B4FC01B0014519C /* HomeCategoriesCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				6BA8940E1B4FC0350014519C /* HomeCategoriesCollectionCell.h */,
+				6BA8940F1B4FC0350014519C /* HomeCategoriesCollectionCell.m */,
+			);
+			path = HomeCategoriesCollectionCell;
+			sourceTree = "<group>";
+		};
 		6BA8F8FC1B08FCBD00EAA6A8 /* ConnectionManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -5570,9 +5630,14 @@
 		6BCB093C1B4E66C400F1A502 /* HomeCategoriesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6BA8940D1B4FC01B0014519C /* HomeCategoriesCollectionCell */,
+				6BA894011B4F9F680014519C /* HomeStoreModel */,
+				6BA894021B4F9F680014519C /* RecommendedStoreModel */,
+				6BA894031B4F9F680014519C /* ShoppingStoreModel */,
+				6BA893FD1B4F9EB10014519C /* HomeCategoriesModel */,
 				6BCB093D1B4E67AD00F1A502 /* HomeCategoriesViewController.h */,
-				6BCB09471B4E8C5900F1A502 /* sampleClass */,
 				6BCB093E1B4E67AD00F1A502 /* HomeCategoriesViewController.m */,
+				6BCB09471B4E8C5900F1A502 /* sampleClass */,
 			);
 			path = HomeCategoriesViewController;
 			sourceTree = "<group>";
@@ -7018,6 +7083,7 @@
 				274A5DF41B05C88B009112B5 /* SHRequestSampleList.m in Sources */,
 				274A5C9C1B05C4AA009112B5 /* XMPPCoreDataStorage.m in Sources */,
 				274A5CA01B05C4AA009112B5 /* XMPPGroupCoreDataStorageObject.m in Sources */,
+				6BA894001B4F9EFB0014519C /* HomeCategoriesModel.m in Sources */,
 				6B06770D1B070C3C0002259E /* LocationAlertViewController.m in Sources */,
 				27BE658D1B020446004FA4B4 /* ShoplistViewController.m in Sources */,
 				274A5CC81B05C4AA009112B5 /* XMPPvCardTempLabel.m in Sources */,
@@ -7056,6 +7122,7 @@
 				274A5CF81B05C4AA009112B5 /* XMPPIDTracker.m in Sources */,
 				6BA8F8FF1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m in Sources */,
 				274A5C501B05C4AA009112B5 /* AFURLRequestSerialization.m in Sources */,
+				6BA894091B4F9F970014519C /* RecommendedStoreModel.m in Sources */,
 				6B8536571B046B8300E60AA3 /* DDAnnotationView.m in Sources */,
 				6BE474541B3B21CE00C09AFD /* MHGallery.m in Sources */,
 				274A5E021B05C88B009112B5 /* CustomNotificationView.m in Sources */,
@@ -7095,6 +7162,7 @@
 				6B1A9A581B03658C0005917B /* CustomMapAnnotationView.m in Sources */,
 				274A5CC41B05C4AA009112B5 /* XMPPvCardTempAdr.m in Sources */,
 				274A5CBC1B05C4AA009112B5 /* XMPPMUC.m in Sources */,
+				6BA894101B4FC0350014519C /* HomeCategoriesCollectionCell.m in Sources */,
 				274A5CBF1B05C4AA009112B5 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				274A5CD51B05C4AA009112B5 /* XMPPSoftwareVersion.m in Sources */,
 				274A5C5D1B05C4AA009112B5 /* NSData+SH.m in Sources */,
@@ -7165,6 +7233,7 @@
 				6B87C75C1B34206F002BC68C /* StoreModel.m in Sources */,
 				274A5C5B1B05C4AA009112B5 /* AKKeyboardAvoidingScrollView.m in Sources */,
 				274A5D031B05C4AA009112B5 /* DDMultiFormatter.m in Sources */,
+				6BA894061B4F9F850014519C /* HomeStoreModel.m in Sources */,
 				274A5C6D1B05C4AA009112B5 /* CXMPPController.m in Sources */,
 				274A5CE01B05C4AA009112B5 /* XMPPMessageArchivingCoreDataStorage.m in Sources */,
 				274A5CD41B05C4AA009112B5 /* XMPPMessage+XEP_0085.m in Sources */,
@@ -7216,6 +7285,7 @@
 				274A5CC61B05C4AA009112B5 /* XMPPvCardTempBase.m in Sources */,
 				274A5CF01B05C4AA009112B5 /* NSXMLElement+XEP_0297.m in Sources */,
 				274A5CAD1B05C4AA009112B5 /* XMPPIQ+LastActivity.m in Sources */,
+				6BA8940C1B4F9FAC0014519C /* ShoppingStoreModel.m in Sources */,
 				27D049591B020780001A437F /* TabbarViewController.m in Sources */,
 				274A5CA41B05C4AA009112B5 /* XMPPUserCoreDataStorageObject.m in Sources */,
 				274A5CC31B05C4AA009112B5 /* XMPPvCardTemp.m in Sources */,

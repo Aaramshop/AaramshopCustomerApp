@@ -7,11 +7,18 @@
 //
 
 #import "HomeCategoriesViewController.h"
-#import "YSLContainerViewController.h"
-#import "ArtistsViewController.h"
+#import "ArtistsViewController.h" // temp
+
+#import "HomeCategoriesModel.h"
+#import "HomeStoreModel.h"
+#import "RecommendedStoreModel.h"
+#import "ShoppingStoreModel.h"
+
 
 #define kTagForYSLScrollView    1000
 #define kTagForFoodTableView    10
+
+static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 @interface HomeCategoriesViewController ()<YSLContainerViewControllerDelegate>
 {
@@ -34,17 +41,7 @@
     // Do any additional setup after loading the view.
     
     [self setUpNavigationBar];
-    
-    kCollectionHeight = 235 - 66; // minus navigation height (66).
-    kYSLScrollMenuViewHeight = 40;
-    kTabbarHeight = 49;
-    
-    kTableProductsHeight = self.view.frame.size.height - (kCollectionHeight + kTabbarHeight + 2);
-    
-//    collectionMaster.backgroundColor = [UIColor blueColor];
-    
-    [self setupDesign];
-    
+    [self initilizeData];
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate= self;
@@ -53,7 +50,20 @@
     [appDeleg findCurrentLocation];
     
     [self createDataToGetStores];
+}
+
+-(void)initilizeData
+{
+    kCollectionHeight = 235 - 66; // minus navigation height (66).
+    kYSLScrollMenuViewHeight = 40;
+    kTabbarHeight = 49;
     
+    kTableProductsHeight = self.view.frame.size.height - (kCollectionHeight + kTabbarHeight + 2);
+
+    viewOverlay.hidden = YES;
+    indexMasterCategory = 0;
+    
+    arrCategories = [[NSMutableArray alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -134,23 +144,24 @@
 
 }
 
--(void)setupDesign
+-(void)setupViewDesign
 {
     // SetUp ViewControllers
     
+    
 //    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
-    
-    NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:6];
+    NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:[arrCategories count]];
 
-    for (int i = 0; i<6; i++)
+    for (HomeCategoriesModel *homeCategoriesModel in arrCategories)
     {
-//        CategoryViewController *categoryView = [sb instantiateViewControllerWithIdentifier:@"categoryScreen"];
+        //        CategoryViewController *categoryView = [sb instantiateViewControllerWithIdentifier:@"categoryScreen"];
         
         ArtistsViewController *artistVC = [[ArtistsViewController alloc]initWithNibName:@"ArtistsViewController" bundle:nil];
-        artistVC.title = [NSString stringWithFormat:@"Title %d",i];
+        artistVC.title = homeCategoriesModel.store_main_category_name;
         
         [viewControllers addObject:artistVC];
+
     }
     
     
@@ -158,7 +169,7 @@
     float statusHeight = 0;
     float navigationHeight = 0;
     
-    YSLContainerViewController *containerVC = [[YSLContainerViewController alloc]initWithControllers:viewControllers
+    containerVC = [[YSLContainerViewController alloc]initWithControllers:viewControllers
                                                                                         topBarHeight:statusHeight + navigationHeight
                                                                                 parentViewController:self];
     containerVC.delegate = self;
@@ -204,16 +215,6 @@
 }
 
 
-
-#pragma mark -- YSLContainerViewControllerDelegate
-- (void)containerViewItemIndex:(NSInteger)index currentController:(UIViewController *)controller
-{
-    //    NSLog(@"current Index : %ld",(long)index);
-    //    NSLog(@"current controller : %@",controller);
-    [controller viewWillAppear:YES];
-}
-
-
 #pragma mark - createDataToGetStores
 
 -(void)createDataToGetStores
@@ -235,6 +236,7 @@
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
     {
+        viewOverlay.hidden = YES;
         [AppManager stopStatusbarActivityIndicator];
         
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
@@ -246,158 +248,172 @@
 
 -(void) didFailWithError:(NSError *)error
 {
+    viewOverlay.hidden = YES;
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
+
 -(void) responseReceived:(id)responseObject
 {
     if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_STORES) {
         
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
             
+            viewOverlay.hidden = NO;
             [self parseStoreData:responseObject];
         }
         else
         {
+            viewOverlay.hidden = YES;
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         }
     }
-//    else if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_STORES_FROM_CATEGORIES_ID) {
-//        
-//        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
-//            [self  parseStoreNextData:responseObject];
-//        }
-//        else
-//        {
-//            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-//        }
-//    }
-//    else if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_STORES_PAGINATION) {
-//        
-//        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
-//            
-//            [self parseStoreData:responseObject];
-//        }
-//        else
-//        {
-//            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-//        }
-//    }
-    
     
 }
 
 
 -(void)parseStoreData:(NSMutableDictionary *)responseObject
 {
-    /*
-    
-    NSArray *categories = [responseObject objectForKey:@"categories"];
-    
-    for (NSDictionary *dict in categories) {
+    NSArray *arrTempCategories = [responseObject objectForKey:@"categories"];
+
+    for (NSDictionary *dict in arrTempCategories)
+    {
+        HomeCategoriesModel *homeCategoriesModel = [[HomeCategoriesModel alloc]init];
         
-        StoreModel *objStoreModel = [[StoreModel alloc]init];
-        objStoreModel.store_main_category_banner_1 = [NSString stringWithFormat:@"%@",[[dict objectForKey:kStore_main_category_banner_1]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        
-        
-        objStoreModel.store_main_category_banner_2 = [NSString stringWithFormat:@"%@",[[dict objectForKey:kStore_main_category_banner_2]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        
-        objStoreModel.store_main_category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_main_category_id]];
-        objStoreModel.store_main_category_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_main_category_name]];
-        
-        NSArray *arrRecomendedStores = [dict objectForKey:@"recommended_stores"];
-        NSArray *arrHomeStores = [dict objectForKey:@"home_stores"];
-        NSArray *arrshoppingStores = [dict objectForKey:@"shopping_store"];
+        homeCategoriesModel.store_main_category_banner_1 = [[dict objectForKey:kStore_main_category_banner_1]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        homeCategoriesModel.store_main_category_banner_2 = [[dict objectForKey:kStore_main_category_banner_2]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+        homeCategoriesModel.store_main_category_id = [dict objectForKey:kStore_main_category_id];
+        homeCategoriesModel.store_main_category_name = [dict objectForKey:kStore_main_category_name];
         
         
-        for (NSDictionary *dictRecommended in arrRecomendedStores) {
+        NSArray *arrTempHomeStores = [dict objectForKey:@"home_stores"];
+        for (NSDictionary *dict in arrTempHomeStores)
+        {
+            HomeStoreModel *homeStoreModel = [[HomeStoreModel alloc]init];
+            homeStoreModel.chat_username = [dict objectForKey:@"chat_username"];
+            homeStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
+            homeStoreModel.is_favorite = [dict objectForKey:@"is_favorite"];
+            homeStoreModel.is_home_store = [dict objectForKey:@"is_home_store"];
+            homeStoreModel.is_open = [dict objectForKey:@"is_open"];
+            homeStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
+            homeStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
+            homeStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
+            homeStoreModel.store_id = [dict objectForKey:@"store_id"];
+            homeStoreModel.store_image = [dict objectForKey:@"store_image"];
+            homeStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
+            homeStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
+            homeStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
+            homeStoreModel.store_name = [dict objectForKey:@"store_name"];
+            homeStoreModel.store_rating = [dict objectForKey:@"store_rating"];
+            homeStoreModel.total_orders = [dict objectForKey:@"total_orders"];
             
-            StoreModel *objStore = [[StoreModel alloc]init];
-            objStore.chat_username = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kChat_username]];
-            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kHome_delivery]];
-            objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_favorite]];
-            objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_home_store]];
-            objStore.is_open = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_open]];
-            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_name]];
-            objStore.store_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_id]];
-            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_latitude]];
-            objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_longitude]];
-            objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_mobile]];
-            objStore.store_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_name]];
-            objStore.store_rating = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_rating]];
-            objStore.total_orders = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kTotal_orders]];
-            objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_id]];
-            
-            [arrRecommendedStoresMyStores addObject:objStore];
-        }
-        for (NSDictionary *dictHome in arrHomeStores) {
-            
-            StoreModel *objStore = [[StoreModel alloc]init];
-            objStore.chat_username = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kChat_username]];
-            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kHome_delivery]];
-            objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_favorite]];
-            objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_home_store]];
-            objStore.is_open = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_open]];
-            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_name]];
-            objStore.store_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_id]];
-            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_latitude]];
-            objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_longitude]];
-            objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_mobile]];
-            objStore.store_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_name]];
-            objStore.store_rating = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_rating]];
-            objStore.total_orders = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kTotal_orders]];
-            objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_id]];
-            
-            [arrSubCategoryMyStores addObject:objStore];
+            [homeCategoriesModel.arrHome_stores addObject:homeStoreModel];
         }
         
-        for (NSDictionary *dictShopping in arrshoppingStores) {
+        NSArray *arrTempRecomendedStores = [dict objectForKey:@"recommended_stores"];
+        for (NSDictionary *dict in arrTempRecomendedStores)
+        {
+            RecommendedStoreModel *recommendedStoreModel = [[RecommendedStoreModel alloc]init];
+            recommendedStoreModel.chat_username = [dict objectForKey:@"chat_username"];
+            recommendedStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
+            recommendedStoreModel.is_favorite = [dict objectForKey:@"is_favorite"];
+            recommendedStoreModel.is_home_store = [dict objectForKey:@"is_home_store"];
+            recommendedStoreModel.is_open = [dict objectForKey:@"is_open"];
+            recommendedStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
+            recommendedStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
+            recommendedStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
+            recommendedStoreModel.store_id = [dict objectForKey:@"store_id"];
+            recommendedStoreModel.store_image = [dict objectForKey:@"store_image"];
+            recommendedStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
+            recommendedStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
+            recommendedStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
+            recommendedStoreModel.store_name = [dict objectForKey:@"store_name"];
+            recommendedStoreModel.store_rating = [dict objectForKey:@"store_rating"];
+            recommendedStoreModel.total_orders = [dict objectForKey:@"total_orders"];
             
-            StoreModel *objStore = [[StoreModel alloc]init];
-            objStore.chat_username = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kChat_username]];
-            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kHome_delivery]];
-            objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_favorite]];
-            objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_home_store]];
-            objStore.is_open = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_open]];
-            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_name]];
-            objStore.store_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_id]];
-            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_latitude]];
-            objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_longitude]];
-            objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_mobile]];
-            objStore.store_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_name]];
-            objStore.store_rating = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_rating]];
-            objStore.total_orders = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kTotal_orders]];
-            objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_id]];
-            
-            [arrSubCategoryMyStores addObject:objStore];
+            [homeCategoriesModel.arrRecommended_stores addObject:recommendedStoreModel];
         }
         
-        [arrCategory addObject:objStoreModel];
+        NSArray *arrTempshoppingStores = [dict objectForKey:@"shopping_store"];
+        for (NSDictionary *dict in arrTempshoppingStores)
+        {
+            ShoppingStoreModel *shoppingStoreModel = [[ShoppingStoreModel alloc]init];
+            shoppingStoreModel.chat_username = [dict objectForKey:@"chat_username"];
+            shoppingStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
+            shoppingStoreModel.is_favorite = [dict objectForKey:@"is_favorite"];
+            shoppingStoreModel.is_home_store = [dict objectForKey:@"is_home_store"];
+            shoppingStoreModel.is_open = [dict objectForKey:@"is_open"];
+            shoppingStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
+            shoppingStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
+            shoppingStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
+            shoppingStoreModel.store_id = [dict objectForKey:@"store_id"];
+            shoppingStoreModel.store_image = [dict objectForKey:@"store_image"];
+            shoppingStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
+            shoppingStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
+            shoppingStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
+            shoppingStoreModel.store_name = [dict objectForKey:@"store_name"];
+            shoppingStoreModel.store_rating = [dict objectForKey:@"store_rating"];
+            shoppingStoreModel.total_orders = [dict objectForKey:@"total_orders"];
+            
+            [homeCategoriesModel.arrShopping_store addObject:shoppingStoreModel];
+        }
+        
+        [arrCategories addObject:homeCategoriesModel];
     }
     
-    objCategoryVwController = (CategoryViewController *) [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"categoryScreen"];
-    
-    objCategoryVwController.delegate = self;
-    
-    objCategoryVwController.arrCategory  = [[NSMutableArray alloc]init];
-    [objCategoryVwController.arrCategory addObjectsFromArray:arrCategory];
-    
-    tblVwCategory.hidden = NO;
-    tblStores.hidden = NO;
-    mainScrollView.hidden = NO;
-    
-    [tblVwCategory reloadData];
-    if (arrCategory.count>0 && isOffEffect) {
-        [self setViewForRecomendedCells];
-    }
-    [tblStores reloadData];
-    //*/
+    [collectionMaster reloadData];
+    [self setupViewDesign];
 }
 
+
+#pragma mark - UICollectionView Delegate & DataSource Methods
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return  [arrCategories count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    HomeCategoriesCollectionCell *cell = (HomeCategoriesCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier: strCollectionCell forIndexPath:indexPath];
+
+//    cell.delegateMasterCategory = self;
+    cell.indexPath = indexPath;
+    [cell updateMasterCollectionCell:[arrCategories objectAtIndex:indexPath.item]];
+    cell.backgroundColor = [UIColor redColor];
+    return cell;
+    
+}
+
+
+- (void)collectionView:(UICollectionView *)collectionViewSelected didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+
+#pragma mark -- YSLContainerViewControllerDelegate
+- (void)containerViewItemIndex:(NSInteger)index currentController:(UIViewController *)controller
+{
+    //    NSLog(@"current Index : %ld",(long)index);
+    //    NSLog(@"current controller : %@",controller);
+    
+    
+    indexMasterCategory = index;
+    
+    [controller viewWillAppear:YES];
+}
+
+
+#pragma mark - Navigate To Other Screen
+-(void)navigateToOtherScreen:(UIViewController *)controller
+{
+    [containerVC scrollMenuViewSelectedIndex:3];
+}
 
 @end
