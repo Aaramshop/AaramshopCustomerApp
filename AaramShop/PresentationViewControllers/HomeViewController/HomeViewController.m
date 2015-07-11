@@ -876,7 +876,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
+    //*
     
     HomeCategoriesViewController *homeCategories = (HomeCategoriesViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"HomeCategoryViewScene"];
     [self.navigationController pushViewController:homeCategories animated:YES];
@@ -884,7 +884,7 @@
     //*/
   
     
-    //*
+    /*
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];

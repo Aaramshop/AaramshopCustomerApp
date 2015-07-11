@@ -10,7 +10,8 @@
 #import "HomeCategoriesCollectionCell.h"
 #import "YSLContainerViewController.h"
 
-@interface HomeCategoriesViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
+
+@interface HomeCategoriesViewController : UIViewController<AaramShop_ConnectionManager_Delegate,CDRTranslucentSideBarDelegate,CustomNavigationDelegate>//,SWTableViewCellDelegate>
 {
     YSLContainerViewController *containerVC;
 
@@ -19,8 +20,6 @@
     IBOutlet UIView *viewSubcategories;
     
     NSMutableArray *arrCategories;
-    
-    NSInteger indexMasterCategory;
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

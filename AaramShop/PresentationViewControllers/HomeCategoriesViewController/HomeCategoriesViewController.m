@@ -7,8 +7,7 @@
 //
 
 #import "HomeCategoriesViewController.h"
-#import "ArtistsViewController.h" // temp
-
+#import "HomeCategoryListViewController.h"
 #import "HomeCategoriesModel.h"
 #import "HomeStoreModel.h"
 #import "RecommendedStoreModel.h"
@@ -61,7 +60,6 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     kTableProductsHeight = self.view.frame.size.height - (kCollectionHeight + kTabbarHeight + 2);
 
     viewOverlay.hidden = YES;
-    indexMasterCategory = 0;
     
     arrCategories = [[NSMutableArray alloc]init];
 }
@@ -149,18 +147,17 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     // SetUp ViewControllers
     
     
-//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
     NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:[arrCategories count]];
 
     for (HomeCategoriesModel *homeCategoriesModel in arrCategories)
     {
-        //        CategoryViewController *categoryView = [sb instantiateViewControllerWithIdentifier:@"categoryScreen"];
+        HomeCategoryListViewController *homeCategoryListView = [sb instantiateViewControllerWithIdentifier:@"HomeCategoryListView"];
+        homeCategoryListView.title = homeCategoriesModel.store_main_category_name;
+        homeCategoryListView.homeCategoriesModel = homeCategoriesModel;
         
-        ArtistsViewController *artistVC = [[ArtistsViewController alloc]initWithNibName:@"ArtistsViewController" bundle:nil];
-        artistVC.title = homeCategoriesModel.store_main_category_name;
-        
-        [viewControllers addObject:artistVC];
+        [viewControllers addObject:homeCategoryListView];
 
     }
     
@@ -174,7 +171,6 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
                                                                                 parentViewController:self];
     containerVC.delegate = self;
     containerVC.menuItemFont = [UIFont fontWithName:kRobotoRegular size:14.0];
-    
     
     //
     CGRect containerFrame  = containerVC.view.frame;
@@ -292,8 +288,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             HomeStoreModel *homeStoreModel = [[HomeStoreModel alloc]init];
             homeStoreModel.chat_username = [dict objectForKey:@"chat_username"];
             homeStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
-            homeStoreModel.is_favorite = [dict objectForKey:@"is_favorite"];
-            homeStoreModel.is_home_store = [dict objectForKey:@"is_home_store"];
+            homeStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
+            homeStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
             homeStoreModel.is_open = [dict objectForKey:@"is_open"];
             homeStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
             homeStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
@@ -304,8 +300,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             homeStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
             homeStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
             homeStoreModel.store_name = [dict objectForKey:@"store_name"];
-            homeStoreModel.store_rating = [dict objectForKey:@"store_rating"];
-            homeStoreModel.total_orders = [dict objectForKey:@"total_orders"];
+            homeStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
+            homeStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
             
             [homeCategoriesModel.arrHome_stores addObject:homeStoreModel];
         }
@@ -316,8 +312,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             RecommendedStoreModel *recommendedStoreModel = [[RecommendedStoreModel alloc]init];
             recommendedStoreModel.chat_username = [dict objectForKey:@"chat_username"];
             recommendedStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
-            recommendedStoreModel.is_favorite = [dict objectForKey:@"is_favorite"];
-            recommendedStoreModel.is_home_store = [dict objectForKey:@"is_home_store"];
+            recommendedStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
+            recommendedStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
             recommendedStoreModel.is_open = [dict objectForKey:@"is_open"];
             recommendedStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
             recommendedStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
@@ -328,8 +324,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             recommendedStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
             recommendedStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
             recommendedStoreModel.store_name = [dict objectForKey:@"store_name"];
-            recommendedStoreModel.store_rating = [dict objectForKey:@"store_rating"];
-            recommendedStoreModel.total_orders = [dict objectForKey:@"total_orders"];
+            recommendedStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
+            recommendedStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
             
             [homeCategoriesModel.arrRecommended_stores addObject:recommendedStoreModel];
         }
@@ -340,8 +336,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             ShoppingStoreModel *shoppingStoreModel = [[ShoppingStoreModel alloc]init];
             shoppingStoreModel.chat_username = [dict objectForKey:@"chat_username"];
             shoppingStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
-            shoppingStoreModel.is_favorite = [dict objectForKey:@"is_favorite"];
-            shoppingStoreModel.is_home_store = [dict objectForKey:@"is_home_store"];
+            shoppingStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
+            shoppingStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
             shoppingStoreModel.is_open = [dict objectForKey:@"is_open"];
             shoppingStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
             shoppingStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
@@ -352,8 +348,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             shoppingStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
             shoppingStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
             shoppingStoreModel.store_name = [dict objectForKey:@"store_name"];
-            shoppingStoreModel.store_rating = [dict objectForKey:@"store_rating"];
-            shoppingStoreModel.total_orders = [dict objectForKey:@"total_orders"];
+            shoppingStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
+            shoppingStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
             
             [homeCategoriesModel.arrShopping_store addObject:shoppingStoreModel];
         }
@@ -404,16 +400,33 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     //    NSLog(@"current controller : %@",controller);
     
     
-    indexMasterCategory = index;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+    
+    [collectionMaster scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     
     [controller viewWillAppear:YES];
+
+}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    static NSInteger previousPage = 0;
+    CGFloat pageWidth = scrollView.frame.size.width;
+    float fractionalPage = scrollView.contentOffset.x / pageWidth;
+    NSInteger page = lround(fractionalPage);
+    
+    if (previousPage != page) {
+        previousPage = page;
+        [self navigateToOtherScreen:nil atPage:page];
+    }
 }
 
 
 #pragma mark - Navigate To Other Screen
--(void)navigateToOtherScreen:(UIViewController *)controller
+-(void)navigateToOtherScreen:(UIViewController *)controller atPage:(NSInteger)pageIndex
 {
-    [containerVC scrollMenuViewSelectedIndex:3];
+    [containerVC scrollMenuViewSelectedIndex:pageIndex];
 }
 
 @end

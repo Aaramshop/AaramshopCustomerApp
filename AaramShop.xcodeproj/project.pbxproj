@@ -1086,6 +1086,8 @@
 		6BD2D33E1B28A66500EC6E54 /* homeDetailsCoffeeIconInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2D3381B28A66500EC6E54 /* homeDetailsCoffeeIconInactive.png */; };
 		6BD2D33F1B28A66500EC6E54 /* homeDetailsCoffeeIconInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2D3391B28A66500EC6E54 /* homeDetailsCoffeeIconInactive@2x.png */; };
 		6BD2D3401B28A66500EC6E54 /* homeDetailsCoffeeIconInactive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2D33A1B28A66500EC6E54 /* homeDetailsCoffeeIconInactive@3x.png */; };
+		6BD83B841B50F7D200D3F83A /* HomeCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD83B831B50F7D200D3F83A /* HomeCategoryListViewController.m */; };
+		6BD83B881B51114600D3F83A /* HomeCategoryListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD83B871B51114600D3F83A /* HomeCategoryListCell.m */; };
 		6BE4734D1B3AD0DF00C09AFD /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE4734A1B3AD0DF00C09AFD /* CustomBadge.m */; };
 		6BE4734E1B3AD0DF00C09AFD /* MESegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE4734C1B3AD0DF00C09AFD /* MESegmentedControl.m */; };
 		6BE474301B3B21CE00C09AFD /* activityMH.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE473DC1B3B21CE00C09AFD /* activityMH.png */; };
@@ -2624,6 +2626,10 @@
 		6BD2D3381B28A66500EC6E54 /* homeDetailsCoffeeIconInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeDetailsCoffeeIconInactive.png; sourceTree = "<group>"; };
 		6BD2D3391B28A66500EC6E54 /* homeDetailsCoffeeIconInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDetailsCoffeeIconInactive@2x.png"; sourceTree = "<group>"; };
 		6BD2D33A1B28A66500EC6E54 /* homeDetailsCoffeeIconInactive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDetailsCoffeeIconInactive@3x.png"; sourceTree = "<group>"; };
+		6BD83B821B50F7D200D3F83A /* HomeCategoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoryListViewController.h; sourceTree = "<group>"; };
+		6BD83B831B50F7D200D3F83A /* HomeCategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoryListViewController.m; sourceTree = "<group>"; };
+		6BD83B861B51114600D3F83A /* HomeCategoryListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoryListCell.h; sourceTree = "<group>"; };
+		6BD83B871B51114600D3F83A /* HomeCategoryListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoryListCell.m; sourceTree = "<group>"; };
 		6BE473491B3AD0DF00C09AFD /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
 		6BE4734A1B3AD0DF00C09AFD /* CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBadge.m; sourceTree = "<group>"; };
 		6BE4734B1B3AD0DF00C09AFD /* MESegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MESegmentedControl.h; sourceTree = "<group>"; };
@@ -5630,6 +5636,7 @@
 		6BCB093C1B4E66C400F1A502 /* HomeCategoriesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6BD83B811B50F7B200D3F83A /* HomeCategoryListViewController */,
 				6BA8940D1B4FC01B0014519C /* HomeCategoriesCollectionCell */,
 				6BA894011B4F9F680014519C /* HomeStoreModel */,
 				6BA894021B4F9F680014519C /* RecommendedStoreModel */,
@@ -5731,6 +5738,25 @@
 				6BD2D3331B28694500EC6E54 /* RightCollectionViewController.m */,
 			);
 			path = RightCollectionViewController;
+			sourceTree = "<group>";
+		};
+		6BD83B811B50F7B200D3F83A /* HomeCategoryListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6BD83B851B51112F00D3F83A /* HomeCategoryListCell */,
+				6BD83B821B50F7D200D3F83A /* HomeCategoryListViewController.h */,
+				6BD83B831B50F7D200D3F83A /* HomeCategoryListViewController.m */,
+			);
+			path = HomeCategoryListViewController;
+			sourceTree = "<group>";
+		};
+		6BD83B851B51112F00D3F83A /* HomeCategoryListCell */ = {
+			isa = PBXGroup;
+			children = (
+				6BD83B861B51114600D3F83A /* HomeCategoryListCell.h */,
+				6BD83B871B51114600D3F83A /* HomeCategoryListCell.m */,
+			);
+			path = HomeCategoryListCell;
 			sourceTree = "<group>";
 		};
 		6BE473481B3AD0DF00C09AFD /* NSSegmentBadgeControl */ = {
@@ -7002,6 +7028,7 @@
 				274A5C701B05C4AA009112B5 /* FSVenue.m in Sources */,
 				6B8EB2831B25AFD600402CFC /* SWUtilityButtonView.m in Sources */,
 				274A5C5E1B05C4AA009112B5 /* NSDateFormatter+SH.m in Sources */,
+				6BD83B881B51114600D3F83A /* HomeCategoryListCell.m in Sources */,
 				274A5C641B05C4AA009112B5 /* UIImage+ImageEffects.m in Sources */,
 				274A5C821B05C4AA009112B5 /* SHLog.m in Sources */,
 				274A5CE11B05C4AA009112B5 /* XMPPMessageArchiving.m in Sources */,
@@ -7019,6 +7046,7 @@
 				274A5CBB1B05C4AA009112B5 /* XMPPMessage+XEP0045.m in Sources */,
 				274A5CF31B05C4AA009112B5 /* NSXMLElement+XEP_0335.m in Sources */,
 				6B12DCBC1AF26FA300245209 /* LoginViewController.m in Sources */,
+				6BD83B841B50F7D200D3F83A /* HomeCategoryListViewController.m in Sources */,
 				274A5CCB1B05C4AA009112B5 /* NSXMLElement+XEP_0059.m in Sources */,
 				6BE474621B3B21CE00C09AFD /* MHTransitionShowOverView.m in Sources */,
 				6BE474581B3B21CE00C09AFD /* MHGalleryItem.m in Sources */,

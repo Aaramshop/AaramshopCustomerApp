@@ -68,6 +68,9 @@ static const CGFloat kTabbarDefaultHeight = 49;
 
     _contentScrollView.tag = 1000;
     
+    _contentScrollView.scrollEnabled = NO; // need for home screen
+    
+    
     _contentScrollView.pagingEnabled = YES;
     _contentScrollView.delegate = self;
     _contentScrollView.showsHorizontalScrollIndicator = NO;

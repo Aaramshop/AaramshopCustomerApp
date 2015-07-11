@@ -3397,6 +3397,39 @@ It will be used only for verification purposes.</string>
             </objects>
             <point key="canvasLocation" x="-515" y="3466"/>
         </scene>
+        <!--Home Category List View Controller-->
+        <scene sceneID="fG1-Hp-f0E">
+            <objects>
+                <viewController storyboardIdentifier="HomeCategoryListView" id="I9e-qb-Ye4" customClass="HomeCategoryListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YBg-F3-Acy"/>
+                        <viewControllerLayoutGuide type="bottom" id="6hO-wh-5xZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="q0l-Bx-Hmk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FOE-AS-WJr">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="FOE-AS-WJr" secondAttribute="width" id="1eY-ga-XpU"/>
+                            <constraint firstAttribute="centerY" secondItem="FOE-AS-WJr" secondAttribute="centerY" id="7Gb-18-h1G"/>
+                            <constraint firstAttribute="height" secondItem="FOE-AS-WJr" secondAttribute="height" id="Vqw-RQ-rUH"/>
+                            <constraint firstAttribute="centerX" secondItem="FOE-AS-WJr" secondAttribute="centerX" id="fZB-zD-GdN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tblView" destination="FOE-AS-WJr" id="eye-ny-l9A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mAl-Hu-gor" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-515" y="4097"/>
+        </scene>
     </scenes>
     <resources>
         <image name="OffersLogo.png" width="180" height="180"/>
