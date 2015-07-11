@@ -29,6 +29,19 @@
     gst.cancelsTouchesInView = NO;
     gst.delegate = self;
     [self.view addGestureRecognizer:gst];
+    
+    
+#ifdef DEBUG
+    
+    txtUserName.text = @"9999614234";
+    txtPassword.text = @"D6MD";
+    
+#else
+    //
+#endif
+    
+    
+    
 }
 
 -(BOOL)validateEmail:(NSString*)email andPassword:(NSString *)password

@@ -8,6 +8,9 @@
 #import "HomeStoreViewController.h"
 #import "HomeStoreDetailViewController.h"
 #import "StoreModel.h"
+
+#define kTblSuggestedStoresTag 100
+
 @interface HomeStoreViewController ()
 {
     HomeStorePopUpViewController *homeStorePopUpVwController;
@@ -23,6 +26,16 @@
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate = self;
     
+    tblSuggestedStores.tag = kTblSuggestedStoresTag;
+        
+//    UITapGestureRecognizer *tapToHideKeyboard = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(highlightLetter:)];
+//
+//    [tapToHideKeyboard setNumberOfTouchesRequired:1];
+//    [self.view addGestureRecognizer:tapToHideKeyboard];
+    
+    
+    scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
+    
     arrSuggestedStores = [[NSMutableArray alloc]init];
 
     NSString *strTitle = @"Add HOME STORE";
@@ -34,19 +47,35 @@
     lblHd.attributedText = hogan;
     
     tblSuggestedStores.layer.cornerRadius = 1.0;
-    [self createDataToGetHomeStoreBanner];
-    [self createDataToGetAddress];
     
+    [self createDataToGetAddress];
 }
-#pragma mark - createDataToGetHomeStoreBanner
+
+- (void)highlightLetter:(UITapGestureRecognizer*)sender {
+    UIView *view = sender.view;
+    
+    
+    if (view.tag == kTblSuggestedStoresTag)
+    {
+        return;
+    }
+    [self hideKeyboard];
+}
+
 -(void)hideKeyboard
 {
     [self.view endEditing:YES];
     tblSuggestedStores.hidden = YES;
 }
+
+
+
+#pragma mark - createDataToGetHomeStoreBanner
 -(void)createDataToGetAddress
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+//    [dict setObject:@"26" forKey:@"userId"]; //temp
     
     [self callWebserviceToGetAddress:dict];
 }
@@ -69,6 +98,20 @@
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+    
+//    [dict setObject:@"26" forKey:@"userId"]; //temp
+    
+//    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
+//    [dict setObject:@"77.3769436" forKey:kLongitude]; //temp
+    
+    
+//    28°30'41"N   77°22'41"E
+    
+    
+//    19.0176147
+//    72.8561644
+
+    
     
     [self callWebserviceToGetHomeStoreBanner:dict];
 }
@@ -167,6 +210,9 @@
 //    NSDictionary *dict = [responseObject objectForKey:kUser_address];
     [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:kUser_address] forKey:kUser_address];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self createDataToGetHomeStoreBanner];
+
 }
 -(void)parseHomeStoreResponseDetailData:(NSMutableDictionary *)responseObject
 {
@@ -224,6 +270,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     }
 
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:nil];
@@ -243,6 +290,7 @@
     txtStoreId.text = objStoreModel.store_code;
     tblSuggestedStores.hidden = YES;
 }
+
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -271,8 +319,17 @@
 -(void)createDataToGetHomeStoreBannerDetails
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+    
+    
+//    [dict setObject:@"26" forKey:@"userId"]; //temp
+    
+//    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
+//    [dict setObject:@"77.3769436" forKey:kLongitude]; //temp
+
+    
     [dict setObject:txtStoreId.text forKey:kStore_code];
     [self callWebserviceToGetHomeStoreBannerDetails:dict];
 }
@@ -310,6 +367,13 @@
     return NO;
 }
 
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
 #pragma mark - UIButton Actions
 - (IBAction)btnStart:(id)sender {
     if ([txtStoreId.text length] >0) {
@@ -339,6 +403,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

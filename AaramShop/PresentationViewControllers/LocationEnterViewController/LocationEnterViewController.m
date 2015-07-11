@@ -40,6 +40,9 @@
     arrShopsData = [[NSMutableArray alloc]init];
     mapViewLocation.delegate = self;
     
+//    [mapViewLocation setShowsUserLocation:YES];
+    
+    
         [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
     
         [[AppManager sharedManager] performSelector:@selector(createDefaultValuesForDictionay) withObject:nil];
@@ -202,8 +205,24 @@
 -(void)createDataToGetAaramShops
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+    
+    
+    
+    //sector chi V greater noida
+//    [dict setObject:@"28.4309684" forKey:kLatitude];
+//    [dict setObject:@"77.5060438" forKey:kLongitude];
+    
+    // sec 132 noida
+//    [dict setObject:@"28.5136781" forKey:kLatitude];
+//    [dict setObject:@"77.3769436" forKey:kLongitude];
+//    
+//    [dict setObject:@"26" forKey:kUserId];
+    
+    
+    
     [dict setObject:@"5" forKey:kRadius];
     [self callWebserviceToGetAaramShops:dict];
 }
@@ -263,8 +282,16 @@
         [arrShopsData addObject:objShopData];
     }
     [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:kUserId] forKey:kUserId];
-    [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:kUserId] forKey:kUserId];
-    [self plotPositions:arrShopsData];
+    
+    if ([arrShopsData count]>0)
+    {
+        [self plotPositions:arrShopsData];
+    }
+    else
+    {
+        [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
+    
 }
 
 #pragma mark - plotThePins
@@ -327,7 +354,17 @@
     }
     
     CLLocationCoordinate2D coordinateValue = CLLocationCoordinate2DMake(Latitude, LongitudeValue);
-    Annotation *annotation = [[Annotation alloc]initWithName:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kFullname]] Address:strYourCurrentAddress Coordinate:coordinateValue imageUrl:@"" showMyLocation:YES];
+    
+    NSString *strFullname = @"";
+    
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:kFullname] != nil)
+    {
+        strFullname = [[NSUserDefaults standardUserDefaults] valueForKey:kFullname];
+    }
+    
+    
+    
+    Annotation *annotation = [[Annotation alloc]initWithName:[NSString stringWithFormat:@"%@",strFullname] Address:strYourCurrentAddress Coordinate:coordinateValue imageUrl:@"" showMyLocation:YES];
     [mapViewLocation addAnnotation:annotation];
     
     [self setRegionOfMap];
@@ -373,6 +410,25 @@
         NSLog(@"Invalid region!");
     else
         [mapViewLocation setRegion:region animated:YES];
+    
+    
+    
+//    [mapViewLocation setCenterCoordinate:mapViewLocation.userLocation.location.coordinate animated:YES];
+//    [mapViewLocation setRegion:region animated:YES];
+    
+    
+    
+//    region.span.longitudeDelta  = 0.005;
+//    region.span.latitudeDelta  = 0.005;
+//    
+//    [mapViewLocation setRegion:region animated:YES];
+
+    
+//    CLLocationCoordinate2D noLocation;
+//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 500, 500);
+//    MKCoordinateRegion adjustedRegion = [mapViewLocation regionThatFits:viewRegion];
+//    [mapViewLocation setRegion:adjustedRegion animated:YES];
+//    mapViewLocation.showsUserLocation = YES;
 
 }
 #pragma mark -
@@ -397,12 +453,21 @@
                      cordinatesLocation.latitude = annotation.coordinate.latitude;
                      cordinatesLocation.longitude = annotation.coordinate.longitude;
                      [self getAddressFromLatitude:cordinatesLocation.latitude andLongitude:cordinatesLocation.longitude];
+                     
+//                     [mapViewLocation selectAnnotation:obj animated:YES];
+                     
                  }
              }
          }
 
     }
 }
+
+//-(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+//{
+//    MKAnnotationView *note= [mapView viewForAnnotation:mapView.userLocation];
+//    note.hidden = YES;
+//}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
@@ -464,7 +529,17 @@
                 
                 viewOfCustomAnnotation.frame = calloutViewFrame;
                 
-                [viewOfCustomAnnotation.lblName setText:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kFullname]]];
+                
+                NSString *strFullname = @"";
+                
+                if ([[NSUserDefaults standardUserDefaults] valueForKey:kFullname] != nil)
+                {
+                    strFullname = [[NSUserDefaults standardUserDefaults] valueForKey:kFullname];
+                }
+                
+                
+                
+                [viewOfCustomAnnotation.lblName setText:[NSString stringWithFormat:@"%@",strFullname]];
                 viewOfCustomAnnotation.imgProfile.layer.cornerRadius =  viewOfCustomAnnotation.imgProfile.frame.size.width / 2;
                 viewOfCustomAnnotation.imgProfile.clipsToBounds = YES;
 
@@ -499,11 +574,10 @@
                         }];
                     }
 
-
                 }
                 else
                 {
-                    viewOfCustomAnnotation.imgProfile.image = gAppManager.imgProfile;
+                    viewOfCustomAnnotation.imgProfile.image = gAppManager.imgProfile !=nil?gAppManager.imgProfile : [UIImage imageNamed:@"defaultProfilePic.png"] ;
                 }
 
                 [viewOfCustomAnnotation.lblAddress setText:[(Annotation*)[view annotation] Address]];

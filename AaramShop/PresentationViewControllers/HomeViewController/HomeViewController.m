@@ -11,6 +11,8 @@
 #import "HomeTableCell.h"
 #import "ForgotPasswordViewController.h"
 
+#import "HomeCategoriesViewController.h" // temp
+
 @interface HomeViewController ()
 {
     AppDelegate *appDeleg;
@@ -78,10 +80,18 @@
     [viewTable addSubview:tblVwCategory];
 
     btnArrow = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnArrow.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-40)/2, viewTable.frame.size.height-10, 40, 25);
+    
+    btnArrow.frame = CGRectMake(20, viewTable.frame.size.height-40, [UIScreen mainScreen].bounds.size.width-40, 50);
+
     btnArrow.backgroundColor = [UIColor clearColor];
     [btnArrow setImage:[UIImage imageNamed:@"homeDownArrow.png"] forState:UIControlStateNormal];
+    
+    btnArrow.imageEdgeInsets = UIEdgeInsetsMake(35, 0, 0, 0);
+    
+    
     [btnArrow addTarget:self action:@selector(btnArrowClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     [viewTable addSubview:btnArrow];
     
     arrSubCategory = [[NSMutableArray alloc]init];
@@ -96,6 +106,9 @@
     tblStores.hidden = YES;
     mainScrollView.hidden = YES;
     [self createDataToGetStores];
+    
+    
+//    mainScrollView.backgroundColor = [UIColor redColor];
 }
 
 -(void)setViewForRecomendedCells
@@ -147,7 +160,10 @@
     tblVwCategory.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234+size.height);
     viewTable.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234+size.height);
     if (rowCount>0) {
-        btnArrow.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-40)/2, viewTable.frame.size.height-15, 40, 25);
+        
+        btnArrow.frame = CGRectMake(20, viewTable.frame.size.height-40, [UIScreen mainScreen].bounds.size.width-40, 50);
+
+        
         imgVBg.frame = CGRectMake(0,viewTable.frame.size.height-78, [UIScreen mainScreen].bounds.size.width, 85);
         btnArrow.hidden = NO;
         imgVBg.hidden = NO;
@@ -170,8 +186,13 @@
         imgVBg.hidden = YES;
         tblVwCategory.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49-20);
         viewTable.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49);
-        btnArrow.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-40)/2, viewTable.frame.size.height-15, 40, 15);
+        
+        btnArrow.frame = CGRectMake(20, viewTable.frame.size.height-40, [UIScreen mainScreen].bounds.size.width-40, 50);
+
+        
         [btnArrow setImage:[UIImage imageNamed:@"upArrow.png"] forState:UIControlStateNormal];
+        
+            btnArrow.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
 
         
         [tblVwCategory reloadData];
@@ -184,6 +205,8 @@
 
         [self setViewForRecomendedCells];
         [btnArrow setImage:[UIImage imageNamed:@"homeDownArrow.png"] forState:UIControlStateNormal];
+        
+            btnArrow.imageEdgeInsets = UIEdgeInsetsMake(32, 0, 0, 0);
         [tblVwCategory reloadData];
 
     }
@@ -205,6 +228,11 @@
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+    
+
+//    [dict setObject:@"28.5136781" forKey:kLatitude]; // temp
+//    [dict setObject:@"77.3769436" forKey:kLongitude]; // temp
+    
     
     [self callWebserviceToGetStores:dict];
 }
@@ -255,6 +283,10 @@
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+    
+//    [dict setObject:@"28.5136781" forKey:kLatitude]; // temp
+//    [dict setObject:@"77.3769436" forKey:kLongitude]; // temp
+
     
     StoreModel *objStore = nil;
     if (self.mainCategoryIndex !=0) {
@@ -844,28 +876,48 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //*
+    
+    HomeCategoriesViewController *homeCategories = (HomeCategoriesViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"HomeCategoryViewScene"];
+    [self.navigationController pushViewController:homeCategories animated:YES];
+
+    //*/
+  
+    
+    /*
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
     StoreModel *objStoreModel = nil;
     if (mainCategoryIndex != 0)
     {
         if (tableView == tblStores)
-            objStoreModel = [arrSubCategory objectAtIndex:indexPath.row];
+            objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
+        
         else if (tableView == tblVwCategory)
-            objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+//            objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+            
+            objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
+
     }
     else
     {
         if (tableView == tblStores)
-            objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
+//            objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
+            objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
+
         else if (tableView == tblVwCategory)
-            objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
+//            objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
+            objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
+
     }
     
     homeSecondVwController.strStore_Id = objStoreModel.store_id;
     homeSecondVwController.strStoreImage = objStoreModel.store_image;
     homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
     [self.navigationController pushViewController:homeSecondVwController animated:YES];
+    
+    //*/
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -880,7 +932,9 @@
     
     tblVwCategory.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234);
     viewTable.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234);
-    btnArrow.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-40)/2, viewTable.frame.size.height-15, 40, 25);
+    
+    btnArrow.frame = CGRectMake(20, viewTable.frame.size.height-40, [UIScreen mainScreen].bounds.size.width-40, 50);
+
     imgVBg.frame = CGRectMake(0,viewTable.frame.size.height-78, [UIScreen mainScreen].bounds.size.width, 85);
     btnArrow.hidden = YES;
     imgVBg.hidden = YES;
@@ -1042,7 +1096,7 @@
             }
             HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
             homeSecondVwController.strStore_Id = objStoreModel.store_id;
-            homeSecondVwController.strStore_CategoryName = objStoreModel.store_category_name;
+            homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
             [self.navigationController pushViewController:homeSecondVwController animated:YES];
         }
             break;

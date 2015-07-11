@@ -11,6 +11,9 @@
 #import "MobileEnterViewController.h"
 #import "PaymentViewController.h"
 
+#import "HomeStoreViewController.h" // temp
+#import "LocationEnterViewController.h" // temp
+
 @interface OptionViewController ()
 {
     MPMoviePlayerController *theMoviPlayer;
@@ -70,9 +73,22 @@
 
 - (IBAction)btnExistingUserClick:(UIButton *)sender {
     
+    /*
+    HomeStoreViewController *homeStoreViewController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
+    [self.navigationController pushViewController:homeStoreViewController animated:YES];
+//*/
     
+    
+    /*
+    LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+    [self.navigationController pushViewController:locationScreen animated:YES];
+//*/
+    
+    
+    //*
     LoginViewController *loginVwController = (LoginViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginScreen"];
     [self.navigationController pushViewController:loginVwController animated:YES];
+    //*/
 }
 
 #pragma mark -

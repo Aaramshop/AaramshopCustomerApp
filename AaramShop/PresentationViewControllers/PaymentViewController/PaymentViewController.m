@@ -502,6 +502,12 @@ static NSString *strCollectionItems = @"collectionItems";
 }
 -(void)btnSelectAddressClick
 {
+    if ([arrAddressData count]==0)
+    {
+        [Utils showAlertView:kAlertTitle message:@"No address available." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
     isPickerOpen = YES;
 
     ePickerType = enPickerAddress;
@@ -668,6 +674,12 @@ static NSString *strCollectionItems = @"collectionItems";
 }
 -(void)btnSlotClick
 {
+//    if ([arrAddressData count]==0)
+//    {
+//        [Utils showAlertView:kAlertTitle message:@"No address available." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+//        return;
+//    }
+    
     isPickerOpen = YES;
     ePickerType = enPickerSlots;
     [self showPickerView:YES];
