@@ -8,6 +8,10 @@
 
 #import "HomeCategoryListViewController.h"
 
+#define kTableHeaderTitleHeight     22
+#define kTableHeaderDefaultHeight   106
+
+
 @interface HomeCategoryListViewController ()
 
 @end
@@ -97,18 +101,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    // if array recommended store > 0
-    return 20;
-    //else return 0;
+    if ([_homeCategoriesModel.arrRecommended_stores count]>0)
+    {
+        return kTableHeaderTitleHeight + kTableHeaderDefaultHeight;
+    }
+    return CGFLOAT_MIN;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *secView ;
 
-    secView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,  [UIScreen mainScreen].bounds.size.width, 20)];
+    secView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,  [UIScreen mainScreen].bounds.size.width, kTableHeaderTitleHeight)];
     secView.backgroundColor = [UIColor redColor];
-    UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, 20)];
+    UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, kTableHeaderTitleHeight)];
     lbl.textColor = [UIColor whiteColor];
     lbl.font = [UIFont fontWithName:kRobotoMedium size:18];
     lbl.text = @"Recommended stores";
