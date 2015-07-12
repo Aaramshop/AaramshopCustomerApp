@@ -9,19 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "UserInfoTableCell.h"
 #import "UserContactTableCell.h"
+#import "ChangePasswordViewController.h"
 typedef enum
 {
-    eChangeSelfie = 0,
-    eUserInfo,
+	
+    eUserInfo = 0,
     eUserContact
 }eSectionType;
 
-@interface AccountSettingsViewC : UIViewController
+@interface AccountSettingsViewC : UIViewController<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
-    NSMutableArray *arrUserInfo;
-    NSMutableArray *arrUserContact;
-    NSMutableArray *allSections;
-    NSMutableDictionary *dataDict;
+//	NSString *strFirstName
     __weak IBOutlet UITableView *tblView;
+	UIImageView * imgUser;
+	NSMutableData *imageData;
+
 }
 @end

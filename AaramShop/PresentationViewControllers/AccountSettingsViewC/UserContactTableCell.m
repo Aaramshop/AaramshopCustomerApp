@@ -9,7 +9,7 @@
 #import "UserContactTableCell.h"
 
 @implementation UserContactTableCell
-
+@synthesize lblEmail,lblChangePass;
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -27,7 +27,12 @@
     if (self) {
         
         lblEmail = [[UILabel alloc]initWithFrame:CGRectZero];
-        
+		
+		lblChangePass = [[UILabel alloc] initWithFrame:CGRectZero];
+		lblChangePass.textAlignment = NSTextAlignmentRight;
+		
+		[self addSubview:lblChangePass];
+
         [self addSubview:lblEmail];
     }
     return self;
@@ -39,6 +44,7 @@
     float padding = 16;
     
     CGRect lblEmailRect           =   CGRectZero;
+	CGRect lblChangePassRect           =   CGRectZero;
     CGRect selfRect                 =   self.frame;
     
     lblEmailRect.size.width     =   selfRect.size.width - padding*2;
@@ -46,6 +52,12 @@
     lblEmailRect.origin.x           =   padding;
     lblEmailRect.origin.y           =   (selfRect.size.height - lblEmailRect.size.height)/2;
     lblEmail.frame                  =   lblEmailRect;
+	
+	lblChangePassRect.size.width     =   selfRect.size.width - padding*2;
+	lblChangePassRect.size.height    =   lblHeight;
+	lblChangePassRect.origin.x           =   padding;
+	lblChangePassRect.origin.y           =   (selfRect.size.height - lblEmailRect.size.height)/2;
+	lblChangePass.frame                  =   lblChangePassRect;
 }
 -(void)updateCellWithData:(NSDictionary  *)inDataDic
 {

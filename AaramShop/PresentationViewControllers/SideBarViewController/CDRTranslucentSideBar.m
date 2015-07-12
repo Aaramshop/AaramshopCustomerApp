@@ -392,41 +392,41 @@
 //        
 //        
 //        
-////        switch (indexPath.row) {
-////            case eAccountSettings:
-////            {
-////                
-////                AccountSettingsViewC *accSettingsVCon = [storyboard instantiateViewControllerWithIdentifier:@"AccountSettViewScreen"];
-////                
-////                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
-////                    [self.delegate sideBarDelegatePushMethod:accSettingsVCon];
-////                }
-////                
-////            }
-////                break;
-////            case ePreferences:
-////            {
-////                PreferencesViewController *preferncesVCon = [storyboard instantiateViewControllerWithIdentifier:@"PreferencesViewScene"];
-////                
-////                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
-////                    [self.delegate sideBarDelegatePushMethod:preferncesVCon];
-////                }
-////            }
-////                break;
-////            case eCart:
-////            {
-////                CartViewController *cartVCon = [storyboard instantiateViewControllerWithIdentifier:@"CartViewScene"];
-////                
-////                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
-////                    [self.delegate sideBarDelegatePushMethod:cartVCon];
-////                }
-////                
-////            }
-////                break;
-////                
-////            default:
-////                break;
-////        }
+        switch (indexPath.row) {
+            case eAccountSettings:
+            {
+                
+                AccountSettingsViewC *accSettingsVCon = [storyboard instantiateViewControllerWithIdentifier:@"AccountSettViewScreen"];
+                
+                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
+                    [self.delegate sideBarDelegatePushMethod:accSettingsVCon];
+                }
+                
+            }
+                break;
+            case ePreferences:
+            {
+                PreferencesViewController *preferncesVCon = [storyboard instantiateViewControllerWithIdentifier:@"PreferencesViewScene"];
+                
+                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
+                    [self.delegate sideBarDelegatePushMethod:preferncesVCon];
+                }
+            }
+                break;
+            case eCart:
+            {
+                CartViewController *cartVCon = [storyboard instantiateViewControllerWithIdentifier:@"CartViewScene"];
+                
+                if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
+                    [self.delegate sideBarDelegatePushMethod:cartVCon];
+                }
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
 //    }
 //    else
 //    {

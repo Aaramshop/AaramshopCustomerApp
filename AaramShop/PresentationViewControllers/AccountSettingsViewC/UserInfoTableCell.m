@@ -9,7 +9,7 @@
 #import "UserInfoTableCell.h"
 
 @implementation UserInfoTableCell
-
+@synthesize lblLower,lblUpper;
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -30,7 +30,7 @@
         lblUpper = [[UILabel alloc]initWithFrame:CGRectZero];
         
         imgArrow = [[UIImageView alloc]initWithFrame:CGRectZero];
-        imgArrow.image = [UIImage imageNamed:@"btnArrow"];
+		imgArrow.image = [UIImage imageNamed:@"arrowOne.png"];
         
         [self addSubview:lblUpper];
         [self addSubview:lblLower];
@@ -42,9 +42,9 @@
 {
     [super layoutSubviews];
     float lblHeight = 21;
-    float imgArrowWidth = 13;
-    float imgArrowHeight = 21;
-    float padding = 8;
+    float imgArrowWidth = 20;
+    float imgArrowHeight = 20;
+    float padding = 16;
     
     CGRect lblUpperRect           =   CGRectZero;
     CGRect imgArrowRect           =   CGRectZero;

@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UserContactTableCell : UITableViewCell
-{
-    UILabel *lblEmail;
-}
+
+@property (nonatomic, strong) UILabel *lblEmail;
+@property (nonatomic, strong) UILabel *lblChangePass;
 @property (nonatomic, strong) NSIndexPath *indexPath;
 -(void)updateCellWithData:(NSDictionary  *)inDataDic;
 @end

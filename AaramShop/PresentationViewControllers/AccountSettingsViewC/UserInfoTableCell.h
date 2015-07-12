@@ -10,10 +10,12 @@
 
 @interface UserInfoTableCell : UITableViewCell
 {
-    UILabel *lblUpper;
+	
     UIImageView *imgArrow;
-    UILabel *lblLower;
+	
 }
+@property (nonatomic, strong) UILabel *lblUpper;
+@property (nonatomic, strong) UILabel *lblLower;
 @property (nonatomic, strong) NSIndexPath *indexPath;
 -(void)updateCellWithData:(NSDictionary  *)inDataDic;
 @end
