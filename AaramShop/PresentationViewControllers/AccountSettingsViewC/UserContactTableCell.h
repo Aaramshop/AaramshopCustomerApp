@@ -10,8 +10,7 @@
 
 @interface UserContactTableCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *lblEmail;
+@property (nonatomic, strong) PWTextField *txtEmail;
 @property (nonatomic, strong) UILabel *lblChangePass;
 @property (nonatomic, strong) NSIndexPath *indexPath;
--(void)updateCellWithData:(NSDictionary  *)inDataDic;
 @end

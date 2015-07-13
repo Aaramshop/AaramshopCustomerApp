@@ -263,3 +263,6 @@
 #define kURLChangePassword							@""
 #define kOld_password										@""
 #define kNew_password									@""
+
+//================ Send order status==============
+#define kURLSentOrderStatus							@"sentOrderStatus"

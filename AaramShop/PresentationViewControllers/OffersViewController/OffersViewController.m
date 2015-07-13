@@ -26,20 +26,15 @@
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
 	
-	arrCoupon = [[NSMutableArray alloc] init];
 	arrDiscount = [[NSMutableArray alloc] init];
 	
 	[arrDiscount addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"599",@"mrp",@"499",@"offer",@"43-43-2345",@"date", nil]];
 	[arrDiscount addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"599",@"mrp",@"499",@"offer",@"43-43-2345",@"date", nil]];
 	[arrDiscount addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"599",@"mrp",@"499",@"offer",@"43-43-2345",@"date", nil]];
 	
-	[arrCoupon addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"499",@"offer",@"43-43-2345",@"date", nil]];
-	[arrCoupon addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"499",@"offer",@"43-43-2345",@"date", nil]];
-	[arrCoupon addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"499",@"offer",@"43-43-2345",@"date", nil]];
 	
-	[discountBtn setSelected:![discountBtn isSelected]];
-	[self setSelectedBtnState: eSelectedDiscount];
-	selectedOffer = eSelectedDiscount;
+	
+	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,16 +44,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	switch (selectedOffer) {
-		case eSelectedDiscount:
-//				[self createDateToGetDiscountOffer];
-			break;
-		case eSelectedCoupon:
-//				[self createDateToGetCouponOffer];
-			break;
-		default:
-			break;
-	}
+	
+	//				[self createDateToGetDiscountOffer];
 }
 #pragma mark -- Navigation bar Methods
 -(void)setNavigationBar
@@ -112,17 +99,9 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	switch (selectedOffer) {
-		case eSelectedDiscount:
-				return arrDiscount.count;
-			break;
-		case eSelectedCoupon:
-				return arrCoupon.count;
-			break;
-		default:
-				return 0;
-			break;
-	}
+	
+	return arrDiscount.count;
+	
 	
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -131,45 +110,20 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *tableCell = nil;
-	switch (selectedOffer) {
-		case eSelectedDiscount:
-		{
-			static NSString *cellIdentifier = @"DiscountCell";
-			
-			DiscountTableCell *cell = (DiscountTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-			if (cell == nil) {
-				cell = [[DiscountTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-			}
-//			CMDiscountOffer *discountOffer = [arrDiscount objectAtIndex: indexPath.row];
-			NSDictionary *aDic = [arrDiscount objectAtIndex:indexPath.row];
-			cell.indexPath=indexPath;
-			[cell updateCellWithData: aDic];
-			
-			tableCell = cell;
-		}
-			break;
-		case eSelectedCoupon:
-		{
-			static NSString *cellIdentifier = @"CouponCell";
-			
-			CouponTableCell *cell = (CouponTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-			if (cell == nil) {
-				cell = [[CouponTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-			}
-//			CMCouponOffer *couponOffer = [arrCoupon objectAtIndex: indexPath.row];
-			NSDictionary *aDic = [arrCoupon objectAtIndex:indexPath.row];
-
-			cell.indexPath=indexPath;
-			[cell updateCellWithData: aDic];
-			
-			tableCell = cell;
-		}
-			break;
-		default:
-			break;
+	
+	
+	static NSString *cellIdentifier = @"DiscountCell";
+	
+	DiscountTableCell *cell = (DiscountTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	if (cell == nil) {
+		cell = [[DiscountTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 	}
-	return tableCell;
+	//			CMDiscountOffer *discountOffer = [arrDiscount objectAtIndex: indexPath.row];
+	NSDictionary *aDic = [arrDiscount objectAtIndex:indexPath.row];
+	cell.indexPath=indexPath;
+	[cell updateCellWithData: aDic];
+	
+	return cell;
 }
 
 
@@ -188,50 +142,24 @@
 	}
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-	UIView *view;
-	switch (selectedOffer) {
-		case eSelectedDiscount:
-		{
-			if ([arrDiscount count]==0) {
-				return nil;
-			}else{
-				UIView *subView=[[UIView alloc]initWithFrame:CGRectMake(0, -10, 320, 44)];
-				[subView setBackgroundColor:[UIColor clearColor]];
-				[subView setTag:111112];
-				UIActivityIndicatorView *activitIndicator=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-				[activitIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-				activitIndicator.tag=111111;
-				[activitIndicator setCenter:subView.center];
-				[subView addSubview:activitIndicator];
-				
-				view	=	subView;
-			}
-
-		}
-			break;
-		case eSelectedCoupon:
-		{
-			if ([arrCoupon count]==0) {
-				return nil;
-			}else{
-				UIView *subView=[[UIView alloc]initWithFrame:CGRectMake(0, -10, 320, 44)];
-				[subView setBackgroundColor:[UIColor clearColor]];
-				[subView setTag:111112];
-				UIActivityIndicatorView *activitIndicator=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-				[activitIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-				activitIndicator.tag=111111;
-				[activitIndicator setCenter:subView.center];
-				[subView addSubview:activitIndicator];
-				
-				view	=	subView;
-			}
-		}
-			break;
-		default:
-			
-			break;
+	
+	
+	if ([arrDiscount count]==0) {
+		return nil;
+	}else{
+		UIView *subView=[[UIView alloc]initWithFrame:CGRectMake(0, -10, 320, 44)];
+		[subView setBackgroundColor:[UIColor clearColor]];
+		[subView setTag:111112];
+		UIActivityIndicatorView *activitIndicator=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+		[activitIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+		activitIndicator.tag=111111;
+		[activitIndicator setCenter:subView.center];
+		[subView addSubview:activitIndicator];
+		
+		return subView;
 	}
-	return view;
+	
+	
 }
 
 -(void)showFooterLoadMoreActivityIndicator:(BOOL)show{
@@ -247,118 +175,33 @@
 #pragma mark - ScrollView Delegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	
-	//To do Call the parent delegates
 	
-	if ([self.delegate respondsToSelector:@selector(scrollViewDidScroll:onTableView:)]) {
-		[self.delegate scrollViewDidScroll:scrollView onTableView:tblView];
-	}
-	
-	
-	switch (selectedOffer) {
-		case eSelectedDiscount:
-		{
-			if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height-33 && arrDiscount.count > 0 && scrollView.contentOffset.y>0){
-				if (!isLoading) {
-					isLoading=YES;
-					[self showFooterLoadMoreActivityIndicator:YES];
-					[self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5 ];
-				}
-			}
+	if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height-33 && arrDiscount.count > 0 && scrollView.contentOffset.y>0){
+		if (!isLoading) {
+			isLoading=YES;
+			[self showFooterLoadMoreActivityIndicator:YES];
+			[self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5 ];
 		}
-			break;
-		case eSelectedCoupon:
-		{
-			if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height-33 && arrCoupon.count > 0 && scrollView.contentOffset.y>0){
-				if (!isLoading) {
-					isLoading=YES;
-					[self showFooterLoadMoreActivityIndicator:YES];
-					[self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5 ];
-				}
-			}
-		}
-			break;
-		default:
-			break;
 	}
-	
 }
 
 -(void)calledPullUp
 {
-	switch (selectedOffer) {
-	case eSelectedDiscount:
-		{
-			if(totalNoOfPages>pageno)
-			{
-				pageno++;
-				[self createDateToGetDiscountOffer];
-			}
-			else
-			{
-				isLoading = NO;
-				[self showFooterLoadMoreActivityIndicator:NO];
-			}
-		}
-			break;
-		case eSelectedCoupon:
-		{
-			if(totalNoOfPages>pageno)
-			{
-				pageno++;
-				[self createDateToGetCouponOffer];
-			}
-			else
-			{
-				isLoading = NO;
-				[self showFooterLoadMoreActivityIndicator:NO];
-			}
-		}
-			break;
-	default:
-			break;
+	
+	if(totalNoOfPages>pageno)
+	{
+		pageno++;
+		[self createDateToGetDiscountOffer];
+	}
+	else
+	{
+		isLoading = NO;
+		[self showFooterLoadMoreActivityIndicator:NO];
 	}
 	
 }
-- (IBAction)btnDiscount:(id)sender {
-	[discountBtn setSelected:![discountBtn isSelected]];
-	[self setSelectedBtnState: eSelectedDiscount];
-	selectedOffer = eSelectedDiscount;
-//	[self createDateToGetDiscountOffer];
-	[tblView reloadData];
-}
-- (IBAction)btnCoupon:(id)sender {
-	[couponBtn setSelected:![couponBtn isSelected]];
-	[self setSelectedBtnState: eSelectedCoupon];
-	selectedOffer = eSelectedCoupon;
-//	[self createDateToGetCouponOffer];
-	[tblView reloadData];
-}
 
--(void)setSelectedBtnState:(enSelectedOfferBtn)inSelectedState
-{
-	switch (inSelectedState)
-	{
-		case eSelectedTypeNone:
-			//            [btn1 setSelected: YES];
-			break;
-			
-		case eSelectedDiscount:
-		{
-			[discountBtn setSelected: YES];
-			[couponBtn setSelected:NO];
-		}
-			break;
-			
-		case eSelectedCoupon:
-		{
-			[discountBtn setSelected: NO];
-			[couponBtn setSelected:YES];
-		}
-			break;
-		default:
-			break;
-	}
-}
+
 
 
 - (void)createDateToGetDiscountOffer
@@ -373,15 +216,6 @@
 	[self performSelector:@selector(callWebServiceToDiscountOffer:) withObject:dict afterDelay:0.1];
 }
 
-- (void)createDateToGetCouponOffer
-{
-	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
-	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-	//    [dict setObject:@"6951" forKey:kAaramshopId];
-	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_id] forKey:kStore_id];
-	
-	[self performSelector:@selector(callWebServiceToCouponOffer:) withObject:dict afterDelay:0.1];
-}
 
 - (void)callWebServiceToDiscountOffer:(NSMutableDictionary *)aDict
 {
@@ -395,17 +229,6 @@
 	[aaramShop_ConnectionManager getDataForFunction:kURLDiscountOffer withInput:aDict withCurrentTask:TASK_TO_GET_DISCOUNT_OFFERS andDelegate:self ];
 }
 
-- (void)callWebServiceToCouponOffer:(NSMutableDictionary *)aDict
-{
-	if (![Utils isInternetAvailable])
-	{
-		//        [Utils stopActivityIndicatorInView:self.view];
-		[AppManager stopStatusbarActivityIndicator];
-		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-		return;
-	}
-	[aaramShop_ConnectionManager getDataForFunction:kURLCouponOffer withInput:aDict withCurrentTask:TASK_TO_GET_COUPON_OFFERS andDelegate:self ];
-}
 
 - (void)responseReceived:(id)responseObject
 {
@@ -424,26 +247,11 @@
 				{
 					[self appendDataForPullUp:[self parseData:[responseObject objectForKey:@""]]];
 				}
-
+				
 			}
 		}
 			break;
-		case TASK_TO_GET_COUPON_OFFERS:
-		{
-			if([[responseObject objectForKey:kstatus] intValue] == 1)
-			{
-				if(pageno==0)
-				{
-					[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:@""]]];
-				}
-				else
-				{
-					[self appendDataForPullUp:[self parseData:[responseObject objectForKey:@""]]];
-				}
-
-			}
-		}
-			break;
+			
 		default:
 			break;
 	}
@@ -462,155 +270,71 @@
 -(void)createDataForFirstTimeGet:(NSMutableArray*)array{
 	for(int i = 0 ; i < [array count];i++)
 	{
-		switch (selectedOffer) {
-			case eSelectedDiscount:
-			{
-				CMDiscountOffer *discountOffer = [array objectAtIndex:i];
-				[arrDiscount addObject:discountOffer];
-			}
-				break;
-			case eSelectedCoupon:
-			{
-				CMCouponOffer *couponOffer = [array objectAtIndex:i];
-				[arrDiscount addObject:couponOffer];
-			}
-				break;
-			default:
-				break;
-		}
+		
+		CMDiscountOffer *discountOffer = [array objectAtIndex:i];
+		[arrDiscount addObject:discountOffer];
+		
+		
 		
 	}
 }
 -(void)appendDataForPullDown:(NSMutableArray*)array{
 	BOOL wasArrayEmpty = NO;
-	switch (selectedOffer) {
-		case eSelectedDiscount:
-		{
-			if ([arrDiscount count]==0) {
-				arrDiscount=[[NSMutableArray alloc]init];
-				wasArrayEmpty=YES;
-			}
-			for(int i = 0 ; i < [array count];i++)
-			{
-				CMDiscountOffer *discountOffer = [array objectAtIndex:i];
-				if (wasArrayEmpty) {
-					[arrDiscount addObject:discountOffer];
-				}else
-					[arrDiscount insertObject:discountOffer atIndex:i];
-			}
-		}
-			break;
-		case eSelectedCoupon:
-		{
-			if ([arrCoupon count]==0) {
-				arrCoupon=[[NSMutableArray alloc]init];
-				wasArrayEmpty=YES;
-			}
-			for(int i = 0 ; i < [array count];i++)
-			{
-				CMCouponOffer *couponOffer = [array objectAtIndex:i];
-				if (wasArrayEmpty) {
-					[arrCoupon addObject:couponOffer];
-				}else
-					[arrCoupon insertObject:couponOffer atIndex:i];
-			}
-		}
-			break;
-		default:
-			break;
+	
+	if ([arrDiscount count]==0) {
+		arrDiscount=[[NSMutableArray alloc]init];
+		wasArrayEmpty=YES;
+	}
+	for(int i = 0 ; i < [array count];i++)
+	{
+		CMDiscountOffer *discountOffer = [array objectAtIndex:i];
+		if (wasArrayEmpty) {
+			[arrDiscount addObject:discountOffer];
+		}else
+			[arrDiscount insertObject:discountOffer atIndex:i];
 	}
 	
 }
 -(void)appendDataForPullUp:(NSMutableArray*)array{
 	for(int i = 0 ; i < [array count];i++)
 	{
-		switch (selectedOffer) {
-			case eSelectedDiscount:
-			{
-				CMDiscountOffer *discountOffer = [array objectAtIndex:i];
-				[arrDiscount addObject:discountOffer];
-			}
-				break;
-			case eSelectedCoupon:
-			{
-				CMCouponOffer *couponOffer = [array objectAtIndex:i];
-				[arrCoupon addObject:couponOffer];
-			}
-				break;
-			default:
-				break;
-		}
+		
+		CMDiscountOffer *discountOffer = [array objectAtIndex:i];
+		[arrDiscount addObject:discountOffer];
 		
 	}
 }
 - (NSMutableArray *)parseData:(id)data
 {
-	switch (selectedOffer) {
-		case eSelectedDiscount:
-		{
-			NSMutableArray *array = [[NSMutableArray alloc]init];
-
-			if([data count]>0)
-			{
-				for(int i =0 ; i < [data count] ; i++)
-				{
-					NSDictionary *dict = [data objectAtIndex:i];
-					CMDiscountOffer *discountOffer = [[CMDiscountOffer alloc] init];
-//					brandR.activity_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kActivity_id]];
-//					brandR.activity_name =[NSString stringWithFormat:@"%@", [dict objectForKey:kActivity_name]];
-//					brandR.company_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kCompany_name]];
-//					brandR.brand_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kBrand_name]];
-//					brandR.activity_details = [NSString stringWithFormat:@"%@",[dict objectForKey:kActivity_details]];
-//					brandR.image = [NSString stringWithFormat:@"%@",[dict objectForKey:kBrandImage]];
-//					brandR.start_date = [NSString stringWithFormat:@"%@",[dict objectForKey:kStart_date]];
-//					brandR.end_date= [NSString stringWithFormat:@"Valid till %@",[dict objectForKey:kEnd_date]];
-//					brandR.redemption = [NSString stringWithFormat:@"Redemption %@",[dict objectForKey:kRedemption]];
-//					totalNoOfPages = [[dict objectForKey:kTotal_page] intValue];
-
-					[array addObject:discountOffer];
-				}
-				
-
-//				[tblView reloadData];
-			}
-			return array;
-		}
-			break;
-		case eSelectedCoupon:
-		{
-			NSMutableArray *array = [[NSMutableArray alloc]init];
-			if([data count]>0)
-			{
-				for(int i =0 ; i < [data count] ; i++)
-				{
-					NSDictionary *dict = [data objectAtIndex:i];
-					CMCouponOffer *couponOffer = [[CMCouponOffer alloc] init];
-//					brandR.activity_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kActivity_id]];
-//					brandR.activity_name =[NSString stringWithFormat:@"%@", [dict objectForKey:kActivity_name]];
-//					brandR.company_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kCompany_name]];
-//					brandR.brand_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kBrand_name]];
-//					brandR.activity_details = [NSString stringWithFormat:@"%@",[dict objectForKey:kActivity_details]];
-//					brandR.image = [NSString stringWithFormat:@"%@",[dict objectForKey:kBrandImage]];
-//					brandR.start_date = [NSString stringWithFormat:@"%@",[dict objectForKey:kStart_date]];
-//					brandR.end_date= [NSString stringWithFormat:@"Valid till %@",[dict objectForKey:kEnd_date]];
-//					brandR.redemption = [NSString stringWithFormat:@"Redemption %@",[dict objectForKey:kRedemption]];
-//					totalNoOfPages = [[dict objectForKey:kTotal_page] intValue];
-
-					[array addObject:couponOffer];
-				}
-				
-
-//				[tblView reloadData];
-			}
-			return array;
-		}
-			break;
-		default:
-			return nil;
-			break;
-	}
 	
-
+	NSMutableArray *array = [[NSMutableArray alloc]init];
+	
+	if([data count]>0)
+	{
+		for(int i =0 ; i < [data count] ; i++)
+		{
+			NSDictionary *dict = [data objectAtIndex:i];
+			CMDiscountOffer *discountOffer = [[CMDiscountOffer alloc] init];
+			//					brandR.activity_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kActivity_id]];
+			//					brandR.activity_name =[NSString stringWithFormat:@"%@", [dict objectForKey:kActivity_name]];
+			//					brandR.company_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kCompany_name]];
+			//					brandR.brand_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kBrand_name]];
+			//					brandR.activity_details = [NSString stringWithFormat:@"%@",[dict objectForKey:kActivity_details]];
+			//					brandR.image = [NSString stringWithFormat:@"%@",[dict objectForKey:kBrandImage]];
+			//					brandR.start_date = [NSString stringWithFormat:@"%@",[dict objectForKey:kStart_date]];
+			//					brandR.end_date= [NSString stringWithFormat:@"Valid till %@",[dict objectForKey:kEnd_date]];
+			//					brandR.redemption = [NSString stringWithFormat:@"Redemption %@",[dict objectForKey:kRedemption]];
+			//					totalNoOfPages = [[dict objectForKey:kTotal_page] intValue];
+			
+			[array addObject:discountOffer];
+		}
+		
+		
+		//				[tblView reloadData];
+	}
+	return array;
+	
+	
 }
 
 

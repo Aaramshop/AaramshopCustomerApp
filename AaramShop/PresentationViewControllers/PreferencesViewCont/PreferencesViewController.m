@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
     arrNotification = [[NSMutableArray alloc] init];
     arrLocation = [[NSMutableArray alloc] init];
     dataDict=[[NSMutableDictionary alloc]init];
@@ -44,7 +45,7 @@
     [allSections addObject:@"Current Location"];
     [dataDict setObject:arrNotification forKey:@"Notification"];
     [dataDict setObject:arrLocation forKey:@"Current Location"];
-    [self setUpNavigationView];
+    [self setUpNavigationBar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,18 +53,46 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark Navigation
+-(void)setUpNavigationBar
+{
+	
+	CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 190, 44);
+	UIView* _headerTitleSubtitleView = [[UILabel alloc] initWithFrame:headerTitleSubtitleFrame];
+	_headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
+	_headerTitleSubtitleView.autoresizesSubviews = NO;
+	
+	CGRect titleFrame = CGRectMake(0,0, 190, 44);
+	UILabel* titleView = [[UILabel alloc] initWithFrame:titleFrame];
+	titleView.backgroundColor = [UIColor clearColor];
+	titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
+	titleView.textAlignment = NSTextAlignmentCenter;
+	titleView.textColor = [UIColor whiteColor];
+	titleView.text = @"Preferences";
+	titleView.adjustsFontSizeToFitWidth = YES;
+	[_headerTitleSubtitleView addSubview:titleView];
+	self.navigationItem.titleView = _headerTitleSubtitleView;
+	
+	UIImage *imgBack = [UIImage imageNamed:@"backBtn"];
+	UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	backBtn.bounds = CGRectMake( -10, 0, 30, 30);
+	
+	[backBtn setImage:imgBack forState:UIControlStateNormal];
+	[backBtn addTarget:self action:@selector(backBtn) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+	
+	
+	
+	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
+	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	
+}
 
--(void)setUpNavigationView
+-(void)backBtn
 {
-    CustomNavigationView* navView =[[CustomNavigationView alloc]init];
-    [navView setCustomNavigationLeftArrowImageWithImageName:@"backBtn"];
-    navView.delegate=self;
-    [self.view addSubview:navView];
+	[self.navigationController popViewControllerAnimated:YES];
 }
--(void)customNavigationLeftButtonClick:(UIButton *)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
+
 
 
 #pragma mark - UITableView Delegates & Data Source Methods

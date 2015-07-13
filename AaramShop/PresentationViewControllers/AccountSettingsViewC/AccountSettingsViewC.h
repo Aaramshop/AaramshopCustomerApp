@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserInfoTableCell.h"
 #import "UserContactTableCell.h"
 #import "ChangePasswordViewController.h"
 typedef enum

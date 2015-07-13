@@ -43,7 +43,7 @@
     float imgSize = 20;
     float lblHeight = 21;
     float btnSwitchSize = 31;
-    float padding = 8;
+    float padding = 4;
     
     CGRect imgPicRect           =   CGRectZero;
     CGRect swtBtnRect           =   CGRectZero;
@@ -56,7 +56,7 @@
     imgPicRect.origin.y             =   (selfRect.size.height - imgSize)/2;
     imgPic.frame                    =   imgPicRect;
     
-    lblNameRect.size.width           =   selfRect.size.width - btnSwitchSize - imgPicRect.size.width - padding*8;
+    lblNameRect.size.width           =   selfRect.size.width - btnSwitchSize - imgPicRect.size.width - padding*12;
     lblNameRect.size.height          =   lblHeight;
     lblNameRect.origin.x             =   imgPicRect.origin.x + imgPicRect.size.width + padding;
     lblNameRect.origin.y             =   (selfRect.size.height - lblHeight)/2;

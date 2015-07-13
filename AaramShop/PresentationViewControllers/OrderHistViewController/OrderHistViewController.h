@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "OrderHistTableCell.h"
 #import "CMOrderHist.h"
+#import "OrderHistDetailViewCon.h"
 @interface OrderHistViewController : UIViewController<CDRTranslucentSideBarDelegate,AaramShop_ConnectionManager_Delegate,CallAndChatDelegate>
 {
     

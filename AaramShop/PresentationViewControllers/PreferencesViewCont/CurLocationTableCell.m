@@ -29,7 +29,7 @@
         imgPic = [[UIImageView alloc]initWithFrame:CGRectZero];
         lblName = [[UILabel alloc]initWithFrame:CGRectZero];
         imgArrow = [[UIImageView alloc]initWithFrame:CGRectZero];
-        imgArrow.image = [UIImage imageNamed:@"btnArrow"];
+        imgArrow.image = [UIImage imageNamed:@"sideArrowGrey"];
         
         [self addSubview:imgPic];
         [self addSubview:lblName];
@@ -43,8 +43,8 @@
     float imgSize = 20;
     float lblHeight = 21;
     float imgArrowWidth = 13;
-    float imgArrowHeight = 21;
-    float padding = 8;
+    float imgArrowHeight = 13;
+    float padding = 4;
     
     CGRect imgPicRect           =   CGRectZero;
     CGRect imgArrowRect           =   CGRectZero;
@@ -65,7 +65,7 @@
     
     imgArrowRect.size.width           =   imgArrowWidth;
     imgArrowRect.size.height          =   imgArrowHeight;
-    imgArrowRect.origin.x             =   lblNameRect.origin.x + lblNameRect.size.width + padding;
+    imgArrowRect.origin.x             =   lblNameRect.origin.x + lblNameRect.size.width + padding*2;
     imgArrowRect.origin.y             =   (selfRect.size.height - imgArrowHeight)/2;
     imgArrow.frame                    =   imgArrowRect;
 }

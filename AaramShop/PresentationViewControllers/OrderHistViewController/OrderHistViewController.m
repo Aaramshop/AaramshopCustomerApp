@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
 
     self.sideBar = [Utils createLeftBarWithDelegate:self];
     [self setNavigationBar];
@@ -33,7 +33,11 @@
     [refreshCustomerList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = refreshCustomerList;
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:YES];
+	[self callWebserviceToGetOrderHist];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -125,8 +129,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
+	OrderHistDetailViewCon *OrderHistDetailVc=[self.storyboard instantiateViewControllerWithIdentifier:@"OrderHistDetailViewScene"];
+	OrderHistDetailVc.orderHist = [arrOrderHist objectAtIndex:indexPath.row];
+	[self.navigationController pushViewController:OrderHistDetailVc animated:YES];
+	
 }
 
 #pragma mark - Cell delegate methods
@@ -159,7 +165,7 @@
 {
     NSMutableDictionary *aDict = [Utils setPredefindValueForWebservice];
     
-    [aDict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_id] forKey:kStore_id];
+    [aDict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
     
     //    [aDict setObject:@"4" forKey:kStore_id];
     

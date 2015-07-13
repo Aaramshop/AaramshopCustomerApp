@@ -19,8 +19,16 @@
 	// Do any additional setup after loading the view.
 	[self setNavigationBar];
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
-	
+	UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+	[self.view addGestureRecognizer:gestureRecognizer];
 }
+
+- (void)hideKeyboard
+{
+	[self.view endEditing:YES];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
@@ -55,6 +63,24 @@
 	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
 	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 	
+	UIImage *imgDone = [UIImage imageNamed:@"doneBtn"];
+	UIButton *doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	doneBtn.bounds = CGRectMake( -10, 0, 50, 30);
+	[doneBtn setTitle:@"Done" forState:UIControlStateNormal];
+	[doneBtn.titleLabel setFont:[UIFont fontWithName:kRobotoRegular size:13.0]];
+	[doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[doneBtn setBackgroundImage:imgDone forState:UIControlStateNormal];
+	[doneBtn addTarget:self action:@selector(btnDoneClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnDone = [[UIBarButtonItem alloc] initWithCustomView:doneBtn];
+	
+	NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnDone, nil];
+	self.navigationItem.rightBarButtonItems = arrBtnsRight;
+	
+}
+- (void)btnDoneClicked
+{
+//	[tblView setUserInteractionEnabled:NO];
+//	[self savePreferences];
 }
 -(void)backBtn
 {
@@ -69,7 +95,7 @@
 {
 	switch (section) {
 		case 0:
-			return 2;
+			return 1;
 		break;
 		case 1:
 			return 2;
@@ -134,10 +160,11 @@
 			[btnUpdateImage setTitle:@"Change your Selfie" forState:UIControlStateNormal];
 			[btnUpdateImage setImage:[UIImage imageNamed:@"profileCameraIcon"] forState:UIControlStateNormal];
 			
+			
 			[btnUpdateImage setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 5)];
 			[btnUpdateImage setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
 			
-			[btnUpdateImage.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+			[btnUpdateImage.titleLabel setFont:[UIFont fontWithName:kRobotoRegular size:14]];
 			
 			
 			[secView addSubview:imgUser];
@@ -163,32 +190,21 @@
 			switch (indexPath.row) {
 				case 0:
 				{
+					
 					static NSString *cellIdentifier = @"FirstCell";
 					
-					UserInfoTableCell *cell =[self createCell:cellIdentifier];
+					UserContactTableCell *cell =[self createCellCreate:cellIdentifier];
 					
-					//                    NSDictionary *dataDic = [[dataDict objectForKey: [allSections objectAtIndex: indexPath.section]] objectAtIndex: indexPath.row];
+
 					cell.indexPath=indexPath;
-					//                    [cell updateCellWithData: dataDic];
-					cell.lblUpper.text = @"First Name";
-					cell.lblLower.text = @"Joy";
+					cell.txtEmail.placeholder = @"Enter your full name";
+					cell.txtEmail.textColor = [UIColor colorWithRed:83/255.0f green:83/255.0f blue:83/255.0f alpha:1.0f];
+					cell.txtEmail.text = [[NSUserDefaults standardUserDefaults] objectForKey:kFullname];
+					
 					tableCell = cell;
 				}
 					break;
-				case 1:
-				{
-					static NSString *cellIdentifier = @"LastCell";
-					
-					UserInfoTableCell *cell =[self createCell:cellIdentifier];
-					
-					//                    NSDictionary *dataDic = [[dataDict objectForKey: [allSections objectAtIndex: indexPath.section]] objectAtIndex: indexPath.row];
-					cell.indexPath=indexPath;
-					//                    [cell updateCellWithData: dataDic];
-					cell.lblUpper.text = @"Last Name";
-					cell.lblLower.text = @"Sharma";
-					tableCell = cell;
-				}
-					break;
+				
 				default:
 					break;
 			}
@@ -203,10 +219,10 @@
 					
 					UserContactTableCell *cell =[self createCellCreate:cellIdentifier];
 					
-					//                    NSDictionary *dataDic = [[dataDict objectForKey: [allSections objectAtIndex: indexPath.section]] objectAtIndex: indexPath.row];
+
 					cell.indexPath=indexPath;
-					//                    [cell updateCellWithData: dataDic];
-					cell.lblEmail.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"email"];
+					cell.txtEmail.placeholder = @"Add Email Address";
+					cell.txtEmail.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"email"];
 					tableCell = cell;
 				}
 					break;
@@ -216,10 +232,10 @@
 					
 					UserContactTableCell *cell =[self createCellCreate:cellIdentifier];
 					
-					//                    NSDictionary *dataDic = [[dataDict objectForKey: [allSections objectAtIndex: indexPath.section]] objectAtIndex: indexPath.row];
+
 					cell.indexPath=indexPath;
-					//                    [cell updateCellWithData: dataDic];
-					cell.lblEmail.text = @"********";
+					cell.txtEmail.text = @"********";
+//					cell.txtEmail.userInteractionEnabled = NO;
 					cell.lblChangePass.text = @"Change Password";
 					tableCell = cell;
 				}
@@ -235,13 +251,6 @@
 	return tableCell;
 }
 #pragma mark - Calling Cell
--(UserInfoTableCell*)createCell:(NSString*)cellIdentifier{
-	UserInfoTableCell *cell = (UserInfoTableCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
-	if (cell == nil) {
-		cell = [[UserInfoTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-	}
-	return cell;
-}
 -(UserContactTableCell*)createCellCreate:(NSString*)cellIdentifier{
 	UserContactTableCell *cell = (UserContactTableCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
