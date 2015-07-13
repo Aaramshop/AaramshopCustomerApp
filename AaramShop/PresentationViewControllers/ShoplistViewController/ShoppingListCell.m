@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Approutes. All rights reserved.
 //
 
-#import "ShopListTableCell.h"
+#import "ShoppingListCell.h"
 
-@implementation ShopListTableCell
+@implementation ShoppingListCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -18,6 +18,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+
+-(IBAction)actionDelete:(id)sender
+{
+	
 }
 
 @end
