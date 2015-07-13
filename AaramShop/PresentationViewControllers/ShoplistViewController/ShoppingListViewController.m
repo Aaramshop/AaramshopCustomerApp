@@ -5,13 +5,13 @@
 //  Copyright (c) 2015 Approutes. All rights reserved.
 //
 
-#import "ShoplistViewController.h"
+#import "ShoppingListViewController.h"
 
-@interface ShoplistViewController ()
+@interface ShoppingListViewController ()
 
 @end
 
-@implementation ShoplistViewController
+@implementation ShoppingListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

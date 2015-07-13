@@ -405,7 +405,7 @@
 		27BE65811B0203F2004FA4B4 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE65801B0203F2004FA4B4 /* HomeViewController.m */; };
 		27BE65841B0203FD004FA4B4 /* OffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE65831B0203FD004FA4B4 /* OffersViewController.m */; };
 		27BE658A1B020432004FA4B4 /* OrderHistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE65891B020432004FA4B4 /* OrderHistViewController.m */; };
-		27BE658D1B020446004FA4B4 /* ShoplistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE658C1B020446004FA4B4 /* ShoplistViewController.m */; };
+		27BE658D1B020446004FA4B4 /* ShoppingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BE658C1B020446004FA4B4 /* ShoppingListViewController.m */; };
 		27D049591B020780001A437F /* TabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D049581B020780001A437F /* TabbarViewController.m */; };
 		27EC674B1B031FE0007D126E /* aaramShopAppLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 27EC67481B031FE0007D126E /* aaramShopAppLogo.png */; };
 		27EC674C1B031FE0007D126E /* aaramShopAppLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27EC67491B031FE0007D126E /* aaramShopAppLogo@2x.png */; };
@@ -874,6 +874,9 @@
 		6B1C0B821B04D25B009DD32D /* DPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1C0B811B04D25B009DD32D /* DPAnnotationView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6B1DFC1E1B30495800E5CAE8 /* CustomSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1DFC1D1B30495800E5CAE8 /* CustomSearchDisplayController.m */; };
 		6B388E191AFCC31800FF3CF3 /* LocationEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */; };
+		6B5C0FAA1B53B69F003C217C /* ShoppingListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FA91B53B69F003C217C /* ShoppingListDetailViewController.m */; };
+		6B5C0FAD1B53B6C3003C217C /* ShoppingListDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FAC1B53B6C3003C217C /* ShoppingListDetailCell.m */; };
+		6B5C0FB11B53BC6E003C217C /* CreateNewShoppingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FB01B53BC6E003C217C /* CreateNewShoppingListViewController.m */; };
 		6B5CE4471B395A8C00CD009E /* handsean.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE4461B395A8C00CD009E /* handsean.ttf */; };
 		6B5CE44B1B395FD800CD009E /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE4481B395FD800CD009E /* upArrow.png */; };
 		6B5CE44C1B395FD800CD009E /* upArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE4491B395FD800CD009E /* upArrow@2x.png */; };
@@ -921,6 +924,9 @@
 		6B809DB11B31755D00E91673 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D9F1B31755D00E91673 /* UIImageView+HighlightedWebCache.m */; };
 		6B809DB21B31755D00E91673 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809DA11B31755D00E91673 /* UIImageView+WebCache.m */; };
 		6B809DB31B31755D00E91673 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809DA31B31755D00E91673 /* UIView+WebCacheOperation.m */; };
+		6B83A0B01B53D6C700A00520 /* ShoppingListAddMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B83A0AF1B53D6C700A00520 /* ShoppingListAddMoreViewController.m */; };
+		6B83A0B41B53D87800A00520 /* ShoppingListChooseStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B83A0B31B53D87800A00520 /* ShoppingListChooseStoreViewController.m */; };
+		6B83A0B81B53D9BD00A00520 /* ShoppingListShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B83A0B71B53D9BD00A00520 /* ShoppingListShareViewController.m */; };
 		6B8536571B046B8300E60AA3 /* DDAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8536561B046B8300E60AA3 /* DDAnnotationView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6B87424C1B2ECAB200BED8A6 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B87424A1B2ECAB200BED8A6 /* Fabric.framework */; };
 		6B87424D1B2ECAB200BED8A6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B87424B1B2ECAB200BED8A6 /* Crashlytics.framework */; };
@@ -1877,8 +1883,8 @@
 		27BE65831B0203FD004FA4B4 /* OffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersViewController.m; sourceTree = "<group>"; };
 		27BE65881B020432004FA4B4 /* OrderHistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderHistViewController.h; sourceTree = "<group>"; };
 		27BE65891B020432004FA4B4 /* OrderHistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderHistViewController.m; sourceTree = "<group>"; };
-		27BE658B1B020446004FA4B4 /* ShoplistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoplistViewController.h; sourceTree = "<group>"; };
-		27BE658C1B020446004FA4B4 /* ShoplistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoplistViewController.m; sourceTree = "<group>"; };
+		27BE658B1B020446004FA4B4 /* ShoppingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListViewController.h; sourceTree = "<group>"; };
+		27BE658C1B020446004FA4B4 /* ShoppingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListViewController.m; sourceTree = "<group>"; };
 		27D049571B020780001A437F /* TabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbarViewController.h; sourceTree = "<group>"; };
 		27D049581B020780001A437F /* TabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbarViewController.m; sourceTree = "<group>"; };
 		27EC67481B031FE0007D126E /* aaramShopAppLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aaramShopAppLogo.png; sourceTree = "<group>"; };
@@ -2385,6 +2391,12 @@
 		6B1DFC1D1B30495800E5CAE8 /* CustomSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchDisplayController.m; sourceTree = "<group>"; };
 		6B388E171AFCC31800FF3CF3 /* LocationEnterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEnterViewController.h; sourceTree = "<group>"; };
 		6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEnterViewController.m; sourceTree = "<group>"; };
+		6B5C0FA81B53B69F003C217C /* ShoppingListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListDetailViewController.h; sourceTree = "<group>"; };
+		6B5C0FA91B53B69F003C217C /* ShoppingListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListDetailViewController.m; sourceTree = "<group>"; };
+		6B5C0FAB1B53B6C3003C217C /* ShoppingListDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListDetailCell.h; sourceTree = "<group>"; };
+		6B5C0FAC1B53B6C3003C217C /* ShoppingListDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListDetailCell.m; sourceTree = "<group>"; };
+		6B5C0FAF1B53BC6E003C217C /* CreateNewShoppingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewShoppingListViewController.h; sourceTree = "<group>"; };
+		6B5C0FB01B53BC6E003C217C /* CreateNewShoppingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewShoppingListViewController.m; sourceTree = "<group>"; };
 		6B5CE4461B395A8C00CD009E /* handsean.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = handsean.ttf; sourceTree = "<group>"; };
 		6B5CE4481B395FD800CD009E /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArrow.png; sourceTree = "<group>"; };
 		6B5CE4491B395FD800CD009E /* upArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upArrow@2x.png"; sourceTree = "<group>"; };
@@ -2451,6 +2463,12 @@
 		6B809DA11B31755D00E91673 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		6B809DA21B31755D00E91673 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		6B809DA31B31755D00E91673 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		6B83A0AE1B53D6C700A00520 /* ShoppingListAddMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListAddMoreViewController.h; sourceTree = "<group>"; };
+		6B83A0AF1B53D6C700A00520 /* ShoppingListAddMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListAddMoreViewController.m; sourceTree = "<group>"; };
+		6B83A0B21B53D87800A00520 /* ShoppingListChooseStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListChooseStoreViewController.h; sourceTree = "<group>"; };
+		6B83A0B31B53D87800A00520 /* ShoppingListChooseStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListChooseStoreViewController.m; sourceTree = "<group>"; };
+		6B83A0B61B53D9BD00A00520 /* ShoppingListShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListShareViewController.h; sourceTree = "<group>"; };
+		6B83A0B71B53D9BD00A00520 /* ShoppingListShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListShareViewController.m; sourceTree = "<group>"; };
 		6B8536551B046B8300E60AA3 /* DDAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAnnotationView.h; sourceTree = "<group>"; };
 		6B8536561B046B8300E60AA3 /* DDAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAnnotationView.m; sourceTree = "<group>"; };
 		6B87424A1B2ECAB200BED8A6 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
@@ -4375,8 +4393,8 @@
 		27BE657B1B0203CC004FA4B4 /* ShoplistViewController */ = {
 			isa = PBXGroup;
 			children = (
-				27BE658B1B020446004FA4B4 /* ShoplistViewController.h */,
-				27BE658C1B020446004FA4B4 /* ShoplistViewController.m */,
+				27BE658B1B020446004FA4B4 /* ShoppingListViewController.h */,
+				27BE658C1B020446004FA4B4 /* ShoppingListViewController.m */,
 			);
 			path = ShoplistViewController;
 			sourceTree = "<group>";
@@ -5112,6 +5130,11 @@
 		6B12DC9D1AF2543A00245209 /* PresentationViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6B83A0B51B53D9AA00A00520 /* ShoppingListShareViewController */,
+				6B83A0B11B53D86300A00520 /* ShoppingListChooseStoreViewController */,
+				6B83A0AD1B53D6A000A00520 /* ShoppingListAddMoreViewController */,
+				6B5C0FAE1B53BC47003C217C /* CreateNewShoppingListViewController */,
+				6B5C0FA61B53B681003C217C /* ShoppingListDetailViewController */,
 				3653956F1B52A0450045AAFE /* ChangePasswordViewCon */,
 				6BCB093C1B4E66C400F1A502 /* HomeCategoriesViewController */,
 				36D8C4F31B3A934000C255EE /* PaymentModeViewController */,
@@ -5312,6 +5335,34 @@
 			path = LocationEnterViewController;
 			sourceTree = "<group>";
 		};
+		6B5C0FA61B53B681003C217C /* ShoppingListDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B5C0FA71B53B681003C217C /* ShoppingListDetailCell */,
+				6B5C0FA81B53B69F003C217C /* ShoppingListDetailViewController.h */,
+				6B5C0FA91B53B69F003C217C /* ShoppingListDetailViewController.m */,
+			);
+			path = ShoppingListDetailViewController;
+			sourceTree = "<group>";
+		};
+		6B5C0FA71B53B681003C217C /* ShoppingListDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				6B5C0FAB1B53B6C3003C217C /* ShoppingListDetailCell.h */,
+				6B5C0FAC1B53B6C3003C217C /* ShoppingListDetailCell.m */,
+			);
+			path = ShoppingListDetailCell;
+			sourceTree = "<group>";
+		};
+		6B5C0FAE1B53BC47003C217C /* CreateNewShoppingListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B5C0FAF1B53BC6E003C217C /* CreateNewShoppingListViewController.h */,
+				6B5C0FB01B53BC6E003C217C /* CreateNewShoppingListViewController.m */,
+			);
+			path = CreateNewShoppingListViewController;
+			sourceTree = "<group>";
+		};
 		6B5CE44E1B39756400CD009E /* PickLastTableCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -5401,6 +5452,33 @@
 				6B809DA31B31755D00E91673 /* UIView+WebCacheOperation.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		6B83A0AD1B53D6A000A00520 /* ShoppingListAddMoreViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B83A0AE1B53D6C700A00520 /* ShoppingListAddMoreViewController.h */,
+				6B83A0AF1B53D6C700A00520 /* ShoppingListAddMoreViewController.m */,
+			);
+			path = ShoppingListAddMoreViewController;
+			sourceTree = "<group>";
+		};
+		6B83A0B11B53D86300A00520 /* ShoppingListChooseStoreViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B83A0B21B53D87800A00520 /* ShoppingListChooseStoreViewController.h */,
+				6B83A0B31B53D87800A00520 /* ShoppingListChooseStoreViewController.m */,
+			);
+			path = ShoppingListChooseStoreViewController;
+			sourceTree = "<group>";
+		};
+		6B83A0B51B53D9AA00A00520 /* ShoppingListShareViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B83A0B61B53D9BD00A00520 /* ShoppingListShareViewController.h */,
+				6B83A0B71B53D9BD00A00520 /* ShoppingListShareViewController.m */,
+			);
+			path = ShoppingListShareViewController;
 			sourceTree = "<group>";
 		};
 		6B87C7591B342061002BC68C /* StoreModel */ = {
@@ -7158,6 +7236,7 @@
 			files = (
 				274A5CE91B05C4AA009112B5 /* XMPPPing.m in Sources */,
 				365395471B5243750045AAFE /* CouponTableCell.m in Sources */,
+				6B5C0FAD1B53B6C3003C217C /* ShoppingListDetailCell.m in Sources */,
 				274A5C591B05C4AA009112B5 /* UIRefreshControl+AFNetworking.m in Sources */,
 				274A5CF21B05C4AA009112B5 /* XMPPMessage+XEP_0333.m in Sources */,
 				274A5C751B05C4AA009112B5 /* FSWebLogin.m in Sources */,
@@ -7253,7 +7332,7 @@
 				274A5CA01B05C4AA009112B5 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				6BA894001B4F9EFB0014519C /* HomeCategoriesModel.m in Sources */,
 				6B06770D1B070C3C0002259E /* LocationAlertViewController.m in Sources */,
-				27BE658D1B020446004FA4B4 /* ShoplistViewController.m in Sources */,
+				27BE658D1B020446004FA4B4 /* ShoppingListViewController.m in Sources */,
 				274A5CC81B05C4AA009112B5 /* XMPPvCardTempLabel.m in Sources */,
 				6B1C0B821B04D25B009DD32D /* DPAnnotationView.m in Sources */,
 				274A5C8C1B05C4AA009112B5 /* XMPPSCRAMSHA1Authentication.m in Sources */,
@@ -7290,6 +7369,7 @@
 				6B809DAC1B31755D00E91673 /* SDWebImagePrefetcher.m in Sources */,
 				274A5CF81B05C4AA009112B5 /* XMPPIDTracker.m in Sources */,
 				6BA8F8FF1B08FCDB00EAA6A8 /* AaramShop_ConnectionManager.m in Sources */,
+				6B5C0FAA1B53B69F003C217C /* ShoppingListDetailViewController.m in Sources */,
 				274A5C501B05C4AA009112B5 /* AFURLRequestSerialization.m in Sources */,
 				6BA894091B4F9F970014519C /* RecommendedStoreModel.m in Sources */,
 				6B8536571B046B8300E60AA3 /* DDAnnotationView.m in Sources */,
@@ -7304,6 +7384,7 @@
 				6B12DCE01AF2A46800245209 /* MobileEnterViewController.m in Sources */,
 				6BFFF90F1B02133300BB2B62 /* CDRTranslucentSideBar.m in Sources */,
 				274A5C801B05C4AA009112B5 /* GSNSDataExtensions.m in Sources */,
+				6B83A0B81B53D9BD00A00520 /* ShoppingListShareViewController.m in Sources */,
 				274A5CFA1B05C4AA009112B5 /* XMPPStringPrep.m in Sources */,
 				27BE658A1B020432004FA4B4 /* OrderHistViewController.m in Sources */,
 				6B809DA51B31755D00E91673 /* NSData+ImageContentType.m in Sources */,
@@ -7335,6 +7416,7 @@
 				274A5CBF1B05C4AA009112B5 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				274A5CD51B05C4AA009112B5 /* XMPPSoftwareVersion.m in Sources */,
 				274A5C5D1B05C4AA009112B5 /* NSData+SH.m in Sources */,
+				6B83A0B01B53D6C700A00520 /* ShoppingListAddMoreViewController.m in Sources */,
 				274A5C6B1B05C4AA009112B5 /* UIView+SH.m in Sources */,
 				274A5CAF1B05C4AA009112B5 /* XMPPPrivacy.m in Sources */,
 				368AFEE41B383BD400417836 /* TotalPriceTableCell.m in Sources */,
@@ -7468,8 +7550,10 @@
 				274A5C6F1B05C4AA009112B5 /* FSConverter.m in Sources */,
 				279704401B0A091A00FAD4D9 /* PWTextField.m in Sources */,
 				6BE4745B1B3B21CE00C09AFD /* MHMediaPreviewCollectionViewCell.m in Sources */,
+				6B5C0FB11B53BC6E003C217C /* CreateNewShoppingListViewController.m in Sources */,
 				274A5DFE1B05C88B009112B5 /* RMDownloadIndicator.m in Sources */,
 				274A5D081B05C4AA009112B5 /* DDXMLNode.m in Sources */,
+				6B83A0B41B53D87800A00520 /* ShoppingListChooseStoreViewController.m in Sources */,
 				274A5C951B05C4AA009112B5 /* XMPPJID.m in Sources */,
 				274A5C651B05C4AA009112B5 /* UIImage+SH.m in Sources */,
 				274A5CEC1B05C4AA009112B5 /* NSXMLElement+XEP_0203.m in Sources */,

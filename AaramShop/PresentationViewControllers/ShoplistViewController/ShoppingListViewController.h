@@ -7,9 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShoplistViewController : UIViewController<CDRTranslucentSideBarDelegate>
+@interface ShoppingListViewController : UIViewController<CDRTranslucentSideBarDelegate>
 {
-    
     __weak IBOutlet UITableView *tblView;
     NSMutableArray *arrShoppingList;
 }

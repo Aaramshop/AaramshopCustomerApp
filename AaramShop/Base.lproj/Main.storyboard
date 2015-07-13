@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -303,7 +303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w9l-fm-mxU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-100" y="3466"/>
+            <point key="canvasLocation" x="-436" y="3454"/>
         </scene>
         <!--Home Second View Controller-->
         <scene sceneID="aN6-lP-cuq">
@@ -322,7 +322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MNG-aZ-GW3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="309" y="3466"/>
+            <point key="canvasLocation" x="-75" y="3454"/>
         </scene>
         <!--Home Store View Controller-->
         <scene sceneID="kzj-bH-umV">
@@ -545,7 +545,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIh-fd-D0d">
@@ -609,10 +609,10 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
             </objects>
             <point key="canvasLocation" x="1865" y="1170"/>
         </scene>
-        <!--Shoplist View Controller-->
+        <!--Shopping List View Controller-->
         <scene sceneID="w3B-Z8-AHM">
             <objects>
-                <viewController id="ibH-1P-gqa" customClass="ShoplistViewController" sceneMemberID="viewController">
+                <viewController id="ibH-1P-gqa" customClass="ShoppingListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aWM-E5-3nU"/>
                         <viewControllerLayoutGuide type="bottom" id="bmg-iA-84C"/>
@@ -756,7 +756,253 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcu-F1-ONw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="638" y="3447"/>
+            <point key="canvasLocation" x="346" y="3447"/>
+        </scene>
+        <!--Create New Shopping List View Controller-->
+        <scene sceneID="Wbu-eY-aiq">
+            <objects>
+                <viewController id="4W0-E9-RQG" customClass="CreateNewShoppingListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4yh-em-q10"/>
+                        <viewControllerLayoutGuide type="bottom" id="gaW-1F-goP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gbv-X6-eea">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ncc-XZ-sRs">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter shopping list title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXT-3D-yCs" customClass="PWTextField">
+                                        <rect key="frame" x="10" y="3" width="300" height="38"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="zhi-hv-0wc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="6Lz-c1-ODG">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="EEe-yQ-ieS"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="6wm-gL-NP2"/>
+                                    <constraint firstAttribute="centerX" secondItem="6Lz-c1-ODG" secondAttribute="centerX" id="7QQ-FR-h3J"/>
+                                    <constraint firstItem="sXT-3D-yCs" firstAttribute="top" secondItem="Ncc-XZ-sRs" secondAttribute="top" constant="3" id="G7w-ou-CB3"/>
+                                    <constraint firstAttribute="bottom" secondItem="sXT-3D-yCs" secondAttribute="bottom" constant="47" id="Ht5-54-uaJ"/>
+                                    <constraint firstItem="sXT-3D-yCs" firstAttribute="leading" secondItem="Ncc-XZ-sRs" secondAttribute="leading" constant="10" id="NEP-HD-fxh"/>
+                                    <constraint firstAttribute="bottom" secondItem="6Lz-c1-ODG" secondAttribute="bottom" id="bFI-HU-528"/>
+                                    <constraint firstItem="6Lz-c1-ODG" firstAttribute="width" secondItem="Ncc-XZ-sRs" secondAttribute="width" id="jAl-Ku-QTE"/>
+                                    <constraint firstAttribute="trailing" secondItem="sXT-3D-yCs" secondAttribute="trailing" constant="10" id="uUT-x3-CIv"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Vt8-FD-GaS">
+                                <rect key="frame" x="0.0" y="88" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="4W0-E9-RQG" id="fPu-vL-lHh"/>
+                                    <outlet property="delegate" destination="4W0-E9-RQG" id="WSk-t6-zha"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vt8-FD-GaS" firstAttribute="top" secondItem="Ncc-XZ-sRs" secondAttribute="bottom" id="245-uc-1Yl"/>
+                            <constraint firstItem="gaW-1F-goP" firstAttribute="top" secondItem="Vt8-FD-GaS" secondAttribute="bottom" id="2aN-7l-jJe"/>
+                            <constraint firstItem="Ncc-XZ-sRs" firstAttribute="width" secondItem="Gbv-X6-eea" secondAttribute="width" id="8K0-d5-BfJ"/>
+                            <constraint firstAttribute="width" secondItem="Vt8-FD-GaS" secondAttribute="width" id="Go7-HI-9lD"/>
+                            <constraint firstAttribute="centerX" secondItem="Vt8-FD-GaS" secondAttribute="centerX" id="iKn-sm-5UL"/>
+                            <constraint firstItem="Ncc-XZ-sRs" firstAttribute="top" secondItem="4yh-em-q10" secondAttribute="bottom" constant="-20" id="wJm-6C-blg"/>
+                            <constraint firstAttribute="centerX" secondItem="Ncc-XZ-sRs" secondAttribute="centerX" id="xue-Nc-ZVv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tblView" destination="Vt8-FD-GaS" id="ysC-qp-E4X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sXp-oL-RZb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="209" y="4230"/>
+        </scene>
+        <!--Shopping List Detail View Controller-->
+        <scene sceneID="AUy-Zs-6eV">
+            <objects>
+                <viewController id="YNu-q6-23Q" customClass="ShoppingListDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XM2-bc-8sB"/>
+                        <viewControllerLayoutGuide type="bottom" id="ijh-2g-4ww"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lo7-Bg-ZWh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5Ye-jo-WB8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="YNu-q6-23Q" id="kxK-Cp-cAY"/>
+                                    <outlet property="delegate" destination="YNu-q6-23Q" id="tLi-PD-gOM"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9J1-DZ-daJ">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <color key="backgroundColor" red="0.82352941176470584" green="0.027450980392156862" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="aMk-N1-uSZ"/>
+                                </constraints>
+                                <state key="normal" title="CHOOSE A STORE">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="5Ye-jo-WB8" secondAttribute="width" id="15i-DB-zGx"/>
+                            <constraint firstAttribute="width" secondItem="9J1-DZ-daJ" secondAttribute="width" id="947-iM-Nlo"/>
+                            <constraint firstAttribute="centerX" secondItem="5Ye-jo-WB8" secondAttribute="centerX" id="CTT-y6-88K"/>
+                            <constraint firstItem="9J1-DZ-daJ" firstAttribute="top" secondItem="5Ye-jo-WB8" secondAttribute="bottom" id="NGs-LK-MOv"/>
+                            <constraint firstAttribute="centerX" secondItem="9J1-DZ-daJ" secondAttribute="centerX" id="p2e-uC-AMs"/>
+                            <constraint firstItem="5Ye-jo-WB8" firstAttribute="top" secondItem="XM2-bc-8sB" secondAttribute="bottom" constant="-20" id="t2S-Ki-5wi"/>
+                            <constraint firstItem="ijh-2g-4ww" firstAttribute="top" secondItem="9J1-DZ-daJ" secondAttribute="bottom" id="wdp-Kt-PEn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tblView" destination="5Ye-jo-WB8" id="sqs-pE-NFL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3HG-ln-bQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="572" y="4230"/>
+        </scene>
+        <!--Shopping List Add More View Controller-->
+        <scene sceneID="n2a-ah-l2Y">
+            <objects>
+                <viewController id="p0K-rZ-5CS" customClass="ShoppingListAddMoreViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CoW-bL-ON8"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vsa-kn-1HI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Lo-6A-JTL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="y8r-tW-i9N">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="55p-eO-gGI"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Apm-4n-hKH">
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="p0K-rZ-5CS" id="SFs-Mn-l2P"/>
+                                    <outlet property="delegate" destination="p0K-rZ-5CS" id="VBS-T1-obj"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="y8r-tW-i9N" secondAttribute="centerX" id="4EA-07-PXa"/>
+                            <constraint firstAttribute="width" secondItem="y8r-tW-i9N" secondAttribute="width" id="DfW-Cy-Hgo"/>
+                            <constraint firstItem="Apm-4n-hKH" firstAttribute="top" secondItem="y8r-tW-i9N" secondAttribute="bottom" id="EWE-tO-4Tg"/>
+                            <constraint firstItem="Apm-4n-hKH" firstAttribute="width" secondItem="6Lo-6A-JTL" secondAttribute="width" id="L5h-LY-QHJ"/>
+                            <constraint firstItem="Vsa-kn-1HI" firstAttribute="top" secondItem="Apm-4n-hKH" secondAttribute="bottom" id="mqa-1N-OvJ"/>
+                            <constraint firstItem="y8r-tW-i9N" firstAttribute="top" secondItem="CoW-bL-ON8" secondAttribute="bottom" constant="-20" id="ymD-e8-tba"/>
+                            <constraint firstAttribute="centerX" secondItem="Apm-4n-hKH" secondAttribute="centerX" id="zJM-YQ-teC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tblView" destination="Apm-4n-hKH" id="rUP-xv-sPQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gaq-jV-hth" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="939" y="4230"/>
+        </scene>
+        <!--Shopping List Choose Store View Controller-->
+        <scene sceneID="qFv-HL-cMS">
+            <objects>
+                <viewController id="uDR-90-9Ga" customClass="ShoppingListChooseStoreViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MvP-Xs-u8E"/>
+                        <viewControllerLayoutGuide type="bottom" id="fbi-he-jj4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fWV-Qn-jzu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bqQ-y9-rTb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="uDR-90-9Ga" id="NyS-l0-gE2"/>
+                                    <outlet property="delegate" destination="uDR-90-9Ga" id="gj4-sS-JmW"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bqQ-y9-rTb" firstAttribute="height" secondItem="fWV-Qn-jzu" secondAttribute="height" id="Ghb-HD-iQF"/>
+                            <constraint firstAttribute="centerX" secondItem="bqQ-y9-rTb" secondAttribute="centerX" id="NXp-vJ-oyB"/>
+                            <constraint firstAttribute="centerY" secondItem="bqQ-y9-rTb" secondAttribute="centerY" id="WJT-3m-wYY"/>
+                            <constraint firstItem="bqQ-y9-rTb" firstAttribute="width" secondItem="fWV-Qn-jzu" secondAttribute="width" id="tNl-FW-nQC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tblView" destination="bqQ-y9-rTb" id="zPF-4o-yoL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fGE-Wm-yFB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1293" y="4230"/>
+        </scene>
+        <!--Shopping List Share View Controller-->
+        <scene sceneID="qKD-lv-nXL">
+            <objects>
+                <viewController id="91Q-SW-4ih" customClass="ShoppingListShareViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cgR-Tp-H0P"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xg5-QB-PAo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Ir-Mo-S4Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MUd-e9-Tn0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="19R-1n-Nha"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="riw-fd-AuT">
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="riw-fd-AuT" firstAttribute="width" secondItem="4Ir-Mo-S4Y" secondAttribute="width" id="JEZ-3S-38z"/>
+                            <constraint firstAttribute="centerX" secondItem="MUd-e9-Tn0" secondAttribute="centerX" id="atI-1H-fts"/>
+                            <constraint firstItem="Xg5-QB-PAo" firstAttribute="top" secondItem="riw-fd-AuT" secondAttribute="bottom" id="di2-IE-H1w"/>
+                            <constraint firstItem="MUd-e9-Tn0" firstAttribute="width" secondItem="4Ir-Mo-S4Y" secondAttribute="width" id="mQr-tV-HQu"/>
+                            <constraint firstAttribute="centerX" secondItem="riw-fd-AuT" secondAttribute="centerX" id="vZz-E3-tRn"/>
+                            <constraint firstItem="MUd-e9-Tn0" firstAttribute="top" secondItem="cgR-Tp-H0P" secondAttribute="bottom" constant="-20" id="wZQ-Vv-zam"/>
+                            <constraint firstItem="riw-fd-AuT" firstAttribute="top" secondItem="MUd-e9-Tn0" secondAttribute="bottom" id="ymh-Va-mm3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="znR-CP-FPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1666" y="4230"/>
         </scene>
         <!--Location Enter View Controller-->
         <scene sceneID="JXd-yf-i82">
@@ -1831,7 +2077,7 @@ Please give us your address</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yz1-Wx-vR6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1585" y="3466"/>
+            <point key="canvasLocation" x="1585" y="3447"/>
         </scene>
         <!--Offers View Controller-->
         <scene sceneID="FuC-lr-Amh">
@@ -1875,7 +2121,7 @@ Please give us your address</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHA-Q3-juQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2068" y="3472"/>
+            <point key="canvasLocation" x="2072" y="3447"/>
         </scene>
         <!--Offers View Controller-->
         <scene sceneID="c0l-Fs-SHx">
@@ -2034,7 +2280,7 @@ Please give us your address</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFb-eR-QRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2068" y="4113"/>
+            <point key="canvasLocation" x="2316" y="4169"/>
         </scene>
         <!--Item-->
         <scene sceneID="HJN-Ww-XI7">
@@ -2056,7 +2302,7 @@ Please give us your address</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BB2-4V-27D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-100" y="2778"/>
+            <point key="canvasLocation" x="-436" y="2610"/>
         </scene>
         <!--Tabbar View Controller-->
         <scene sceneID="RyV-VG-QMz">
@@ -2099,7 +2345,7 @@ Please give us your address</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZv-85-32O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="515" y="2610"/>
+            <point key="canvasLocation" x="346" y="2610"/>
         </scene>
         <!--Item-->
         <scene sceneID="GjO-tQ-yBY">
@@ -3066,7 +3312,7 @@ Please give us your address</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f56-7B-nEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2471" y="3495"/>
+            <point key="canvasLocation" x="2727" y="3495"/>
         </scene>
         <!--Pick Collection View Controller-->
         <scene sceneID="2ou-Mb-JCg">
@@ -3572,7 +3818,7 @@ It will be used only for verification purposes.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZq-3A-INT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-515" y="3466"/>
+            <point key="canvasLocation" x="-905" y="3466"/>
         </scene>
         <!--Home Category List View Controller-->
         <scene sceneID="fG1-Hp-f0E">
@@ -3605,7 +3851,7 @@ It will be used only for verification purposes.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAl-Hu-gor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-515" y="4097"/>
+            <point key="canvasLocation" x="-905" y="4125"/>
         </scene>
         <!--Change Password View Controller-->
         <scene sceneID="IxH-nw-aDg">
