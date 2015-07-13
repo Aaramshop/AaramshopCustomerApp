@@ -6,10 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShoppingListCell.h"
 
-@interface ShoplistViewController : UIViewController<CDRTranslucentSideBarDelegate>
+@interface ShoppingListViewController : UIViewController<CDRTranslucentSideBarDelegate>
 {
-    
     __weak IBOutlet UITableView *tblView;
     NSMutableArray *arrShoppingList;
 }
