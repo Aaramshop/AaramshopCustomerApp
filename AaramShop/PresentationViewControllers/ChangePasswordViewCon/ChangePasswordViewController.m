@@ -98,7 +98,7 @@
 		[backBtn setEnabled:NO];
 		[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
 		NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-		[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_id] forKey:kStore_id];
+		[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 		[dict setObject:txtCurPassword.text forKey:kOld_password];
 		[dict setObject:txtNewPassword.text forKey:kNew_password];
 		[self performSelector:@selector(callWebserviceToChangePassword:) withObject:dict];

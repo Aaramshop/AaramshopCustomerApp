@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 typedef enum
 {
     eAccountSettings=0,
     ePreferences,
-    eCart
+    eCart,
+	eLogout
 }eRowTypeLeftSideBar;
 typedef enum
 {
@@ -22,7 +24,7 @@ typedef enum
     eSnacks
 }eRowTypeRightSideBar;
 @class CDRTranslucentSideBar;
-@protocol CDRTranslucentSideBarDelegate <NSObject>
+@protocol CDRTranslucentSideBarDelegate <NSObject,UINavigationControllerDelegate>
 @optional
 
 - (void)sideBar:(CDRTranslucentSideBar *)sideBar didAppear:(BOOL)animated;
@@ -36,7 +38,9 @@ typedef enum
 @end
 
 @interface CDRTranslucentSideBar : UIViewController <UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
-
+{
+	AppDelegate *appDel;
+}
 @property (nonatomic, assign) CGFloat sideBarWidth;
 @property (nonatomic, assign) CGFloat animationDuration;
 @property (nonatomic) BOOL translucent;

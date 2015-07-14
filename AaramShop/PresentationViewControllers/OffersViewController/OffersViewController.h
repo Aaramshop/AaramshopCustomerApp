@@ -6,16 +6,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DiscountTableCell.h"
-#import "CouponTableCell.h"
+#import "OffersTableCell.h"
+#import "CMOffers.h"
 
 @interface OffersViewController : UIViewController<CDRTranslucentSideBarDelegate,AaramShop_ConnectionManager_Delegate>
 {
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 
 	__weak IBOutlet UITableView *tblView;
-	NSMutableArray *arrDiscount;
-	NSMutableArray *arrCoupon;
+	NSMutableArray *arrOffers;
+
 	
 	int pageno;
 	int totalNoOfPages;

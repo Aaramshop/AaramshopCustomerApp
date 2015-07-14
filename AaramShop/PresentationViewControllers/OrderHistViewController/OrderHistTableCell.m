@@ -28,13 +28,13 @@
 {
     CMOrderHist *cmOrderHist = [arrayOrderHist objectAtIndex:_indexPath.row];
     
-    [imgUser sd_setImageWithURL:[NSURL URLWithString:cmOrderHist.user_image] placeholderImage:[UIImage imageNamed:@"defaultProfilePic"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
-    }];
-    
-    lblUsername.text = cmOrderHist.name;
-    
-    lblLocation.text = [NSString stringWithFormat:@"%@ (25Km)",cmOrderHist.user_city]; // add distance with location..
+//    [imgUser sd_setImageWithURL:[NSURL URLWithString:cmOrderHist.user_image] placeholderImage:[UIImage imageNamed:@"defaultProfilePic"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+	
+//    }];
+	
+//    lblUsername.text = cmOrderHist.name;
+
+//    lblLocation.text = [NSString stringWithFormat:@"%@ (25Km)",cmOrderHist.user_city]; // add distance with location..
     //    pendingOrderModel.longitude
     //    pendingOrderModel.latitude
     

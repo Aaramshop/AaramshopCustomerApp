@@ -17,8 +17,8 @@
 
 #define kAlertValidEmail									@"Please enter a valid email address"
 #define kAlertPasswordLength							@"Your password should have at least 6 digits"
-
-
+#define kLoginSuccessfulNotificationName		@"LoginSuccessful"
+#define kLogoutSuccessfulNotificationName		@"LogoutSuccessful"
 #pragma mark - Common keys
 
 #define APP_DELEGATE (AppDelegate*)[[UIApplication sharedApplication]delegate]
@@ -252,17 +252,34 @@
 #define kPayment_modes									@"payment_modes"
 #define kPaymentMode_Name							@"payment_mode"
 
-//================== Discount Offers =================
-#define kURLDiscountOffer								@""
-
-//================== Coupon Offer =====================
-#define kURLCouponOffer								@""
-
+//================== Offers =================
+#define kURLGetOffers											@"getOffers"
+#define kPage_no													@"page_no"
+#define kTotal_page												@"total_page"
+#define kOfferType												@"offerType"
+#define kProduct_actual_price								@"product_actual_price"
+#define kOffer_price												@"offer_price"
+#define kIsBroadcast												@"isBroadcast"
+#define kOfferTitle												@"offerTitle"
+#define kOffer_id													@"offer_id"
+#define kOverall_purchase_value							@"overall_purchase_value"
+#define kDiscount_percentage								@"discount_percentage"
+#define kFree_item												@"free_item"
+#define kCombo_mrp											@"combo_mrp"
+#define kCombo_offer_price									@"combo_offer_price"
+#define kOfferDetail												@"offerDetail"
+#define kOfferDescription										@"offerDescription"
+#define kOfferImage												@"offerImage"
+#define kStart_date												@"start_date"
+#define kEnd_date												@"end_date"
 
 //================= Change Password==============
-#define kURLChangePassword							@""
-#define kOld_password										@""
-#define kNew_password									@""
+#define kURLChangePassword							@"changePassword"
+#define kOld_password										@"old_password"
+#define kNew_password									@"new_password"
 
 //================ Send order status==============
 #define kURLSentOrderStatus							@"sentOrderStatus"
+
+//================= Account settings =============
+#define kURLUpdateInfo									@""

@@ -511,7 +511,24 @@ void MyAddressBookExternalChangeCallback (
     // This contains both height and width, but we really care about height.
     return frame.size;
 }
++(void)removeDataFromNSUserDefaults{
+	
+	NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+	NSDictionary * dict = [defs dictionaryRepresentation];
+	for (id key in dict) {
+		
+		NSString *strKey = (NSString *)key;
+		if ([strKey isEqualToString:kXMPPmyJID1] || [strKey isEqualToString:kXMPPmyPassword1] || [strKey isEqualToString:@"MessageCounter"] || [strKey isEqualToString:kUserId] )
+		{
+			[defs removeObjectForKey:key];
+		}else{
+			NSLog(@"");
+		}
+	}
+	[defs setValue:NO forKey:kIsLoggedIn];
 
+	[defs synchronize];
+}
 #pragma mark - create App Settings
 +(void)clearAllConversation
 {

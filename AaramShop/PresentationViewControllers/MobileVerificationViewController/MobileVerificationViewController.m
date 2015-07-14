@@ -100,12 +100,7 @@
             
             if ([_strIsRegistered intValue]==1)
             {
-                UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-                tabBarController.selectedIndex = 0;
-                
-                AppDelegate *appDeleg = APP_DELEGATE;
-                
-                appDeleg.window.rootViewController = tabBarController;
+                [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessfulNotificationName object:self userInfo:nil];
             }
             else
             {

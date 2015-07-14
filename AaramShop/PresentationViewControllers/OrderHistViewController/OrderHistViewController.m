@@ -220,23 +220,23 @@
      {
          CMOrderHist *orderHistModal = [[CMOrderHist alloc]init];
          
-         orderHistModal.addresss = [obj valueForKey:@"addresss"];
-         orderHistModal.chat_username = [obj valueForKey:@"chat_username"];
-         orderHistModal.delivery_time = [obj valueForKey:@"delivery_time"];
-         orderHistModal.latitude = [obj valueForKey:@"latitude"];
-         orderHistModal.longitude = [obj valueForKey:@"longitude"];
-         orderHistModal.mobile_no = [obj valueForKey:@"mobile_no"];
-         orderHistModal.name = [obj valueForKey:@"name"];
-         orderHistModal.order_amount = [obj valueForKey:@"order_amount"];
-         orderHistModal.order_time = [obj valueForKey:@"order_time"];
-         orderHistModal.quantity = [obj valueForKey:@"quantity"];
-         orderHistModal.user_city = [obj valueForKey:@"user_city"];
-         orderHistModal.user_image = [obj valueForKey:@"user_image"];
-         orderHistModal.user_locality = [obj valueForKey:@"user_locality"];
-         orderHistModal.user_pincode = [obj valueForKey:@"user_pincode"];
-         orderHistModal.user_state = [obj valueForKey:@"user_state"];
-         orderHistModal.order_id = [obj valueForKey:@"order_id"];
-         
+//         orderHistModal.addresss = [obj valueForKey:@"addresss"];
+//         orderHistModal.chat_username = [obj valueForKey:@"chat_username"];
+//         orderHistModal.delivery_time = [obj valueForKey:@"delivery_time"];
+//         orderHistModal.latitude = [obj valueForKey:@"latitude"];
+//         orderHistModal.longitude = [obj valueForKey:@"longitude"];
+//         orderHistModal.mobile_no = [obj valueForKey:@"mobile_no"];
+//         orderHistModal.name = [obj valueForKey:@"name"];
+//         orderHistModal.order_amount = [obj valueForKey:@"order_amount"];
+//         orderHistModal.order_time = [obj valueForKey:@"order_time"];
+//         orderHistModal.quantity = [obj valueForKey:@"quantity"];
+//         orderHistModal.user_city = [obj valueForKey:@"user_city"];
+//         orderHistModal.user_image = [obj valueForKey:@"user_image"];
+//         orderHistModal.user_locality = [obj valueForKey:@"user_locality"];
+//         orderHistModal.user_pincode = [obj valueForKey:@"user_pincode"];
+//         orderHistModal.user_state = [obj valueForKey:@"user_state"];
+//         orderHistModal.order_id = [obj valueForKey:@"order_id"];
+		 
          [arrOrderHist addObject:orderHistModal];
          
      }];

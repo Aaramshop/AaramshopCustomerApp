@@ -51,6 +51,7 @@ void MyAddressBookExternalChangeCallback (
 +(void)callAddressBookWebService:(NSDictionary*)userData;
 +(void)clearAllConversation;
 -(void)createDefaultValuesForDictionay;
++(void)removeDataFromNSUserDefaults;
 +(NSString *)getDistance:(StoreModel *)objStoreModel;
 @end
 extern AppManager *gAppManager;

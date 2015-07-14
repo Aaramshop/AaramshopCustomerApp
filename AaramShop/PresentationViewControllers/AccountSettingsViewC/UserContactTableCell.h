@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserContactTableCell : UITableViewCell
+@interface UserContactTableCell : UITableViewCell<UITextFieldDelegate>
 
 @property (nonatomic, strong) PWTextField *txtEmail;
+@property (nonatomic, strong) UILabel *lblDetail;
 @property (nonatomic, strong) UILabel *lblChangePass;
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @end
