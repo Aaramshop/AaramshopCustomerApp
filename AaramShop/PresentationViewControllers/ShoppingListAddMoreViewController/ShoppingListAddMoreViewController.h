@@ -11,5 +11,7 @@
 @interface ShoppingListAddMoreViewController : UIViewController
 {
 	IBOutlet UITableView *tblView;
+    
+    NSMutableArray *arrProductList;
 }
 @end

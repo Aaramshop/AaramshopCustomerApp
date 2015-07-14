@@ -908,6 +908,9 @@
 		6B5CE44D1B395FD800CD009E /* upArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CE44A1B395FD800CD009E /* upArrow@3x.png */; };
 		6B5CE4521B39756400CD009E /* PickCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5CE4511B39756400CD009E /* PickCollectionViewController.m */; };
 		6B5CE4551B39758900CD009E /* PickLastTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5CE4541B39758900CD009E /* PickLastTableCell.m */; };
+		6B5CF94F1B5534EC003E1DFE /* shoppingListSideArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CF94C1B5534EC003E1DFE /* shoppingListSideArrow.png */; };
+		6B5CF9501B5534EC003E1DFE /* shoppingListSideArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CF94D1B5534EC003E1DFE /* shoppingListSideArrow@2x.png */; };
+		6B5CF9511B5534EC003E1DFE /* shoppingListSideArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5CF94E1B5534EC003E1DFE /* shoppingListSideArrow@3x.png */; };
 		6B60989F1B395CAB00277D03 /* bground-568@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098891B395CAB00277D03 /* bground-568@2x.jpg */; };
 		6B6098A01B395CAB00277D03 /* bground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B60988A1B395CAB00277D03 /* bground.jpg */; };
 		6B6098A11B395CAB00277D03 /* bground@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B60988B1B395CAB00277D03 /* bground@2x.jpg */; };
@@ -2487,6 +2490,9 @@
 		6B5CE4511B39756400CD009E /* PickCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickCollectionViewController.m; sourceTree = "<group>"; };
 		6B5CE4531B39758900CD009E /* PickLastTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickLastTableCell.h; sourceTree = "<group>"; };
 		6B5CE4541B39758900CD009E /* PickLastTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickLastTableCell.m; sourceTree = "<group>"; };
+		6B5CF94C1B5534EC003E1DFE /* shoppingListSideArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoppingListSideArrow.png; sourceTree = "<group>"; };
+		6B5CF94D1B5534EC003E1DFE /* shoppingListSideArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoppingListSideArrow@2x.png"; sourceTree = "<group>"; };
+		6B5CF94E1B5534EC003E1DFE /* shoppingListSideArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoppingListSideArrow@3x.png"; sourceTree = "<group>"; };
 		6B6098891B395CAB00277D03 /* bground-568@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bground-568@2x.jpg"; sourceTree = "<group>"; };
 		6B60988A1B395CAB00277D03 /* bground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bground.jpg; sourceTree = "<group>"; };
 		6B60988B1B395CAB00277D03 /* bground@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bground@2x.jpg"; sourceTree = "<group>"; };
@@ -5668,6 +5674,9 @@
 		6B83A0C71B53E81300A00520 /* 26_shopping list_detail */ = {
 			isa = PBXGroup;
 			children = (
+				6B5CF94C1B5534EC003E1DFE /* shoppingListSideArrow.png */,
+				6B5CF94D1B5534EC003E1DFE /* shoppingListSideArrow@2x.png */,
+				6B5CF94E1B5534EC003E1DFE /* shoppingListSideArrow@3x.png */,
 				6B83A0EC1B53EB2F00A00520 /* copyIcon.png */,
 				6B83A0ED1B53EB2F00A00520 /* copyIcon@2x.png */,
 				6B83A0EE1B53EB2F00A00520 /* copyIcon@3x.png */,
@@ -6936,6 +6945,7 @@
 				6B8EB2DD1B26F5DD00402CFC /* homeDeatilsGreyArrow.png in Resources */,
 				274A5A4A1B05C075009112B5 /* favourateIcon@3x.png in Resources */,
 				6BE4C8FB1B034BB600EF1EDB /* doneBtn.png in Resources */,
+				6B5CF9511B5534EC003E1DFE /* shoppingListSideArrow@3x.png in Resources */,
 				3682093E1B1C46FA002AA93F /* Chatham Island, New Zealand.png in Resources */,
 				274A5DBF1B05C88B009112B5 /* chatPauseIcon@2x.png in Resources */,
 				6B8EB2DE1B26F5DD00402CFC /* homeDeatilsGreyArrow@2x.png in Resources */,
@@ -7288,6 +7298,8 @@
 				2791DE3D1B036E5C000121BC /* menuPreferencesIcon@3x.png in Resources */,
 				2791DE3B1B036E5C000121BC /* menuPreferencesIcon.png in Resources */,
 				6B83A0D91B53E81300A00520 /* createNewShoppingListIcon@3x.png in Resources */,
+				6B5CF94F1B5534EC003E1DFE /* shoppingListSideArrow.png in Resources */,
+				6B5CF9501B5534EC003E1DFE /* shoppingListSideArrow@2x.png in Resources */,
 				6B8EB2521B23087400402CFC /* shoppingListCloseCircle.png in Resources */,
 				6B8EB3141B27095000402CFC /* addToCartIcon@3x.png in Resources */,
 				368209951B1C46FA002AA93F /* karelia.png in Resources */,

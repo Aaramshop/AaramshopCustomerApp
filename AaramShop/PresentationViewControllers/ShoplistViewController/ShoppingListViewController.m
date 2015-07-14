@@ -6,6 +6,8 @@
 //
 
 #import "ShoppingListViewController.h"
+#import "CreateNewShoppingListViewController.h"
+#import "ShoppingListDetailViewController.h"
 
 #define kTableCellHeight	95
 
@@ -73,25 +75,10 @@
 	
 }
 
--(void)SideMenuClicked
-{
-    [self.sideBar show];
-}
-
-
--(void)btnSearchClicked
-{
-	
-}
-
 - (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
     [self.navigationController pushViewController:viewC animated:YES];
 }
 
--(void)btnCreateShoppingListClick
-{
-    
-}
 
 #pragma mark - UITableView Delegates & Data Source Methods
 
@@ -159,9 +146,36 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self navigateToShoppingListDetailScreen:indexPath.row];
 }
 
 
+-(void)navigateToShoppingListDetailScreen:(NSInteger)index
+{
+    ShoppingListDetailViewController *shoppingListDetail = (ShoppingListDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListDetail"];
+    
+    [self.navigationController pushViewController:shoppingListDetail animated:YES];
+}
+
+
+-(void)btnCreateShoppingListClick
+{
+    CreateNewShoppingListViewController *createNewShoppingList = (CreateNewShoppingListViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CreateNewShoppingList"];
+    
+//    [self.navigationController pushViewController:createNewShoppingList animated:YES];
+}
+
+-(void)SideMenuClicked
+{
+    [self.sideBar show];
+}
+
+
+-(void)btnSearchClicked
+{
+    
+}
 
 
 #pragma mark -
