@@ -8,7 +8,9 @@
 #import "OffersViewController.h"
 
 @interface OffersViewController ()
-
+{
+	AppDelegate *appDelegate;
+}
 @end
 
 @implementation OffersViewController
@@ -19,6 +21,7 @@
 	totalNoOfPages = 0;
 	pageno = 0;
 	isLoading = NO;
+	appDelegate = APP_DELEGATE;
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
 	self.sideBar = [Utils createLeftBarWithDelegate:self];
 	[self setNavigationBar];
@@ -69,18 +72,48 @@
 	[_headerTitleSubtitleView addSubview:titleView];
 	self.navigationItem.titleView = _headerTitleSubtitleView;
 	
-	UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
-	sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
-	[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
-	[sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
-	
-	
-	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
-	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
-	
+//	UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
+//	sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
+//	[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
+//	[sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
+//	UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
+//	
+//	
+//	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
+//	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	if(appDelegate.objStoreModel == nil)
+	{
+		UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
+		sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
+		[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
+		[sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
+		UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
+		
+		
+		NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
+		self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	}
+	else
+	{
+		UIImage *imgBack = [UIImage imageNamed:@"backBtn.png"];
+		
+		UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+		backBtn.bounds = CGRectMake( -10, 0, 30, 30);
+		
+		[backBtn setImage:imgBack forState:UIControlStateNormal];
+		[backBtn addTarget:self action:@selector(btnBackClicked) forControlEvents:UIControlEventTouchUpInside];
+		UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+		
+		NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
+		self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	}
 	
 }
+- (void)btnBackClicked
+{
+	[appDelegate removeTabBarRetailer];
+}
+
 -(void)SideMenuClicked
 {
 	[self.sideBar show];

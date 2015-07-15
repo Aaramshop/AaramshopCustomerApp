@@ -9,6 +9,11 @@
 #import "AppDelegate.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import "HomeSecondViewController.h"
+#import "ChatViewController.h"
+#import "ShoppingListViewController.h"
+#import "OffersViewController.h"
+#import "OrderHistViewController.h"
 @interface AppDelegate ()
 {
     Reachability *aReachability;
@@ -17,7 +22,8 @@
 
 @implementation AppDelegate
 @synthesize navController,myCurrentLocation,locationManager,arrOptions;
-
+@synthesize tabBarControllerRetailer = _tabBarControllerRetailer;
+@synthesize objStoreModel = _objStoreModel;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
      [Fabric with:@[CrashlyticsKit]];
     [self initializeAllSingletonObjects];
@@ -302,6 +308,105 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [self saveContext];
+}
+#pragma mark - create TabBar for Retailer
+- (UITabBarController *)createTabBarRetailer
+{
+//	HomeSecondViewController.h
+//	ChatViewController.h
+//	ShoppingListViewController.h
+//	OffersViewController.h
+//	OrderHistViewController.h
+//	UIImage *unselectedImage2 = [UIImage imageNamed:@"tabBarChatIcon"];
+//	UIImage *selectedImage2 = [UIImage imageNamed:@"tabBarChatIconActive"];
+//	UIImage *unselectedImage3 = [UIImage imageNamed:@"tabBarOrdersIcon"];
+//	UIImage *selectedImage3 = [UIImage imageNamed:@"tabBarOrdersIconActive"];
+//	UIImage *unselectedImage4 = [UIImage imageNamed:@"tabBarOffersIcon"];
+//	UIImage *selectedImage4 = [UIImage imageNamed:@"tabBarOffersIconActive"];
+
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+	HomeSecondViewController *home = [storyboard instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
+	home.tabBarItem.image = [[UIImage imageNamed:@"tabBarHomeIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	home.extendedLayoutIncludesOpaqueBars = YES;
+	home.tabBarItem.selectedImage = [[UIImage imageNamed:@"tabBarHomeIconActive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	home.title = @"Home";
+	home.strStore_Id = _objStoreModel.store_id;
+	home.strStoreImage = _objStoreModel.store_image;
+	home.strStore_CategoryName = _objStoreModel.store_name;
+	
+	UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController: home];
+	[nav1.navigationBar setTranslucent:NO];
+	[nav1.navigationBar setBarTintColor:[UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0]];
+
+//	nav1.navigationBarHidden = NO;
+	//2nd tab
+	ShoppingListViewController *shoppingList = [storyboard instantiateViewControllerWithIdentifier:@"shoppingListViewController"];
+	shoppingList.tabBarItem.image = [[UIImage imageNamed:@"tabBarMyListIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	shoppingList.extendedLayoutIncludesOpaqueBars = YES;
+	shoppingList.tabBarItem.selectedImage = [[UIImage imageNamed:@"tabBarMyListIconActive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	shoppingList.title = @"Shop List";
+	
+	UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController: shoppingList];
+	[nav2.navigationBar setTranslucent:NO];
+	[nav2.navigationBar setBarTintColor:[UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0]];
+
+//	nav2.navigationBarHidden = YES;
+	//3rd tab
+	ChatViewController *chatView = [storyboard instantiateViewControllerWithIdentifier:@"chatViewController"];
+	chatView.tabBarItem.image = [[UIImage imageNamed:@"tabBarChatIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	chatView.extendedLayoutIncludesOpaqueBars = YES;
+	chatView.tabBarItem.selectedImage = [[UIImage imageNamed:@"tabBarChatIconActive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	chatView.title = @"Chat";
+	
+	UINavigationController *nav3 = [[UINavigationController alloc] initWithRootViewController: chatView];
+	[nav3.navigationBar setTranslucent:NO];
+	[nav3.navigationBar setBarTintColor:[UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0]];
+
+//	nav3.navigationBarHidden = YES;
+	//4th tab
+	OrderHistDetailViewCon *order = [storyboard instantiateViewControllerWithIdentifier:@"orderHistViewController"];
+	order.tabBarItem.image = [[UIImage imageNamed:@"tabBarOrdersIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	order.extendedLayoutIncludesOpaqueBars = YES;
+	order.tabBarItem.selectedImage = [[UIImage imageNamed:@"tabBarOrdersIconActive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	order.title = @"Orders";
+	
+	UINavigationController *nav4 = [[UINavigationController alloc] initWithRootViewController: order];
+	[nav4.navigationBar setTranslucent:NO];
+	[nav4.navigationBar setBarTintColor:[UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0]];
+
+//	nav4.navigationBarHidden = YES;
+	//5th tab
+	
+	OffersViewController *offer = [storyboard instantiateViewControllerWithIdentifier:@"offersViewController"];
+	offer.tabBarItem.image = [[UIImage imageNamed:@"tabBarOffersIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	offer.extendedLayoutIncludesOpaqueBars = YES;
+	offer.tabBarItem.selectedImage = [[UIImage imageNamed:@"tabBarOffersIconActive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	offer.title = @"Offers";
+	
+	UINavigationController *nav5 = [[UINavigationController alloc] initWithRootViewController: offer];
+	[nav5.navigationBar setTranslucent:NO];
+	[nav5.navigationBar setBarTintColor:[UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0]];
+//	nav5.navigationBarHidden = YES;
+	
+	NSArray* controllers = [NSArray arrayWithObjects:nav1, nav2, nav3, nav4,nav5, nil];
+	self.tabBarControllerRetailer = [[UITabBarController alloc]init];
+
+	self.tabBarControllerRetailer.viewControllers = controllers;
+	
+	self.tabBarControllerRetailer.selectedIndex=0;
+	
+	self.tabBarControllerRetailer.delegate = self;
+	
+	self.tabBarControllerRetailer.tabBar.translucent = NO;
+	return self.tabBarControllerRetailer;
+//	[self.navController pushViewController:self.tabBarControllerRetailer animated:YES];
+}
+- (void)removeTabBarRetailer
+{
+	self.objStoreModel = nil;
+	UINavigationController *viewController = (UINavigationController *)[self.tabBarControllerRetailer parentViewController];
+	viewController.navigationBarHidden = NO;
+	[viewController popViewControllerAnimated:YES];
 }
 #pragma mark - Chatting Methods
 

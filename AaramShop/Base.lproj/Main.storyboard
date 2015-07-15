@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -563,7 +563,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIh-fd-D0d">
@@ -630,7 +630,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
         <!--Shopping List View Controller-->
         <scene sceneID="w3B-Z8-AHM">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ibH-1P-gqa" customClass="ShoppingListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="shoppingListViewController" automaticallyAdjustsScrollViewInsets="NO" id="ibH-1P-gqa" customClass="ShoppingListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aWM-E5-3nU"/>
                         <viewControllerLayoutGuide type="bottom" id="bmg-iA-84C"/>
@@ -1733,7 +1733,7 @@ Please give us your address</string>
         <!--Order Hist View Controller-->
         <scene sceneID="2l5-iM-eii">
             <objects>
-                <viewController id="9p8-UL-HFn" customClass="OrderHistViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="orderHistViewController" id="9p8-UL-HFn" customClass="OrderHistViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sCf-TO-PDf"/>
                         <viewControllerLayoutGuide type="bottom" id="Hai-Zc-2Jf"/>
@@ -2165,7 +2165,7 @@ Please give us your address</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sepratorBoxThree.png" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-ID-M4P">
@@ -2375,7 +2375,7 @@ Please give us your address</string>
         <!--Offers View Controller-->
         <scene sceneID="c0l-Fs-SHx">
             <objects>
-                <viewController id="uRT-9M-aW1" customClass="OffersViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="offersViewController" id="uRT-9M-aW1" customClass="OffersViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MKt-Zh-Un3"/>
                         <viewControllerLayoutGuide type="bottom" id="UHj-ca-j9K"/>
@@ -3827,7 +3827,7 @@ It will be used only for verification purposes.</string>
         <!--Chat View Controller-->
         <scene sceneID="hnG-Lq-4DF">
             <objects>
-                <viewController id="mEE-eG-DXy" customClass="ChatViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chatViewController" id="mEE-eG-DXy" customClass="ChatViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yz5-Sk-4hn"/>
                         <viewControllerLayoutGuide type="bottom" id="t39-Jw-Oc9"/>
@@ -3836,6 +3836,17 @@ It will be used only for verification purposes.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="MeP-mD-9kh" customClass="MESegmentedControl">
+                                <rect key="frame" x="16" y="8" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Support Team"/>
+                                    <segment title="Retailers"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="0.058533270399999997" blue="0.063789482760000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="selectionChange:" destination="mEE-eG-DXy" eventType="valueChanged" id="2h8-ka-7hO"/>
+                                </connections>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="59" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="YhP-de-dhB">
                                 <rect key="frame" x="0.0" y="44" width="320" height="411"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -3884,27 +3895,16 @@ It will be used only for verification purposes.</string>
                                     <outlet property="delegate" destination="mEE-eG-DXy" id="Lqj-2D-YeM"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="MeP-mD-9kh" customClass="MESegmentedControl">
-                                <rect key="frame" x="16" y="8" width="288" height="29"/>
-                                <segments>
-                                    <segment title="Support Team"/>
-                                    <segment title="Retailers"/>
-                                </segments>
-                                <color key="tintColor" red="1" green="0.058533270399999997" blue="0.063789482760000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="selectionChange:" destination="mEE-eG-DXy" eventType="valueChanged" id="2h8-ka-7hO"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.93725496529999996" green="0.93725496529999996" blue="0.95686280729999995" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstItem="YhP-de-dhB" firstAttribute="top" secondItem="Yz5-Sk-4hn" secondAttribute="bottom" constant="44" id="0Io-Co-RLp"/>
+                            <constraint firstItem="t39-Jw-Oc9" firstAttribute="top" secondItem="YhP-de-dhB" secondAttribute="bottom" id="0P5-Hf-LXG"/>
                             <constraint firstItem="MeP-mD-9kh" firstAttribute="top" secondItem="Yz5-Sk-4hn" secondAttribute="bottom" constant="8" id="0Wm-mv-byl"/>
-                            <constraint firstItem="YhP-de-dhB" firstAttribute="leading" secondItem="FbD-e9-g2P" secondAttribute="leadingMargin" constant="-16" id="0Xe-Az-Nbg"/>
                             <constraint firstItem="MeP-mD-9kh" firstAttribute="trailing" secondItem="FbD-e9-g2P" secondAttribute="trailingMargin" id="IKt-GL-ohb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YhP-de-dhB" secondAttribute="trailing" constant="-16" id="NSR-wk-fig"/>
-                            <constraint firstItem="t39-Jw-Oc9" firstAttribute="top" secondItem="YhP-de-dhB" secondAttribute="bottom" id="lFw-Ab-cXB"/>
+                            <constraint firstItem="YhP-de-dhB" firstAttribute="leading" secondItem="FbD-e9-g2P" secondAttribute="leadingMargin" constant="-16" id="ScR-Et-hIS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YhP-de-dhB" secondAttribute="trailing" constant="-16" id="wXd-nI-2Di"/>
                             <constraint firstItem="MeP-mD-9kh" firstAttribute="leading" secondItem="FbD-e9-g2P" secondAttribute="leadingMargin" id="xCZ-9C-Rh2"/>
-                            <constraint firstItem="MeP-mD-9kh" firstAttribute="top" secondItem="YhP-de-dhB" secondAttribute="top" constant="-36" id="zJF-hw-7Gg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KCk-qN-Ymz"/>
