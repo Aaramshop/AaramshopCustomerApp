@@ -34,8 +34,8 @@
 #ifdef DEBUG
     
     txtUserName.text = @"9999614234";
-    txtPassword.text = @"D6MD";
-    
+    txtPassword.text = @"123456";
+	
 #else
     //
 #endif
@@ -172,16 +172,6 @@
                 LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
                 [self.navigationController pushViewController:locationScreen animated:YES];
         }
-//        else if (<#expression#>)
-//        else if ([[responseObject objectForKey:kMobile_verified] intValue] == 0 && [[responseObject objectForKey:kstatus] intValue] == 1)
-//        {
-//            [AppManager saveDataToNSUserDefaults:responseObject];
-//            
-//            MobileEnterViewController *mobileEnterVwController = (MobileEnterViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileEnterScreen" ];
-//            mobileEnterVwController.isUpdateMobile = YES;
-//            [self.navigationController pushViewController:mobileEnterVwController animated:YES];
-//            
-//        }
         else
         {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];

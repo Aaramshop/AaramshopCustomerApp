@@ -32,7 +32,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setBackgroundColor:[UIColor blackColor]];
    
-  
+	
     if ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone Simulator"])
     {
         [[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
@@ -72,24 +72,31 @@
 
     NSLog(@"value =%f",[UIScreen mainScreen].bounds.size.height);
 
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:kUserId] && [[NSUserDefaults standardUserDefaults] valueForKey:kIsLoggedIn]) {
-        
-        navController = [storyboard instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-        navController.delegate = self;
-        self.window.rootViewController = navController;
-    }
-    else
-    {
-        navController = [storyboard instantiateViewControllerWithIdentifier:@"optionNav"];
-        navController.delegate = self;
-        self.window.rootViewController = navController;
-    }
-
-    [self.window makeKeyAndVisible];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessful:) name:kLoginSuccessfulNotificationName object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout:) name:kLogoutSuccessfulNotificationName object:nil];
+	if ([[NSUserDefaults standardUserDefaults] valueForKey:kUserId] && [[[NSUserDefaults standardUserDefaults] valueForKey:kUserId]length]>0 /*&& [[[NSUserDefaults standardUserDefaults] valueForKey:kIs_active] integerValue]==1*/)
+	{
+		[self loginSuccessful:nil];
+	}else{
+		[self logout:nil];
+	}
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    
+//    if ([[NSUserDefaults standardUserDefaults] valueForKey:kUserId] && [[NSUserDefaults standardUserDefaults] valueForKey:kIsLoggedIn]) {
+//        
+//        navController = [storyboard instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+//        navController.delegate = self;
+//        self.window.rootViewController = navController;
+//    }
+//    else
+//    {
+//        navController = [storyboard instantiateViewControllerWithIdentifier:@"optionNav"];
+//        navController.delegate = self;
+//        self.window.rootViewController = navController;
+//    }
+//
+//    [self.window makeKeyAndVisible];
+	
     return YES;
 }
 -(void)findCurrentLocation
@@ -650,7 +657,83 @@
         return [format dateFromString:strDate];
     }
 }
+#pragma mark - tabbar methods
 
+- (void) loginSuccessful:(NSNotification *) aNotification{
 
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+	self.tabBarController=[storyboard instantiateViewControllerWithIdentifier:@"tabbarScreen"];
+	[self setTabBarImages];
+	[gCXMPPController connect];
+	self.tabBarController.delegate = self;
+	[self.window setRootViewController:self.tabBarController];
+	[self.tabBarController setSelectedIndex:0];
+	self.navController = nil;
+}
+- (void) logout:(NSNotification *) aNotification{
+	
+	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+	
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+	self.navController = [storyboard instantiateViewControllerWithIdentifier:@"optionNav"];
+	[self.window setRootViewController:self.navController];
+	self.tabBarController = nil;
+	[self.window makeKeyAndVisible];
+
+}
+- (void) setTabBarImages{
+	for(int i = 0 ; i < 5 ; i ++){
+		UITabBarItem *tabBarItem = [self.tabBarController.tabBar.items objectAtIndex:i];
+		UIImage *image;
+		UIImage *image_sel;
+		
+		switch (i) {
+			case 0:
+				
+				image = [UIImage imageNamed:@"tabBarHomeIcon"];
+				image_sel = [UIImage imageNamed:@"tabBarHomeIconActive"];
+				tabBarItem.title = @"Home";
+				break;
+			case 1:
+				
+				image = [UIImage imageNamed:@"tabBarMyListIcon"];
+				image_sel = [UIImage imageNamed:@"tabBarMyListIconActive"];
+				tabBarItem.title = @"My List";
+				
+				break;
+			case 2:
+				
+				image = [UIImage imageNamed:@"tabBarChatIcon"];
+				image_sel = [UIImage imageNamed:@"tabBarChatIconActive"];
+				tabBarItem.title = @"Chat";
+				
+				break;
+			case 3:
+				
+				image = [UIImage imageNamed:@"tabBarOrdersIcon"];
+				image_sel = [UIImage imageNamed:@"tabBarOrdersIconActive"];
+				tabBarItem.title = @"Orders";
+				
+				break;
+			case 4:
+				
+				image = [UIImage imageNamed:@"tabBarOffersIcon"];
+				image_sel = [UIImage imageNamed:@"tabBarOffersIconActive"];
+				tabBarItem.title = @"Offers";
+				
+				break;
+			default:
+				break;
+		}
+		if([image respondsToSelector:@selector(imageWithRenderingMode:)]){
+			image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+			image_sel = [image_sel imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+		}
+		[tabBarItem setImage:image];
+		[tabBarItem setSelectedImage:image_sel];
+		[[UITabBar appearance] setTintColor:[UIColor colorWithRed:254.0/255.0f green:56.0/255.0f blue:45.0/255.0f alpha:1.0f]];
+		[tabBarItem imageInsets];
+	}
+}
 
 @end

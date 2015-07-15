@@ -10,8 +10,8 @@
 #import "CMOrderHist.h"
 @protocol CallAndChatDelegate <NSObject>
 
--(void)doCallToUser:(NSIndexPath *)indexPath;
--(void)doChatToUser:(NSIndexPath *)indexPath;
+-(void)doCallToMerchant:(NSIndexPath *)indexPath;
+-(void)doChatToMerchant:(NSIndexPath *)indexPath;
 
 @end
 @interface OrderHistTableCell : UITableViewCell

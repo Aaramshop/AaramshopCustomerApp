@@ -35,6 +35,9 @@ typedef enum
 	__weak IBOutlet UIButton *packedBtn;
 	__weak IBOutlet UILabel *lblPackedTime;
 	
+	__weak IBOutlet UIButton *btnCompleted;
+	__weak IBOutlet UIImageView *imgReceived;
+	__weak IBOutlet UILabel *lblReceived;
 	__weak IBOutlet UIButton *receivedBtn;
 	__weak IBOutlet UILabel *lblDispachedTime;
 	NSString *strCust_Mobile;
@@ -42,6 +45,7 @@ typedef enum
 	NSString *strOrderStatus;
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 	NSString *strRupee;
+	__weak IBOutlet UILabel *lblPaymentMode;
 }
 
 @property (nonatomic, strong) CMOrderHist *orderHist;
@@ -49,8 +53,8 @@ typedef enum
 - (IBAction)btnReceived:(id)sender;
 
 
-- (IBAction)btnCallCustomer:(id)sender;
-- (IBAction)btnChatWithCustomer:(id)sender;
+- (IBAction)btnCallMerchant:(id)sender;
+- (IBAction)btnChatWithMerchant:(id)sender;
 
 
 @end

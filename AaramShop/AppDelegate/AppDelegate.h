@@ -27,6 +27,8 @@ CLGeocoder *geocoder;
 
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UINavigationController *navController;
+@property (strong, nonatomic) UITabBarController *tabBarController;
+
 @property (nonatomic, strong) CLLocation *myCurrentLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic,  strong) NSArray *arrOptions;
