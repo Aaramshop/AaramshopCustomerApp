@@ -16,12 +16,16 @@ typedef enum
     eUserContact
 }eSectionType;
 
-@interface AccountSettingsViewC : UIViewController<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface AccountSettingsViewC : UIViewController<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,AaramShop_ConnectionManager_Delegate,delegateTextFieldValue>
 {
 //	NSString *strFirstName
+	UIButton *backBtn;
     __weak IBOutlet UITableView *tblView;
 	UIImageView * imgUser;
 	NSMutableData *imageData;
-
+	UIButton *doneBtn;
+	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+	NSString *strEmailAddress;
+	NSString *strName;
 }
 @end

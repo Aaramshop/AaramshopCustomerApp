@@ -101,6 +101,9 @@
 +(CDRTranslucentSideBar*)createRightBarWithDelegate:(id)delegate;
 + (NSString *)getFinalStringFromDate:(NSDate *)date;
 
+#pragma mark - Calculate distance from two coordinates
++(NSString *)milesFromLatitude:(double)fromLatitude fromLongitude:(double)fromLongitude ToLatitude:(double)toLatitude andToLongitude:(double)toLongitude;
+
 @end
 
 

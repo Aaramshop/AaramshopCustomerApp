@@ -30,6 +30,7 @@
     UIStoryboard *storyboard;
     UIImageView * bluredImageView;
     UIView *secView;
+	UINavigationController * navController;
     UIImage *effectImage;
     
 }
@@ -113,8 +114,8 @@
 {
     [super viewDidLoad];
     
-    
-    arrMenu=[[NSMutableArray alloc]initWithObjects:@"Account Settings",@"Preferences",@"Cart",@"Vouchers",@"Awards Points",nil];
+	appDel = APP_DELEGATE;
+    arrMenu=[[NSMutableArray alloc]initWithObjects:@"Account Settings",@"Preferences",@"Cart",@"Logout",nil];
     arrOptions = [[NSMutableArray alloc]init];
     
     [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Beverages",@"name", nil]];
@@ -123,7 +124,7 @@
     [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Tea & Coffee",@"name", nil]];
     [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Snacks",@"name", nil]];
     
-    arrImages=[[NSMutableArray alloc]initWithObjects:@"menuAccountSettingsIcon",@"menuPreferencesIcon",@"menuCartIcon",@"menuVouchersIcon",@"menuAwardsPointsIcon",nil];
+    arrImages=[[NSMutableArray alloc]initWithObjects:@"menuAccountSettingsIcon",@"menuPreferencesIcon",@"menuCartIcon",@"menuLogoutIcon",nil];
     
     
     // Add PanGesture to Show SideBar by PanGesture
@@ -423,45 +424,34 @@
                 
             }
                 break;
-                
+			case eLogout:
+			{
+//				navController = [storyboard instantiateViewControllerWithIdentifier:@"optionNav"];
+//				[self.tabBarController removeFromParentViewController];
+//				appDel.window.rootViewController = navController;
+//				[appDel.window makeKeyAndVisible];
+				[Utils showAlertView:kAlertTitle message:@"Do you want to logout ?" delegate:self cancelButtonTitle:kAlertBtnNO otherButtonTitles:kAlertBtnYES];
+			}
+				break;
             default:
                 break;
         }
-//    }
-//    else
-//    {
-//        switch (indexPath.row) {
-//            case eBeverages:
-//            {
-//                
-//            }
-//                break;
-//            case eBakery:
-//            {
-//                
-//            }
-//                break;
-//            case eSoap:
-//            {
-//                
-//            }
-//                break;
-//            case eTea:
-//            {
-//                
-//            }
-//                break;
-//            case eSnacks:
-//            {
-//                
-//            }
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//    }
-    
+//
+	
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex==1)
+	{
+		[self logout];
+	}
+}
+-(void)logout
+{
+	[gCXMPPController disconnect];
+	[AppManager removeDataFromNSUserDefaults];
+	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessfulNotificationName object:self userInfo:nil];
+//	[Utils showAlertView:kAlertTitle message:@"Logout successfully" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 }
 -(void)EditAddress
 {

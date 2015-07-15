@@ -9,7 +9,9 @@
 #import "AccountSettingsViewC.h"
 
 @interface AccountSettingsViewC ()
-
+{
+	UITapGestureRecognizer *gestureRecognizer;
+}
 @end
 
 @implementation AccountSettingsViewC
@@ -18,9 +20,14 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	[self setNavigationBar];
+	strName	=	@"";
+	strEmailAddress	=	@"";
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
-	UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-	[self.view addGestureRecognizer:gestureRecognizer];
+	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
+	aaramShop_ConnectionManager.delegate = self;
+	gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+	[tblView addGestureRecognizer:gestureRecognizer];
+	
 }
 
 - (void)hideKeyboard
@@ -28,12 +35,11 @@
 	[self.view endEditing:YES];
 }
 
-
-
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
 }
+
 -(void)setNavigationBar
 {
 	CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 150, 44);
@@ -53,7 +59,7 @@
 	self.navigationItem.titleView = _headerTitleSubtitleView;
 	
 	UIImage *imgBack = [UIImage imageNamed:@"backBtn.png"];
-	UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 	backBtn.bounds = CGRectMake( -10, 0, 30, 30);
 	
 	[backBtn setImage:imgBack forState:UIControlStateNormal];
@@ -64,7 +70,7 @@
 	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 	
 	UIImage *imgDone = [UIImage imageNamed:@"doneBtn"];
-	UIButton *doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 	doneBtn.bounds = CGRectMake( -10, 0, 50, 30);
 	[doneBtn setTitle:@"Done" forState:UIControlStateNormal];
 	[doneBtn.titleLabel setFont:[UIFont fontWithName:kRobotoRegular size:13.0]];
@@ -77,10 +83,79 @@
 	self.navigationItem.rightBarButtonItems = arrBtnsRight;
 	
 }
+-(BOOL)isValid
+{
+	NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+	NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+	BOOL b = [emailTest evaluateWithObject:strEmailAddress];
+	if (b == NO)
+	{
+		[Utils showAlertView:kAlertTitle message:@"Email is not in valid format" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		return NO;
+	}
+	if(strName.length == 0)
+	{
+		[Utils showAlertView:kAlertTitle message:@"Please enter full name." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return NO;
+	}
+	return YES;
+}
 - (void)btnDoneClicked
 {
-//	[tblView setUserInteractionEnabled:NO];
-//	[self savePreferences];
+	if ([self isValid]) {
+		
+		[self hideKeyboard];
+		[doneBtn setEnabled:NO];
+		[backBtn setEnabled:NO];
+		[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+		NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+		[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
+		
+		[dict setObject:strEmailAddress forKey:kEmail];
+		[dict setObject:strName forKey:kFullname];
+		[self performSelector:@selector(callWebserviceToUpdateInfo:) withObject:dict];
+	}
+}
+
+#pragma mark - Call Webservice To Change Password
+- (void)callWebserviceToUpdateInfo:(NSMutableDictionary *)aDict
+{
+	if (![Utils isInternetAvailable])
+	{
+		[doneBtn setEnabled:YES];
+		[backBtn setEnabled:YES];
+		[AppManager stopStatusbarActivityIndicator];
+		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return;
+	}
+	[aaramShop_ConnectionManager getDataForFunction:kURLUpdateUsers withInput:aDict withCurrentTask:TASK_TO_UPDATE_USER Delegate:self andMultipartData:imageData];
+}
+
+- (void)responseReceived:(id)responseObject
+{
+	[doneBtn setEnabled:YES];
+	[backBtn setEnabled:YES];
+	[AppManager stopStatusbarActivityIndicator];
+	if (aaramShop_ConnectionManager.currentTask == TASK_TO_UPDATE_USER)
+	{
+		if([[responseObject objectForKey:kstatus] intValue] == 1)
+		{
+			
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			
+		}
+		else
+		{
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		}
+	}
+}
+- (void)didFailWithError:(NSError *)error
+{
+	[doneBtn setEnabled:YES];
+	[backBtn setEnabled:YES];
+	[AppManager stopStatusbarActivityIndicator];
+	[aaramShop_ConnectionManager failureBlockCalled:error];
 }
 -(void)backBtn
 {
@@ -96,15 +171,15 @@
 	switch (section) {
 		case 0:
 			return 1;
-		break;
+			break;
 		case 1:
 			return 2;
-		break;
+			break;
 			
 			
 		default:
 			return 0;
-		break;
+			break;
 	}
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,7 +192,7 @@
 	switch (section) {
 		case 0:
 			return 180;
-		break;
+			break;
 			
 		default:
 			return 10;
@@ -190,21 +265,21 @@
 			switch (indexPath.row) {
 				case 0:
 				{
-					
 					static NSString *cellIdentifier = @"FirstCell";
 					
-					UserContactTableCell *cell =[self createCellCreate:cellIdentifier];
-					
-
+					UserContactTableCell *cell =[self createCell:cellIdentifier];
 					cell.indexPath=indexPath;
+					cell.delegateFetchValue = self;
+					
 					cell.txtEmail.placeholder = @"Enter your full name";
 					cell.txtEmail.textColor = [UIColor colorWithRed:83/255.0f green:83/255.0f blue:83/255.0f alpha:1.0f];
 					cell.txtEmail.text = [[NSUserDefaults standardUserDefaults] objectForKey:kFullname];
-					
+					[cell.lblDetail setHidden:YES];
+					[cell.txtEmail setHidden:NO];
 					tableCell = cell;
 				}
 					break;
-				
+					
 				default:
 					break;
 			}
@@ -217,12 +292,16 @@
 				{
 					static NSString *cellIdentifier = @"EmailCell";
 					
-					UserContactTableCell *cell =[self createCellCreate:cellIdentifier];
-					
-
+					UserContactTableCell *cell =[self createCell:cellIdentifier];
 					cell.indexPath=indexPath;
+					cell.delegateFetchValue = self;
 					cell.txtEmail.placeholder = @"Add Email Address";
+					
 					cell.txtEmail.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"email"];
+					cell.txtEmail.keyboardType = UIKeyboardTypeEmailAddress;
+					[cell.txtEmail setHidden:NO];
+					[cell.lblDetail setHidden:YES];
+					
 					tableCell = cell;
 				}
 					break;
@@ -230,13 +309,15 @@
 				{
 					static NSString *cellIdentifier = @"ChangeCell";
 					
-					UserContactTableCell *cell =[self createCellCreate:cellIdentifier];
+					UserContactTableCell *cell =[self createCell:cellIdentifier];
 					
-
 					cell.indexPath=indexPath;
-					cell.txtEmail.text = @"********";
-//					cell.txtEmail.userInteractionEnabled = NO;
+					[cell.lblDetail setHidden:NO];
+					cell.lblDetail.text = @"********";
+					[cell.txtEmail setHidden:YES];
 					cell.lblChangePass.text = @"Change Password";
+					[gestureRecognizer setCancelsTouchesInView:NO];
+					
 					tableCell = cell;
 				}
 					break;
@@ -251,7 +332,7 @@
 	return tableCell;
 }
 #pragma mark - Calling Cell
--(UserContactTableCell*)createCellCreate:(NSString*)cellIdentifier{
+-(UserContactTableCell*)createCell:(NSString*)cellIdentifier{
 	UserContactTableCell *cell = (UserContactTableCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
 		cell = [[UserContactTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -365,13 +446,49 @@
 	[picker dismissViewControllerAnimated:YES completion:^{
 		
 		imgUser.image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-		//myImagePickerController.allowsEditing=YES;
-		
 		UIImage *scaledImage = [UIImage scaleDownOriginalImage:[info objectForKey:@"UIImagePickerControllerEditedImage"] ProportionateTo:568];
-		
 		imageData = [NSMutableData dataWithData:UIImageJPEGRepresentation(scaledImage, 1.0)];
-//		[self callWebserviceToUpdateProfileImage];
 		
 	}];
 }
+
+- (void)EndEditingInsideTable:(UITextField *)textField{
+	
+	id superview = [textField superview];
+	while (![superview isKindOfClass:[UITableViewCell class]] && superview != nil) {
+		superview = [superview superview];
+	}
+	
+	if(superview != nil){
+		UITableViewCell *cell = (UITableViewCell *)superview;
+		NSIndexPath *idPath = [tblView indexPathForCell:cell];
+		if(idPath.section == 0){
+			switch (idPath.row) {
+				case 0:{
+					
+					strName = [textField text];
+					
+				}
+					
+					break;
+				default:
+					break;
+			}
+		}
+		else if (idPath.section == 1)
+		{
+			switch (idPath.row) {
+				case 0:
+				{
+					strEmailAddress = [textField text];
+				}
+					break;
+					
+				default:
+					break;
+			}
+		}
+	}
+}
+
 @end

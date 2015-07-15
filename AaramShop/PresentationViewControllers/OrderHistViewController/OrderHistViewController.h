@@ -9,13 +9,23 @@
 #import "OrderHistTableCell.h"
 #import "CMOrderHist.h"
 #import "OrderHistDetailViewCon.h"
+//========================================
+@protocol OrderHistVCDelegate <NSObject>
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView onTableView:(UITableView *)tableView;
+
+@end
 @interface OrderHistViewController : UIViewController<CDRTranslucentSideBarDelegate,AaramShop_ConnectionManager_Delegate,CallAndChatDelegate>
 {
     
     __weak IBOutlet UITableView *tblView;
     NSMutableArray *arrOrderHist;
-    UIRefreshControl *refreshCustomerList;
+    UIRefreshControl *refreshOrderList;
+	int pageno;
+	int totalNoOfPages;
 }
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
+@property (nonatomic, weak) id <OrderHistVCDelegate> delegate;
+
 
 @end

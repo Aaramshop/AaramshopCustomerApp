@@ -10,6 +10,8 @@
 @interface OrderHistViewController ()
 {
     AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+	AppDelegate *appDelegate;
+	BOOL isLoading;
 }
 @end
 
@@ -19,7 +21,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
+	appDelegate = APP_DELEGATE;
 
+	totalNoOfPages = 0;
+	pageno = 0;
+	isLoading = NO;
+	
     self.sideBar = [Utils createLeftBarWithDelegate:self];
     [self setNavigationBar];
     
@@ -27,16 +34,21 @@
     aaramShop_ConnectionManager.delegate = self;
     
     tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    UITableViewController *tableViewController = [[UITableViewController alloc] init];
-    tableViewController.tableView = tblView;
-    refreshCustomerList = [[UIRefreshControl alloc] init];
-    [refreshCustomerList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-    tableViewController.refreshControl = refreshCustomerList;
+	UITableViewController *tableViewController = [[UITableViewController alloc] init];
+	tableViewController.tableView = tblView;
+	refreshOrderList = [[UIRefreshControl alloc] init];
+	[refreshOrderList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+	tableViewController.refreshControl = refreshOrderList;
 }
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:YES];
-	[self callWebserviceToGetOrderHist];
+	[self callWebServiceToGetOrderHistory];
+}
+- (void)refreshTable
+{
+	pageno = 0;
+	[self performSelector:@selector(callWebServiceToGetOrderHistory) withObject:nil afterDelay:1.0];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -63,20 +75,51 @@
     titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
     self.navigationItem.titleView = _headerTitleSubtitleView;
+	if(appDelegate.objStoreModel == nil)
+	{
+		UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
+		sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
+		[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
+		[sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
+		UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
+		
+		
+		NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
+		self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	}
+	else
+	{
+		UIImage *imgBack = [UIImage imageNamed:@"backBtn.png"];
+		
+		UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+		backBtn.bounds = CGRectMake( -10, 0, 30, 30);
+		
+		[backBtn setImage:imgBack forState:UIControlStateNormal];
+		[backBtn addTarget:self action:@selector(btnBackClicked) forControlEvents:UIControlEventTouchUpInside];
+		UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+		
+		NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
+		self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	}
+
     
-    
-    UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
-    sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
-    [sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
-    [sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
-    
-    
-    NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
-    self.navigationItem.leftBarButtonItems = arrBtnsLeft;
-    
+//    UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
+//    sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
+//    [sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
+//    [sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
+//    
+//    
+//    NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
+//    self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	
     
 }
+- (void)btnBackClicked
+{
+	[appDelegate removeTabBarRetailer];
+}
+
 -(void)SideMenuClicked
 {
     [self.sideBar show];
@@ -136,122 +179,210 @@
 }
 
 #pragma mark - Cell delegate methods
-- (void)refreshTable
-{
-    [self performSelector:@selector(callWebserviceToGetOrderHist) withObject:nil afterDelay:2.0];
-}
 
--(void)doCallToUser:(NSIndexPath *)indexPath
+
+-(void)doCallToMerchant:(NSIndexPath *)indexPath
 {
-    CMOrderHist *cmOrderHist = [arrOrderHist objectAtIndex:indexPath.row];
-    
-    NSString *mobileNo = @"9910104975"; //pendingOrder.mobile_no;
-    
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",mobileNo]];
-    
-    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
-        [[UIApplication sharedApplication] openURL:phoneUrl];
-    } else
-    {
-        [Utils showAlertView:kAlertTitle message:kAlertCallFacilityNotAvailable delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-    }
+//    CMOrderHist *cmOrderHist = [arrOrderHist objectAtIndex:indexPath.row];
+//    
+//    NSString *mobileNo = @"9910104975"; //pendingOrder.mobile_no;
+//    
+//    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",mobileNo]];
+//    
+//    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+//        [[UIApplication sharedApplication] openURL:phoneUrl];
+//    } else
+//    {
+//        [Utils showAlertView:kAlertTitle message:kAlertCallFacilityNotAvailable delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+//    }
 }
--(void)doChatToUser:(NSIndexPath *)indexPath
+-(void)doChatToMerchant:(NSIndexPath *)indexPath
 {
     
 }
 #pragma mark - call Web Service to get initial pending orders list
--(void)callWebserviceToGetOrderHist
+-(void)callWebServiceToGetOrderHistory
 {
-    NSMutableDictionary *aDict = [Utils setPredefindValueForWebservice];
-    
-    [aDict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
-    
-    //    [aDict setObject:@"4" forKey:kStore_id];
-    
-    
-    if (![Utils isInternetAvailable])
-    {
-        [AppManager stopStatusbarActivityIndicator];
-        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-        return;
-    }
-    [aaramShop_ConnectionManager getDataForFunction:kURLOrderHist withInput:aDict withCurrentTask:TASK_GET_ORDER_HISTORY andDelegate:self ];
+	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
+	[dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
+	if (![Utils isInternetAvailable])
+	{
+		[AppManager stopStatusbarActivityIndicator];
+		isLoading = NO;
+		[refreshOrderList endRefreshing];
+		
+		[self showFooterLoadMoreActivityIndicator:NO];
+		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return;
+	}
+	
+	[aaramShop_ConnectionManager getDataForFunction:kURLOrderHistory withInput:dict withCurrentTask:TASK_TO_GET_ORDER_HISTORY andDelegate:self];
 }
-
+-(void)calledPullUp
+{
+	if(totalNoOfPages>pageno)
+	{
+		pageno++;
+		[self callWebServiceToGetOrderHistory];
+	}
+	else
+	{
+		isLoading = NO;
+		[self showFooterLoadMoreActivityIndicator:NO];
+	}
+}
 - (void)responseReceived:(id)responseObject
 {
-    [AppManager stopStatusbarActivityIndicator];
-    [refreshCustomerList endRefreshing];
-    
-    if (aaramShop_ConnectionManager.currentTask == TASK_GET_ORDER_HISTORY)
-    {
-        if([[responseObject objectForKey:kstatus] intValue] == 1)
-        {
-            [self parsePendingOrdersListData:[responseObject valueForKey:@"order_history"]];
-        }
-    }
-    
+	isLoading = NO;
+	[self showFooterLoadMoreActivityIndicator:NO];
+	[refreshOrderList endRefreshing];
+	[AppManager stopStatusbarActivityIndicator];
+	if(aaramShop_ConnectionManager.currentTask == TASK_TO_GET_ORDER_HISTORY)
+	{
+		if([[responseObject objectForKey:kstatus] intValue] == 1)
+		{
+			if(pageno==0)
+			{
+				[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:@"order_history"]]];
+			}
+			else
+			{
+				[self appendDataForPullUp:[self parseData:[responseObject objectForKey:@"order_history"]]];
+			}
+			[tblView reloadData];
+		}
+	}
+
+	
 }
 
 
 - (void)didFailWithError:(NSError *)error
 {
-    [AppManager stopStatusbarActivityIndicator];
-    [aaramShop_ConnectionManager failureBlockCalled:error];
+	
+	isLoading = NO;
+	[self showFooterLoadMoreActivityIndicator:NO];
+	[refreshOrderList endRefreshing];
+	
+	//    [Utils stopActivityIndicatorInView:self.view];
+	[AppManager stopStatusbarActivityIndicator];
+	[aaramShop_ConnectionManager failureBlockCalled:error];
+}
+
+#pragma mark - to refreshing a view
+
+-(void)showFooterLoadMoreActivityIndicator:(BOOL)show{
+	UIView *view=[tblView viewWithTag:111112];
+	UIActivityIndicatorView *activity=(UIActivityIndicatorView*)[view viewWithTag:111111];
+	
+	if (show) {
+		[activity startAnimating];
+	}else
+		[activity stopAnimating];
+}
+
+#pragma mark - ScrollView Delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+	
+	//To do Call the parent delegates
+	
+	if ([_delegate respondsToSelector:@selector(scrollViewDidScroll:onTableView:)]) {
+		[_delegate scrollViewDidScroll:scrollView onTableView:tblView];
+	}
+	
+	
+	if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height-33 && arrOrderHist.count > 0 && scrollView.contentOffset.y>0){
+		if (!isLoading) {
+			isLoading=YES;
+			[self showFooterLoadMoreActivityIndicator:YES];
+			[self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5 ];
+		}
+	}
+	
+}
+#pragma mark - Parse Orders List response data
+
+-(void)createDataForFirstTimeGet:(NSMutableArray*)array{
+	if(!arrOrderHist)
+	{
+		arrOrderHist = [[NSMutableArray alloc] init];
+	}
+	[arrOrderHist removeAllObjects];
+	for(int i = 0 ; i < [array count];i++)
+	{
+		CMOrderHist *cmOrderHist = [array objectAtIndex:i];
+		[arrOrderHist addObject:cmOrderHist];
+	}
 }
 
 
-#pragma mark - Parse Pending Orders List response data
--(void)parsePendingOrdersListData:(id)OrderHist
+-(void)appendDataForPullUp:(NSMutableArray*)array{
+	for(int i = 0 ; i < [array count];i++)
+	{
+		CMOrderHist *cmOrderHist = [array objectAtIndex:i];
+		[arrOrderHist addObject:cmOrderHist];
+	}
+}
+
+
+-(NSMutableArray *)parseData:(id)data
 {
-    if (![OrderHist isKindOfClass:[NSArray class]])
-    {
-        return;
-    }
-    
-    if (!arrOrderHist)
-    {
-        arrOrderHist = [[NSMutableArray alloc]init];
-    }
-    [arrOrderHist removeAllObjects];
-    
-    [OrderHist enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
-     {
-         CMOrderHist *orderHistModal = [[CMOrderHist alloc]init];
-         
-         orderHistModal.addresss = [obj valueForKey:@"addresss"];
-         orderHistModal.chat_username = [obj valueForKey:@"chat_username"];
-         orderHistModal.delivery_time = [obj valueForKey:@"delivery_time"];
-         orderHistModal.latitude = [obj valueForKey:@"latitude"];
-         orderHistModal.longitude = [obj valueForKey:@"longitude"];
-         orderHistModal.mobile_no = [obj valueForKey:@"mobile_no"];
-         orderHistModal.name = [obj valueForKey:@"name"];
-         orderHistModal.order_amount = [obj valueForKey:@"order_amount"];
-         orderHistModal.order_time = [obj valueForKey:@"order_time"];
-         orderHistModal.quantity = [obj valueForKey:@"quantity"];
-         orderHistModal.user_city = [obj valueForKey:@"user_city"];
-         orderHistModal.user_image = [obj valueForKey:@"user_image"];
-         orderHistModal.user_locality = [obj valueForKey:@"user_locality"];
-         orderHistModal.user_pincode = [obj valueForKey:@"user_pincode"];
-         orderHistModal.user_state = [obj valueForKey:@"user_state"];
-         orderHistModal.order_id = [obj valueForKey:@"order_id"];
-         
-         [arrOrderHist addObject:orderHistModal];
-         
-     }];
-    
-    [tblView reloadData];
+	
+	NSMutableArray *array = [[NSMutableArray alloc]init];
+	if([data count]>0)
+	{
+		for(int i =0 ; i < [data count] ; i++)
+		{
+			NSDictionary *dict = [data objectAtIndex:i];
+			CMOrderHist *cmOrderHist				=	[[CMOrderHist alloc] init];
+			
+			cmOrderHist.store_id						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_id]];
+			cmOrderHist.store_name					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_name]];
+			cmOrderHist.store_mobile				=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_mobile]];
+			cmOrderHist.store_city						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_city]];
+			cmOrderHist.store_latitude				=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_latitude]];
+			cmOrderHist.store_longitude			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_longitude]];
+			cmOrderHist.customer_latitude			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kCustomer_latitude]];
+			cmOrderHist.customer_longitude			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kCustomer_longitude]];
+			cmOrderHist.store_image					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_image]];
+			cmOrderHist.delivery_time				=	[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kDelivery_time] doubleValue]]];
+			cmOrderHist.order_time					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kOrder_time]];
+			cmOrderHist.order_date					=	[Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kOrder_time] doubleValue]]];
+			cmOrderHist.quantity						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kQuantity]];
+			cmOrderHist.total_cart_value			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kTotal_cart_value]];
+			cmOrderHist.order_id						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kOrder_id]];
+			cmOrderHist.delivery_slot					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kDelivery_slot]];
+			cmOrderHist.payment_mode				=	[NSString stringWithFormat:@"%@",[dict objectForKey:kPayment_mode]];
+			cmOrderHist.store_chatUserName		=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_chatUserName]];
+			cmOrderHist.packed_timing				=	[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kPacked_timing] doubleValue]]];
+			cmOrderHist.dispached_timing			=	[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kDispached_timing] doubleValue]]];
+			cmOrderHist.delivered_timing			=	[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kDelivered_timing] doubleValue]]];
+			totalNoOfPages									=	[[dict objectForKey:kTotal_page] intValue];
+			
+			[array addObject:cmOrderHist];
+		}
+	}
+	return array;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+	UIView *view;
+	if ([arrOrderHist count]==0) {
+		return nil;
+	}else{
+		view=[[UIView alloc]initWithFrame:CGRectMake(0, -10, 320, 44)];
+		[view setBackgroundColor:[UIColor clearColor]];
+		[view setTag:111112];
+		UIActivityIndicatorView *activitIndicator=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+		[activitIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+		activitIndicator.tag=111111;
+		[activitIndicator setCenter:view.center];
+		[view addSubview:activitIndicator];
+		
+		return view;
+	}
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

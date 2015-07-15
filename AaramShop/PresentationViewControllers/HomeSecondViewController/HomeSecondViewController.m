@@ -410,7 +410,9 @@
     isViewActive = NO;
     
     [rightCollectionVwContrllr.view removeFromSuperview];
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+
+	[appDeleg removeTabBarRetailer];
 }
 -(void)btnCartClicked{
 }

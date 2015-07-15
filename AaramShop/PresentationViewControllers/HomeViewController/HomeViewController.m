@@ -887,7 +887,7 @@
     //*
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
+//    HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
     StoreModel *objStoreModel = nil;
     if (mainCategoryIndex != 0)
     {
@@ -911,14 +911,20 @@
             objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
 
     }
-    
-    homeSecondVwController.strStore_Id = objStoreModel.store_id;
-    homeSecondVwController.strStoreImage = objStoreModel.store_image;
-    homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
-    [self.navigationController pushViewController:homeSecondVwController animated:YES];
-    
+	appDeleg.objStoreModel = objStoreModel;
+	UITabBarController *tabBar = [appDeleg createTabBarRetailer];
+	tabBar.hidesBottomBarWhenPushed = YES;
+	self.navigationController.navigationBarHidden = YES;
+	[self.navigationController pushViewController:tabBar animated:YES];
+//    homeSecondVwController.strStore_Id = objStoreModel.store_id;
+//    homeSecondVwController.strStoreImage = objStoreModel.store_image;
+//    homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
+//	homeSecondVwController.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:homeSecondVwController animated:YES];
+	
     //*/
 }
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     

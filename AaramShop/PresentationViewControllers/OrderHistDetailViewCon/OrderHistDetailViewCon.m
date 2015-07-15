@@ -23,44 +23,58 @@
 	
 	strRupee = @"\u20B9";
 	
-//	lblCustomerName.text = _orderHist.customer_name;
+	lblCustomerName.text = _orderHist.store_name;
 	imgCustomer.layer.cornerRadius = imgCustomer.frame.size.width/2;
 	imgCustomer.layer.masksToBounds=YES;
 	
-//	[imgCustomer sd_setImageWithURL:[NSURL URLWithString:_orderHist.customer_image] placeholderImage:[UIImage imageNamed:@"defaultProfilePic"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+	[imgCustomer sd_setImageWithURL:[NSURL URLWithString:_orderHist.store_image] placeholderImage:[UIImage imageNamed:@"defaultProfilePic"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 	
-//	}];
-//	lblOrder_time.text = _orderHist.order_time;
-//	lblOrderDate.text = _orderHist.order_date;
-//	lblTimeSlot.text = _orderHist.order_timeslot;
-//	lblPaymentMode.text = _orderHist.payment_mode;
-//	lblDeliveryBoyName.text = _orderHist.deliveryboy_name;
-//	lblOrderAmt.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_cart_value];
+	}];
+	lblOrder_time.text = [Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[_orderHist.order_time doubleValue]]];
+	lblOrderDate.text = _orderHist.order_date;
+	lblTimeSlot.text = _orderHist.delivery_slot;
+	lblPaymentMode.text = _orderHist.payment_mode;
+	lblDeliveryBoyName.text = _orderHist.deliveryboy_name;
+	lblOrderAmt.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_cart_value];
 //	lblUdhaar_value.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.udhaar_value];
 //	lblTotalUdhaar.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_udhaar];
-//	if ([_orderHist.packed_timing isEqualToString:@"05:30 AM"] || [_orderHist.packed_timing isEqualToString:@"0"]) {
-//		[packedBtn setSelected:NO];
-//	}
-//	else
-//	{
-//		[packedBtn setSelected:YES];
-//		orderStatusButton = eSelectedType1;
-//		lblPackedTime.text = _orderHist.packed_timing;
-//	}
-//	if ([_orderHist.dispatched_timing isEqualToString:@"05:30 AM"] || [_orderHist.dispatched_timing isEqualToString:@"0"])
-//	{
-//		[dispatchedBtn setSelected:NO];
-//	}
-//	else
-//	{
-//		[dispatchedBtn setSelected:YES];
-//		orderStatusButton = eSelectedType2;
-//		lblDispachedTime.text = _orderHist.dispatched_timing;
-//		//		lblPackedTime.text = _orderHist.packed_timing;
-//		
-//		//        lblDispachedTime.text = [Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[_orderHist.dispatched_timing doubleValue]]];
-//		
-//	}
+	if ([_orderHist.packed_timing isEqualToString:@"05:30 AM"] || [_orderHist.packed_timing isEqualToString:@"0"]) {
+		[packedBtn setSelected:NO];
+		
+	}
+	else
+	{
+		[packedBtn setSelected:YES];
+		orderStatusButton = eSelectedType1;
+		lblPackedTime.text = _orderHist.packed_timing;
+		
+	}
+	if ([_orderHist.dispached_timing isEqualToString:@"05:30 AM"] || [_orderHist.dispached_timing isEqualToString:@"0"])
+	{
+		[dispatchedBtn setSelected:NO];
+	}
+	else
+	{
+		[dispatchedBtn setSelected:YES];
+		orderStatusButton = eSelectedType2;
+		lblDispachedTime.text = _orderHist.dispached_timing;
+		
+		
+	}
+	if ([_orderHist.delivered_timing isEqualToString:@"05:30 AM"] || [_orderHist.delivered_timing isEqualToString:@"0"])
+	{
+		[imgReceived setHidden:YES];
+		[lblReceived setHidden:YES];
+		[btnCompleted setHidden:YES];
+	}
+	else
+	{
+		[imgReceived setHidden:NO];
+		[lblReceived setHidden:NO];
+		[btnCompleted setHidden:NO];
+		lblReceived.text = [NSString stringWithFormat:@"%@",_orderHist.delivered_timing];
+		
+	}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,11 +133,18 @@
 
 
 - (IBAction)btnReceived:(id)sender {
+	[imgReceived setHidden:NO];
+	[btnCompleted setHidden:NO];
+	[lblReceived setHidden:NO];
+	NSDate *dateCurrent = [NSDate date];
+	lblReceived.text = [NSString stringWithFormat:@"%@",[Utils stringFromDateForExactTime:dateCurrent]];
+	_orderHist.delivered_timing = [self getTimeStamp];
+	[self sendCurrentTime];
 }
 
-- (IBAction)btnCallCustomer:(id)sender
+- (IBAction)btnCallMerchant:(id)sender
 {
-//	strCust_Mobile = _orderHist.customer_mobile;
+	strCust_Mobile = _orderHist.store_mobile;
 	NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",strCust_Mobile]];
 	
 	if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
@@ -133,7 +154,7 @@
 		[Utils showAlertView:kAlertTitle message:kAlertCallFacilityNotAvailable delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 	}
 }
-- (IBAction)btnChatWithCustomer:(id)sender
+- (IBAction)btnChatWithMerchant:(id)sender
 {
 	
 }
@@ -141,20 +162,10 @@
 -(void)sendCurrentTime
 {
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_id] forKey:kStore_id];
-//	[dict setObject:_orderHist.order_id forKey:kOrder_id];
-	
-//	if ([strOrderStatus isEqualToString:@"1"]) {
-//		
-//		[dict setObject:_orderHist.packed_timing forKey:kDatetime];
-//		[dict setObject:strOrderStatus forKey:kOrder_status];
-//		
-//	}
-//	else if([strOrderStatus isEqualToString:@"2"])
-//	{
-//		[dict setObject:strOrderStatus forKey:kOrder_status];
-//		[dict setObject:_orderHist.dispatched_timing forKey:kDatetime];
-//	}
+	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
+	[dict setObject:_orderHist.order_id forKey:kOrder_id];
+//	[dict setObject:_orderHist.delivered_timing forKey:kDatetime];
+
 	
 	[self callWebServiceToSendOrderStatus:dict];
 	
@@ -194,35 +205,7 @@
 	[aaramShop_ConnectionManager failureBlockCalled:error];
 }
 
-#pragma mark - custom method for button state
--(void)setSideBtnState:(enBtnSelectedType)inSelectedState
-{
-	switch (inSelectedState)
-	{
-		case eSelectedTypeNone:
-		{
-			[packedBtn setSelected: NO];
-			[dispatchedBtn setSelected:NO];
-		}
-			break;
-			
-		case eSelectedType1:
-		{
-			
-			[packedBtn setSelected: YES];
-			[dispatchedBtn setSelected:NO];
-		}
-			break;
-		case eSelectedType2:
-		{
-			[packedBtn setSelected: YES];
-			[dispatchedBtn setSelected:YES];
-		}
-			break;
-		default:
-			break;
-	}
-}
+
 
 - (NSString *) getTimeStamp
 {
