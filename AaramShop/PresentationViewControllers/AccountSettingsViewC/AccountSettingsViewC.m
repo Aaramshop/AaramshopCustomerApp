@@ -20,13 +20,14 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	[self setNavigationBar];
-	
+	strName	=	@"";
+	strEmailAddress	=	@"";
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
-	 gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+	gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
 	[tblView addGestureRecognizer:gestureRecognizer];
-
+	
 }
 
 - (void)hideKeyboard
@@ -82,16 +83,38 @@
 	self.navigationItem.rightBarButtonItems = arrBtnsRight;
 	
 }
+-(BOOL)isValid
+{
+	NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+	NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+	BOOL b = [emailTest evaluateWithObject:strEmailAddress];
+	if (b == NO)
+	{
+		[Utils showAlertView:kAlertTitle message:@"Email is not in valid format" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		return NO;
+	}
+	if(strName.length == 0)
+	{
+		[Utils showAlertView:kAlertTitle message:@"Please enter full name." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return NO;
+	}
+	return YES;
+}
 - (void)btnDoneClicked
 {
-	[doneBtn setEnabled:NO];
-	[backBtn setEnabled:NO];
-	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
-	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
-//		[dict setObject:txtCurPassword.text forKey:kOld_password];
-//		[dict setObject:txtNewPassword.text forKey:kNew_password];
-	[self performSelector:@selector(callWebserviceToUpdateInfo:) withObject:dict];
+	if ([self isValid]) {
+		
+		[self hideKeyboard];
+		[doneBtn setEnabled:NO];
+		[backBtn setEnabled:NO];
+		[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+		NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+		[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
+		
+		[dict setObject:strEmailAddress forKey:kEmail];
+		[dict setObject:strName forKey:kFullname];
+		[self performSelector:@selector(callWebserviceToUpdateInfo:) withObject:dict];
+	}
 }
 
 #pragma mark - Call Webservice To Change Password
@@ -105,7 +128,7 @@
 		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		return;
 	}
-	[aaramShop_ConnectionManager getDataForFunction:kURLUpdateInfo withInput:aDict withCurrentTask:TASK_TO_UPDATE_USER Delegate:self andMultipartData:imageData];
+	[aaramShop_ConnectionManager getDataForFunction:kURLUpdateUsers withInput:aDict withCurrentTask:TASK_TO_UPDATE_USER Delegate:self andMultipartData:imageData];
 }
 
 - (void)responseReceived:(id)responseObject
@@ -148,15 +171,15 @@
 	switch (section) {
 		case 0:
 			return 1;
-		break;
+			break;
 		case 1:
 			return 2;
-		break;
+			break;
 			
 			
 		default:
 			return 0;
-		break;
+			break;
 	}
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -169,7 +192,7 @@
 	switch (section) {
 		case 0:
 			return 180;
-		break;
+			break;
 			
 		default:
 			return 10;
@@ -246,6 +269,8 @@
 					
 					UserContactTableCell *cell =[self createCell:cellIdentifier];
 					cell.indexPath=indexPath;
+					cell.delegateFetchValue = self;
+					
 					cell.txtEmail.placeholder = @"Enter your full name";
 					cell.txtEmail.textColor = [UIColor colorWithRed:83/255.0f green:83/255.0f blue:83/255.0f alpha:1.0f];
 					cell.txtEmail.text = [[NSUserDefaults standardUserDefaults] objectForKey:kFullname];
@@ -254,7 +279,7 @@
 					tableCell = cell;
 				}
 					break;
-				
+					
 				default:
 					break;
 			}
@@ -269,13 +294,14 @@
 					
 					UserContactTableCell *cell =[self createCell:cellIdentifier];
 					cell.indexPath=indexPath;
+					cell.delegateFetchValue = self;
 					cell.txtEmail.placeholder = @"Add Email Address";
 					
 					cell.txtEmail.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"email"];
 					cell.txtEmail.keyboardType = UIKeyboardTypeEmailAddress;
 					[cell.txtEmail setHidden:NO];
 					[cell.lblDetail setHidden:YES];
-
+					
 					tableCell = cell;
 				}
 					break;
@@ -426,7 +452,7 @@
 	}];
 }
 
-- (BOOL) textFieldShouldEndEditing:(UITextField *)textField{
+- (void)EndEditingInsideTable:(UITextField *)textField{
 	
 	id superview = [textField superview];
 	while (![superview isKindOfClass:[UITableViewCell class]] && superview != nil) {
@@ -440,7 +466,7 @@
 			switch (idPath.row) {
 				case 0:{
 					
-						strEmailAddress = [textField text];
+					strName = [textField text];
 					
 				}
 					
@@ -454,7 +480,7 @@
 			switch (idPath.row) {
 				case 0:
 				{
-					strName = [textField text];
+					strEmailAddress = [textField text];
 				}
 					break;
 					
@@ -463,7 +489,6 @@
 			}
 		}
 	}
-	return YES;
 }
 
 @end

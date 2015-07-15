@@ -1021,4 +1021,20 @@
     
     return strTime;
 }
+
+#pragma mark - Calculate distance from two coordinates
++(NSString *)milesFromLatitude:(double)fromLatitude fromLongitude:(double)fromLongitude ToLatitude:(double)toLatitude andToLongitude:(double)toLongitude  {
+	
+	CLLocation *userloc = [[CLLocation alloc]initWithLatitude:fromLatitude longitude:fromLongitude];
+	CLLocation *dest = [[CLLocation alloc]initWithLatitude:toLatitude longitude:toLongitude];
+	
+	//  CLLocationDistance dist = ([dest distanceFromLocation:userloc]/1000)/1.6; // for Miles
+	
+	CLLocationDistance dist = ([dest distanceFromLocation:userloc]/1000); // for KM
+	
+	//NSLog(@"%f",dist);
+	NSString *distance = [NSString stringWithFormat:@"%.2f",dist];
+	return distance;
+	
+}
 @end

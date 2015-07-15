@@ -232,8 +232,25 @@
 #define kPayment_page_info								@"payment_page_info"
 
 //==========Order History========
-#define kURLOrderHist										@""
+#define kURLOrderHistory									@"orderHistory"
 #define kAlertCallFacilityNotAvailable				@"Call facility is not available!!!"
+#define kStore_city											@"store_city"
+#define kDelivery_time										@"delivery_time"
+#define kOrder_time											@"order_time"
+#define kQuantity												@"quantity"
+#define kTotal_cart_value									@"total_cart_value"
+#define kOrder_id												@"order_id"
+#define kDelivery_slot										@"delivery_slot"
+#define kPayment_mode									@"payment_mode"
+#define kStore_chatUserName							@"store_chatUserName"
+#define kDelivered_timing								@"delivered_timing"
+#define kPacked_timing									@"packed_timing"
+#define kDispached_timing								@"dispached_timing"
+#define kCustomer_latitude								@"customer_latitude"
+#define kCustomer_longitude							@"customer_longitude"
+
+#define DATE_FORMATTER_yyyy_mm_dd			@"yyyy-MM-dd"
+
 #define kGetPaymentPageDataURL					@"getPaymentPageData"
 #define kPayment_page_info								@"payment_page_info"
 #define KGetDeliverySlotURL								@"getDeliverySlot"
@@ -243,8 +260,6 @@
 #define kSubTotalPrice										@"subTotalPrice"
 #define kDeliveryCharges									@"deliveryCharges"
 #define kDiscount												@"discount"
-
-#define DATE_FORMATTER_yyyy_mm_dd			@"yyyy-MM-dd"
 
 //========== Payment Modes==========
 #define kPaymentModeURL								@"paymentModes"
@@ -282,4 +297,4 @@
 #define kURLSentOrderStatus							@"sentOrderStatus"
 
 //================= Account settings =============
-#define kURLUpdateInfo									@""
+#define kURLUpdateUsers									@"updateUsers"

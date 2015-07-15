@@ -29,12 +29,11 @@
         txtEmail = [[PWTextField alloc]initWithFrame:CGRectZero];
 		txtEmail.font = [UIFont fontWithName:kRobotoMedium size:14.0f];
 		txtEmail.textColor = [UIColor colorWithRed:92/255.0f green:92/255.0f blue:92/255.0f alpha:1.0f];
-		
+		txtEmail.delegate = self;
 		lblDetail = [[UILabel alloc]initWithFrame:CGRectZero];
 		lblDetail.font = [UIFont fontWithName:kRobotoMedium size:14.0f];
 		lblDetail.textColor = [UIColor colorWithRed:92/255.0f green:92/255.0f blue:92/255.0f alpha:1.0f];
-//		cdelegate = self;
-		txtEmail.delegate=self;
+
 		lblChangePass = [[UILabel alloc] initWithFrame:CGRectZero];
 		lblChangePass.textAlignment = NSTextAlignmentRight;
 		lblChangePass.font = [UIFont fontWithName:kRobotoRegular size:12.0f];
@@ -76,5 +75,16 @@
 	lblChangePassRect.origin.y           =   (selfRect.size.height - lblEmailRect.size.height)/2;
 	lblChangePass.frame                  =   lblChangePassRect;
 }
-
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+	[self txtFieldDidEndEditing:textField];
+	
+}
+-(void)txtFieldDidEndEditing:(UITextField *)textField
+{
+	if (self.delegateFetchValue && [self.delegateFetchValue conformsToProtocol:@protocol(delegateTextFieldValue)] && [self.delegateFetchValue respondsToSelector:@selector(EndEditingInsideTable:)])
+	{
+		[_delegateFetchValue EndEditingInsideTable:textField];
+	}
+}
 @end

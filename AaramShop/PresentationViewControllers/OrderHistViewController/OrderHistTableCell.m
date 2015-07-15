@@ -27,60 +27,96 @@
 -(void)updateOrderHistCell:(NSMutableArray *)arrayOrderHist
 {
     CMOrderHist *cmOrderHist = [arrayOrderHist objectAtIndex:_indexPath.row];
-    
-//    [imgUser sd_setImageWithURL:[NSURL URLWithString:cmOrderHist.user_image] placeholderImage:[UIImage imageNamed:@"defaultProfilePic"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 	
-//    }];
 	
-//    lblUsername.text = cmOrderHist.name;
-
-//    lblLocation.text = [NSString stringWithFormat:@"%@ (25Km)",cmOrderHist.user_city]; // add distance with location..
-    //    pendingOrderModel.longitude
-    //    pendingOrderModel.latitude
-    
-    
-    
-    
-    
-    NSString *strNoOfItems = cmOrderHist.quantity;
-    NSString *strTotalPrice = cmOrderHist.order_amount;
-    
-    NSString *labelString = [NSString stringWithFormat:@"%@ Items worth : %@", strNoOfItems, strTotalPrice];
-    
-    NSMutableAttributedString *labelAttributedString = [[NSMutableAttributedString alloc] initWithString:labelString];
-    [labelAttributedString addAttribute: NSForegroundColorAttributeName value: [UIColor colorWithRed:121.0/255.0 green:121.0/255.0 blue:121.0/255.0 alpha:1.0] range: NSMakeRange(0, (labelString.length - strTotalPrice.length))];
-    [labelAttributedString addAttribute: NSForegroundColorAttributeName value: [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0] range: NSMakeRange((labelString.length - strTotalPrice.length), strTotalPrice.length)];
-    
-    
-    lblPrice.attributedText = labelAttributedString;
-    
-    
-    double remainingTime = [cmOrderHist.delivery_time doubleValue] - [cmOrderHist.order_time doubleValue];
-    NSDate *dateRemaining = [NSDate dateWithTimeIntervalSince1970:remainingTime];
-    
-     lblRemainingTime.text = [NSString stringWithFormat:@"%@ min remaining",[Utils getFinalStringFromDate:dateRemaining]];
-    
-    NSDate *dateDelivery = [NSDate dateWithTimeIntervalSince1970:[cmOrderHist.delivery_time doubleValue]];
-    [btnTime setTitle:[Utils getFinalStringFromDate:dateDelivery] forState:UIControlStateNormal];
+	[imgUser sd_setImageWithURL:[NSURL URLWithString:cmOrderHist.store_image] placeholderImage:[UIImage imageNamed:@"defaultProfilePic"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+		
+	}];
+	
+	lblUsername.text = cmOrderHist.store_name;
+	
+	
+	NSString *strCity = cmOrderHist.store_city;
+	if ([strCity length]>12)
+	{
+		strCity = [cmOrderHist.store_city substringWithRange:NSMakeRange(0, 12)];
+	}
+	
+	
+	NSString *strDistance = @"";
+	
+	NSString *customerLongitude = cmOrderHist.customer_longitude;
+	NSString * customerLatitude = cmOrderHist.customer_latitude;
+	
+	NSString * merchantLongitude = [[NSUserDefaults standardUserDefaults] valueForKey:kStore_longitude];
+	NSString * merchantLatitude = [[NSUserDefaults standardUserDefaults] valueForKey:kStore_latitude];
+	
+	if ([customerLatitude length]>0 && [customerLongitude length]>0 && [merchantLatitude length]>0 && [merchantLongitude length]>0)
+	{
+		strDistance = [Utils milesFromLatitude:[merchantLatitude doubleValue] fromLongitude:[merchantLongitude doubleValue] ToLatitude:[customerLatitude doubleValue] andToLongitude:[customerLongitude doubleValue]];
+	}
+	
+	lblLocation.text = [NSString stringWithFormat:@"%@ (%@Km)",strCity,strDistance];
+	
+	
+	
+	NSString *strNoOfItems = cmOrderHist.quantity;
+	NSString *strTotalPrice = cmOrderHist.total_cart_value;
+	
+	NSString *labelString = [NSString stringWithFormat:@"%@ Items worth : %@", strNoOfItems, strTotalPrice];
+	
+	NSMutableAttributedString *labelAttributedString = [[NSMutableAttributedString alloc] initWithString:labelString];
+	[labelAttributedString addAttribute: NSForegroundColorAttributeName value: [UIColor colorWithRed:121.0/255.0 green:121.0/255.0 blue:121.0/255.0 alpha:1.0] range: NSMakeRange(0, (labelString.length - strTotalPrice.length))];
+	[labelAttributedString addAttribute: NSForegroundColorAttributeName value: [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0] range: NSMakeRange((labelString.length - strTotalPrice.length), strTotalPrice.length)];
+	
+	
+	lblPrice.attributedText = labelAttributedString;
+	
+	
+	NSCalendarUnit unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit;
+	NSCalendar *sysCalendar = [NSCalendar currentCalendar];
+	NSDateComponents *breakdownInfo = [sysCalendar components:unitFlags fromDate:[NSDate date]  toDate:[NSDate dateWithTimeIntervalSince1970:[cmOrderHist.delivery_time doubleValue]]  options:0];
+	NSLog(@"Break down: %li min : %li hours : %li days ", (long)[breakdownInfo minute], (long)[breakdownInfo hour], (long)[breakdownInfo day]);
+	if([breakdownInfo day] >0)
+	{
+		lblRemainingTime.text = [NSString stringWithFormat:@"%li day(s) remaining",(long)[breakdownInfo day]];
+	}
+	else if([breakdownInfo hour] >0)
+	{
+		lblRemainingTime.text = [NSString stringWithFormat:@"%li hours(s) remaining",(long)[breakdownInfo hour]];
+	}
+	else if([breakdownInfo minute] >0)
+	{
+		lblRemainingTime.text = [NSString stringWithFormat:@"%li minute(s) remaining",(long)[breakdownInfo minute]];
+	}
+	else
+	{
+		lblRemainingTime.text = @"Order overdue";
+	}
+	
+	
+	
+	NSString *strOrderTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[cmOrderHist.order_time doubleValue]]];
+	[btnTime setTitle:[strOrderTime stringByReplacingOccurrencesOfString:@"/" withString:@"-"] forState:UIControlStateNormal];
 }
 
 
 
 -(IBAction)actionDoCall:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(doCallToUser:)])
+    if ([self.delegate respondsToSelector:@selector(doCallToMerchant:)])
     {
-        [self.delegate doCallToUser:_indexPath];
+        [self.delegate doCallToMerchant:_indexPath];
     }
-    
+	
 }
 
 
 -(IBAction)actionDoChat:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(doChatToUser:)])
+    if ([self.delegate respondsToSelector:@selector(doChatToMerchant:)])
     {
-        [self.delegate doChatToUser:_indexPath];
+        [self.delegate doChatToMerchant:_indexPath];
     }
     
 }

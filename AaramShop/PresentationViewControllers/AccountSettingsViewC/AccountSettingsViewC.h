@@ -16,7 +16,7 @@ typedef enum
     eUserContact
 }eSectionType;
 
-@interface AccountSettingsViewC : UIViewController<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,AaramShop_ConnectionManager_Delegate,UITextFieldDelegate>
+@interface AccountSettingsViewC : UIViewController<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,AaramShop_ConnectionManager_Delegate,delegateTextFieldValue>
 {
 //	NSString *strFirstName
 	UIButton *backBtn;
