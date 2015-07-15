@@ -24,7 +24,6 @@
     NSMutableArray *arrSubCategoryMyStores;
     NSMutableArray *arrRecommendedStoresMyStores;
 
-    
     CategoryViewController *objCategoryVwController;
 }
 @property (nonatomic) NSInteger mainCategoryIndex;

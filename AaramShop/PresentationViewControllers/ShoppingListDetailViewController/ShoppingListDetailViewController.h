@@ -11,5 +11,8 @@
 @interface ShoppingListDetailViewController : UIViewController
 {
 	IBOutlet UITableView *tblView;
+    NSMutableArray *arrProductList;
+    
+    BOOL isStoreSelected;
 }
 @end

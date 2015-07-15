@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -792,7 +792,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
         <!--Create New Shopping List View Controller-->
         <scene sceneID="Wbu-eY-aiq">
             <objects>
-                <viewController id="4W0-E9-RQG" customClass="CreateNewShoppingListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateNewShoppingList" id="4W0-E9-RQG" customClass="CreateNewShoppingListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4yh-em-q10"/>
                         <viewControllerLayoutGuide type="bottom" id="gaW-1F-goP"/>
@@ -864,7 +864,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
         <!--Shopping List Detail View Controller-->
         <scene sceneID="AUy-Zs-6eV">
             <objects>
-                <viewController id="YNu-q6-23Q" customClass="ShoppingListDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingListDetail" id="YNu-q6-23Q" customClass="ShoppingListDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XM2-bc-8sB"/>
                         <viewControllerLayoutGuide type="bottom" id="ijh-2g-4ww"/>
@@ -873,9 +873,9 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5Ye-jo-WB8">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="5Ye-jo-WB8">
+                                <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="YNu-q6-23Q" id="kxK-Cp-cAY"/>
                                     <outlet property="delegate" destination="YNu-q6-23Q" id="tLi-PD-gOM"/>
@@ -890,6 +890,9 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                 <state key="normal" title="CHOOSE A STORE">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="actionChooseStore:" destination="YNu-q6-23Q" eventType="touchUpInside" id="qlO-F8-KmM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -897,9 +900,9 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                             <constraint firstAttribute="width" secondItem="5Ye-jo-WB8" secondAttribute="width" id="15i-DB-zGx"/>
                             <constraint firstAttribute="width" secondItem="9J1-DZ-daJ" secondAttribute="width" id="947-iM-Nlo"/>
                             <constraint firstAttribute="centerX" secondItem="5Ye-jo-WB8" secondAttribute="centerX" id="CTT-y6-88K"/>
-                            <constraint firstItem="9J1-DZ-daJ" firstAttribute="top" secondItem="5Ye-jo-WB8" secondAttribute="bottom" id="NGs-LK-MOv"/>
+                            <constraint firstItem="9J1-DZ-daJ" firstAttribute="top" secondItem="5Ye-jo-WB8" secondAttribute="bottom" id="VSC-KX-tHt"/>
+                            <constraint firstItem="5Ye-jo-WB8" firstAttribute="top" secondItem="XM2-bc-8sB" secondAttribute="bottom" id="Wxo-BI-NaK"/>
                             <constraint firstAttribute="centerX" secondItem="9J1-DZ-daJ" secondAttribute="centerX" id="p2e-uC-AMs"/>
-                            <constraint firstItem="5Ye-jo-WB8" firstAttribute="top" secondItem="XM2-bc-8sB" secondAttribute="bottom" constant="-20" id="t2S-Ki-5wi"/>
                             <constraint firstItem="ijh-2g-4ww" firstAttribute="top" secondItem="9J1-DZ-daJ" secondAttribute="bottom" id="wdp-Kt-PEn"/>
                         </constraints>
                     </view>
@@ -914,7 +917,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
         <!--Shopping List Add More View Controller-->
         <scene sceneID="n2a-ah-l2Y">
             <objects>
-                <viewController id="p0K-rZ-5CS" customClass="ShoppingListAddMoreViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingListAddMore" id="p0K-rZ-5CS" customClass="ShoppingListAddMoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CoW-bL-ON8"/>
                         <viewControllerLayoutGuide type="bottom" id="Vsa-kn-1HI"/>
@@ -923,15 +926,15 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="y8r-tW-i9N">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="y8r-tW-i9N">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="55p-eO-gGI"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Apm-4n-hKH">
-                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="p0K-rZ-5CS" id="SFs-Mn-l2P"/>
@@ -946,7 +949,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                             <constraint firstItem="Apm-4n-hKH" firstAttribute="top" secondItem="y8r-tW-i9N" secondAttribute="bottom" id="EWE-tO-4Tg"/>
                             <constraint firstItem="Apm-4n-hKH" firstAttribute="width" secondItem="6Lo-6A-JTL" secondAttribute="width" id="L5h-LY-QHJ"/>
                             <constraint firstItem="Vsa-kn-1HI" firstAttribute="top" secondItem="Apm-4n-hKH" secondAttribute="bottom" id="mqa-1N-OvJ"/>
-                            <constraint firstItem="y8r-tW-i9N" firstAttribute="top" secondItem="CoW-bL-ON8" secondAttribute="bottom" constant="-20" id="ymD-e8-tba"/>
+                            <constraint firstItem="y8r-tW-i9N" firstAttribute="top" secondItem="CoW-bL-ON8" secondAttribute="bottom" id="ymD-e8-tba"/>
                             <constraint firstAttribute="centerX" secondItem="Apm-4n-hKH" secondAttribute="centerX" id="zJM-YQ-teC"/>
                         </constraints>
                     </view>
