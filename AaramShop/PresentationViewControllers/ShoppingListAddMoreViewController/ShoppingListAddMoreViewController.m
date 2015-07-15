@@ -26,7 +26,10 @@
     arrProductList = [[NSMutableArray alloc]init];
     [self setNavigationBar];
     
-    tblView.backgroundColor = [UIColor whiteColor];    
+    tblView.backgroundColor = [UIColor whiteColor];
+    
+    [self initializeData];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,6 +46,47 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+-(void)initializeData
+{
+    NSDictionary *dic1 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"abkhazia",@"image",@"Product 1",@"name",@"0",@"quantity", nil];
+    
+    NSDictionary *dic2 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"adygea",@"image",@"Product 2",@"name",@"0",@"quantity", nil];
+    
+    NSDictionary *dic3 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"ajaria",@"image",@"Product 3",@"name",@"0",@"quantity", nil];
+    
+    NSDictionary *dic4 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"alderney",@"image",@"Product 4",@"name",@"0",@"quantity", nil];
+    
+    
+    [arrProductList addObject:dic1];
+    [arrProductList addObject:dic2];
+    [arrProductList addObject:dic3];
+    [arrProductList addObject:dic4];
+    
+    [arrProductList addObject:dic1];
+    [arrProductList addObject:dic2];
+    [arrProductList addObject:dic3];
+    [arrProductList addObject:dic4];
+    
+    [arrProductList addObject:dic1];
+    [arrProductList addObject:dic2];
+    [arrProductList addObject:dic3];
+    [arrProductList addObject:dic4];
+    
+    [arrProductList addObject:dic1];
+    [arrProductList addObject:dic2];
+    [arrProductList addObject:dic3];
+    [arrProductList addObject:dic4];
+    
+    [arrProductList addObject:dic1];
+    [arrProductList addObject:dic2];
+    [arrProductList addObject:dic3];
+    [arrProductList addObject:dic4];
+    
+    
+    [tblView reloadData];
+}
 
 
 
@@ -63,7 +107,7 @@
     titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
     titleView.textAlignment = NSTextAlignmentCenter;
     titleView.textColor = [UIColor whiteColor];
-    titleView.text = @"Monthly family grocery"; //temp
+    titleView.text = @"Add more product";
     titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
     self.navigationItem.titleView = _headerTitleSubtitleView;
@@ -122,7 +166,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;//arrProductList.count;
+    return arrProductList.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -132,20 +176,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
-    //    static NSString *CellIdentifier = @"shopppingListCell";
-    //    ShoppingListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    //
-    //    if(cell == nil)
-    //    {
-    //        cell = [[ShoppingListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    //    }
-    //    //	cell.indexPath = indexPath;
-    //    //	cell.delegateFoodList = self;
-    //    //
-    //    //	[cell updateFoodListCell:arrProductsModel];
-    //
-    //    return cell;
+    static NSString *CellIdentifier = @"ShoppingListDetailCell";
+    ShoppingListDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    if(cell == nil)
+    {
+        cell = [[ShoppingListDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    cell.indexPath = indexPath;
+    cell.delegate = self;
+    
+    [cell updateCell:[arrProductList objectAtIndex:indexPath.row]];
+    
+    return cell;
 }
 
 
@@ -155,6 +198,31 @@
 }
 
 
+#pragma mark - Cell Delegates
+
+-(void)addProduct:(NSIndexPath *)indexPath
+{
+    int counter = [[[arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
+    
+    counter++;
+    
+    [[arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
+    
+    
+    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+-(void)removeProduct:(NSIndexPath *)indexPath
+{
+    int counter = [[[arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
+    counter--;
+    
+    [[arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
+    
+    
+    
+    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
 
 
 @end

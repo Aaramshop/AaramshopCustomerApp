@@ -34,7 +34,7 @@
 #ifdef DEBUG
     
     txtUserName.text = @"9999614234";
-    txtPassword.text = @"D6MD";
+    txtPassword.text = @"123456";
     
 #else
     //

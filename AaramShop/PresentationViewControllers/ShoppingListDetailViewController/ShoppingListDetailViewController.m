@@ -8,6 +8,10 @@
 
 #import "ShoppingListDetailViewController.h"
 #import "ShoppingListAddMoreViewController.h"
+#import "ShoppingListShareViewController.h"
+#import "ShoppingListCalenderViewController.h"
+#import "CartViewController.h"
+
 
 #define kTableHeader1Height    40
 #define kTableHeader2Height    70
@@ -32,6 +36,10 @@
     tblView.backgroundColor = [UIColor whiteColor];
     
     isStoreSelected = NO; // temp
+    isStoreSelected = YES; // temp
+
+    
+    [self initializeData];
 
 }
 
@@ -50,6 +58,46 @@
 }
 */
 
+
+-(void)initializeData
+{
+    NSDictionary *dic1 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"abkhazia",@"image",@"Product 1",@"name",@"0",@"quantity", nil];
+    
+    NSDictionary *dic2 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"adygea",@"image",@"Product 2",@"name",@"0",@"quantity", nil];
+
+    NSDictionary *dic3 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"ajaria",@"image",@"Product 3",@"name",@"0",@"quantity", nil];
+    
+    NSDictionary *dic4 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"alderney",@"image",@"Product 4",@"name",@"0",@"quantity", nil];
+
+    
+    [arrProductList addObject:dic1];
+    [arrProductList addObject:dic2];
+    [arrProductList addObject:dic3];
+    [arrProductList addObject:dic4];
+    
+    [arrProductList addObject:dic1];
+    [arrProductList addObject:dic2];
+    [arrProductList addObject:dic3];
+    [arrProductList addObject:dic4];
+    
+    [arrProductList addObject:dic1];
+    [arrProductList addObject:dic2];
+    [arrProductList addObject:dic3];
+    [arrProductList addObject:dic4];
+    
+    [arrProductList addObject:dic1];
+    [arrProductList addObject:dic2];
+    [arrProductList addObject:dic3];
+    [arrProductList addObject:dic4];
+    
+    [arrProductList addObject:dic1];
+    [arrProductList addObject:dic2];
+    [arrProductList addObject:dic3];
+    [arrProductList addObject:dic4];
+    
+    
+    [tblView reloadData];
+}
 
 
 #pragma mark Navigation
@@ -199,7 +247,31 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;//arrProductList.count;
+    switch (section)
+    {
+        case 0:
+        {
+            if (isStoreSelected==YES)
+            {
+                return 0;
+            }
+            else
+            {
+                return arrProductList.count;
+            }
+        }
+            break;
+        case 1:
+        {
+            return arrProductList.count;;
+        }
+            break;
+            
+        default:
+            return 0;
+            break;
+    }
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -209,21 +281,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
-//    static NSString *CellIdentifier = @"shopppingListCell";
-//    ShoppingListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//    
-//    if(cell == nil)
-//    {
-//        cell = [[ShoppingListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//    }
-//    //	cell.indexPath = indexPath;
-//    //	cell.delegateFoodList = self;
-//    //
-//    //	[cell updateFoodListCell:arrProductsModel];
-//    
-//    return cell;
+    static NSString *CellIdentifier = @"ShoppingListDetailCell";
+    ShoppingListDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    if(cell == nil)
+    {
+        cell = [[ShoppingListDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    	cell.indexPath = indexPath;
+    	cell.delegate = self;
+    
+    [cell updateCell:[arrProductList objectAtIndex:indexPath.row]];
+    
+    return cell;
 }
+
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -328,12 +400,19 @@
 
 -(void)btnDoneClicked
 {
+    // add validation here .. to check if any product entry exist.
     
+    CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+    
+    [self.navigationController pushViewController:cartView animated:YES];
 }
+
 
 -(void)btnShareClicked
 {
+    ShoppingListShareViewController *shoppingListShareView = (ShoppingListShareViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListShareView"];
     
+    [self.navigationController pushViewController:shoppingListShareView animated:YES];
 }
 
 -(void)btnAddClicked
@@ -360,8 +439,37 @@
 {
     if (buttonIndex==1)
     {
-        // navigate to calender screen.
+        ShoppingListCalenderViewController *shoppingListCalenderView = (ShoppingListCalenderViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListCalenderView"];
+        
+        [self.navigationController pushViewController:shoppingListCalenderView animated:YES];
     }
+}
+
+
+#pragma mark - Cell Delegates
+
+-(void)addProduct:(NSIndexPath *)indexPath
+{
+    int counter = [[[arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
+    
+    counter++;
+    
+    [[arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
+    
+    
+    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+-(void)removeProduct:(NSIndexPath *)indexPath
+{
+    int counter = [[[arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
+    counter--;
+    
+    [[arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
+
+    
+    
+    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 @end

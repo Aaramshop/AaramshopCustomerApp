@@ -898,6 +898,14 @@
 		6B1C0B7F1B04C022009DD32D /* txtFLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1C0B7E1B04C022009DD32D /* txtFLocation.m */; };
 		6B1C0B821B04D25B009DD32D /* DPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1C0B811B04D25B009DD32D /* DPAnnotationView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6B1DFC1E1B30495800E5CAE8 /* CustomSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1DFC1D1B30495800E5CAE8 /* CustomSearchDisplayController.m */; };
+		6B35B8BC1B56538800807F25 /* ShoppingListShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B35B8BB1B56538800807F25 /* ShoppingListShareCell.m */; };
+		6B35B8C11B5665DA00807F25 /* shoppingListDefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B35B8BE1B5665DA00807F25 /* shoppingListDefaultImage.png */; };
+		6B35B8C21B5665DA00807F25 /* shoppingListDefaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B35B8BF1B5665DA00807F25 /* shoppingListDefaultImage@2x.png */; };
+		6B35B8C31B5665DA00807F25 /* shoppingListDefaultImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B35B8C01B5665DA00807F25 /* shoppingListDefaultImage@3x.png */; };
+		6B35B8C71B56706000807F25 /* ShoppingListCalenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B35B8C61B56706000807F25 /* ShoppingListCalenderViewController.m */; };
+		6B35B8CB1B567EC000807F25 /* addIconBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B35B8C81B567EC000807F25 /* addIconBig.png */; };
+		6B35B8CC1B567EC000807F25 /* addIconBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B35B8C91B567EC000807F25 /* addIconBig@2x.png */; };
+		6B35B8CD1B567EC000807F25 /* addIconBig@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B35B8CA1B567EC000807F25 /* addIconBig@3x.png */; };
 		6B388E191AFCC31800FF3CF3 /* LocationEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */; };
 		6B5C0FAA1B53B69F003C217C /* ShoppingListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FA91B53B69F003C217C /* ShoppingListDetailViewController.m */; };
 		6B5C0FAD1B53B6C3003C217C /* ShoppingListDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FAC1B53B6C3003C217C /* ShoppingListDetailCell.m */; };
@@ -2474,6 +2482,16 @@
 		6B1C0B811B04D25B009DD32D /* DPAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPAnnotationView.m; sourceTree = "<group>"; };
 		6B1DFC1C1B30495800E5CAE8 /* CustomSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchDisplayController.h; sourceTree = "<group>"; };
 		6B1DFC1D1B30495800E5CAE8 /* CustomSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchDisplayController.m; sourceTree = "<group>"; };
+		6B35B8BA1B56538800807F25 /* ShoppingListShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListShareCell.h; sourceTree = "<group>"; };
+		6B35B8BB1B56538800807F25 /* ShoppingListShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListShareCell.m; sourceTree = "<group>"; };
+		6B35B8BE1B5665DA00807F25 /* shoppingListDefaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoppingListDefaultImage.png; sourceTree = "<group>"; };
+		6B35B8BF1B5665DA00807F25 /* shoppingListDefaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoppingListDefaultImage@2x.png"; sourceTree = "<group>"; };
+		6B35B8C01B5665DA00807F25 /* shoppingListDefaultImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoppingListDefaultImage@3x.png"; sourceTree = "<group>"; };
+		6B35B8C51B56706000807F25 /* ShoppingListCalenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListCalenderViewController.h; sourceTree = "<group>"; };
+		6B35B8C61B56706000807F25 /* ShoppingListCalenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListCalenderViewController.m; sourceTree = "<group>"; };
+		6B35B8C81B567EC000807F25 /* addIconBig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addIconBig.png; sourceTree = "<group>"; };
+		6B35B8C91B567EC000807F25 /* addIconBig@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addIconBig@2x.png"; sourceTree = "<group>"; };
+		6B35B8CA1B567EC000807F25 /* addIconBig@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addIconBig@3x.png"; sourceTree = "<group>"; };
 		6B388E171AFCC31800FF3CF3 /* LocationEnterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEnterViewController.h; sourceTree = "<group>"; };
 		6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEnterViewController.m; sourceTree = "<group>"; };
 		6B5C0FA81B53B69F003C217C /* ShoppingListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListDetailViewController.h; sourceTree = "<group>"; };
@@ -5288,6 +5306,7 @@
 		6B12DC9D1AF2543A00245209 /* PresentationViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6B35B8C41B56704600807F25 /* ShoppingListCalenderViewController */,
 				36BE5A7D1B53C0470079DAE3 /* OrderHistDetailViewCon */,
 				6B83A0B51B53D9AA00A00520 /* ShoppingListShareViewController */,
 				6B83A0B11B53D86300A00520 /* ShoppingListChooseStoreViewController */,
@@ -5485,6 +5504,37 @@
 			path = SearchDisplayController;
 			sourceTree = "<group>";
 		};
+		6B35B8B91B56534900807F25 /* ShoppingListShareCell */ = {
+			isa = PBXGroup;
+			children = (
+				6B35B8BA1B56538800807F25 /* ShoppingListShareCell.h */,
+				6B35B8BB1B56538800807F25 /* ShoppingListShareCell.m */,
+			);
+			path = ShoppingListShareCell;
+			sourceTree = "<group>";
+		};
+		6B35B8BD1B5665DA00807F25 /* 29_Share_list */ = {
+			isa = PBXGroup;
+			children = (
+				6B35B8C81B567EC000807F25 /* addIconBig.png */,
+				6B35B8C91B567EC000807F25 /* addIconBig@2x.png */,
+				6B35B8CA1B567EC000807F25 /* addIconBig@3x.png */,
+				6B35B8BE1B5665DA00807F25 /* shoppingListDefaultImage.png */,
+				6B35B8BF1B5665DA00807F25 /* shoppingListDefaultImage@2x.png */,
+				6B35B8C01B5665DA00807F25 /* shoppingListDefaultImage@3x.png */,
+			);
+			path = 29_Share_list;
+			sourceTree = "<group>";
+		};
+		6B35B8C41B56704600807F25 /* ShoppingListCalenderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B35B8C51B56706000807F25 /* ShoppingListCalenderViewController.h */,
+				6B35B8C61B56706000807F25 /* ShoppingListCalenderViewController.m */,
+			);
+			path = ShoppingListCalenderViewController;
+			sourceTree = "<group>";
+		};
 		6B388E161AFCC2FF00FF3CF3 /* LocationEnterViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5634,6 +5684,7 @@
 		6B83A0B51B53D9AA00A00520 /* ShoppingListShareViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6B35B8B91B56534900807F25 /* ShoppingListShareCell */,
 				6B83A0B61B53D9BD00A00520 /* ShoppingListShareViewController.h */,
 				6B83A0B71B53D9BD00A00520 /* ShoppingListShareViewController.m */,
 			);
@@ -5643,6 +5694,7 @@
 		6B83A0B91B53E81300A00520 /* Shopping_List_Images */ = {
 			isa = PBXGroup;
 			children = (
+				6B35B8BD1B5665DA00807F25 /* 29_Share_list */,
 				6B83A0BA1B53E81300A00520 /* 25_shopping list */,
 				6B83A0C71B53E81300A00520 /* 26_shopping list_detail */,
 			);
@@ -6562,6 +6614,7 @@
 				36820A2A1B1C46FA002AA93F /* tuvalu.png in Resources */,
 				274F88B41B0D0E7400F85743 /* homePageBannerImageTwo@2x.png in Resources */,
 				274A5C781B05C4AA009112B5 /* pin@2x.png in Resources */,
+				6B35B8C31B5665DA00807F25 /* shoppingListDefaultImage@3x.png in Resources */,
 				2791DE381B036E5C000121BC /* menuFacebookBox.png in Resources */,
 				274A5DB41B05C88B009112B5 /* chatCloseCircular.png in Resources */,
 				368209501B1C46FA002AA93F /* Curaçao.png in Resources */,
@@ -6942,6 +6995,7 @@
 				6B8EB2BE1B26B8BE00402CFC /* ratingStarHalf.png in Resources */,
 				368209BA1B1C46FA002AA93F /* Midway Island, USA.png in Resources */,
 				6B6098B01B395CAB00277D03 /* chatScreenChatLogo@2x.png in Resources */,
+				6B35B8C11B5665DA00807F25 /* shoppingListDefaultImage.png in Resources */,
 				6B8EB2DD1B26F5DD00402CFC /* homeDeatilsGreyArrow.png in Resources */,
 				274A5A4A1B05C075009112B5 /* favourateIcon@3x.png in Resources */,
 				6BE4C8FB1B034BB600EF1EDB /* doneBtn.png in Resources */,
@@ -7073,6 +7127,7 @@
 				6BB50DE51B32ABE800990161 /* locationPopupTxtFieldHalf@2x.png in Resources */,
 				2791DE301B036E5C000121BC /* menuAccountSettingsIcon@2x.png in Resources */,
 				36BE5A991B53C52A0079DAE3 /* packedIconActive.png in Resources */,
+				6B35B8C21B5665DA00807F25 /* shoppingListDefaultImage@2x.png in Resources */,
 				6B5CE44B1B395FD800CD009E /* upArrow.png in Resources */,
 				6BFFF95C1B0236B800BB2B62 /* tabBarOffersIconActive@3x.png in Resources */,
 				6B6098B41B395CAB00277D03 /* sendBtn@3x.png in Resources */,
@@ -7084,6 +7139,7 @@
 				6B83A0E61B53E81300A00520 /* shoppingListCalenderCircle.png in Resources */,
 				36D8C4EB1B3A85CB00C255EE /* arrowBox@2x.png in Resources */,
 				368209241B1C46FA002AA93F /* benin.png in Resources */,
+				6B35B8CB1B567EC000807F25 /* addIconBig.png in Resources */,
 				274A5DBC1B05C88B009112B5 /* chatMsgBox.png in Resources */,
 				274A5A501B05C075009112B5 /* homeStoreIcon@3x.png in Resources */,
 				368209C71B1C46FA002AA93F /* nederlandse antillen.png in Resources */,
@@ -7351,6 +7407,7 @@
 				3682095B1B1C46FA002AA93F /* el-salvador.png in Resources */,
 				2791DE341B036E5C000121BC /* menuAwardsPointsIcon@3x.png in Resources */,
 				365395641B524FA60045AAFE /* discountBoxActive@2x.png in Resources */,
+				6B35B8CC1B567EC000807F25 /* addIconBig@2x.png in Resources */,
 				36D8C50E1B3AF79C00C255EE /* OffersLogo@3x.png in Resources */,
 				6B6098A41B395CAB00277D03 /* chatBubbleRed@2x.png in Resources */,
 				6B0676EC1B0630580002259E /* locationPopupCancelBox.png in Resources */,
@@ -7407,6 +7464,7 @@
 				6B12DCC81AF2720400245209 /* bg2.jpg in Resources */,
 				3682096C1B1C46FA002AA93F /* gabon.png in Resources */,
 				27EC67571B032E90007D126E /* enterMobileNoBox.png in Resources */,
+				6B35B8CD1B567EC000807F25 /* addIconBig@3x.png in Resources */,
 				6BFFF9621B0236B800BB2B62 /* tabBarOrdersIconActive@3x.png in Resources */,
 				6BD2D30C1B284C8900EC6E54 /* homeDownArrow.png in Resources */,
 				6BFFF94F1B0236B800BB2B62 /* tabBarHomeIconActive@2x.png in Resources */,
@@ -7568,6 +7626,7 @@
 				274A5C531B05C4AA009112B5 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				274A5CB21B05C4AA009112B5 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				274A5C6E1B05C4AA009112B5 /* FacebookLoginClass.m in Sources */,
+				6B35B8C71B56706000807F25 /* ShoppingListCalenderViewController.m in Sources */,
 				274A5C9B1B05C4AA009112B5 /* XMPPBandwidthMonitor.m in Sources */,
 				274A5CFC1B05C4AA009112B5 /* DDAbstractDatabaseLogger.m in Sources */,
 				274A5C9E1B05C4AA009112B5 /* XMPPProcessOne.m in Sources */,
@@ -7793,6 +7852,7 @@
 				6B809DB01B31755D00E91673 /* UIImage+WebP.m in Sources */,
 				274A5C7D1B05C4AA009112B5 /* UIImage+Extension.m in Sources */,
 				274A5C9D1B05C4AA009112B5 /* XMPPGoogleSharedStatus.m in Sources */,
+				6B35B8BC1B56538800807F25 /* ShoppingListShareCell.m in Sources */,
 				274A5C891B05C4AA009112B5 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				274A5C4D1B05C4AA009112B5 /* AFNetworkReachabilityManager.m in Sources */,
 				274A5D061B05C4AA009112B5 /* DDXMLDocument.m in Sources */,
@@ -7910,7 +7970,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "a14c3540-2b04-4c91-8d71-5225ad7edbed";
+				PROVISIONING_PROFILE = "2df7b7fd-2058-4b05-bae7-eb5e5e76c63b";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -7946,7 +8006,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "a14c3540-2b04-4c91-8d71-5225ad7edbed";
+				PROVISIONING_PROFILE = "2df7b7fd-2058-4b05-bae7-eb5e5e76c63b";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -7983,7 +8043,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a14c3540-2b04-4c91-8d71-5225ad7edbed";
+				PROVISIONING_PROFILE = "2df7b7fd-2058-4b05-bae7-eb5e5e76c63b";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -8019,7 +8079,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a14c3540-2b04-4c91-8d71-5225ad7edbed";
+				PROVISIONING_PROFILE = "2df7b7fd-2058-4b05-bae7-eb5e5e76c63b";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;
