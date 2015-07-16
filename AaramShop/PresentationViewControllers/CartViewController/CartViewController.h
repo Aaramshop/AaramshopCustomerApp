@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShoppingListDetailCell.h"
 
-@interface CartViewController : UIViewController
-
+@interface CartViewController : UIViewController<ProductCellDelegate>
+{
+    IBOutlet UITableView *tblView;
+    
+    NSMutableArray *arrProductList;
+}
 @end

@@ -1,21 +1,18 @@
 //
-//  ShoppingListShareViewController.m
+//  ShoppingListCalenderViewController.m
 //  AaramShop
 //
-//  Created by Shakir@AppRoutes on 13/07/15.
+//  Created by Approutes on 15/07/15.
 //  Copyright (c) 2015 Approutes. All rights reserved.
 //
 
-#import "ShoppingListShareViewController.h"
-#import "ShoppingListShareCell.h"
+#import "ShoppingListCalenderViewController.h"
 
-#define kTableCellHeight    58
-
-@interface ShoppingListShareViewController ()
+@interface ShoppingListCalenderViewController ()
 
 @end
 
-@implementation ShoppingListShareViewController
+@implementation ShoppingListCalenderViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,10 +20,6 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setNavigationBar];
-    
-    tblView.backgroundColor = [UIColor whiteColor];
-    
-    arrShareList = [[NSMutableArray alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +55,7 @@
     titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
     titleView.textAlignment = NSTextAlignmentCenter;
     titleView.textColor = [UIColor whiteColor];
-    titleView.text = @"Share";
+    titleView.text = @"Calender";
     titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
     self.navigationItem.titleView = _headerTitleSubtitleView;
@@ -78,18 +71,18 @@
     NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:batBtnBack, nil];
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
     
-    //
     
-    UIImage *imgAdd = [UIImage imageNamed:@"addIconBig"];
-    UIButton *btnAdd = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnAdd.bounds = CGRectMake( -10, 0, 30, 30);
+    UIImage *imgDone = [UIImage imageNamed:@"doneBtn"];
+    UIButton *doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    doneBtn.bounds = CGRectMake( -10, 0, 50, 30);
+    [doneBtn setTitle:@"Done" forState:UIControlStateNormal];
+    [doneBtn.titleLabel setFont:[UIFont fontWithName:kRobotoRegular size:13.0]];
+    [doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [doneBtn setBackgroundImage:imgDone forState:UIControlStateNormal];
+    [doneBtn addTarget:self action:@selector(btnDoneClicked) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barBtnDone = [[UIBarButtonItem alloc] initWithCustomView:doneBtn];
     
-    [btnAdd setImage:imgAdd forState:UIControlStateNormal];
-    [btnAdd addTarget:self action:@selector(btnAddClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barBtnAdd = [[UIBarButtonItem alloc] initWithCustomView:btnAdd];
-    
-    //
-    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnAdd, nil];
+    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnDone, nil];
     self.navigationItem.rightBarButtonItems = arrBtnsRight;
     
 }
@@ -99,58 +92,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)btnAddClicked
+
+- (void)btnDoneClicked
 {
     
-}
-
-
-
-
-
-#pragma mark - UITableView Delegates & Data Source Methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return CGFLOAT_MIN;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 10;//arrShareList.count;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return kTableCellHeight;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"ShoppingListShareCell";
-    
-    ShoppingListShareCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    if(cell == nil)
-    {
-        cell = [[ShoppingListShareCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    [cell updateCell];
-    
-    return cell;
-}
-
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

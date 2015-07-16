@@ -11,5 +11,7 @@
 @interface ShoppingListShareViewController : UIViewController
 {
 	IBOutlet UITableView *tblView;
+    
+    NSMutableArray *arrShareList;
 }
 @end
