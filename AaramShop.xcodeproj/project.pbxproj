@@ -1099,6 +1099,7 @@
 		6BA2F0A21B04B9300074562F /* PinShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F0A11B04B9300074562F /* PinShadow.png */; };
 		6BA556CA1B578A4E00920DE0 /* SearchTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA556C71B578A4E00920DE0 /* SearchTableCell.m */; };
 		6BA556CB1B578A4E00920DE0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA556C91B578A4E00920DE0 /* SearchViewController.m */; };
+		6BA556CF1B57DEEC00920DE0 /* ShoppingListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA556CE1B57DEEC00920DE0 /* ShoppingListModel.m */; };
 		6BA894001B4F9EFB0014519C /* HomeCategoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA893FF1B4F9EFB0014519C /* HomeCategoriesModel.m */; };
 		6BA894061B4F9F850014519C /* HomeStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA894051B4F9F850014519C /* HomeStoreModel.m */; };
 		6BA894091B4F9F970014519C /* RecommendedStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA894081B4F9F970014519C /* RecommendedStoreModel.m */; };
@@ -2740,6 +2741,8 @@
 		6BA556C71B578A4E00920DE0 /* SearchTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableCell.m; sourceTree = "<group>"; };
 		6BA556C81B578A4E00920DE0 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		6BA556C91B578A4E00920DE0 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		6BA556CD1B57DEEC00920DE0 /* ShoppingListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListModel.h; sourceTree = "<group>"; };
+		6BA556CE1B57DEEC00920DE0 /* ShoppingListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListModel.m; sourceTree = "<group>"; };
 		6BA893FE1B4F9EFB0014519C /* HomeCategoriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoriesModel.h; sourceTree = "<group>"; };
 		6BA893FF1B4F9EFB0014519C /* HomeCategoriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoriesModel.m; sourceTree = "<group>"; };
 		6BA894041B4F9F850014519C /* HomeStoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeStoreModel.h; sourceTree = "<group>"; };
@@ -4549,6 +4552,7 @@
 		27BE657B1B0203CC004FA4B4 /* ShoplistViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6BA556CC1B57DEDB00920DE0 /* ShoppingListModel */,
 				6B83A0F21B53EBED00A00520 /* ShoppingListCell.h */,
 				6B83A0F31B53EBED00A00520 /* ShoppingListCell.m */,
 				27BE658B1B020446004FA4B4 /* ShoppingListViewController.h */,
@@ -6054,6 +6058,15 @@
 				6BA556C71B578A4E00920DE0 /* SearchTableCell.m */,
 			);
 			path = SearchTableCell;
+			sourceTree = "<group>";
+		};
+		6BA556CC1B57DEDB00920DE0 /* ShoppingListModel */ = {
+			isa = PBXGroup;
+			children = (
+				6BA556CD1B57DEEC00920DE0 /* ShoppingListModel.h */,
+				6BA556CE1B57DEEC00920DE0 /* ShoppingListModel.m */,
+			);
+			path = ShoppingListModel;
 			sourceTree = "<group>";
 		};
 		6BA893FD1B4F9EB10014519C /* HomeCategoriesModel */ = {
@@ -7684,6 +7697,7 @@
 				274A5C9B1B05C4AA009112B5 /* XMPPBandwidthMonitor.m in Sources */,
 				274A5CFC1B05C4AA009112B5 /* DDAbstractDatabaseLogger.m in Sources */,
 				274A5C9E1B05C4AA009112B5 /* XMPPProcessOne.m in Sources */,
+				6BA556CF1B57DEEC00920DE0 /* ShoppingListModel.m in Sources */,
 				274A5CE41B05C4AA009112B5 /* XMPPPresence+XEP_0172.m in Sources */,
 				274A5CCC1B05C4AA009112B5 /* XMPPResultSet.m in Sources */,
 				368209051B1C46FA002AA93F /* FlagListTableViewController.m in Sources */,
@@ -8024,7 +8038,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-
 				PROVISIONING_PROFILE = "d8eefe7f-c176-4fa9-8dd3-62d3f188b4a7";
 				SDKROOT = iphoneos;
 			};
@@ -8061,7 +8074,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-
 				PROVISIONING_PROFILE = "d8eefe7f-c176-4fa9-8dd3-62d3f188b4a7";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -8099,7 +8111,6 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
 				PROVISIONING_PROFILE = "d8eefe7f-c176-4fa9-8dd3-62d3f188b4a7";
 				SHARED_PRECOMPS_DIR = "";
 			};
@@ -8136,7 +8147,6 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
 				PROVISIONING_PROFILE = "d8eefe7f-c176-4fa9-8dd3-62d3f188b4a7";
 				SHARED_PRECOMPS_DIR = "";
 			};

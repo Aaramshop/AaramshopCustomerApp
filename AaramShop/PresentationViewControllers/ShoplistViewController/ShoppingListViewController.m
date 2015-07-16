@@ -8,27 +8,51 @@
 #import "ShoppingListViewController.h"
 #import "CreateNewShoppingListViewController.h"
 #import "ShoppingListDetailViewController.h"
+#import "ShoppingListModel.h"
 
 #define kTableCellHeight	95
 
 @interface ShoppingListViewController ()
 {
 	AppDelegate *appDeleg;
+    int pageno;
+    int totalNoOfPages;
 }
+
 @end
 
 @implementation ShoppingListViewController
+@synthesize aaramShop_ConnectionManager;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
-    arrShoppingList = [[NSMutableArray alloc]init];
     self.sideBar = [Utils createLeftBarWithDelegate:self];
 	appDeleg = APP_DELEGATE;
     [self setNavigationBar];
     
     tblView.backgroundColor = [UIColor whiteColor];
+    
+    
+    totalNoOfPages = 0;
+    pageno = 0;
+    isLoading = NO;
+
+    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
+    aaramShop_ConnectionManager.delegate= self;
+
+    tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    UITableViewController *tableViewController = [[UITableViewController alloc] init];
+    tableViewController.tableView = tblView;
+    refreshShoppingList = [[UIRefreshControl alloc] init];
+    [refreshShoppingList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    tableViewController.refreshControl = refreshShoppingList;
+    
+    [self getInitialShoppingList];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -36,8 +60,19 @@
     [super viewWillAppear:YES];
     
     self.tabBarController.tabBar.hidden = NO;
-
 }
+
+
+-(void)getInitialShoppingList
+{
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+    [dict setObject:@"0" forKeyedSubscript:@"page_no"];
+    
+    [self callWebServiceToGetShoppingList:dict];
+}
+
+
 
 #pragma mark Navigation
 -(void)setNavigationBar
@@ -111,6 +146,24 @@
 
 #pragma mark - UITableView Delegates & Data Source Methods
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view;
+    if ([arrShoppingList count]==0) {
+        return nil;
+    }else{
+        view=[[UIView alloc]initWithFrame:CGRectMake(0, -10, 320, 44)];
+        [view setBackgroundColor:[UIColor clearColor]];
+        [view setTag:111112];
+        UIActivityIndicatorView *activitIndicator=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+        [activitIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+        activitIndicator.tag=111111;
+        [activitIndicator setCenter:view.center];
+        [view addSubview:activitIndicator];
+        
+        return view;
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -146,7 +199,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return 20;//arrShoppingList.count;
+	return arrShoppingList.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -163,10 +216,10 @@
 	{
 		cell = [[ShoppingListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 	}
-//	cell.indexPath = indexPath;
-//	cell.delegateFoodList = self;
-//	
-//	[cell updateFoodListCell:arrProductsModel];
+	cell.indexPath = indexPath;
+	cell.delegate = self;
+	
+	[cell updateCell:[arrShoppingList objectAtIndex:indexPath.row]];
 	
 	return cell;
 }
@@ -176,7 +229,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [self navigateToShoppingListDetailScreen:indexPath.row];
+    //[self navigateToShoppingListDetailScreen:indexPath.row];
 }
 
 
@@ -213,5 +266,246 @@
  [super didReceiveMemoryWarning];
  // Dispose of any resources that can be recreated.
  }
+
+
+
+
+#pragma mark - Call Webservice
+
+-(void)callWebServiceToGetShoppingList:(NSMutableDictionary *)aDict
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kURLGetShoppingList withInput:aDict withCurrentTask:TASK_TO_GET_SHOPPING_LIST andDelegate:self ];
+}
+
+-(void)callWebServiceToDeleteShoppingList:(NSMutableDictionary *)aDict
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kDeleteShoppingList withInput:aDict withCurrentTask:TASK_TO_DELETE_SHOPPING_LIST andDelegate:self ];
+}
+
+
+-(void) didFailWithError:(NSError *)error
+{
+    {
+        isLoading = NO;
+        [self showFooterLoadMoreActivityIndicator:NO];
+        [refreshShoppingList endRefreshing];
+        
+        [AppManager stopStatusbarActivityIndicator];
+        [aaramShop_ConnectionManager failureBlockCalled:error];
+    }
+}
+
+
+-(void) responseReceived:(id)responseObject
+{
+    isLoading = NO;
+    [self showFooterLoadMoreActivityIndicator:NO];
+    [refreshShoppingList endRefreshing];
+    
+    [AppManager stopStatusbarActivityIndicator];
+    
+    
+    switch (aaramShop_ConnectionManager.currentTask)
+    {
+        case TASK_TO_GET_SHOPPING_LIST:
+        {
+            
+            if ([[responseObject objectForKey:kstatus] intValue] == 1)
+            {
+//                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+//                
+//                [self.navigationController popViewControllerAnimated:YES];
+                
+                
+                [self parseResponseData:responseObject];
+                
+            }
+            else
+            {
+                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            }
+        }
+            break;
+        case TASK_TO_DELETE_SHOPPING_LIST:
+        {
+            
+            if ([[responseObject objectForKey:kstatus] intValue] == 1)
+            {
+//                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+//                
+//                [self.navigationController popViewControllerAnimated:YES];
+                
+            }
+            else
+            {
+                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+
+#pragma mark - Pagination
+
+- (void)refreshTable
+{
+    pageno = 0;
+    
+    [self performSelector:@selector(getInitialShoppingList) withObject:nil afterDelay:1.0];
+}
+
+
+-(void)calledPullUp
+{
+    if(totalNoOfPages>pageno)
+    {
+        pageno++;
+        [self getShoppingList];
+    }
+    else
+    {
+        isLoading = NO;
+        [self showFooterLoadMoreActivityIndicator:NO];
+    }
+}
+
+
+#pragma mark - to refreshing a view
+
+-(void)showFooterLoadMoreActivityIndicator:(BOOL)show{
+    UIView *view=[tblView viewWithTag:111112];
+    UIActivityIndicatorView *activity=(UIActivityIndicatorView*)[view viewWithTag:111111];
+    
+    if (show) {
+        [activity startAnimating];
+    }else
+        [activity stopAnimating];
+}
+
+
+#pragma mark - ScrollView Delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height-33 && arrShoppingList.count > 0 && scrollView.contentOffset.y>0){
+        if (!isLoading) {
+            isLoading=YES;
+            [self showFooterLoadMoreActivityIndicator:YES];
+            [self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5 ];
+        }
+    }
+    
+}
+
+
+-(void)getShoppingList
+{
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+    [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKeyedSubscript:@"page_no"];
+    
+    [self callWebServiceToGetShoppingList:dict];
+}
+
+
+#pragma mark - Parse Response Data
+
+-(void)parseResponseData:(NSDictionary *)response
+{
+    if (!arrShoppingList) {
+        arrShoppingList = [[NSMutableArray alloc]init];
+    }
+    
+    if (pageno == 0)
+    {
+        [arrShoppingList removeAllObjects];
+    }
+    
+    NSArray *arrTemp = [response objectForKey:@"shopping_list"];
+   
+    for (id obj in arrTemp)
+    {
+        ShoppingListModel *shoppingListModel = [[ShoppingListModel alloc]init];
+        shoppingListModel.creationDate = [NSString stringWithFormat:@"%@",[obj valueForKey:@"creationDate"]];
+        shoppingListModel.reminderDate = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminderDate"]];
+        
+        // temporary commented ... use model here for user info.
+//        shoppingListModel.sharedBy = [NSString stringWithFormat:@"%@",[obj valueForKey:@"sharedBy"]];
+//        shoppingListModel.sharedWith = [NSString stringWithFormat:@"%@",[obj valueForKey:@"sharedWith"]];
+        
+        shoppingListModel.shoppingListId = [NSString stringWithFormat:@"%@",[obj valueForKey:@"shoppingListId"]];
+        shoppingListModel.shoppingListName = [NSString stringWithFormat:@"%@",[obj valueForKey:@"shoppingListName"]];
+        shoppingListModel.totalItems = [NSString stringWithFormat:@"%@",[obj valueForKey:@"totalItems"]];
+        shoppingListModel.total_people = [NSString stringWithFormat:@"%@",[obj valueForKey:@"total_people"]];
+        
+        
+        [arrShoppingList  addObject:shoppingListModel];
+        
+    }
+    
+    [tblView reloadData];
+    
+}
+
+
+
+
+/*
+Printing description of responseObject:
+{
+    deviceId = 3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0;
+    message = "Shopping Lists";
+    "page_no" = 0;
+    "shopping_list" =     (
+                           {
+                               creationDate = 1436985000;
+                               reminderDate = "";
+                               sharedBy =             (
+                               );
+                               sharedWith =             (
+                               );
+                               shoppingListId = 4;
+                               shoppingListName = "Test list 001";
+                               totalItems = 2;
+                               "total_people" = 0;
+                           },
+                           {
+                               creationDate = 1436985000;
+                               reminderDate = "";
+                               sharedBy =             (
+                               );
+                               sharedWith =             (
+                               );
+                               shoppingListId = 5;
+                               shoppingListName = "Test list 002";
+                               totalItems = 2;
+                               "total_people" = 0;
+                           }
+                           );
+    status = 1;
+    "total_pages" = 1;
+}
+(lldb)
+*/
 
 @end

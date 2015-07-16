@@ -301,14 +301,16 @@
 #define kURLUpdateUsers									@"updateUsers"
 
 
+//================= Preferences============
+#define kURLGetPreferences								@"getPreferences"
+
+
 //================= SHOPPING LIST MODULE =============
 
 #define KURLSerachStoreProducts                     @"serachStoreProducts"
 #define kURLCreateShoppingList                      @"createShoppingList"
-
-//================= Preferences============
-#define kURLGetPreferences								@"getPreferences"
-
+#define kURLGetShoppingList                         @"getShoppingList"
+#define kDeleteShoppingList                         @"deleteShoppingList"
 
 
 

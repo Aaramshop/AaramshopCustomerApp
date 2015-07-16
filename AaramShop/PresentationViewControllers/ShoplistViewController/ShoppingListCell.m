@@ -31,4 +31,10 @@
 	
 }
 
+-(void)updateCell:(ShoppingListModel *)shoppingListModel
+{
+    
+}
+
+
 @end

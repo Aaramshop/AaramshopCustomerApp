@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShoppingListModel.h"
+
+@protocol ShoppingListDelegate <NSObject>
+
+-(void)deleteShoppingList:(NSIndexPath *)indexPath;
+@end
 
 @interface ShoppingListCell : UITableViewCell
 {
@@ -15,4 +21,10 @@
 	__weak IBOutlet UILabel *lblTime;
 	__weak IBOutlet UIButton *btnShare;
 }
+
+@property(nonatomic,weak) id <ShoppingListDelegate>delegate;
+@property(nonatomic,strong) NSIndexPath *indexPath;
+
+-(void)updateCell:(ShoppingListModel *)shoppingListModel;
+
 @end
