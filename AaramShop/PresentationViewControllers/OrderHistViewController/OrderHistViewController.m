@@ -26,7 +26,9 @@
 	totalNoOfPages = 0;
 	pageno = 0;
 	isLoading = NO;
-	
+	strPacked	= @"";
+	strDispached = @"";
+	strCompleted = @"";
     self.sideBar = [Utils createLeftBarWithDelegate:self];
     [self setNavigationBar];
     
@@ -364,9 +366,30 @@
 			cmOrderHist.delivery_slot					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kDelivery_slot]];
 			cmOrderHist.payment_mode				=	[NSString stringWithFormat:@"%@",[dict objectForKey:kPayment_mode]];
 			cmOrderHist.store_chatUserName		=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_chatUserName]];
-			cmOrderHist.packed_timing				=	[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kPacked_timing] doubleValue]]];
-			cmOrderHist.dispached_timing			=	[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kDispached_timing] doubleValue]]];
-			cmOrderHist.delivered_timing			=	[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kDelivered_timing] doubleValue]]];
+			strPacked =[NSString stringWithFormat:@"%d",[[dict objectForKey:kPacked_timing] intValue]];
+			if ([strPacked isEqualToString:@"0"]) {
+				cmOrderHist.packed_timing = @"";
+			}
+			else
+			{
+				cmOrderHist.packed_timing						=		[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kPacked_timing] doubleValue]]];
+			}
+			strDispached = [NSString stringWithFormat:@"%d",[[dict objectForKey:kDispached_timing] intValue]];
+			if ([strDispached isEqualToString:@"0"]) {
+				cmOrderHist.dispached_timing = @"";
+			}
+			else
+			{
+				cmOrderHist.dispached_timing					=		[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kDispached_timing] doubleValue]]];
+			}
+			strCompleted = [NSString stringWithFormat:@"%d",[[dict objectForKey:kDelivered_timing] intValue]];
+			if ([strCompleted isEqualToString:@"0"]) {
+				cmOrderHist.delivered_timing = @"";
+			}
+			else
+			{
+				cmOrderHist.delivered_timing					=		[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kDelivered_timing] doubleValue]]];
+			}
 			totalNoOfPages									=	[[dict objectForKey:kTotal_page] intValue];
 			
 			[array addObject:cmOrderHist];

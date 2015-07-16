@@ -23,6 +23,9 @@
     UIRefreshControl *refreshOrderList;
 	int pageno;
 	int totalNoOfPages;
+	NSString *strPacked;
+	NSString *strDispached;
+	NSString *strCompleted;
 }
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
 @property (nonatomic, weak) id <OrderHistVCDelegate> delegate;

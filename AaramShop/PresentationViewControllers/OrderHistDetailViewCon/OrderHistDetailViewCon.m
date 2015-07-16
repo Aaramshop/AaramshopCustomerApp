@@ -36,7 +36,7 @@
 	lblPaymentMode.text = _orderHist.payment_mode;
 	lblDeliveryBoyName.text = _orderHist.deliveryboy_name;
 	lblOrderAmt.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_cart_value];
-	if ([_orderHist.packed_timing isEqualToString:@"05:30 AM"] || [_orderHist.packed_timing isEqualToString:@"0"]) {
+	if ([_orderHist.packed_timing isEqualToString:@""]) {
 		[packedBtn setSelected:NO];
 		
 	}
@@ -47,7 +47,7 @@
 		lblPackedTime.text = _orderHist.packed_timing;
 		
 	}
-	if ([_orderHist.dispached_timing isEqualToString:@"05:30 AM"] || [_orderHist.dispached_timing isEqualToString:@"0"])
+	if ([_orderHist.dispached_timing isEqualToString:@""])
 	{
 		[dispatchedBtn setSelected:NO];
 	}
@@ -57,7 +57,7 @@
 		orderStatusButton = eSelectedType2;
 		lblDispachedTime.text = _orderHist.dispached_timing;
 	}
-	if ([_orderHist.delivered_timing isEqualToString:@"05:30 AM"] || [_orderHist.delivered_timing isEqualToString:@"0"])
+	if ([_orderHist.delivered_timing isEqualToString:@""])
 	{
 		[imgReceived setHidden:YES];
 		[lblReceived setHidden:YES];
