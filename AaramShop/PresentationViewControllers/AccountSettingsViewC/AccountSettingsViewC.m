@@ -20,7 +20,7 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	[self setNavigationBar];
-	strName	=	@"";
+	strName	=	[[NSUserDefaults standardUserDefaults] objectForKey:kFullname];
 	strEmailAddress	=	@"";
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
@@ -87,12 +87,15 @@
 {
 	NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
 	NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-	BOOL b = [emailTest evaluateWithObject:strEmailAddress];
-	if (b == NO)
-	{
-		[Utils showAlertView:kAlertTitle message:@"Email is not in valid format" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		return NO;
+	if (![strEmailAddress isEqualToString:@""]) {
+		BOOL b = [emailTest evaluateWithObject:strEmailAddress];
+		if (b == NO)
+		{
+			[Utils showAlertView:kAlertTitle message:@"Email is not in valid format" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+			return NO;
+		}
 	}
+	
 	if(strName.length == 0)
 	{
 		[Utils showAlertView:kAlertTitle message:@"Please enter full name." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
@@ -110,7 +113,7 @@
 		[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
 		NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 		[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
-		
+		[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 		[dict setObject:strEmailAddress forKey:kEmail];
 		[dict setObject:strName forKey:kFullname];
 		[self performSelector:@selector(callWebserviceToUpdateInfo:) withObject:dict];
@@ -128,7 +131,7 @@
 		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		return;
 	}
-	[aaramShop_ConnectionManager getDataForFunction:kURLUpdateUsers withInput:aDict withCurrentTask:TASK_TO_UPDATE_USER Delegate:self andMultipartData:imageData];
+	[aaramShop_ConnectionManager getDataForFunction:kURLUpdateUsers withInput:aDict withCurrentTask:TASK_TO_UPDATE_USER Delegate:self andMultipartData:imageData withMediaKey:@"image"];
 }
 
 - (void)responseReceived:(id)responseObject
@@ -141,7 +144,18 @@
 		if([[responseObject objectForKey:kstatus] intValue] == 1)
 		{
 			
-			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+//			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			[[NSUserDefaults standardUserDefaults] setObject:[responseObject objectForKey:kFullname] forKey:kFullname];
+			[[NSUserDefaults standardUserDefaults] setObject:[responseObject objectForKey:kEmail] forKey:kEmail];
+			
+			[[NSUserDefaults standardUserDefaults] setObject:[responseObject objectForKey:@"image"] forKey:kProfileImage];
+			[[NSUserDefaults standardUserDefaults] setObject:[responseObject objectForKey:kImage_url_100] forKey:kImage_url_100];
+			[[NSUserDefaults standardUserDefaults] setObject:[responseObject objectForKey:kImage_url_320] forKey:kImage_url_320];
+			[[NSUserDefaults standardUserDefaults] setObject:[responseObject objectForKey:kImage_url_640] forKey:kImage_url_640];
+			
+			
+			
+//			[tblView reloadData];
 			
 		}
 		else
@@ -273,7 +287,7 @@
 					
 					cell.txtEmail.placeholder = @"Enter your full name";
 					cell.txtEmail.textColor = [UIColor colorWithRed:83/255.0f green:83/255.0f blue:83/255.0f alpha:1.0f];
-					cell.txtEmail.text = [[NSUserDefaults standardUserDefaults] objectForKey:kFullname];
+					cell.txtEmail.text = strName;
 					[cell.lblDetail setHidden:YES];
 					[cell.txtEmail setHidden:NO];
 					tableCell = cell;
@@ -446,7 +460,7 @@
 	[picker dismissViewControllerAnimated:YES completion:^{
 		
 		imgUser.image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-		UIImage *scaledImage = [UIImage scaleDownOriginalImage:[info objectForKey:@"UIImagePickerControllerEditedImage"] ProportionateTo:568];
+		UIImage *scaledImage = [UIImage scaleDownOriginalImage:[info objectForKey:@"UIImagePickerControllerEditedImage"] ProportionateTo:480];
 		imageData = [NSMutableData dataWithData:UIImageJPEGRepresentation(scaledImage, 1.0)];
 		
 	}];

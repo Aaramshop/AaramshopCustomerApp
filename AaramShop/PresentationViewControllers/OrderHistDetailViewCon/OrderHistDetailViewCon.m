@@ -58,8 +58,6 @@
 		[dispatchedBtn setSelected:YES];
 		orderStatusButton = eSelectedType2;
 		lblDispachedTime.text = _orderHist.dispached_timing;
-		
-		
 	}
 	if ([_orderHist.delivered_timing isEqualToString:@"05:30 AM"] || [_orderHist.delivered_timing isEqualToString:@"0"])
 	{
@@ -108,8 +106,6 @@
 	[backBtn addTarget:self action:@selector(backBtn) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
 	
-	
-	
 	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
 	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 	
@@ -119,18 +115,6 @@
 {
 	[self.navigationController popViewControllerAnimated:YES];
 }
-
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
 
 - (IBAction)btnReceived:(id)sender {
 	[imgReceived setHidden:NO];
@@ -164,7 +148,7 @@
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 	[dict setObject:_orderHist.order_id forKey:kOrder_id];
-//	[dict setObject:_orderHist.delivered_timing forKey:kDatetime];
+	[dict setObject:_orderHist.delivered_timing forKey:kDatetime];
 
 	
 	[self callWebServiceToSendOrderStatus:dict];
