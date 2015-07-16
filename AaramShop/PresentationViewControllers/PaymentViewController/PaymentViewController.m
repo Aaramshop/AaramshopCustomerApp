@@ -776,7 +776,7 @@ static NSString *strCollectionItems = @"collectionItems";
         [UIView animateWithDuration:0.29 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
          {
              keyBoardToolBar.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height-216-44,[UIScreen mainScreen].bounds.size.width, 44 );
-
+			 [self.view bringSubviewToFront:keyBoardToolBar];
              
          }completion:nil];
         

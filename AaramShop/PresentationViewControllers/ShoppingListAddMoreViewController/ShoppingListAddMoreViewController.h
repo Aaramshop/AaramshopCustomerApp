@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShoppingListDetailCell.h"
 
-@interface ShoppingListAddMoreViewController : UIViewController
+@interface ShoppingListAddMoreViewController : UIViewController<ProductCellDelegate>
 {
 	IBOutlet UITableView *tblView;
     

@@ -10,6 +10,7 @@
 @interface OrderHistViewController ()
 {
     AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+	AppDelegate *appDelegate;
 	BOOL isLoading;
 }
 @end
@@ -20,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
+	appDelegate = APP_DELEGATE;
 
 	totalNoOfPages = 0;
 	pageno = 0;
@@ -73,20 +75,51 @@
     titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
     self.navigationItem.titleView = _headerTitleSubtitleView;
+	if(appDelegate.objStoreModel == nil)
+	{
+		UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
+		sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
+		[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
+		[sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
+		UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
+		
+		
+		NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
+		self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	}
+	else
+	{
+		UIImage *imgBack = [UIImage imageNamed:@"backBtn.png"];
+		
+		UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+		backBtn.bounds = CGRectMake( -10, 0, 30, 30);
+		
+		[backBtn setImage:imgBack forState:UIControlStateNormal];
+		[backBtn addTarget:self action:@selector(btnBackClicked) forControlEvents:UIControlEventTouchUpInside];
+		UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+		
+		NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
+		self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	}
+
     
-    
-    UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
-    sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
-    [sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
-    [sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
-    
-    
-    NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
-    self.navigationItem.leftBarButtonItems = arrBtnsLeft;
-    
+//    UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
+//    sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
+//    [sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
+//    [sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
+//    
+//    
+//    NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
+//    self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	
     
 }
+- (void)btnBackClicked
+{
+	[appDelegate removeTabBarRetailer];
+}
+
 -(void)SideMenuClicked
 {
     [self.sideBar show];
@@ -174,6 +207,14 @@
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 
 	[dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
+	if(appDelegate.objStoreModel == nil)
+	{
+		[dict setObject:@"0" forKey:kStore_id];
+	}
+	else
+	{
+		[dict setObject:appDelegate.objStoreModel.store_id forKey:kStore_id];
+	}
 	if (![Utils isInternetAvailable])
 	{
 		[AppManager stopStatusbarActivityIndicator];

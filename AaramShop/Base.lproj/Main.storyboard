@@ -43,8 +43,16 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular_0.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -636,7 +644,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
         <!--Shopping List View Controller-->
         <scene sceneID="w3B-Z8-AHM">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ibH-1P-gqa" customClass="ShoppingListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="shoppingListViewController" automaticallyAdjustsScrollViewInsets="NO" id="ibH-1P-gqa" customClass="ShoppingListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aWM-E5-3nU"/>
                         <viewControllerLayoutGuide type="bottom" id="bmg-iA-84C"/>
@@ -861,7 +869,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sXp-oL-RZb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="209" y="4230"/>
+            <point key="canvasLocation" x="161" y="4882"/>
         </scene>
         <!--Shopping List Detail View Controller-->
         <scene sceneID="AUy-Zs-6eV">
@@ -875,9 +883,91 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="5Ye-jo-WB8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Ye-jo-WB8">
                                 <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailCell" rowHeight="70" id="PTn-NU-T0A" customClass="ShoppingListDetailCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PTn-NU-T0A" id="BI6-Tw-rPc">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U5h-8v-Xcj" userLabel="Image View - Product Image">
+                                                    <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="SNg-VY-4pm"/>
+                                                        <constraint firstAttribute="width" constant="60" id="mTA-79-lnl"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDT-pc-IwQ" userLabel="Label - Product name">
+                                                    <rect key="frame" x="73" y="5" width="120" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="wOi-JF-bvl"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUO-PO-V0a" userLabel="Button - Remove">
+                                                    <rect key="frame" x="200" y="20" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="HPk-ce-kEH"/>
+                                                        <constraint firstAttribute="height" constant="30" id="j1O-PE-RJe"/>
+                                                    </constraints>
+                                                    <state key="normal" image="minusIconCircle.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="actionRemoveProduct:" destination="PTn-NU-T0A" eventType="touchUpInside" id="MRX-tu-YZB"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebo-vt-veE" userLabel="Label - Counter">
+                                                    <rect key="frame" x="235" y="5" width="40" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="I48-At-bd1"/>
+                                                        <constraint firstAttribute="width" constant="40" id="dIU-12-EdM"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                    <color key="textColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3W9-qK-3L4" userLabel="Button - Add">
+                                                    <rect key="frame" x="280" y="20" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="4vH-Wd-Z5v"/>
+                                                        <constraint firstAttribute="width" constant="30" id="Rq0-sJ-U19"/>
+                                                    </constraints>
+                                                    <state key="normal" image="addIconCircle.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="actionAddProduct:" destination="PTn-NU-T0A" eventType="touchUpInside" id="RDo-Sj-4vU"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="U5h-8v-Xcj" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="-3" id="7SQ-Q6-IiO"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3W9-qK-3L4" secondAttribute="trailing" constant="2" id="Nz3-UR-VZA"/>
+                                                <constraint firstItem="sUO-PO-V0a" firstAttribute="leading" secondItem="qDT-pc-IwQ" secondAttribute="trailing" constant="7" id="RNm-ZQ-hwd"/>
+                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="-3" id="XoE-jQ-xLF"/>
+                                                <constraint firstItem="3W9-qK-3L4" firstAttribute="leading" secondItem="Ebo-vt-veE" secondAttribute="trailing" constant="5" id="b7w-GI-7Zp"/>
+                                                <constraint firstItem="3W9-qK-3L4" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="12" id="d30-c1-sJj"/>
+                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="leading" secondItem="U5h-8v-Xcj" secondAttribute="trailing" constant="8" id="eq5-rN-fpn"/>
+                                                <constraint firstItem="sUO-PO-V0a" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="12" id="hbQ-aV-5uw"/>
+                                                <constraint firstItem="U5h-8v-Xcj" firstAttribute="leading" secondItem="BI6-Tw-rPc" secondAttribute="leadingMargin" constant="-3" id="idf-W0-JN8"/>
+                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="leading" secondItem="sUO-PO-V0a" secondAttribute="trailing" constant="5" id="tgB-0b-uNV"/>
+                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="-3" id="vmS-Mz-TL0"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnAdd" destination="3W9-qK-3L4" id="TWE-g4-CYp"/>
+                                            <outlet property="btnRemove" destination="sUO-PO-V0a" id="h8Y-HG-Swt"/>
+                                            <outlet property="imgProduct" destination="U5h-8v-Xcj" id="guT-Pc-LAR"/>
+                                            <outlet property="lblCounter" destination="Ebo-vt-veE" id="Wj8-Ie-sWY"/>
+                                            <outlet property="lblProductName" destination="qDT-pc-IwQ" id="B1N-Up-r8X"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="YNu-q6-23Q" id="kxK-Cp-cAY"/>
                                     <outlet property="delegate" destination="YNu-q6-23Q" id="tLi-PD-gOM"/>
@@ -889,6 +979,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="aMk-N1-uSZ"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
                                 <state key="normal" title="CHOOSE A STORE">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -914,7 +1005,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3HG-ln-bQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="572" y="4230"/>
+            <point key="canvasLocation" x="544" y="4882"/>
         </scene>
         <!--Shopping List Add More View Controller-->
         <scene sceneID="n2a-ah-l2Y">
@@ -935,9 +1026,91 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Apm-4n-hKH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Apm-4n-hKH">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailCell" rowHeight="70" id="xIg-tD-XB1" customClass="ShoppingListDetailCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xIg-tD-XB1" id="3Zg-QD-nnW">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i7x-S3-7P1" userLabel="Image View - Product Image">
+                                                    <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="KQ4-ux-9Ab"/>
+                                                        <constraint firstAttribute="width" constant="60" id="cKm-i2-v93"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-SL-Wqn" userLabel="Label - Product name">
+                                                    <rect key="frame" x="73" y="5" width="120" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="ik4-5v-liv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOY-E4-Ek8" userLabel="Button - Remove">
+                                                    <rect key="frame" x="200" y="20" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="qyF-YI-j8G"/>
+                                                        <constraint firstAttribute="width" constant="30" id="tDD-O0-p26"/>
+                                                    </constraints>
+                                                    <state key="normal" image="minusIconCircle.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="actionRemoveProduct:" destination="xIg-tD-XB1" eventType="touchUpInside" id="bLO-qZ-wX9"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKL-Wd-dyh" userLabel="Label - Counter">
+                                                    <rect key="frame" x="235" y="5" width="40" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="MII-sX-Kd8"/>
+                                                        <constraint firstAttribute="height" constant="60" id="Ye7-7C-ZCZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLq-aQ-QDt" userLabel="Button - Add">
+                                                    <rect key="frame" x="280" y="20" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="dSt-3S-GNI"/>
+                                                        <constraint firstAttribute="width" constant="30" id="yPh-ul-OHH"/>
+                                                    </constraints>
+                                                    <state key="normal" image="addIconCircle.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="actionAddProduct:" destination="xIg-tD-XB1" eventType="touchUpInside" id="sU4-ut-tU5"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="yKL-Wd-dyh" firstAttribute="leading" secondItem="sOY-E4-Ek8" secondAttribute="trailing" constant="5" id="4Ef-V1-Cqh"/>
+                                                <constraint firstItem="oxH-SL-Wqn" firstAttribute="top" secondItem="3Zg-QD-nnW" secondAttribute="topMargin" constant="-3" id="4l2-w5-KE1"/>
+                                                <constraint firstItem="JLq-aQ-QDt" firstAttribute="top" secondItem="3Zg-QD-nnW" secondAttribute="topMargin" constant="12" id="FVX-CG-TQ0"/>
+                                                <constraint firstItem="yKL-Wd-dyh" firstAttribute="top" secondItem="3Zg-QD-nnW" secondAttribute="topMargin" constant="-3" id="Gxn-Oc-gob"/>
+                                                <constraint firstItem="sOY-E4-Ek8" firstAttribute="leading" secondItem="oxH-SL-Wqn" secondAttribute="trailing" constant="7" id="bo2-mw-S9i"/>
+                                                <constraint firstItem="oxH-SL-Wqn" firstAttribute="leading" secondItem="i7x-S3-7P1" secondAttribute="trailing" constant="8" id="cCx-sV-FaU"/>
+                                                <constraint firstItem="i7x-S3-7P1" firstAttribute="leading" secondItem="3Zg-QD-nnW" secondAttribute="leadingMargin" constant="-3" id="eNL-Z1-aEz"/>
+                                                <constraint firstItem="i7x-S3-7P1" firstAttribute="top" secondItem="3Zg-QD-nnW" secondAttribute="topMargin" constant="-3" id="iDI-7u-Gcm"/>
+                                                <constraint firstItem="JLq-aQ-QDt" firstAttribute="leading" secondItem="yKL-Wd-dyh" secondAttribute="trailing" constant="5" id="l7o-hI-I9F"/>
+                                                <constraint firstItem="sOY-E4-Ek8" firstAttribute="top" secondItem="3Zg-QD-nnW" secondAttribute="topMargin" constant="12" id="py2-XH-9LX"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="JLq-aQ-QDt" secondAttribute="trailing" constant="2" id="scg-uu-Sji"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnAdd" destination="JLq-aQ-QDt" id="baz-oj-dUy"/>
+                                            <outlet property="btnRemove" destination="sOY-E4-Ek8" id="zR6-yU-ihK"/>
+                                            <outlet property="imgProduct" destination="i7x-S3-7P1" id="1cR-tD-65e"/>
+                                            <outlet property="lblCounter" destination="yKL-Wd-dyh" id="bsa-6D-k4a"/>
+                                            <outlet property="lblProductName" destination="oxH-SL-Wqn" id="Yrd-GB-lSN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="p0K-rZ-5CS" id="SFs-Mn-l2P"/>
                                     <outlet property="delegate" destination="p0K-rZ-5CS" id="VBS-T1-obj"/>
@@ -961,7 +1134,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaq-jV-hth" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="939" y="4230"/>
+            <point key="canvasLocation" x="939" y="4882"/>
         </scene>
         <!--Shopping List Choose Store View Controller-->
         <scene sceneID="qFv-HL-cMS">
@@ -998,12 +1171,12 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGE-Wm-yFB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1293" y="4230"/>
+            <point key="canvasLocation" x="1365" y="4882"/>
         </scene>
         <!--Shopping List Share View Controller-->
         <scene sceneID="qKD-lv-nXL">
             <objects>
-                <viewController id="91Q-SW-4ih" customClass="ShoppingListShareViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingListShareView" id="91Q-SW-4ih" customClass="ShoppingListShareViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cgR-Tp-H0P"/>
                         <viewControllerLayoutGuide type="bottom" id="Xg5-QB-PAo"/>
@@ -1013,15 +1186,56 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MUd-e9-Tn0">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="19R-1n-Nha"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="riw-fd-AuT">
-                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListShareCell" rowHeight="58" id="g9E-tU-Wj2" customClass="ShoppingListShareCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g9E-tU-Wj2" id="OhE-fc-xqd">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cLY-9a-Vk3">
+                                                    <rect key="frame" x="15" y="7" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="8xT-jJ-BuI"/>
+                                                        <constraint firstAttribute="height" constant="44" id="tHs-vk-DqX"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvO-0S-I0W">
+                                                    <rect key="frame" x="71" y="18" width="200" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="lxX-cR-U5u"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                    <color key="textColor" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cLY-9a-Vk3" firstAttribute="leading" secondItem="OhE-fc-xqd" secondAttribute="leadingMargin" constant="7" id="Ahw-tL-GUU"/>
+                                                <constraint firstItem="CvO-0S-I0W" firstAttribute="leading" secondItem="cLY-9a-Vk3" secondAttribute="trailing" constant="12" id="CwK-VX-m2q"/>
+                                                <constraint firstItem="cLY-9a-Vk3" firstAttribute="top" secondItem="OhE-fc-xqd" secondAttribute="topMargin" constant="-1" id="Jfy-c0-7h5"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CvO-0S-I0W" secondAttribute="trailing" constant="41" id="edu-yj-j9x"/>
+                                                <constraint firstItem="CvO-0S-I0W" firstAttribute="top" secondItem="OhE-fc-xqd" secondAttribute="topMargin" constant="10" id="tfH-wv-aSu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imgUser" destination="cLY-9a-Vk3" id="1Bn-rq-NjP"/>
+                                            <outlet property="lblUserName" destination="CvO-0S-I0W" id="dd5-6W-2uw"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="91Q-SW-4ih" id="CfV-qD-JpM"/>
+                                    <outlet property="delegate" destination="91Q-SW-4ih" id="XzW-Wl-9Wf"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1031,14 +1245,35 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                             <constraint firstItem="Xg5-QB-PAo" firstAttribute="top" secondItem="riw-fd-AuT" secondAttribute="bottom" id="di2-IE-H1w"/>
                             <constraint firstItem="MUd-e9-Tn0" firstAttribute="width" secondItem="4Ir-Mo-S4Y" secondAttribute="width" id="mQr-tV-HQu"/>
                             <constraint firstAttribute="centerX" secondItem="riw-fd-AuT" secondAttribute="centerX" id="vZz-E3-tRn"/>
-                            <constraint firstItem="MUd-e9-Tn0" firstAttribute="top" secondItem="cgR-Tp-H0P" secondAttribute="bottom" constant="-20" id="wZQ-Vv-zam"/>
+                            <constraint firstItem="MUd-e9-Tn0" firstAttribute="top" secondItem="cgR-Tp-H0P" secondAttribute="bottom" id="wZQ-Vv-zam"/>
                             <constraint firstItem="riw-fd-AuT" firstAttribute="top" secondItem="MUd-e9-Tn0" secondAttribute="bottom" id="ymh-Va-mm3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tblView" destination="riw-fd-AuT" id="sX6-p2-gZh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="znR-CP-FPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1666" y="4230"/>
+            <point key="canvasLocation" x="1770" y="4882"/>
+        </scene>
+        <!--Shopping List Calender View Controller-->
+        <scene sceneID="gCa-kt-e58">
+            <objects>
+                <viewController storyboardIdentifier="ShoppingListCalenderView" id="ydH-ef-K3d" customClass="ShoppingListCalenderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P3q-W3-ftr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Q8b-7y-PuU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A6T-wV-CnV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dXw-4R-W1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2121" y="4882"/>
         </scene>
         <!--Location Enter View Controller-->
         <scene sceneID="JXd-yf-i82">
@@ -1350,13 +1585,114 @@ Please give us your address</string>
                     <view key="view" contentMode="scaleToFill" id="QXw-gw-zjE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6fO-ce-UBD">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailCell" rowHeight="70" id="yTI-Vx-dqp" customClass="ShoppingListDetailCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yTI-Vx-dqp" id="8eo-rW-P8t">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o8f-vd-tUH" userLabel="Image View - Product Image">
+                                                    <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="D7i-hM-3Sg"/>
+                                                        <constraint firstAttribute="width" constant="60" id="fyJ-BS-lpZ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4L-07-jSO" userLabel="Label - Product name">
+                                                    <rect key="frame" x="73" y="5" width="120" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="RU3-51-MYh"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wm0-zH-lpn" userLabel="Button - Remove">
+                                                    <rect key="frame" x="200" y="20" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="Gxs-PG-qWO"/>
+                                                        <constraint firstAttribute="width" constant="30" id="cVm-6u-Ne5"/>
+                                                    </constraints>
+                                                    <state key="normal" image="minusIconCircle.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="actionRemoveProduct:" destination="yTI-Vx-dqp" eventType="touchUpInside" id="n18-4N-LSS"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTB-a1-VZT" userLabel="Label - Counter">
+                                                    <rect key="frame" x="235" y="5" width="40" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="EUY-ew-EGj"/>
+                                                        <constraint firstAttribute="height" constant="60" id="eVz-hX-izE"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Amg-cM-eoL" userLabel="Button - Add">
+                                                    <rect key="frame" x="280" y="20" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="0ns-bj-Bwq"/>
+                                                        <constraint firstAttribute="width" constant="30" id="Qau-Mc-e3d"/>
+                                                    </constraints>
+                                                    <state key="normal" image="addIconCircle.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="actionAddProduct:" destination="yTI-Vx-dqp" eventType="touchUpInside" id="OYr-eQ-xdT"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="VTB-a1-VZT" firstAttribute="leading" secondItem="wm0-zH-lpn" secondAttribute="trailing" constant="5" id="1mf-Yv-qms"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Amg-cM-eoL" secondAttribute="trailing" constant="2" id="3jp-2B-YgL"/>
+                                                <constraint firstItem="VTB-a1-VZT" firstAttribute="top" secondItem="8eo-rW-P8t" secondAttribute="topMargin" constant="-3" id="9th-xb-9yX"/>
+                                                <constraint firstItem="B4L-07-jSO" firstAttribute="leading" secondItem="o8f-vd-tUH" secondAttribute="trailing" constant="8" id="Hxf-gO-bsM"/>
+                                                <constraint firstItem="Amg-cM-eoL" firstAttribute="leading" secondItem="VTB-a1-VZT" secondAttribute="trailing" constant="5" id="I3V-fr-J23"/>
+                                                <constraint firstItem="wm0-zH-lpn" firstAttribute="top" secondItem="8eo-rW-P8t" secondAttribute="topMargin" constant="12" id="LUb-OF-ILx"/>
+                                                <constraint firstItem="Amg-cM-eoL" firstAttribute="top" secondItem="8eo-rW-P8t" secondAttribute="topMargin" constant="12" id="d0u-0N-r7O"/>
+                                                <constraint firstItem="o8f-vd-tUH" firstAttribute="top" secondItem="8eo-rW-P8t" secondAttribute="topMargin" constant="-3" id="jT6-TW-fpR"/>
+                                                <constraint firstItem="o8f-vd-tUH" firstAttribute="leading" secondItem="8eo-rW-P8t" secondAttribute="leadingMargin" constant="-3" id="kGh-L7-tff"/>
+                                                <constraint firstItem="B4L-07-jSO" firstAttribute="top" secondItem="8eo-rW-P8t" secondAttribute="topMargin" constant="-3" id="sOh-gb-b1x"/>
+                                                <constraint firstItem="wm0-zH-lpn" firstAttribute="leading" secondItem="B4L-07-jSO" secondAttribute="trailing" constant="7" id="tWC-aa-1pR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnAdd" destination="Amg-cM-eoL" id="Urg-r0-lfn"/>
+                                            <outlet property="btnRemove" destination="wm0-zH-lpn" id="Pvl-tr-gVW"/>
+                                            <outlet property="imgProduct" destination="o8f-vd-tUH" id="rCt-kY-9YR"/>
+                                            <outlet property="lblCounter" destination="VTB-a1-VZT" id="4KT-aS-1nx"/>
+                                            <outlet property="lblProductName" destination="B4L-07-jSO" id="RHh-bm-gmh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="n9U-Zk-WtB" id="8Sc-Ar-3FO"/>
+                                    <outlet property="delegate" destination="n9U-Zk-WtB" id="lN5-Lc-Nxx"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6fO-ce-UBD" firstAttribute="top" secondItem="xd0-RA-77z" secondAttribute="bottom" id="3qq-dl-sav"/>
+                            <constraint firstAttribute="centerX" secondItem="6fO-ce-UBD" secondAttribute="centerX" id="6jC-ql-fhk"/>
+                            <constraint firstItem="6fO-ce-UBD" firstAttribute="width" secondItem="QXw-gw-zjE" secondAttribute="width" id="UUI-QM-DOS"/>
+                            <constraint firstItem="k1q-Na-nS1" firstAttribute="top" secondItem="6fO-ce-UBD" secondAttribute="bottom" id="qDB-Ka-SB3"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="tblView" destination="6fO-ce-UBD" id="wzq-3W-XqV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eiB-dY-JIu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2975" y="397"/>
+            <point key="canvasLocation" x="939" y="5559"/>
         </scene>
         <!--Preferences View Controller-->
         <scene sceneID="Dob-ha-ySW">
@@ -1776,7 +2112,7 @@ Please give us your address</string>
         <!--Order Hist View Controller-->
         <scene sceneID="2l5-iM-eii">
             <objects>
-                <viewController id="9p8-UL-HFn" customClass="OrderHistViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="orderHistViewController" id="9p8-UL-HFn" customClass="OrderHistViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sCf-TO-PDf"/>
                         <viewControllerLayoutGuide type="bottom" id="Hai-Zc-2Jf"/>
@@ -2133,14 +2469,14 @@ Please give us your address</string>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="Zix-YC-Ca4" secondAttribute="width" id="9HA-Wn-aPA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zix-YC-Ca4" secondAttribute="trailing" constant="-16" id="BzC-xq-76p"/>
                             <constraint firstAttribute="centerX" secondItem="Kaf-Je-x8c" secondAttribute="centerX" id="EPp-xZ-HpS"/>
                             <constraint firstAttribute="centerX" secondItem="q5i-lz-WcH" secondAttribute="centerX" id="NNw-uA-Zxk"/>
-                            <constraint firstAttribute="centerY" secondItem="Zix-YC-Ca4" secondAttribute="centerY" id="VxF-WN-Fez"/>
-                            <constraint firstAttribute="height" secondItem="Zix-YC-Ca4" secondAttribute="height" id="ezr-Es-bBL"/>
+                            <constraint firstItem="Hai-Zc-2Jf" firstAttribute="top" secondItem="Zix-YC-Ca4" secondAttribute="bottom" constant="-49" id="R53-Bz-Yox"/>
+                            <constraint firstItem="Zix-YC-Ca4" firstAttribute="leading" secondItem="uoq-uh-gKD" secondAttribute="leadingMargin" constant="-16" id="RTU-SC-dio"/>
+                            <constraint firstItem="Zix-YC-Ca4" firstAttribute="top" secondItem="sCf-TO-PDf" secondAttribute="bottom" id="S35-J7-2Og"/>
                             <constraint firstItem="Kaf-Je-x8c" firstAttribute="top" secondItem="q5i-lz-WcH" secondAttribute="top" constant="188" id="g50-Mn-ljp"/>
                             <constraint firstItem="q5i-lz-WcH" firstAttribute="top" secondItem="sCf-TO-PDf" secondAttribute="bottom" constant="84" id="rav-wc-mVH"/>
-                            <constraint firstAttribute="centerX" secondItem="Zix-YC-Ca4" secondAttribute="centerX" id="s0Y-qM-1Ym"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DL5-iC-GUd"/>
@@ -2427,7 +2763,7 @@ Please give us your address</string>
         <!--Offers View Controller-->
         <scene sceneID="c0l-Fs-SHx">
             <objects>
-                <viewController id="uRT-9M-aW1" customClass="OffersViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="offersViewController" id="uRT-9M-aW1" customClass="OffersViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MKt-Zh-Un3"/>
                         <viewControllerLayoutGuide type="bottom" id="UHj-ca-j9K"/>
@@ -3886,7 +4222,7 @@ It will be used only for verification purposes.</string>
         <!--Chat View Controller-->
         <scene sceneID="hnG-Lq-4DF">
             <objects>
-                <viewController id="mEE-eG-DXy" customClass="ChatViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chatViewController" id="mEE-eG-DXy" customClass="ChatViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yz5-Sk-4hn"/>
                         <viewControllerLayoutGuide type="bottom" id="t39-Jw-Oc9"/>
@@ -3895,6 +4231,17 @@ It will be used only for verification purposes.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="MeP-mD-9kh" customClass="MESegmentedControl">
+                                <rect key="frame" x="16" y="8" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Support Team"/>
+                                    <segment title="Retailers"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="0.058533270399999997" blue="0.063789482760000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="selectionChange:" destination="mEE-eG-DXy" eventType="valueChanged" id="2h8-ka-7hO"/>
+                                </connections>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="59" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="YhP-de-dhB">
                                 <rect key="frame" x="0.0" y="44" width="320" height="411"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -3943,27 +4290,16 @@ It will be used only for verification purposes.</string>
                                     <outlet property="delegate" destination="mEE-eG-DXy" id="Lqj-2D-YeM"/>
                                 </connections>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="MeP-mD-9kh" customClass="MESegmentedControl">
-                                <rect key="frame" x="16" y="8" width="288" height="29"/>
-                                <segments>
-                                    <segment title="Support Team"/>
-                                    <segment title="Retailers"/>
-                                </segments>
-                                <color key="tintColor" red="1" green="0.058533270399999997" blue="0.063789482760000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <action selector="selectionChange:" destination="mEE-eG-DXy" eventType="valueChanged" id="2h8-ka-7hO"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.93725496529999996" green="0.93725496529999996" blue="0.95686280729999995" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstItem="YhP-de-dhB" firstAttribute="top" secondItem="Yz5-Sk-4hn" secondAttribute="bottom" constant="44" id="0Io-Co-RLp"/>
+                            <constraint firstItem="t39-Jw-Oc9" firstAttribute="top" secondItem="YhP-de-dhB" secondAttribute="bottom" id="0P5-Hf-LXG"/>
                             <constraint firstItem="MeP-mD-9kh" firstAttribute="top" secondItem="Yz5-Sk-4hn" secondAttribute="bottom" constant="8" id="0Wm-mv-byl"/>
-                            <constraint firstItem="YhP-de-dhB" firstAttribute="leading" secondItem="FbD-e9-g2P" secondAttribute="leadingMargin" constant="-16" id="0Xe-Az-Nbg"/>
                             <constraint firstItem="MeP-mD-9kh" firstAttribute="trailing" secondItem="FbD-e9-g2P" secondAttribute="trailingMargin" id="IKt-GL-ohb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YhP-de-dhB" secondAttribute="trailing" constant="-16" id="NSR-wk-fig"/>
-                            <constraint firstItem="t39-Jw-Oc9" firstAttribute="top" secondItem="YhP-de-dhB" secondAttribute="bottom" id="lFw-Ab-cXB"/>
+                            <constraint firstItem="YhP-de-dhB" firstAttribute="leading" secondItem="FbD-e9-g2P" secondAttribute="leadingMargin" constant="-16" id="ScR-Et-hIS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YhP-de-dhB" secondAttribute="trailing" constant="-16" id="wXd-nI-2Di"/>
                             <constraint firstItem="MeP-mD-9kh" firstAttribute="leading" secondItem="FbD-e9-g2P" secondAttribute="leadingMargin" id="xCZ-9C-Rh2"/>
-                            <constraint firstItem="MeP-mD-9kh" firstAttribute="top" secondItem="YhP-de-dhB" secondAttribute="top" constant="-36" id="zJF-hw-7Gg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KCk-qN-Ymz"/>
@@ -4201,7 +4537,7 @@ It will be used only for verification purposes.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGw-DO-BHu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2428" y="4942"/>
+            <point key="canvasLocation" x="2680" y="4914"/>
         </scene>
         <!--My Offers View Controller-->
         <scene sceneID="bjx-Wy-5on">
@@ -4365,6 +4701,7 @@ It will be used only for verification purposes.</string>
         <image name="RecievedIconInactive.png" width="35" height="35"/>
         <image name="WhiteSingleBox.png" width="307" height="35"/>
         <image name="aaramShopAppLogo.png" width="292" height="292"/>
+        <image name="addIconCircle.png" width="30" height="30"/>
         <image name="appyCouponCodeBox.png" width="300" height="39"/>
         <image name="arrowBox.png" width="300" height="46"/>
         <image name="backBtn.png" width="30" height="30"/>
@@ -4406,6 +4743,7 @@ It will be used only for verification purposes.</string>
         <image name="locationPopupUpperRedBox.png" width="260" height="37"/>
         <image name="lowerBox.png" width="300" height="51"/>
         <image name="mapPopupBox.png" width="279" height="45"/>
+        <image name="minusIconCircle.png" width="30" height="30"/>
         <image name="newUserBox.png" width="297" height="48"/>
         <image name="offersDeleteIcon.png" width="320" height="568"/>
         <image name="offersSoundIconGrey.png" width="320" height="568"/>

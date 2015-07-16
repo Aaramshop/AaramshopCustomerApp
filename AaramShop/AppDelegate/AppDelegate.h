@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "SMChatViewController.h"
 #import <CoreData/CoreData.h>
-
+#import "StoreModel.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate,UITabBarControllerDelegate,UINavigationControllerDelegate>
 {
@@ -32,6 +32,8 @@ CLGeocoder *geocoder;
 @property (nonatomic, strong) CLLocation *myCurrentLocation;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic,  strong) NSArray *arrOptions;
+@property (nonatomic, strong) UITabBarController *tabBarControllerRetailer;
+@property (nonatomic, strong) StoreModel *objStoreModel;
 -(id)getDateAndFromString:(NSString *)strDate andDate:(NSDate *)date needSting:(BOOL)needString dateFormat:(NSString *)dateFormat;
 -(void)findCurrentLocation;
 
@@ -51,6 +53,8 @@ CLGeocoder *geocoder;
 -(void)sendPresence:(NSString *)type;
 //-(BOOL)openChatViewfromNotificationViewByFriendDetail:(AddressBookDB *)inFrndDetail;
 -(BOOL)openChatViewfromNotificationViewByFriendDetailAnonymous:(NSString *)inFrndDetail;
-
+#pragma mark - Tab bar Retailer Methods
+- (UITabBarController *)createTabBarRetailer;
+- (void)removeTabBarRetailer;
 @end
 

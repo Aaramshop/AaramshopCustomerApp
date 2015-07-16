@@ -11,6 +11,7 @@
 @interface ChatViewController ()
 {
     NSMutableArray *arrCustomerSupport;
+	AppDelegate *appDelegate;
 }
 @end
 
@@ -20,6 +21,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.sideBar = [Utils createLeftBarWithDelegate:self];
+	appDelegate = APP_DELEGATE;
+
     [self setUpNavigationBar];
     self.arrCustomers = [[NSMutableArray alloc]init];
     arrCustomerSupport = [[NSMutableArray alloc]init];
@@ -65,7 +68,20 @@
     if(!arrCustomerSupport)
         arrCustomerSupport = [[NSMutableArray alloc] init];
     [arrCustomerSupport removeAllObjects];
-    self.arrCustomers = [NSMutableArray arrayWithArray:[moc executeFetchRequest:fetchRequest error:&error]];
+	if(appDelegate.objStoreModel==nil)
+	{
+		self.arrCustomers = [NSMutableArray arrayWithArray:[moc executeFetchRequest:fetchRequest error:&error]];
+	}
+	else
+	{
+		NSMutableArray *array = [NSMutableArray arrayWithArray:[moc executeFetchRequest:fetchRequest error:&error]];
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.bareJidStr contains[cd] %@",appDelegate.objStoreModel.chat_username];
+		NSArray *arr = [array filteredArrayUsingPredicate:predicate];
+		if([arr count]>0)
+		{
+			[self.arrCustomers addObject:[arr objectAtIndex:0]];
+		}
+	}
 
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.bareJidStr contains[cd] %@",@"14007215046706"];
     NSArray *arr = [self.arrCustomers filteredArrayUsingPredicate:pred];
@@ -142,7 +158,43 @@
     titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
     self.navigationItem.titleView = _headerTitleSubtitleView;
+	
+	if(appDelegate.objStoreModel == nil)
+	{
+		UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
+		sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
+		[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
+		[sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
+		UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
+		
+		
+		NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
+		self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	}
+	else
+	{
+		UIImage *imgBack = [UIImage imageNamed:@"backBtn.png"];
+		
+		UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+		backBtn.bounds = CGRectMake( -10, 0, 30, 30);
+		
+		[backBtn setImage:imgBack forState:UIControlStateNormal];
+		[backBtn addTarget:self action:@selector(btnBackClicked) forControlEvents:UIControlEventTouchUpInside];
+		UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+		
+		NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
+		self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	}
 }
+- (void)btnBackClicked
+{
+	[appDelegate removeTabBarRetailer];
+}
+-(void)SideMenuClicked
+{
+	[self.sideBar show];
+}
+
 /*
 #pragma mark - Navigation
 
