@@ -10,10 +10,7 @@
 
 @interface PreferencesViewController ()
 {
-    NSMutableArray *arrNotification;
-    NSMutableArray *arrLocation;
-    NSMutableArray *allSections;
-    NSMutableDictionary *dataDict;
+	
 }
 @end
 
@@ -22,32 +19,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
-    arrNotification = [[NSMutableArray alloc] init];
-    arrLocation = [[NSMutableArray alloc] init];
-    dataDict=[[NSMutableDictionary alloc]init];
-    allSections =[[NSMutableArray alloc]init];
-    [arrNotification addObject: [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"preferencesOffersIcon",@"images",
-                                 @"Offers",@"name",nil]];
-    [arrNotification addObject: [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"preferencesDeleveryStatusIcon",@"images",
-                                 @"Delivery Status",@"name",nil]];
-    [arrNotification addObject: [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"preferencesChatIcon",@"images",
-                                 @"Chat",@"name",nil]];
-    
-    [arrLocation addObject: [NSDictionary dictionaryWithObjectsAndKeys:
-                             @"preferencesLocationIcon",@"images",
-                             @"9996866907",@"name",nil]];
-    
-    [allSections addObject:@"Notification"];
-    [allSections addObject:@"Current Location"];
-    [dataDict setObject:arrNotification forKey:@"Notification"];
-    [dataDict setObject:arrLocation forKey:@"Current Location"];
+	
+	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
+	aaramShop_ConnectionManager.delegate = self;
+	preferencesModel = [[CMPreferences alloc] init];
+	arrLocation = [[NSMutableArray alloc] init];
+	strAddressCount = @"";
+
     [self setUpNavigationBar];
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self createDataForPreferences];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -98,24 +83,22 @@
 #pragma mark - UITableView Delegates & Data Source Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
-    NSInteger toReturn = 0;
-    
-    if (allSections && allSections.count > 0)
-    {
-        toReturn = allSections.count;
-    }
-    return toReturn;
+	return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger toReturn = 0;
-    NSArray *sectionArr = [dataDict objectForKey: [allSections  objectAtIndex: section]];
-    
-    if (sectionArr && sectionArr.count > 0)
-    {
-        toReturn = sectionArr.count;
-    }
-    return toReturn;
+	switch (section) {
+		case 0:
+			return 3;
+			break;
+		case 1:
+			return 1;
+			break;
+			
+		default:
+			return 0;
+			break;
+	}
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
@@ -135,39 +118,82 @@
             
             break;
         case 1:
-            tempLabel.text = @"     Current Location";
+            tempLabel.text = @"    Locations";
             break;
     }
     return tempLabel;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *tableCell = nil;
+    UITableViewCell *cell = nil;
     switch (indexPath.section) {
         case 0:
         {
-            static NSString *cellIdentifier = @"Cell";
-            
-            PreferenceTableCell *cell =[self createCellSwitch:cellIdentifier];
-            
-            NSDictionary *dataDic = [[dataDict objectForKey: [allSections objectAtIndex: indexPath.section]] objectAtIndex: indexPath.row];
-            cell.delegateSwitchValue = self;
-            cell.indexPath=indexPath;
-            [cell updateCellWithData: dataDic];
-            tableCell = cell;
+			static NSString *cellIdentifier = @"NotificationCell";
+			cell =[self createCellSwitch:cellIdentifier];
+			UIImageView *imgView = (UIImageView *)[cell.contentView viewWithTag:101];
+			UILabel *lbl = (UILabel *)[cell.contentView viewWithTag:102];
+			UISwitch *cellSwitch = (UISwitch *)[cell.contentView viewWithTag:103];
+			switch (indexPath.row) {
+				case 0:
+				{
+					[cellSwitch addTarget:self action:@selector(setOffers:) forControlEvents:UIControlEventValueChanged];
+					if([preferencesModel.offers_notification intValue]==1)
+					{
+						[cellSwitch setOn:YES];
+					}
+					else
+					{
+						[cellSwitch setOn:NO];
+					}
+					imgView.image = [UIImage imageNamed:@"preferencesOffersIcon"];
+					lbl.text = @"Offers";
+				}
+					break;
+					
+				case 1:
+				{
+					[cellSwitch addTarget:self action:@selector(setDeliveryStatus:) forControlEvents:UIControlEventValueChanged];
+					if([preferencesModel.delivery_status_notification intValue]==1)
+					{
+						[cellSwitch setOn:YES];
+					}
+					else
+					{
+						[cellSwitch setOn:NO];
+					}
+					imgView.image = [UIImage imageNamed:@"preferencesDeleveryStatusIcon"];
+					lbl.text = @"Delivery Status";
+				}
+					break;
+				case 2:
+				{
+					[cellSwitch addTarget:self action:@selector(setChat:) forControlEvents:UIControlEventValueChanged];
+					if([preferencesModel.chat_notification intValue]==1)
+					{
+						[cellSwitch setOn:YES];
+					}
+					else
+					{
+						[cellSwitch setOn:NO];
+					}
+					imgView.image = [UIImage imageNamed:@"preferencesChatIcon"];
+					lbl.text = @"Chat";
+				}
+					break;
+				default:
+					break;
+			}
         }
             break;
             case 1:
         {
-            static NSString *cellIdentifier = @"Current Cell";
+            static NSString *cellIdentifier = @"LocationCell";
             
-            CurLocationTableCell *cell =[self createCell:cellIdentifier];
-            
-            NSDictionary *dataDic = [[dataDict objectForKey: [allSections objectAtIndex: indexPath.section]] objectAtIndex: indexPath.row];
-           
-            cell.indexPath=indexPath;
-            [cell updateCellWithData: dataDic];
-            tableCell = cell;
+            cell =[self createCell:cellIdentifier];
+            UILabel *lbl = (UILabel *)[cell.contentView viewWithTag:202];
+			lbl.text = strAddressCount;
+			
         }
             break;
         default:
@@ -176,20 +202,20 @@
     
     
     
-    return tableCell;
+    return cell;
 }
 #pragma mark - Calling Cell
--(PreferenceTableCell*)createCellSwitch:(NSString*)cellIdentifier{
-    PreferenceTableCell *cell = (PreferenceTableCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
+-(UITableViewCell*)createCellSwitch:(NSString*)cellIdentifier{
+    UITableViewCell *cell = (UITableViewCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[PreferenceTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     return cell;
 }
--(CurLocationTableCell*)createCell:(NSString*)cellIdentifier{
-    CurLocationTableCell *cell = (CurLocationTableCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
+-(UITableViewCell*)createCell:(NSString*)cellIdentifier{
+    UITableViewCell *cell = (UITableViewCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[CurLocationTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     return cell;
 }
@@ -197,6 +223,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tblView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	
 }
 #pragma mark - Delegate for switch state
 -(void)getSwitchValue:(NSString *)switchBtnText indexPath:(NSIndexPath*)indexPath
@@ -229,15 +257,118 @@
             break;
     }
 }
+- (IBAction)setDeliveryStatus:(id)sender
+{
+	UISwitch *deliverySwitch = (UISwitch *)sender;
+	if([deliverySwitch isOn])
+	{
+		preferencesModel.delivery_status_notification = @"1";
+	}
+	else
+	{
+		preferencesModel.delivery_status_notification = @"0";
+	}
+}
+- (IBAction)setOffers:(id)sender
+{
+	UISwitch *deliverySwitch = (UISwitch *)sender;
+	if([deliverySwitch isOn])
+	{
+		preferencesModel.offers_notification = @"1";
+	}
+	else
+	{
+		preferencesModel.offers_notification = @"0";
+	}
+}
+- (IBAction)setChat:(id)sender
+{
+	UISwitch *deliverySwitch = (UISwitch *)sender;
+	if([deliverySwitch isOn])
+	{
+		preferencesModel.chat_notification = @"1";
+	}
+	else
+	{
+		preferencesModel.chat_notification = @"0";
+	}
+}
+- (void)createDataForPreferences
+{
+	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
+	
+	[self performSelector:@selector(callWebserviceToGetPreferences:) withObject:dict];
+}
+#pragma mark - Call Webservice To Change Password
+- (void)callWebserviceToGetPreferences:(NSMutableDictionary *)aDict
+{
+	if (![Utils isInternetAvailable])
+	{
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+		[AppManager stopStatusbarActivityIndicator];
+		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return;
+	}
+	[aaramShop_ConnectionManager getDataForFunction:kURLGetPreferences withInput:aDict withCurrentTask:TASK_TO_GET_PREFERENCES andDelegate:self];
+}
 
+- (void)responseReceived:(id)responseObject
+{
+	
+	[AppManager stopStatusbarActivityIndicator];
+	if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_PREFERENCES)
+	{
+		if([[responseObject objectForKey:kstatus] intValue] == 1)
+		{
+			
+			preferencesModel.offers_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"offers_notification"]];
+			preferencesModel.delivery_status_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"delivery_status_notification"]];
+			preferencesModel.chat_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"chat_notification"]];
+			
+			[tblView reloadData];
+		}
+		else
+		{
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		}
+	}
+}
+- (void)didFailWithError:(NSError *)error
+{
+	
+	[AppManager stopStatusbarActivityIndicator];
+	[aaramShop_ConnectionManager failureBlockCalled:error];
+}
+
+-(void)parseData:(id)data
+{
+	if(!arrLocation)
+	{
+		arrLocation = [[NSMutableArray alloc] init];
+	}
+	[arrLocation removeAllObjects];
+	if([data count]>0)
+	{
+		for(int i =0 ; i < [data count] ; i++)
+		{
+			NSDictionary *dict = [data objectAtIndex:i];
+			AddressModel *addressModel = [[AddressModel alloc] init];
+			addressModel.user_address_id		=	[NSString stringWithFormat:@"%@",[dict objectForKey:kUser_address_id]];
+			addressModel.title						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kUser_address_title]];
+			
+			addressModel.address					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kAddress]];
+			addressModel.state						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kState]];
+			addressModel.city							=	[NSString stringWithFormat:@"%@",[dict objectForKey:kCity]];
+			addressModel.locality					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kLocality]];
+			addressModel.pincode					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kPincode]];
+			[arrLocation addObject:addressModel];
+		}
+		
+		strAddressCount =[NSString stringWithFormat:@"Manage Addresses (%ld)",(unsigned long)[data count]];
+		
+	}
+	[tblView reloadData];
+}
 @end

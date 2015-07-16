@@ -33,8 +33,8 @@
     
 #ifdef DEBUG
     
-    txtUserName.text = @"9999614234";
-    txtPassword.text = @"123456";
+    txtUserName.text = @"9711859131";
+    txtPassword.text = @"S3D5";
 
 #else
     //

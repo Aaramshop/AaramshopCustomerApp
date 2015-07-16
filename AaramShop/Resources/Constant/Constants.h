@@ -248,6 +248,7 @@
 #define kDispached_timing								@"dispached_timing"
 #define kCustomer_latitude								@"customer_latitude"
 #define kCustomer_longitude							@"customer_longitude"
+#define kDatetime											@"datetime"
 
 #define DATE_FORMATTER_yyyy_mm_dd			@"yyyy-MM-dd"
 
@@ -298,3 +299,16 @@
 
 //================= Account settings =============
 #define kURLUpdateUsers									@"updateUsers"
+
+//================= Preferences============
+#define kURLGetPreferences								@"getPreferences"
+
+
+
+
+
+
+
+
+
+
