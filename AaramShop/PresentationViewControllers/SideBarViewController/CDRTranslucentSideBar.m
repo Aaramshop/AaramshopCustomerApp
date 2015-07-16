@@ -72,7 +72,11 @@
     }
     return self;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[tblView reloadData];
+}
 #pragma mark - Custom Initializer
 - (void)initCDRTranslucentSideBar
 {

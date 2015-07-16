@@ -168,7 +168,7 @@
         return;
     }
     
-    [aaramShop_ConnectionManager getDataForFunction:kNewUserURL withInput:aDict withCurrentTask:TASK_ENTER_MOBILE_NUMBER Delegate:self andMultipartData:imageData];
+    [aaramShop_ConnectionManager getDataForFunction:kNewUserURL withInput:aDict withCurrentTask:TASK_ENTER_MOBILE_NUMBER Delegate:self andMultipartData:imageData withMediaKey:kProfileImage];
 }
 -(void) didFailWithError:(NSError *)error
 {

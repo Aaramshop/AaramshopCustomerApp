@@ -160,7 +160,7 @@
         return;
     }
     
-    [aaramShop_ConnectionManager getDataForFunction:kForgotPasswordURL withInput:aDict withCurrentTask:TASK_FORGOT_PASSWORD Delegate:self andMultipartData:nil];
+    [aaramShop_ConnectionManager getDataForFunction:kForgotPasswordURL withInput:aDict withCurrentTask:TASK_FORGOT_PASSWORD Delegate:self andMultipartData:nil withMediaKey:nil];
 }
 -(void) didFailWithError:(NSError *)error
 {

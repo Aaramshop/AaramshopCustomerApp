@@ -49,7 +49,7 @@
      }];
     return YES;
 }
--(BOOL) getDataForFunction:(NSString *)functionName withInput:(NSMutableDictionary *)aDict withCurrentTask:(CURRENT_TASK)inputTask Delegate:(id)inputDelegate andMultipartData:(NSData *)data
+-(BOOL) getDataForFunction:(NSString *)functionName withInput:(NSMutableDictionary *)aDict withCurrentTask:(CURRENT_TASK)inputTask Delegate:(id)inputDelegate andMultipartData:(NSData *)data withMediaKey:(NSString *)imageKey
 {
     
     self.delegate = inputDelegate;
@@ -66,7 +66,7 @@
     [manager POST:functionName parameters:aDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
      {
          if (data) {
-             [formData appendPartWithFileData:data name:kProfileImage fileName:@"profileImage.jpg" mimeType:@"image/jpg"];
+             [formData appendPartWithFileData:data name:imageKey fileName:@"profileImage.jpg" mimeType:@"image/jpg"];
          }
      }
 

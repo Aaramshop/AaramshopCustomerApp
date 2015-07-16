@@ -105,8 +105,7 @@
     tblVwCategory.hidden = YES;
     tblStores.hidden = YES;
     mainScrollView.hidden = YES;
-    [self createDataToGetStores];
-    
+	
     
 //    mainScrollView.backgroundColor = [UIColor redColor];
 }
@@ -214,6 +213,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+	[self performSelector:@selector(createDataToGetStores) withObject:nil afterDelay:0.5];
     NSLog(@"value = %f",appDeleg.myCurrentLocation.coordinate.latitude);
     if(![gCXMPPController isConnected])
     {
@@ -887,7 +887,7 @@
     //*
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
+    HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
     StoreModel *objStoreModel = nil;
     if (mainCategoryIndex != 0)
     {
@@ -916,6 +916,8 @@
 	tabBar.hidesBottomBarWhenPushed = YES;
 	self.navigationController.navigationBarHidden = YES;
 	[self.navigationController pushViewController:tabBar animated:YES];
+	
+//	==========================================
 //    homeSecondVwController.strStore_Id = objStoreModel.store_id;
 //    homeSecondVwController.strStoreImage = objStoreModel.store_image;
 //    homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;

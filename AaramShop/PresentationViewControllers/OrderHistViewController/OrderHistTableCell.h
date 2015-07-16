@@ -22,6 +22,7 @@
     IBOutlet UILabel *lblPrice;
     IBOutlet UILabel *lblRemainingTime;
     IBOutlet UIButton *btnTime;
+	AppDelegate *appDeleg;
 }
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, weak) id <CallAndChatDelegate> delegate;

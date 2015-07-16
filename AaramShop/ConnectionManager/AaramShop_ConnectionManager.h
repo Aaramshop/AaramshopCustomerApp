@@ -38,7 +38,8 @@ typedef enum
 	TASK_TO_SEND_ORDER_STATUS,
 	TASK_TO_UPDATE_USER,
     TASK_TO_SEARCH_STORE_PRODUCTS,
-    TASK_TO_CREATE_SHOPPING_LIST
+    TASK_TO_CREATE_SHOPPING_LIST,
+	TASK_TO_GET_PREFERENCES
 }CURRENT_TASK;
 
 @protocol AaramShop_ConnectionManager_Delegate <NSObject>
@@ -57,7 +58,7 @@ typedef enum
 @property(nonatomic,weak) id<AaramShop_ConnectionManager_Delegate> delegate;
 
 -(BOOL) getDataForFunction : (NSString *) functionName withInput: (NSMutableDictionary *) aDict withCurrentTask : (CURRENT_TASK) inputTask andDelegate : (id)inputDelegate;
--(BOOL) getDataForFunction:(NSString *)functionName withInput:(NSMutableDictionary *)aDict withCurrentTask:(CURRENT_TASK)inputTask Delegate:(id)inputDelegate andMultipartData:(NSData *)data;
+-(BOOL) getDataForFunction:(NSString *)functionName withInput:(NSMutableDictionary *)aDict withCurrentTask:(CURRENT_TASK)inputTask Delegate:(id)inputDelegate andMultipartData:(NSData *)data withMediaKey:(NSString *)imageKey;
 
 -(void)failureBlockCalled:(NSError *)error;
 

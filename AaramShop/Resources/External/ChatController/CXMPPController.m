@@ -801,7 +801,7 @@ CXMPPController * gCXMPPController = nil;
             }
             else
             {
-                int count = [[UIApplication sharedApplication] applicationIconBadgeNumber];
+                NSInteger count = [[UIApplication sharedApplication] applicationIconBadgeNumber];
                 count = count+1;
                 [[UIApplication sharedApplication]setApplicationIconBadgeNumber:count];
                 //            NSLog(@"%@",message);
@@ -942,8 +942,10 @@ CXMPPController * gCXMPPController = nil;
 //                        {
 //                            localNotification.soundName = @"Default.wav";
 //                        }
-    //                    NSString *msg = [NSString stringWithFormat:@"%@:\"%@\"",frnz.fullName,msgBody];
-                        localNotification.alertBody = msgBody;
+					NSString *fullname = [[message elementForName:@"fullName"] stringValue];
+					NSString *msg = [NSString stringWithFormat:@"%@:\"%@\"",fullname,msgBody];
+
+                        localNotification.alertBody = msg;
 //                        localNotification.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:friend.fullName,kfullName,friend.profilePic,kprofilePicActual,friend.userId,kUserId,friend.chatUserName,kchatUserName,@"chat",@"type", nil];
                         [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
 //                    }
