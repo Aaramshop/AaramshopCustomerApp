@@ -206,6 +206,14 @@
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 	[dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
+	if(appDelegate.objStoreModel == nil)
+	{
+		[dict setObject:@"0" forKey:kStore_id];
+	}
+	else
+	{
+		[dict setObject:appDelegate.objStoreModel.store_id forKey:kStore_id];
+	}
 	if (![Utils isInternetAvailable])
 	{
 		[AppManager stopStatusbarActivityIndicator];

@@ -801,7 +801,7 @@ CXMPPController * gCXMPPController = nil;
             }
             else
             {
-                int count = [[UIApplication sharedApplication] applicationIconBadgeNumber];
+                NSInteger count = [[UIApplication sharedApplication] applicationIconBadgeNumber];
                 count = count+1;
                 [[UIApplication sharedApplication]setApplicationIconBadgeNumber:count];
                 //            NSLog(@"%@",message);

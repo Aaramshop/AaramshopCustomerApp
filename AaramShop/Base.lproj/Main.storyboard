@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -2089,14 +2088,14 @@ Please give us your address</string>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="Zix-YC-Ca4" secondAttribute="width" id="9HA-Wn-aPA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zix-YC-Ca4" secondAttribute="trailing" constant="-16" id="BzC-xq-76p"/>
                             <constraint firstAttribute="centerX" secondItem="Kaf-Je-x8c" secondAttribute="centerX" id="EPp-xZ-HpS"/>
                             <constraint firstAttribute="centerX" secondItem="q5i-lz-WcH" secondAttribute="centerX" id="NNw-uA-Zxk"/>
-                            <constraint firstAttribute="centerY" secondItem="Zix-YC-Ca4" secondAttribute="centerY" id="VxF-WN-Fez"/>
-                            <constraint firstAttribute="height" secondItem="Zix-YC-Ca4" secondAttribute="height" id="ezr-Es-bBL"/>
+                            <constraint firstItem="Hai-Zc-2Jf" firstAttribute="top" secondItem="Zix-YC-Ca4" secondAttribute="bottom" constant="-49" id="R53-Bz-Yox"/>
+                            <constraint firstItem="Zix-YC-Ca4" firstAttribute="leading" secondItem="uoq-uh-gKD" secondAttribute="leadingMargin" constant="-16" id="RTU-SC-dio"/>
+                            <constraint firstItem="Zix-YC-Ca4" firstAttribute="top" secondItem="sCf-TO-PDf" secondAttribute="bottom" id="S35-J7-2Og"/>
                             <constraint firstItem="Kaf-Je-x8c" firstAttribute="top" secondItem="q5i-lz-WcH" secondAttribute="top" constant="188" id="g50-Mn-ljp"/>
                             <constraint firstItem="q5i-lz-WcH" firstAttribute="top" secondItem="sCf-TO-PDf" secondAttribute="bottom" constant="84" id="rav-wc-mVH"/>
-                            <constraint firstAttribute="centerX" secondItem="Zix-YC-Ca4" secondAttribute="centerX" id="s0Y-qM-1Ym"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DL5-iC-GUd"/>

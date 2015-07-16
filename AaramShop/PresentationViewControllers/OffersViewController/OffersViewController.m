@@ -240,6 +240,14 @@
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 	[dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
+	if(appDelegate.objStoreModel == nil)
+	{
+		[dict setObject:@"0" forKey:kStore_id];
+	}
+	else
+	{
+		[dict setObject:appDelegate.objStoreModel.store_id forKey:kStore_id];
+	}
 
 	[self performSelector:@selector(callWebServiceToOffer:) withObject:dict afterDelay:0.1];
 }
@@ -295,6 +303,7 @@
 
 #pragma mark - Parsing Data
 -(void)createDataForFirstTimeGet:(NSMutableArray*)array{
+	[arrOffers removeAllObjects];
 	for(int i = 0 ; i < [array count];i++)
 	{
 		CMOffers *offers = [array objectAtIndex:i];
