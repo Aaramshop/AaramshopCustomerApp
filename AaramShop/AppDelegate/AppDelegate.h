@@ -14,7 +14,10 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate,UITabBarControllerDelegate,UINavigationControllerDelegate>
 {
-CLGeocoder *geocoder;
+	CLGeocoder *geocoder;
+	UIBackgroundTaskIdentifier bgTask;
+	__weak NSObject <SMMessageDelegate> *_messageDelegate;
+
 }
 
 
