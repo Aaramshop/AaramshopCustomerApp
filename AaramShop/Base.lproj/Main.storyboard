@@ -133,6 +133,9 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="RocketDinerCondensed_0.otf">
             <string>RocketDiner-CondensedRegular</string>
@@ -810,16 +813,19 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ncc-XZ-sRs">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="88"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter shopping list title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXT-3D-yCs" customClass="PWTextField">
-                                        <rect key="frame" x="10" y="3" width="300" height="38"/>
+                                        <rect key="frame" x="8" y="6" width="304" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="zhi-hv-0wc"/>
+                                            <constraint firstAttribute="height" constant="32" id="zhi-hv-0wc"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="4W0-E9-RQG" id="lBe-6W-Dpw"/>
+                                        </connections>
                                     </textField>
                                     <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="6Lz-c1-ODG">
                                         <rect key="frame" x="0.0" y="44" width="320" height="44"/>
@@ -828,22 +834,120 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                         </constraints>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBq-1V-f3f">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Jqb-hR-wRh"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actionSearch:" destination="4W0-E9-RQG" eventType="touchUpInside" id="Rrb-g6-OFM"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="6wm-gL-NP2"/>
                                     <constraint firstAttribute="centerX" secondItem="6Lz-c1-ODG" secondAttribute="centerX" id="7QQ-FR-h3J"/>
-                                    <constraint firstItem="sXT-3D-yCs" firstAttribute="top" secondItem="Ncc-XZ-sRs" secondAttribute="top" constant="3" id="G7w-ou-CB3"/>
-                                    <constraint firstAttribute="bottom" secondItem="sXT-3D-yCs" secondAttribute="bottom" constant="47" id="Ht5-54-uaJ"/>
-                                    <constraint firstItem="sXT-3D-yCs" firstAttribute="leading" secondItem="Ncc-XZ-sRs" secondAttribute="leading" constant="10" id="NEP-HD-fxh"/>
+                                    <constraint firstItem="sXT-3D-yCs" firstAttribute="top" secondItem="Ncc-XZ-sRs" secondAttribute="top" constant="6" id="G7w-ou-CB3"/>
+                                    <constraint firstItem="sXT-3D-yCs" firstAttribute="leading" secondItem="Ncc-XZ-sRs" secondAttribute="leading" constant="8" id="NEP-HD-fxh"/>
+                                    <constraint firstAttribute="centerX" secondItem="EBq-1V-f3f" secondAttribute="centerX" id="PGb-bS-qVl"/>
+                                    <constraint firstItem="EBq-1V-f3f" firstAttribute="top" secondItem="sXT-3D-yCs" secondAttribute="bottom" constant="6" id="Soq-PT-nGC"/>
                                     <constraint firstAttribute="bottom" secondItem="6Lz-c1-ODG" secondAttribute="bottom" id="bFI-HU-528"/>
+                                    <constraint firstItem="EBq-1V-f3f" firstAttribute="width" secondItem="Ncc-XZ-sRs" secondAttribute="width" id="dvt-OE-Pjy"/>
                                     <constraint firstItem="6Lz-c1-ODG" firstAttribute="width" secondItem="Ncc-XZ-sRs" secondAttribute="width" id="jAl-Ku-QTE"/>
-                                    <constraint firstAttribute="trailing" secondItem="sXT-3D-yCs" secondAttribute="trailing" constant="10" id="uUT-x3-CIv"/>
+                                    <constraint firstAttribute="trailing" secondItem="sXT-3D-yCs" secondAttribute="trailing" constant="8" id="uUT-x3-CIv"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Vt8-FD-GaS">
-                                <rect key="frame" x="0.0" y="88" width="320" height="480"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vt8-FD-GaS">
+                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailCell" rowHeight="70" id="tXD-YF-FWr" customClass="ShoppingListDetailCell">
+                                        <rect key="frame" x="0.0" y="249" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tXD-YF-FWr" id="2qx-XV-mFf">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s8Q-u9-q4d" userLabel="Image View - Product Image">
+                                                    <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="0aY-S3-N6u"/>
+                                                        <constraint firstAttribute="height" constant="60" id="5af-y9-AcA"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMM-Og-WAg" userLabel="Label - Product name">
+                                                    <rect key="frame" x="73" y="5" width="120" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="GFC-U4-Yys"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iml-AI-UdJ" userLabel="Button - Remove">
+                                                    <rect key="frame" x="200" y="20" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="Kuy-C4-fJa"/>
+                                                        <constraint firstAttribute="height" constant="30" id="ovc-FW-GjA"/>
+                                                    </constraints>
+                                                    <state key="normal" image="minusIconCircle.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="actionRemoveProduct:" destination="tXD-YF-FWr" eventType="touchUpInside" id="jsc-NQ-iVY"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7A-Va-rEQ" userLabel="Label - Counter">
+                                                    <rect key="frame" x="235" y="5" width="40" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="6j5-HV-W6Y"/>
+                                                        <constraint firstAttribute="width" constant="40" id="BFR-GU-H8F"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSN-xk-tI1" userLabel="Button - Add">
+                                                    <rect key="frame" x="280" y="20" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="31S-j6-y2u"/>
+                                                        <constraint firstAttribute="width" constant="30" id="T9g-X0-Z3n"/>
+                                                    </constraints>
+                                                    <state key="normal" image="addIconCircle.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="actionAddProduct:" destination="tXD-YF-FWr" eventType="touchUpInside" id="2Fk-Yh-hAP"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="O7A-Va-rEQ" firstAttribute="leading" secondItem="Iml-AI-UdJ" secondAttribute="trailing" constant="5" id="G8o-tE-coS"/>
+                                                <constraint firstItem="s8Q-u9-q4d" firstAttribute="leading" secondItem="2qx-XV-mFf" secondAttribute="leadingMargin" constant="-3" id="Qlk-sY-Iv9"/>
+                                                <constraint firstItem="vSN-xk-tI1" firstAttribute="leading" secondItem="O7A-Va-rEQ" secondAttribute="trailing" constant="5" id="Yz5-NU-2mo"/>
+                                                <constraint firstItem="RMM-Og-WAg" firstAttribute="leading" secondItem="s8Q-u9-q4d" secondAttribute="trailing" constant="8" id="Z27-XB-O5V"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vSN-xk-tI1" secondAttribute="trailing" constant="2" id="Z4Q-Zq-1Mp"/>
+                                                <constraint firstItem="O7A-Va-rEQ" firstAttribute="top" secondItem="2qx-XV-mFf" secondAttribute="topMargin" constant="-3" id="dAz-kl-ddY"/>
+                                                <constraint firstItem="s8Q-u9-q4d" firstAttribute="top" secondItem="2qx-XV-mFf" secondAttribute="topMargin" constant="-3" id="e4M-7s-G4h"/>
+                                                <constraint firstItem="Iml-AI-UdJ" firstAttribute="leading" secondItem="RMM-Og-WAg" secondAttribute="trailing" constant="7" id="qK7-I3-5PC"/>
+                                                <constraint firstItem="vSN-xk-tI1" firstAttribute="top" secondItem="2qx-XV-mFf" secondAttribute="topMargin" constant="12" id="qve-DA-4rA"/>
+                                                <constraint firstItem="RMM-Og-WAg" firstAttribute="top" secondItem="2qx-XV-mFf" secondAttribute="topMargin" constant="-3" id="rCt-Tl-eQc"/>
+                                                <constraint firstItem="Iml-AI-UdJ" firstAttribute="top" secondItem="2qx-XV-mFf" secondAttribute="topMargin" constant="12" id="zsM-0n-E7f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnAdd" destination="vSN-xk-tI1" id="YAa-Uh-4F1"/>
+                                            <outlet property="btnRemove" destination="Iml-AI-UdJ" id="QSK-Cq-Hjy"/>
+                                            <outlet property="imgProduct" destination="s8Q-u9-q4d" id="7p7-cL-b4p"/>
+                                            <outlet property="lblCounter" destination="O7A-Va-rEQ" id="b8K-h3-c6S"/>
+                                            <outlet property="lblProductName" destination="RMM-Og-WAg" id="mWb-9G-GGg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="4W0-E9-RQG" id="fPu-vL-lHh"/>
                                     <outlet property="delegate" destination="4W0-E9-RQG" id="WSk-t6-zha"/>
@@ -857,12 +961,13 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                             <constraint firstItem="Ncc-XZ-sRs" firstAttribute="width" secondItem="Gbv-X6-eea" secondAttribute="width" id="8K0-d5-BfJ"/>
                             <constraint firstAttribute="width" secondItem="Vt8-FD-GaS" secondAttribute="width" id="Go7-HI-9lD"/>
                             <constraint firstAttribute="centerX" secondItem="Vt8-FD-GaS" secondAttribute="centerX" id="iKn-sm-5UL"/>
-                            <constraint firstItem="Ncc-XZ-sRs" firstAttribute="top" secondItem="4yh-em-q10" secondAttribute="bottom" constant="-20" id="wJm-6C-blg"/>
+                            <constraint firstItem="Ncc-XZ-sRs" firstAttribute="top" secondItem="4yh-em-q10" secondAttribute="bottom" id="wJm-6C-blg"/>
                             <constraint firstAttribute="centerX" secondItem="Ncc-XZ-sRs" secondAttribute="centerX" id="xue-Nc-ZVv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="tblView" destination="Vt8-FD-GaS" id="ysC-qp-E4X"/>
+                        <outlet property="txtShoppingListName" destination="sXT-3D-yCs" id="E6s-Rj-YwI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sXp-oL-RZb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -897,7 +1002,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                         <constraint firstAttribute="width" constant="60" id="mTA-79-lnl"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDT-pc-IwQ" userLabel="Label - Product name">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDT-pc-IwQ" userLabel="Label - Product name">
                                                     <rect key="frame" x="73" y="5" width="120" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="wOi-JF-bvl"/>
@@ -1024,9 +1129,18 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Apm-4n-hKH">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4E9-nh-LEl">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="eXS-jP-UAg"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Apm-4n-hKH">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailCell" rowHeight="70" id="xIg-tD-XB1" customClass="ShoppingListDetailCell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1040,7 +1154,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                         <constraint firstAttribute="width" constant="60" id="cKm-i2-v93"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-SL-Wqn" userLabel="Label - Product name">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-SL-Wqn" userLabel="Label - Product name">
                                                     <rect key="frame" x="73" y="5" width="120" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="ik4-5v-liv"/>
@@ -1121,7 +1235,10 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                             <constraint firstAttribute="width" secondItem="y8r-tW-i9N" secondAttribute="width" id="DfW-Cy-Hgo"/>
                             <constraint firstItem="Apm-4n-hKH" firstAttribute="top" secondItem="y8r-tW-i9N" secondAttribute="bottom" id="EWE-tO-4Tg"/>
                             <constraint firstItem="Apm-4n-hKH" firstAttribute="width" secondItem="6Lo-6A-JTL" secondAttribute="width" id="L5h-LY-QHJ"/>
+                            <constraint firstAttribute="centerX" secondItem="4E9-nh-LEl" secondAttribute="centerX" id="ZEt-bF-vDH"/>
                             <constraint firstItem="Vsa-kn-1HI" firstAttribute="top" secondItem="Apm-4n-hKH" secondAttribute="bottom" id="mqa-1N-OvJ"/>
+                            <constraint firstAttribute="width" secondItem="4E9-nh-LEl" secondAttribute="width" id="tBc-i5-AB0"/>
+                            <constraint firstItem="4E9-nh-LEl" firstAttribute="top" secondItem="CoW-bL-ON8" secondAttribute="bottom" id="thh-Q8-IGC"/>
                             <constraint firstItem="y8r-tW-i9N" firstAttribute="top" secondItem="CoW-bL-ON8" secondAttribute="bottom" id="ymD-e8-tba"/>
                             <constraint firstAttribute="centerX" secondItem="Apm-4n-hKH" secondAttribute="centerX" id="zJM-YQ-teC"/>
                         </constraints>
@@ -1190,9 +1307,18 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="riw-fd-AuT">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6E7-ox-5M7">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="6Hd-2o-gbA"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="riw-fd-AuT">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListShareCell" rowHeight="58" id="g9E-tU-Wj2" customClass="ShoppingListShareCell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1238,12 +1364,15 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="6E7-ox-5M7" firstAttribute="width" secondItem="4Ir-Mo-S4Y" secondAttribute="width" id="87k-PU-FQ1"/>
+                            <constraint firstItem="6E7-ox-5M7" firstAttribute="top" secondItem="cgR-Tp-H0P" secondAttribute="bottom" id="C9o-F4-TpF"/>
                             <constraint firstItem="riw-fd-AuT" firstAttribute="width" secondItem="4Ir-Mo-S4Y" secondAttribute="width" id="JEZ-3S-38z"/>
                             <constraint firstAttribute="centerX" secondItem="MUd-e9-Tn0" secondAttribute="centerX" id="atI-1H-fts"/>
                             <constraint firstItem="Xg5-QB-PAo" firstAttribute="top" secondItem="riw-fd-AuT" secondAttribute="bottom" id="di2-IE-H1w"/>
                             <constraint firstItem="MUd-e9-Tn0" firstAttribute="width" secondItem="4Ir-Mo-S4Y" secondAttribute="width" id="mQr-tV-HQu"/>
                             <constraint firstAttribute="centerX" secondItem="riw-fd-AuT" secondAttribute="centerX" id="vZz-E3-tRn"/>
                             <constraint firstItem="MUd-e9-Tn0" firstAttribute="top" secondItem="cgR-Tp-H0P" secondAttribute="bottom" id="wZQ-Vv-zam"/>
+                            <constraint firstAttribute="centerX" secondItem="6E7-ox-5M7" secondAttribute="centerX" id="yGy-l8-K8i"/>
                             <constraint firstItem="riw-fd-AuT" firstAttribute="top" secondItem="MUd-e9-Tn0" secondAttribute="bottom" id="ymh-Va-mm3"/>
                         </constraints>
                     </view>
@@ -1584,9 +1713,9 @@ Please give us your address</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6fO-ce-UBD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="6fO-ce-UBD">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailCell" rowHeight="70" id="yTI-Vx-dqp" customClass="ShoppingListDetailCell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1600,7 +1729,7 @@ Please give us your address</string>
                                                         <constraint firstAttribute="width" constant="60" id="fyJ-BS-lpZ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4L-07-jSO" userLabel="Label - Product name">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4L-07-jSO" userLabel="Label - Product name">
                                                     <rect key="frame" x="73" y="5" width="120" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="RU3-51-MYh"/>
@@ -4650,6 +4779,65 @@ It will be used only for verification purposes.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F2n-IM-0mK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2008" y="2408"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="jS2-nh-jA4">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="njs-K7-3oU" customClass="SearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ubi-hp-oq6"/>
+                        <viewControllerLayoutGuide type="bottom" id="JqZ-NA-9Ag"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e7z-fc-EFV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-6l-spl">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Nk-6H-B7O">
+                                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="njs-K7-3oU" id="cuv-2o-7eR"/>
+                                        </connections>
+                                    </searchBar>
+                                </subviews>
+                                <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Fdg-Ir-DIv">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="njs-K7-3oU" id="y7W-xl-wzg"/>
+                                    <outlet property="delegate" destination="njs-K7-3oU" id="jOS-mb-gK7"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="mw4-6l-spl" firstAttribute="top" secondItem="Fdg-Ir-DIv" secondAttribute="top" constant="-64" id="5LJ-1p-KiV"/>
+                            <constraint firstAttribute="trailing" secondItem="Fdg-Ir-DIv" secondAttribute="trailing" id="FsF-MG-e07"/>
+                            <constraint firstAttribute="trailing" secondItem="mw4-6l-spl" secondAttribute="trailing" id="NZq-v8-37I"/>
+                            <constraint firstItem="JqZ-NA-9Ag" firstAttribute="top" secondItem="Fdg-Ir-DIv" secondAttribute="bottom" id="U8m-dG-uxF"/>
+                            <constraint firstItem="Fdg-Ir-DIv" firstAttribute="leading" secondItem="e7z-fc-EFV" secondAttribute="leading" id="bsj-AK-8BA"/>
+                            <constraint firstItem="Fdg-Ir-DIv" firstAttribute="bottom" secondItem="mw4-6l-spl" secondAttribute="bottom" constant="504" id="cg9-MI-ObF"/>
+                            <constraint firstItem="mw4-6l-spl" firstAttribute="leading" secondItem="e7z-fc-EFV" secondAttribute="leading" id="xyt-fa-8dP"/>
+                            <constraint firstItem="mw4-6l-spl" firstAttribute="top" secondItem="Ubi-hp-oq6" secondAttribute="bottom" constant="-20" id="z9B-Mw-UiE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBarMain" destination="0Nk-6H-B7O" id="D4g-NM-mk9"/>
+                        <outlet property="tblViewSearch" destination="Fdg-Ir-DIv" id="vqP-zE-iUR"/>
+                        <outlet property="viewSearchBarContainer" destination="mw4-6l-spl" id="LWE-Ip-kiU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hvJ-fd-4nR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="161" y="5559"/>
         </scene>
     </scenes>
     <resources>

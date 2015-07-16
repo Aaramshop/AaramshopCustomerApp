@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductsModel.h"
 
 @protocol ProductCellDelegate <NSObject>
 
@@ -23,12 +24,12 @@
     __weak IBOutlet UILabel *lblCounter;
     __weak IBOutlet UIButton *btnAdd;
     
-    NSMutableDictionary *dicTempProduct;
+    ProductsModel *tempProductModel;
 }
 
 @property (nonatomic,weak) id <ProductCellDelegate> delegate;
 @property (nonatomic,strong) NSIndexPath *indexPath;
 
--(void)updateCell:(NSDictionary *)dicProduct;
+-(void)updateCell:(ProductsModel *)productsModel;
 
 @end

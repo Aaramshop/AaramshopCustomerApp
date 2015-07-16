@@ -31,6 +31,14 @@
     tblView.backgroundColor = [UIColor whiteColor];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    self.tabBarController.tabBar.hidden = NO;
+
+}
+
 #pragma mark Navigation
 -(void)setNavigationBar
 {
@@ -184,7 +192,7 @@
 {
     CreateNewShoppingListViewController *createNewShoppingList = (CreateNewShoppingListViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CreateNewShoppingList"];
     
-//    [self.navigationController pushViewController:createNewShoppingList animated:YES];
+    [self.navigationController pushViewController:createNewShoppingList animated:YES];
 }
 
 -(void)SideMenuClicked
