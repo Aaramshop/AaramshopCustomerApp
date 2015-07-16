@@ -15,8 +15,8 @@
 @implementation OrderHistDetailViewCon
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+	[super viewDidLoad];
+	// Do any additional setup after loading the view.
 	[self setUpNavigationBar];
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
 	aaramShop_ConnectionManager.delegate = self;
@@ -28,7 +28,7 @@
 	imgCustomer.layer.masksToBounds=YES;
 	
 	[imgCustomer sd_setImageWithURL:[NSURL URLWithString:_orderHist.store_image] placeholderImage:[UIImage imageNamed:@"defaultProfilePic"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-	
+		
 	}];
 	lblOrder_time.text = [Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[_orderHist.order_time doubleValue]]];
 	lblOrderDate.text = _orderHist.order_date;
@@ -36,8 +36,6 @@
 	lblPaymentMode.text = _orderHist.payment_mode;
 	lblDeliveryBoyName.text = _orderHist.deliveryboy_name;
 	lblOrderAmt.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_cart_value];
-//	lblUdhaar_value.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.udhaar_value];
-//	lblTotalUdhaar.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_udhaar];
 	if ([_orderHist.packed_timing isEqualToString:@"05:30 AM"] || [_orderHist.packed_timing isEqualToString:@"0"]) {
 		[packedBtn setSelected:NO];
 		
@@ -117,13 +115,16 @@
 }
 
 - (IBAction)btnReceived:(id)sender {
-	[imgReceived setHidden:NO];
-	[btnCompleted setHidden:NO];
-	[lblReceived setHidden:NO];
-	NSDate *dateCurrent = [NSDate date];
-	lblReceived.text = [NSString stringWithFormat:@"%@",[Utils stringFromDateForExactTime:dateCurrent]];
-	_orderHist.delivered_timing = [self getTimeStamp];
-	[self sendCurrentTime];
+	if ([lblDispachedTime.text length]!=0) {
+		[sender setEnabled:NO];
+		[imgReceived setHidden:NO];
+		[btnCompleted setHidden:NO];
+		[lblReceived setHidden:NO];
+		NSDate *dateCurrent = [NSDate date];
+		lblReceived.text = [NSString stringWithFormat:@"%@",[Utils stringFromDateForExactTime:dateCurrent]];
+		_orderHist.delivered_timing = [self getTimeStamp];
+		[self sendCurrentTime];
+	}
 }
 
 - (IBAction)btnCallMerchant:(id)sender
@@ -149,19 +150,14 @@
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 	[dict setObject:_orderHist.order_id forKey:kOrder_id];
 	[dict setObject:_orderHist.delivered_timing forKey:kDatetime];
-
-	
 	[self callWebServiceToSendOrderStatus:dict];
-	
 }
 - (void)callWebServiceToSendOrderStatus:(NSMutableDictionary *)aDict
 {
 	if (![Utils isInternetAvailable])
 	{
-		//        [Utils stopActivityIndicatorInView:self.view];
 		[AppManager stopStatusbarActivityIndicator];
 		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-		//        [submitBtn setEnabled:YES];
 		return;
 	}
 	[aaramShop_ConnectionManager getDataForFunction:kURLSentOrderStatus withInput:aDict withCurrentTask:TASK_TO_SEND_ORDER_STATUS andDelegate:self];

@@ -105,9 +105,10 @@
 }
 - (void)btnDoneClicked
 {
+	[self hideKeyboard];
 	if ([self isValid]) {
 		
-		[self hideKeyboard];
+		
 		[doneBtn setEnabled:NO];
 		[backBtn setEnabled:NO];
 		[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
@@ -144,7 +145,7 @@
 		if([[responseObject objectForKey:kstatus] intValue] == 1)
 		{
 			
-//			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+
 			[[NSUserDefaults standardUserDefaults] setObject:[responseObject objectForKey:kFullname] forKey:kFullname];
 			[[NSUserDefaults standardUserDefaults] setObject:[responseObject objectForKey:kEmail] forKey:kEmail];
 			

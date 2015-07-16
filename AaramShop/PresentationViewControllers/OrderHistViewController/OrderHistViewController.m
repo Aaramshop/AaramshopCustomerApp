@@ -312,7 +312,7 @@
 }
 #pragma mark - Parse Orders List response data
 
--(void)createDataForFirstTimeGet:(NSMutableArray*)array{
+- (void)createDataForFirstTimeGet:(NSMutableArray*)array{
 	if(!arrOrderHist)
 	{
 		arrOrderHist = [[NSMutableArray alloc] init];

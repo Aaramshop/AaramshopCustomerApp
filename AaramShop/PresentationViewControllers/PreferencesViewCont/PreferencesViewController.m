@@ -23,6 +23,9 @@
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
 	preferencesModel = [[CMPreferences alloc] init];
+	arrLocation = [[NSMutableArray alloc] init];
+	strAddressCount = @"";
+
     [self setUpNavigationBar];
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -115,7 +118,7 @@
             
             break;
         case 1:
-            tempLabel.text = @"     Current Location";
+            tempLabel.text = @"    Locations";
             break;
     }
     return tempLabel;
@@ -189,7 +192,7 @@
             
             cell =[self createCell:cellIdentifier];
             UILabel *lbl = (UILabel *)[cell.contentView viewWithTag:202];
-			
+			lbl.text = strAddressCount;
 			
         }
             break;
@@ -220,6 +223,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tblView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	
 }
 #pragma mark - Delegate for switch state
 -(void)getSwitchValue:(NSString *)switchBtnText indexPath:(NSIndexPath*)indexPath
@@ -321,6 +326,7 @@
 			preferencesModel.offers_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"offers_notification"]];
 			preferencesModel.delivery_status_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"delivery_status_notification"]];
 			preferencesModel.chat_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"chat_notification"]];
+			
 			[tblView reloadData];
 		}
 		else
@@ -334,5 +340,35 @@
 	
 	[AppManager stopStatusbarActivityIndicator];
 	[aaramShop_ConnectionManager failureBlockCalled:error];
+}
+
+-(void)parseData:(id)data
+{
+	if(!arrLocation)
+	{
+		arrLocation = [[NSMutableArray alloc] init];
+	}
+	[arrLocation removeAllObjects];
+	if([data count]>0)
+	{
+		for(int i =0 ; i < [data count] ; i++)
+		{
+			NSDictionary *dict = [data objectAtIndex:i];
+			AddressModel *addressModel = [[AddressModel alloc] init];
+			addressModel.user_address_id		=	[NSString stringWithFormat:@"%@",[dict objectForKey:kUser_address_id]];
+			addressModel.title						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kUser_address_title]];
+			
+			addressModel.address					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kAddress]];
+			addressModel.state						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kState]];
+			addressModel.city							=	[NSString stringWithFormat:@"%@",[dict objectForKey:kCity]];
+			addressModel.locality					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kLocality]];
+			addressModel.pincode					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kPincode]];
+			[arrLocation addObject:addressModel];
+		}
+		
+		strAddressCount =[NSString stringWithFormat:@"Manage Addresses (%ld)",(unsigned long)[data count]];
+		
+	}
+	[tblView reloadData];
 }
 @end

@@ -810,6 +810,10 @@
 		36C245861B552B9E003714B0 /* menuLogoutIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C245831B552B9E003714B0 /* menuLogoutIcon.png */; };
 		36C245871B552B9E003714B0 /* menuLogoutIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C245841B552B9E003714B0 /* menuLogoutIcon@2x.png */; };
 		36C245881B552B9E003714B0 /* menuLogoutIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C245851B552B9E003714B0 /* menuLogoutIcon@3x.png */; };
+		36C79B771B5791640020D77F /* AddLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C79B761B5791640020D77F /* AddLocationViewController.m */; };
+		36C79B7C1B579BD50020D77F /* preferencesLocationAddCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C79B791B579BD50020D77F /* preferencesLocationAddCircle.png */; };
+		36C79B7D1B579BD50020D77F /* preferencesLocationAddCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C79B7A1B579BD50020D77F /* preferencesLocationAddCircle@2x.png */; };
+		36C79B7E1B579BD50020D77F /* preferencesLocationAddCircle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C79B7B1B579BD50020D77F /* preferencesLocationAddCircle@3x.png */; };
 		36D8C4C11B3996A200C255EE /* locationIconRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C4C01B3996A200C255EE /* locationIconRed.png */; };
 		36D8C4CA1B3996DE00C255EE /* callIconGreenCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C4C21B3996DE00C255EE /* callIconGreenCircle.png */; };
 		36D8C4CB1B3996DE00C255EE /* callIconGreenCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C4C31B3996DE00C255EE /* callIconGreenCircle@2x.png */; };
@@ -2370,6 +2374,11 @@
 		36C245831B552B9E003714B0 /* menuLogoutIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuLogoutIcon.png; sourceTree = "<group>"; };
 		36C245841B552B9E003714B0 /* menuLogoutIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuLogoutIcon@2x.png"; sourceTree = "<group>"; };
 		36C245851B552B9E003714B0 /* menuLogoutIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menuLogoutIcon@3x.png"; sourceTree = "<group>"; };
+		36C79B751B5791640020D77F /* AddLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddLocationViewController.h; sourceTree = "<group>"; };
+		36C79B761B5791640020D77F /* AddLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddLocationViewController.m; sourceTree = "<group>"; };
+		36C79B791B579BD50020D77F /* preferencesLocationAddCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferencesLocationAddCircle.png; sourceTree = "<group>"; };
+		36C79B7A1B579BD50020D77F /* preferencesLocationAddCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesLocationAddCircle@2x.png"; sourceTree = "<group>"; };
+		36C79B7B1B579BD50020D77F /* preferencesLocationAddCircle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesLocationAddCircle@3x.png"; sourceTree = "<group>"; };
 		36D8C4C01B3996A200C255EE /* locationIconRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationIconRed.png; sourceTree = "<group>"; };
 		36D8C4C21B3996DE00C255EE /* callIconGreenCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = callIconGreenCircle.png; sourceTree = "<group>"; };
 		36D8C4C31B3996DE00C255EE /* callIconGreenCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "callIconGreenCircle@2x.png"; sourceTree = "<group>"; };
@@ -5001,6 +5010,25 @@
 			path = OrderHistDetailViewCon;
 			sourceTree = "<group>";
 		};
+		36C79B741B5791370020D77F /* AddLocationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				36C79B751B5791640020D77F /* AddLocationViewController.h */,
+				36C79B761B5791640020D77F /* AddLocationViewController.m */,
+			);
+			path = AddLocationViewController;
+			sourceTree = "<group>";
+		};
+		36C79B781B579BD50020D77F /* LocationImages */ = {
+			isa = PBXGroup;
+			children = (
+				36C79B791B579BD50020D77F /* preferencesLocationAddCircle.png */,
+				36C79B7A1B579BD50020D77F /* preferencesLocationAddCircle@2x.png */,
+				36C79B7B1B579BD50020D77F /* preferencesLocationAddCircle@3x.png */,
+			);
+			path = LocationImages;
+			sourceTree = "<group>";
+		};
 		36D8C4BF1B3996A200C255EE /* OrderImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -5216,6 +5244,7 @@
 		6B12DC871AF22C8100245209 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				36C79B781B579BD50020D77F /* LocationImages */,
 				6B83A0B91B53E81300A00520 /* Shopping_List_Images */,
 				365395731B52A1700045AAFE /* ChangePassImages */,
 				365395501B524FA60045AAFE /* OfferImages */,
@@ -6534,6 +6563,7 @@
 		6BFFF9201B02224B00BB2B62 /* PreferencesViewCont */ = {
 			isa = PBXGroup;
 			children = (
+				36C79B741B5791370020D77F /* AddLocationViewController */,
 				6BFFF9241B02229E00BB2B62 /* PreferencesViewController.h */,
 				6BFFF9251B02229E00BB2B62 /* PreferencesViewController.m */,
 			);
@@ -6679,6 +6709,7 @@
 				3653955D1B524FA60045AAFE /* CouponsBoxActive.png in Resources */,
 				6B87C7611B34272E002BC68C /* chooseHomeStoreBannerImage@2x.png in Resources */,
 				274F88BE1B0D0E7400F85743 /* imageTwo@3x.png in Resources */,
+				36C79B7C1B579BD50020D77F /* preferencesLocationAddCircle.png in Resources */,
 				36820A3B1B1C46FA002AA93F /* wales.png in Resources */,
 				36BE5A951B53C52A0079DAE3 /* dispatchedIconActive@3x.png in Resources */,
 				274A5DB71B05C88B009112B5 /* chatDateBackground@2x.png in Resources */,
@@ -7093,6 +7124,7 @@
 				6BD2D31E1B284C8900EC6E54 /* homeScreenHomeIconRed.png in Resources */,
 				6BE4744A1B3B21CE00C09AFD /* saveMH@2x.png in Resources */,
 				6BD2D2E61B28408800EC6E54 /* homeRecomondedStoreChatIcon@2x.png in Resources */,
+				36C79B7D1B579BD50020D77F /* preferencesLocationAddCircle@2x.png in Resources */,
 				36BE5AA81B53C5580079DAE3 /* sepratorBoxThree.png in Resources */,
 				6B6098B31B395CAB00277D03 /* sendBtn@2x.png in Resources */,
 				36BE5AB01B53C9C70079DAE3 /* sepratorBoxThree@3x_2.png in Resources */,
@@ -7340,6 +7372,7 @@
 				36820A131B1C46FA002AA93F /* sweden.png in Resources */,
 				36820A141B1C46FA002AA93F /* switzerland.png in Resources */,
 				274A5E001B05C88B009112B5 /* SMChatViewController.xib in Resources */,
+				36C79B7E1B579BD50020D77F /* preferencesLocationAddCircle@3x.png in Resources */,
 				6B12DCF41AF2A53200245209 /* defaultProfilePic@2x.png in Resources */,
 				274A5DCF1B05C88B009112B5 /* iconAttach@2x.png in Resources */,
 				6B6098A01B395CAB00277D03 /* bground.jpg in Resources */,
@@ -7818,6 +7851,7 @@
 				274A5CE61B05C4AA009112B5 /* XMPPMessageDeliveryReceipts.m in Sources */,
 				274A5CF91B05C4AA009112B5 /* XMPPSRVResolver.m in Sources */,
 				6B12DCE31AF2A47D00245209 /* MobileVerificationViewController.m in Sources */,
+				36C79B771B5791640020D77F /* AddLocationViewController.m in Sources */,
 				274A5C911B05C4AA009112B5 /* NSXMLElement+XMPP.m in Sources */,
 				274A5C571B05C4AA009112B5 /* UIImageView+AFNetworking.m in Sources */,
 				274A5CAE1B05C4AA009112B5 /* XMPPLastActivity.m in Sources */,
@@ -7962,9 +7996,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-
 				PROVISIONING_PROFILE = "3290ec4f-99ba-4237-9393-93e827ef3a24";
-
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -8000,9 +8032,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-
 				PROVISIONING_PROFILE = "3290ec4f-99ba-4237-9393-93e827ef3a24";
-
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -8039,9 +8069,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
 				PROVISIONING_PROFILE = "3290ec4f-99ba-4237-9393-93e827ef3a24";
-
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -8077,9 +8105,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
 				PROVISIONING_PROFILE = "3290ec4f-99ba-4237-9393-93e827ef3a24";
-
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;

@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+	appDeleg = APP_DELEGATE;
     imgUser.layer.cornerRadius = imgUser.frame.size.width/2;
     imgUser.clipsToBounds = YES;
     btnTime.userInteractionEnabled = NO;
@@ -45,18 +45,18 @@
 	
 	NSString *strDistance = @"";
 	
-	NSString *customerLongitude = cmOrderHist.customer_longitude;
-	NSString * customerLatitude = cmOrderHist.customer_latitude;
+	NSString *customerLongitude = [NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude];
+	NSString * customerLatitude = [NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude];
 	
-	NSString * merchantLongitude = [[NSUserDefaults standardUserDefaults] valueForKey:kStore_longitude];
-	NSString * merchantLatitude = [[NSUserDefaults standardUserDefaults] valueForKey:kStore_latitude];
+	NSString * merchantLongitude = cmOrderHist.store_longitude;
+	NSString * merchantLatitude = cmOrderHist.store_latitude;
 	
 	if ([customerLatitude length]>0 && [customerLongitude length]>0 && [merchantLatitude length]>0 && [merchantLongitude length]>0)
 	{
 		strDistance = [Utils milesFromLatitude:[merchantLatitude doubleValue] fromLongitude:[merchantLongitude doubleValue] ToLatitude:[customerLatitude doubleValue] andToLongitude:[customerLongitude doubleValue]];
 	}
 	
-	lblLocation.text = [NSString stringWithFormat:@"%@ (%@Km)",strCity,strDistance];
+	lblLocation.text = [NSString stringWithFormat:@"%@ (%dKm)",strCity,[strDistance intValue]];
 	
 	
 	
