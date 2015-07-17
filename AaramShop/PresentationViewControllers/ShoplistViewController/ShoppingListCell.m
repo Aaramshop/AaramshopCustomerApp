@@ -67,10 +67,16 @@
         strTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[shoppingListModel.creationDate doubleValue]]];
     }
     
-//    strTime = [[[strTime stringByReplacingOccurrencesOfString:@"/" withString:@"-"] componentsSeparatedByString:@" "] firstObject];
+    strTime = [[[strTime stringByReplacingOccurrencesOfString:@"/" withString:@"-"] componentsSeparatedByString:@" "] firstObject];
 
     // firstly remove ',' from last index of string, after uncommenting the above code. Ex - 'Yesterday,'.
     // Right now, it's - 'Yesterday, 12:00 AM'
+   
+    
+    if ([strTime hasSuffix:@","])
+    {
+        strTime = [strTime substringToIndex:[strTime length]-1];
+    }
     
     
     [btnTime setTitle:strTime forState:UIControlStateNormal];

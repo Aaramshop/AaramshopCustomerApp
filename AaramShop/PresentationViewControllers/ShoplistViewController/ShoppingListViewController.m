@@ -72,7 +72,7 @@
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-    [dict setObject:@"0" forKeyedSubscript:@"page_no"];
+    [dict setObject:@"0" forKey:@"page_no"];
     
     [self callWebServiceToGetShoppingList:dict];
 }
@@ -426,7 +426,7 @@
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-    [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKeyedSubscript:@"page_no"];
+    [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:@"page_no"];
     
     [self callWebServiceToGetShoppingList:dict];
 }

@@ -312,9 +312,7 @@
 #define kURLGetShoppingList                         @"getShoppingList"
 #define kURLDeleteShoppingList                      @"deleteShoppingList"
 #define kURLGetShoppingListProducts                 @"getShoppingListProducts"
-
-
-
+#define kURLUpdateShoppingListProducts              @"updateShoppingListProducts"
 
 
 

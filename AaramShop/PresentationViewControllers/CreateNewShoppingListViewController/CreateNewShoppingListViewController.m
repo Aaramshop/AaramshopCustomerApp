@@ -163,10 +163,10 @@
     {
         NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
         
-        [dict setObject:txtShoppingListName.text forKeyedSubscript:@"shoppingListName"];
+        [dict setObject:txtShoppingListName.text forKey:@"shoppingListName"];
         
-        [dict setObject:strProductID forKeyedSubscript:@"productId"];
-        [dict setObject:strQuantity forKeyedSubscript:@"quantity"];
+        [dict setObject:strProductID forKey:@"productId"];
+        [dict setObject:strQuantity forKey:@"quantity"];
         
         [self callWebServiceToCreateShoppingList:dict];
     }

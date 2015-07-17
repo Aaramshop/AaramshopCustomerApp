@@ -64,8 +64,15 @@
     isStoreSelected = NO; // temp
     isStoreSelected = YES; // temp
 
-    [self getProductsInitialList];
+//    [self getProductsInitialList];
 
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    [self getProductsInitialList];
 }
 
 
@@ -88,8 +95,8 @@
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-    [dict setObject:_strShoppingListID forKeyedSubscript:@"shoppingListId"];
-    [dict setObject:@"0" forKeyedSubscript:@"page_no"];
+    [dict setObject:_strShoppingListID forKey:@"shoppingListId"];
+    [dict setObject:@"0" forKey:@"page_no"];
 
     [self callWebServiceToGetProductsList:dict];
 }
@@ -197,96 +204,127 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (isStoreSelected==YES)
-    {
-        return 2;
-    }
+//    if (isStoreSelected==YES)
+//    {
+//        return 2;
+//    }
     return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    switch (section)
+    if (isStoreSelected==YES)
     {
-        case 0:
-        {
-            if (isStoreSelected==YES)
-            {
-                return kTableHeader1Height;
-            }
-            else
-            {
-                return kTableHeader2Height;
-            }
-        }
-            break;
-        case 1:
-        {
-            return kTableHeader2Height;
-        }
-            break;
-            
-        default:
-            return CGFLOAT_MIN;
-            break;
+        return kTableHeader1Height;
     }
+    else
+    {
+        return kTableHeader2Height;
+    }
+
+    
+    
+//    switch (section)
+//    {
+//        case 0:
+//        {
+//            if (isStoreSelected==YES)
+//            {
+//                return kTableHeader1Height;
+//            }
+//            else
+//            {
+//                return kTableHeader2Height;
+//            }
+//        }
+//            break;
+//        case 1:
+//        {
+//            return kTableHeader2Height;
+//        }
+//            break;
+//            
+//        default:
+//            return CGFLOAT_MIN;
+//            break;
+//    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    switch (section)
+    if (isStoreSelected==YES)
     {
-        case 0:
-        {
-            if (isStoreSelected==YES)
-            {
-                return [self viewForHeader1];
-            }
-            else
-            {
-                return [self viewForHeader2];
-            }
-        }
-            break;
-        case 1:
-        {
-            return [self viewForHeader2];
-        }
-            break;
-            
-        default:
-            return nil;
-            break;
+        return [self viewForHeader1];
     }
+    else
+    {
+        return [self viewForHeader2];
+    }
+
+    
+//    switch (section)
+//    {
+//        case 0:
+//        {
+//            if (isStoreSelected==YES)
+//            {
+//                return [self viewForHeader1];
+//            }
+//            else
+//            {
+//                return [self viewForHeader2];
+//            }
+//        }
+//            break;
+//        case 1:
+//        {
+//            return [self viewForHeader2];
+//        }
+//            break;
+//            
+//        default:
+//            return nil;
+//            break;
+//    }
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section)
+    if (isStoreSelected==YES)
     {
-        case 0:
-        {
-            if (isStoreSelected==YES)
-            {
-                return 0;
-            }
-            else
-            {
-                return arrProductList.count;
-            }
-        }
-            break;
-        case 1:
-        {
-            return arrProductList.count;;
-        }
-            break;
-            
-        default:
-            return 0;
-            break;
+        return 0;
     }
+    else
+    {
+        return arrProductList.count;
+    }
+
+    
+//    switch (section)
+//    {
+//        case 0:
+//        {
+//            if (isStoreSelected==YES)
+//            {
+//                return 0;
+//            }
+//            else
+//            {
+//                return arrProductList.count;
+//            }
+//        }
+//            break;
+//        case 1:
+//        {
+//            return arrProductList.count;;
+//        }
+//            break;
+//            
+//        default:
+//            return 0;
+//            break;
+//    }
     
 }
 
@@ -434,6 +472,12 @@
 -(void)btnAddClicked
 {
     ShoppingListAddMoreViewController *shoppingListAddMore = (ShoppingListAddMoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListAddMore"];
+    
+    shoppingListAddMore.arrProductList = [[NSMutableArray alloc]init];
+    [shoppingListAddMore.arrProductList addObjectsFromArray:arrProductList];
+    
+    shoppingListAddMore.strShoppingListId = _strShoppingListID;
+    
     
     [self.navigationController pushViewController:shoppingListAddMore animated:YES];
 }
@@ -613,8 +657,8 @@
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-    [dict setObject:_strShoppingListID forKeyedSubscript:@"shoppingListId"];
-    [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKeyedSubscript:@"page_no"];
+    [dict setObject:_strShoppingListID forKey:@"shoppingListId"];
+    [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:@"page_no"];
     
     [self callWebServiceToGetProductsList:dict];
 }

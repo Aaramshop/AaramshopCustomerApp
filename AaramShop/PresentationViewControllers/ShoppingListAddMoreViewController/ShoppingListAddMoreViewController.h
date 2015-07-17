@@ -14,14 +14,13 @@
 {
 	IBOutlet UITableView *tblView;
     
-    NSMutableArray *arrProductList;
-    
     SearchViewController *searchViewController;
     AppDelegate *appDel;
 
 }
 
-@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
-
+@property (nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+@property (nonatomic,strong) NSMutableArray *arrProductList;
+@property (nonatomic,strong) NSString *strShoppingListId;
 
 @end

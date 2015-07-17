@@ -26,7 +26,12 @@
     appDel = APP_DELEGATE;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    arrProductList = [[NSMutableArray alloc]init];
+    
+    if (!_arrProductList)
+    {
+        _arrProductList = [[NSMutableArray alloc]init];
+    }
+    
     [self setNavigationBar];
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
@@ -113,7 +118,51 @@
 
 - (void)btnDoneClicked
 {
-
+    [self.view endEditing:YES];
+    
+    __block NSString *strProductID = @"";
+    __block NSString *strQuantity = @"";
+    
+    
+    [_arrProductList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        ProductsModel *productModel = [_arrProductList objectAtIndex:idx];
+        if ([productModel.quantity integerValue]>0)
+        {
+            strProductID = [NSString stringWithFormat:@"%@,%@",strProductID,productModel.product_id];
+            
+            strQuantity = [NSString stringWithFormat:@"%@,%@",strQuantity,productModel.quantity];
+        }
+    }];
+    
+    if ([strProductID hasPrefix:@","])
+    {
+        strProductID = [strProductID substringFromIndex:1];
+    }
+    
+    if ([strQuantity hasPrefix:@","])
+    {
+        strQuantity = [strQuantity substringFromIndex:1];
+    }
+    
+    
+    if ([strProductID length]==0)
+    {
+        [Utils showAlertView:kAlertTitle message:@"Add Product(s)" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    else
+    {
+        NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+        
+        [dict setObject:_strShoppingListId forKey:@"shoppingListId"];
+        
+        [dict setObject:strProductID forKey:@"productId"];
+        [dict setObject:strQuantity forKey:@"quantity"];
+        
+        [self callWebServiceToUpdateShoppingList:dict];
+    }
+    
 }
 
 
@@ -132,7 +181,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return arrProductList.count;
+    return _arrProductList.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,7 +201,7 @@
     cell.indexPath = indexPath;
     cell.delegate = self;
     
-    [cell updateCell:[arrProductList objectAtIndex:indexPath.row]];
+    [cell updateCell:[_arrProductList objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -168,7 +217,7 @@
 
 -(void)addProduct:(NSIndexPath *)indexPath
 {
-    ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
+    ProductsModel *productModel = [_arrProductList objectAtIndex:indexPath.row];
     
     int counter = [productModel.quantity intValue];
     
@@ -181,7 +230,7 @@
 
 -(void)removeProduct:(NSIndexPath *)indexPath
 {
-    ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
+    ProductsModel *productModel = [_arrProductList objectAtIndex:indexPath.row];
     
     int counter = [productModel.quantity intValue];
     counter--;
@@ -194,15 +243,83 @@
 
 
 
+-(void)doSearch
+{
+    searchViewController = (SearchViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController" ];
+    [searchViewController setDelegate:self];
+    
+    [appDel.window addSubview:searchViewController.view];
+    
+}
+
+-(void)removeSearchViewFromParentView{
+    [searchViewController.view removeFromSuperview];
+}
+
+
+
+-(void)openSearchedUserPrroductFor:(ProductsModel *)product
+{
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",product.product_sku_id];
+    
+    NSArray *aFilteredObjects = [_arrProductList filteredArrayUsingPredicate: aPredicate];
+    
+    if (aFilteredObjects && aFilteredObjects.count > 0) {
+        //already exist
+        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
+    else{
+        //add new product
+        
+        product.quantity = @"1";
+        
+        [_arrProductList insertObject:product atIndex:0];
+        
+    }
+    
+    [tblView reloadData];
+    
+}
+
+
+-(void)addProductIfNeeded:(NSDictionary *)inDic{
+    
+    
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",[inDic objectForKey: @"product_sku_id"]];
+    
+    NSArray *aFilteredObjects = [_arrProductList filteredArrayUsingPredicate: aPredicate];
+    
+    if (aFilteredObjects && aFilteredObjects.count > 0) {
+        //already exist
+        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
+    else{
+        //add new product
+        [_arrProductList insertObject:inDic atIndex:0];
+        
+    }
+    
+    [tblView reloadData];
+    
+}
+
+
+-(IBAction)actionSearch:(id)sender
+{
+    [self doSearch];
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
+
 
 
 #pragma mark - Call Webservice
 
--(void)callWebServiceToAddProduct:(NSMutableDictionary *)aDict
+-(void)callWebServiceToUpdateShoppingList:(NSMutableDictionary *)aDict
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
@@ -212,7 +329,7 @@
         return;
     }
     
-//    [aaramShop_ConnectionManager getDataForFunction:kURLCreateShoppingList withInput:aDict withCurrentTask:TASK_TO_CREATE_SHOPPING_LIST andDelegate:self ];
+    [aaramShop_ConnectionManager getDataForFunction:kURLUpdateShoppingListProducts withInput:aDict withCurrentTask:TASK_TO_UPDATE_SHOPPING_LIST andDelegate:self ];
 }
 
 -(void) didFailWithError:(NSError *)error
@@ -224,7 +341,7 @@
 {
     switch (aaramShop_ConnectionManager.currentTask)
     {
-        case TASK_TO_CREATE_SHOPPING_LIST:
+        case TASK_TO_UPDATE_SHOPPING_LIST:
         {
             
             if ([[responseObject objectForKey:kstatus] intValue] == 1)
@@ -248,73 +365,6 @@
 }
 
 
--(void)doSearch
-{
-    searchViewController = (SearchViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController" ];
-    [searchViewController setDelegate:self];
-    
-    [appDel.window addSubview:searchViewController.view];
-    
-}
-
--(void)removeSearchViewFromParentView{
-    [searchViewController.view removeFromSuperview];
-}
-
-
-
-
-
--(void)openSearchedUserPrroductFor:(ProductsModel *)product
-{
-    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",product.product_sku_id];
-    
-    NSArray *aFilteredObjects = [arrProductList filteredArrayUsingPredicate: aPredicate];
-    
-    if (aFilteredObjects && aFilteredObjects.count > 0) {
-        //already exist
-        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-    }
-    else{
-        //add new product
-        
-        product.quantity = @"1";
-        
-        [arrProductList insertObject:product atIndex:0];
-        
-    }
-    
-    [tblView reloadData];
-    
-}
-
-
--(void)addProductIfNeeded:(NSDictionary *)inDic{
-    
-    
-    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",[inDic objectForKey: @"product_sku_id"]];
-    
-    NSArray *aFilteredObjects = [arrProductList filteredArrayUsingPredicate: aPredicate];
-    
-    if (aFilteredObjects && aFilteredObjects.count > 0) {
-        //already exist
-        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-    }
-    else{
-        //add new product
-        [arrProductList insertObject:inDic atIndex:0];
-        
-    }
-    
-    [tblView reloadData];
-    
-}
-
-
--(IBAction)actionSearch:(id)sender
-{
-    [self doSearch];
-}
 
 
 
