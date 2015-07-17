@@ -10,10 +10,10 @@
 #import "CDRTranslucentSideBar.h"
 #import "PreferencesViewController.h"
 #import "AccountSettingsViewC.h"
-#import "CartViewController.h"
 #import "RightSideTableCell.h"
 #import "UIImageEffects.h"
 #import "LocationEnterViewController.h"
+#import "WalletViewController.h"
 #import "AddressModel.h"
 
 #define kDefaultHeaderFrame CGRectMake(0, 0, tblView.frame.size.width, tblView.frame.size.height)
@@ -119,7 +119,7 @@
     [super viewDidLoad];
     
 	appDel = APP_DELEGATE;
-    arrMenu=[[NSMutableArray alloc]initWithObjects:@"Account Settings",@"Preferences",@"Cart",@"Logout",nil];
+    arrMenu=[[NSMutableArray alloc]initWithObjects:@"Account Settings",@"Preferences",@"Wallet",@"Logout",nil];
     arrOptions = [[NSMutableArray alloc]init];
     
     [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Beverages",@"name", nil]];
@@ -128,7 +128,7 @@
     [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Tea & Coffee",@"name", nil]];
     [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Snacks",@"name", nil]];
     
-    arrImages=[[NSMutableArray alloc]initWithObjects:@"menuAccountSettingsIcon",@"menuPreferencesIcon",@"menuCartIcon",@"menuLogoutIcon",nil];
+    arrImages=[[NSMutableArray alloc]initWithObjects:@"menuAccountSettingsIcon",@"menuPreferencesIcon",@"walletIcon",@"menuLogoutIcon",nil];
     
     
     // Add PanGesture to Show SideBar by PanGesture
@@ -418,22 +418,19 @@
                 }
             }
                 break;
-            case eCart:
+            case eWallet:
             {
-                CartViewController *cartVCon = [storyboard instantiateViewControllerWithIdentifier:@"CartViewScene"];
+                WalletViewController *walletVCon = [storyboard instantiateViewControllerWithIdentifier:@"WalletViewScene"];
                 
                 if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
-                    [self.delegate sideBarDelegatePushMethod:cartVCon];
+                    [self.delegate sideBarDelegatePushMethod:walletVCon];
                 }
                 
             }
                 break;
 			case eLogout:
 			{
-//				navController = [storyboard instantiateViewControllerWithIdentifier:@"optionNav"];
-//				[self.tabBarController removeFromParentViewController];
-//				appDel.window.rootViewController = navController;
-//				[appDel.window makeKeyAndVisible];
+
 				[Utils showAlertView:kAlertTitle message:@"Do you want to logout ?" delegate:self cancelButtonTitle:kAlertBtnNO otherButtonTitles:kAlertBtnYES];
 			}
 				break;
