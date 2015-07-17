@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -44,8 +44,15 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular_0.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -3263,6 +3270,275 @@ Please give us your address</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZWa-cI-Fs1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3020" y="2516"/>
+        </scene>
+        <!--Wallet View Controller-->
+        <scene sceneID="qLy-pd-VpG">
+            <objects>
+                <viewController storyboardIdentifier="WalletViewScene" id="E49-Tz-xPQ" customClass="WalletViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eIh-GE-MjR"/>
+                        <viewControllerLayoutGuide type="bottom" id="jen-bh-d3e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sv9-Il-sVV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMe-lw-3Us">
+                                <rect key="frame" x="0.0" y="0.0" width="107" height="85"/>
+                                <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="abP-wZ-ATP"/>
+                                    <constraint firstAttribute="width" constant="107" id="yfT-FL-te2"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" title="Selected"/>
+                                <connections>
+                                    <action selector="btnPoints:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="1g9-rL-ct7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrK-K4-9VO">
+                                <rect key="frame" x="108" y="0.0" width="108" height="85"/>
+                                <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="Nu2-wU-h8L"/>
+                                    <constraint firstAttribute="height" constant="85" id="cWQ-6n-tMW"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" title="Selected"/>
+                                <connections>
+                                    <action selector="btnMoney:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="Yw6-UX-FuM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaC-6E-IIo">
+                                <rect key="frame" x="217" y="0.0" width="104" height="85"/>
+                                <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="a4p-87-uqe"/>
+                                    <constraint firstAttribute="width" constant="104" id="vq7-76-BfV"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" title="Selected"/>
+                                <connections>
+                                    <action selector="btnOffers:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="nVE-1i-UzJ"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSp-xJ-3I1">
+                                <rect key="frame" x="0.0" y="85" width="320" height="419"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uaC-6E-IIo" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="55o-Hb-7ks"/>
+                            <constraint firstItem="NSp-xJ-3I1" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leadingMargin" constant="-16" id="LAG-L9-gg7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NSp-xJ-3I1" secondAttribute="trailing" constant="-16" id="XyC-Rb-f4u"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leadingMargin" constant="-16" id="aN8-Tt-Yrx"/>
+                            <constraint firstItem="jen-bh-d3e" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="bottom" id="b2R-Gs-Q4k"/>
+                            <constraint firstItem="VrK-K4-9VO" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="eLV-5Z-xzI"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="egU-qN-w3b"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="top" constant="-85" id="ekz-i5-YhZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uaC-6E-IIo" secondAttribute="trailing" constant="-17" id="hFH-Gz-lwq"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="trailing" secondItem="VrK-K4-9VO" secondAttribute="trailing" constant="-109" id="lk5-mt-OuD"/>
+                            <constraint firstItem="uaC-6E-IIo" firstAttribute="trailing" secondItem="VrK-K4-9VO" secondAttribute="trailing" constant="105" id="roQ-07-qdO"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="VrK-K4-9VO" secondAttribute="leading" constant="-108" id="sgi-Hq-QgE"/>
+                            <constraint firstItem="VrK-K4-9VO" firstAttribute="leading" secondItem="uaC-6E-IIo" secondAttribute="leading" constant="-109" id="ygB-B1-t7W"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="moneyBtn" destination="VrK-K4-9VO" id="D1V-Kw-GHw"/>
+                        <outlet property="offersBtn" destination="uaC-6E-IIo" id="Bcm-KX-hK2"/>
+                        <outlet property="pointsBtn" destination="DMe-lw-3Us" id="5fb-zp-t2A"/>
+                        <outlet property="subView" destination="NSp-xJ-3I1" id="rS4-Ix-S3R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UXz-9f-QyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3904" y="1817"/>
+        </scene>
+        <!--Points View Controller-->
+        <scene sceneID="G0k-Xo-MYx">
+            <objects>
+                <viewController storyboardIdentifier="PointsViewScene" id="G9s-Vm-tdL" customClass="PointsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NCx-mD-TJh"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qgo-v5-ioC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1xX-99-Vfc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3eR-F2-Nxu">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="419"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PointsCell" id="Can-oa-3Wt" customClass="PointsTableCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Can-oa-3Wt" id="l5H-ou-G8g">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vk9-HG-YVr">
+                                                    <rect key="frame" x="17" y="11" width="156" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1W-Oq-r5c">
+                                                    <rect key="frame" x="261" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblName" destination="Vk9-HG-YVr" id="aXW-XU-GIs"/>
+                                            <outlet property="lblPoints" destination="y1W-Oq-r5c" id="3Kr-vh-zQI"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="G9s-Vm-tdL" id="grD-gc-bL3"/>
+                                    <outlet property="delegate" destination="G9s-Vm-tdL" id="7uE-NZ-SSA"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gT3-mk-6fz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4281" y="1817"/>
+        </scene>
+        <!--Money View Controller-->
+        <scene sceneID="qUf-U7-fnB">
+            <objects>
+                <viewController storyboardIdentifier="MoneyViewScene" id="Qt7-Y9-3Hu" customClass="MoneyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c32-xF-seg"/>
+                        <viewControllerLayoutGuide type="bottom" id="TEq-0m-ldf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HON-sy-mcW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rad-8e-tjY">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="419"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MoneyCell" rowHeight="60" id="ZWw-xu-hhf" customClass="MoneyTableCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZWw-xu-hhf" id="8n5-un-kUj">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qr-6n-fca">
+                                                    <rect key="frame" x="9" y="8" width="157" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-Hk-KBK">
+                                                    <rect key="frame" x="9" y="30" width="183" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="₹ 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7KJ-8f-76o">
+                                                    <rect key="frame" x="237" y="8" width="54" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.39607843139999999" green="0.39607843139999999" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="sideArrowGrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="6Dr-aT-4sk">
+                                                    <rect key="frame" x="299" y="22" width="13" height="15"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b3O-3n-Sj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4633" y="1814"/>
+        </scene>
+        <!--Wallet Offers View Controller-->
+        <scene sceneID="y8e-ft-wGb">
+            <objects>
+                <viewController storyboardIdentifier="WalletOfferViewScene" id="ihp-tp-fnG" customClass="WalletOffersViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="s3w-hM-9pQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="c1U-OZ-sEC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3kR-Ui-CTp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TVg-Si-YAf">
+                                <rect key="frame" x="0.0" y="152" width="320" height="264"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WalletOfferCell" rowHeight="90" id="y8A-CA-66g" customClass="WalletOfferTableCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y8A-CA-66g" id="z4n-0v-f7K">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chooseCategoryDefaultImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="8KA-RC-fV7">
+                                                    <rect key="frame" x="8" y="7" width="75" height="75"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="deviceRGB"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTG-vd-bKt">
+                                                    <rect key="frame" x="91" y="13" width="221" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="₹10000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTH-MC-JJ8">
+                                                    <rect key="frame" x="91" y="34" width="58" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOx-eL-EC3">
+                                                    <rect key="frame" x="103" y="44" width="39" height="1"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anv-na-1qY">
+                                                    <rect key="frame" x="153" y="34" width="65" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.92156862750000001" green="0.078431372550000003" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="valid till 15may 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4Q-z2-Ox9">
+                                                    <rect key="frame" x="91" y="55" width="149" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DHx-0A-QqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4981" y="1812"/>
         </scene>
         <!--Right Collection View Controller-->
         <scene sceneID="34g-yj-OhG">
