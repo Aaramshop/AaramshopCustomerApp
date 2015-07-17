@@ -21,6 +21,9 @@
 	aaramShop_ConnectionManager.delegate = self;
 	
 	[self setupAllViews];
+	[pointsBtn setSelected:![pointsBtn isSelected]];
+	[self setSideBtnState: eSelectedPoints];
+	selectedWallet = eSelectedPoints;
 }
 
 - (void)didReceiveMemoryWarning {
