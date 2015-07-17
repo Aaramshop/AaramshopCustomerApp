@@ -3287,9 +3287,13 @@ Please give us your address</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMe-lw-3Us">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMe-lw-3Us">
                                 <rect key="frame" x="0.0" y="0.0" width="107" height="85"/>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="abP-wZ-ATP"/>
+                                    <constraint firstAttribute="width" constant="107" id="yfT-FL-te2"/>
+                                </constraints>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -3298,9 +3302,13 @@ Please give us your address</string>
                                     <action selector="btnPoints:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="1g9-rL-ct7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrK-K4-9VO">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrK-K4-9VO">
                                 <rect key="frame" x="108" y="0.0" width="108" height="85"/>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="Nu2-wU-h8L"/>
+                                    <constraint firstAttribute="height" constant="85" id="cWQ-6n-tMW"/>
+                                </constraints>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -3309,9 +3317,13 @@ Please give us your address</string>
                                     <action selector="btnMoney:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="Yw6-UX-FuM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaC-6E-IIo">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaC-6E-IIo">
                                 <rect key="frame" x="217" y="0.0" width="104" height="85"/>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="a4p-87-uqe"/>
+                                    <constraint firstAttribute="width" constant="104" id="vq7-76-BfV"/>
+                                </constraints>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -3320,12 +3332,27 @@ Please give us your address</string>
                                     <action selector="btnOffers:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="nVE-1i-UzJ"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NSp-xJ-3I1">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSp-xJ-3I1">
                                 <rect key="frame" x="0.0" y="85" width="320" height="419"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uaC-6E-IIo" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="55o-Hb-7ks"/>
+                            <constraint firstItem="NSp-xJ-3I1" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leadingMargin" constant="-16" id="LAG-L9-gg7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NSp-xJ-3I1" secondAttribute="trailing" constant="-16" id="XyC-Rb-f4u"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leadingMargin" constant="-16" id="aN8-Tt-Yrx"/>
+                            <constraint firstItem="jen-bh-d3e" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="bottom" id="b2R-Gs-Q4k"/>
+                            <constraint firstItem="VrK-K4-9VO" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="eLV-5Z-xzI"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="egU-qN-w3b"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="top" constant="-85" id="ekz-i5-YhZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uaC-6E-IIo" secondAttribute="trailing" constant="-17" id="hFH-Gz-lwq"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="trailing" secondItem="VrK-K4-9VO" secondAttribute="trailing" constant="-109" id="lk5-mt-OuD"/>
+                            <constraint firstItem="uaC-6E-IIo" firstAttribute="trailing" secondItem="VrK-K4-9VO" secondAttribute="trailing" constant="105" id="roQ-07-qdO"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="VrK-K4-9VO" secondAttribute="leading" constant="-108" id="sgi-Hq-QgE"/>
+                            <constraint firstItem="VrK-K4-9VO" firstAttribute="leading" secondItem="uaC-6E-IIo" secondAttribute="leading" constant="-109" id="ygB-B1-t7W"/>
+                        </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
