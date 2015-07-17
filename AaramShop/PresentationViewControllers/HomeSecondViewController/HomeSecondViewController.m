@@ -408,7 +408,7 @@
 -(void)btnBackClicked
 {
     isViewActive = NO;
-    
+	[arrGetStoreProducts removeAllObjects];
     [rightCollectionVwContrllr.view removeFromSuperview];
 //    [self.navigationController popViewControllerAnimated:YES];
 

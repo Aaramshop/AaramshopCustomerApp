@@ -1107,6 +1107,9 @@
 		6BA2F09F1B04B2F30074562F /* mapPinGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09C1B04B2F30074562F /* mapPinGreen@2x.png */; };
 		6BA2F0A01B04B2F30074562F /* mapPinGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09D1B04B2F30074562F /* mapPinGreen@3x.png */; };
 		6BA2F0A21B04B9300074562F /* PinShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F0A11B04B9300074562F /* PinShadow.png */; };
+		6BA556CA1B578A4E00920DE0 /* SearchTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA556C71B578A4E00920DE0 /* SearchTableCell.m */; };
+		6BA556CB1B578A4E00920DE0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA556C91B578A4E00920DE0 /* SearchViewController.m */; };
+		6BA556CF1B57DEEC00920DE0 /* ShoppingListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA556CE1B57DEEC00920DE0 /* ShoppingListModel.m */; };
 		6BA894001B4F9EFB0014519C /* HomeCategoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA893FF1B4F9EFB0014519C /* HomeCategoriesModel.m */; };
 		6BA894061B4F9F850014519C /* HomeStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA894051B4F9F850014519C /* HomeStoreModel.m */; };
 		6BA894091B4F9F970014519C /* RecommendedStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA894081B4F9F970014519C /* RecommendedStoreModel.m */; };
@@ -2761,6 +2764,12 @@
 		6BA2F09C1B04B2F30074562F /* mapPinGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPinGreen@2x.png"; sourceTree = "<group>"; };
 		6BA2F09D1B04B2F30074562F /* mapPinGreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPinGreen@3x.png"; sourceTree = "<group>"; };
 		6BA2F0A11B04B9300074562F /* PinShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinShadow.png; sourceTree = "<group>"; };
+		6BA556C61B578A4E00920DE0 /* SearchTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableCell.h; sourceTree = "<group>"; };
+		6BA556C71B578A4E00920DE0 /* SearchTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableCell.m; sourceTree = "<group>"; };
+		6BA556C81B578A4E00920DE0 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		6BA556C91B578A4E00920DE0 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		6BA556CD1B57DEEC00920DE0 /* ShoppingListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListModel.h; sourceTree = "<group>"; };
+		6BA556CE1B57DEEC00920DE0 /* ShoppingListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListModel.m; sourceTree = "<group>"; };
 		6BA893FE1B4F9EFB0014519C /* HomeCategoriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoriesModel.h; sourceTree = "<group>"; };
 		6BA893FF1B4F9EFB0014519C /* HomeCategoriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoriesModel.m; sourceTree = "<group>"; };
 		6BA894041B4F9F850014519C /* HomeStoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeStoreModel.h; sourceTree = "<group>"; };
@@ -4573,6 +4582,7 @@
 		27BE657B1B0203CC004FA4B4 /* ShoplistViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6BA556CC1B57DEDB00920DE0 /* ShoppingListModel */,
 				6B83A0F21B53EBED00A00520 /* ShoppingListCell.h */,
 				6B83A0F31B53EBED00A00520 /* ShoppingListCell.m */,
 				27BE658B1B020446004FA4B4 /* ShoppingListViewController.h */,
@@ -5405,7 +5415,10 @@
 		6B12DC9D1AF2543A00245209 /* PresentationViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+
 				36A69EC31B57C4FA0058EB88 /* WalletViewController */,
+				6BA556C41B578A4E00920DE0 /* SearchViewController */,
+
 				6B35B8C41B56704600807F25 /* ShoppingListCalenderViewController */,
 				36BE5A7D1B53C0470079DAE3 /* OrderHistDetailViewCon */,
 				6B83A0B51B53D9AA00A00520 /* ShoppingListShareViewController */,
@@ -6104,6 +6117,34 @@
 				6BA0DCEE1B3818F900729443 /* SubCategoryModel.m */,
 			);
 			path = SubCategoryModel;
+			sourceTree = "<group>";
+		};
+		6BA556C41B578A4E00920DE0 /* SearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6BA556C51B578A4E00920DE0 /* SearchTableCell */,
+				6BA556C81B578A4E00920DE0 /* SearchViewController.h */,
+				6BA556C91B578A4E00920DE0 /* SearchViewController.m */,
+			);
+			path = SearchViewController;
+			sourceTree = "<group>";
+		};
+		6BA556C51B578A4E00920DE0 /* SearchTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				6BA556C61B578A4E00920DE0 /* SearchTableCell.h */,
+				6BA556C71B578A4E00920DE0 /* SearchTableCell.m */,
+			);
+			path = SearchTableCell;
+			sourceTree = "<group>";
+		};
+		6BA556CC1B57DEDB00920DE0 /* ShoppingListModel */ = {
+			isa = PBXGroup;
+			children = (
+				6BA556CD1B57DEEC00920DE0 /* ShoppingListModel.h */,
+				6BA556CE1B57DEEC00920DE0 /* ShoppingListModel.m */,
+			);
+			path = ShoppingListModel;
 			sourceTree = "<group>";
 		};
 		6BA893FD1B4F9EB10014519C /* HomeCategoriesModel */ = {
@@ -7739,6 +7780,7 @@
 				274A5C9B1B05C4AA009112B5 /* XMPPBandwidthMonitor.m in Sources */,
 				274A5CFC1B05C4AA009112B5 /* DDAbstractDatabaseLogger.m in Sources */,
 				274A5C9E1B05C4AA009112B5 /* XMPPProcessOne.m in Sources */,
+				6BA556CF1B57DEEC00920DE0 /* ShoppingListModel.m in Sources */,
 				274A5CE41B05C4AA009112B5 /* XMPPPresence+XEP_0172.m in Sources */,
 				274A5CCC1B05C4AA009112B5 /* XMPPResultSet.m in Sources */,
 				368209051B1C46FA002AA93F /* FlagListTableViewController.m in Sources */,
@@ -7789,6 +7831,7 @@
 				274A5CA71B05C4AA009112B5 /* XMPPUserMemoryStorageObject.m in Sources */,
 				274A5C691B05C4AA009112B5 /* UITextView+UITextView_sh.m in Sources */,
 				274A5CF41B05C4AA009112B5 /* README.markdown in Sources */,
+				6BA556CA1B578A4E00920DE0 /* SearchTableCell.m in Sources */,
 				274A5CAA1B05C4AA009112B5 /* XMPPIQ+JabberRPC.m in Sources */,
 				6B12DCB81AF26CBC00245209 /* OptionViewController.m in Sources */,
 				6BE4734E1B3AD0DF00C09AFD /* MESegmentedControl.m in Sources */,
@@ -7950,6 +7993,7 @@
 				274A5E0B1B05CA22009112B5 /* FXBlurView.m in Sources */,
 				274A5CF61B05C4AA009112B5 /* GCDMulticastDelegate.m in Sources */,
 				274A5CCF1B05C4AA009112B5 /* TURNSocket.m in Sources */,
+				6BA556CB1B578A4E00920DE0 /* SearchViewController.m in Sources */,
 				274A5DA91B05C88B009112B5 /* ChatCustomKeyboardViewController.m in Sources */,
 				6B809DA91B31755D00E91673 /* SDWebImageDownloader.m in Sources */,
 				274A5DF51B05C88B009112B5 /* CAnnotation.m in Sources */,
@@ -8061,8 +8105,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -8082,7 +8126,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "3290ec4f-99ba-4237-9393-93e827ef3a24";
+				PROVISIONING_PROFILE = "d8eefe7f-c176-4fa9-8dd3-62d3f188b4a7";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -8104,8 +8148,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8118,7 +8162,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "3290ec4f-99ba-4237-9393-93e827ef3a24";
+				PROVISIONING_PROFILE = "d8eefe7f-c176-4fa9-8dd3-62d3f188b4a7";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -8129,8 +8173,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -8155,7 +8199,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3290ec4f-99ba-4237-9393-93e827ef3a24";
+				PROVISIONING_PROFILE = "d8eefe7f-c176-4fa9-8dd3-62d3f188b4a7";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -8165,8 +8209,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -8191,7 +8235,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3290ec4f-99ba-4237-9393-93e827ef3a24";
+				PROVISIONING_PROFILE = "d8eefe7f-c176-4fa9-8dd3-62d3f188b4a7";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;

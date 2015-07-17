@@ -105,8 +105,7 @@
     tblVwCategory.hidden = YES;
     tblStores.hidden = YES;
     mainScrollView.hidden = YES;
-    [self createDataToGetStores];
-    
+	
     
 //    mainScrollView.backgroundColor = [UIColor redColor];
 }
@@ -214,6 +213,7 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+	[self performSelector:@selector(createDataToGetStores) withObject:nil afterDelay:0.5];
     NSLog(@"value = %f",appDeleg.myCurrentLocation.coordinate.latitude);
     if(![gCXMPPController isConnected])
     {

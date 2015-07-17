@@ -300,9 +300,17 @@
 //================= Account settings =============
 #define kURLUpdateUsers									@"updateUsers"
 
+
 //================= Preferences============
 #define kURLGetPreferences								@"getPreferences"
 
+
+//================= SHOPPING LIST MODULE =============
+
+#define KURLSerachStoreProducts                     @"serachStoreProducts"
+#define kURLCreateShoppingList                      @"createShoppingList"
+#define kURLGetShoppingList                         @"getShoppingList"
+#define kDeleteShoppingList                         @"deleteShoppingList"
 
 
 

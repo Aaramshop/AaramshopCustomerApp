@@ -56,9 +56,6 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//	[self secView];
-	lblPointsName.text	=	@"";
-
 
 	UIView * secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 52)];
 	secView.backgroundColor = [UIColor whiteColor];
@@ -102,7 +99,7 @@
 	[secView addSubview:lblAmount];
 	[secView addSubview:lblSeprator2];
 	
-
+	return secView;
 }
 
 @end

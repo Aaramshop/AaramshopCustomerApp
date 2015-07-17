@@ -33,6 +33,8 @@
     arrProductList = [[NSMutableArray alloc]init];
     [self setNavigationBar];
     
+    self.tabBarController.tabBar.hidden = YES;
+    
     tblView.backgroundColor = [UIColor whiteColor];
     
     isStoreSelected = NO; // temp
@@ -42,6 +44,7 @@
     [self initializeData];
 
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
