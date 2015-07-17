@@ -9,11 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "ShoppingListDetailCell.h"
 
-@interface ShoppingListDetailViewController : UIViewController<ProductCellDelegate>
+@interface ShoppingListDetailViewController : UIViewController<ProductCellDelegate,AaramShop_ConnectionManager_Delegate>
 {
 	IBOutlet UITableView *tblView;
     NSMutableArray *arrProductList;
     
     BOOL isStoreSelected;
+    
+    UIRefreshControl *refreshShoppingList;
+    BOOL isLoading;
+
 }
+
+@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+
+@property(nonatomic,strong) NSString *strShoppingListName;
+@property(nonatomic,strong) NSString *strShoppingListID;
+
+
 @end

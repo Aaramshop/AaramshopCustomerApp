@@ -51,7 +51,7 @@
     [refreshShoppingList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = refreshShoppingList;
     
-    [self getInitialShoppingList];
+//    [self getInitialShoppingList];
     
 }
 
@@ -60,6 +60,11 @@
     [super viewWillAppear:YES];
     
     self.tabBarController.tabBar.hidden = NO;
+
+    deletedShoppingListIndex = -1;
+    
+    [self getInitialShoppingList];
+
 }
 
 
@@ -229,13 +234,18 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //[self navigateToShoppingListDetailScreen:indexPath.row];
+    [self navigateToShoppingListDetailScreen:indexPath.row];
 }
 
 
 -(void)navigateToShoppingListDetailScreen:(NSInteger)index
 {
     ShoppingListDetailViewController *shoppingListDetail = (ShoppingListDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListDetail"];
+    
+    
+    ShoppingListModel *shoppingListModel = [arrShoppingList objectAtIndex:index];
+    shoppingListDetail.strShoppingListID = shoppingListModel.shoppingListId;
+    shoppingListDetail.strShoppingListName = shoppingListModel.shoppingListName;
     
     [self.navigationController pushViewController:shoppingListDetail animated:YES];
 }
@@ -295,7 +305,7 @@
         return;
     }
     
-    [aaramShop_ConnectionManager getDataForFunction:kDeleteShoppingList withInput:aDict withCurrentTask:TASK_TO_DELETE_SHOPPING_LIST andDelegate:self ];
+    [aaramShop_ConnectionManager getDataForFunction:kURLDeleteShoppingList withInput:aDict withCurrentTask:TASK_TO_DELETE_SHOPPING_LIST andDelegate:self ];
 }
 
 
@@ -328,13 +338,7 @@
             
             if ([[responseObject objectForKey:kstatus] intValue] == 1)
             {
-//                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-//                
-//                [self.navigationController popViewControllerAnimated:YES];
-                
-                
                 [self parseResponseData:responseObject];
-                
             }
             else
             {
@@ -347,10 +351,10 @@
             
             if ([[responseObject objectForKey:kstatus] intValue] == 1)
             {
-//                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-//                
-//                [self.navigationController popViewControllerAnimated:YES];
+                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
                 
+                [arrShoppingList removeObjectAtIndex:deletedShoppingListIndex];
+                [tblView reloadData];
             }
             else
             {
@@ -468,6 +472,22 @@
 }
 
 
+
+
+#pragma mark - Cell Delegate
+
+-(void)deleteShoppingList:(NSInteger)index
+{
+    deletedShoppingListIndex = index;
+    
+    NSMutableDictionary *dic = [Utils setPredefindValueForWebservice];
+    
+    ShoppingListModel *shoppingListModel = [arrShoppingList objectAtIndex:deletedShoppingListIndex];
+    
+    [dic setObject:shoppingListModel.shoppingListId forKey:@"shoppingListId"];
+    
+    [self callWebServiceToDeleteShoppingList:dic];
+}
 
 
 /*

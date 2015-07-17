@@ -151,12 +151,12 @@
     
     if ([txtShoppingListName.text length]==0)
     {
-        [Utils showAlertView:kAlertTitle message:@"Enter shopping list title." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        [Utils showAlertView:kAlertTitle message:@"Enter Shopping List Title" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
     else if ([strProductID length]==0)
     {
-        [Utils showAlertView:kAlertTitle message:@"Add Product(s)." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        [Utils showAlertView:kAlertTitle message:@"Add Product(s)" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
     else
@@ -319,70 +319,6 @@
     }
     
 }
-
-
-#pragma mark - Search Bar Delegates
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    return YES;
-}
-
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-    [self doSearch];
-    [searchBar resignFirstResponder];
-}
-
-//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-//{
-//    return YES;
-//}
-//
-//- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-//{
-//    // called only once
-//}
-//
-//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-//{
-//    [searchBar resignFirstResponder];
-//}
-//
-//
-//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-//{
-//    if ([searchText length]==0)
-//    {
-//        isSearching =NO;
-//        [arrCountryDisplaylist removeAllObjects];
-//        [tblCountryList reloadData];
-//        return;
-//    }
-//    
-//    strSearchTxt = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//    isSearching=YES;
-//    if ([strSearchTxt length]>0)
-//    {
-//        [arrCountryDisplaylist removeAllObjects];
-//        [tblCountryList reloadData];
-//        [self filterContentForSearchText:strSearchTxt];
-//        [tblCountryList reloadData];
-//    }
-//}
-//
-//
-//
-//- (void)filterContentForSearchText:(NSString*)searchText {
-//    NSPredicate *resultPredicate;
-//    resultPredicate = [NSPredicate
-//                       predicateWithFormat:@"SELF['CountryName'] contains[cd] %@",
-//                       searchText];
-//    
-//    [arrCountryDisplaylist  addObjectsFromArray:[arrCountryList filteredArrayUsingPredicate:resultPredicate]] ;
-//}
-
 
 
 -(void)doSearch

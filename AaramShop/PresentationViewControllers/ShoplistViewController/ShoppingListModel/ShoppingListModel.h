@@ -12,8 +12,8 @@
 
 @property(nonatomic,strong) NSString * creationDate;
 @property(nonatomic,strong) NSString * reminderDate;
-@property(nonatomic,strong) NSString * sharedBy; // temp // user model here
-@property(nonatomic,strong) NSString * sharedWith; // temp // user model here
+//@property(nonatomic,strong) NSString * sharedBy; // temp // user model here
+//@property(nonatomic,strong) NSString * sharedWith; // temp // user model here
 @property(nonatomic,strong) NSString * shoppingListId;
 @property(nonatomic,strong) NSString * shoppingListName;
 @property(nonatomic,strong) NSString * totalItems;

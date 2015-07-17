@@ -9,20 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "ShoppingListModel.h"
 
-@protocol ShoppingListDelegate <NSObject>
+@protocol ShoppingListCellDelegate <NSObject>
 
--(void)deleteShoppingList:(NSIndexPath *)indexPath;
+-(void)deleteShoppingList:(NSInteger)index;
 @end
 
 @interface ShoppingListCell : UITableViewCell
 {
 	__weak IBOutlet UILabel *lblTitle;
 	__weak IBOutlet UILabel *lblQuantity;
-	__weak IBOutlet UILabel *lblTime;
+    __weak IBOutlet UIButton *btnTime;
 	__weak IBOutlet UIButton *btnShare;
 }
 
-@property(nonatomic,weak) id <ShoppingListDelegate>delegate;
+@property(nonatomic,weak) id <ShoppingListCellDelegate>delegate;
 @property(nonatomic,strong) NSIndexPath *indexPath;
 
 -(void)updateCell:(ShoppingListModel *)shoppingListModel;
