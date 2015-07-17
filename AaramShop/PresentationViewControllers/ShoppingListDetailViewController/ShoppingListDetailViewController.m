@@ -62,7 +62,7 @@
     
     
     isStoreSelected = NO; // temp
-    isStoreSelected = YES; // temp
+//    isStoreSelected = YES; // temp
 
 //    [self getProductsInitialList];
 
@@ -291,14 +291,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (isStoreSelected==YES)
-    {
-        return 0;
-    }
-    else
-    {
-        return arrProductList.count;
-    }
+    return arrProductList.count;
 
     
 //    switch (section)
