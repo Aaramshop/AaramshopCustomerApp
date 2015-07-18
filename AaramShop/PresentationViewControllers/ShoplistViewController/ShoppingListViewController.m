@@ -311,14 +311,12 @@
 
 -(void) didFailWithError:(NSError *)error
 {
-    {
-        isLoading = NO;
-        [self showFooterLoadMoreActivityIndicator:NO];
-        [refreshShoppingList endRefreshing];
-        
-        [AppManager stopStatusbarActivityIndicator];
-        [aaramShop_ConnectionManager failureBlockCalled:error];
-    }
+    isLoading = NO;
+    [self showFooterLoadMoreActivityIndicator:NO];
+    [refreshShoppingList endRefreshing];
+    
+    [AppManager stopStatusbarActivityIndicator];
+    [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 
 

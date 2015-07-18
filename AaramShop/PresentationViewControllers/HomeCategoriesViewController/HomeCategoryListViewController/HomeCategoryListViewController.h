@@ -10,7 +10,9 @@
 #import "HomeCategoryListCell.h"
 #import "SWTableViewCell.h"
 #import "HomeSecondViewController.h"
-#import "HomeCategoriesModel.h"
+//#import "HomeCategoriesModel.h"
+
+#import "StoreModel.h"
 
 @interface HomeCategoryListViewController : UIViewController<SWTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -22,7 +24,11 @@
     UITableView *tblStores;
     
 }
-@property(nonatomic,strong) HomeCategoriesModel *homeCategoriesModel;
+
+@property(nonatomic,strong) StoreModel *storeModel;
+
+
+//@property(nonatomic,strong) HomeCategoriesModel *homeCategoriesModel;
 //@property(nonatomic,strong) NSMutableArray *arrHomeStore;
 //@property(nonatomic,strong) NSMutableArray *arrRecommendedStore;
 //@property(nonatomic,strong) NSMutableArray *arrShoppingStore;

@@ -12,6 +12,7 @@
 #import "ShoppingListCalenderViewController.h"
 #import "CartViewController.h"
 #import "ProductsModel.h"
+#import "ShoppingListChooseStoreViewController.h"
 
 
 #define kTableHeader1Height    40
@@ -481,6 +482,10 @@
 
 -(IBAction)actionChooseStore:(id)sender
 {
+    
+    ShoppingListChooseStoreViewController *shoppingListChooseStoreView = (ShoppingListChooseStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListChooseStoreView"];
+    
+    [self.navigationController pushViewController:shoppingListChooseStoreView animated:YES];
     
 }
 

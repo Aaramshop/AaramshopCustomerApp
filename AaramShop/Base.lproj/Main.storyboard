@@ -150,6 +150,11 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="RocketDinerCondensed_0.otf">
             <string>RocketDiner-CondensedRegular</string>
@@ -1339,7 +1344,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
         <!--Shopping List Choose Store View Controller-->
         <scene sceneID="qFv-HL-cMS">
             <objects>
-                <viewController id="uDR-90-9Ga" customClass="ShoppingListChooseStoreViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingListChooseStoreView" id="uDR-90-9Ga" customClass="ShoppingListChooseStoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MvP-Xs-u8E"/>
                         <viewControllerLayoutGuide type="bottom" id="fbi-he-jj4"/>
@@ -1349,7 +1354,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bqQ-y9-rTb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="uDR-90-9Ga" id="NyS-l0-gE2"/>
@@ -1359,9 +1364,9 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bqQ-y9-rTb" firstAttribute="height" secondItem="fWV-Qn-jzu" secondAttribute="height" id="Ghb-HD-iQF"/>
+                            <constraint firstItem="fbi-he-jj4" firstAttribute="top" secondItem="bqQ-y9-rTb" secondAttribute="bottom" id="Cb9-US-Taa"/>
                             <constraint firstAttribute="centerX" secondItem="bqQ-y9-rTb" secondAttribute="centerX" id="NXp-vJ-oyB"/>
-                            <constraint firstAttribute="centerY" secondItem="bqQ-y9-rTb" secondAttribute="centerY" id="WJT-3m-wYY"/>
+                            <constraint firstItem="bqQ-y9-rTb" firstAttribute="top" secondItem="MvP-Xs-u8E" secondAttribute="bottom" id="mDv-Hq-yle"/>
                             <constraint firstItem="bqQ-y9-rTb" firstAttribute="width" secondItem="fWV-Qn-jzu" secondAttribute="width" id="tNl-FW-nQC"/>
                         </constraints>
                     </view>
@@ -4915,9 +4920,222 @@ It will be used only for verification purposes.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FOE-AS-WJr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="90" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="FOE-AS-WJr">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeCategoryListCell" rowHeight="100" id="G9V-hU-DVF" customClass="HomeCategoryListCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G9V-hU-DVF" id="6AW-Fd-WeO">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeScreenHomeIconRed.png" translatesAutoresizingMaskIntoConstraints="NO" id="3QC-rT-9tu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="9by-DD-Amw"/>
+                                                        <constraint firstAttribute="height" constant="35" id="oDl-Cj-MeH"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeDetailsDefaultImgae.png" translatesAutoresizingMaskIntoConstraints="NO" id="e6d-Df-zwb" userLabel="Image View - Store image">
+                                                    <rect key="frame" x="8" y="15" width="60" height="60"/>
+                                                    <color key="backgroundColor" red="0.81176477670000002" green="0.51372551919999998" blue="0.16078431900000001" alpha="1" colorSpace="deviceRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="C74-fX-obv"/>
+                                                        <constraint firstAttribute="height" constant="60" id="dYD-tb-mfD"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeChocklateIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="B3V-xp-6T5" userLabel="Image View - Category type icon">
+                                                    <rect key="frame" x="78" y="15" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="JOu-qG-g5k"/>
+                                                        <constraint firstAttribute="width" constant="20" id="KAU-tH-Bpn"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chocolate &amp; sweets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfb-5K-hQV" userLabel="Label - Category Name">
+                                                    <rect key="frame" x="103" y="16" width="178" height="18"/>
+                                                    <color key="backgroundColor" red="0.36269278519999998" green="1" blue="0.31238269169999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="oet-Ih-av1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.24705882352941178" green="0.24705882352941178" blue="0.24705882352941178" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeLockIconOpen.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fuv-zV-7yS" userLabel="Image VIew - Store Status">
+                                                    <rect key="frame" x="287" y="12" width="25" height="25"/>
+                                                    <color key="backgroundColor" red="0.81176477670000002" green="0.51372551919999998" blue="0.16078431900000001" alpha="1" colorSpace="deviceRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="0vw-iF-gpv"/>
+                                                        <constraint firstAttribute="width" constant="25" id="8eX-TS-iYn"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Plaza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PT-qP-55x" userLabel="Label - Store Name">
+                                                    <rect key="frame" x="80" y="39" width="201" height="16"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="dFI-Ca-sJY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBe-EC-kdp" userLabel="View - Rating">
+                                                    <rect key="frame" x="80" y="57" width="160" height="18"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kIt-bT-T1T" userLabel="Image View - Rating 1">
+                                                            <rect key="frame" x="8" y="1" width="15" height="15"/>
+                                                            <color key="backgroundColor" red="0.83177227210000004" green="0.0086834637849999997" blue="0.03487349713" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="T1D-VT-87m"/>
+                                                                <constraint firstAttribute="width" constant="15" id="ntH-7Y-E05"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jMV-V7-2zM" userLabel="Image View - Rating 2">
+                                                            <rect key="frame" x="29" y="1" width="15" height="15"/>
+                                                            <color key="backgroundColor" red="0.83177227210000004" green="0.0086834637849999997" blue="0.03487349713" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="Xao-rS-c1d"/>
+                                                                <constraint firstAttribute="width" constant="15" id="Ye5-kB-qpb"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bwI-pm-G0B" userLabel="Image View - Rating 3">
+                                                            <rect key="frame" x="50" y="1" width="15" height="15"/>
+                                                            <color key="backgroundColor" red="0.83177227210000004" green="0.0086834637849999997" blue="0.03487349713" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="3gM-jA-Ykf"/>
+                                                                <constraint firstAttribute="height" constant="15" id="xQ6-wB-ZdP"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sX3-g2-UNe" userLabel="Image View - Rating 4">
+                                                            <rect key="frame" x="71" y="1" width="15" height="15"/>
+                                                            <color key="backgroundColor" red="0.83177227210000004" green="0.0086834637849999997" blue="0.03487349713" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="Rzr-3C-Wpn"/>
+                                                                <constraint firstAttribute="width" constant="15" id="i3n-pu-y6I"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nBM-de-O9K" userLabel="Image View - Rating 5">
+                                                            <rect key="frame" x="92" y="1" width="15" height="15"/>
+                                                            <color key="backgroundColor" red="0.83177227210000004" green="0.0086834637849999997" blue="0.03487349713" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="HJV-hy-fHz"/>
+                                                                <constraint firstAttribute="height" constant="15" id="cV6-Ln-ezc"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.50588235290000005" green="0.50588235290000005" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="sX3-g2-UNe" firstAttribute="top" secondItem="nBe-EC-kdp" secondAttribute="top" constant="1" id="0W2-td-Yla"/>
+                                                        <constraint firstItem="jMV-V7-2zM" firstAttribute="top" secondItem="nBe-EC-kdp" secondAttribute="top" constant="1" id="2g1-Yg-Kzm"/>
+                                                        <constraint firstItem="bwI-pm-G0B" firstAttribute="leading" secondItem="jMV-V7-2zM" secondAttribute="trailing" constant="6" id="3I3-6l-obm"/>
+                                                        <constraint firstItem="nBM-de-O9K" firstAttribute="top" secondItem="nBe-EC-kdp" secondAttribute="top" constant="1" id="Adp-Xg-YAT"/>
+                                                        <constraint firstAttribute="width" constant="160" id="IN6-be-LvT"/>
+                                                        <constraint firstItem="sX3-g2-UNe" firstAttribute="leading" secondItem="bwI-pm-G0B" secondAttribute="trailing" constant="6" id="KGf-Zv-lwx"/>
+                                                        <constraint firstItem="jMV-V7-2zM" firstAttribute="leading" secondItem="kIt-bT-T1T" secondAttribute="trailing" constant="6" id="KnV-NG-6Gg"/>
+                                                        <constraint firstItem="nBM-de-O9K" firstAttribute="leading" secondItem="sX3-g2-UNe" secondAttribute="trailing" constant="6" id="Qnu-ZY-bWe"/>
+                                                        <constraint firstItem="kIt-bT-T1T" firstAttribute="top" secondItem="nBe-EC-kdp" secondAttribute="top" constant="1" id="Wmj-yo-ZOs"/>
+                                                        <constraint firstAttribute="height" constant="18" id="ZqF-xP-nLu"/>
+                                                        <constraint firstItem="bwI-pm-G0B" firstAttribute="top" secondItem="nBe-EC-kdp" secondAttribute="top" constant="1" id="fz4-9s-aJ9"/>
+                                                        <constraint firstItem="kIt-bT-T1T" firstAttribute="leading" secondItem="nBe-EC-kdp" secondAttribute="leading" constant="8" id="url-d0-uvP"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeStarIconActive.png" translatesAutoresizingMaskIntoConstraints="NO" id="2NM-nW-mzQ" userLabel="Image VIew - isFavorite">
+                                                    <rect key="frame" x="287" y="50" width="25" height="25"/>
+                                                    <color key="backgroundColor" red="0.36269278519999998" green="1" blue="0.31238269169999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="9jP-2G-yXf"/>
+                                                        <constraint firstAttribute="width" constant="25" id="cYs-cz-ihT"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEx-IU-uJx" userLabel="Button - Distance">
+                                                    <rect key="frame" x="80" y="78" width="65" height="16"/>
+                                                    <color key="backgroundColor" red="0.81176477670000002" green="0.51372551919999998" blue="0.16078431900000001" alpha="1" colorSpace="deviceRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="65" id="Ooi-qr-0yb"/>
+                                                        <constraint firstAttribute="height" constant="16" id="YfB-h3-Ry9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="500 Km" image="locationIconHome.png">
+                                                        <color key="titleColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NJ-bs-FFl" userLabel="Button - Delivery Type ">
+                                                    <rect key="frame" x="149" y="78" width="80" height="16"/>
+                                                    <color key="backgroundColor" red="0.81176477670000002" green="0.51372551919999998" blue="0.16078431900000001" alpha="1" colorSpace="deviceRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="1hV-oO-GMN"/>
+                                                        <constraint firstAttribute="width" constant="80" id="sMx-DB-ZB6"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Delivers" image="homeStoreDetailsDeleversIcon.png">
+                                                        <color key="titleColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9iA-se-MDa" userLabel="Button - Total Orders">
+                                                    <rect key="frame" x="233" y="78" width="78" height="16"/>
+                                                    <color key="backgroundColor" red="0.81176477670000002" green="0.51372551919999998" blue="0.16078431900000001" alpha="1" colorSpace="deviceRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="78" id="Exx-cD-dbQ"/>
+                                                        <constraint firstAttribute="height" constant="16" id="aby-V9-9iR"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="999 Times" image="homeRupeesIcon.png">
+                                                        <color key="titleColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Fuv-zV-7yS" firstAttribute="top" secondItem="6AW-Fd-WeO" secondAttribute="topMargin" constant="4" id="DDy-3g-kcT"/>
+                                                <constraint firstItem="Fuv-zV-7yS" firstAttribute="leading" secondItem="0PT-qP-55x" secondAttribute="trailing" constant="6" id="F8W-Wd-irM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9iA-se-MDa" secondAttribute="trailing" constant="1" id="KBz-ic-fK1"/>
+                                                <constraint firstItem="B3V-xp-6T5" firstAttribute="leading" secondItem="e6d-Df-zwb" secondAttribute="trailing" constant="10" id="LvC-e9-PoC"/>
+                                                <constraint firstItem="3QC-rT-9tu" firstAttribute="top" secondItem="6AW-Fd-WeO" secondAttribute="topMargin" constant="-8" id="R8t-Nd-y6q"/>
+                                                <constraint firstItem="9iA-se-MDa" firstAttribute="top" secondItem="2NM-nW-mzQ" secondAttribute="bottom" constant="3" id="RWv-m0-UMt"/>
+                                                <constraint firstItem="Fuv-zV-7yS" firstAttribute="leading" secondItem="Vfb-5K-hQV" secondAttribute="trailing" constant="6" id="RgE-KC-f32"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="uEx-IU-uJx" secondAttribute="bottom" constant="-3" id="UfU-N5-ntB"/>
+                                                <constraint firstItem="Fuv-zV-7yS" firstAttribute="trailing" secondItem="6AW-Fd-WeO" secondAttribute="trailingMargin" id="XTl-lY-0SY"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="9iA-se-MDa" secondAttribute="bottom" constant="-3" id="YUh-Sa-Rsl"/>
+                                                <constraint firstItem="e6d-Df-zwb" firstAttribute="top" secondItem="6AW-Fd-WeO" secondAttribute="topMargin" constant="7" id="a9l-Bb-obw"/>
+                                                <constraint firstItem="0PT-qP-55x" firstAttribute="leading" secondItem="e6d-Df-zwb" secondAttribute="trailing" constant="12" id="aKw-Rx-ZLr"/>
+                                                <constraint firstItem="B3V-xp-6T5" firstAttribute="top" secondItem="6AW-Fd-WeO" secondAttribute="topMargin" constant="7" id="bPH-6m-bxw"/>
+                                                <constraint firstItem="2NM-nW-mzQ" firstAttribute="trailing" secondItem="6AW-Fd-WeO" secondAttribute="trailingMargin" id="c9R-Dx-Juu"/>
+                                                <constraint firstItem="0PT-qP-55x" firstAttribute="top" secondItem="B3V-xp-6T5" secondAttribute="bottom" constant="4" id="eSJ-aV-4my"/>
+                                                <constraint firstItem="3QC-rT-9tu" firstAttribute="leading" secondItem="6AW-Fd-WeO" secondAttribute="leadingMargin" constant="-8" id="je2-H7-vuD"/>
+                                                <constraint firstItem="nBe-EC-kdp" firstAttribute="top" secondItem="0PT-qP-55x" secondAttribute="bottom" constant="2" id="kZ6-b9-ZnU"/>
+                                                <constraint firstItem="4NJ-bs-FFl" firstAttribute="leading" secondItem="uEx-IU-uJx" secondAttribute="trailing" constant="4" id="nzf-sc-Oyj"/>
+                                                <constraint firstItem="e6d-Df-zwb" firstAttribute="leading" secondItem="6AW-Fd-WeO" secondAttribute="leadingMargin" id="p9W-Rc-ESA"/>
+                                                <constraint firstItem="nBe-EC-kdp" firstAttribute="leading" secondItem="e6d-Df-zwb" secondAttribute="trailing" constant="12" id="pEj-Dl-tSE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="4NJ-bs-FFl" secondAttribute="bottom" constant="-3" id="u2C-37-NdZ"/>
+                                                <constraint firstItem="Vfb-5K-hQV" firstAttribute="leading" secondItem="B3V-xp-6T5" secondAttribute="trailing" constant="5" id="uJh-Fl-nbs"/>
+                                                <constraint firstItem="Vfb-5K-hQV" firstAttribute="top" secondItem="6AW-Fd-WeO" secondAttribute="topMargin" constant="8" id="ygY-sY-SIV"/>
+                                                <constraint firstItem="9iA-se-MDa" firstAttribute="leading" secondItem="4NJ-bs-FFl" secondAttribute="trailing" constant="4" id="zRE-MA-rbX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnDeliveryType" destination="4NJ-bs-FFl" id="wg8-tu-jRw"/>
+                                            <outlet property="btnDistance" destination="uEx-IU-uJx" id="WPA-1E-L6c"/>
+                                            <outlet property="btnTotalOrders" destination="9iA-se-MDa" id="rKL-1T-pcu"/>
+                                            <outlet property="imgCategoryTypeIcon" destination="B3V-xp-6T5" id="QYq-0n-ApB"/>
+                                            <outlet property="imgHomeIcon" destination="3QC-rT-9tu" id="Y1g-s6-9Ee"/>
+                                            <outlet property="imgIsFavourite" destination="2NM-nW-mzQ" id="fuh-Xy-1oF"/>
+                                            <outlet property="imgRating1" destination="kIt-bT-T1T" id="Z3D-qK-5cb"/>
+                                            <outlet property="imgRating2" destination="jMV-V7-2zM" id="3A4-N9-voj"/>
+                                            <outlet property="imgRating3" destination="bwI-pm-G0B" id="ZiJ-tq-fpR"/>
+                                            <outlet property="imgRating4" destination="sX3-g2-UNe" id="e7L-gq-eVr"/>
+                                            <outlet property="imgRating5" destination="nBM-de-O9K" id="Na5-K8-z0v"/>
+                                            <outlet property="imgStore" destination="e6d-Df-zwb" id="1WL-fc-bEg"/>
+                                            <outlet property="imgStoreStatusIcon" destination="Fuv-zV-7yS" id="vp8-y4-qZA"/>
+                                            <outlet property="lblCategoryName" destination="Vfb-5K-hQV" id="7BN-Au-0No"/>
+                                            <outlet property="lblStoreName" destination="0PT-qP-55x" id="a8n-8B-ObZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5261,14 +5479,21 @@ It will be used only for verification purposes.</string>
         <image name="enterMobileNoBox.png" width="297" height="50"/>
         <image name="existingUserBox.png" width="297" height="48"/>
         <image name="historyScreenOderHistoryIcon.png" width="180" height="180"/>
+        <image name="homeChocklateIcon.png" width="20" height="20"/>
         <image name="homeCostomerImage.png" width="320" height="568"/>
         <image name="homeDetailStoreBox.png" width="271" height="136"/>
+        <image name="homeDetailsDefaultImgae.png" width="60" height="60"/>
+        <image name="homeLockIconOpen.png" width="25" height="25"/>
+        <image name="homeRupeesIcon.png" width="17" height="17"/>
+        <image name="homeScreenHomeIconRed.png" width="35" height="35"/>
+        <image name="homeStarIconActive.png" width="25" height="25"/>
         <image name="homeStoreDetailsDeleversIcon.png" width="17" height="17"/>
         <image name="homeStoreEnterHomeStoreBox.png" width="272" height="47"/>
         <image name="homeStoreIdBox.png" width="271" height="46"/>
         <image name="homeStoreQuestionMarkIcon.png" width="17" height="17"/>
         <image name="indianFlag.png" width="23" height="15"/>
         <image name="locationIcon.png" width="20" height="20"/>
+        <image name="locationIconHome.png" width="15" height="15"/>
         <image name="locationIconRed.png" width="15" height="15"/>
         <image name="locationPopupCancelBox.png" width="132" height="41"/>
         <image name="locationPopupOp1.png" width="81" height="34"/>

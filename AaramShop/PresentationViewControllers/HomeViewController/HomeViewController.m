@@ -229,7 +229,9 @@
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     
-
+//        [dict setObject:@"0.0" forKey:kLatitude]; // temp
+//        [dict setObject:@"0.0" forKey:kLongitude]; // temp
+    
 //    [dict setObject:@"28.5136781" forKey:kLatitude]; // temp
 //    [dict setObject:@"77.3769436" forKey:kLongitude]; // temp
     
@@ -239,6 +241,11 @@
 
 -(void)callWebserviceToGetStores:(NSMutableDictionary *)aDict
 {
+    if ([arrCategory count]>0)
+    {
+        return;
+    }
+    
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
     {

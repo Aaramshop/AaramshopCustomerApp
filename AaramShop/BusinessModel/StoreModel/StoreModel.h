@@ -41,5 +41,10 @@
 @property(nonatomic,strong) NSString *store_main_category_name;
 @property(nonatomic,strong) NSString *store_category_id;
 
+@property(nonatomic,strong) NSMutableArray *arrRecommendedStores;
+@property(nonatomic,strong) NSMutableArray *arrFavoriteStores;
+@property(nonatomic,strong) NSMutableArray *arrHomeStores;
+@property(nonatomic,strong) NSMutableArray *arrShoppingStores;
+
 
 @end

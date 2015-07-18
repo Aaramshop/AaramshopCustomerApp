@@ -20,6 +20,7 @@
     IBOutlet UIView *viewSubcategories;
     
     NSMutableArray *arrCategories;
+    
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

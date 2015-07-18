@@ -11,22 +11,46 @@
 #import "SWTableViewCell.h"
 #import "SWCellScrollView.h"
 #import <QuartzCore/QuartzCore.h>
-//#import "HomeCategoriesModel.h"
-#import "HomeStoreModel.h"
+
+#import "StoreModel.h"
+
 
 @interface HomeCategoryListCell : SWTableViewCell<UIGestureRecognizerDelegate>
 {
-    UILabel *lblCategoryName, *lblRestaurantName,*lblDistance,*lblDeliveryType,*lblPriceValue;
-    UIImageView *imgvCategoryIcon,*imgVCategoryTypeIcon,*imgVLocationIcon,*imgVDeliveryIcon,*imgVPriceIcon,*imgVStatusTypeIcon,*imgVHomeIcon,*imgVIsFavourite;
+   
+    __weak IBOutlet UIImageView *imgHomeIcon;
+    __weak IBOutlet UIImageView *imgStore;
+    __weak IBOutlet UIImageView *imgCategoryTypeIcon;
+
+    __weak IBOutlet UILabel *lblCategoryName;
+
+    __weak IBOutlet UIImageView *imgStoreStatusIcon;
+
+    __weak IBOutlet UILabel *lblStoreName;
+
+    __weak IBOutlet UIImageView *imgRating1;
+    __weak IBOutlet UIImageView *imgRating2;
+    __weak IBOutlet UIImageView *imgRating3;
+    __weak IBOutlet UIImageView *imgRating4;
+    __weak IBOutlet UIImageView *imgRating5;
+    
+    
+    __weak IBOutlet UIButton *btnDistance;
+    __weak IBOutlet UIButton *btnDeliveryType;
+    __weak IBOutlet UIButton *btnTotalOrders;
+    
+    
+    __weak IBOutlet UIImageView *imgIsFavourite;
+    
 }
+
 @property(nonatomic, strong) NSIndexPath *indexPath;
 @property(nonatomic,assign) BOOL isRecommendedStore;
 @property(nonatomic) NSInteger selectedCategory;
-//@property(nonatomic,strong) HomeCategoriesModel *objStoreModel;
-//-(void)updateCellWithData:(HomeCategoriesModel  *)objStoreData;
-@property(nonatomic,strong) HomeStoreModel *objStoreModel;
--(void)updateCellWithData:(HomeStoreModel  *)objStoreData;
+@property(nonatomic,strong) StoreModel *objStoreModel;
 
+-(void)updateCellWithData:(StoreModel  *)objStoreData;
 -(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
+
 
 @end

@@ -8,10 +8,15 @@
 
 #import "HomeCategoriesViewController.h"
 #import "HomeCategoryListViewController.h"
-#import "HomeCategoriesModel.h"
-#import "HomeStoreModel.h"
-#import "RecommendedStoreModel.h"
-#import "ShoppingStoreModel.h"
+
+//#import "HomeCategoriesModel.h"
+//#import "HomeStoreModel.h"
+//#import "RecommendedStoreModel.h"
+//#import "ShoppingStoreModel.h"
+
+
+#import "StoreModel.h"
+
 
 
 #define kTagForYSLScrollView    1000
@@ -151,11 +156,11 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
     NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:[arrCategories count]];
 
-    for (HomeCategoriesModel *homeCategoriesModel in arrCategories)
+    for (StoreModel *storeModel in arrCategories)
     {
         HomeCategoryListViewController *homeCategoryListView = [sb instantiateViewControllerWithIdentifier:@"HomeCategoryListView"];
-        homeCategoryListView.title = homeCategoriesModel.store_main_category_name;
-        homeCategoryListView.homeCategoriesModel = homeCategoriesModel;
+        homeCategoryListView.title = storeModel.store_main_category_name;
+        homeCategoryListView.storeModel = storeModel;
         
         [viewControllers addObject:homeCategoryListView];
 
@@ -269,97 +274,235 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 -(void)parseStoreData:(NSMutableDictionary *)responseObject
 {
-    NSArray *arrTempCategories = [responseObject objectForKey:@"categories"];
-
-    for (NSDictionary *dict in arrTempCategories)
-    {
-        HomeCategoriesModel *homeCategoriesModel = [[HomeCategoriesModel alloc]init];
+    NSArray *categories = [responseObject objectForKey:@"categories"];
+    
+    for (NSDictionary *dict in categories) {
         
-        homeCategoriesModel.store_main_category_banner_1 = [[dict objectForKey:kStore_main_category_banner_1]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        homeCategoriesModel.store_main_category_banner_2 = [[dict objectForKey:kStore_main_category_banner_2]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
-        homeCategoriesModel.store_main_category_id = [dict objectForKey:kStore_main_category_id];
-        homeCategoriesModel.store_main_category_name = [dict objectForKey:kStore_main_category_name];
+        StoreModel *objStoreModel = [[StoreModel alloc]init];
+        objStoreModel.store_main_category_banner_1 = [NSString stringWithFormat:@"%@",[[dict objectForKey:kStore_main_category_banner_1]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
         
-        NSArray *arrTempHomeStores = [dict objectForKey:@"home_stores"];
-        for (NSDictionary *dict in arrTempHomeStores)
-        {
-            HomeStoreModel *homeStoreModel = [[HomeStoreModel alloc]init];
-            homeStoreModel.chat_username = [dict objectForKey:@"chat_username"];
-            homeStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
-            homeStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
-            homeStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
-            homeStoreModel.is_open = [dict objectForKey:@"is_open"];
-            homeStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
-            homeStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
-            homeStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
-            homeStoreModel.store_id = [dict objectForKey:@"store_id"];
-            homeStoreModel.store_image = [dict objectForKey:@"store_image"];
-            homeStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
-            homeStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
-            homeStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
-            homeStoreModel.store_name = [dict objectForKey:@"store_name"];
-            homeStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
-            homeStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
-            
-            [homeCategoriesModel.arrHome_stores addObject:homeStoreModel];
-        }
+        objStoreModel.store_main_category_banner_2 = [NSString stringWithFormat:@"%@",[[dict objectForKey:kStore_main_category_banner_2]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
+        objStoreModel.store_main_category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_main_category_id]];
+        objStoreModel.store_main_category_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_main_category_name]];
         
         NSArray *arrTempRecomendedStores = [dict objectForKey:@"recommended_stores"];
-        for (NSDictionary *dict in arrTempRecomendedStores)
+        NSArray *arrTempHomeStores = [dict objectForKey:@"home_stores"];
+        NSArray *arrTempShoppingStores = [dict objectForKey:@"shopping_store"];
+        
+        
+        if (!objStoreModel.arrRecommendedStores)
         {
-            RecommendedStoreModel *recommendedStoreModel = [[RecommendedStoreModel alloc]init];
-            recommendedStoreModel.chat_username = [dict objectForKey:@"chat_username"];
-            recommendedStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
-            recommendedStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
-            recommendedStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
-            recommendedStoreModel.is_open = [dict objectForKey:@"is_open"];
-            recommendedStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
-            recommendedStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
-            recommendedStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
-            recommendedStoreModel.store_id = [dict objectForKey:@"store_id"];
-            recommendedStoreModel.store_image = [dict objectForKey:@"store_image"];
-            recommendedStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
-            recommendedStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
-            recommendedStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
-            recommendedStoreModel.store_name = [dict objectForKey:@"store_name"];
-            recommendedStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
-            recommendedStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
-            
-            [homeCategoriesModel.arrRecommended_stores addObject:recommendedStoreModel];
+            objStoreModel.arrRecommendedStores = [[NSMutableArray alloc]init];
         }
         
-        NSArray *arrTempshoppingStores = [dict objectForKey:@"shopping_store"];
-        for (NSDictionary *dict in arrTempshoppingStores)
+        if (!objStoreModel.arrFavoriteStores)
         {
-            ShoppingStoreModel *shoppingStoreModel = [[ShoppingStoreModel alloc]init];
-            shoppingStoreModel.chat_username = [dict objectForKey:@"chat_username"];
-            shoppingStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
-            shoppingStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
-            shoppingStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
-            shoppingStoreModel.is_open = [dict objectForKey:@"is_open"];
-            shoppingStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
-            shoppingStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
-            shoppingStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
-            shoppingStoreModel.store_id = [dict objectForKey:@"store_id"];
-            shoppingStoreModel.store_image = [dict objectForKey:@"store_image"];
-            shoppingStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
-            shoppingStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
-            shoppingStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
-            shoppingStoreModel.store_name = [dict objectForKey:@"store_name"];
-            shoppingStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
-            shoppingStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
-            
-            [homeCategoriesModel.arrShopping_store addObject:shoppingStoreModel];
+            objStoreModel.arrFavoriteStores = [[NSMutableArray alloc]init];
         }
         
-        [arrCategories addObject:homeCategoriesModel];
+        if (!objStoreModel.arrHomeStores)
+        {
+            objStoreModel.arrHomeStores = [[NSMutableArray alloc]init];
+        }
+        
+        if (!objStoreModel.arrShoppingStores)
+        {
+            objStoreModel.arrShoppingStores = [[NSMutableArray alloc]init];
+        }
+        
+
+        
+        for (NSDictionary *dictRecommended in arrTempRecomendedStores) {
+            
+            StoreModel *objStore = [[StoreModel alloc]init];
+            objStore.chat_username = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kChat_username]];
+            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kHome_delivery]];
+            objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_favorite]];
+            objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_home_store]];
+            objStore.is_open = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_open]];
+            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_name]];
+            objStore.store_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_id]];
+            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_latitude]];
+            objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_longitude]];
+            objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_mobile]];
+            objStore.store_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_name]];
+            objStore.store_rating = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_rating]];
+            objStore.total_orders = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kTotal_orders]];
+            objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_id]];
+            
+            [objStoreModel.arrRecommendedStores addObject:objStore];
+        }
+        for (NSDictionary *dictHome in arrTempHomeStores) {
+            
+            StoreModel *objStore = [[StoreModel alloc]init];
+            objStore.chat_username = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kChat_username]];
+            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kHome_delivery]];
+            objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_favorite]];
+            objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_home_store]];
+            objStore.is_open = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_open]];
+            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_name]];
+            objStore.store_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_id]];
+            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_latitude]];
+            objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_longitude]];
+            objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_mobile]];
+            objStore.store_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_name]];
+            objStore.store_rating = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_rating]];
+            objStore.total_orders = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kTotal_orders]];
+            objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_id]];
+            
+            [objStoreModel.arrHomeStores addObject:objStore];
+        }
+        
+        for (NSDictionary *dictShopping in arrTempShoppingStores) {
+            
+            StoreModel *objStore = [[StoreModel alloc]init];
+            objStore.chat_username = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kChat_username]];
+            objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kHome_delivery]];
+            objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_favorite]];
+            objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_home_store]];
+            objStore.is_open = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_open]];
+            objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_name]];
+            objStore.store_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_id]];
+            objStore.store_image = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_latitude]];
+            objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_longitude]];
+            objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_mobile]];
+            objStore.store_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_name]];
+            objStore.store_rating = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_rating]];
+            objStore.total_orders = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kTotal_orders]];
+            objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_id]];
+            
+            [objStoreModel.arrShoppingStores addObject:objStore];
+        }
+        
+        [arrCategories addObject:objStoreModel];
     }
+    
+//    objCategoryVwController = (CategoryViewController *) [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"categoryScreen"];
+//    
+//    objCategoryVwController.delegate = self;
+//    
+//    objCategoryVwController.arrCategory  = [[NSMutableArray alloc]init];
+//    [objCategoryVwController.arrCategory addObjectsFromArray:arrCategory];
+//    
+//    tblVwCategory.hidden = NO;
+//    tblStores.hidden = NO;
+//    mainScrollView.hidden = NO;
+//    
+//    [tblVwCategory reloadData];
+//    if (arrCategory.count>0 && isOffEffect) {
+//        [self setViewForRecomendedCells];
+//    }
+//    [tblStores reloadData];
+    
     
     [collectionMaster reloadData];
     [self setupViewDesign];
+
 }
+
+
+
+//-(void)parseStoreData:(NSMutableDictionary *)responseObject
+//{
+//    NSArray *arrTempCategories = [responseObject objectForKey:@"categories"];
+//
+//    for (NSDictionary *dict in arrTempCategories)
+//    {
+//        HomeCategoriesModel *homeCategoriesModel = [[HomeCategoriesModel alloc]init];
+//        
+//        homeCategoriesModel.store_main_category_banner_1 = [[dict objectForKey:kStore_main_category_banner_1]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        homeCategoriesModel.store_main_category_banner_2 = [[dict objectForKey:kStore_main_category_banner_2]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//
+//        homeCategoriesModel.store_main_category_id = [dict objectForKey:kStore_main_category_id];
+//        homeCategoriesModel.store_main_category_name = [dict objectForKey:kStore_main_category_name];
+//        
+//        
+//        NSArray *arrTempHomeStores = [dict objectForKey:@"home_stores"];
+//        for (NSDictionary *dict in arrTempHomeStores)
+//        {
+//            HomeStoreModel *homeStoreModel = [[HomeStoreModel alloc]init];
+//            homeStoreModel.chat_username = [dict objectForKey:@"chat_username"];
+//            homeStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
+//            homeStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
+//            homeStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
+//            homeStoreModel.is_open = [dict objectForKey:@"is_open"];
+//            homeStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
+//            homeStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
+//            homeStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
+//            homeStoreModel.store_id = [dict objectForKey:@"store_id"];
+//            homeStoreModel.store_image = [dict objectForKey:@"store_image"];
+//            homeStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
+//            homeStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
+//            homeStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
+//            homeStoreModel.store_name = [dict objectForKey:@"store_name"];
+//            homeStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
+//            homeStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
+//            
+//            [homeCategoriesModel.arrHome_stores addObject:homeStoreModel];
+//        }
+//        
+//        NSArray *arrTempRecomendedStores = [dict objectForKey:@"recommended_stores"];
+//        for (NSDictionary *dict in arrTempRecomendedStores)
+//        {
+//            RecommendedStoreModel *recommendedStoreModel = [[RecommendedStoreModel alloc]init];
+//            recommendedStoreModel.chat_username = [dict objectForKey:@"chat_username"];
+//            recommendedStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
+//            recommendedStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
+//            recommendedStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
+//            recommendedStoreModel.is_open = [dict objectForKey:@"is_open"];
+//            recommendedStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
+//            recommendedStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
+//            recommendedStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
+//            recommendedStoreModel.store_id = [dict objectForKey:@"store_id"];
+//            recommendedStoreModel.store_image = [dict objectForKey:@"store_image"];
+//            recommendedStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
+//            recommendedStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
+//            recommendedStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
+//            recommendedStoreModel.store_name = [dict objectForKey:@"store_name"];
+//            recommendedStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
+//            recommendedStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
+//            
+//            [homeCategoriesModel.arrRecommended_stores addObject:recommendedStoreModel];
+//        }
+//        
+//        NSArray *arrTempshoppingStores = [dict objectForKey:@"shopping_store"];
+//        for (NSDictionary *dict in arrTempshoppingStores)
+//        {
+//            ShoppingStoreModel *shoppingStoreModel = [[ShoppingStoreModel alloc]init];
+//            shoppingStoreModel.chat_username = [dict objectForKey:@"chat_username"];
+//            shoppingStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
+//            shoppingStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
+//            shoppingStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
+//            shoppingStoreModel.is_open = [dict objectForKey:@"is_open"];
+//            shoppingStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
+//            shoppingStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
+//            shoppingStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
+//            shoppingStoreModel.store_id = [dict objectForKey:@"store_id"];
+//            shoppingStoreModel.store_image = [dict objectForKey:@"store_image"];
+//            shoppingStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
+//            shoppingStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
+//            shoppingStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
+//            shoppingStoreModel.store_name = [dict objectForKey:@"store_name"];
+//            shoppingStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
+//            shoppingStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
+//            
+//            [homeCategoriesModel.arrShopping_store addObject:shoppingStoreModel];
+//        }
+//        
+//        [arrCategories addObject:homeCategoriesModel];
+//    }
+//    
+//    [collectionMaster reloadData];
+//    [self setupViewDesign];
+//}
 
 
 #pragma mark - UICollectionView Delegate & DataSource Methods
@@ -428,5 +571,157 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 {
     [containerVC scrollMenuViewSelectedIndex:pageIndex];
 }
+
+
+/*
+
+Printing description of responseObject:
+{
+    categories =     (
+                      {
+                          "home_stores" =             (
+                                                       {
+                                                           "chat_username" = 14351391776712;
+                                                           "home_delivery" = 1;
+                                                           "is_favorite" = 0;
+                                                           "is_home_store" = 1;
+                                                           "is_open" = 0;
+                                                           "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+                                                           "store_category_id" = 3;
+                                                           "store_category_name" = Grocery;
+                                                           "store_id" = 9206;
+                                                           "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/S1435139177.png";
+                                                           "store_latitude" = "28.516395";
+                                                           "store_longitude" = "77.372966";
+                                                           "store_mobile" = 8377944952;
+                                                           "store_name" = "Sabka Bazar";
+                                                           "store_rating" = 5;
+                                                           "total_orders" = 7;
+                                                       },
+                                                       {
+                                                           "chat_username" = 14351708254740;
+                                                           "home_delivery" = 0;
+                                                           "is_favorite" = 0;
+                                                           "is_home_store" = 1;
+                                                           "is_open" = 0;
+                                                           "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+                                                           "store_category_id" = 3;
+                                                           "store_category_name" = Grocery;
+                                                           "store_id" = 9212;
+                                                           "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/P1435170825.png";
+                                                           "store_latitude" = "28.516046";
+                                                           "store_longitude" = "77.373550";
+                                                           "store_mobile" = 9582150033;
+                                                           "store_name" = Prateek;
+                                                           "store_rating" = 5;
+                                                           "total_orders" = 3;
+                                                       },
+                                                       {
+                                                           "chat_username" = 14369559578164;
+                                                           "home_delivery" = 1;
+                                                           "is_favorite" = 0;
+                                                           "is_home_store" = 1;
+                                                           "is_open" = 1;
+                                                           "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+                                                           "store_category_id" = 3;
+                                                           "store_category_name" = Grocery;
+                                                           "store_id" = 9267;
+                                                           "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/M1436955957.png";
+                                                           "store_latitude" = "";
+                                                           "store_longitude" = "";
+                                                           "store_mobile" = 8800375554;
+                                                           "store_name" = "Malik Stores ";
+                                                           "store_rating" = 5;
+                                                           "total_orders" = 0;
+                                                       }
+                                                       );
+                          "recommended_stores" =             (
+                                                              {
+                                                                  "chat_username" = 1435156460661;
+                                                                  "home_delivery" = 1;
+                                                                  "is_favorite" = 0;
+                                                                  "is_home_store" = 0;
+                                                                  "is_open" = 1;
+                                                                  "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+                                                                  "store_category_id" = 3;
+                                                                  "store_category_name" = Grocery;
+                                                                  "store_id" = 3706;
+                                                                  "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/";
+                                                                  "store_latitude" = "28.519364";
+                                                                  "store_longitude" = "77.38737";
+                                                                  "store_mobile" = 1204325682;
+                                                                  "store_name" = "Big Shop";
+                                                                  "store_rating" = 5;
+                                                                  "total_orders" = 0;
+                                                              },
+                                                              {
+                                                                  "chat_username" = 14351410003250;
+                                                                  "home_delivery" = 1;
+                                                                  "is_favorite" = 0;
+                                                                  "is_home_store" = 0;
+                                                                  "is_open" = 0;
+                                                                  "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+                                                                  "store_category_id" = 3;
+                                                                  "store_category_name" = Grocery;
+                                                                  "store_id" = 9207;
+                                                                  "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/A1435141000.png";
+                                                                  "store_latitude" = "28.516395";
+                                                                  "store_longitude" = "77.372966";
+                                                                  "store_mobile" = 8744944068;
+                                                                  "store_name" = "Arbab Ahmed Khan";
+                                                                  "store_rating" = 5;
+                                                                  "total_orders" = 0;
+                                                              }
+                                                              );
+                          "shopping_store" =             (
+                                                          {
+                                                              "chat_username" = 14351571438319;
+                                                              "home_delivery" = 1;
+                                                              "is_favorite" = 0;
+                                                              "is_home_store" = 0;
+                                                              "is_open" = 1;
+                                                              "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+                                                              "store_category_id" = 3;
+                                                              "store_category_name" = Grocery;
+                                                              "store_id" = 69;
+                                                              "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/01-30-46894064714.jpg";
+                                                              "store_latitude" = "28.567132";
+                                                              "store_longitude" = "77.19836";
+                                                              "store_mobile" = 1126166277;
+                                                              "store_name" = "City Stores";
+                                                              "store_rating" = 5;
+                                                              "total_orders" = 2;
+                                                          }
+                                                          );
+                          "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/1-Grocery.png";
+                          "store_main_category_banner_2" = "";
+                          "store_main_category_id" = 0;
+                          "store_main_category_name" = "My Stores";
+                      },
+                      {
+                          "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/3-Personal Care.png";
+                          "store_main_category_banner_2" = "";
+                          "store_main_category_id" = 1;
+                          "store_main_category_name" = "Personal Care";
+                      },
+                      {
+                          "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/1-Grocery.png";
+                          "store_main_category_banner_2" = "";
+                          "store_main_category_id" = 3;
+                          "store_main_category_name" = Grocery;
+                      }
+                      );
+    deviceId = 3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0;
+    isValid = 1;
+    message = "Store Category Related Data!";
+    "page_no" = 0;
+    status = 1;
+    userId = 8;
+}
+(lldb) 
+
+
+
+//*/
 
 @end
