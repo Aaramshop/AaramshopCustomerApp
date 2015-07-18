@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ShoppingListDetailCell.h"
+#import "ShoppingListDetailNewCell.h"
 
-@interface ShoppingListDetailViewController : UIViewController<ProductCellDelegate,AaramShop_ConnectionManager_Delegate>
+@interface ShoppingListDetailViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
 	IBOutlet UITableView *tblView;
     NSMutableArray *arrProductList;

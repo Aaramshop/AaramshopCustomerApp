@@ -1289,6 +1289,7 @@
 		6BF1E3311B3005BF0078DD2F /* homeDetailAmountSecondBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BF1E32E1B3005BF0078DD2F /* homeDetailAmountSecondBox.png */; };
 		6BF1E3321B3005BF0078DD2F /* homeDetailAmountSecondBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BF1E32F1B3005BF0078DD2F /* homeDetailAmountSecondBox@2x.png */; };
 		6BF1E3331B3005BF0078DD2F /* homeDetailAmountSecondBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BF1E3301B3005BF0078DD2F /* homeDetailAmountSecondBox@3x.png */; };
+		6BF82D771B5A1B72003828BD /* ShoppingListDetailNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF82D761B5A1B72003828BD /* ShoppingListDetailNewCell.m */; };
 		6BFFF90F1B02133300BB2B62 /* CDRTranslucentSideBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFFF90E1B02133300BB2B62 /* CDRTranslucentSideBar.m */; };
 		6BFFF91F1B02221600BB2B62 /* AccountSettingsViewC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFFF91E1B02221600BB2B62 /* AccountSettingsViewC.m */; };
 		6BFFF9231B02228800BB2B62 /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFFF9221B02228800BB2B62 /* CartViewController.m */; };
@@ -2990,6 +2991,8 @@
 		6BF1E32E1B3005BF0078DD2F /* homeDetailAmountSecondBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeDetailAmountSecondBox.png; sourceTree = "<group>"; };
 		6BF1E32F1B3005BF0078DD2F /* homeDetailAmountSecondBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDetailAmountSecondBox@2x.png"; sourceTree = "<group>"; };
 		6BF1E3301B3005BF0078DD2F /* homeDetailAmountSecondBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDetailAmountSecondBox@3x.png"; sourceTree = "<group>"; };
+		6BF82D751B5A1B72003828BD /* ShoppingListDetailNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListDetailNewCell.h; sourceTree = "<group>"; };
+		6BF82D761B5A1B72003828BD /* ShoppingListDetailNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListDetailNewCell.m; sourceTree = "<group>"; };
 		6BFFF90D1B02133300BB2B62 /* CDRTranslucentSideBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDRTranslucentSideBar.h; sourceTree = "<group>"; };
 		6BFFF90E1B02133300BB2B62 /* CDRTranslucentSideBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDRTranslucentSideBar.m; sourceTree = "<group>"; };
 		6BFFF91D1B02221600BB2B62 /* AccountSettingsViewC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewC.h; sourceTree = "<group>"; };
@@ -5415,10 +5418,8 @@
 		6B12DC9D1AF2543A00245209 /* PresentationViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-
 				36A69EC31B57C4FA0058EB88 /* WalletViewController */,
 				6BA556C41B578A4E00920DE0 /* SearchViewController */,
-
 				6B35B8C41B56704600807F25 /* ShoppingListCalenderViewController */,
 				36BE5A7D1B53C0470079DAE3 /* OrderHistDetailViewCon */,
 				6B83A0B51B53D9AA00A00520 /* ShoppingListShareViewController */,
@@ -5659,6 +5660,7 @@
 		6B5C0FA61B53B681003C217C /* ShoppingListDetailViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6BF82D741B5A1B5B003828BD /* ShoppingListDetailNewCell */,
 				6B5C0FA71B53B681003C217C /* ShoppingListDetailCell */,
 				6B5C0FA81B53B69F003C217C /* ShoppingListDetailViewController.h */,
 				6B5C0FA91B53B69F003C217C /* ShoppingListDetailViewController.m */,
@@ -6605,6 +6607,15 @@
 				6BE4C8FA1B034BB600EF1EDB /* doneBtn@3x.png */,
 			);
 			path = LocationScreenImages;
+			sourceTree = "<group>";
+		};
+		6BF82D741B5A1B5B003828BD /* ShoppingListDetailNewCell */ = {
+			isa = PBXGroup;
+			children = (
+				6BF82D751B5A1B72003828BD /* ShoppingListDetailNewCell.h */,
+				6BF82D761B5A1B72003828BD /* ShoppingListDetailNewCell.m */,
+			);
+			path = ShoppingListDetailNewCell;
 			sourceTree = "<group>";
 		};
 		6BFFF90C1B02133300BB2B62 /* SideBarViewController */ = {
@@ -7998,6 +8009,7 @@
 				6B809DA91B31755D00E91673 /* SDWebImageDownloader.m in Sources */,
 				274A5DF51B05C88B009112B5 /* CAnnotation.m in Sources */,
 				274A5CFD1B05C4AA009112B5 /* DDASLLogger.m in Sources */,
+				6BF82D771B5A1B72003828BD /* ShoppingListDetailNewCell.m in Sources */,
 				6B12DC611AF2294D00245209 /* main.m in Sources */,
 				6B1DFC1E1B30495800E5CAE8 /* CustomSearchDisplayController.m in Sources */,
 				6B83A0F41B53EBED00A00520 /* ShoppingListCell.m in Sources */,

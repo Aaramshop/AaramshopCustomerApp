@@ -149,6 +149,7 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="RocketDinerCondensed_0.otf">
             <string>RocketDiner-CondensedRegular</string>
@@ -1086,88 +1087,69 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Ye-jo-WB8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Ye-jo-WB8">
                                 <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailCell" rowHeight="70" id="PTn-NU-T0A" customClass="ShoppingListDetailCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailNewCell" rowHeight="80" id="PTn-NU-T0A" customClass="ShoppingListDetailNewCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PTn-NU-T0A" id="BI6-Tw-rPc">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U5h-8v-Xcj" userLabel="Image View - Product Image">
-                                                    <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                                    <rect key="frame" x="5" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="SNg-VY-4pm"/>
                                                         <constraint firstAttribute="width" constant="60" id="mTA-79-lnl"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDT-pc-IwQ" userLabel="Label - Product name">
-                                                    <rect key="frame" x="73" y="5" width="120" height="60"/>
+                                                    <rect key="frame" x="73" y="10" width="170" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="wOi-JF-bvl"/>
+                                                        <constraint firstAttribute="height" constant="35" id="wOi-JF-bvl"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                     <color key="textColor" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUO-PO-V0a" userLabel="Button - Remove">
-                                                    <rect key="frame" x="200" y="20" width="30" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebo-vt-veE" userLabel="Label - Total Product">
+                                                    <rect key="frame" x="244" y="22" width="70" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="HPk-ce-kEH"/>
-                                                        <constraint firstAttribute="height" constant="30" id="j1O-PE-RJe"/>
-                                                    </constraints>
-                                                    <state key="normal" image="minusIconCircle.png">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="actionRemoveProduct:" destination="PTn-NU-T0A" eventType="touchUpInside" id="MRX-tu-YZB"/>
-                                                    </connections>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebo-vt-veE" userLabel="Label - Counter">
-                                                    <rect key="frame" x="235" y="5" width="40" height="60"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="I48-At-bd1"/>
-                                                        <constraint firstAttribute="width" constant="40" id="dIU-12-EdM"/>
+                                                        <constraint firstAttribute="height" constant="35" id="I48-At-bd1"/>
+                                                        <constraint firstAttribute="width" constant="70" id="dIU-12-EdM"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                     <color key="textColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3W9-qK-3L4" userLabel="Button - Add">
-                                                    <rect key="frame" x="280" y="20" width="30" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tky-n5-vqh" userLabel="Label - Price per unit">
+                                                    <rect key="frame" x="73" y="52" width="170" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="4vH-Wd-Z5v"/>
-                                                        <constraint firstAttribute="width" constant="30" id="Rq0-sJ-U19"/>
+                                                        <constraint firstAttribute="height" constant="18" id="TNz-nV-PeT"/>
+                                                        <constraint firstAttribute="width" constant="170" id="sMS-4u-b3N"/>
                                                     </constraints>
-                                                    <state key="normal" image="addIconCircle.png">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="actionAddProduct:" destination="PTn-NU-T0A" eventType="touchUpInside" id="RDo-Sj-4vU"/>
-                                                    </connections>
-                                                </button>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                    <color key="textColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="U5h-8v-Xcj" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="-3" id="7SQ-Q6-IiO"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="3W9-qK-3L4" secondAttribute="trailing" constant="2" id="Nz3-UR-VZA"/>
-                                                <constraint firstItem="sUO-PO-V0a" firstAttribute="leading" secondItem="qDT-pc-IwQ" secondAttribute="trailing" constant="7" id="RNm-ZQ-hwd"/>
-                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="-3" id="XoE-jQ-xLF"/>
-                                                <constraint firstItem="3W9-qK-3L4" firstAttribute="leading" secondItem="Ebo-vt-veE" secondAttribute="trailing" constant="5" id="b7w-GI-7Zp"/>
-                                                <constraint firstItem="3W9-qK-3L4" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="12" id="d30-c1-sJj"/>
+                                                <constraint firstItem="tky-n5-vqh" firstAttribute="top" secondItem="qDT-pc-IwQ" secondAttribute="bottom" constant="7" id="5cz-af-bXC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Ebo-vt-veE" secondAttribute="trailing" constant="-2" id="7Pc-ez-TxZ"/>
+                                                <constraint firstItem="U5h-8v-Xcj" firstAttribute="topMargin" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="10" id="7SQ-Q6-IiO"/>
+                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="leading" secondItem="qDT-pc-IwQ" secondAttribute="trailing" constant="1" id="AnP-K1-ji4"/>
+                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="topMargin" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="22" id="XoE-jQ-xLF"/>
+                                                <constraint firstItem="tky-n5-vqh" firstAttribute="leading" secondItem="U5h-8v-Xcj" secondAttribute="trailing" constant="8" id="b45-V7-i3I"/>
                                                 <constraint firstItem="qDT-pc-IwQ" firstAttribute="leading" secondItem="U5h-8v-Xcj" secondAttribute="trailing" constant="8" id="eq5-rN-fpn"/>
-                                                <constraint firstItem="sUO-PO-V0a" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="12" id="hbQ-aV-5uw"/>
                                                 <constraint firstItem="U5h-8v-Xcj" firstAttribute="leading" secondItem="BI6-Tw-rPc" secondAttribute="leadingMargin" constant="-3" id="idf-W0-JN8"/>
-                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="leading" secondItem="sUO-PO-V0a" secondAttribute="trailing" constant="5" id="tgB-0b-uNV"/>
-                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="-3" id="vmS-Mz-TL0"/>
+                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="topMargin" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="10" id="vmS-Mz-TL0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="btnAdd" destination="3W9-qK-3L4" id="TWE-g4-CYp"/>
-                                            <outlet property="btnRemove" destination="sUO-PO-V0a" id="h8Y-HG-Swt"/>
                                             <outlet property="imgProduct" destination="U5h-8v-Xcj" id="guT-Pc-LAR"/>
-                                            <outlet property="lblCounter" destination="Ebo-vt-veE" id="Wj8-Ie-sWY"/>
                                             <outlet property="lblProductName" destination="qDT-pc-IwQ" id="B1N-Up-r8X"/>
+                                            <outlet property="lblProductPerUnitPrice" destination="tky-n5-vqh" id="tqW-3q-fWv"/>
+                                            <outlet property="lblTotalProducts" destination="Ebo-vt-veE" id="MwK-jD-NIR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

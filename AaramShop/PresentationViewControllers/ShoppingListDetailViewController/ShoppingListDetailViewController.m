@@ -17,7 +17,7 @@
 #define kTableHeader1Height    40
 #define kTableHeader2Height    70
 #define kTableHeader2ButtonWidhtHeight   44
-#define kTableCellHeight    70
+#define kTableCellHeight    80
 
 
 @interface ShoppingListDetailViewController ()
@@ -328,15 +328,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ShoppingListDetailCell";
-    ShoppingListDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"ShoppingListDetailNewCell";
+    ShoppingListDetailNewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if(cell == nil)
     {
-        cell = [[ShoppingListDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[ShoppingListDetailNewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     	cell.indexPath = indexPath;
-    	cell.delegate = self;
     
     [cell updateCell:[arrProductList objectAtIndex:indexPath.row]];
     
@@ -376,7 +375,7 @@
     
     
     NSString *strRupee = @"\u20B9";
-    NSString *strAmount = @"1500";
+    NSString *strAmount = @"1500"; // temp
     
     //
     UILabel *lblTotalAmountValue = [[UILabel alloc]initWithFrame:CGRectMake((btnDone.frame.origin.x - 120), 0, 100, view.frame.size.height)];
