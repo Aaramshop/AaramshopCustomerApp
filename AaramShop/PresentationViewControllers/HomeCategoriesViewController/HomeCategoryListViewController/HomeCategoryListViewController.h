@@ -10,7 +10,8 @@
 #import "HomeCategoryListCell.h"
 #import "SWTableViewCell.h"
 #import "HomeSecondViewController.h"
-//#import "HomeCategoriesModel.h"
+
+#import "RecommendedStoreCell.h"
 
 #import "StoreModel.h"
 

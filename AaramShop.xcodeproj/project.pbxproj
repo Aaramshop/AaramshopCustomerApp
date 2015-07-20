@@ -928,6 +928,8 @@
 		6B37EAB81B5CE4E400C7A3D8 /* homeStarRedIconHalf.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B37EAB21B5CE4E400C7A3D8 /* homeStarRedIconHalf.png */; };
 		6B37EAB91B5CE4E400C7A3D8 /* homeStarRedIconHalf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B37EAB31B5CE4E400C7A3D8 /* homeStarRedIconHalf@2x.png */; };
 		6B37EABA1B5CE4E400C7A3D8 /* homeStarRedIconHalf@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B37EAB41B5CE4E400C7A3D8 /* homeStarRedIconHalf@3x.png */; };
+		6B37EAC51B5D248E00C7A3D8 /* RecommendedStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B37EAC31B5D248E00C7A3D8 /* RecommendedStoreCell.m */; };
+		6B37EAC61B5D248E00C7A3D8 /* RecommendedStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B37EAC41B5D248E00C7A3D8 /* RecommendedStoreCell.xib */; };
 		6B388E191AFCC31800FF3CF3 /* LocationEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */; };
 		6B5C0FAA1B53B69F003C217C /* ShoppingListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FA91B53B69F003C217C /* ShoppingListDetailViewController.m */; };
 		6B5C0FAD1B53B6C3003C217C /* ShoppingListDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FAC1B53B6C3003C217C /* ShoppingListDetailCell.m */; };
@@ -2544,6 +2546,9 @@
 		6B37EAB21B5CE4E400C7A3D8 /* homeStarRedIconHalf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeStarRedIconHalf.png; sourceTree = "<group>"; };
 		6B37EAB31B5CE4E400C7A3D8 /* homeStarRedIconHalf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeStarRedIconHalf@2x.png"; sourceTree = "<group>"; };
 		6B37EAB41B5CE4E400C7A3D8 /* homeStarRedIconHalf@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeStarRedIconHalf@3x.png"; sourceTree = "<group>"; };
+		6B37EAC21B5D248E00C7A3D8 /* RecommendedStoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedStoreCell.h; sourceTree = "<group>"; };
+		6B37EAC31B5D248E00C7A3D8 /* RecommendedStoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedStoreCell.m; sourceTree = "<group>"; };
+		6B37EAC41B5D248E00C7A3D8 /* RecommendedStoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendedStoreCell.xib; sourceTree = "<group>"; };
 		6B388E171AFCC31800FF3CF3 /* LocationEnterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEnterViewController.h; sourceTree = "<group>"; };
 		6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEnterViewController.m; sourceTree = "<group>"; };
 		6B5C0FA81B53B69F003C217C /* ShoppingListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListDetailViewController.h; sourceTree = "<group>"; };
@@ -5674,6 +5679,16 @@
 			path = star;
 			sourceTree = "<group>";
 		};
+		6B37EABE1B5D245200C7A3D8 /* RecommendedStoreCell */ = {
+			isa = PBXGroup;
+			children = (
+				6B37EAC21B5D248E00C7A3D8 /* RecommendedStoreCell.h */,
+				6B37EAC31B5D248E00C7A3D8 /* RecommendedStoreCell.m */,
+				6B37EAC41B5D248E00C7A3D8 /* RecommendedStoreCell.xib */,
+			);
+			path = RecommendedStoreCell;
+			sourceTree = "<group>";
+		};
 		6B388E161AFCC2FF00FF3CF3 /* LocationEnterViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -6375,6 +6390,7 @@
 		6BD83B811B50F7B200D3F83A /* HomeCategoryListViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6B37EABE1B5D245200C7A3D8 /* RecommendedStoreCell */,
 				6BD83B851B51112F00D3F83A /* HomeCategoryListCell */,
 				6BD83B821B50F7D200D3F83A /* HomeCategoryListViewController.h */,
 				6BD83B831B50F7D200D3F83A /* HomeCategoryListViewController.m */,
@@ -7536,6 +7552,7 @@
 				274A5E001B05C88B009112B5 /* SMChatViewController.xib in Resources */,
 				36C79B7E1B579BD50020D77F /* preferencesLocationAddCircle@3x.png in Resources */,
 				6B12DCF41AF2A53200245209 /* defaultProfilePic@2x.png in Resources */,
+				6B37EAC61B5D248E00C7A3D8 /* RecommendedStoreCell.xib in Resources */,
 				274A5DCF1B05C88B009112B5 /* iconAttach@2x.png in Resources */,
 				6B6098A01B395CAB00277D03 /* bground.jpg in Resources */,
 				27EC67511B0326A5007D126E /* bg1.jpg in Resources */,
@@ -7859,6 +7876,7 @@
 				27BE658D1B020446004FA4B4 /* ShoppingListViewController.m in Sources */,
 				274A5CC81B05C4AA009112B5 /* XMPPvCardTempLabel.m in Sources */,
 				6B1C0B821B04D25B009DD32D /* DPAnnotationView.m in Sources */,
+				6B37EAC51B5D248E00C7A3D8 /* RecommendedStoreCell.m in Sources */,
 				274A5C8C1B05C4AA009112B5 /* XMPPSCRAMSHA1Authentication.m in Sources */,
 				274A5CB31B05C4AA009112B5 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
 				6B5CE4521B39756400CD009E /* PickCollectionViewController.m in Sources */,

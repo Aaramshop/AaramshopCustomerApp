@@ -25,12 +25,15 @@
     // Do any additional setup after loading the view.
     
     arrAllStores = [[NSMutableArray alloc]init];
+    arrRecommendedStores = [[NSMutableArray alloc]init];
     
     if (_storeModel)
     {
         [arrAllStores addObjectsFromArray:_storeModel.arrFavoriteStores];
         [arrAllStores addObjectsFromArray:_storeModel.arrHomeStores];
         [arrAllStores addObjectsFromArray:_storeModel.arrShoppingStores];
+        
+        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
     }
     
     tblView.delegate = self;
@@ -70,7 +73,7 @@
 {
     if (tableView == tblRecommendedStore)
     {
-        return [arrAllStores count];//0;//[arrRecommendedStores count];
+        return [arrRecommendedStores count];
     }
     else
     {
@@ -86,7 +89,7 @@
     }
     else
     {
-        if ([_storeModel.arrRecommendedStores count]>0)
+        if ([arrRecommendedStores count]>0)
         {
             if (isTableExpanded==YES)
             {
@@ -115,7 +118,7 @@
     }
     else
     {
-        if ([_storeModel.arrRecommendedStores count]>0)
+        if ([arrRecommendedStores count]>0)
         {
             
             viewHeader = [[UIView alloc]init];
@@ -195,56 +198,25 @@
     if (tableView == tblRecommendedStore)
     {
         
-        //*
-        
-        static NSString *cellIdentifier = @"HomeCategoryListCell1";
-        
-        HomeCategoryListCell *cell = (HomeCategoryListCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        
-        if (cell == nil) {
-            cell = [[HomeCategoryListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        RecommendedStoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendedStoreCell"];
+        if (!cell)
+        {
+            [tableView registerNib:[UINib nibWithNibName:@"RecommendedStoreCell" bundle:nil] forCellReuseIdentifier:@"RecommendedStoreCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendedStoreCell"];
         }
         
         [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
         
-        
         cell.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
         cell.isRecommendedStore = NO;
         
-        StoreModel *objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
+        StoreModel *objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
         
         cell.indexPath=indexPath;
         cell.delegate=self;
         
         [cell updateCellWithData:objStoreModel];
-        
-       //*/
-        
-        
-        
-        /*
-        static NSString *CellIdentifier = @"Cell";
-        
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        
-        // Configure the cell...
-        
-        cell.textLabel.text = [NSString stringWithFormat:@"index = %ld",indexPath.row];
-        cell.imageView.image = [UIImage imageNamed:@"abkhazia"];
-        //*/
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         return cell;
     }
