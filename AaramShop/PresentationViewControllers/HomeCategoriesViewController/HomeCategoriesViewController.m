@@ -65,6 +65,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     kTableProductsHeight = self.view.frame.size.height - (kCollectionHeight + kTabbarHeight + 2);
 
     viewOverlay.hidden = YES;
+    collectionMaster.hidden = YES;
     
     arrCategories = [[NSMutableArray alloc]init];
 }
@@ -238,6 +239,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     if (![Utils isInternetAvailable])
     {
         viewOverlay.hidden = YES;
+        collectionMaster.hidden = YES;
         [AppManager stopStatusbarActivityIndicator];
         
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
@@ -250,6 +252,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void) didFailWithError:(NSError *)error
 {
     viewOverlay.hidden = YES;
+    collectionMaster.hidden = YES;
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 
@@ -260,11 +263,14 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
             
             viewOverlay.hidden = NO;
+            collectionMaster.hidden = NO;
             [self parseStoreData:responseObject];
         }
         else
         {
             viewOverlay.hidden = YES;
+            collectionMaster.hidden = YES;
+            
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         }
     }

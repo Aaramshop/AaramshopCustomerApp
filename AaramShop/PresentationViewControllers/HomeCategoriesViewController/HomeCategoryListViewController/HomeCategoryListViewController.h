@@ -20,9 +20,10 @@
     
     NSMutableArray *arrAllStores;
     
-    UITableView *tblVwCategory;
-    UITableView *tblStores;
+    UITableView *tblRecommendedStore;
+    NSMutableArray *arrRecommendedStores;
     
+    BOOL isTableExpanded;
 }
 
 @property(nonatomic,strong) StoreModel *storeModel;

@@ -8,9 +8,10 @@
 
 #import "HomeCategoryListViewController.h"
 
-#define kTableParentHeaderTitleHeight     22
-#define kTableParentHeaderDefaultHeight   106
-#define kTableParentCellHeight            100
+#define kTableRecommendedHeaderTitleHeight          23
+#define kTableParentHeaderDefaultHeight             115
+#define kTableParentHeaderExpandedHeight            300 //
+#define kTableParentCellHeight                      100
 
 
 @interface HomeCategoryListViewController ()
@@ -67,30 +68,122 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [arrAllStores count];
+    if (tableView == tblRecommendedStore)
+    {
+        return [arrAllStores count];//0;//[arrRecommendedStores count];
+    }
+    else
+    {
+        return [arrAllStores count];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if ([_storeModel.arrRecommendedStores count]>0)
+    if (tableView==tblRecommendedStore)
     {
-        return kTableParentHeaderTitleHeight + kTableParentHeaderDefaultHeight;
+        return kTableRecommendedHeaderTitleHeight; // text - recommended stores height.
     }
-    return CGFLOAT_MIN;
+    else
+    {
+        if ([_storeModel.arrRecommendedStores count]>0)
+        {
+            if (isTableExpanded==YES)
+            {
+                return kTableParentHeaderExpandedHeight;
+            }
+            return kTableParentHeaderDefaultHeight;
+        }
+        return CGFLOAT_MIN;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *secView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableParentHeaderTitleHeight)];
-    secView.backgroundColor = [UIColor redColor];
-    UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, kTableParentHeaderTitleHeight)];
-    lbl.textColor = [UIColor whiteColor];
-    lbl.font = [UIFont fontWithName:kRobotoMedium size:18];
-    lbl.text = @"Recommended stores";
-    [secView addSubview:lbl];
     
-    return secView;
+    UIView *viewHeader;
+    
+    if (tableView==tblRecommendedStore)
+    {
+        viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableRecommendedHeaderTitleHeight)];
+        viewHeader.backgroundColor = [UIColor redColor];
+        UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, kTableRecommendedHeaderTitleHeight)];
+        lbl.textColor = [UIColor whiteColor];
+        lbl.font = [UIFont fontWithName:kRobotoMedium size:18];
+        lbl.text = @"Recommended stores";
+        [viewHeader addSubview:lbl];
+    }
+    else
+    {
+        if ([_storeModel.arrRecommendedStores count]>0)
+        {
+            
+            viewHeader = [[UIView alloc]init];
+            
+            if (isTableExpanded==NO)
+            {
+                viewHeader.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableParentHeaderDefaultHeight);
+                
+//                tblView.scrollEnabled = YES;
+//                tblRecommendedStore.userInteractionEnabled = NO;
+                
+            }
+            else
+            {
+                viewHeader.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableParentHeaderExpandedHeight);
+                
+//                tblView.scrollEnabled = NO;
+//                tblRecommendedStore.userInteractionEnabled = YES;
+            }
+            
+            
+            tblRecommendedStore = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, viewHeader.frame.size.width, viewHeader.frame.size.height - 40)];
+            
+            tblRecommendedStore.delegate = self;
+            tblRecommendedStore.dataSource = self;
+
+            
+            UIButton *btnExpandCollapse = [UIButton buttonWithType:UIButtonTypeCustom];
+            btnExpandCollapse.frame = CGRectMake(0, (viewHeader.frame.size.height-40), viewHeader.frame.size.width, 40);
+
+            [btnExpandCollapse setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+            [btnExpandCollapse setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+            
+            
+            [btnExpandCollapse addTarget:self action:@selector(btnExpandCollapseClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+            viewHeader.backgroundColor = [UIColor greenColor];
+            tblRecommendedStore.backgroundColor = [UIColor brownColor];
+            btnExpandCollapse.backgroundColor = [UIColor blueColor];
+            
+            
+            [viewHeader addSubview:tblRecommendedStore];
+            [viewHeader addSubview:btnExpandCollapse];
+            
+        }
+        
+    }
+    
+    return viewHeader;
+    
 }
+
+
+-(void)btnExpandCollapseClicked:(UIButton *)sender
+{
+    if (isTableExpanded == YES)
+    {
+        isTableExpanded = NO;
+    }
+    else
+    {
+        isTableExpanded = YES;
+    }
+    
+    [tblView reloadData];
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -99,38 +192,97 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"HomeCategoryListCell";
-    
-    HomeCategoryListCell *cell = (HomeCategoryListCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[HomeCategoryListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
-    
-    cell.delegate=self;
-    
-    StoreModel *objStoreModel = nil;
-    
-    cell.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
+    if (tableView == tblRecommendedStore)
+    {
+        
+        //*
+        
+        static NSString *cellIdentifier = @"HomeCategoryListCell1";
+        
+        HomeCategoryListCell *cell = (HomeCategoryListCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[HomeCategoryListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        
+        [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
+        
+        
+        cell.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
         cell.isRecommendedStore = NO;
-    
-    objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
-
-
-    cell.objStoreModel = objStoreModel;
-    
-    cell.indexPath=indexPath;
-    [cell updateCellWithData:objStoreModel];
-    return cell;
+        
+        StoreModel *objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
+        
+        cell.indexPath=indexPath;
+        cell.delegate=self;
+        
+        [cell updateCellWithData:objStoreModel];
+        
+       //*/
+        
+        
+        
+        /*
+        static NSString *CellIdentifier = @"Cell";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
+        // Configure the cell...
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"index = %ld",indexPath.row];
+        cell.imageView.image = [UIImage imageNamed:@"abkhazia"];
+        //*/
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        return cell;
+    }
+    else
+    {
+        static NSString *cellIdentifier = @"HomeCategoryListCell";
+        
+        HomeCategoryListCell *cell = (HomeCategoryListCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[HomeCategoryListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        
+        [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
+        
+        
+        cell.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
+        cell.isRecommendedStore = NO;
+        
+        StoreModel *objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
+        
+        cell.indexPath=indexPath;
+        cell.delegate=self;
+        
+        [cell updateCellWithData:objStoreModel];
+        return cell;
+    }
     
 }
+
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     /*
      
-     [tableView deselectRowAtIndexPath:indexPath animated:YES];
      HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
      StoreModel *objStoreModel = nil;
      if (mainCategoryIndex != 0)
