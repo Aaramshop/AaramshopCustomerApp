@@ -4,6 +4,9 @@
 #define kRobotoRegular									@"Roboto-Regular"
 #define kRobotoMedium									@"Roboto-Medium"
 
+#define kFontHandSean                                   @"Sean"
+
+
 #pragma mark - Alert titles and Internet alerts
 
 #define kAlertTitle											@"Aaram shop"

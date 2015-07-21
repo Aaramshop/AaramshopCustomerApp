@@ -179,8 +179,8 @@
         viewHeader.backgroundColor = [UIColor redColor];
         UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, kTableRecommendedHeaderTitleHeight)];
         lbl.textColor = [UIColor whiteColor];
-        lbl.font = [UIFont fontWithName:kRobotoMedium size:18];
-        lbl.text = @"Recommended stores";
+        lbl.font = [UIFont fontWithName:kFontHandSean size:14];
+        lbl.text = @"Recommended Stores";
         [viewHeader addSubview:lbl];
     }
     else
