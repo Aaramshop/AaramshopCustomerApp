@@ -37,6 +37,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.navigationController.navigationBarHidden = NO;
+
     [self setUpNavigationBar];
     [self initilizeData];
     
@@ -45,12 +47,28 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    self.sideBar = [Utils createLeftBarWithDelegate:self];
+
+    
     
     appDeleg = APP_DELEGATE;
     [appDeleg findCurrentLocation];
     
     [self createDataToGetStores];
 }
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self performSelector:@selector(createDataToGetStores) withObject:nil afterDelay:0.5];
+    NSLog(@"value = %f",appDeleg.myCurrentLocation.coordinate.latitude);
+    if(![gCXMPPController isConnected])
+    {
+        [gCXMPPController connect];
+    }
+}
+
+
 
 -(void)initilizeData
 {
@@ -143,6 +161,32 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 }
 
+
+-(void)btnMenuClicked
+{
+    [self.sideBar show];
+}
+-(void)btnSearchClicked
+{
+    
+}
+-(void)btnCartClicked
+{
+    
+}
+- (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
+    [self.navigationController pushViewController:viewC animated:YES];
+}
+
+
+- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
+{
+    return YES;
+}
+
+
+
+
 -(void)setupViewDesign
 {
     // SetUp ViewControllers
@@ -195,20 +239,6 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     viewSubcategories.backgroundColor = [UIColor clearColor];
     
     [viewSubcategories addSubview:containerVC.view];
-}
-
-
--(void)btnMenuClicked
-{
-//    [self.sideBar show];
-}
--(void)btnSearchClicked
-{
-    
-}
--(void)btnCartClicked
-{
-    
 }
 
 

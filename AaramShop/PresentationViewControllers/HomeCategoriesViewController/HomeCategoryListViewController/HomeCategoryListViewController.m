@@ -567,7 +567,7 @@
     {
         _storeModel = [[StoreModel alloc]init];
     }
-    
+
     NSArray *arrTempRecomendedStores = [responseObject objectForKey:@"recommended_stores"];
     NSArray *arrTempHomeStores = [responseObject objectForKey:@"home_stores"];
     NSArray *arrTempShoppingStores = [responseObject objectForKey:@"shopping_store"];
@@ -696,7 +696,18 @@
 - (void)refreshTable
 {
     pageno = 0;
-    [self performSelector:@selector(callWebserviceToGetStoresList) withObject:nil afterDelay:1.0];
+//    [self performSelector:@selector(callWebserviceToGetStoresList) withObject:nil afterDelay:1.0]; // temp commented
+
+    // once after pagination done, delete the following code..
+    //*
+     isLoading = NO;
+     [self showFooterLoadMoreActivityIndicator:NO];
+     [refreshStoreList endRefreshing];
+     
+     [AppManager stopStatusbarActivityIndicator];
+
+    //*/
+    
 }
 
 -(void)calledPullUp
@@ -704,7 +715,7 @@
     if(totalNoOfPages>pageno)
     {
         pageno++;
-        [self callWebserviceToGetStoresList];
+//        [self callWebserviceToGetStoresList]; // temp commented
     }
     else
     {

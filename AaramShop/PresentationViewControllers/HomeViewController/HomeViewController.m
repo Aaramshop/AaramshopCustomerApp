@@ -110,11 +110,11 @@
 //    mainScrollView.backgroundColor = [UIColor redColor];
     
     
-    for (NSString *fontFamilyName in [UIFont familyNames]) {
-        for (NSString *fontName in [UIFont fontNamesForFamilyName:fontFamilyName]) {
-            NSLog(@"Family: %@    Font: %@", fontFamilyName, fontName);
-        }
-    }
+//    for (NSString *fontFamilyName in [UIFont familyNames]) {
+//        for (NSString *fontName in [UIFont fontNamesForFamilyName:fontFamilyName]) {
+//            NSLog(@"Family: %@    Font: %@", fontFamilyName, fontName);
+//        }
+//    }
 }
 
 -(void)setViewForRecomendedCells
