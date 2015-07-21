@@ -14,7 +14,7 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    imgStore.layer.cornerRadius = imgStore.frame.size.width/2.0;
+    imgStore.layer.cornerRadius = 5.0;
     imgStore.clipsToBounds=YES;
     
     imgHomeIcon.image = [UIImage imageNamed:@"homeScreenHomeIconRed"];
@@ -78,14 +78,12 @@
     NSString *strStoreImage = [NSString stringWithFormat:@"%@",objStoreData.store_image];
     NSURL *urlStoreImage = [NSURL URLWithString:[strStoreImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    [imgStore sd_setImageWithURL:urlStoreImage placeholderImage:[UIImage imageNamed:@"homeDetailsDefaultImgae.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [imgStore sd_setImageWithURL:urlStoreImage placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
         }
     }];
     
-    
     ////
-    lblCategoryName.text =objStoreData.store_category_name;
     
     
     ////

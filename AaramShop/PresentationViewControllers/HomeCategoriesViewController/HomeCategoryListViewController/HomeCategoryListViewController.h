@@ -17,12 +17,14 @@
 
 @interface HomeCategoryListViewController : UIViewController<SWTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate>
 {
-    __weak IBOutlet UITableView *tblView;
+    __weak IBOutlet UITableView *tblStores;
     
     NSMutableArray *arrAllStores;
     
     UITableView *tblRecommendedStore;
     NSMutableArray *arrRecommendedStores;
+    
+    UIButton *btnExpandCollapse;
     
     BOOL isTableExpanded;
 }

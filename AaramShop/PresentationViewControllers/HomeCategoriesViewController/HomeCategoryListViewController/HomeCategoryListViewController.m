@@ -10,7 +10,7 @@
 
 #define kTableRecommendedHeaderTitleHeight          23
 #define kTableParentHeaderDefaultHeight             115
-#define kTableParentHeaderExpandedHeight            300 //
+#define kTableParentHeaderExpandedHeight            260
 #define kTableParentCellHeight                      100
 
 
@@ -34,10 +34,14 @@
         [arrAllStores addObjectsFromArray:_storeModel.arrShoppingStores];
         
         [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
+        
+        //        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
+        //        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
+        
     }
     
-    tblView.delegate = self;
-    tblView.dataSource = self;
+    tblStores.delegate = self;
+    tblStores.dataSource = self;
 }
 
 
@@ -47,14 +51,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -122,43 +126,50 @@
         {
             
             viewHeader = [[UIView alloc]init];
+            viewHeader.backgroundColor = [UIColor whiteColor];
+            
+            tblRecommendedStore = [[UITableView alloc]init];
+            
+            tblRecommendedStore.bounces = NO;
+            tblRecommendedStore.backgroundColor = [UIColor whiteColor];
+            tblRecommendedStore.delegate = self;
+            tblRecommendedStore.dataSource = self;
+            
+            
+            if (!btnExpandCollapse)
+            {
+                btnExpandCollapse = [UIButton buttonWithType:UIButtonTypeCustom];
+            }
+            
+            
+            ////
+            [btnExpandCollapse setImage:[UIImage imageNamed:@"homeScreenArrowBox.png"] forState:UIControlStateNormal];
+            [btnExpandCollapse setImage:[UIImage imageNamed:@"upArrow.png"] forState:UIControlStateSelected];
+            ////
+            
+            [btnExpandCollapse addTarget:self action:@selector(btnExpandCollapseClicked:) forControlEvents:UIControlEventTouchUpInside];
             
             if (isTableExpanded==NO)
             {
                 viewHeader.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableParentHeaderDefaultHeight);
+                tblRecommendedStore.frame = CGRectMake(0, 0, viewHeader.frame.size.width, viewHeader.frame.size.height - 0);
                 
-//                tblView.scrollEnabled = YES;
-//                tblRecommendedStore.userInteractionEnabled = NO;
-                
+                [btnExpandCollapse setImageEdgeInsets:UIEdgeInsetsMake(30, 0, 0, 0)];
             }
             else
             {
-                viewHeader.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableParentHeaderExpandedHeight);
                 
-//                tblView.scrollEnabled = NO;
-//                tblRecommendedStore.userInteractionEnabled = YES;
+                viewHeader.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableParentHeaderExpandedHeight);
+                tblRecommendedStore.frame = CGRectMake(0, 0, viewHeader.frame.size.width, viewHeader.frame.size.height - 30);
+                
+                [btnExpandCollapse setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 10, 0)];
             }
             
-            
-            tblRecommendedStore = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, viewHeader.frame.size.width, viewHeader.frame.size.height - 40)];
-            
-            tblRecommendedStore.delegate = self;
-            tblRecommendedStore.dataSource = self;
-
-            
-            UIButton *btnExpandCollapse = [UIButton buttonWithType:UIButtonTypeCustom];
-            btnExpandCollapse.frame = CGRectMake(0, (viewHeader.frame.size.height-40), viewHeader.frame.size.width, 40);
-
-            [btnExpandCollapse setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-            [btnExpandCollapse setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+            btnExpandCollapse.frame = CGRectMake(0, (viewHeader.frame.size.height-30), viewHeader.frame.size.width, 40);
             
             
-            [btnExpandCollapse addTarget:self action:@selector(btnExpandCollapseClicked:) forControlEvents:UIControlEventTouchUpInside];
-            
-            
-            viewHeader.backgroundColor = [UIColor greenColor];
-            tblRecommendedStore.backgroundColor = [UIColor brownColor];
-            btnExpandCollapse.backgroundColor = [UIColor blueColor];
+            //            btnExpandCollapse.backgroundColor = [UIColor blueColor];
+            //            btnExpandCollapse.alpha = 0.4;
             
             
             [viewHeader addSubview:tblRecommendedStore];
@@ -178,13 +189,15 @@
     if (isTableExpanded == YES)
     {
         isTableExpanded = NO;
+        btnExpandCollapse.selected = NO;
     }
     else
     {
         isTableExpanded = YES;
+        btnExpandCollapse.selected = YES;
     }
     
-    [tblView reloadData];
+    [tblStores reloadData];
 }
 
 
@@ -207,7 +220,7 @@
         
         [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
         
-        cell.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
+        cell.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
         cell.isRecommendedStore = NO;
         
         StoreModel *objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
@@ -216,7 +229,7 @@
         cell.delegate=self;
         
         [cell updateCellWithData:objStoreModel];
-
+        
         
         return cell;
     }
@@ -252,41 +265,39 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
+    
+    StoreModel *objStoreModel = nil;
+    
+    if (tableView == tblStores)
+    {
+        objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+    }
 
-    /*
-     
-     HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
-     StoreModel *objStoreModel = nil;
-     if (mainCategoryIndex != 0)
-     {
-     if (tableView == tblStores)
-     objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
-     
-     else if (tableView == tblVwCategory)
-     //            objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
-     
-     objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
-     
-     }
-     else
-     {
-     if (tableView == tblStores)
-     //            objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
-     objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
-     
-     else if (tableView == tblVwCategory)
-     //            objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
-     objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
-     
-     }
-     
-     homeSecondVwController.strStore_Id = objStoreModel.store_id;
-     homeSecondVwController.strStoreImage = objStoreModel.store_image;
-     homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
-     [self.navigationController pushViewController:homeSecondVwController animated:YES];
-     
-     //*/
+    homeSecondVwController.strStore_Id = objStoreModel.store_id;
+    homeSecondVwController.strStoreImage = objStoreModel.store_image;
+    homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
+    [self.navigationController pushViewController:homeSecondVwController animated:YES];
+    
 }
+
+
+#pragma mark - Custom Methods for SwipeCell
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    return YES;
+}
+- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
+{
+    return YES;
+}
+
 
 - (NSArray *)leftButtons
 {
@@ -311,6 +322,105 @@
 
 - (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
     [self.navigationController pushViewController:viewC animated:YES];
+}
+
+
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index
+{
+    NSIndexPath *indexPath = nil;
+    BOOL isHomeCell = NO;
+    if([cell isKindOfClass:[HomeCategoryListCell class]])
+    {
+        indexPath= [(UITableView *)tblStores indexPathForCell: cell];
+        isHomeCell = YES;
+    }
+    else
+    {
+        indexPath= [(UITableView *)tblRecommendedStore indexPathForCell: cell];
+        isHomeCell = NO;
+    }
+    StoreModel *objStoreModel = nil;
+    
+    switch (index) {
+        case 0:
+        {
+            if(isHomeCell)
+            {
+                objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
+            }
+            else
+            {
+                objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+            }
+            
+            NSString *mobileNo = objStoreModel.store_mobile;
+            
+            NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",mobileNo]];
+            
+            if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+                [[UIApplication sharedApplication] openURL:phoneUrl];
+            } else
+            {
+                [Utils showAlertView:kAlertTitle message:kAlertCallFacilityNotAvailable delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            }
+            
+        }
+            break;
+        case 1:
+        {
+            if(isHomeCell)
+            {
+                objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
+                
+                AppDelegate *deleg = APP_DELEGATE;
+                SMChatViewController *chatView = nil;
+                chatView = [deleg createChatViewByChatUserNameIfNeeded:objStoreModel.chat_username];
+                chatView.chatWithUser =[NSString stringWithFormat:@"%@@%@",objStoreModel.chat_username,STRChatServerURL];
+                chatView.friendNameId = objStoreModel.store_id;
+                chatView.imageString = objStoreModel.store_image;
+                chatView.userName = objStoreModel.store_name;
+                chatView.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:chatView animated:YES];
+            }
+            else
+            {
+                objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+                
+                AppDelegate *deleg = APP_DELEGATE;
+                SMChatViewController *chatView = nil;
+                chatView = [deleg createChatViewByChatUserNameIfNeeded:objStoreModel.chat_username];
+                chatView.chatWithUser =[NSString stringWithFormat:@"%@@%@",objStoreModel.chat_username,STRChatServerURL];
+                chatView.friendNameId = objStoreModel.store_id;
+                chatView.imageString = objStoreModel.store_image;
+                chatView.userName = objStoreModel.store_name;
+                chatView.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:chatView animated:YES];
+                
+            }
+        }
+            break;
+        case 2:
+        {
+            if(isHomeCell)
+            {
+                objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
+            }
+            else
+            {
+                objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+            }
+            
+            HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
+            homeSecondVwController.strStore_Id = objStoreModel.store_id;
+            homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
+            [self.navigationController pushViewController:homeSecondVwController animated:YES];
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 
