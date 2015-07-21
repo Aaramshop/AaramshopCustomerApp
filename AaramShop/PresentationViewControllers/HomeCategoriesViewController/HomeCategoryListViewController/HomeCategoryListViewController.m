@@ -15,7 +15,14 @@
 
 
 @interface HomeCategoryListViewController ()
+{
+    AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+    int pageno;
+    int totalNoOfPages;
+    
+    AppDelegate *appDeleg;
 
+}
 @end
 
 @implementation HomeCategoryListViewController
@@ -24,8 +31,47 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    arrAllStores = [[NSMutableArray alloc]init];
-    arrRecommendedStores = [[NSMutableArray alloc]init];
+    appDeleg = APP_DELEGATE;
+    [appDeleg findCurrentLocation];
+    
+    
+    totalNoOfPages = 0;
+    pageno = 0;
+    isLoading = NO;
+    
+    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
+    aaramShop_ConnectionManager.delegate = self;
+    
+    tblStores.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    tblStores.bounces = YES;
+    tblStores.tag = 10;
+    self.view.tag = 100;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    UITableViewController *tableViewController = [[UITableViewController alloc] init];
+    tableViewController.tableView = tblStores;
+    refreshStoreList = [[UIRefreshControl alloc] init];
+    [refreshStoreList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    tableViewController.refreshControl = refreshStoreList;
+
+    ////
+    CGRect frame = CGRectZero;
+    frame.size.height = CGFLOAT_MIN;
+    [tblStores setTableHeaderView:[[UIView alloc] initWithFrame:frame]];
+    
+    
+    ////
+    if (!arrAllStores)
+    {
+        arrAllStores = [[NSMutableArray alloc]init];
+    }
+    
+    if (!arrRecommendedStores)
+    {
+        arrRecommendedStores = [[NSMutableArray alloc]init];
+    }
+    
     
     if (_storeModel)
     {
@@ -34,15 +80,32 @@
         [arrAllStores addObjectsFromArray:_storeModel.arrShoppingStores];
         
         [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
-        
-        //        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
-        //        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
-        
     }
     
     tblStores.delegate = self;
     tblStores.dataSource = self;
 }
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    if ([arrAllStores count]==0)
+    {
+//        tblView.hidden = YES;
+        
+        [self callWebserviceToGetStoresList];
+        
+    }
+    else
+    {
+//        tblView.hidden = NO;
+    }
+    
+    
+}
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -220,7 +283,7 @@
         
         [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
         
-        cell.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
+        cell.backgroundColor = [UIColor whiteColor];
         cell.isRecommendedStore = NO;
         
         StoreModel *objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
@@ -421,6 +484,259 @@
         default:
             break;
     }
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark - Call Webservice to get  initial products list
+
+-(void)callWebserviceToGetStoresList
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
+    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+        
+    [dict setObject:_storeModel.store_main_category_id forKey:kCategory_id];
+    
+    
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        
+        isLoading = NO;
+        [refreshStoreList endRefreshing];
+        
+        [self showFooterLoadMoreActivityIndicator:NO];
+        
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kGetStoresfromCategoryIdURL withInput:dict withCurrentTask:TASK_TO_GET_STORES_FROM_CATEGORIES_ID andDelegate:self ];
+}
+
+
+
+- (void)responseReceived:(id)responseObject
+{
+    isLoading = NO;
+    [self showFooterLoadMoreActivityIndicator:NO];
+    [refreshStoreList endRefreshing];
+    
+    [AppManager stopStatusbarActivityIndicator];
+    
+    if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_STORES_FROM_CATEGORIES_ID)
+    {
+        if([[responseObject objectForKey:kstatus] intValue] == 1)
+        {
+            totalNoOfPages = [[responseObject objectForKey:kTotal_page] intValue];
+            [self parseStoreListData:responseObject];
+        }
+    }
+    
+}
+
+
+- (void)didFailWithError:(NSError *)error
+{
+    isLoading = NO;
+    [self showFooterLoadMoreActivityIndicator:NO];
+    [refreshStoreList endRefreshing];
+    
+    [AppManager stopStatusbarActivityIndicator];
+    [aaramShop_ConnectionManager failureBlockCalled:error];
+}
+
+
+#pragma mark - Parse Store List response data
+
+-(void)parseStoreListData:(NSMutableDictionary *)responseObject
+{
+    
+    if (!_storeModel)
+    {
+        _storeModel = [[StoreModel alloc]init];
+    }
+    
+    NSArray *arrTempRecomendedStores = [responseObject objectForKey:@"recommended_stores"];
+    NSArray *arrTempHomeStores = [responseObject objectForKey:@"home_stores"];
+    NSArray *arrTempShoppingStores = [responseObject objectForKey:@"shopping_store"];
+    
+    
+    if (!_storeModel.arrRecommendedStores)
+    {
+        _storeModel.arrRecommendedStores = [[NSMutableArray alloc]init];
+    }
+    
+    if (!_storeModel.arrFavoriteStores)
+    {
+        _storeModel.arrFavoriteStores = [[NSMutableArray alloc]init];
+    }
+    
+    if (!_storeModel.arrHomeStores)
+    {
+        _storeModel.arrHomeStores = [[NSMutableArray alloc]init];
+    }
+    
+    if (!_storeModel.arrShoppingStores)
+    {
+        _storeModel.arrShoppingStores = [[NSMutableArray alloc]init];
+    }
+    
+    
+    
+    for (NSDictionary *dictRecommended in arrTempRecomendedStores) {
+        
+        StoreModel *objStore = [[StoreModel alloc]init];
+        objStore.chat_username = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kChat_username]];
+        objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kHome_delivery]];
+        objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_favorite]];
+        objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_home_store]];
+        objStore.is_open = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_open]];
+        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_id]];
+        objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_name]];
+        objStore.store_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_id]];
+        objStore.store_image = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_latitude]];
+        objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_longitude]];
+        objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_mobile]];
+        objStore.store_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_name]];
+        objStore.store_rating = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_rating]];
+        objStore.total_orders = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kTotal_orders]];
+        
+        [_storeModel.arrRecommendedStores addObject:objStore];
+    }
+    for (NSDictionary *dictHome in arrTempHomeStores) {
+        
+        StoreModel *objStore = [[StoreModel alloc]init];
+        objStore.chat_username = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kChat_username]];
+        objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kHome_delivery]];
+        objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_favorite]];
+        objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_home_store]];
+        objStore.is_open = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_open]];
+        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_name]];
+        objStore.store_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_id]];
+        objStore.store_image = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_latitude]];
+        objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_longitude]];
+        objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_mobile]];
+        objStore.store_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_name]];
+        objStore.store_rating = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_rating]];
+        objStore.total_orders = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kTotal_orders]];
+        objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_id]];
+        
+        [_storeModel.arrHomeStores addObject:objStore];
+    }
+    
+    for (NSDictionary *dictShopping in arrTempShoppingStores) {
+        
+        StoreModel *objStore = [[StoreModel alloc]init];
+        objStore.chat_username = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kChat_username]];
+        objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kHome_delivery]];
+        objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_favorite]];
+        objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_home_store]];
+        objStore.is_open = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_open]];
+        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_name]];
+        objStore.store_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_id]];
+        objStore.store_image = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_latitude]];
+        objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_longitude]];
+        objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_mobile]];
+        objStore.store_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_name]];
+        objStore.store_rating = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_rating]];
+        objStore.total_orders = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kTotal_orders]];
+        objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_id]];
+        
+        [_storeModel.arrShoppingStores addObject:objStore];
+    }
+    
+    
+    if (pageno == 0)
+    {
+        [arrAllStores removeAllObjects];
+        [arrRecommendedStores removeAllObjects];
+    }
+    
+    
+    if (_storeModel)
+    {
+        [arrAllStores addObjectsFromArray:_storeModel.arrFavoriteStores];
+        [arrAllStores addObjectsFromArray:_storeModel.arrHomeStores];
+        [arrAllStores addObjectsFromArray:_storeModel.arrShoppingStores];
+        
+        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
+    }
+    
+    
+    [tblStores reloadData];
+}
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+- (void)refreshTable
+{
+    pageno = 0;
+    [self performSelector:@selector(callWebserviceToGetStoresList) withObject:nil afterDelay:1.0];
+}
+
+-(void)calledPullUp
+{
+    if(totalNoOfPages>pageno)
+    {
+        pageno++;
+        [self callWebserviceToGetStoresList];
+    }
+    else
+    {
+        isLoading = NO;
+        [self showFooterLoadMoreActivityIndicator:NO];
+    }
+}
+
+#pragma mark - to refreshing a view
+
+-(void)showFooterLoadMoreActivityIndicator:(BOOL)show{
+    UIView *view=[tblStores viewWithTag:111112];
+    UIActivityIndicatorView *activity=(UIActivityIndicatorView*)[view viewWithTag:111111];
+    
+    if (show) {
+        [activity startAnimating];
+    }else
+        [activity stopAnimating];
+}
+
+
+#pragma mark - ScrollView Delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height-33 && arrAllStores.count > 0 && scrollView.contentOffset.y>0){
+        if (!isLoading) {
+            isLoading=YES;
+            [self showFooterLoadMoreActivityIndicator:YES];
+            [self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5 ];
+        }
+    }
+    
 }
 
 

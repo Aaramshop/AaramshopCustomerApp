@@ -9,14 +9,7 @@
 #import "HomeCategoriesViewController.h"
 #import "HomeCategoryListViewController.h"
 
-//#import "HomeCategoriesModel.h"
-//#import "HomeStoreModel.h"
-//#import "RecommendedStoreModel.h"
-//#import "ShoppingStoreModel.h"
-
-
 #import "StoreModel.h"
-
 
 
 #define kTagForYSLScrollView    1000
@@ -49,6 +42,9 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate= self;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     
     appDeleg = APP_DELEGATE;
     [appDeleg findCurrentLocation];
@@ -141,7 +137,6 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
     {
-        
         UIImage *image = [UIImage imageNamed:@"navigation.png"];
         [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     }
@@ -391,124 +386,10 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
         [arrCategories addObject:objStoreModel];
     }
     
-//    objCategoryVwController = (CategoryViewController *) [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"categoryScreen"];
-//    
-//    objCategoryVwController.delegate = self;
-//    
-//    objCategoryVwController.arrCategory  = [[NSMutableArray alloc]init];
-//    [objCategoryVwController.arrCategory addObjectsFromArray:arrCategory];
-//    
-//    tblVwCategory.hidden = NO;
-//    tblStores.hidden = NO;
-//    mainScrollView.hidden = NO;
-//    
-//    [tblVwCategory reloadData];
-//    if (arrCategory.count>0 && isOffEffect) {
-//        [self setViewForRecomendedCells];
-//    }
-//    [tblStores reloadData];
-    
-    
     [collectionMaster reloadData];
     [self setupViewDesign];
 
 }
-
-
-
-//-(void)parseStoreData:(NSMutableDictionary *)responseObject
-//{
-//    NSArray *arrTempCategories = [responseObject objectForKey:@"categories"];
-//
-//    for (NSDictionary *dict in arrTempCategories)
-//    {
-//        HomeCategoriesModel *homeCategoriesModel = [[HomeCategoriesModel alloc]init];
-//        
-//        homeCategoriesModel.store_main_category_banner_1 = [[dict objectForKey:kStore_main_category_banner_1]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        homeCategoriesModel.store_main_category_banner_2 = [[dict objectForKey:kStore_main_category_banner_2]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//        homeCategoriesModel.store_main_category_id = [dict objectForKey:kStore_main_category_id];
-//        homeCategoriesModel.store_main_category_name = [dict objectForKey:kStore_main_category_name];
-//        
-//        
-//        NSArray *arrTempHomeStores = [dict objectForKey:@"home_stores"];
-//        for (NSDictionary *dict in arrTempHomeStores)
-//        {
-//            HomeStoreModel *homeStoreModel = [[HomeStoreModel alloc]init];
-//            homeStoreModel.chat_username = [dict objectForKey:@"chat_username"];
-//            homeStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
-//            homeStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
-//            homeStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
-//            homeStoreModel.is_open = [dict objectForKey:@"is_open"];
-//            homeStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
-//            homeStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
-//            homeStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
-//            homeStoreModel.store_id = [dict objectForKey:@"store_id"];
-//            homeStoreModel.store_image = [dict objectForKey:@"store_image"];
-//            homeStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
-//            homeStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
-//            homeStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
-//            homeStoreModel.store_name = [dict objectForKey:@"store_name"];
-//            homeStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
-//            homeStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
-//            
-//            [homeCategoriesModel.arrHome_stores addObject:homeStoreModel];
-//        }
-//        
-//        NSArray *arrTempRecomendedStores = [dict objectForKey:@"recommended_stores"];
-//        for (NSDictionary *dict in arrTempRecomendedStores)
-//        {
-//            RecommendedStoreModel *recommendedStoreModel = [[RecommendedStoreModel alloc]init];
-//            recommendedStoreModel.chat_username = [dict objectForKey:@"chat_username"];
-//            recommendedStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
-//            recommendedStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
-//            recommendedStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
-//            recommendedStoreModel.is_open = [dict objectForKey:@"is_open"];
-//            recommendedStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
-//            recommendedStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
-//            recommendedStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
-//            recommendedStoreModel.store_id = [dict objectForKey:@"store_id"];
-//            recommendedStoreModel.store_image = [dict objectForKey:@"store_image"];
-//            recommendedStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
-//            recommendedStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
-//            recommendedStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
-//            recommendedStoreModel.store_name = [dict objectForKey:@"store_name"];
-//            recommendedStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
-//            recommendedStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
-//            
-//            [homeCategoriesModel.arrRecommended_stores addObject:recommendedStoreModel];
-//        }
-//        
-//        NSArray *arrTempshoppingStores = [dict objectForKey:@"shopping_store"];
-//        for (NSDictionary *dict in arrTempshoppingStores)
-//        {
-//            ShoppingStoreModel *shoppingStoreModel = [[ShoppingStoreModel alloc]init];
-//            shoppingStoreModel.chat_username = [dict objectForKey:@"chat_username"];
-//            shoppingStoreModel.home_delivery = [dict objectForKey:@"home_delivery"];
-//            shoppingStoreModel.is_favorite = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_favorite"]];
-//            shoppingStoreModel.is_home_store = [NSString stringWithFormat:@"%@",[dict objectForKey:@"is_home_store"]];
-//            shoppingStoreModel.is_open = [dict objectForKey:@"is_open"];
-//            shoppingStoreModel.store_category_icon = [dict objectForKey:@"store_category_icon"];
-//            shoppingStoreModel.store_category_id = [dict objectForKey:@"store_category_id"];
-//            shoppingStoreModel.store_category_name = [dict objectForKey:@"store_category_name"];
-//            shoppingStoreModel.store_id = [dict objectForKey:@"store_id"];
-//            shoppingStoreModel.store_image = [dict objectForKey:@"store_image"];
-//            shoppingStoreModel.store_latitude = [dict objectForKey:@"store_latitude"];
-//            shoppingStoreModel.store_longitude = [dict objectForKey:@"store_longitude"];
-//            shoppingStoreModel.store_mobile = [dict objectForKey:@"store_mobile"];
-//            shoppingStoreModel.store_name = [dict objectForKey:@"store_name"];
-//            shoppingStoreModel.store_rating = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_rating"]];
-//            shoppingStoreModel.total_orders = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_orders"]];
-//            
-//            [homeCategoriesModel.arrShopping_store addObject:shoppingStoreModel];
-//        }
-//        
-//        [arrCategories addObject:homeCategoriesModel];
-//    }
-//    
-//    [collectionMaster reloadData];
-//    [self setupViewDesign];
-//}
 
 
 #pragma mark - UICollectionView Delegate & DataSource Methods
@@ -527,7 +408,6 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 {
     HomeCategoriesCollectionCell *cell = (HomeCategoriesCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier: strCollectionCell forIndexPath:indexPath];
 
-//    cell.delegateMasterCategory = self;
     cell.indexPath = indexPath;
     [cell updateMasterCollectionCell:[arrCategories objectAtIndex:indexPath.item]];
     cell.backgroundColor = [UIColor redColor];

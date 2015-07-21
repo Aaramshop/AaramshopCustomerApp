@@ -50,7 +50,6 @@
 @property(nonatomic, strong) NSIndexPath *indexPath;
 @property(nonatomic,assign) BOOL isRecommendedStore;
 @property(nonatomic) NSInteger selectedCategory;
-//@property(nonatomic,strong) StoreModel *objStoreModel;
 
 -(void)updateCellWithData:(StoreModel  *)objStoreData;
 -(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;

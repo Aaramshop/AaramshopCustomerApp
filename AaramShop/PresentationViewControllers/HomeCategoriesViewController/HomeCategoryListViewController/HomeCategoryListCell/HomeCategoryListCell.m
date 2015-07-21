@@ -28,20 +28,7 @@
     
     // Configure the view for the selected state
 }
-//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-//{
-//    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-//    
-//    if (self) {
-//        
-////        imgStore.layer.cornerRadius = imgStore.frame.size.width/2.0;
-////        imgStore.clipsToBounds=YES;
-////
-////        imgHomeIcon.image = [UIImage imageNamed:@"homeScreenHomeIconRed"];
-//
-//    }
-//    return self;
-//}
+
 
 -(void)updateCellWithData:(StoreModel*)objStoreData
 {

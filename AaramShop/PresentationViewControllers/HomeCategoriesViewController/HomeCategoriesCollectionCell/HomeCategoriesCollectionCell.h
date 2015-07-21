@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "HomeCategoriesModel.h"
-
 #import "StoreModel.h"
 
 @interface HomeCategoriesCollectionCell : UICollectionViewCell
@@ -19,7 +17,6 @@
 }
 
 @property (nonatomic,strong) NSIndexPath *indexPath;
-//-(void)updateMasterCollectionCell:(HomeCategoriesModel *)homeCategoriesModel;
 
 -(void)updateMasterCollectionCell:(StoreModel *)storeModel;
 

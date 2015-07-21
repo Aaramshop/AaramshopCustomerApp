@@ -15,7 +15,7 @@
 
 #import "StoreModel.h"
 
-@interface HomeCategoryListViewController : UIViewController<SWTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface HomeCategoryListViewController : UIViewController<SWTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate,AaramShop_ConnectionManager_Delegate>
 {
     __weak IBOutlet UITableView *tblStores;
     
@@ -27,14 +27,12 @@
     UIButton *btnExpandCollapse;
     
     BOOL isTableExpanded;
+    
+    UIRefreshControl *refreshStoreList;
+    BOOL isLoading;
+
 }
 
 @property(nonatomic,strong) StoreModel *storeModel;
-
-
-//@property(nonatomic,strong) HomeCategoriesModel *homeCategoriesModel;
-//@property(nonatomic,strong) NSMutableArray *arrHomeStore;
-//@property(nonatomic,strong) NSMutableArray *arrRecommendedStore;
-//@property(nonatomic,strong) NSMutableArray *arrShoppingStore;
 
 @end

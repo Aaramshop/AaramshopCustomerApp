@@ -10,8 +10,6 @@
 
 @implementation HomeCategoriesCollectionCell
 
-
-//-(void)updateMasterCollectionCell:(HomeCategoriesModel *)homeCategoriesModel
 -(void)updateMasterCollectionCell:(StoreModel *)storeModel
 {
     activityIndicatorView.hidesWhenStopped = YES;
