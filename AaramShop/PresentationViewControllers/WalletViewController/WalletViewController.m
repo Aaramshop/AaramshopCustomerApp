@@ -19,16 +19,57 @@
     // Do any additional setup after loading the view.
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
 	aaramShop_ConnectionManager.delegate = self;
-	
+	[self setNavigationBar];
 	[self setupAllViews];
 	[pointsBtn setSelected:![pointsBtn isSelected]];
 	[self setSideBtnState: eSelectedPoints];
 	selectedWallet = eSelectedPoints;
+	[self createDataToGetWallet];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)createDataToGetWallet
+{
+	
+}
+-(void)setNavigationBar
+{
+	self.navigationController.navigationBarHidden = NO;
+	[[UIApplication sharedApplication] setStatusBarHidden:NO];
+	
+	CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 150, 44);
+	UIView* _headerTitleSubtitleView = [[UILabel alloc] initWithFrame:headerTitleSubtitleFrame];
+	_headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
+	_headerTitleSubtitleView.autoresizesSubviews = NO;
+	
+	CGRect titleFrame = CGRectMake(0,0, 150, 44);
+	UILabel* titleView = [[UILabel alloc] initWithFrame:titleFrame];
+	titleView.backgroundColor = [UIColor clearColor];
+	titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
+	titleView.textAlignment = NSTextAlignmentCenter;
+	titleView.textColor = [UIColor whiteColor];
+	titleView.text = @"Wallet";
+	titleView.adjustsFontSizeToFitWidth = YES;
+	[_headerTitleSubtitleView addSubview:titleView];
+	self.navigationItem.titleView = _headerTitleSubtitleView;
+	
+	
+	UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnBack.bounds = CGRectMake( 0, 0, 30, 30 );
+	[btnBack setImage:[UIImage imageNamed:@"backBtn.png"] forState:UIControlStateNormal];
+	[btnBack addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *batBtnBack = [[UIBarButtonItem alloc] initWithCustomView:btnBack];
+	
+	
+	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:batBtnBack, nil];
+	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+}
+- (void)backButtonClicked
+{
+	[self.navigationController popViewControllerAnimated:YES];
 }
 -(void)setupAllViews
 {

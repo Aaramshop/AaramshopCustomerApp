@@ -342,10 +342,12 @@
         objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
     }
 
-    homeSecondVwController.strStore_Id = objStoreModel.store_id;
-    homeSecondVwController.strStoreImage = objStoreModel.store_image;
-    homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
-    [self.navigationController pushViewController:homeSecondVwController animated:YES];
+    
+    appDeleg.objStoreModel = objStoreModel;
+    UITabBarController *tabBar = [appDeleg createTabBarRetailer];
+    tabBar.hidesBottomBarWhenPushed = YES;
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController pushViewController:tabBar animated:YES];
     
 }
 
@@ -714,7 +716,7 @@
 {
     if(totalNoOfPages>pageno)
     {
-        pageno++;
+//        pageno++;
 //        [self callWebserviceToGetStoresList]; // temp commented
     }
     else

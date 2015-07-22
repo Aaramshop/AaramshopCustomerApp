@@ -60,7 +60,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self performSelector:@selector(createDataToGetStores) withObject:nil afterDelay:0.5];
+        
     NSLog(@"value = %f",appDeleg.myCurrentLocation.coordinate.latitude);
     if(![gCXMPPController isConnected])
     {
@@ -242,7 +242,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 }
 
 
-#pragma mark - createDataToGetStores
+#pragma mark - Create Data To Get Stores
 
 -(void)createDataToGetStores
 {

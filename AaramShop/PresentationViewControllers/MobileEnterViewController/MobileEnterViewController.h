@@ -29,6 +29,7 @@
     __weak IBOutlet UIButton *btnContinue;
 }
 @property(nonatomic,assign) BOOL isUpdateMobile;
+
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
  - (IBAction)btnContinueClick:(UIButton *)sender;
 - (IBAction)btnBackClick:(UIButton *)sender;

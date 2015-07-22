@@ -23,9 +23,14 @@
 
 @property (nonatomic,strong) NSString *strIsRegistered;
 
+@property (nonatomic,strong) id responseData;
+
+
 - (IBAction)btnBackClick:(UIButton *)sender;
 - (IBAction)btnContinueVerificationClick:(UIButton *)sender;
 - (IBAction)btnResendVerificationClick:(UIButton *)sender;
+
+
 
 
 @end

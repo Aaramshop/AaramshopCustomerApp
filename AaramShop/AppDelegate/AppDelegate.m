@@ -74,6 +74,7 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessful:) name:kLoginSuccessfulNotificationName object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout:) name:kLogoutSuccessfulNotificationName object:nil];
+    
 	if ([[NSUserDefaults standardUserDefaults] valueForKey:kUserId] && [[[NSUserDefaults standardUserDefaults] valueForKey:kUserId]length]>0 /*&& [[[NSUserDefaults standardUserDefaults] valueForKey:kIs_active] integerValue]==1*/)
 	{
 		[self loginSuccessful:nil];
