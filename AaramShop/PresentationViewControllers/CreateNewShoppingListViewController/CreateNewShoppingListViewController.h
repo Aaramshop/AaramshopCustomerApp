@@ -7,9 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShoppingListDetailCell.h"
+#import "SearchViewController.h"
 
-@interface CreateNewShoppingListViewController : UIViewController
+
+@interface CreateNewShoppingListViewController : UIViewController<ProductCellDelegate,AaramShop_ConnectionManager_Delegate,SearchViewControllerDelegate>
 {
+    IBOutlet UITextField *txtShoppingListName;
 	IBOutlet UITableView *tblView;
+    
+    NSMutableArray *arrProductList;
+    
+    SearchViewController *searchViewController;
+    AppDelegate *appDel;
+
 }
+
+@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+
+
+
 @end

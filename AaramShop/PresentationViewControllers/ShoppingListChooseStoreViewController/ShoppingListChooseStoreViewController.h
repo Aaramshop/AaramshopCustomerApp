@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShoppingListChooseStoreViewController : UIViewController
+@interface ShoppingListChooseStoreViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
-	IBOutlet UITableView *tblView;
+	__weak IBOutlet UITableView *tblView;
+    
+    NSMutableArray *arrStoreList;
+    
+    UIRefreshControl *refreshStoreList;
+    BOOL isLoading;
+
 }
+
+@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+
 @end

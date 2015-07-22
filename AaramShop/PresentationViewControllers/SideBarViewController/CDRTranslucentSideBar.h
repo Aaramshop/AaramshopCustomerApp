@@ -12,7 +12,7 @@ typedef enum
 {
     eAccountSettings=0,
     ePreferences,
-    eCart,
+    eWallet,
 	eLogout
 }eRowTypeLeftSideBar;
 typedef enum

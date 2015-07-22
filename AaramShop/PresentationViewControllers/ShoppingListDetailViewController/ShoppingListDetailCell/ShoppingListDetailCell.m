@@ -25,7 +25,7 @@
 
 -(IBAction)actionRemoveProduct:(id)sender
 {
-    int counter = [[dicTempProduct objectForKey:@"quantity"] intValue];
+    int counter = [tempProductModel.quantity intValue];
 
     if (counter==0)
     {
@@ -52,14 +52,16 @@
 }
 
 
--(void)updateCell:(NSDictionary *)dicProduct
+-(void)updateCell:(ProductsModel *)productsModel
 {
-    dicTempProduct = [[NSMutableDictionary alloc]initWithDictionary:dicProduct];
+    tempProductModel = productsModel;
     
-    imgProduct.image = [UIImage imageNamed:[dicTempProduct objectForKey:@"image"]];
-    lblProductName.text = [dicTempProduct objectForKey:@"name"];
+
+    [imgProduct sd_setImageWithURL:[NSURL URLWithString:tempProductModel.product_image] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
     
-    if ([[dicTempProduct objectForKey:@"quantity"] integerValue]==0)
+    lblProductName.text = tempProductModel.product_name;
+    
+    if ([tempProductModel.quantity integerValue]==0)
     {
         btnRemove.enabled = NO;
     }
@@ -68,7 +70,7 @@
         btnRemove.enabled = YES;
     }
     
-    lblCounter.text = [dicTempProduct objectForKey:@"quantity"];
+    lblCounter.text = tempProductModel.quantity;
 }
 
 

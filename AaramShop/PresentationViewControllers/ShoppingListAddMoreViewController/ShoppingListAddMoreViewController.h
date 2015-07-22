@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "ShoppingListDetailCell.h"
+#import "SearchViewController.h"
 
-@interface ShoppingListAddMoreViewController : UIViewController<ProductCellDelegate>
+@interface ShoppingListAddMoreViewController : UIViewController<ProductCellDelegate,AaramShop_ConnectionManager_Delegate,SearchViewControllerDelegate>
 {
 	IBOutlet UITableView *tblView;
     
-    NSMutableArray *arrProductList;
+    SearchViewController *searchViewController;
+    AppDelegate *appDel;
+
 }
+
+@property (nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+@property (nonatomic,strong) NSMutableArray *arrProductList;
+@property (nonatomic,strong) NSString *strShoppingListId;
+
 @end
