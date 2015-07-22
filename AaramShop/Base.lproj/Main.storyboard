@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -3647,10 +3646,10 @@ Please give us your address</string>
                         <viewControllerLayoutGuide type="bottom" id="wIn-xs-BLK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GUC-0e-h8w">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="owd-6E-OdS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="owd-6E-OdS">
                                 <rect key="frame" x="0.0" y="24" width="320" height="500"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -3977,8 +3976,35 @@ Please give us your address</string>
                                     <outlet property="delegate" destination="7Fv-Uz-q9I" id="oLv-k5-5lm"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9L-aZ-cwB">
+                                <rect key="frame" x="6" y="5" width="308" height="112"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymentNotificationBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="QQJ-n0-a06">
+                                        <rect key="frame" x="0.0" y="0.0" width="308" height="112"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-9y-Ii0">
+                                        <rect key="frame" x="8" y="8" width="292" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="QQJ-n0-a06" secondAttribute="trailing" id="0AI-xh-cXF"/>
+                                    <constraint firstAttribute="bottom" secondItem="vwv-9y-Ii0" secondAttribute="bottom" constant="8" id="3gx-0G-xKt"/>
+                                    <constraint firstAttribute="trailing" secondItem="vwv-9y-Ii0" secondAttribute="trailing" constant="8" id="D3J-62-tFg"/>
+                                    <constraint firstItem="QQJ-n0-a06" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" id="KYb-sS-3OW"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="8" id="Yi3-Cr-i9k"/>
+                                    <constraint firstAttribute="width" constant="308" id="csR-Qz-iO2"/>
+                                    <constraint firstItem="QQJ-n0-a06" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" id="huH-yr-CsN"/>
+                                    <constraint firstAttribute="bottom" secondItem="QQJ-n0-a06" secondAttribute="bottom" id="oy1-u3-9th"/>
+                                    <constraint firstAttribute="height" constant="112" id="rLk-lb-rCq"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" constant="8" id="vXg-m9-gOj"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qn3-R3-ILi">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
                                 <color key="backgroundColor" red="0.80392156862745101" green="0.043137254901960784" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="nmg-oM-ze0"/>
@@ -3996,14 +4022,18 @@ Please give us your address</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leading" id="MEN-a0-fbd"/>
+                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leadingMargin" constant="-10" id="Mbp-dv-dFp"/>
                             <constraint firstItem="qn3-R3-ILi" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leading" id="SUE-p0-oTB"/>
                             <constraint firstAttribute="trailing" secondItem="qn3-R3-ILi" secondAttribute="trailing" id="V5b-zF-QGA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="d9L-aZ-cwB" secondAttribute="trailing" constant="-10" id="kYU-H1-sVG"/>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="4" id="oAF-bZ-j4Y"/>
+                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="5" id="oJ0-yc-gCy"/>
                             <constraint firstAttribute="trailing" secondItem="owd-6E-OdS" secondAttribute="trailing" id="rPQ-gD-RKL"/>
                             <constraint firstItem="wIn-xs-BLK" firstAttribute="top" secondItem="qn3-R3-ILi" secondAttribute="bottom" id="rwu-wp-Lvc"/>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="bottom" secondItem="qn3-R3-ILi" secondAttribute="bottom" constant="-44" id="wZB-Kp-YUi"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnPay" destination="qn3-R3-ILi" id="xdE-j6-pZG"/>
@@ -4848,6 +4878,7 @@ It will be used only for verification purposes.</string>
         <image name="offersSoundIconRed.png" width="320" height="568"/>
         <image name="packedIconActive.png" width="35" height="35"/>
         <image name="packedIconInactive.png" width="35" height="35"/>
+        <image name="paymentNotificationBox.png" width="308" height="112"/>
         <image name="pencilIcon.png" width="42" height="45"/>
         <image name="popupCloseIcon.png" width="20" height="20"/>
         <image name="preferencesLocationAddCircle.png" width="25" height="25"/>

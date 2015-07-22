@@ -1097,6 +1097,12 @@
 		6BA2F09F1B04B2F30074562F /* mapPinGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09C1B04B2F30074562F /* mapPinGreen@2x.png */; };
 		6BA2F0A01B04B2F30074562F /* mapPinGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09D1B04B2F30074562F /* mapPinGreen@3x.png */; };
 		6BA2F0A21B04B9300074562F /* PinShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F0A11B04B9300074562F /* PinShadow.png */; };
+		6BA82A931B57D73C0014CCEF /* circleCrossIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA82A8D1B57D73C0014CCEF /* circleCrossIcon.png */; };
+		6BA82A941B57D73C0014CCEF /* circleCrossIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA82A8E1B57D73C0014CCEF /* circleCrossIcon@2x.png */; };
+		6BA82A951B57D73C0014CCEF /* circleCrossIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA82A8F1B57D73C0014CCEF /* circleCrossIcon@3x.png */; };
+		6BA82A961B57D73C0014CCEF /* paymentNotificationBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA82A901B57D73C0014CCEF /* paymentNotificationBox.png */; };
+		6BA82A971B57D73C0014CCEF /* paymentNotificationBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA82A911B57D73C0014CCEF /* paymentNotificationBox@2x.png */; };
+		6BA82A981B57D73C0014CCEF /* paymentNotificationBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA82A921B57D73C0014CCEF /* paymentNotificationBox@3x.png */; };
 		6BA894001B4F9EFB0014519C /* HomeCategoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA893FF1B4F9EFB0014519C /* HomeCategoriesModel.m */; };
 		6BA894061B4F9F850014519C /* HomeStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA894051B4F9F850014519C /* HomeStoreModel.m */; };
 		6BA894091B4F9F970014519C /* RecommendedStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA894081B4F9F970014519C /* RecommendedStoreModel.m */; };
@@ -2734,6 +2740,12 @@
 		6BA2F09C1B04B2F30074562F /* mapPinGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPinGreen@2x.png"; sourceTree = "<group>"; };
 		6BA2F09D1B04B2F30074562F /* mapPinGreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPinGreen@3x.png"; sourceTree = "<group>"; };
 		6BA2F0A11B04B9300074562F /* PinShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinShadow.png; sourceTree = "<group>"; };
+		6BA82A8D1B57D73C0014CCEF /* circleCrossIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleCrossIcon.png; sourceTree = "<group>"; };
+		6BA82A8E1B57D73C0014CCEF /* circleCrossIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleCrossIcon@2x.png"; sourceTree = "<group>"; };
+		6BA82A8F1B57D73C0014CCEF /* circleCrossIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleCrossIcon@3x.png"; sourceTree = "<group>"; };
+		6BA82A901B57D73C0014CCEF /* paymentNotificationBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paymentNotificationBox.png; sourceTree = "<group>"; };
+		6BA82A911B57D73C0014CCEF /* paymentNotificationBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paymentNotificationBox@2x.png"; sourceTree = "<group>"; };
+		6BA82A921B57D73C0014CCEF /* paymentNotificationBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paymentNotificationBox@3x.png"; sourceTree = "<group>"; };
 		6BA893FE1B4F9EFB0014519C /* HomeCategoriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoriesModel.h; sourceTree = "<group>"; };
 		6BA893FF1B4F9EFB0014519C /* HomeCategoriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoriesModel.m; sourceTree = "<group>"; };
 		6BA894041B4F9F850014519C /* HomeStoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeStoreModel.h; sourceTree = "<group>"; };
@@ -4965,6 +4977,12 @@
 		368AFECA1B38271300417836 /* PaymentImages */ = {
 			isa = PBXGroup;
 			children = (
+				6BA82A8D1B57D73C0014CCEF /* circleCrossIcon.png */,
+				6BA82A8E1B57D73C0014CCEF /* circleCrossIcon@2x.png */,
+				6BA82A8F1B57D73C0014CCEF /* circleCrossIcon@3x.png */,
+				6BA82A901B57D73C0014CCEF /* paymentNotificationBox.png */,
+				6BA82A911B57D73C0014CCEF /* paymentNotificationBox@2x.png */,
+				6BA82A921B57D73C0014CCEF /* paymentNotificationBox@3x.png */,
 				365395691B5294850045AAFE /* arrowOne.png */,
 				3653956A1B5294850045AAFE /* arrowOne@2x.png */,
 				3653956B1B5294850045AAFE /* arrowOne@3x.png */,
@@ -6730,6 +6748,7 @@
 				6BFFF9471B0236B800BB2B62 /* tabBarChatIcon@3x.png in Resources */,
 				36820A2C1B1C46FA002AA93F /* uganda.png in Resources */,
 				6BB50DE11B32ABE800990161 /* locationPopupTxtField.png in Resources */,
+				6BA82A981B57D73C0014CCEF /* paymentNotificationBox@3x.png in Resources */,
 				368AFEDE1B383AEB00417836 /* shopingProductOne.png in Resources */,
 				368209111B1C46FA002AA93F /* angola.png in Resources */,
 				368209141B1C46FA002AA93F /* argentina.png in Resources */,
@@ -6835,6 +6854,7 @@
 				274A5DC91B05C88B009112B5 /* chatRecordBtnActive@2x.png in Resources */,
 				368209A61B1C46FA002AA93F /* liberia.png in Resources */,
 				36BE5A9E1B53C52A0079DAE3 /* packedIconInactive@3x.png in Resources */,
+				6BA82A951B57D73C0014CCEF /* circleCrossIcon@3x.png in Resources */,
 				368209531B1C46FA002AA93F /* dagestan.png in Resources */,
 				274A5DD71B05C88B009112B5 /* msgChatMapImg@2x.png in Resources */,
 				2791DE3E1B036E5C000121BC /* menuVouchersIcon.png in Resources */,
@@ -6883,6 +6903,7 @@
 				6BE474441B3B21CE00C09AFD /* play.png in Resources */,
 				3682094D1B1C46FA002AA93F /* Crna Gora.png in Resources */,
 				368209AE1B1C46FA002AA93F /* madagascar.png in Resources */,
+				6BA82A941B57D73C0014CCEF /* circleCrossIcon@2x.png in Resources */,
 				368209E01B1C46FA002AA93F /* portugal.png in Resources */,
 				3682098C1B1C46FA002AA93F /* jamaica.png in Resources */,
 				6B8EB2BF1B26B8BE00402CFC /* ratingStarHalf@2x.png in Resources */,
@@ -7058,6 +7079,7 @@
 				368209CA1B1C46FA002AA93F /* nevis.png in Resources */,
 				6BE474461B3B21CE00C09AFD /* playButton.png in Resources */,
 				36820A151B1C46FA002AA93F /* syria.png in Resources */,
+				6BA82A971B57D73C0014CCEF /* paymentNotificationBox@2x.png in Resources */,
 				3682092E1B1C46FA002AA93F /* British Virgin Islands.png in Resources */,
 				6B8EB2E31B26F95000402CFC /* homeDeatilsWhiteArrow.png in Resources */,
 				36820A121B1C46FA002AA93F /* swaziland.png in Resources */,
@@ -7166,6 +7188,7 @@
 				6BE474321B3B21CE00C09AFD /* EditControl.png in Resources */,
 				6B83A0E61B53E81300A00520 /* shoppingListCalenderCircle.png in Resources */,
 				36D8C4EB1B3A85CB00C255EE /* arrowBox@2x.png in Resources */,
+				6BA82A961B57D73C0014CCEF /* paymentNotificationBox.png in Resources */,
 				368209241B1C46FA002AA93F /* benin.png in Resources */,
 				6B35B8CB1B567EC000807F25 /* addIconBig.png in Resources */,
 				274A5DBC1B05C88B009112B5 /* chatMsgBox.png in Resources */,
@@ -7283,6 +7306,7 @@
 				36820A291B1C46FA002AA93F /* tuva.png in Resources */,
 				6B6098C01B39647400277D03 /* chatAaramShopIcon@2x.png in Resources */,
 				6B12DCD91AF2A09700245209 /* singleBox.png in Resources */,
+				6BA82A931B57D73C0014CCEF /* circleCrossIcon.png in Resources */,
 				274A5DBB1B05C88B009112B5 /* chatLoadMessages@2x.png in Resources */,
 				6BB50DC81B32AAB300990161 /* locationPopupOp1@3x.png in Resources */,
 				36BE5A941B53C52A0079DAE3 /* dispatchedIconActive@2x.png in Resources */,

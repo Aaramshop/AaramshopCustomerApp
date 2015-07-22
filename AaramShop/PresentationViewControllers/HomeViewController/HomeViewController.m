@@ -887,7 +887,7 @@
     //*
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
+//    HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
     StoreModel *objStoreModel = nil;
     if (mainCategoryIndex != 0)
     {
