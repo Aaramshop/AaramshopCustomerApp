@@ -321,7 +321,8 @@
         [secView addSubview:imglocation];
         [secView addSubview:lblName];
         [secView addSubview:lblAddress];
-        [secView addSubview:btnEdit];
+        
+//        [secView addSubview:btnEdit];
         
         
         return secView;

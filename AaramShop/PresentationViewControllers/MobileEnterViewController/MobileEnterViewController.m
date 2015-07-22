@@ -70,7 +70,7 @@
    // NSString *lastName = [[NSUserDefaults standardUserDefaults]objectForKey:kLastName];
     if ([firstName length]==0)
     {
-        txtFullName.text = nil;
+        txtFullName.text = @"";
     }
     else
     {
@@ -120,7 +120,8 @@
     }
     else
     {
-        if (isUpdateMobile) {
+        if (isUpdateMobile)
+        {
             [self createDataToUpdateMobileNumber];
         }
         else
@@ -185,11 +186,14 @@
 
         if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 ) {
             
-            [self saveDataToLocal:responseObject];
+//            [self saveDataToLocal:responseObject];
             
             MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
             mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
             mobileVerificationVwController.strIsRegistered = [responseObject objectForKey:@"isRegistered"];
+                        
+            mobileVerificationVwController.responseData = responseObject;
+            
             [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
         
         }
@@ -200,26 +204,26 @@
         
     }
 }
--(void)saveDataToLocal:(id)responseObject{
-    
-    
-    NSDictionary *dict = (NSDictionary*)responseObject;
-    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kUserId] forKey:kUserId];
-    
-    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kDeviceId] forKey:kDeviceId];
-    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_100] forKey:kImage_url_100];
-    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_320] forKey:kImage_url_320];
-    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_640] forKey:kImage_url_640];
-    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kFullname] forKey:kFullname];
-    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kProfileImage] forKey:kProfileImage];
-    if([dict objectForKey:kChatUsername])
-    {
-        [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kChatUsername] forKey:kChatUsername];
-        [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@@%@",[dict objectForKey:kChatUsername],STRChatServerURL] forKey:kXMPPmyJID1];
-    }
-    [[NSUserDefaults standardUserDefaults]synchronize];
-
-}
+//-(void)saveDataToLocal:(id)responseObject{
+//    
+//    
+//    NSDictionary *dict = (NSDictionary*)responseObject;
+//    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kUserId] forKey:kUserId];
+//    
+//    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kDeviceId] forKey:kDeviceId];
+//    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_100] forKey:kImage_url_100];
+//    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_320] forKey:kImage_url_320];
+//    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_640] forKey:kImage_url_640];
+//    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kFullname] forKey:kFullname];
+//    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kProfileImage] forKey:kProfileImage];
+//    if([dict objectForKey:kChatUsername])
+//    {
+//        [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kChatUsername] forKey:kChatUsername];
+//        [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@@%@",[dict objectForKey:kChatUsername],STRChatServerURL] forKey:kXMPPmyJID1];
+//    }
+//    [[NSUserDefaults standardUserDefaults]synchronize];
+//
+//}
 
 -(void)createDataForOTPValidation
 {

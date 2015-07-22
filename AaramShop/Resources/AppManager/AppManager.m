@@ -518,7 +518,7 @@ void MyAddressBookExternalChangeCallback (
 	for (id key in dict) {
 		
 		NSString *strKey = (NSString *)key;
-		if ([strKey isEqualToString:kXMPPmyJID1] || [strKey isEqualToString:kXMPPmyPassword1] || [strKey isEqualToString:@"MessageCounter"] || [strKey isEqualToString:kUserId] )
+		if ([strKey isEqualToString:kXMPPmyJID1] || [strKey isEqualToString:kXMPPmyPassword1] || [strKey isEqualToString:@"MessageCounter"] || [strKey isEqualToString:kUserId] || [strKey isEqualToString:kFullname])
 		{
 			[defs removeObjectForKey:key];
 		}else{

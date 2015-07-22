@@ -103,7 +103,7 @@
 //        tblView.hidden = NO;
     }
     
-    
+    [tblStores reloadData];
 }
 
 
@@ -328,9 +328,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
-    
+        
     StoreModel *objStoreModel = nil;
     
     if (tableView == tblStores)
@@ -342,10 +340,12 @@
         objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
     }
 
-    homeSecondVwController.strStore_Id = objStoreModel.store_id;
-    homeSecondVwController.strStoreImage = objStoreModel.store_image;
-    homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
-    [self.navigationController pushViewController:homeSecondVwController animated:YES];
+    
+    appDeleg.objStoreModel = objStoreModel;
+    UITabBarController *tabBar = [appDeleg createTabBarRetailer];
+    tabBar.hidesBottomBarWhenPushed = YES;
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController pushViewController:tabBar animated:YES];
     
 }
 
@@ -370,6 +370,7 @@
     NSMutableAttributedString * shop = [[NSMutableAttributedString alloc] initWithString:@"Shop"];
     
     [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreCallIcon"] attributedTitle: call ];
+    
     [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreChatIcon"] attributedTitle: chat ];
     [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreShopIcon"] attributedTitle: shop ];
     
@@ -473,10 +474,20 @@
                 objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
             }
             
-            HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
-            homeSecondVwController.strStore_Id = objStoreModel.store_id;
-            homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
-            [self.navigationController pushViewController:homeSecondVwController animated:YES];
+            
+            appDeleg.objStoreModel = objStoreModel;
+            UITabBarController *tabBar = [appDeleg createTabBarRetailer];
+            tabBar.hidesBottomBarWhenPushed = YES;
+            self.navigationController.navigationBarHidden = YES;
+            [self.navigationController pushViewController:tabBar animated:YES];
+
+            
+            
+            
+//            HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
+//            homeSecondVwController.strStore_Id = objStoreModel.store_id;
+//            homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
+//            [self.navigationController pushViewController:homeSecondVwController animated:YES];
             
         }
             break;
@@ -714,7 +725,7 @@
 {
     if(totalNoOfPages>pageno)
     {
-        pageno++;
+//        pageno++;
 //        [self callWebserviceToGetStoresList]; // temp commented
     }
     else
