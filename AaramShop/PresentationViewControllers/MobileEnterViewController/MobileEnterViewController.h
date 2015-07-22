@@ -10,7 +10,7 @@
 #import "FlagListTableViewController.h"
 #import "CMCountryList.h"
 
-@interface MobileEnterViewController : BaseViewController<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,AaramShop_ConnectionManager_Delegate,FlagListTableViewControllerDelegate>
+@interface MobileEnterViewController : UIViewController<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,AaramShop_ConnectionManager_Delegate,FlagListTableViewControllerDelegate>
 {
     __weak IBOutlet UIImageView *imgVUser;
     __weak IBOutlet UIButton *btnProfile;

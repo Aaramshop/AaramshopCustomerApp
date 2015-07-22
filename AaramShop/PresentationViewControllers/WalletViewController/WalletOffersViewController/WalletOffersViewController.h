@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface WalletOffersViewController : UIViewController
-
+{
+	
+	__weak IBOutlet UITableView *tblView;
+}
 @end
