@@ -158,6 +158,12 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="RocketDinerCondensed_0.otf">
             <string>RocketDiner-CondensedRegular</string>
@@ -202,7 +208,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="xtk-wA-rqF">
                                 <rect key="frame" x="0.0" y="102" width="320" height="466"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="UD0-Gm-Hni">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -787,9 +793,9 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                 <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Y8o-Kh-5gf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Y8o-Kh-5gf">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -799,7 +805,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O4c-W4-udt" id="EcO-em-GWX">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monthy Family Grocery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FfX-bb-D5c" userLabel="Label - Title">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FfX-bb-D5c" userLabel="Label - Title">
                                                     <rect key="frame" x="11" y="15" width="210" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="eG0-4r-mfZ"/>
@@ -808,7 +814,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <color key="textColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 Items" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsN-Sj-4zW" userLabel="Label - Quantity">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsN-Sj-4zW" userLabel="Label - Quantity">
                                                     <rect key="frame" x="230" y="15" width="80" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="Tfy-J2-H0A"/>
@@ -818,25 +824,20 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clockIconRed.png" translatesAutoresizingMaskIntoConstraints="NO" id="qpl-S4-fMU" userLabel="Image View - time icon">
-                                                    <rect key="frame" x="10" y="38" width="15" height="15"/>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZxZ-m4-WmP" userLabel="Button - Time">
+                                                    <rect key="frame" x="11" y="38" width="152" height="15"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="15" id="KnW-1S-tp6"/>
-                                                        <constraint firstAttribute="width" constant="15" id="ed7-Nb-oHA"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02-04-2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNp-ab-G4j" userLabel="Label - Time">
-                                                    <rect key="frame" x="29" y="40" width="192" height="12"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="192" id="DNM-3o-xGj"/>
-                                                        <constraint firstAttribute="height" constant="12" id="Q9F-43-mO4"/>
+                                                        <constraint firstAttribute="width" constant="152" id="F8m-gx-H0v"/>
+                                                        <constraint firstAttribute="height" constant="15" id="NQI-Lu-fnE"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
-                                                    <color key="textColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sr-xI-57d" userLabel="Button - Share">
-                                                    <rect key="frame" x="9" y="57" width="250" height="20"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sr-xI-57d" userLabel="Button - Share">
+                                                    <rect key="frame" x="11" y="57" width="248" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="Exb-23-QYU"/>
                                                     </constraints>
@@ -865,26 +866,24 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="TsN-Sj-4zW" secondAttribute="trailing" constant="2" id="0Q9-bP-wiM"/>
-                                                <constraint firstItem="0sr-xI-57d" firstAttribute="leading" secondItem="EcO-em-GWX" secondAttribute="leadingMargin" constant="1" id="27e-Bb-381"/>
-                                                <constraint firstItem="kNp-ab-G4j" firstAttribute="leading" secondItem="qpl-S4-fMU" secondAttribute="trailing" constant="4" id="9zO-3V-huN"/>
                                                 <constraint firstItem="FfX-bb-D5c" firstAttribute="top" secondItem="EcO-em-GWX" secondAttribute="topMargin" constant="7" id="DIX-PS-b4P"/>
+                                                <constraint firstItem="0sr-xI-57d" firstAttribute="leading" secondItem="EcO-em-GWX" secondAttribute="leadingMargin" constant="3" id="DiU-4r-8UM"/>
                                                 <constraint firstItem="TsN-Sj-4zW" firstAttribute="leading" secondItem="FfX-bb-D5c" secondAttribute="trailing" constant="9" id="EAx-an-Trk"/>
                                                 <constraint firstItem="jLh-4N-W4e" firstAttribute="top" secondItem="TsN-Sj-4zW" secondAttribute="bottom" constant="7" id="WOM-RS-Wx5"/>
-                                                <constraint firstItem="kNp-ab-G4j" firstAttribute="top" secondItem="FfX-bb-D5c" secondAttribute="bottom" constant="5" id="cWv-0Y-Sjj"/>
+                                                <constraint firstItem="0sr-xI-57d" firstAttribute="top" secondItem="ZxZ-m4-WmP" secondAttribute="bottom" constant="4" id="YsX-7g-nKY"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="jLh-4N-W4e" secondAttribute="trailing" constant="-5" id="cuI-q7-zAs"/>
                                                 <constraint firstItem="jLh-4N-W4e" firstAttribute="leading" secondItem="0sr-xI-57d" secondAttribute="trailing" constant="13" id="fpc-KH-viC"/>
-                                                <constraint firstItem="qpl-S4-fMU" firstAttribute="top" secondItem="FfX-bb-D5c" secondAttribute="bottom" constant="3" id="iIH-fq-4iS"/>
-                                                <constraint firstItem="qpl-S4-fMU" firstAttribute="leading" secondItem="EcO-em-GWX" secondAttribute="leadingMargin" constant="2" id="k4s-9K-FRP"/>
-                                                <constraint firstItem="0sr-xI-57d" firstAttribute="top" secondItem="qpl-S4-fMU" secondAttribute="bottom" constant="4" id="kch-XV-2to"/>
+                                                <constraint firstItem="ZxZ-m4-WmP" firstAttribute="top" secondItem="FfX-bb-D5c" secondAttribute="bottom" constant="3" id="qBh-xA-hxs"/>
                                                 <constraint firstItem="FfX-bb-D5c" firstAttribute="leading" secondItem="EcO-em-GWX" secondAttribute="leadingMargin" constant="3" id="x6m-TK-CE3"/>
                                                 <constraint firstItem="TsN-Sj-4zW" firstAttribute="top" secondItem="EcO-em-GWX" secondAttribute="topMargin" constant="7" id="xiX-vE-v95"/>
+                                                <constraint firstItem="ZxZ-m4-WmP" firstAttribute="leading" secondItem="EcO-em-GWX" secondAttribute="leadingMargin" constant="3" id="yop-qu-evB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="btnShare" destination="0sr-xI-57d" id="bNi-aG-Yv8"/>
+                                            <outlet property="btnTime" destination="ZxZ-m4-WmP" id="2F1-eT-iop"/>
                                             <outlet property="lblQuantity" destination="TsN-Sj-4zW" id="jYV-tT-p8o"/>
-                                            <outlet property="lblTime" destination="kNp-ab-G4j" id="YiR-rb-oOi"/>
                                             <outlet property="lblTitle" destination="FfX-bb-D5c" id="IVK-6K-5Lt"/>
                                         </connections>
                                     </tableViewCell>
@@ -931,7 +930,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ncc-XZ-sRs">
                                 <rect key="frame" x="0.0" y="20" width="320" height="88"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter shopping list title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXT-3D-yCs" customClass="PWTextField">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Shopping List Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXT-3D-yCs" customClass="PWTextField">
                                         <rect key="frame" x="8" y="6" width="304" height="32"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -980,7 +979,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vt8-FD-GaS">
                                 <rect key="frame" x="0.0" y="108" width="320" height="460"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailCell" rowHeight="70" id="tXD-YF-FWr" customClass="ShoppingListDetailCell">
                                         <rect key="frame" x="0.0" y="249" width="320" height="70"/>
@@ -1102,88 +1101,69 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Ye-jo-WB8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Ye-jo-WB8">
                                 <rect key="frame" x="0.0" y="20" width="320" height="504"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailCell" rowHeight="70" id="PTn-NU-T0A" customClass="ShoppingListDetailCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailNewCell" rowHeight="80" id="PTn-NU-T0A" customClass="ShoppingListDetailNewCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PTn-NU-T0A" id="BI6-Tw-rPc">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U5h-8v-Xcj" userLabel="Image View - Product Image">
-                                                    <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                                    <rect key="frame" x="5" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="SNg-VY-4pm"/>
                                                         <constraint firstAttribute="width" constant="60" id="mTA-79-lnl"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDT-pc-IwQ" userLabel="Label - Product name">
-                                                    <rect key="frame" x="73" y="5" width="120" height="60"/>
+                                                    <rect key="frame" x="73" y="10" width="170" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="wOi-JF-bvl"/>
+                                                        <constraint firstAttribute="height" constant="35" id="wOi-JF-bvl"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                     <color key="textColor" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUO-PO-V0a" userLabel="Button - Remove">
-                                                    <rect key="frame" x="200" y="20" width="30" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebo-vt-veE" userLabel="Label - Total Product">
+                                                    <rect key="frame" x="244" y="22" width="70" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="HPk-ce-kEH"/>
-                                                        <constraint firstAttribute="height" constant="30" id="j1O-PE-RJe"/>
-                                                    </constraints>
-                                                    <state key="normal" image="minusIconCircle.png">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="actionRemoveProduct:" destination="PTn-NU-T0A" eventType="touchUpInside" id="MRX-tu-YZB"/>
-                                                    </connections>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebo-vt-veE" userLabel="Label - Counter">
-                                                    <rect key="frame" x="235" y="5" width="40" height="60"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="I48-At-bd1"/>
-                                                        <constraint firstAttribute="width" constant="40" id="dIU-12-EdM"/>
+                                                        <constraint firstAttribute="height" constant="35" id="I48-At-bd1"/>
+                                                        <constraint firstAttribute="width" constant="70" id="dIU-12-EdM"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                     <color key="textColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3W9-qK-3L4" userLabel="Button - Add">
-                                                    <rect key="frame" x="280" y="20" width="30" height="30"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tky-n5-vqh" userLabel="Label - Price per unit">
+                                                    <rect key="frame" x="73" y="52" width="170" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="4vH-Wd-Z5v"/>
-                                                        <constraint firstAttribute="width" constant="30" id="Rq0-sJ-U19"/>
+                                                        <constraint firstAttribute="height" constant="18" id="TNz-nV-PeT"/>
+                                                        <constraint firstAttribute="width" constant="170" id="sMS-4u-b3N"/>
                                                     </constraints>
-                                                    <state key="normal" image="addIconCircle.png">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="actionAddProduct:" destination="PTn-NU-T0A" eventType="touchUpInside" id="RDo-Sj-4vU"/>
-                                                    </connections>
-                                                </button>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                    <color key="textColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="U5h-8v-Xcj" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="-3" id="7SQ-Q6-IiO"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="3W9-qK-3L4" secondAttribute="trailing" constant="2" id="Nz3-UR-VZA"/>
-                                                <constraint firstItem="sUO-PO-V0a" firstAttribute="leading" secondItem="qDT-pc-IwQ" secondAttribute="trailing" constant="7" id="RNm-ZQ-hwd"/>
-                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="-3" id="XoE-jQ-xLF"/>
-                                                <constraint firstItem="3W9-qK-3L4" firstAttribute="leading" secondItem="Ebo-vt-veE" secondAttribute="trailing" constant="5" id="b7w-GI-7Zp"/>
-                                                <constraint firstItem="3W9-qK-3L4" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="12" id="d30-c1-sJj"/>
+                                                <constraint firstItem="tky-n5-vqh" firstAttribute="top" secondItem="qDT-pc-IwQ" secondAttribute="bottom" constant="7" id="5cz-af-bXC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Ebo-vt-veE" secondAttribute="trailing" constant="-2" id="7Pc-ez-TxZ"/>
+                                                <constraint firstItem="U5h-8v-Xcj" firstAttribute="topMargin" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="10" id="7SQ-Q6-IiO"/>
+                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="leading" secondItem="qDT-pc-IwQ" secondAttribute="trailing" constant="1" id="AnP-K1-ji4"/>
+                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="topMargin" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="22" id="XoE-jQ-xLF"/>
+                                                <constraint firstItem="tky-n5-vqh" firstAttribute="leading" secondItem="U5h-8v-Xcj" secondAttribute="trailing" constant="8" id="b45-V7-i3I"/>
                                                 <constraint firstItem="qDT-pc-IwQ" firstAttribute="leading" secondItem="U5h-8v-Xcj" secondAttribute="trailing" constant="8" id="eq5-rN-fpn"/>
-                                                <constraint firstItem="sUO-PO-V0a" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="12" id="hbQ-aV-5uw"/>
                                                 <constraint firstItem="U5h-8v-Xcj" firstAttribute="leading" secondItem="BI6-Tw-rPc" secondAttribute="leadingMargin" constant="-3" id="idf-W0-JN8"/>
-                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="leading" secondItem="sUO-PO-V0a" secondAttribute="trailing" constant="5" id="tgB-0b-uNV"/>
-                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="-3" id="vmS-Mz-TL0"/>
+                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="topMargin" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="10" id="vmS-Mz-TL0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="btnAdd" destination="3W9-qK-3L4" id="TWE-g4-CYp"/>
-                                            <outlet property="btnRemove" destination="sUO-PO-V0a" id="h8Y-HG-Swt"/>
                                             <outlet property="imgProduct" destination="U5h-8v-Xcj" id="guT-Pc-LAR"/>
-                                            <outlet property="lblCounter" destination="Ebo-vt-veE" id="Wj8-Ie-sWY"/>
                                             <outlet property="lblProductName" destination="qDT-pc-IwQ" id="B1N-Up-r8X"/>
+                                            <outlet property="lblProductPerUnitPrice" destination="tky-n5-vqh" id="tqW-3q-fWv"/>
+                                            <outlet property="lblTotalProducts" destination="Ebo-vt-veE" id="MwK-jD-NIR"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1238,7 +1218,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="y8r-tW-i9N">
+                            <searchBar contentMode="redraw" placeholder="add more product" translatesAutoresizingMaskIntoConstraints="NO" id="y8r-tW-i9N">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="55p-eO-gGI"/>
@@ -1253,10 +1233,13 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="actionSearch:" destination="p0K-rZ-5CS" eventType="touchUpInside" id="kL3-DK-fpK"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Apm-4n-hKH">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailCell" rowHeight="70" id="xIg-tD-XB1" customClass="ShoppingListDetailCell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1370,7 +1353,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
         <!--Shopping List Choose Store View Controller-->
         <scene sceneID="qFv-HL-cMS">
             <objects>
-                <viewController id="uDR-90-9Ga" customClass="ShoppingListChooseStoreViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingListChooseStoreView" id="uDR-90-9Ga" customClass="ShoppingListChooseStoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MvP-Xs-u8E"/>
                         <viewControllerLayoutGuide type="bottom" id="fbi-he-jj4"/>
@@ -1380,7 +1363,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bqQ-y9-rTb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="uDR-90-9Ga" id="NyS-l0-gE2"/>
@@ -1390,9 +1373,9 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bqQ-y9-rTb" firstAttribute="height" secondItem="fWV-Qn-jzu" secondAttribute="height" id="Ghb-HD-iQF"/>
+                            <constraint firstItem="fbi-he-jj4" firstAttribute="top" secondItem="bqQ-y9-rTb" secondAttribute="bottom" id="Cb9-US-Taa"/>
                             <constraint firstAttribute="centerX" secondItem="bqQ-y9-rTb" secondAttribute="centerX" id="NXp-vJ-oyB"/>
-                            <constraint firstAttribute="centerY" secondItem="bqQ-y9-rTb" secondAttribute="centerY" id="WJT-3m-wYY"/>
+                            <constraint firstItem="bqQ-y9-rTb" firstAttribute="top" secondItem="MvP-Xs-u8E" secondAttribute="bottom" id="mDv-Hq-yle"/>
                             <constraint firstItem="bqQ-y9-rTb" firstAttribute="width" secondItem="fWV-Qn-jzu" secondAttribute="width" id="tNl-FW-nQC"/>
                         </constraints>
                     </view>
@@ -1416,7 +1399,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MUd-e9-Tn0">
+                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="MUd-e9-Tn0">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="19R-1n-Nha"/>
@@ -1434,7 +1417,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="riw-fd-AuT">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListShareCell" rowHeight="58" id="g9E-tU-Wj2" customClass="ShoppingListShareCell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -1831,7 +1814,7 @@ Please give us your address</string>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="6fO-ce-UBD">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShoppingListDetailCell" rowHeight="70" id="yTI-Vx-dqp" customClass="ShoppingListDetailCell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -3142,7 +3125,7 @@ Please give us your address</string>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="rXS-Mn-Xds" kind="relationship" relationship="rootViewController" id="BfD-1V-CSm"/>
+                        <segue destination="Lo8-NH-bSh" kind="relationship" relationship="rootViewController" id="B4y-wD-oWO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BB2-4V-27D" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4115,10 +4098,10 @@ Please give us your address</string>
                         <viewControllerLayoutGuide type="bottom" id="wIn-xs-BLK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GUC-0e-h8w">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="owd-6E-OdS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="owd-6E-OdS">
                                 <rect key="frame" x="0.0" y="24" width="320" height="500"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -4445,8 +4428,35 @@ Please give us your address</string>
                                     <outlet property="delegate" destination="7Fv-Uz-q9I" id="oLv-k5-5lm"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9L-aZ-cwB">
+                                <rect key="frame" x="6" y="5" width="308" height="112"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymentNotificationBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="QQJ-n0-a06">
+                                        <rect key="frame" x="0.0" y="0.0" width="308" height="112"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-9y-Ii0">
+                                        <rect key="frame" x="8" y="8" width="292" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="QQJ-n0-a06" secondAttribute="trailing" id="0AI-xh-cXF"/>
+                                    <constraint firstAttribute="bottom" secondItem="vwv-9y-Ii0" secondAttribute="bottom" constant="8" id="3gx-0G-xKt"/>
+                                    <constraint firstAttribute="trailing" secondItem="vwv-9y-Ii0" secondAttribute="trailing" constant="8" id="D3J-62-tFg"/>
+                                    <constraint firstItem="QQJ-n0-a06" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" id="KYb-sS-3OW"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="8" id="Yi3-Cr-i9k"/>
+                                    <constraint firstAttribute="width" constant="308" id="csR-Qz-iO2"/>
+                                    <constraint firstItem="QQJ-n0-a06" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" id="huH-yr-CsN"/>
+                                    <constraint firstAttribute="bottom" secondItem="QQJ-n0-a06" secondAttribute="bottom" id="oy1-u3-9th"/>
+                                    <constraint firstAttribute="height" constant="112" id="rLk-lb-rCq"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" constant="8" id="vXg-m9-gOj"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qn3-R3-ILi">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
                                 <color key="backgroundColor" red="0.80392156862745101" green="0.043137254901960784" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="nmg-oM-ze0"/>
@@ -4464,14 +4474,18 @@ Please give us your address</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leading" id="MEN-a0-fbd"/>
+                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leadingMargin" constant="-10" id="Mbp-dv-dFp"/>
                             <constraint firstItem="qn3-R3-ILi" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leading" id="SUE-p0-oTB"/>
                             <constraint firstAttribute="trailing" secondItem="qn3-R3-ILi" secondAttribute="trailing" id="V5b-zF-QGA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="d9L-aZ-cwB" secondAttribute="trailing" constant="-10" id="kYU-H1-sVG"/>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="4" id="oAF-bZ-j4Y"/>
+                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="5" id="oJ0-yc-gCy"/>
                             <constraint firstAttribute="trailing" secondItem="owd-6E-OdS" secondAttribute="trailing" id="rPQ-gD-RKL"/>
                             <constraint firstItem="wIn-xs-BLK" firstAttribute="top" secondItem="qn3-R3-ILi" secondAttribute="bottom" id="rwu-wp-Lvc"/>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="bottom" secondItem="qn3-R3-ILi" secondAttribute="bottom" constant="-44" id="wZB-Kp-YUi"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnPay" destination="qn3-R3-ILi" id="xdE-j6-pZG"/>
@@ -4957,7 +4971,7 @@ It will be used only for verification purposes.</string>
                                     <constraint firstAttribute="height" constant="40" id="0oW-Ra-m2i"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wH8-HE-bct" userLabel="View - subcategories">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wH8-HE-bct" userLabel="View - subcategories">
                                 <rect key="frame" x="0.0" y="129" width="320" height="439"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -5000,9 +5014,214 @@ It will be used only for verification purposes.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FOE-AS-WJr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="90" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="FOE-AS-WJr">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeCategoryListCell" rowHeight="100" id="G9V-hU-DVF" customClass="HomeCategoryListCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G9V-hU-DVF" id="6AW-Fd-WeO">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeScreenHomeIconRed.png" translatesAutoresizingMaskIntoConstraints="NO" id="3QC-rT-9tu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="9by-DD-Amw"/>
+                                                        <constraint firstAttribute="height" constant="35" id="oDl-Cj-MeH"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeDetailsDefaultImgae.png" translatesAutoresizingMaskIntoConstraints="NO" id="e6d-Df-zwb" userLabel="Image View - Store image">
+                                                    <rect key="frame" x="8" y="15" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="C74-fX-obv"/>
+                                                        <constraint firstAttribute="height" constant="60" id="dYD-tb-mfD"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeChocklateIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="B3V-xp-6T5" userLabel="Image View - Category type icon">
+                                                    <rect key="frame" x="78" y="15" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="JOu-qG-g5k"/>
+                                                        <constraint firstAttribute="width" constant="20" id="KAU-tH-Bpn"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chocolate &amp; sweets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfb-5K-hQV" userLabel="Label - Category Name">
+                                                    <rect key="frame" x="103" y="16" width="178" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="oet-Ih-av1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.24705882352941178" green="0.24705882352941178" blue="0.24705882352941178" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeLockIconOpen.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fuv-zV-7yS" userLabel="Image VIew - Store Status">
+                                                    <rect key="frame" x="287" y="12" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="0vw-iF-gpv"/>
+                                                        <constraint firstAttribute="width" constant="25" id="8eX-TS-iYn"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Plaza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PT-qP-55x" userLabel="Label - Store Name">
+                                                    <rect key="frame" x="80" y="39" width="201" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="dFI-Ca-sJY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBe-EC-kdp" userLabel="View - Rating">
+                                                    <rect key="frame" x="80" y="57" width="160" height="18"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kIt-bT-T1T" userLabel="Image View - Rating 1">
+                                                            <rect key="frame" x="8" y="1" width="15" height="15"/>
+                                                            <color key="backgroundColor" red="0.83177227210000004" green="0.0086834637849999997" blue="0.03487349713" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="T1D-VT-87m"/>
+                                                                <constraint firstAttribute="width" constant="15" id="ntH-7Y-E05"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jMV-V7-2zM" userLabel="Image View - Rating 2">
+                                                            <rect key="frame" x="29" y="1" width="15" height="15"/>
+                                                            <color key="backgroundColor" red="0.83177227210000004" green="0.0086834637849999997" blue="0.03487349713" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="Xao-rS-c1d"/>
+                                                                <constraint firstAttribute="width" constant="15" id="Ye5-kB-qpb"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bwI-pm-G0B" userLabel="Image View - Rating 3">
+                                                            <rect key="frame" x="50" y="1" width="15" height="15"/>
+                                                            <color key="backgroundColor" red="0.83177227210000004" green="0.0086834637849999997" blue="0.03487349713" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="3gM-jA-Ykf"/>
+                                                                <constraint firstAttribute="height" constant="15" id="xQ6-wB-ZdP"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sX3-g2-UNe" userLabel="Image View - Rating 4">
+                                                            <rect key="frame" x="71" y="1" width="15" height="15"/>
+                                                            <color key="backgroundColor" red="0.83177227210000004" green="0.0086834637849999997" blue="0.03487349713" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="Rzr-3C-Wpn"/>
+                                                                <constraint firstAttribute="width" constant="15" id="i3n-pu-y6I"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nBM-de-O9K" userLabel="Image View - Rating 5">
+                                                            <rect key="frame" x="92" y="1" width="15" height="15"/>
+                                                            <color key="backgroundColor" red="0.83177227210000004" green="0.0086834637849999997" blue="0.03487349713" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="HJV-hy-fHz"/>
+                                                                <constraint firstAttribute="height" constant="15" id="cV6-Ln-ezc"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="sX3-g2-UNe" firstAttribute="top" secondItem="nBe-EC-kdp" secondAttribute="top" constant="1" id="0W2-td-Yla"/>
+                                                        <constraint firstItem="jMV-V7-2zM" firstAttribute="top" secondItem="nBe-EC-kdp" secondAttribute="top" constant="1" id="2g1-Yg-Kzm"/>
+                                                        <constraint firstItem="bwI-pm-G0B" firstAttribute="leading" secondItem="jMV-V7-2zM" secondAttribute="trailing" constant="6" id="3I3-6l-obm"/>
+                                                        <constraint firstItem="nBM-de-O9K" firstAttribute="top" secondItem="nBe-EC-kdp" secondAttribute="top" constant="1" id="Adp-Xg-YAT"/>
+                                                        <constraint firstAttribute="width" constant="160" id="IN6-be-LvT"/>
+                                                        <constraint firstItem="sX3-g2-UNe" firstAttribute="leading" secondItem="bwI-pm-G0B" secondAttribute="trailing" constant="6" id="KGf-Zv-lwx"/>
+                                                        <constraint firstItem="jMV-V7-2zM" firstAttribute="leading" secondItem="kIt-bT-T1T" secondAttribute="trailing" constant="6" id="KnV-NG-6Gg"/>
+                                                        <constraint firstItem="nBM-de-O9K" firstAttribute="leading" secondItem="sX3-g2-UNe" secondAttribute="trailing" constant="6" id="Qnu-ZY-bWe"/>
+                                                        <constraint firstItem="kIt-bT-T1T" firstAttribute="top" secondItem="nBe-EC-kdp" secondAttribute="top" constant="1" id="Wmj-yo-ZOs"/>
+                                                        <constraint firstAttribute="height" constant="18" id="ZqF-xP-nLu"/>
+                                                        <constraint firstItem="bwI-pm-G0B" firstAttribute="top" secondItem="nBe-EC-kdp" secondAttribute="top" constant="1" id="fz4-9s-aJ9"/>
+                                                        <constraint firstItem="kIt-bT-T1T" firstAttribute="leading" secondItem="nBe-EC-kdp" secondAttribute="leading" constant="8" id="url-d0-uvP"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeStarIconActive.png" translatesAutoresizingMaskIntoConstraints="NO" id="2NM-nW-mzQ" userLabel="Image VIew - isFavorite">
+                                                    <rect key="frame" x="287" y="50" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="9jP-2G-yXf"/>
+                                                        <constraint firstAttribute="width" constant="25" id="cYs-cz-ihT"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEx-IU-uJx" userLabel="Button - Distance">
+                                                    <rect key="frame" x="78" y="78" width="76" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="3d0-M3-RoS"/>
+                                                        <constraint firstAttribute="width" constant="76" id="GAy-WQ-NmF"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="8772.2 Km" image="locationIconHome.png">
+                                                        <color key="titleColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NJ-bs-FFl" userLabel="Button - Delivery Type ">
+                                                    <rect key="frame" x="158" y="78" width="74" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="wfK-aY-BQb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Delivers" image="homeStoreDetailsDeleversIcon.png">
+                                                        <color key="titleColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9iA-se-MDa" userLabel="Button - Total Orders">
+                                                    <rect key="frame" x="233" y="77" width="78" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="ZMI-IU-lPZ"/>
+                                                        <constraint firstAttribute="width" constant="78" id="wXk-A4-hob"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                                    <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="999 Times" image="homeRupeesIcon.png">
+                                                        <color key="titleColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9iA-se-MDa" firstAttribute="leading" secondItem="4NJ-bs-FFl" secondAttribute="trailing" constant="1" id="2Uj-Rl-EZx"/>
+                                                <constraint firstItem="9iA-se-MDa" firstAttribute="top" secondItem="2NM-nW-mzQ" secondAttribute="bottom" constant="2" id="46n-Oe-7io"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="4NJ-bs-FFl" secondAttribute="bottom" constant="-3" id="75T-Ei-cWa"/>
+                                                <constraint firstItem="Fuv-zV-7yS" firstAttribute="top" secondItem="6AW-Fd-WeO" secondAttribute="topMargin" constant="4" id="DDy-3g-kcT"/>
+                                                <constraint firstItem="Fuv-zV-7yS" firstAttribute="leading" secondItem="0PT-qP-55x" secondAttribute="trailing" constant="6" id="F8W-Wd-irM"/>
+                                                <constraint firstItem="B3V-xp-6T5" firstAttribute="leading" secondItem="e6d-Df-zwb" secondAttribute="trailing" constant="10" id="LvC-e9-PoC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9iA-se-MDa" secondAttribute="trailing" constant="1" id="OXJ-4G-pvn"/>
+                                                <constraint firstItem="3QC-rT-9tu" firstAttribute="top" secondItem="6AW-Fd-WeO" secondAttribute="topMargin" constant="-8" id="R8t-Nd-y6q"/>
+                                                <constraint firstItem="4NJ-bs-FFl" firstAttribute="leading" secondItem="uEx-IU-uJx" secondAttribute="trailing" constant="4" id="RcG-mj-TAT"/>
+                                                <constraint firstItem="Fuv-zV-7yS" firstAttribute="leading" secondItem="Vfb-5K-hQV" secondAttribute="trailing" constant="6" id="RgE-KC-f32"/>
+                                                <constraint firstItem="uEx-IU-uJx" firstAttribute="leading" secondItem="e6d-Df-zwb" secondAttribute="trailing" constant="10" id="V1D-0p-wS5"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="uEx-IU-uJx" secondAttribute="bottom" constant="-3" id="Wto-3W-xcA"/>
+                                                <constraint firstItem="Fuv-zV-7yS" firstAttribute="trailing" secondItem="6AW-Fd-WeO" secondAttribute="trailingMargin" id="XTl-lY-0SY"/>
+                                                <constraint firstItem="e6d-Df-zwb" firstAttribute="top" secondItem="6AW-Fd-WeO" secondAttribute="topMargin" constant="7" id="a9l-Bb-obw"/>
+                                                <constraint firstItem="0PT-qP-55x" firstAttribute="leading" secondItem="e6d-Df-zwb" secondAttribute="trailing" constant="12" id="aKw-Rx-ZLr"/>
+                                                <constraint firstItem="B3V-xp-6T5" firstAttribute="top" secondItem="6AW-Fd-WeO" secondAttribute="topMargin" constant="7" id="bPH-6m-bxw"/>
+                                                <constraint firstItem="2NM-nW-mzQ" firstAttribute="trailing" secondItem="6AW-Fd-WeO" secondAttribute="trailingMargin" id="c9R-Dx-Juu"/>
+                                                <constraint firstItem="0PT-qP-55x" firstAttribute="top" secondItem="B3V-xp-6T5" secondAttribute="bottom" constant="4" id="eSJ-aV-4my"/>
+                                                <constraint firstItem="3QC-rT-9tu" firstAttribute="leading" secondItem="6AW-Fd-WeO" secondAttribute="leadingMargin" constant="-8" id="je2-H7-vuD"/>
+                                                <constraint firstItem="nBe-EC-kdp" firstAttribute="top" secondItem="0PT-qP-55x" secondAttribute="bottom" constant="2" id="kZ6-b9-ZnU"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="9iA-se-MDa" secondAttribute="bottom" constant="-2" id="m4p-vd-2em"/>
+                                                <constraint firstItem="e6d-Df-zwb" firstAttribute="leading" secondItem="6AW-Fd-WeO" secondAttribute="leadingMargin" id="p9W-Rc-ESA"/>
+                                                <constraint firstItem="nBe-EC-kdp" firstAttribute="leading" secondItem="e6d-Df-zwb" secondAttribute="trailing" constant="12" id="pEj-Dl-tSE"/>
+                                                <constraint firstItem="Vfb-5K-hQV" firstAttribute="leading" secondItem="B3V-xp-6T5" secondAttribute="trailing" constant="5" id="uJh-Fl-nbs"/>
+                                                <constraint firstItem="Vfb-5K-hQV" firstAttribute="top" secondItem="6AW-Fd-WeO" secondAttribute="topMargin" constant="8" id="ygY-sY-SIV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnDeliveryType" destination="4NJ-bs-FFl" id="wg8-tu-jRw"/>
+                                            <outlet property="btnDistance" destination="uEx-IU-uJx" id="WPA-1E-L6c"/>
+                                            <outlet property="btnTotalOrders" destination="9iA-se-MDa" id="rKL-1T-pcu"/>
+                                            <outlet property="imgCategoryTypeIcon" destination="B3V-xp-6T5" id="QYq-0n-ApB"/>
+                                            <outlet property="imgHomeIcon" destination="3QC-rT-9tu" id="Y1g-s6-9Ee"/>
+                                            <outlet property="imgIsFavourite" destination="2NM-nW-mzQ" id="fuh-Xy-1oF"/>
+                                            <outlet property="imgRating1" destination="kIt-bT-T1T" id="Z3D-qK-5cb"/>
+                                            <outlet property="imgRating2" destination="jMV-V7-2zM" id="3A4-N9-voj"/>
+                                            <outlet property="imgRating3" destination="bwI-pm-G0B" id="ZiJ-tq-fpR"/>
+                                            <outlet property="imgRating4" destination="sX3-g2-UNe" id="e7L-gq-eVr"/>
+                                            <outlet property="imgRating5" destination="nBM-de-O9K" id="Na5-K8-z0v"/>
+                                            <outlet property="imgStore" destination="e6d-Df-zwb" id="1WL-fc-bEg"/>
+                                            <outlet property="imgStoreStatusIcon" destination="Fuv-zV-7yS" id="vp8-y4-qZA"/>
+                                            <outlet property="lblCategoryName" destination="Vfb-5K-hQV" id="7BN-Au-0No"/>
+                                            <outlet property="lblStoreName" destination="0PT-qP-55x" id="a8n-8B-ObZ"/>
+                                            <outlet property="viewRating" destination="nBe-EC-kdp" id="RCU-eK-Dd7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5014,7 +5233,7 @@ It will be used only for verification purposes.</string>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tblView" destination="FOE-AS-WJr" id="eye-ny-l9A"/>
+                        <outlet property="tblStores" destination="FOE-AS-WJr" id="fYP-F2-Huc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAl-Hu-gor" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5338,7 +5557,6 @@ It will be used only for verification purposes.</string>
         <image name="chatNumberingCircle.png" width="30" height="30"/>
         <image name="chatScreenMyListLogo.png" width="180" height="180"/>
         <image name="chooseCategoryDefaultImage.png" width="56" height="56"/>
-        <image name="clockIconRed.png" width="15" height="15"/>
         <image name="closeIcon.png" width="20" height="20"/>
         <image name="defalutCameraIconNew.png" width="130" height="130"/>
         <image name="dispatchedIconActive.png" width="35" height="35"/>
@@ -5347,14 +5565,21 @@ It will be used only for verification purposes.</string>
         <image name="enterMobileNoBox.png" width="297" height="50"/>
         <image name="existingUserBox.png" width="297" height="48"/>
         <image name="historyScreenOderHistoryIcon.png" width="180" height="180"/>
+        <image name="homeChocklateIcon.png" width="20" height="20"/>
         <image name="homeCostomerImage.png" width="320" height="568"/>
         <image name="homeDetailStoreBox.png" width="271" height="136"/>
+        <image name="homeDetailsDefaultImgae.png" width="60" height="60"/>
+        <image name="homeLockIconOpen.png" width="25" height="25"/>
+        <image name="homeRupeesIcon.png" width="17" height="17"/>
+        <image name="homeScreenHomeIconRed.png" width="35" height="35"/>
+        <image name="homeStarIconActive.png" width="25" height="25"/>
         <image name="homeStoreDetailsDeleversIcon.png" width="17" height="17"/>
         <image name="homeStoreEnterHomeStoreBox.png" width="272" height="47"/>
         <image name="homeStoreIdBox.png" width="271" height="46"/>
         <image name="homeStoreQuestionMarkIcon.png" width="17" height="17"/>
         <image name="indianFlag.png" width="23" height="15"/>
         <image name="locationIcon.png" width="20" height="20"/>
+        <image name="locationIconHome.png" width="15" height="15"/>
         <image name="locationIconRed.png" width="15" height="15"/>
         <image name="locationPopupCancelBox.png" width="132" height="41"/>
         <image name="locationPopupOp1.png" width="81" height="34"/>
@@ -5375,6 +5600,7 @@ It will be used only for verification purposes.</string>
         <image name="offersSoundIconRed.png" width="320" height="568"/>
         <image name="packedIconActive.png" width="35" height="35"/>
         <image name="packedIconInactive.png" width="35" height="35"/>
+        <image name="paymentNotificationBox.png" width="308" height="112"/>
         <image name="pencilIcon.png" width="42" height="45"/>
         <image name="popupCloseIcon.png" width="20" height="20"/>
         <image name="preferencesLocationAddCircle.png" width="25" height="25"/>

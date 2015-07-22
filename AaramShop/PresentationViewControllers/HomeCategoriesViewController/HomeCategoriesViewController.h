@@ -11,7 +11,7 @@
 #import "YSLContainerViewController.h"
 
 
-@interface HomeCategoriesViewController : UIViewController<AaramShop_ConnectionManager_Delegate,CDRTranslucentSideBarDelegate,CustomNavigationDelegate>//,SWTableViewCellDelegate>
+@interface HomeCategoriesViewController : UIViewController<AaramShop_ConnectionManager_Delegate,CDRTranslucentSideBarDelegate,CustomNavigationDelegate>
 {
     YSLContainerViewController *containerVC;
 
@@ -20,8 +20,14 @@
     IBOutlet UIView *viewSubcategories;
     
     NSMutableArray *arrCategories;
+    
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+@property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
 
 @end
+
+
+
+

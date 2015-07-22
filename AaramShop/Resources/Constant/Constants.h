@@ -4,6 +4,9 @@
 #define kRobotoRegular									@"Roboto-Regular"
 #define kRobotoMedium									@"Roboto-Medium"
 
+#define kFontHandSean                                   @"Sean"
+
+
 #pragma mark - Alert titles and Internet alerts
 
 #define kAlertTitle											@"Aaram shop"
@@ -310,12 +313,10 @@
 #define KURLSerachStoreProducts                     @"serachStoreProducts"
 #define kURLCreateShoppingList                      @"createShoppingList"
 #define kURLGetShoppingList                         @"getShoppingList"
-#define kDeleteShoppingList                         @"deleteShoppingList"
-
-
-
-
-
+#define kURLDeleteShoppingList                      @"deleteShoppingList"
+#define kURLGetShoppingListProducts                 @"getShoppingListProducts"
+#define kURLUpdateShoppingListProducts              @"updateShoppingListProducts"
+#define kURLGetStores                               @"getStores"
 
 
 

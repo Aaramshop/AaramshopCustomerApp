@@ -1,34 +1,37 @@
 //
-//  HomeCategoryListCell.m
+//  RecommendedStoreCell.m
 //  AaramShop
 //
-//  Created by Shakir@AppRoutes on 11/07/15.
+//  Created by Approutes on 20/07/15.
 //  Copyright (c) 2015 Approutes. All rights reserved.
 //
 
-#import "HomeCategoryListCell.h"
+#import "RecommendedStoreCell.h"
 
-@implementation HomeCategoryListCell
+@implementation RecommendedStoreCell
 @synthesize indexPath,selectedCategory,isRecommendedStore;
 
 - (void)awakeFromNib {
     // Initialization code
     
-    imgStore.layer.cornerRadius = imgStore.frame.size.width/2.0;
+    imgStore.layer.cornerRadius = 5.0;
     imgStore.clipsToBounds=YES;
     
     imgHomeIcon.image = [UIImage imageNamed:@"homeScreenHomeIconRed"];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
+
     // Configure the view for the selected state
 }
 
+
+
+//*
 
 -(void)updateCellWithData:(StoreModel*)objStoreData
 {
@@ -37,7 +40,7 @@
     if (size.height < 20) {
         size.height = 20;
     }
-   
+    
     ////
     if ([objStoreData.is_home_store isEqualToString:@"1"]) {
         imgHomeIcon.hidden = NO;
@@ -49,7 +52,7 @@
     ////
     NSString *strStoreCategoryIcon = [NSString stringWithFormat:@"%@",objStoreData.store_category_icon];
     NSURL *urlStoreCategoryIcon = [NSURL URLWithString:[strStoreCategoryIcon stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-
+    
     [imgCategoryTypeIcon sd_setImageWithURL:urlStoreCategoryIcon placeholderImage:[UIImage imageNamed:@"homeChocklateIcon.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
         }
@@ -59,16 +62,14 @@
     ////
     NSString *strStoreImage = [NSString stringWithFormat:@"%@",objStoreData.store_image];
     NSURL *urlStoreImage = [NSURL URLWithString:[strStoreImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-
+    
     [imgStore sd_setImageWithURL:urlStoreImage placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
         }
     }];
     
-    
     ////
-    lblCategoryName.text =objStoreData.store_category_name;
-
+    
     
     ////
     if ([objStoreData.is_open isEqualToString:@"1"]) {
@@ -82,7 +83,7 @@
     
     ////
     lblStoreName.text =objStoreData.store_name;
-
+    
     
     ////
     // rating images ...
@@ -124,7 +125,7 @@
     else
         imgIsFavourite.image = [UIImage imageNamed:@"homeStarIconInactive.png"];
     
-       
+    
 }
 
 
@@ -134,3 +135,6 @@
 }
 
 @end
+
+
+//*

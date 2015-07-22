@@ -8,13 +8,15 @@
 #import <UIKit/UIKit.h>
 #import "ShoppingListCell.h"
 
-@interface ShoppingListViewController : UIViewController<CDRTranslucentSideBarDelegate,AaramShop_ConnectionManager_Delegate,ShoppingListDelegate>
+@interface ShoppingListViewController : UIViewController<CDRTranslucentSideBarDelegate,AaramShop_ConnectionManager_Delegate,ShoppingListCellDelegate>
 {
     __weak IBOutlet UITableView *tblView;
     NSMutableArray *arrShoppingList;
     
     UIRefreshControl *refreshShoppingList;
     BOOL isLoading;
+    
+    NSInteger deletedShoppingListIndex;
 
 }
 

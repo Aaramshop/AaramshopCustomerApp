@@ -108,6 +108,13 @@
 	
     
 //    mainScrollView.backgroundColor = [UIColor redColor];
+    
+    
+//    for (NSString *fontFamilyName in [UIFont familyNames]) {
+//        for (NSString *fontName in [UIFont fontNamesForFamilyName:fontFamilyName]) {
+//            NSLog(@"Family: %@    Font: %@", fontFamilyName, fontName);
+//        }
+//    }
 }
 
 -(void)setViewForRecomendedCells
@@ -229,7 +236,9 @@
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     
-
+//        [dict setObject:@"0.0" forKey:kLatitude]; // temp
+//        [dict setObject:@"0.0" forKey:kLongitude]; // temp
+    
 //    [dict setObject:@"28.5136781" forKey:kLatitude]; // temp
 //    [dict setObject:@"77.3769436" forKey:kLongitude]; // temp
     
@@ -239,6 +248,11 @@
 
 -(void)callWebserviceToGetStores:(NSMutableDictionary *)aDict
 {
+    if ([arrCategory count]>0)
+    {
+        return;
+    }
+    
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
     {
@@ -876,7 +890,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
+    //*
     
     HomeCategoriesViewController *homeCategories = (HomeCategoriesViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"HomeCategoryViewScene"];
     [self.navigationController pushViewController:homeCategories animated:YES];
@@ -884,10 +898,10 @@
     //*/
   
     
-    //*
+    /*
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
+//    HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
     StoreModel *objStoreModel = nil;
     if (mainCategoryIndex != 0)
     {

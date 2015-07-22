@@ -16,21 +16,33 @@
 @end
 
 @implementation ShoppingListAddMoreViewController
+@synthesize aaramShop_ConnectionManager;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    appDel = APP_DELEGATE;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    arrProductList = [[NSMutableArray alloc]init];
+    
+    if (!_arrProductList)
+    {
+        _arrProductList = [[NSMutableArray alloc]init];
+    }
+    
     [self setNavigationBar];
+    
+    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
+    aaramShop_ConnectionManager.delegate= self;
+    
     
     tblView.backgroundColor = [UIColor whiteColor];
     
-    [self initializeData];
-
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -46,47 +58,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-
--(void)initializeData
-{
-    NSDictionary *dic1 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"abkhazia",@"image",@"Product 1",@"name",@"0",@"quantity", nil];
-    
-    NSDictionary *dic2 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"adygea",@"image",@"Product 2",@"name",@"0",@"quantity", nil];
-    
-    NSDictionary *dic3 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"ajaria",@"image",@"Product 3",@"name",@"0",@"quantity", nil];
-    
-    NSDictionary *dic4 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"alderney",@"image",@"Product 4",@"name",@"0",@"quantity", nil];
-    
-    
-    [arrProductList addObject:dic1];
-    [arrProductList addObject:dic2];
-    [arrProductList addObject:dic3];
-    [arrProductList addObject:dic4];
-    
-    [arrProductList addObject:dic1];
-    [arrProductList addObject:dic2];
-    [arrProductList addObject:dic3];
-    [arrProductList addObject:dic4];
-    
-    [arrProductList addObject:dic1];
-    [arrProductList addObject:dic2];
-    [arrProductList addObject:dic3];
-    [arrProductList addObject:dic4];
-    
-    [arrProductList addObject:dic1];
-    [arrProductList addObject:dic2];
-    [arrProductList addObject:dic3];
-    [arrProductList addObject:dic4];
-    
-    [arrProductList addObject:dic1];
-    [arrProductList addObject:dic2];
-    [arrProductList addObject:dic3];
-    [arrProductList addObject:dic4];
-    
-    
-    [tblView reloadData];
-}
 
 
 
@@ -147,7 +118,51 @@
 
 - (void)btnDoneClicked
 {
-
+    [self.view endEditing:YES];
+    
+    __block NSString *strProductID = @"";
+    __block NSString *strQuantity = @"";
+    
+    
+    [_arrProductList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        ProductsModel *productModel = [_arrProductList objectAtIndex:idx];
+        if ([productModel.quantity integerValue]>0)
+        {
+            strProductID = [NSString stringWithFormat:@"%@,%@",strProductID,productModel.product_id];
+            
+            strQuantity = [NSString stringWithFormat:@"%@,%@",strQuantity,productModel.quantity];
+        }
+    }];
+    
+    if ([strProductID hasPrefix:@","])
+    {
+        strProductID = [strProductID substringFromIndex:1];
+    }
+    
+    if ([strQuantity hasPrefix:@","])
+    {
+        strQuantity = [strQuantity substringFromIndex:1];
+    }
+    
+    
+    if ([strProductID length]==0)
+    {
+        [Utils showAlertView:kAlertTitle message:@"Add Product(s)" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    else
+    {
+        NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+        
+        [dict setObject:_strShoppingListId forKey:@"shoppingListId"];
+        
+        [dict setObject:strProductID forKey:@"productId"];
+        [dict setObject:strQuantity forKey:@"quantity"];
+        
+        [self callWebServiceToUpdateShoppingList:dict];
+    }
+    
 }
 
 
@@ -166,7 +181,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return arrProductList.count;
+    return _arrProductList.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -186,7 +201,7 @@
     cell.indexPath = indexPath;
     cell.delegate = self;
     
-    [cell updateCell:[arrProductList objectAtIndex:indexPath.row]];
+    [cell updateCell:[_arrProductList objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -202,27 +217,155 @@
 
 -(void)addProduct:(NSIndexPath *)indexPath
 {
-    int counter = [[[arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
+    ProductsModel *productModel = [_arrProductList objectAtIndex:indexPath.row];
+    
+    int counter = [productModel.quantity intValue];
     
     counter++;
     
-    [[arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
-    
+    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
     
     [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)removeProduct:(NSIndexPath *)indexPath
 {
-    int counter = [[[arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
+    ProductsModel *productModel = [_arrProductList objectAtIndex:indexPath.row];
+    
+    int counter = [productModel.quantity intValue];
     counter--;
     
-    [[arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
-    
-    
+    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
     
     [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
+
+
+
+
+-(void)doSearch
+{
+    searchViewController = (SearchViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController" ];
+    [searchViewController setDelegate:self];
+    
+    [appDel.window addSubview:searchViewController.view];
+    
+}
+
+-(void)removeSearchViewFromParentView{
+    [searchViewController.view removeFromSuperview];
+}
+
+
+
+-(void)openSearchedUserPrroductFor:(ProductsModel *)product
+{
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",product.product_sku_id];
+    
+    NSArray *aFilteredObjects = [_arrProductList filteredArrayUsingPredicate: aPredicate];
+    
+    if (aFilteredObjects && aFilteredObjects.count > 0) {
+        //already exist
+        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
+    else{
+        //add new product
+        
+        product.quantity = @"1";
+        
+        [_arrProductList insertObject:product atIndex:0];
+        
+    }
+    
+    [tblView reloadData];
+    
+}
+
+
+-(void)addProductIfNeeded:(NSDictionary *)inDic{
+    
+    
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",[inDic objectForKey: @"product_sku_id"]];
+    
+    NSArray *aFilteredObjects = [_arrProductList filteredArrayUsingPredicate: aPredicate];
+    
+    if (aFilteredObjects && aFilteredObjects.count > 0) {
+        //already exist
+        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
+    else{
+        //add new product
+        [_arrProductList insertObject:inDic atIndex:0];
+        
+    }
+    
+    [tblView reloadData];
+    
+}
+
+
+-(IBAction)actionSearch:(id)sender
+{
+    [self doSearch];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+
+
+
+#pragma mark - Call Webservice
+
+-(void)callWebServiceToUpdateShoppingList:(NSMutableDictionary *)aDict
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kURLUpdateShoppingListProducts withInput:aDict withCurrentTask:TASK_TO_UPDATE_SHOPPING_LIST andDelegate:self ];
+}
+
+-(void) didFailWithError:(NSError *)error
+{
+    [aaramShop_ConnectionManager failureBlockCalled:error];
+}
+
+-(void) responseReceived:(id)responseObject
+{
+    switch (aaramShop_ConnectionManager.currentTask)
+    {
+        case TASK_TO_UPDATE_SHOPPING_LIST:
+        {
+            
+            if ([[responseObject objectForKey:kstatus] intValue] == 1)
+            {
+                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }
+            else
+            {
+                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+
+
 
 
 @end

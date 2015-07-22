@@ -1,8 +1,8 @@
 //
-//  HomeCategoryListCell.h
+//  RecommendedStoreCell.h
 //  AaramShop
 //
-//  Created by Shakir@AppRoutes on 11/07/15.
+//  Created by Approutes on 20/07/15.
 //  Copyright (c) 2015 Approutes. All rights reserved.
 //
 
@@ -15,19 +15,19 @@
 #import "StoreModel.h"
 
 
-@interface HomeCategoryListCell : SWTableViewCell<UIGestureRecognizerDelegate>
+@interface RecommendedStoreCell : SWTableViewCell<UIGestureRecognizerDelegate>
 {
-   
+    
     __weak IBOutlet UIImageView *imgHomeIcon;
     __weak IBOutlet UIImageView *imgStore;
     __weak IBOutlet UIImageView *imgCategoryTypeIcon;
-
+    
     __weak IBOutlet UILabel *lblCategoryName;
-
+    
     __weak IBOutlet UIImageView *imgStoreStatusIcon;
-
+    
     __weak IBOutlet UILabel *lblStoreName;
-
+    
     
     
     __weak IBOutlet UIView *viewRating;
@@ -50,6 +50,7 @@
 @property(nonatomic, strong) NSIndexPath *indexPath;
 @property(nonatomic,assign) BOOL isRecommendedStore;
 @property(nonatomic) NSInteger selectedCategory;
+
 
 -(void)updateCellWithData:(StoreModel  *)objStoreData;
 -(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;

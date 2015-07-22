@@ -8,12 +8,21 @@
 
 #import "HomeCategoryListViewController.h"
 
-#define kTableHeaderTitleHeight     22
-#define kTableHeaderDefaultHeight   106
+#define kTableRecommendedHeaderTitleHeight          23
+#define kTableParentHeaderDefaultHeight             115
+#define kTableParentHeaderExpandedHeight            260
+#define kTableParentCellHeight                      100
 
 
 @interface HomeCategoryListViewController ()
+{
+    AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+    int pageno;
+    int totalNoOfPages;
+    
+    AppDelegate *appDeleg;
 
+}
 @end
 
 @implementation HomeCategoryListViewController
@@ -22,45 +31,82 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    arrAllStores = [[NSMutableArray alloc]init];
+    appDeleg = APP_DELEGATE;
+    [appDeleg findCurrentLocation];
     
-    if (_homeCategoriesModel)
+    
+    totalNoOfPages = 0;
+    pageno = 0;
+    isLoading = NO;
+    
+    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
+    aaramShop_ConnectionManager.delegate = self;
+    
+    tblStores.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    tblStores.bounces = YES;
+    tblStores.tag = 10;
+    self.view.tag = 100;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    UITableViewController *tableViewController = [[UITableViewController alloc] init];
+    tableViewController.tableView = tblStores;
+    refreshStoreList = [[UIRefreshControl alloc] init];
+    [refreshStoreList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    tableViewController.refreshControl = refreshStoreList;
+
+    ////
+    CGRect frame = CGRectZero;
+    frame.size.height = CGFLOAT_MIN;
+    [tblStores setTableHeaderView:[[UIView alloc] initWithFrame:frame]];
+    
+    
+    ////
+    if (!arrAllStores)
     {
-        [arrAllStores addObjectsFromArray:_homeCategoriesModel.arrHome_stores];
-//        [arrAllStores addObjectsFromArray:_homeCategoriesModel.arrShopping_store];
+        arrAllStores = [[NSMutableArray alloc]init];
     }
     
-    tblView.delegate = self;
-    tblView.dataSource = self;
-//    tblView.hidden = YES;
+    if (!arrRecommendedStores)
+    {
+        arrRecommendedStores = [[NSMutableArray alloc]init];
+    }
     
-//    [self setTables];
-}
-
--(void)setTables
-{
-    tblVwCategory = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 337) style:UITableViewStyleGrouped];
-    tblVwCategory.delegate = self;
-    tblVwCategory.dataSource = self;
-    tblVwCategory.alwaysBounceVertical = NO;
-    tblVwCategory.backgroundView = nil;
-    tblVwCategory.backgroundColor = [UIColor clearColor];
-    tblVwCategory.sectionHeaderHeight = 0.0;
-    tblVwCategory.sectionFooterHeight = 0.0;
-    tblVwCategory.scrollEnabled = NO;
     
-    tblStores = [[UITableView alloc]initWithFrame:CGRectMake(0, 337, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-337-49)];
+    if (_storeModel)
+    {
+        [arrAllStores addObjectsFromArray:_storeModel.arrFavoriteStores];
+        [arrAllStores addObjectsFromArray:_storeModel.arrHomeStores];
+        [arrAllStores addObjectsFromArray:_storeModel.arrShoppingStores];
+        
+        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
+    }
+    
     tblStores.delegate = self;
     tblStores.dataSource = self;
-    tblStores.backgroundColor = [UIColor clearColor];
-    tblStores.scrollEnabled = YES;
-    tblStores.sectionHeaderHeight = 0.0;
-    tblStores.sectionFooterHeight = 0.0;
-    
-    
-    [self.view addSubview:tblStores];
-//    [self.view addSubview:viewTable];
 }
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    if ([arrAllStores count]==0)
+    {
+//        tblView.hidden = YES;
+        
+        [self callWebserviceToGetStoresList];
+        
+    }
+    else
+    {
+//        tblView.hidden = NO;
+    }
+    
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -68,14 +114,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,193 +133,234 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-//    if (_homeCategoriesModel && [_homeCategoriesModel.arrRecommended_stores count]>0)
-//    {
-//        return 1;
-//    }
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [arrAllStores count];
+    if (tableView == tblRecommendedStore)
+    {
+        return [arrRecommendedStores count];
+    }
+    else
+    {
+        return [arrAllStores count];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if ([_homeCategoriesModel.arrRecommended_stores count]>0)
+    if (tableView==tblRecommendedStore)
     {
-        return kTableHeaderTitleHeight + kTableHeaderDefaultHeight;
+        return kTableRecommendedHeaderTitleHeight; // text - recommended stores height.
     }
-    return CGFLOAT_MIN;
+    else
+    {
+        if ([arrRecommendedStores count]>0)
+        {
+            if (isTableExpanded==YES)
+            {
+                return kTableParentHeaderExpandedHeight;
+            }
+            return kTableParentHeaderDefaultHeight;
+        }
+        return CGFLOAT_MIN;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *secView ;
-
-    secView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,  [UIScreen mainScreen].bounds.size.width, kTableHeaderTitleHeight)];
-    secView.backgroundColor = [UIColor redColor];
-    UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, kTableHeaderTitleHeight)];
-    lbl.textColor = [UIColor whiteColor];
-    lbl.font = [UIFont fontWithName:kRobotoMedium size:18];
-    lbl.text = @"Recommended stores";
-    [secView addSubview:lbl];
     
-    return secView;
+    UIView *viewHeader;
+    
+    if (tableView==tblRecommendedStore)
+    {
+        viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableRecommendedHeaderTitleHeight)];
+        viewHeader.backgroundColor = [UIColor redColor];
+        UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, kTableRecommendedHeaderTitleHeight)];
+        lbl.textColor = [UIColor whiteColor];
+        lbl.font = [UIFont fontWithName:kFontHandSean size:14];
+        lbl.text = @"Recommended Stores";
+        [viewHeader addSubview:lbl];
+    }
+    else
+    {
+        if ([arrRecommendedStores count]>0)
+        {
+            
+            viewHeader = [[UIView alloc]init];
+            viewHeader.backgroundColor = [UIColor whiteColor];
+            
+            tblRecommendedStore = [[UITableView alloc]init];
+            
+            tblRecommendedStore.bounces = NO;
+            tblRecommendedStore.backgroundColor = [UIColor whiteColor];
+            tblRecommendedStore.delegate = self;
+            tblRecommendedStore.dataSource = self;
+            
+            
+            if (!btnExpandCollapse)
+            {
+                btnExpandCollapse = [UIButton buttonWithType:UIButtonTypeCustom];
+            }
+            
+            
+            ////
+            [btnExpandCollapse setImage:[UIImage imageNamed:@"homeScreenArrowBox.png"] forState:UIControlStateNormal];
+            [btnExpandCollapse setImage:[UIImage imageNamed:@"upArrow.png"] forState:UIControlStateSelected];
+            ////
+            
+            [btnExpandCollapse addTarget:self action:@selector(btnExpandCollapseClicked:) forControlEvents:UIControlEventTouchUpInside];
+            
+            if (isTableExpanded==NO)
+            {
+                viewHeader.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableParentHeaderDefaultHeight);
+                tblRecommendedStore.frame = CGRectMake(0, 0, viewHeader.frame.size.width, viewHeader.frame.size.height - 0);
+                
+                [btnExpandCollapse setImageEdgeInsets:UIEdgeInsetsMake(30, 0, 0, 0)];
+            }
+            else
+            {
+                
+                viewHeader.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableParentHeaderExpandedHeight);
+                tblRecommendedStore.frame = CGRectMake(0, 0, viewHeader.frame.size.width, viewHeader.frame.size.height - 30);
+                
+                [btnExpandCollapse setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 10, 0)];
+            }
+            
+            btnExpandCollapse.frame = CGRectMake(0, (viewHeader.frame.size.height-30), viewHeader.frame.size.width, 40);
+            
+            
+            //            btnExpandCollapse.backgroundColor = [UIColor blueColor];
+            //            btnExpandCollapse.alpha = 0.4;
+            
+            
+            [viewHeader addSubview:tblRecommendedStore];
+            [viewHeader addSubview:btnExpandCollapse];
+            
+        }
+        
+    }
+    
+    return viewHeader;
+    
 }
+
+
+-(void)btnExpandCollapseClicked:(UIButton *)sender
+{
+    if (isTableExpanded == YES)
+    {
+        isTableExpanded = NO;
+        btnExpandCollapse.selected = NO;
+    }
+    else
+    {
+        isTableExpanded = YES;
+        btnExpandCollapse.selected = YES;
+    }
+    
+    [tblStores reloadData];
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    CGFloat rowHeight = 0.0;
-    if (tableView == tblVwCategory) {
-        if (indexPath.section == 1) {
-            StoreModel *objStoreModel = nil;
-            objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
-            
-            CGSize size= [Utils getLabelSizeByText:objStoreModel.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
-            
-            if (size.height < 20) {
-                rowHeight = 83;
-            }
-            else
-                rowHeight = size.height+63;
-        }
-        else if (indexPath.section == 0)
-            rowHeight = 0;
-    }
-    else if (tableView == tblStores) {
-        
-        StoreModel *objStoreModel = nil;
-        objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
-        
-        CGSize size= [Utils getLabelSizeByText:objStoreModel.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
-        
-        if (size.height < 20) {
-            rowHeight = 80;
-        }
-        else
-            rowHeight = size.height+60;
-    }
-    
-    return rowHeight;
-    //*/
-    
-    return 80;
+    return kTableParentCellHeight;
 }
-
-//-(StoreModel *)getObjectOfStoreForRecommendedStoresForIndexPath:(NSIndexPath *)IndexPath
-//{
-//    StoreModel *objStoreModel = nil;
-//    if (self.mainCategoryIndex != 0 && arrRecommendedStores.count>0) {
-//        objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
-//        NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
-//        objStoreModel = [arrTemp objectAtIndex:IndexPath.row];
-//    }
-//    else
-//        objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:IndexPath.row];
-//    return objStoreModel;
-//    
-//}
-
-//-(StoreModel*)getObjectOfStoreForOtherStoreForIndexPath:(NSIndexPath *)IndexPath
-//{
-//    StoreModel *objStoreModel = nil;
-//    
-//    if (self.mainCategoryIndex !=0) {
-//        objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
-//        
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
-//        NSArray *arrTemp = [arrSubCategory filteredArrayUsingPredicate:predicate];
-//        
-//        objStoreModel = [arrTemp objectAtIndex:IndexPath.row];
-//        
-//    }
-//    else
-//        objStoreModel = [arrSubCategoryMyStores objectAtIndex:IndexPath.row];
-//    
-//    return objStoreModel;
-//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    HomeCategoryListCell *cell = (HomeCategoryListCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[HomeCategoryListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (tableView == tblRecommendedStore)
+    {
+        
+        RecommendedStoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendedStoreCell"];
+        if (!cell)
+        {
+            [tableView registerNib:[UINib nibWithNibName:@"RecommendedStoreCell" bundle:nil] forCellReuseIdentifier:@"RecommendedStoreCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendedStoreCell"];
+        }
+        
+        [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
+        
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.isRecommendedStore = NO;
+        
+        StoreModel *objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+        
+        cell.indexPath=indexPath;
+        cell.delegate=self;
+        
+        [cell updateCellWithData:objStoreModel];
+        
+        
+        return cell;
     }
-    [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
-    
-//    cell.selectedCategory = self.mainCategoryIndex;
-    cell.delegate=self;
-    
-//    StoreModel *objStoreModel = nil;
-    
-//    HomeCategoriesModel *objStoreModel = nil;
-    HomeStoreModel *objStoreModel = nil;
-    
-//    if (tableView == tblVwCategory) {
-//        cell.backgroundColor = [UIColor whiteColor];
-//        objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
-//        cell.isRecommendedStore = YES;
-//        
-//    }
-//    else if (tableView == tblStores) {
+    else
+    {
+        static NSString *cellIdentifier = @"HomeCategoryListCell";
+        
+        HomeCategoryListCell *cell = (HomeCategoryListCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[HomeCategoryListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        
+        [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
+        
+        
         cell.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
         cell.isRecommendedStore = NO;
-//        objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
-    
-    objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
-
-    
-//    }
-    cell.objStoreModel = objStoreModel;
-    
-    cell.indexPath=indexPath;
-    [cell updateCellWithData:objStoreModel];
-    return cell;
+        
+        StoreModel *objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
+        
+        cell.indexPath=indexPath;
+        cell.delegate=self;
+        
+        [cell updateCellWithData:objStoreModel];
+        return cell;
+    }
     
 }
+
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-     
-     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-     HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
-     StoreModel *objStoreModel = nil;
-     if (mainCategoryIndex != 0)
-     {
-     if (tableView == tblStores)
-     objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
-     
-     else if (tableView == tblVwCategory)
-     //            objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
-     
-     objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
-     
-     }
-     else
-     {
-     if (tableView == tblStores)
-     //            objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
-     objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
-     
-     else if (tableView == tblVwCategory)
-     //            objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
-     objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
-     
-     }
-     
-     homeSecondVwController.strStore_Id = objStoreModel.store_id;
-     homeSecondVwController.strStoreImage = objStoreModel.store_image;
-     homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
-     [self.navigationController pushViewController:homeSecondVwController animated:YES];
-     
-     //*/
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
+    
+    StoreModel *objStoreModel = nil;
+    
+    if (tableView == tblStores)
+    {
+        objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+    }
+
+    homeSecondVwController.strStore_Id = objStoreModel.store_id;
+    homeSecondVwController.strStoreImage = objStoreModel.store_image;
+    homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
+    [self.navigationController pushViewController:homeSecondVwController animated:YES];
+    
 }
+
+
+#pragma mark - Custom Methods for SwipeCell
+
+- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
+{
+    return YES;
+}
+- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
+{
+    return YES;
+}
+
 
 - (NSArray *)leftButtons
 {
@@ -300,361 +387,19 @@
     [self.navigationController pushViewController:viewC animated:YES];
 }
 
-/*
-#pragma mark - TableView Datasource & Delegates
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    NSInteger sectionNum = 0;
-    if (tableView == tblVwCategory) {
-        sectionNum = 2;
-    }
-    else if (tableView == tblStores)
-        sectionNum = 1;
-    return sectionNum;;
-}
--(NSInteger )getArrayCountForRecommendedStores
-{
-    NSInteger rowsNum = 0;
-    if (self.mainCategoryIndex !=0 && arrRecommendedStores.count>0) {
-        StoreModel *objStore = [arrCategory objectAtIndex:self.mainCategoryIndex];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStore.store_main_category_id];
-        NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
-        rowsNum = arrTemp.count;
-    }
-    else
-    {
-        rowsNum = arrRecommendedStoresMyStores.count;
-    }
-    return  rowsNum;
-}
--(NSInteger )getArrayCountForOtherStores
-{
-    NSInteger rowsNum = 0;
-    if (self.mainCategoryIndex != 0) {
-        StoreModel *objStore = [arrCategory objectAtIndex:self.mainCategoryIndex];
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStore.store_main_category_id];
-        NSArray *arrTemp = [arrSubCategory filteredArrayUsingPredicate:predicate];
-        rowsNum = arrTemp.count;
-        
-    }
-    else
-        rowsNum = arrSubCategoryMyStores.count;
-    return rowsNum;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSInteger rowsNum = 0;
-    if (tableView == tblVwCategory) {
-        if (section == 1) {
-            if (isRefreshing) {
-                rowsNum = 0;
-            }
-            else
-            {
-                if (arrCategory.count>0) {
-                    rowsNum = [self getArrayCountForRecommendedStores];
-                }
-                else
-                    rowsNum = 0;
-                
-            }
-        }
-        else if (section == 0)
-            rowsNum = 0;
-    }
-    else if (tableView == tblStores) {
-        if (arrCategory.count>0) {
-            if (isRefreshing) {
-                rowsNum = 0;
-            }
-            else
-            {
-                rowsNum =  [self getArrayCountForOtherStores];
-            }
-        }
-        else
-            rowsNum = 0;
-    }
-    
-    return rowsNum;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    CGFloat headerHeight = 0.0;
-    if (tableView == tblVwCategory) {
-        if (section == 0) {
-            headerHeight = 234;
-        }
-        else if (section == 1){
-            if (self.mainCategoryIndex !=0) {
-                if (arrRecommendedStores.count == 0) {
-                    headerHeight = 0;
-                }
-                else
-                    headerHeight = 20;
-            }
-            else
-            {
-                if (arrRecommendedStoresMyStores.count == 0) {
-                    headerHeight = 0;
-                }
-                else
-                    headerHeight = 20;
-            }
-        }
-    }
-    else if (tableView == tblStores) {
-        headerHeight = CGFLOAT_MIN;
-    }
-    
-    return headerHeight;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *secView ;
-    if (tableView == tblVwCategory) {
-        if (section == 0) {
-            secView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234)];
-            secView.backgroundColor = [UIColor clearColor];
-            [secView addSubview:objCategoryVwController.view];
-        }
-        else if (section == 1)
-        {
-            secView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,  [UIScreen mainScreen].bounds.size.width, 20)];
-            secView.backgroundColor = [UIColor redColor];
-            UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-20, 20)];
-            lbl.textColor = [UIColor whiteColor];
-            lbl.font = [UIFont fontWithName:kRobotoMedium size:18];
-            lbl.text = @"Recommended stores";
-            [secView addSubview:lbl];
-        }
-    }
-    else if (tableView == tblStores)
-    {
-        secView = nil;
-    }
-    return secView;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat rowHeight = 0.0;
-    if (tableView == tblVwCategory) {
-        if (indexPath.section == 1) {
-            StoreModel *objStoreModel = nil;
-            objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
-            
-            CGSize size= [Utils getLabelSizeByText:objStoreModel.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
-            
-            if (size.height < 20) {
-                rowHeight = 83;
-            }
-            else
-                rowHeight = size.height+63;
-        }
-        else if (indexPath.section == 0)
-            rowHeight = 0;
-    }
-    else if (tableView == tblStores) {
-        
-        StoreModel *objStoreModel = nil;
-        objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
-        
-        CGSize size= [Utils getLabelSizeByText:objStoreModel.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
-        
-        if (size.height < 20) {
-            rowHeight = 80;
-        }
-        else
-            rowHeight = size.height+60;
-    }
-    
-    return rowHeight;
-}
-
--(StoreModel *)getObjectOfStoreForRecommendedStoresForIndexPath:(NSIndexPath *)IndexPath
-{
-    StoreModel *objStoreModel = nil;
-    if (self.mainCategoryIndex != 0 && arrRecommendedStores.count>0) {
-        objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
-        NSArray *arrTemp = [arrRecommendedStores filteredArrayUsingPredicate:predicate];
-        objStoreModel = [arrTemp objectAtIndex:IndexPath.row];
-    }
-    else
-        objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:IndexPath.row];
-    return objStoreModel;
-    
-}
-
--(StoreModel*)getObjectOfStoreForOtherStoreForIndexPath:(NSIndexPath *)IndexPath
-{
-    StoreModel *objStoreModel = nil;
-    
-    if (self.mainCategoryIndex !=0) {
-        objStoreModel = [arrCategory objectAtIndex:self.mainCategoryIndex];
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.store_category_id MATCHES %@",objStoreModel.store_main_category_id];
-        NSArray *arrTemp = [arrSubCategory filteredArrayUsingPredicate:predicate];
-        
-        objStoreModel = [arrTemp objectAtIndex:IndexPath.row];
-        
-    }
-    else
-        objStoreModel = [arrSubCategoryMyStores objectAtIndex:IndexPath.row];
-    
-    return objStoreModel;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellIdentifier = @"Cell";
-    HomeTableCell *cell = (HomeTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[HomeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
-    
-    cell.selectedCategory = self.mainCategoryIndex;
-    cell.delegate=self;
-    StoreModel *objStoreModel = nil;
-    
-    if (tableView == tblVwCategory) {
-        cell.backgroundColor = [UIColor whiteColor];
-        objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
-        cell.isRecommendedStore = YES;
-        
-    }
-    else if (tableView == tblStores) {
-        cell.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
-        cell.isRecommendedStore = NO;
-        objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
-        
-    }
-    cell.objStoreModel = objStoreModel;
-    
-    cell.indexPath=indexPath;
-    [cell updateCellWithData:objStoreModel];
-    return cell;
-    
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //*
-    
-    HomeCategoriesViewController *homeCategories = (HomeCategoriesViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"HomeCategoryViewScene"];
-    [self.navigationController pushViewController:homeCategories animated:YES];
-    
-    //*/
-    
-    
-    /*
-     
-     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-     HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
-     StoreModel *objStoreModel = nil;
-     if (mainCategoryIndex != 0)
-     {
-     if (tableView == tblStores)
-     objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
-     
-     else if (tableView == tblVwCategory)
-     //            objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
-     
-     objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
-     
-     }
-     else
-     {
-     if (tableView == tblStores)
-     //            objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
-     objStoreModel = [self getObjectOfStoreForOtherStoreForIndexPath:indexPath];
-     
-     else if (tableView == tblVwCategory)
-     //            objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
-     objStoreModel = [self getObjectOfStoreForRecommendedStoresForIndexPath:indexPath];
-     
-     }
-     
-     homeSecondVwController.strStore_Id = objStoreModel.store_id;
-     homeSecondVwController.strStoreImage = objStoreModel.store_image;
-     homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
-     [self.navigationController pushViewController:homeSecondVwController animated:YES];
-     
-     ///
-}
-
-
-
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    
-}
--(void)refreshSubCategoryData:(NSInteger)selectedCategory
-{
-    isRefreshing = YES;
-    self.mainCategoryIndex = selectedCategory;
-    [tblVwCategory reloadData];
-    [tblStores reloadData];
-    
-    tblVwCategory.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234);
-    viewTable.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 234);
-    
-    btnArrow.frame = CGRectMake(20, viewTable.frame.size.height-40, [UIScreen mainScreen].bounds.size.width-40, 50);
-    
-    imgVBg.frame = CGRectMake(0,viewTable.frame.size.height-78, [UIScreen mainScreen].bounds.size.width, 85);
-    btnArrow.hidden = YES;
-    imgVBg.hidden = YES;
-    tblStores.frame = CGRectMake(0, 234,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(234+49));
-    
-    
-    [self createDataToGetStoresFromCategories];
-    
-}
-
--(void)refreshBtnFavouriteStatus:(NSIndexPath *)indexPath
-{
-    [tblVwCategory reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-}
-#pragma mark - Custom Methods for SwipeCell
-
-- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
-{
-    return YES;
-}
-- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
-{
-    return YES;
-}
-- (NSArray *)leftButtons
-{
-    NSMutableArray *leftUtilityButtons = [NSMutableArray new];
-    NSMutableAttributedString * call = [[NSMutableAttributedString alloc] initWithString:@"Call"];
-    NSMutableAttributedString * chat = [[NSMutableAttributedString alloc] initWithString:@"Chat"];
-    NSMutableAttributedString * shop = [[NSMutableAttributedString alloc] initWithString:@"Shop"];
-    
-    [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreCallIcon"] attributedTitle: call ];
-    [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreChatIcon"] attributedTitle: chat ];
-    [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreShopIcon"] attributedTitle: shop ];
-    
-    
-    return leftUtilityButtons;
-}
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index
 {
     NSIndexPath *indexPath = nil;
     BOOL isHomeCell = NO;
-    if([cell isKindOfClass:[HomeTableCell class]])
+    if([cell isKindOfClass:[HomeCategoryListCell class]])
     {
         indexPath= [(UITableView *)tblStores indexPathForCell: cell];
         isHomeCell = YES;
     }
     else
     {
-        indexPath= [(UITableView *)tblVwCategory indexPathForCell: cell];
+        indexPath= [(UITableView *)tblRecommendedStore indexPathForCell: cell];
         isHomeCell = NO;
     }
     StoreModel *objStoreModel = nil;
@@ -664,26 +409,14 @@
         {
             if(isHomeCell)
             {
-                if (self.mainCategoryIndex !=0) {
-                    objStoreModel = [arrSubCategory objectAtIndex:indexPath.row];
-                    
-                }
-                else
-                {
-                    objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
-                }
+                objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
             }
             else
             {
-                if (self.mainCategoryIndex != 0) {
-                    objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
-                }
-                else
-                {
-                    objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
-                }
+                objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
             }
-            NSString *mobileNo = objStoreModel.store_mobile; //pendingOrder.mobile_no;
+            
+            NSString *mobileNo = objStoreModel.store_mobile;
             
             NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",mobileNo]];
             
@@ -700,14 +433,8 @@
         {
             if(isHomeCell)
             {
-                if (self.mainCategoryIndex !=0) {
-                    objStoreModel = [arrSubCategory objectAtIndex:indexPath.row];
-                    
-                }
-                else
-                {
-                    objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
-                }
+                objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
+                
                 AppDelegate *deleg = APP_DELEGATE;
                 SMChatViewController *chatView = nil;
                 chatView = [deleg createChatViewByChatUserNameIfNeeded:objStoreModel.chat_username];
@@ -720,13 +447,8 @@
             }
             else
             {
-                if (self.mainCategoryIndex != 0) {
-                    objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
-                }
-                else
-                {
-                    objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
-                }
+                objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+                
                 AppDelegate *deleg = APP_DELEGATE;
                 SMChatViewController *chatView = nil;
                 chatView = [deleg createChatViewByChatUserNameIfNeeded:objStoreModel.chat_username];
@@ -744,45 +466,289 @@
         {
             if(isHomeCell)
             {
-                if (self.mainCategoryIndex !=0) {
-                    objStoreModel = [arrSubCategory objectAtIndex:indexPath.row];
-                    
-                }
-                else
-                {
-                    objStoreModel = [arrSubCategoryMyStores objectAtIndex:indexPath.row];
-                }
+                objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
             }
             else
             {
-                if (self.mainCategoryIndex != 0) {
-                    objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
-                }
-                else
-                {
-                    objStoreModel = [arrRecommendedStoresMyStores objectAtIndex:indexPath.row];
-                }
+                objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
             }
+            
             HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
             homeSecondVwController.strStore_Id = objStoreModel.store_id;
             homeSecondVwController.strStore_CategoryName = objStoreModel.store_name;
             [self.navigationController pushViewController:homeSecondVwController animated:YES];
+            
         }
             break;
-            
-            
-            
             
         default:
             break;
     }
 }
 
-//*/
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark - Call Webservice to get  initial products list
+
+-(void)callWebserviceToGetStoresList
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
+    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+        
+    [dict setObject:_storeModel.store_main_category_id forKey:kCategory_id];
+    
+    
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        
+        isLoading = NO;
+        [refreshStoreList endRefreshing];
+        
+        [self showFooterLoadMoreActivityIndicator:NO];
+        
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kGetStoresfromCategoryIdURL withInput:dict withCurrentTask:TASK_TO_GET_STORES_FROM_CATEGORIES_ID andDelegate:self ];
+}
+
+
+
+- (void)responseReceived:(id)responseObject
+{
+    isLoading = NO;
+    [self showFooterLoadMoreActivityIndicator:NO];
+    [refreshStoreList endRefreshing];
+    
+    [AppManager stopStatusbarActivityIndicator];
+    
+    if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_STORES_FROM_CATEGORIES_ID)
+    {
+        if([[responseObject objectForKey:kstatus] intValue] == 1)
+        {
+            totalNoOfPages = [[responseObject objectForKey:kTotal_page] intValue];
+            [self parseStoreListData:responseObject];
+        }
+    }
+    
+}
+
+
+- (void)didFailWithError:(NSError *)error
+{
+    isLoading = NO;
+    [self showFooterLoadMoreActivityIndicator:NO];
+    [refreshStoreList endRefreshing];
+    
+    [AppManager stopStatusbarActivityIndicator];
+    [aaramShop_ConnectionManager failureBlockCalled:error];
+}
+
+
+#pragma mark - Parse Store List response data
+
+-(void)parseStoreListData:(NSMutableDictionary *)responseObject
+{
+    
+    if (!_storeModel)
+    {
+        _storeModel = [[StoreModel alloc]init];
+    }
+
+    NSArray *arrTempRecomendedStores = [responseObject objectForKey:@"recommended_stores"];
+    NSArray *arrTempHomeStores = [responseObject objectForKey:@"home_stores"];
+    NSArray *arrTempShoppingStores = [responseObject objectForKey:@"shopping_store"];
+    
+    
+    if (!_storeModel.arrRecommendedStores)
+    {
+        _storeModel.arrRecommendedStores = [[NSMutableArray alloc]init];
+    }
+    
+    if (!_storeModel.arrFavoriteStores)
+    {
+        _storeModel.arrFavoriteStores = [[NSMutableArray alloc]init];
+    }
+    
+    if (!_storeModel.arrHomeStores)
+    {
+        _storeModel.arrHomeStores = [[NSMutableArray alloc]init];
+    }
+    
+    if (!_storeModel.arrShoppingStores)
+    {
+        _storeModel.arrShoppingStores = [[NSMutableArray alloc]init];
+    }
+    
+    
+    
+    for (NSDictionary *dictRecommended in arrTempRecomendedStores) {
+        
+        StoreModel *objStore = [[StoreModel alloc]init];
+        objStore.chat_username = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kChat_username]];
+        objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kHome_delivery]];
+        objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_favorite]];
+        objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_home_store]];
+        objStore.is_open = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kIs_open]];
+        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_id]];
+        objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_name]];
+        objStore.store_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_id]];
+        objStore.store_image = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_latitude]];
+        objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_longitude]];
+        objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_mobile]];
+        objStore.store_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_name]];
+        objStore.store_rating = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_rating]];
+        objStore.total_orders = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kTotal_orders]];
+        
+        [_storeModel.arrRecommendedStores addObject:objStore];
+    }
+    for (NSDictionary *dictHome in arrTempHomeStores) {
+        
+        StoreModel *objStore = [[StoreModel alloc]init];
+        objStore.chat_username = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kChat_username]];
+        objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kHome_delivery]];
+        objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_favorite]];
+        objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_home_store]];
+        objStore.is_open = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kIs_open]];
+        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_name]];
+        objStore.store_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_id]];
+        objStore.store_image = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_latitude]];
+        objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_longitude]];
+        objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_mobile]];
+        objStore.store_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_name]];
+        objStore.store_rating = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_rating]];
+        objStore.total_orders = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kTotal_orders]];
+        objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_id]];
+        
+        [_storeModel.arrHomeStores addObject:objStore];
+    }
+    
+    for (NSDictionary *dictShopping in arrTempShoppingStores) {
+        
+        StoreModel *objStore = [[StoreModel alloc]init];
+        objStore.chat_username = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kChat_username]];
+        objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kHome_delivery]];
+        objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_favorite]];
+        objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_home_store]];
+        objStore.is_open = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_open]];
+        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_name]];
+        objStore.store_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_id]];
+        objStore.store_image = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_latitude]];
+        objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_longitude]];
+        objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_mobile]];
+        objStore.store_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_name]];
+        objStore.store_rating = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_rating]];
+        objStore.total_orders = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kTotal_orders]];
+        objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_id]];
+        
+        [_storeModel.arrShoppingStores addObject:objStore];
+    }
+    
+    
+    if (pageno == 0)
+    {
+        [arrAllStores removeAllObjects];
+        [arrRecommendedStores removeAllObjects];
+    }
+    
+    
+    if (_storeModel)
+    {
+        [arrAllStores addObjectsFromArray:_storeModel.arrFavoriteStores];
+        [arrAllStores addObjectsFromArray:_storeModel.arrHomeStores];
+        [arrAllStores addObjectsFromArray:_storeModel.arrShoppingStores];
+        
+        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
+    }
+    
+    
+    [tblStores reloadData];
+}
 
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+- (void)refreshTable
+{
+    pageno = 0;
+//    [self performSelector:@selector(callWebserviceToGetStoresList) withObject:nil afterDelay:1.0]; // temp commented
+
+    // once after pagination done, delete the following code..
+    //*
+     isLoading = NO;
+     [self showFooterLoadMoreActivityIndicator:NO];
+     [refreshStoreList endRefreshing];
+     
+     [AppManager stopStatusbarActivityIndicator];
+
+    //*/
+    
+}
+
+-(void)calledPullUp
+{
+    if(totalNoOfPages>pageno)
+    {
+        pageno++;
+//        [self callWebserviceToGetStoresList]; // temp commented
+    }
+    else
+    {
+        isLoading = NO;
+        [self showFooterLoadMoreActivityIndicator:NO];
+    }
+}
+
+#pragma mark - to refreshing a view
+
+-(void)showFooterLoadMoreActivityIndicator:(BOOL)show{
+    UIView *view=[tblStores viewWithTag:111112];
+    UIActivityIndicatorView *activity=(UIActivityIndicatorView*)[view viewWithTag:111111];
+    
+    if (show) {
+        [activity startAnimating];
+    }else
+        [activity stopAnimating];
+}
+
+
+#pragma mark - ScrollView Delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height-33 && arrAllStores.count > 0 && scrollView.contentOffset.y>0){
+        if (!isLoading) {
+            isLoading=YES;
+            [self showFooterLoadMoreActivityIndicator:YES];
+            [self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5 ];
+        }
+    }
+    
+}
 
 
 @end
