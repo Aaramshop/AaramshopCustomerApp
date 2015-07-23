@@ -9,11 +9,13 @@
 #import "WalletViewController.h"
 
 @interface WalletViewController ()
-
+{
+	MoneyViewController *moneyVC;
+}
 @end
 
 @implementation WalletViewController
-@synthesize pointsBtn,offersBtn,moneyBtn,subView;
+@synthesize pointsBtn,offersBtn,moneyBtn,subView,btnBack;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -93,6 +95,7 @@
 	[pointsBtn setUserInteractionEnabled:enable];
 	[moneyBtn setUserInteractionEnabled:enable];
 	[subView setUserInteractionEnabled:enable];
+	[btnBack setUserInteractionEnabled:enable];
 }
 -(void)setNavigationBar
 {
@@ -116,7 +119,7 @@
 	self.navigationItem.titleView = _headerTitleSubtitleView;
 	
 	
-	UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
 	btnBack.bounds = CGRectMake( 0, 0, 30, 30 );
 	[btnBack setImage:[UIImage imageNamed:@"backBtn.png"] forState:UIControlStateNormal];
 	[btnBack addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];

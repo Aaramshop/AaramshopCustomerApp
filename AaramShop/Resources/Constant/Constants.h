@@ -330,3 +330,8 @@
 #define kBrandPointsDetails								@"BrandPointsDetails"
 #define kBonus_points										@"bonus_points"
 #define kBrand_name										@"brand_name"
+#define kAaramPointsDetails							@"AaramPointsDetails"
+
+
+#define kGetMoney											@"getMoney"
+#define kOrder_date											@"order_date"

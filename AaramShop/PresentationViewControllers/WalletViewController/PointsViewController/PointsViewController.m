@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
 	totalNoOfPages = 0;
 	pageno = 0;
 	isLoading = NO;
@@ -124,7 +125,7 @@
 			
 			UIButton *plusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 			plusBtn.frame = CGRectMake(12, (secView.frame.size.height - 25)/2, [[UIScreen mainScreen] bounds].size.width - 24, 25);
-			plusBtn.tag = 100;
+			plusBtn.tag = 101;
 			if(selectedPointsType == eAaramPoints)
 			{
 				[plusBtn setImage:imgMinus forState:UIControlStateNormal];
@@ -136,7 +137,7 @@
 				secView.backgroundColor = [UIColor whiteColor];
 			}
 			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -280)];
-			[plusBtn addTarget:self action:@selector(createDataToGetAaramPoints) forControlEvents:UIControlEventTouchUpInside];
+			[plusBtn addTarget:self action:@selector(expandTable:) forControlEvents:UIControlEventTouchUpInside];
 			
 			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 38, (secView.frame.size.height - 21)/2, 100, 21)];
 			
@@ -171,7 +172,7 @@
 			
 			UIButton *plusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 			plusBtn.frame = CGRectMake(12, (secView.frame.size.height - 25)/2, [[UIScreen mainScreen] bounds].size.width - 24, 25);
-			plusBtn.tag = 100;
+			plusBtn.tag = 102;
 			if(selectedPointsType == eBonusPoints)
 			{
 				[plusBtn setImage:imgMinus forState:UIControlStateNormal];
@@ -183,7 +184,7 @@
 				secView.backgroundColor = [UIColor whiteColor];
 			}
 			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -280)];
-			[plusBtn addTarget:self action:@selector(createDataToGetBonusPoints) forControlEvents:UIControlEventTouchUpInside];
+			[plusBtn addTarget:self action:@selector(expandTable:) forControlEvents:UIControlEventTouchUpInside];
 			
 			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 38, (secView.frame.size.height - 21)/2, 100, 21)];
 			
@@ -218,7 +219,7 @@
 			
 			UIButton *plusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 			plusBtn.frame = CGRectMake(12, (secView.frame.size.height - 25)/2, [[UIScreen mainScreen] bounds].size.width - 24, 25);
-			plusBtn.tag = 100;
+			plusBtn.tag = 103;
 			if(selectedPointsType == eBrandPoints)
 			{
 				[plusBtn setImage:imgMinus forState:UIControlStateNormal];
@@ -230,7 +231,7 @@
 				secView.backgroundColor = [UIColor whiteColor];
 			}
 			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -280)];
-			[plusBtn addTarget:self action:@selector(createDataToGetBrandPoints) forControlEvents:UIControlEventTouchUpInside];
+			[plusBtn addTarget:self action:@selector(expandTable:) forControlEvents:UIControlEventTouchUpInside];
 			
 			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 38, (secView.frame.size.height - 21)/2, 100, 21)];
 			
@@ -313,13 +314,13 @@
 				[arrTemp removeAllObjects];
 				if(pageno==0)
 				{
-					[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:@""]]];
+					[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:kAaramPointsDetails]]];
 				}
 				else
 				{
-					[self appendDataForPullUp:[self parseData:[responseObject objectForKey:@""]]];
+					[self appendDataForPullUp:[self parseData:[responseObject objectForKey:kAaramPointsDetails]]];
 				}
-				[tblView reloadData];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eAaramPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
 			}
 		}
 			break;
@@ -330,13 +331,13 @@
 				[arrTemp removeAllObjects];
 				if(pageno==0)
 				{
-					[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:@"bonus_points"]]];
+					[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:kBonus_points]]];
 				}
 				else
 				{
-					[self appendDataForPullUp:[self parseData:[responseObject objectForKey:@"bonus_points"]]];
+					[self appendDataForPullUp:[self parseData:[responseObject objectForKey:kBonus_points]]];
 				}
-				[tblView reloadData];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eBonusPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
 			}
 		}
 			break;
@@ -347,13 +348,13 @@
 				[arrTemp removeAllObjects];
 				if(pageno==0)
 				{
-					[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:@"BrandPointsDetails"]]];
+					[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:kBrandPointsDetails]]];
 				}
 				else
 				{
-					[self appendDataForPullUp:[self parseData:[responseObject objectForKey:@"BrandPointsDetails"]]];
+					[self appendDataForPullUp:[self parseData:[responseObject objectForKey:kBrandPointsDetails]]];
 				}
-				[tblView reloadData];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eBrandPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
 			}
 		}
 			break;
@@ -374,6 +375,7 @@
 	[walletVC.pointsBtn setUserInteractionEnabled:enable];
 	[walletVC.moneyBtn setUserInteractionEnabled:enable];
 	[walletVC.subView setUserInteractionEnabled:enable];
+	[walletVC.btnBack setUserInteractionEnabled:enable];
 }
 
 
@@ -431,7 +433,6 @@
 - (void)createDataToGetAaramPoints
 {
 	[self userInteraction:NO];
-	selectedPointsType = eAaramPoints;
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 	[dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
@@ -452,7 +453,6 @@
 - (void)createDataToGetBonusPoints
 {
 	[self userInteraction:NO];
-	selectedPointsType = eBonusPoints;
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 	[dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
@@ -473,7 +473,6 @@
 - (void)createDataToGetBrandPoints
 {
 	[self userInteraction:NO];
-	selectedPointsType = eBrandPoints;
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 	[dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
@@ -572,5 +571,86 @@
 	}
 	return array;
 }
-
+- (IBAction)expandTable:(id)sender
+{
+	UIButton *btn = (UIButton *)sender;
+	switch (btn.tag) {
+  case 101:
+		{
+			if(selectedPointsType == eAaramPoints)
+			{
+				selectedPointsType = eSelectedPointsTypeNone;
+				[arrTemp removeAllObjects];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eAaramPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
+			}
+			else if (selectedPointsType == eBrandPoints)
+			{
+				selectedPointsType = eAaramPoints;
+				[arrTemp removeAllObjects];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eBrandPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
+				[self createDataToGetAaramPoints];
+			}
+			else
+			{
+				selectedPointsType = eAaramPoints;
+				[arrTemp removeAllObjects];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eBonusPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
+				[self createDataToGetAaramPoints];
+			}
+		}
+			break;
+		case 102:
+		{
+			if(selectedPointsType == eBonusPoints)
+			{
+				selectedPointsType = eSelectedPointsTypeNone;
+				[arrTemp removeAllObjects];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eBonusPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
+			}
+			else if (selectedPointsType == eAaramPoints)
+			{
+				selectedPointsType = eBonusPoints;
+				[arrTemp removeAllObjects];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eAaramPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
+				[self createDataToGetBonusPoints];
+			}
+			else
+			{
+				selectedPointsType = eBonusPoints;
+				[arrTemp removeAllObjects];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eBrandPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
+				[self createDataToGetBonusPoints];
+				
+			}
+		}
+			break;
+		case 103:
+		{
+			if(selectedPointsType == eBrandPoints)
+			{
+				selectedPointsType = eSelectedPointsTypeNone;
+				[arrTemp removeAllObjects];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eBrandPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
+			}
+			else if (selectedPointsType == eBonusPoints)
+			{
+				selectedPointsType = eBrandPoints;
+				[arrTemp removeAllObjects];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eBonusPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
+				[self createDataToGetBrandPoints];
+			}
+			else
+			{
+				selectedPointsType = eBrandPoints;
+				[arrTemp removeAllObjects];
+				[tblView reloadSections:[NSIndexSet indexSetWithIndex:eAaramPoints] withRowAnimation:UITableViewRowAnimationAutomatic];
+				[self createDataToGetBrandPoints];
+			}
+		}
+			break;
+  default:
+			break;
+	}
+	//	[tblView reloadData];
+}
 @end

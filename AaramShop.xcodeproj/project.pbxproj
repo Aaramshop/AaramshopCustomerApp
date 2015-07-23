@@ -795,6 +795,7 @@
 		36A69EDB1B57D48C0058EB88 /* PointsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A69EDA1B57D48C0058EB88 /* PointsTableCell.m */; };
 		36A69EDE1B57DE320058EB88 /* MoneyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A69EDD1B57DE320058EB88 /* MoneyTableCell.m */; };
 		36A69EE11B57DE4F0058EB88 /* WalletOfferTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A69EE01B57DE4F0058EB88 /* WalletOfferTableCell.m */; };
+		36A73CE91B612D0300EA710D /* CMWalletMoney.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A73CE81B612D0300EA710D /* CMWalletMoney.m */; };
 		36BE5A801B53C0680079DAE3 /* OrderHistDetailViewCon.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BE5A7F1B53C0680079DAE3 /* OrderHistDetailViewCon.m */; };
 		36BE5A931B53C52A0079DAE3 /* dispatchedIconActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BE5A811B53C5290079DAE3 /* dispatchedIconActive.png */; };
 		36BE5A941B53C52A0079DAE3 /* dispatchedIconActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BE5A821B53C5290079DAE3 /* dispatchedIconActive@2x.png */; };
@@ -2394,6 +2395,8 @@
 		36A69EDD1B57DE320058EB88 /* MoneyTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyTableCell.m; sourceTree = "<group>"; };
 		36A69EDF1B57DE4F0058EB88 /* WalletOfferTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletOfferTableCell.h; sourceTree = "<group>"; };
 		36A69EE01B57DE4F0058EB88 /* WalletOfferTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletOfferTableCell.m; sourceTree = "<group>"; };
+		36A73CE71B612D0300EA710D /* CMWalletMoney.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMWalletMoney.h; sourceTree = "<group>"; };
+		36A73CE81B612D0300EA710D /* CMWalletMoney.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMWalletMoney.m; sourceTree = "<group>"; };
 		36BE5A7E1B53C0680079DAE3 /* OrderHistDetailViewCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderHistDetailViewCon.h; sourceTree = "<group>"; };
 		36BE5A7F1B53C0680079DAE3 /* OrderHistDetailViewCon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderHistDetailViewCon.m; sourceTree = "<group>"; };
 		36BE5A811B53C5290079DAE3 /* dispatchedIconActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dispatchedIconActive.png; sourceTree = "<group>"; };
@@ -5109,10 +5112,10 @@
 		36A69EC41B57C4FA0058EB88 /* MoneyViewController */ = {
 			isa = PBXGroup;
 			children = (
-				36A69ED01B57C56E0058EB88 /* MoneyViewController.h */,
-				36A69ED11B57C56E0058EB88 /* MoneyViewController.m */,
 				36A69EDC1B57DE320058EB88 /* MoneyTableCell.h */,
 				36A69EDD1B57DE320058EB88 /* MoneyTableCell.m */,
+				36A69ED01B57C56E0058EB88 /* MoneyViewController.h */,
+				36A69ED11B57C56E0058EB88 /* MoneyViewController.m */,
 			);
 			path = MoneyViewController;
 			sourceTree = "<group>";
@@ -5137,6 +5140,15 @@
 				36A69EE01B57DE4F0058EB88 /* WalletOfferTableCell.m */,
 			);
 			path = WalletOffersViewController;
+			sourceTree = "<group>";
+		};
+		36A73CE61B612CF600EA710D /* CMWalletMoney */ = {
+			isa = PBXGroup;
+			children = (
+				36A73CE71B612D0300EA710D /* CMWalletMoney.h */,
+				36A73CE81B612D0300EA710D /* CMWalletMoney.m */,
+			);
+			path = CMWalletMoney;
 			sourceTree = "<group>";
 		};
 		36BE5A7D1B53C0470079DAE3 /* OrderHistDetailViewCon */ = {
@@ -5266,6 +5278,7 @@
 		6B0676E01B06024B0002259E /* BusinessModel */ = {
 			isa = PBXGroup;
 			children = (
+				36A73CE61B612CF600EA710D /* CMWalletMoney */,
 				36C010311B5FCD5A0099B7F7 /* CMWalletPoints */,
 				362A8DE61B567BAD0009844B /* CMPreferences */,
 				362A8DE71B567BAD0009844B /* CMOffers */,
@@ -8078,6 +8091,7 @@
 				36A69EC91B57C52A0058EB88 /* WalletViewController.m in Sources */,
 				6B12DCE31AF2A47D00245209 /* MobileVerificationViewController.m in Sources */,
 				36C79B771B5791640020D77F /* AddLocationViewController.m in Sources */,
+				36A73CE91B612D0300EA710D /* CMWalletMoney.m in Sources */,
 				274A5C911B05C4AA009112B5 /* NSXMLElement+XMPP.m in Sources */,
 				274A5C571B05C4AA009112B5 /* UIImageView+AFNetworking.m in Sources */,
 				274A5CAE1B05C4AA009112B5 /* XMPPLastActivity.m in Sources */,

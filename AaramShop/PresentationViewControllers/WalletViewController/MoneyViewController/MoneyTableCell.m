@@ -19,5 +19,10 @@
 
     // Configure the view for the selected state
 }
-
+-(void)updateCellWithData:(CMWalletMoney *)walletMoneyModel
+{
+	lblBrandName.text = walletMoneyModel.store_name;
+	lblDate.text = walletMoneyModel.order_date;
+	lblAmount.text = [NSString stringWithFormat:@"\u20B9 %@",walletMoneyModel.order_amount];
+}
 @end

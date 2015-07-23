@@ -21,8 +21,13 @@
 }
 -(void)updateCellWithData:(CMWalletPoints *)walletPointModel
 {
-	if ([walletPointModel.product_name isEqualToString:@"(null)"]) {
+	if ([walletPointModel.product_name isEqualToString:@"(null)"] && ![walletPointModel.store_name isEqualToString:@"(null)"]) {
 		lblName.text = walletPointModel.store_name;
+		lblPoints.text = walletPointModel.point;
+	}
+	else if ([walletPointModel.store_name isEqualToString:@"(null)"])
+	{
+		lblName.text = walletPointModel.order_code;
 		lblPoints.text = walletPointModel.point;
 	}
 	else

@@ -44,6 +44,7 @@
 + (NSString *)stringFromDateGmt9;
 + (NSString*) stringFromDateFor24Time:(NSDate*)date;
 + (NSString*) stringFromDateForTime:(NSDate*)date;
++ (NSString*) stringFromDateForTimeWithAt:(NSDate*)date;
 + (NSString*) returnStringFromDate:(NSDate*)date;
 + (NSString*) stringFromDateForExactTime:(NSDate*)date;
 + (NSDate*) dateFromStringforfolder:(NSString*)aStr;
