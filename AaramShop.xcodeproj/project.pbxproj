@@ -914,6 +914,10 @@
 		6B12DCF41AF2A53200245209 /* defaultProfilePic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DCEA1AF2A53200245209 /* defaultProfilePic@2x.png */; };
 		6B12DCF51AF2A53200245209 /* defaultProfilePic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DCEB1AF2A53200245209 /* defaultProfilePic@3x.png */; };
 		6B12DD001AF360F600245209 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12DCFF1AF360F600245209 /* AppDelegate.m */; };
+		6B13741E1B60C8710015E9EA /* ShoppingListChooseStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B13741D1B60C8710015E9EA /* ShoppingListChooseStoreModel.m */; };
+		6B1374231B60E7FF0015E9EA /* ShoppingListChooseStoreGeneralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1374221B60E7FF0015E9EA /* ShoppingListChooseStoreGeneralCell.m */; };
+		6B1374261B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1374251B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.m */; };
+		6B1374281B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B1374271B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib */; };
 		6B1A9A521B0364740005917B /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A9A511B0364740005917B /* Annotation.m */; };
 		6B1A9A581B03658C0005917B /* CustomMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A9A561B03658C0005917B /* CustomMapAnnotationView.m */; };
 		6B1A9A591B03658C0005917B /* CustomMapAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B1A9A571B03658C0005917B /* CustomMapAnnotationView.xib */; };
@@ -2532,6 +2536,13 @@
 		6B12DCEB1AF2A53200245209 /* defaultProfilePic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultProfilePic@3x.png"; sourceTree = "<group>"; };
 		6B12DCFE1AF360F600245209 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6B12DCFF1AF360F600245209 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6B13741C1B60C8710015E9EA /* ShoppingListChooseStoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListChooseStoreModel.h; sourceTree = "<group>"; };
+		6B13741D1B60C8710015E9EA /* ShoppingListChooseStoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListChooseStoreModel.m; sourceTree = "<group>"; };
+		6B1374211B60E7FF0015E9EA /* ShoppingListChooseStoreGeneralCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListChooseStoreGeneralCell.h; sourceTree = "<group>"; };
+		6B1374221B60E7FF0015E9EA /* ShoppingListChooseStoreGeneralCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListChooseStoreGeneralCell.m; sourceTree = "<group>"; };
+		6B1374241B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListChooseStoreRecommendedCell.h; sourceTree = "<group>"; };
+		6B1374251B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListChooseStoreRecommendedCell.m; sourceTree = "<group>"; };
+		6B1374271B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingListChooseStoreRecommendedCell.xib; sourceTree = "<group>"; };
 		6B1A9A501B0364740005917B /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
 		6B1A9A511B0364740005917B /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
 		6B1A9A551B03658C0005917B /* CustomMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMapAnnotationView.h; sourceTree = "<group>"; };
@@ -5621,6 +5632,34 @@
 			path = Constant;
 			sourceTree = "<group>";
 		};
+		6B13741B1B60C84B0015E9EA /* ShoppingListChooseStoreModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B13741C1B60C8710015E9EA /* ShoppingListChooseStoreModel.h */,
+				6B13741D1B60C8710015E9EA /* ShoppingListChooseStoreModel.m */,
+			);
+			path = ShoppingListChooseStoreModel;
+			sourceTree = "<group>";
+		};
+		6B13741F1B60E79E0015E9EA /* ShoppingListChooseStoreGeneralCell */ = {
+			isa = PBXGroup;
+			children = (
+				6B1374211B60E7FF0015E9EA /* ShoppingListChooseStoreGeneralCell.h */,
+				6B1374221B60E7FF0015E9EA /* ShoppingListChooseStoreGeneralCell.m */,
+			);
+			path = ShoppingListChooseStoreGeneralCell;
+			sourceTree = "<group>";
+		};
+		6B1374201B60E79E0015E9EA /* ShoppingListChooseStoreRecommendedCell */ = {
+			isa = PBXGroup;
+			children = (
+				6B1374241B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.h */,
+				6B1374271B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib */,
+				6B1374251B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.m */,
+			);
+			path = ShoppingListChooseStoreRecommendedCell;
+			sourceTree = "<group>";
+		};
 		6B1A9A4F1B0364740005917B /* Annotation */ = {
 			isa = PBXGroup;
 			children = (
@@ -5861,6 +5900,9 @@
 		6B83A0B11B53D86300A00520 /* ShoppingListChooseStoreViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6B13741F1B60E79E0015E9EA /* ShoppingListChooseStoreGeneralCell */,
+				6B1374201B60E79E0015E9EA /* ShoppingListChooseStoreRecommendedCell */,
+				6B13741B1B60C84B0015E9EA /* ShoppingListChooseStoreModel */,
 				6B83A0B21B53D87800A00520 /* ShoppingListChooseStoreViewController.h */,
 				6B83A0B31B53D87800A00520 /* ShoppingListChooseStoreViewController.m */,
 			);
@@ -7524,6 +7566,7 @@
 				368209D71B1C46FA002AA93F /* palau.png in Resources */,
 				3682097B1B1C46FA002AA93F /* Guiné-Bissau.png in Resources */,
 				6BB50DC91B32AAB300990161 /* locationPopupOp2.png in Resources */,
+				6B1374281B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib in Resources */,
 				368209741B1C46FA002AA93F /* greenland.png in Resources */,
 				6B8EB2901B25BED000402CFC /* homeStoreQuestionMarkIcon.png in Resources */,
 				6B83A0EF1B53EB2F00A00520 /* copyIcon.png in Resources */,
@@ -7807,6 +7850,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B1374261B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.m in Sources */,
 				274A5CE91B05C4AA009112B5 /* XMPPPing.m in Sources */,
 				6B5C0FAD1B53B6C3003C217C /* ShoppingListDetailCell.m in Sources */,
 				274A5C591B05C4AA009112B5 /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -7849,6 +7893,7 @@
 				6BA0DCEC1B3818EB00729443 /* ProductsModel.m in Sources */,
 				274A5CD91B05C4AA009112B5 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
 				274A5DEE1B05C88B009112B5 /* ScrollerLargeViewController.m in Sources */,
+				6B1374231B60E7FF0015E9EA /* ShoppingListChooseStoreGeneralCell.m in Sources */,
 				274A5DAA1B05C88B009112B5 /* ChatFirstRowCell.m in Sources */,
 				274A5CC21B05C4AA009112B5 /* XMPPvCardTempCoreDataStorageObject.m in Sources */,
 				274A5CD31B05C4AA009112B5 /* XMPPDateTimeProfiles.m in Sources */,
@@ -8083,6 +8128,7 @@
 				274A5CAE1B05C4AA009112B5 /* XMPPLastActivity.m in Sources */,
 				274A5C551B05C4AA009112B5 /* UIAlertView+AFNetworking.m in Sources */,
 				368209031B1C46FA002AA93F /* CMCountryList.m in Sources */,
+				6B13741E1B60C8710015E9EA /* ShoppingListChooseStoreModel.m in Sources */,
 				274A5C511B05C4AA009112B5 /* AFURLResponseSerialization.m in Sources */,
 				6B12DCD41AF29E8200245209 /* ForgotPasswordViewController.m in Sources */,
 				274A5CC91B05C4AA009112B5 /* XMPPvCardTempModule.m in Sources */,

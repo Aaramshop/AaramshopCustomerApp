@@ -30,9 +30,12 @@
     
     UIRefreshControl *refreshStoreList;
     BOOL isLoading;
+    
+    StoreModel *tempStoreModel;
 
 }
 
 @property(nonatomic,strong) StoreModel *storeModel;
+@property(nonatomic) NSInteger totalNoOfPages;
 
 @end

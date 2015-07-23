@@ -18,7 +18,7 @@
 {
     AaramShop_ConnectionManager *aaramShop_ConnectionManager;
     int pageno;
-    int totalNoOfPages;
+//    int totalNoOfPages;
     
     AppDelegate *appDeleg;
 
@@ -35,7 +35,7 @@
     [appDeleg findCurrentLocation];
     
     
-    totalNoOfPages = 0;
+//    totalNoOfPages = 0;
     pageno = 0;
     isLoading = NO;
     
@@ -73,17 +73,23 @@
     }
     
     
-    if (_storeModel)
-    {
-        [arrAllStores addObjectsFromArray:_storeModel.arrFavoriteStores];
-        [arrAllStores addObjectsFromArray:_storeModel.arrHomeStores];
-        [arrAllStores addObjectsFromArray:_storeModel.arrShoppingStores];
-        
-        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
-    }
+    tblRecommendedStore = [[UITableView alloc]init];
     
-    tblStores.delegate = self;
-    tblStores.dataSource = self;
+    tblRecommendedStore.bounces = NO;
+    tblRecommendedStore.backgroundColor = [UIColor whiteColor];
+    tblRecommendedStore.delegate = self;
+    tblRecommendedStore.dataSource = self;
+    
+    
+//    if (_storeModel)
+//    {
+//        [arrAllStores addObjectsFromArray:_storeModel.arrFavoriteStores];
+//        [arrAllStores addObjectsFromArray:_storeModel.arrHomeStores];
+//        [arrAllStores addObjectsFromArray:_storeModel.arrShoppingStores];
+//        
+//        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
+//    }
+    
 }
 
 
@@ -91,16 +97,13 @@
 {
     [super viewWillAppear:YES];
     
-    if ([arrAllStores count]==0)
+    NSInteger totalStoreCount = [arrAllStores count] + [arrRecommendedStores count];
+    
+    pageno = 1;
+    if (totalStoreCount==0)
     {
-//        tblView.hidden = YES;
-        
+        _totalNoOfPages = 0;
         [self callWebserviceToGetStoresList];
-        
-    }
-    else
-    {
-//        tblView.hidden = NO;
     }
     
     [tblStores reloadData];
@@ -191,12 +194,12 @@
             viewHeader = [[UIView alloc]init];
             viewHeader.backgroundColor = [UIColor whiteColor];
             
-            tblRecommendedStore = [[UITableView alloc]init];
-            
-            tblRecommendedStore.bounces = NO;
-            tblRecommendedStore.backgroundColor = [UIColor whiteColor];
-            tblRecommendedStore.delegate = self;
-            tblRecommendedStore.dataSource = self;
+//            tblRecommendedStore = [[UITableView alloc]init];
+//            
+//            tblRecommendedStore.bounces = NO;
+//            tblRecommendedStore.backgroundColor = [UIColor whiteColor];
+//            tblRecommendedStore.delegate = self;
+//            tblRecommendedStore.dataSource = self;
             
             
             if (!btnExpandCollapse)
@@ -278,6 +281,7 @@
         if (!cell)
         {
             [tableView registerNib:[UINib nibWithNibName:@"RecommendedStoreCell" bundle:nil] forCellReuseIdentifier:@"RecommendedStoreCell"];
+            
             cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendedStoreCell"];
         }
         
@@ -519,6 +523,8 @@
         
     [dict setObject:_storeModel.store_main_category_id forKey:kCategory_id];
     
+    [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
+
     
     if (![Utils isInternetAvailable])
     {
@@ -550,7 +556,7 @@
     {
         if([[responseObject objectForKey:kstatus] intValue] == 1)
         {
-            totalNoOfPages = [[responseObject objectForKey:kTotal_page] intValue];
+            _totalNoOfPages = [[responseObject objectForKey:kTotal_page] intValue];
             [self parseStoreListData:responseObject];
         }
     }
@@ -574,35 +580,15 @@
 -(void)parseStoreListData:(NSMutableDictionary *)responseObject
 {
     
-    if (!_storeModel)
+    if (!tempStoreModel)
     {
-        _storeModel = [[StoreModel alloc]init];
+        tempStoreModel = [[StoreModel alloc]init];
     }
 
     NSArray *arrTempRecomendedStores = [responseObject objectForKey:@"recommended_stores"];
     NSArray *arrTempHomeStores = [responseObject objectForKey:@"home_stores"];
     NSArray *arrTempShoppingStores = [responseObject objectForKey:@"shopping_store"];
     
-    
-    if (!_storeModel.arrRecommendedStores)
-    {
-        _storeModel.arrRecommendedStores = [[NSMutableArray alloc]init];
-    }
-    
-    if (!_storeModel.arrFavoriteStores)
-    {
-        _storeModel.arrFavoriteStores = [[NSMutableArray alloc]init];
-    }
-    
-    if (!_storeModel.arrHomeStores)
-    {
-        _storeModel.arrHomeStores = [[NSMutableArray alloc]init];
-    }
-    
-    if (!_storeModel.arrShoppingStores)
-    {
-        _storeModel.arrShoppingStores = [[NSMutableArray alloc]init];
-    }
     
     
     
@@ -626,7 +612,7 @@
         objStore.store_rating = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_rating]];
         objStore.total_orders = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kTotal_orders]];
         
-        [_storeModel.arrRecommendedStores addObject:objStore];
+        [tempStoreModel.arrRecommendedStores addObject:objStore];
     }
     for (NSDictionary *dictHome in arrTempHomeStores) {
         
@@ -648,7 +634,7 @@
         objStore.total_orders = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kTotal_orders]];
         objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_id]];
         
-        [_storeModel.arrHomeStores addObject:objStore];
+        [tempStoreModel.arrHomeStores addObject:objStore];
     }
     
     for (NSDictionary *dictShopping in arrTempShoppingStores) {
@@ -671,7 +657,7 @@
         objStore.total_orders = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kTotal_orders]];
         objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_id]];
         
-        [_storeModel.arrShoppingStores addObject:objStore];
+        [tempStoreModel.arrShoppingStores addObject:objStore];
     }
     
     
@@ -682,13 +668,13 @@
     }
     
     
-    if (_storeModel)
+    if (tempStoreModel)
     {
-        [arrAllStores addObjectsFromArray:_storeModel.arrFavoriteStores];
-        [arrAllStores addObjectsFromArray:_storeModel.arrHomeStores];
-        [arrAllStores addObjectsFromArray:_storeModel.arrShoppingStores];
+        [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
+        [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
+        [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
         
-        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
+        [arrRecommendedStores addObjectsFromArray:tempStoreModel.arrRecommendedStores];
     }
     
     
@@ -707,10 +693,10 @@
 - (void)refreshTable
 {
     pageno = 0;
-//    [self performSelector:@selector(callWebserviceToGetStoresList) withObject:nil afterDelay:1.0]; // temp commented
+    [self performSelector:@selector(callWebserviceToGetStoresList) withObject:nil afterDelay:0.5];
 
     // once after pagination done, delete the following code..
-    //*
+    /*
      isLoading = NO;
      [self showFooterLoadMoreActivityIndicator:NO];
      [refreshStoreList endRefreshing];
@@ -723,10 +709,10 @@
 
 -(void)calledPullUp
 {
-    if(totalNoOfPages>pageno)
+    if(_totalNoOfPages>pageno)
     {
-//        pageno++;
-//        [self callWebserviceToGetStoresList]; // temp commented
+        pageno++;
+        [self callWebserviceToGetStoresList];
     }
     else
     {
@@ -755,7 +741,7 @@
         if (!isLoading) {
             isLoading=YES;
             [self showFooterLoadMoreActivityIndicator:YES];
-            [self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5 ];
+            [self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.1];
         }
     }
     
