@@ -777,7 +777,7 @@
         NSMutableArray *arrSelectedProducts = [[NSMutableArray alloc]init];
         for (ProductsModel *objProduct in arrGetStoreProducts) {
             
-            if (objProduct.strCount.length>0) {
+            if ([objProduct.strCount integerValue] >0) {
                 [arrSelectedProducts addObject:objProduct];
             }
         }

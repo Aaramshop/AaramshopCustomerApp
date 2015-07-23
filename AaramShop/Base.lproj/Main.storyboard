@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -45,8 +45,17 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular_0.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -3271,70 +3280,82 @@ Please give us your address</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMe-lw-3Us">
-                                <rect key="frame" x="0.0" y="0.0" width="107" height="85"/>
-                                <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="107" height="95"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="85" id="abP-wZ-ATP"/>
-                                    <constraint firstAttribute="width" constant="107" id="yfT-FL-te2"/>
+                                    <constraint firstAttribute="height" constant="95" id="HKa-QC-loq"/>
+                                    <constraint firstAttribute="width" constant="107" id="fnk-l8-Jcl"/>
                                 </constraints>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="-55" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="0" backgroundImage="walletPointsIconInactive.png">
+                                    <color key="titleColor" red="0.8980392157" green="0.82352941180000006" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" title="Selected"/>
+                                <state key="selected" backgroundImage="walletPointsIconActive.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="btnPoints:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="1g9-rL-ct7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrK-K4-9VO">
-                                <rect key="frame" x="108" y="0.0" width="108" height="85"/>
-                                <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="107" y="0.0" width="110" height="95"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="108" id="Nu2-wU-h8L"/>
-                                    <constraint firstAttribute="height" constant="85" id="cWQ-6n-tMW"/>
+                                    <constraint firstAttribute="height" constant="95" id="Tts-Oq-HnJ"/>
+                                    <constraint firstAttribute="width" constant="110" id="oeE-R4-H2e"/>
                                 </constraints>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="-55" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="0" backgroundImage="walletMoneyIconInactive.png">
+                                    <color key="titleColor" red="0.8980392157" green="0.82352941180000006" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" title="Selected"/>
+                                <state key="selected" backgroundImage="walletMoneyIconActive.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="btnMoney:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="Yw6-UX-FuM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaC-6E-IIo">
-                                <rect key="frame" x="217" y="0.0" width="104" height="85"/>
-                                <color key="backgroundColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="217" y="0.0" width="103" height="95"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="85" id="a4p-87-uqe"/>
-                                    <constraint firstAttribute="width" constant="104" id="vq7-76-BfV"/>
+                                    <constraint firstAttribute="width" constant="103" id="gsM-AL-CrA"/>
+                                    <constraint firstAttribute="height" constant="95" id="ixA-8b-bUm"/>
                                 </constraints>
-                                <state key="normal">
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="-55" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="0" backgroundImage="walletOffersIconInactive.png">
+                                    <color key="titleColor" red="0.8980392157" green="0.82352941180000006" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" title="Selected"/>
+                                <state key="selected" backgroundImage="walletOffersIconActive.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="btnOffers:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="nVE-1i-UzJ"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSp-xJ-3I1">
-                                <rect key="frame" x="0.0" y="85" width="320" height="419"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="96" width="320" height="408"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="uaC-6E-IIo" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="55o-Hb-7ks"/>
-                            <constraint firstItem="NSp-xJ-3I1" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leadingMargin" constant="-16" id="LAG-L9-gg7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="NSp-xJ-3I1" secondAttribute="trailing" constant="-16" id="XyC-Rb-f4u"/>
-                            <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leadingMargin" constant="-16" id="aN8-Tt-Yrx"/>
-                            <constraint firstItem="jen-bh-d3e" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="bottom" id="b2R-Gs-Q4k"/>
-                            <constraint firstItem="VrK-K4-9VO" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="eLV-5Z-xzI"/>
-                            <constraint firstItem="DMe-lw-3Us" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="egU-qN-w3b"/>
-                            <constraint firstItem="DMe-lw-3Us" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="top" constant="-85" id="ekz-i5-YhZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="uaC-6E-IIo" secondAttribute="trailing" constant="-17" id="hFH-Gz-lwq"/>
-                            <constraint firstItem="DMe-lw-3Us" firstAttribute="trailing" secondItem="VrK-K4-9VO" secondAttribute="trailing" constant="-109" id="lk5-mt-OuD"/>
-                            <constraint firstItem="uaC-6E-IIo" firstAttribute="trailing" secondItem="VrK-K4-9VO" secondAttribute="trailing" constant="105" id="roQ-07-qdO"/>
-                            <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="VrK-K4-9VO" secondAttribute="leading" constant="-108" id="sgi-Hq-QgE"/>
-                            <constraint firstItem="VrK-K4-9VO" firstAttribute="leading" secondItem="uaC-6E-IIo" secondAttribute="leading" constant="-109" id="ygB-B1-t7W"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="27X-gc-UM4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uaC-6E-IIo" secondAttribute="trailing" constant="-16" id="4UZ-Bp-KML"/>
+                            <constraint firstItem="NSp-xJ-3I1" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leading" id="6lv-Z7-6Rv"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leadingMargin" constant="-16" id="7Ww-mP-j7P"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="top" constant="-96" id="8Q9-Lh-yKn"/>
+                            <constraint firstItem="jen-bh-d3e" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="bottom" id="K4t-9b-pv9"/>
+                            <constraint firstItem="VrK-K4-9VO" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="Y4p-TT-iFb"/>
+                            <constraint firstAttribute="trailing" secondItem="NSp-xJ-3I1" secondAttribute="trailing" id="g2o-jY-Ytq"/>
+                            <constraint firstItem="VrK-K4-9VO" firstAttribute="leading" secondItem="DMe-lw-3Us" secondAttribute="leading" constant="107" id="lrh-Qi-Lsf"/>
+                            <constraint firstItem="uaC-6E-IIo" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="t8b-LX-IA8"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -3361,9 +3382,27 @@ Please give us your address</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EIS-d9-E6O">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Points" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtc-J5-Sfz">
+                                        <rect key="frame" x="8" y="12" width="174" height="21"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                        <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9e-Hq-zdu">
+                                        <rect key="frame" x="190" y="12" width="122" height="21"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                        <color key="textColor" red="0.2627450980392157" green="0.64313725490196072" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3eR-F2-Nxu">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="419"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="45" width="320" height="363"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PointsCell" id="Can-oa-3Wt" customClass="PointsTableCell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -3372,14 +3411,14 @@ Please give us your address</string>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vk9-HG-YVr">
                                                     <rect key="frame" x="17" y="11" width="156" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1W-Oq-r5c">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1W-Oq-r5c">
                                                     <rect key="frame" x="261" y="11" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                    <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -3396,12 +3435,15 @@ Please give us your address</string>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="lblPoint" destination="E9e-Hq-zdu" id="D3B-rL-ul3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gT3-mk-6fz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4281" y="1817"/>
+            <point key="canvasLocation" x="4261" y="1817"/>
         </scene>
         <!--Money View Controller-->
         <scene sceneID="qUf-U7-fnB">
@@ -3415,9 +3457,27 @@ Please give us your address</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vi4-6I-jjh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Money" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5m-iw-Sbb">
+                                        <rect key="frame" x="8" y="12" width="174" height="21"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                        <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJ2-ab-AvX">
+                                        <rect key="frame" x="190" y="12" width="122" height="21"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                        <color key="textColor" red="0.26274509800000001" green="0.64313725489999995" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rad-8e-tjY">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="419"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="45" width="320" height="363"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MoneyCell" rowHeight="60" id="ZWw-xu-hhf" customClass="MoneyTableCell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -3451,8 +3511,11 @@ Please give us your address</string>
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="lblMoney" destination="qJ2-ab-AvX" id="sA0-ig-MQl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b3O-3n-Sj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3472,7 +3535,7 @@ Please give us your address</string>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TVg-Si-YAf">
                                 <rect key="frame" x="0.0" y="152" width="320" height="264"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WalletOfferCell" rowHeight="90" id="y8A-CA-66g" customClass="WalletOfferTableCell">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -3520,7 +3583,7 @@ Please give us your address</string>
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHx-0A-QqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4035,10 +4098,10 @@ Please give us your address</string>
                         <viewControllerLayoutGuide type="bottom" id="wIn-xs-BLK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GUC-0e-h8w">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="owd-6E-OdS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="owd-6E-OdS">
                                 <rect key="frame" x="0.0" y="24" width="320" height="500"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -4365,8 +4428,35 @@ Please give us your address</string>
                                     <outlet property="delegate" destination="7Fv-Uz-q9I" id="oLv-k5-5lm"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9L-aZ-cwB">
+                                <rect key="frame" x="6" y="5" width="308" height="112"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymentNotificationBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="QQJ-n0-a06">
+                                        <rect key="frame" x="0.0" y="0.0" width="308" height="112"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-9y-Ii0">
+                                        <rect key="frame" x="8" y="8" width="292" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="QQJ-n0-a06" secondAttribute="trailing" id="0AI-xh-cXF"/>
+                                    <constraint firstAttribute="bottom" secondItem="vwv-9y-Ii0" secondAttribute="bottom" constant="8" id="3gx-0G-xKt"/>
+                                    <constraint firstAttribute="trailing" secondItem="vwv-9y-Ii0" secondAttribute="trailing" constant="8" id="D3J-62-tFg"/>
+                                    <constraint firstItem="QQJ-n0-a06" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" id="KYb-sS-3OW"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="8" id="Yi3-Cr-i9k"/>
+                                    <constraint firstAttribute="width" constant="308" id="csR-Qz-iO2"/>
+                                    <constraint firstItem="QQJ-n0-a06" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" id="huH-yr-CsN"/>
+                                    <constraint firstAttribute="bottom" secondItem="QQJ-n0-a06" secondAttribute="bottom" id="oy1-u3-9th"/>
+                                    <constraint firstAttribute="height" constant="112" id="rLk-lb-rCq"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" constant="8" id="vXg-m9-gOj"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qn3-R3-ILi">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
                                 <color key="backgroundColor" red="0.80392156862745101" green="0.043137254901960784" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="nmg-oM-ze0"/>
@@ -4384,14 +4474,18 @@ Please give us your address</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leading" id="MEN-a0-fbd"/>
+                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leadingMargin" constant="-10" id="Mbp-dv-dFp"/>
                             <constraint firstItem="qn3-R3-ILi" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leading" id="SUE-p0-oTB"/>
                             <constraint firstAttribute="trailing" secondItem="qn3-R3-ILi" secondAttribute="trailing" id="V5b-zF-QGA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="d9L-aZ-cwB" secondAttribute="trailing" constant="-10" id="kYU-H1-sVG"/>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="4" id="oAF-bZ-j4Y"/>
+                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="5" id="oJ0-yc-gCy"/>
                             <constraint firstAttribute="trailing" secondItem="owd-6E-OdS" secondAttribute="trailing" id="rPQ-gD-RKL"/>
                             <constraint firstItem="wIn-xs-BLK" firstAttribute="top" secondItem="qn3-R3-ILi" secondAttribute="bottom" id="rwu-wp-Lvc"/>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="bottom" secondItem="qn3-R3-ILi" secondAttribute="bottom" constant="-44" id="wZB-Kp-YUi"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnPay" destination="qn3-R3-ILi" id="xdE-j6-pZG"/>
@@ -5506,6 +5600,7 @@ It will be used only for verification purposes.</string>
         <image name="offersSoundIconRed.png" width="320" height="568"/>
         <image name="packedIconActive.png" width="35" height="35"/>
         <image name="packedIconInactive.png" width="35" height="35"/>
+        <image name="paymentNotificationBox.png" width="308" height="112"/>
         <image name="pencilIcon.png" width="42" height="45"/>
         <image name="popupCloseIcon.png" width="20" height="20"/>
         <image name="preferencesLocationAddCircle.png" width="25" height="25"/>
@@ -5518,6 +5613,12 @@ It will be used only for verification purposes.</string>
         <image name="singleBox.png" width="300" height="50"/>
         <image name="smsIconDarkGrey.png" width="35" height="35"/>
         <image name="upperBox.png" width="300" height="49"/>
+        <image name="walletMoneyIconActive.png" width="110" height="95"/>
+        <image name="walletMoneyIconInactive.png" width="110" height="95"/>
+        <image name="walletOffersIconActive.png" width="103" height="95"/>
+        <image name="walletOffersIconInactive.png" width="103" height="95"/>
+        <image name="walletPointsIconActive.png" width="107" height="95"/>
+        <image name="walletPointsIconInactive.png" width="107" height="95"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

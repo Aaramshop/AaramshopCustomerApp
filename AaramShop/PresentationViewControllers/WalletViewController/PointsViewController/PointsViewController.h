@@ -21,5 +21,6 @@ typedef enum
 	NSMutableArray *arrTemp;
 	NSString *strPoints;
 	UILabel *lblPointsName;
+	__weak IBOutlet UILabel *lblPoint;
 }
 @end

@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MoneyViewController : UIViewController
+{
+	
+	__weak IBOutlet UILabel *lblMoney;
+}
 
 @end
