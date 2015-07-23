@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/HomeCategoryListViewController.m"
-            timestampString = "459176753.681722"
+            filePath = "AaramShop/PresentationViewControllers/MobileVerificationViewController/MobileVerificationViewController.m"
+            timestampString = "459298623.389753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "667"
-            endingLineNumber = "667"
-            landmarkName = "-parseStoreListData:"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "-callWebserviceForOtpResend:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/HomeCategoryListViewController.m"
-            timestampString = "459176761.780732"
+            filePath = "AaramShop/PresentationViewControllers/MobileVerificationViewController/MobileVerificationViewController.m"
+            timestampString = "459298623.389753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "674"
-            endingLineNumber = "674"
-            landmarkName = "-parseStoreListData:"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-didFailWithError:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,28 +51,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/HomeCategoryListViewController.m"
-            timestampString = "459176785.985414"
+            filePath = "AaramShop/PresentationViewControllers/MobileVerificationViewController/MobileVerificationViewController.m"
+            timestampString = "459298623.389753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "525"
-            endingLineNumber = "525"
-            landmarkName = "-callWebserviceToGetStoresList"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/HomeCategoryListViewController.m"
-            timestampString = "459176787.831255"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "532"
-            endingLineNumber = "532"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "-responseReceived:"
             landmarkType = "5">
          </BreakpointContent>
@@ -83,13 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoriesViewController.m"
-            timestampString = "459177241.311098"
+            filePath = "AaramShop/PresentationViewControllers/MobileVerificationViewController/MobileVerificationViewController.m"
+            timestampString = "459298623.389753"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
-            landmarkName = "-setupViewDesign"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-callWebserviceForOtpSend:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -99,13 +83,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/HomeCategoryListViewController.m"
-            timestampString = "459177442.710619"
+            filePath = "AaramShop/AppDelegate/AppDelegate.m"
+            timestampString = "459300469.546017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "684"
-            endingLineNumber = "684"
-            landmarkName = "-parseStoreListData:"
+            startingLineNumber = "464"
+            endingLineNumber = "464"
+            landmarkName = "-removeTabBarRetailer"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
