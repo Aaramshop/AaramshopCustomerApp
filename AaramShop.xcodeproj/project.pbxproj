@@ -820,6 +820,7 @@
 		36BE5AAE1B53C9C70079DAE3 /* sepratorBoxThree_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BE5AAB1B53C9C70079DAE3 /* sepratorBoxThree_2.png */; };
 		36BE5AAF1B53C9C70079DAE3 /* sepratorBoxThree@2x_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BE5AAC1B53C9C70079DAE3 /* sepratorBoxThree@2x_2.png */; };
 		36BE5AB01B53C9C70079DAE3 /* sepratorBoxThree@3x_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BE5AAD1B53C9C70079DAE3 /* sepratorBoxThree@3x_2.png */; };
+		36C010341B5FCD6D0099B7F7 /* CMWalletPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C010331B5FCD6D0099B7F7 /* CMWalletPoints.m */; };
 		36C245801B5508A4003714B0 /* chooseCategoryDefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C2457D1B5508A4003714B0 /* chooseCategoryDefaultImage.png */; };
 		36C245811B5508A4003714B0 /* chooseCategoryDefaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C2457E1B5508A4003714B0 /* chooseCategoryDefaultImage@2x.png */; };
 		36C245821B5508A4003714B0 /* chooseCategoryDefaultImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C2457F1B5508A4003714B0 /* chooseCategoryDefaultImage@3x.png */; };
@@ -912,7 +913,6 @@
 		6B12DCF31AF2A53200245209 /* defaultProfilePic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DCE91AF2A53200245209 /* defaultProfilePic.png */; };
 		6B12DCF41AF2A53200245209 /* defaultProfilePic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DCEA1AF2A53200245209 /* defaultProfilePic@2x.png */; };
 		6B12DCF51AF2A53200245209 /* defaultProfilePic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DCEB1AF2A53200245209 /* defaultProfilePic@3x.png */; };
-		6B12DCFC1AF360A500245209 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12DCFB1AF360A500245209 /* BaseViewController.m */; };
 		6B12DD001AF360F600245209 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12DCFF1AF360F600245209 /* AppDelegate.m */; };
 		6B1A9A521B0364740005917B /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A9A511B0364740005917B /* Annotation.m */; };
 		6B1A9A581B03658C0005917B /* CustomMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A9A561B03658C0005917B /* CustomMapAnnotationView.m */; };
@@ -2420,6 +2420,8 @@
 		36BE5AAB1B53C9C70079DAE3 /* sepratorBoxThree_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sepratorBoxThree_2.png; sourceTree = "<group>"; };
 		36BE5AAC1B53C9C70079DAE3 /* sepratorBoxThree@2x_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sepratorBoxThree@2x_2.png"; sourceTree = "<group>"; };
 		36BE5AAD1B53C9C70079DAE3 /* sepratorBoxThree@3x_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sepratorBoxThree@3x_2.png"; sourceTree = "<group>"; };
+		36C010321B5FCD6D0099B7F7 /* CMWalletPoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMWalletPoints.h; sourceTree = "<group>"; };
+		36C010331B5FCD6D0099B7F7 /* CMWalletPoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMWalletPoints.m; sourceTree = "<group>"; };
 		36C2457D1B5508A4003714B0 /* chooseCategoryDefaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chooseCategoryDefaultImage.png; sourceTree = "<group>"; };
 		36C2457E1B5508A4003714B0 /* chooseCategoryDefaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseCategoryDefaultImage@2x.png"; sourceTree = "<group>"; };
 		36C2457F1B5508A4003714B0 /* chooseCategoryDefaultImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chooseCategoryDefaultImage@3x.png"; sourceTree = "<group>"; };
@@ -2528,8 +2530,6 @@
 		6B12DCE91AF2A53200245209 /* defaultProfilePic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultProfilePic.png; sourceTree = "<group>"; };
 		6B12DCEA1AF2A53200245209 /* defaultProfilePic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultProfilePic@2x.png"; sourceTree = "<group>"; };
 		6B12DCEB1AF2A53200245209 /* defaultProfilePic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultProfilePic@3x.png"; sourceTree = "<group>"; };
-		6B12DCFA1AF360A500245209 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
-		6B12DCFB1AF360A500245209 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		6B12DCFE1AF360F600245209 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6B12DCFF1AF360F600245209 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6B1A9A501B0364740005917B /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
@@ -5148,6 +5148,15 @@
 			path = OrderHistDetailViewCon;
 			sourceTree = "<group>";
 		};
+		36C010311B5FCD5A0099B7F7 /* CMWalletPoints */ = {
+			isa = PBXGroup;
+			children = (
+				36C010321B5FCD6D0099B7F7 /* CMWalletPoints.h */,
+				36C010331B5FCD6D0099B7F7 /* CMWalletPoints.m */,
+			);
+			path = CMWalletPoints;
+			sourceTree = "<group>";
+		};
 		36C79B741B5791370020D77F /* AddLocationViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5257,6 +5266,7 @@
 		6B0676E01B06024B0002259E /* BusinessModel */ = {
 			isa = PBXGroup;
 			children = (
+				36C010311B5FCD5A0099B7F7 /* CMWalletPoints */,
 				362A8DE61B567BAD0009844B /* CMPreferences */,
 				362A8DE71B567BAD0009844B /* CMOffers */,
 				36D8C4F71B3A9B8E00C255EE /* CMPaymentMode */,
@@ -5498,7 +5508,6 @@
 				27BE657A1B0203CC004FA4B4 /* OrderHistViewController */,
 				27BE657B1B0203CC004FA4B4 /* ShoplistViewController */,
 				6B388E161AFCC2FF00FF3CF3 /* LocationEnterViewController */,
-				6B12DCF91AF3609700245209 /* BaseViewController */,
 				6B12DCDC1AF2A45800245209 /* MobileEnterViewController */,
 				6B12DCDD1AF2A45800245209 /* MobileVerificationViewController */,
 				6B12DCD11AF29E6D00245209 /* ForgotPasswordViewController */,
@@ -5593,15 +5602,6 @@
 				6B12DCEB1AF2A53200245209 /* defaultProfilePic@3x.png */,
 			);
 			path = MobileEnterImages;
-			sourceTree = "<group>";
-		};
-		6B12DCF91AF3609700245209 /* BaseViewController */ = {
-			isa = PBXGroup;
-			children = (
-				6B12DCFA1AF360A500245209 /* BaseViewController.h */,
-				6B12DCFB1AF360A500245209 /* BaseViewController.m */,
-			);
-			path = BaseViewController;
 			sourceTree = "<group>";
 		};
 		6B12DCFD1AF360E000245209 /* AppDelegate */ = {
@@ -7885,7 +7885,6 @@
 				6B809DA81B31755D00E91673 /* SDWebImageDecoder.m in Sources */,
 				274A5C4F1B05C4AA009112B5 /* AFURLConnectionOperation.m in Sources */,
 				274A5DEC1B05C88B009112B5 /* NewPhoto.m in Sources */,
-				6B12DCFC1AF360A500245209 /* BaseViewController.m in Sources */,
 				36A69ECF1B57C5610058EB88 /* PointsViewController.m in Sources */,
 				274A5DA41B05C88B009112B5 /* PlayVideoViewController.m in Sources */,
 				274A5CA11B05C4AA009112B5 /* XMPPResourceCoreDataStorageObject.m in Sources */,
@@ -7988,6 +7987,7 @@
 				274A5CB41B05C4AA009112B5 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				274A5CA21B05C4AA009112B5 /* XMPPRoster.xcdatamodel in Sources */,
 				6B8EB2651B257DC900402CFC /* HomeTableCell.m in Sources */,
+				36C010341B5FCD6D0099B7F7 /* CMWalletPoints.m in Sources */,
 				6B809DAF1B31755D00E91673 /* UIImage+MultiFormat.m in Sources */,
 				6B1A9A581B03658C0005917B /* CustomMapAnnotationView.m in Sources */,
 				274A5CC41B05C4AA009112B5 /* XMPPvCardTempAdr.m in Sources */,

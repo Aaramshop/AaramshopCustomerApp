@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MobileVerificationViewController : BaseViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
+@interface MobileVerificationViewController : UIViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
 {
     __weak IBOutlet UIButton *backBtn;
     

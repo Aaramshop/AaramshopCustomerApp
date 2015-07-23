@@ -12,6 +12,7 @@
 {
 	
 	__weak IBOutlet UILabel *lblMoney;
+	__weak IBOutlet UITableView *tblView;
 }
 
 @end

@@ -3339,7 +3339,7 @@ Please give us your address</string>
                                     <action selector="btnOffers:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="nVE-1i-UzJ"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSp-xJ-3I1">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSp-xJ-3I1">
                                 <rect key="frame" x="0.0" y="96" width="320" height="408"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -3439,6 +3439,7 @@ Please give us your address</string>
                     </view>
                     <connections>
                         <outlet property="lblPoint" destination="E9e-Hq-zdu" id="D3B-rL-ul3"/>
+                        <outlet property="tblView" destination="3eR-F2-Nxu" id="0pS-zp-Swq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gT3-mk-6fz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3515,6 +3516,7 @@ Please give us your address</string>
                     </view>
                     <connections>
                         <outlet property="lblMoney" destination="qJ2-ab-AvX" id="sA0-ig-MQl"/>
+                        <outlet property="tblView" destination="rad-8e-tjY" id="R0E-nb-KwY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b3O-3n-Sj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3585,6 +3587,9 @@ Please give us your address</string>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="tblView" destination="TVg-Si-YAf" id="UNF-ZV-hXr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHx-0A-QqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
