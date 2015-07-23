@@ -356,6 +356,7 @@
     [_headerTitleSubtitleView addSubview:titleView];
     self.navigationItem.titleView = _headerTitleSubtitleView;
     
+    
     UIImage *imgBack = [UIImage imageNamed:@"backBtn.png"];
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
