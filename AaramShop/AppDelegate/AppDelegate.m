@@ -33,34 +33,36 @@
     [self.window setBackgroundColor:[UIColor blackColor]];
    
 	
-    if ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone Simulator"])
-    {
-        [[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-    }
-    else
-    {
-        if(![[NSUserDefaults standardUserDefaults]valueForKey:kDeviceId])
-        {
-            [[NSUserDefaults standardUserDefaults] setValue:@"1234567890" forKey:kDeviceId];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
-        
-        
-        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
-        {
-            [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        }
-        else
-        {
-            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-             (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
-            
-        }
-        
-        
-    }
+	if ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone Simulator"])
+	{
+		[[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		
+	}
+	else
+	{
+		if(![[NSUserDefaults standardUserDefaults]valueForKey:kDeviceId])
+		{
+			[[NSUserDefaults standardUserDefaults] setValue:@"1234567890" forKey:kDeviceId];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+		}
+		
+		
+		if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
+		{
+			[[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+			
+			//            [[UIApplication sharedApplication] registerForRemoteNotifications];
+		}
+		else
+		{
+			[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+			 (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+			
+		}
+		
+		
+	}
     if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn] == YES) {
         [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
 
@@ -118,49 +120,52 @@
 }
 #pragma mark - Register Device For Device Token
 #pragma mark - Remote Notification Methods
+#pragma mark - Remote Notification Methods
 - (void)application:(UIApplication *)application   didRegisterUserNotificationSettings:   (UIUserNotificationSettings *)notificationSettings
 {
-    //register to receive notifications
-    [application registerForRemoteNotifications];
+	//register to receive notifications
+	[application registerForRemoteNotifications];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    NSString *deviceTokenStr = [[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""] stringByReplacingOccurrencesOfString: @">" withString: @""] stringByReplacingOccurrencesOfString: @" " withString: @""];
-    
-    [[NSUserDefaults standardUserDefaults] setValue:deviceTokenStr forKey:kDeviceId];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    // NSLog(@"Registered");
-    
-    NSLog(@"Device Token: %@ ", deviceTokenStr);
+	NSString *deviceTokenStr = [[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""] stringByReplacingOccurrencesOfString: @">" withString: @""] stringByReplacingOccurrencesOfString: @" " withString: @""];
+	
+	[[NSUserDefaults standardUserDefaults] setValue:deviceTokenStr forKey:kDeviceId];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	// NSLog(@"Registered");
+	
+	NSLog(@"Device Token: %@ ", deviceTokenStr);
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err
 {
-    //    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
-    // NSLog(@"Fail To Register for Push Notification.");
-    
-    [[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+	//    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+	// NSLog(@"Fail To Register for Push Notification.");
+	
+	[[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	NSLog(@"%@ Fail to get register",err);
 }
 
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary* )userInfo
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    // NSLog(@"%@",[[userInfo valueForKey:@"aps"] valueForKey:@"alert"]);
-    
-    
-    //When app is active than only home screen counts should be refreshed
-    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
-        
-    }// If app is in Background or in inactive state than in this case we have to open NotificationViewcontroller or friend request received
-    else
-    {
-        NSInteger badgeCount = [UIApplication sharedApplication].applicationIconBadgeNumber;
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
-    }
-    
+	// NSLog(@"%@",[[userInfo valueForKey:@"aps"] valueForKey:@"alert"]);
+	
+	
+	//When app is active than only home screen counts should be refreshed
+	if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
+		
+	}// If app is in Background or in inactive state than in this case we have to open NotificationViewcontroller or friend request received
+	else
+	{
+		NSInteger badgeCount = [UIApplication sharedApplication].applicationIconBadgeNumber;
+		[[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
+	}
+	
 }
+
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager* )manager didFailWithError:(NSError *)error
