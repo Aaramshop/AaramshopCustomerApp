@@ -17,8 +17,6 @@
     imgStore.layer.cornerRadius = 5.0;
     imgStore.clipsToBounds=YES;
     
-    imgHomeIcon.image = [UIImage imageNamed:@"homeScreenHomeIconRed"];
-    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
 }
@@ -35,20 +33,6 @@
 
 -(void)updateCellWithData:(StoreModel*)objStoreData
 {
-    CGSize size= [Utils getLabelSizeByText:objStoreData.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
-    
-    if (size.height < 20) {
-        size.height = 20;
-    }
-    
-    ////
-    if ([objStoreData.is_home_store isEqualToString:@"1"]) {
-        imgHomeIcon.hidden = NO;
-    }
-    else
-        imgHomeIcon.hidden = YES;
-    
-    
     ////
     NSString *strStoreCategoryIcon = [NSString stringWithFormat:@"%@",objStoreData.store_category_icon];
     NSURL *urlStoreCategoryIcon = [NSURL URLWithString:[strStoreCategoryIcon stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];

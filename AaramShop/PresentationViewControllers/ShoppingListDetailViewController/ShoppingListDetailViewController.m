@@ -14,6 +14,8 @@
 #import "ProductsModel.h"
 #import "ShoppingListChooseStoreViewController.h"
 
+#import "ShoppingListChooseStoreModel.h"
+
 
 #define kTableHeader1Height    40
 #define kTableHeader2Height    70
@@ -25,6 +27,8 @@
 {
     int pageno;
     int totalNoOfPages;
+    
+    ShoppingListChooseStoreModel *selectedStoreModel;
 }
 @end
 
@@ -58,15 +62,6 @@
     [refreshShoppingList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = refreshShoppingList;
     
-    
-    
-    
-    
-    isStoreSelected = NO; // temp
-//    isStoreSelected = YES; // temp
-
-//    [self getProductsInitialList];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -214,7 +209,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (isStoreSelected==YES)
+    if (selectedStoreModel)
     {
         return kTableHeader1Height;
     }
@@ -253,7 +248,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (isStoreSelected==YES)
+    if (selectedStoreModel)
     {
         return [self viewForHeader1];
     }
@@ -376,7 +371,7 @@
     
     
     NSString *strRupee = @"\u20B9";
-    NSString *strAmount = @"1500"; // temp
+    NSString *strAmount = selectedStoreModel.total_product_price;
     
     //
     UILabel *lblTotalAmountValue = [[UILabel alloc]initWithFrame:CGRectMake((btnDone.frame.origin.x - 120), 0, 100, view.frame.size.height)];
@@ -414,7 +409,7 @@
     
     UIButton *btnAdd = [UIButton buttonWithType:UIButtonTypeCustom];
     btnAdd.frame = CGRectMake((view.frame.size.width - kTableHeader2ButtonWidhtHeight)/2, button_Y, kTableHeader2ButtonWidhtHeight, kTableHeader2ButtonWidhtHeight);
-    [btnAdd setImage:[UIImage imageNamed:@"shoppingListAddCircle"] forState:UIControlStateNormal];
+    [btnAdd setImage:[UIImage imageNamed:@"updateIcon"] forState:UIControlStateNormal];
     [btnAdd addTarget:self action:@selector(btnAddClicked) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -447,11 +442,21 @@
 
 -(void)btnDoneClicked
 {
-    // add validation here .. to check if any product entry exist.
+    if ([arrProductList count]>0)
+    {
+        CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+        
+        cartView.selectedStore = selectedStoreModel;
+        
+        if (!cartView.arrProductList)
+        {
+            cartView.arrProductList = [[NSMutableArray alloc]init];
+        }
+        
+        [cartView.arrProductList addObjectsFromArray:arrProductList];
+        [self.navigationController pushViewController:cartView animated:YES];
+    }
     
-    CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
-    
-    [self.navigationController pushViewController:cartView animated:YES];
 }
 
 
@@ -483,11 +488,30 @@
 -(IBAction)actionChooseStore:(id)sender
 {
     
-    ShoppingListChooseStoreViewController *shoppingListChooseStoreView = (ShoppingListChooseStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListChooseStoreView"];
-    
-    shoppingListChooseStoreView.strShoppingListId = _strShoppingListID;
-    
-    [self.navigationController pushViewController:shoppingListChooseStoreView animated:YES];
+    if ([arrProductList count]>0)
+    {
+        ShoppingListChooseStoreViewController *shoppingListChooseStoreView = (ShoppingListChooseStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListChooseStoreView"];
+        
+        shoppingListChooseStoreView.strShoppingListId = _strShoppingListID;
+
+        shoppingListChooseStoreView.refreshShoppingList = ^(ShoppingListChooseStoreModel *chooseStoreModel)
+        {
+            if (!selectedStoreModel)
+            {
+                selectedStoreModel = [[ShoppingListChooseStoreModel alloc]init];
+            }
+            
+            selectedStoreModel = chooseStoreModel;
+            
+//            [self activateChooseBtn:NO];
+            
+            [tblView reloadData];
+        };
+        
+        
+        
+        [self.navigationController pushViewController:shoppingListChooseStoreView animated:YES];
+    }
     
 }
 
@@ -545,6 +569,8 @@
 
 -(void)callWebServiceToGetProductsList:(NSMutableDictionary *)aDict
 {
+//    [self activateChooseBtn:NO];
+    
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
     {
@@ -565,6 +591,8 @@
     
     [AppManager stopStatusbarActivityIndicator];
     [aaramShop_ConnectionManager failureBlockCalled:error];
+    
+//    [self activateChooseBtn:NO];
 }
 
 
@@ -577,6 +605,7 @@
     [AppManager stopStatusbarActivityIndicator];
     
     
+    
     switch (aaramShop_ConnectionManager.currentTask)
     {
         case TASK_TO_GET_SHOPPING_LIST_PRODUCTS:
@@ -585,10 +614,14 @@
             if ([[responseObject objectForKey:kstatus] intValue] == 1)
             {
                 [self parseResponseData:responseObject];
+                
+//                [self activateChooseBtn:YES];
             }
             else
             {
                 [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+                
+//                [self activateChooseBtn:NO];
             }
         }
             break;
@@ -606,7 +639,7 @@
 {
     pageno = 0;
     
-    [self performSelector:@selector(getProductsInitialList) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(getProductsInitialList) withObject:nil afterDelay:0.1];
 }
 
 
@@ -698,5 +731,21 @@
     [tblView reloadData];
 
 }
+
+
+//-(void)activateChooseBtn:(BOOL)isActive
+//{
+//    if (isActive)
+//    {
+//        btnChooseStore.userInteractionEnabled = YES;
+//        [btnChooseStore setTitle:@"CHOOSE A STORE" forState:UIControlStateNormal];
+//    }
+//    else
+//    {
+//        btnChooseStore.userInteractionEnabled = NO;
+//        [btnChooseStore setTitle:@"" forState:UIControlStateNormal];
+//    }
+//}
+
 
 @end

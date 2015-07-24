@@ -31,13 +31,7 @@
 
 
 -(void)updateCellWithData:(StoreModel*)objStoreData
-{
-    CGSize size= [Utils getLabelSizeByText:objStoreData.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
-    
-    if (size.height < 20) {
-        size.height = 20;
-    }
-   
+{   
     ////
     if ([objStoreData.is_home_store isEqualToString:@"1"]) {
         imgHomeIcon.hidden = NO;

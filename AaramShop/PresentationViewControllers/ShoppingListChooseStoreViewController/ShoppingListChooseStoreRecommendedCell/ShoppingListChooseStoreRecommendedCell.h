@@ -12,7 +12,6 @@
 @interface ShoppingListChooseStoreRecommendedCell : UITableViewCell
 {
     
-    __weak IBOutlet UIImageView *imgHomeIcon;
     __weak IBOutlet UIImageView *imgStore;
     __weak IBOutlet UILabel *lblStoreName;
     __weak IBOutlet UILabel *lblTotalAmount;
@@ -39,7 +38,6 @@
 }
 
 @property(nonatomic, strong) NSIndexPath *indexPath;
-@property(nonatomic,assign) BOOL isRecommendedStore;
 
 -(void)updateCellWithData:(ShoppingListChooseStoreModel  *)objStoreData;
 
