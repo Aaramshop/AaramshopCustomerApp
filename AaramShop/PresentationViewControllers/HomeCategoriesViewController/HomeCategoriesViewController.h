@@ -21,6 +21,8 @@
     
     NSMutableArray *arrCategories;
     
+    NSInteger totalNoOfPages;
+    
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

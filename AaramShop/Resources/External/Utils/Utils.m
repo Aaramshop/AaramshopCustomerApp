@@ -380,6 +380,20 @@
 	[dateFormatter release];
 	return strDateTime;
 }
++ (NSString*) stringFromDateForTimeWithAt:(NSDate*)date
+{
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	//	[dateFormatter setDateFormat:@"hha"];
+	[dateFormatter setDateFormat:@"dd-MM-yyyy hh:mma"];
+	
+	NSString *strDateTime = [dateFormatter stringFromDate:date];
+	[dateFormatter release];
+	NSMutableArray *arr = [NSMutableArray arrayWithArray:[strDateTime componentsSeparatedByString:@" "]];
+	NSString *dt = [arr firstObject];
+	NSString *time = [[arr lastObject] lowercaseString];
+	NSString *string = [NSString stringWithFormat:@"%@ at %@",dt,time];
+	return string;
+}
 + (NSString*) stringFromDateForExactTime:(NSDate*)date
 {
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

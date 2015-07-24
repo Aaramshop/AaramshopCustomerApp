@@ -485,6 +485,8 @@
     
     ShoppingListChooseStoreViewController *shoppingListChooseStoreView = (ShoppingListChooseStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListChooseStoreView"];
     
+    shoppingListChooseStoreView.strShoppingListId = _strShoppingListID;
+    
     [self.navigationController pushViewController:shoppingListChooseStoreView animated:YES];
     
 }

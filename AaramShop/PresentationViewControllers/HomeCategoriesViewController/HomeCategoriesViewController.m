@@ -82,6 +82,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     collectionMaster.hidden = YES;
     
     arrCategories = [[NSMutableArray alloc]init];
+    
+    totalNoOfPages = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -201,7 +203,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
         HomeCategoryListViewController *homeCategoryListView = [sb instantiateViewControllerWithIdentifier:@"HomeCategoryListView"];
         homeCategoryListView.title = storeModel.store_main_category_name;
         homeCategoryListView.storeModel = storeModel;
-        
+        homeCategoryListView.totalNoOfPages = totalNoOfPages;
         [viewControllers addObject:homeCategoryListView];
 
     }
@@ -250,9 +252,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     
+    int pageno = 0;
     
-    //    [dict setObject:@"28.5136781" forKey:kLatitude]; // temp
-    //    [dict setObject:@"77.3769436" forKey:kLongitude]; // temp
+    [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
+
+    
+//        [dict setObject:@"28.5136781" forKey:kLatitude]; // temp
+//        [dict setObject:@"77.3769436" forKey:kLongitude]; // temp
     
     
     [self callWebserviceToGetStores:dict];
@@ -289,6 +295,9 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             
             viewOverlay.hidden = NO;
             collectionMaster.hidden = NO;
+            
+            totalNoOfPages = [[responseObject valueForKey:@"total_page"] integerValue];
+            
             [self parseStoreData:responseObject];
         }
         else
