@@ -174,6 +174,7 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="RocketDinerCondensed_0.otf">
             <string>RocketDiner-CondensedRegular</string>
@@ -1162,21 +1163,33 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tky-n5-vqh" userLabel="Label - Price per unit">
-                                                    <rect key="frame" x="73" y="52" width="170" height="18"/>
+                                                    <rect key="frame" x="73" y="52" width="70" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="TNz-nV-PeT"/>
-                                                        <constraint firstAttribute="width" constant="170" id="sMS-4u-b3N"/>
+                                                        <constraint firstAttribute="width" constant="70" id="sMS-4u-b3N"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                     <color key="textColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfY-6I-5t6" userLabel="Label - Offer Price">
+                                                    <rect key="frame" x="147" y="52" width="70" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="e3e-GD-L3M"/>
+                                                        <constraint firstAttribute="width" constant="70" id="tQq-77-LFR"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                    <color key="textColor" red="0.92156862750000001" green="0.078431372550000003" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="EfY-6I-5t6" secondAttribute="bottom" constant="1" id="1lO-4c-Fwq"/>
                                                 <constraint firstItem="tky-n5-vqh" firstAttribute="top" secondItem="qDT-pc-IwQ" secondAttribute="bottom" constant="7" id="5cz-af-bXC"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Ebo-vt-veE" secondAttribute="trailing" constant="-2" id="7Pc-ez-TxZ"/>
                                                 <constraint firstItem="U5h-8v-Xcj" firstAttribute="topMargin" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="10" id="7SQ-Q6-IiO"/>
                                                 <constraint firstItem="Ebo-vt-veE" firstAttribute="leading" secondItem="qDT-pc-IwQ" secondAttribute="trailing" constant="1" id="AnP-K1-ji4"/>
+                                                <constraint firstItem="EfY-6I-5t6" firstAttribute="leading" secondItem="tky-n5-vqh" secondAttribute="trailing" constant="4" id="Gh1-Hu-Q1f"/>
                                                 <constraint firstItem="Ebo-vt-veE" firstAttribute="topMargin" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="22" id="XoE-jQ-xLF"/>
                                                 <constraint firstItem="tky-n5-vqh" firstAttribute="leading" secondItem="U5h-8v-Xcj" secondAttribute="trailing" constant="8" id="b45-V7-i3I"/>
                                                 <constraint firstItem="qDT-pc-IwQ" firstAttribute="leading" secondItem="U5h-8v-Xcj" secondAttribute="trailing" constant="8" id="eq5-rN-fpn"/>
@@ -1186,6 +1199,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="imgProduct" destination="U5h-8v-Xcj" id="guT-Pc-LAR"/>
+                                            <outlet property="lblOfferPrice" destination="EfY-6I-5t6" id="lKb-wt-ek7"/>
                                             <outlet property="lblProductName" destination="qDT-pc-IwQ" id="B1N-Up-r8X"/>
                                             <outlet property="lblProductPerUnitPrice" destination="tky-n5-vqh" id="tqW-3q-fWv"/>
                                             <outlet property="lblTotalProducts" destination="Ebo-vt-veE" id="MwK-jD-NIR"/>
