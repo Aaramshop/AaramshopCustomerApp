@@ -31,7 +31,7 @@
         lblName = [[UILabel alloc] init];
         lblName.textColor = [UIColor whiteColor];
         lblName.numberOfLines = 0;
-        lblName.font = [UIFont fontWithName:kRobotoRegular size:16.0f];
+        lblName.font = [UIFont fontWithName:kRobotoRegular size:14.0f];
         lblName.textColor = [UIColor colorWithRed:63.0/255.0 green:63.0/255.0 blue:63.0/255.0 alpha:1.0];
         [lblName setTextAlignment:NSTextAlignmentLeft];
         [self addSubview:lblName];
@@ -102,7 +102,7 @@
 }
 -(void)updateCellWithSubCategory:(ProductsModel *)objProductsModel
 {
-    CGSize size= [Utils getLabelSizeByText:objProductsModel.product_name font:[UIFont fontWithName:kRobotoRegular size:16.0f] andConstraintWith:[UIScreen mainScreen].bounds.size.width-175];
+    CGSize size= [Utils getLabelSizeByText:objProductsModel.product_name font:[UIFont fontWithName:kRobotoRegular size:14.0f] andConstraintWith:[UIScreen mainScreen].bounds.size.width-175];
 
     if (size.height<24) {
         size.height = 24;

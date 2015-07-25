@@ -11,7 +11,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "HomeSecondViewController.h"
 #import "ChatViewController.h"
-#import "ShoppingListViewController.h"
+#import "RetailerShoppingListViewController.h"
 #import "OffersViewController.h"
 #import "OrderHistViewController.h"
 @interface AppDelegate ()
@@ -403,7 +403,7 @@
 
 //	nav1.navigationBarHidden = NO;
 	//2nd tab
-	ShoppingListViewController *shoppingList = [storyboard instantiateViewControllerWithIdentifier:@"shoppingListViewController"];
+	RetailerShoppingListViewController *shoppingList = [storyboard instantiateViewControllerWithIdentifier:@"retailerShoppingList"];
 	shoppingList.tabBarItem.image = [[UIImage imageNamed:@"tabBarMyListIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 	shoppingList.extendedLayoutIncludesOpaqueBars = YES;
 	shoppingList.tabBarItem.selectedImage = [[UIImage imageNamed:@"tabBarMyListIconActive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
