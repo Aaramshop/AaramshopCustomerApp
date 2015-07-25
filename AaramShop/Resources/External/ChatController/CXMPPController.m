@@ -1258,7 +1258,10 @@ CXMPPController * gCXMPPController = nil;
     }
     if([[presence attributeStringValueForName:@"type"]isEqualToString:@"unavailable"])
     {
-        [messageDelegate userPresence:[NSDictionary dictionaryWithObject:presence forKey:@"unavailable"]];
+		if([messageDelegate respondsToSelector:@selector(userPresence:)])
+		{
+			[messageDelegate userPresence:[NSDictionary dictionaryWithObject:presence forKey:@"unavailable"]];
+		}
         return;
     }
 //    [messageDelegate userPresence:[NSDictionary dictionaryWithObject:[presence fromStr] forKey:@"presence"]];
