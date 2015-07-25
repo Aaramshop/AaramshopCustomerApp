@@ -26,12 +26,11 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     tblView.backgroundColor = [UIColor whiteColor];
+    tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
     
     [self setNavigationBar];
     
-    arrProductList = [[NSMutableArray alloc]init];
-    
-    [self initializeData];
     
     
 }
@@ -109,46 +108,6 @@
 */
 
 
--(void)initializeData
-{
-    NSDictionary *dic1 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"abkhazia",@"image",@"Product 1",@"name",@"0",@"quantity", nil];
-    
-    NSDictionary *dic2 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"adygea",@"image",@"Product 2",@"name",@"0",@"quantity", nil];
-    
-    NSDictionary *dic3 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"ajaria",@"image",@"Product 3",@"name",@"0",@"quantity", nil];
-    
-    NSDictionary *dic4 = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"alderney",@"image",@"Product 4",@"name",@"0",@"quantity", nil];
-    
-    
-    [arrProductList addObject:dic1];
-    [arrProductList addObject:dic2];
-    [arrProductList addObject:dic3];
-    [arrProductList addObject:dic4];
-    
-    [arrProductList addObject:dic1];
-    [arrProductList addObject:dic2];
-    [arrProductList addObject:dic3];
-    [arrProductList addObject:dic4];
-    
-    [arrProductList addObject:dic1];
-    [arrProductList addObject:dic2];
-    [arrProductList addObject:dic3];
-    [arrProductList addObject:dic4];
-    
-    [arrProductList addObject:dic1];
-    [arrProductList addObject:dic2];
-    [arrProductList addObject:dic3];
-    [arrProductList addObject:dic4];
-    
-    [arrProductList addObject:dic1];
-    [arrProductList addObject:dic2];
-    [arrProductList addObject:dic3];
-    [arrProductList addObject:dic4];
-    
-    
-    [tblView reloadData];
-}
-
 
 #pragma mark - UITableView Delegates & Data Source Methods
 
@@ -185,7 +144,7 @@
     
     
     NSString *strRupee = @"\u20B9";
-    NSString *strAmount = @"1500";
+    NSString *strAmount = _selectedStore.total_product_price;
     
     lblTotalAmountValue.text = [NSString stringWithFormat:@"%@ %@",strRupee,strAmount];
 
@@ -203,20 +162,27 @@
     viewBottom.backgroundColor = [UIColor colorWithRed:249.0/255.0 green:249.0/255.0 blue:249.0/255.0 alpha:1.0];
 
     
-    UIImageView *imgUser = [[UIImageView alloc]initWithFrame:CGRectMake(5, (viewBottom.frame.size.height - 54)/2, 54, 54)];
+    UIImageView *imgStore = [[UIImageView alloc]initWithFrame:CGRectMake(5, (viewBottom.frame.size.height - 54)/2, 54, 54)];
     
-    imgUser.layer.cornerRadius = imgUser.frame.size.height/2;
-    imgUser.clipsToBounds = YES;
-    imgUser.contentMode = UIViewContentModeScaleAspectFit;
-    
-    imgUser.image = [UIImage imageNamed:@"shoppingListDefaultImage"];
+    imgStore.layer.cornerRadius = imgStore.frame.size.height/2;
+    imgStore.clipsToBounds = YES;
+    imgStore.contentMode = UIViewContentModeScaleAspectFit;
     
     
-    UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake((imgUser.frame.origin.x + imgUser.frame.size.width + 16), 15, 240, 18)];
+    NSString *strStoreImage = [NSString stringWithFormat:@"%@",_selectedStore.store_image];
+    NSURL *urlStoreImage = [NSURL URLWithString:[strStoreImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    [imgStore sd_setImageWithURL:urlStoreImage placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+
+    }];
+
+    
+    
+    UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake((imgStore.frame.origin.x + imgStore.frame.size.width + 16), 15, 240, 18)];
     
     lblStoreName.font = [UIFont fontWithName:kRobotoMedium size:15];
     lblStoreName.textColor = [UIColor colorWithRed:49.0/255.0 green:49.0/255.0 blue:49.0/255.0 alpha:1.0];
-    lblStoreName.text = @"Super Smart Bazar"; // temp
+    lblStoreName.text = _selectedStore.store_name;
 
     
     
@@ -232,7 +198,7 @@
     lblSeparator2.backgroundColor = [UIColor colorWithRed:194.0/255.0 green:194.0/255.0 blue:194.0/255.0 alpha:1.0];
     
     
-    [viewBottom addSubview:imgUser];
+    [viewBottom addSubview:imgStore];
     [viewBottom addSubview:lblStoreName];
     [viewBottom addSubview:lblDeliveryTime];
     
@@ -249,7 +215,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return arrProductList.count;
+    return _arrProductList.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -269,7 +235,7 @@
     cell.indexPath = indexPath;
     cell.delegate = self;
     
-    [cell updateCell:[arrProductList objectAtIndex:indexPath.row]];
+    [cell updateCell:[_arrProductList objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -285,26 +251,24 @@
 
 -(void)addProduct:(NSIndexPath *)indexPath
 {
-    int counter = [[[arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
-    
-    counter++;
-    
-    [[arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
-    
-    
-    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//    int counter = [[[_arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
+//    
+//    counter++;
+//    
+//    [[_arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
+//    
+//    
+//    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)removeProduct:(NSIndexPath *)indexPath
 {
-    int counter = [[[arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
-    counter--;
-    
-    [[arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
-    
-    
-    
-    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//    int counter = [[[_arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
+//    counter--;
+//    
+//    [[_arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
+//    
+//    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 

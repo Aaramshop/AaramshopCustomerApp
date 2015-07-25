@@ -11,11 +11,11 @@
 
 @interface ShoppingListDetailViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
-	IBOutlet UITableView *tblView;
+	__weak IBOutlet UITableView *tblView;
+    __weak IBOutlet UIButton *btnChooseStore;
+
     NSMutableArray *arrProductList;
-    
-    BOOL isStoreSelected;
-    
+        
     UIRefreshControl *refreshShoppingList;
     BOOL isLoading;
 

@@ -10,7 +10,7 @@
 
 @implementation ShoppingListChooseStoreGeneralCell
 
-@synthesize indexPath,isRecommendedStore;
+@synthesize indexPath;
 
 - (void)awakeFromNib {
     // Initialization code
@@ -20,7 +20,16 @@
     
     imgHomeIcon.image = [UIImage imageNamed:@"homeScreenHomeIconRed"];
     
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    UIImage *imgStarIcon = [UIImage imageNamed:@"starIconInactive"];
+    imgRating1.image = imgStarIcon;
+    imgRating2.image = imgStarIcon;
+    imgRating3.image = imgStarIcon;
+    imgRating4.image = imgStarIcon;
+    imgRating5.image = imgStarIcon;
+
+    
+//    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.selectionStyle = UITableViewCellSelectionStyleGray;
     
 }
 
@@ -32,13 +41,7 @@
 
 
 -(void)updateCellWithData:(ShoppingListChooseStoreModel*)objStoreData
-{
-    CGSize size= [Utils getLabelSizeByText:objStoreData.store_category_name font:[UIFont fontWithName:kRobotoRegular size:14.0] andConstraintWith:[UIScreen mainScreen].bounds.size.width-110];
-    
-    if (size.height < 20) {
-        size.height = 20;
-    }
-    
+{    
     ////
     if ([objStoreData.is_home_store isEqualToString:@"1"]) {
         imgHomeIcon.hidden = NO;
@@ -56,30 +59,108 @@
         }
     }];
     
-    
-    
-    ////
-    if ([objStoreData.is_open isEqualToString:@"1"]) {
-        imgStoreStatusIcon.image = [UIImage imageNamed:@"homeLockIconOpen.png"];
-    }
-    else{
-        imgStoreStatusIcon.image = [UIImage imageNamed:@"homeLockIconClose.png"];
-        
-    }
-    
+   
     
     ////
     lblStoreName.text =objStoreData.store_name;
+
+    
+    ////
+    NSString *strRupee = @"\u20B9";
+    lblTotalAmount.text = [NSString stringWithFormat:@"%@ %@",strRupee, objStoreData.total_product_price];
     
     
     ////
     // rating images ...
-    viewRating.hidden = YES; // temp
+    
+//    viewRating.hidden = YES;
+    if ([objStoreData.store_rating integerValue]>0)
+    {
+//        viewRating.hidden = NO;
+        
+        UIImage *imgStarIcon = [UIImage imageNamed:@"homeStarRedIcon"];
+        
+        switch ([objStoreData.store_rating integerValue])
+        {
+            case 1:
+            {
+                imgRating1.image = imgStarIcon;
+
+            }
+                break;
+            case 2:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+
+            }
+                break;
+            case 3:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+                imgRating3.image = imgStarIcon;
+
+            }
+                break;
+            case 4:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+                imgRating3.image = imgStarIcon;
+                imgRating4.image = imgStarIcon;
+                
+            }
+                break;
+            case 5:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+                imgRating3.image = imgStarIcon;
+                imgRating4.image = imgStarIcon;
+                imgRating5.image = imgStarIcon;
+
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
     ////
     
     
     ////
-//    [btnDistance setTitle:[AppManager getDistance:objStoreData] forState:UIControlStateNormal]; // pass values as in 'StoreModel'
+    
+    NSString *strAvailableProducts = @"";
+    
+    if ([objStoreData.available_products integerValue]==0)
+    {
+        strAvailableProducts = @"No product available";
+    }
+    else if ([objStoreData.available_products integerValue] == [objStoreData.total_products integerValue])
+    {
+        strAvailableProducts = @"All products available";
+    }
+    else
+    {
+        strAvailableProducts = [NSString stringWithFormat:@"%@ available, %@ remaining",objStoreData.available_products, objStoreData.remaining_products];
+    }
+    
+    lblAvailableProducts.text = strAvailableProducts;
+    
+    
+    
+    
+    ////
+    
+    StoreModel * objStore = [[StoreModel alloc]init];
+    
+    objStore.store_latitude = objStoreData.store_latitude;
+    objStore.store_longitude = objStoreData.store_longitude;
+    
+    [btnDistance setTitle:[AppManager getDistance:objStore] forState:UIControlStateNormal];
     
     
     ////
@@ -104,6 +185,17 @@
         [btnTotalOrders setTitle:[NSString stringWithFormat:@"%@ Times",objStoreData.total_orders] forState:UIControlStateNormal];
     }
     
+    
+    
+    ////
+    if ([objStoreData.is_open isEqualToString:@"1"]) {
+        imgStoreStatusIcon.image = [UIImage imageNamed:@"homeLockIconOpen.png"];
+    }
+    else{
+        imgStoreStatusIcon.image = [UIImage imageNamed:@"homeLockIconClose.png"];
+        
+    }
+
     
 }
 

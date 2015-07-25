@@ -14,7 +14,6 @@
 @interface HomeStoreViewController ()
 {
     HomeStorePopUpViewController *homeStorePopUpVwController;
-    AppDelegate *appDeleg;
 }
 @end
 
@@ -22,7 +21,7 @@
 @synthesize aaramShop_ConnectionManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    appDeleg = (AppDelegate *)APP_DELEGATE;
+    appDel = (AppDelegate *)APP_DELEGATE;
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate = self;
     
@@ -96,8 +95,8 @@
 -(void)createDataToGetHomeStoreBanner
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
-    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
+    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     
 //    [dict setObject:@"26" forKey:@"userId"]; //temp
     
@@ -320,8 +319,8 @@
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
-    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
+    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     
     
 //    [dict setObject:@"26" forKey:@"userId"]; //temp
@@ -392,7 +391,7 @@
     CGRect homeStorePopUpVwControllerRect = [UIScreen mainScreen].bounds;
     homeStorePopUpVwController.view.frame = homeStorePopUpVwControllerRect;
     homeStorePopUpVwController.viewPopUp.frame = CGRectMake(30, ([UIScreen mainScreen].bounds.size.height-295)/2, [UIScreen mainScreen].bounds.size.width-60, 295);
-    [appDeleg.window addSubview:homeStorePopUpVwController.view];
+    [appDel.window addSubview:homeStorePopUpVwController.view];
 }
 
 
@@ -401,5 +400,80 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+-(IBAction)actionDoSearch:(id)sender
+{
+    
+}
+
+-(void)doSearch
+{
+    searchViewController = (SearchStoresViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchStoresViewController" ];
+    [searchViewController setDelegate:self];
+    
+    [appDel.window addSubview:searchViewController.view];
+    
+}
+
+-(void)removeSearchViewFromParentView{
+    [searchViewController.view removeFromSuperview];
+}
+
+
+-(void)openSearchedUserPrroductFor:(ProductsModel *)product
+{
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",product.product_sku_id];
+    
+    NSArray *aFilteredObjects = [arrSuggestedStores filteredArrayUsingPredicate: aPredicate];
+    
+    if (aFilteredObjects && aFilteredObjects.count > 0) {
+        //already exist
+        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
+    else{
+        //add new product
+        
+        product.quantity = @"1";
+        
+        [arrSuggestedStores insertObject:product atIndex:0];
+        
+    }
+    
+//    [tblView reloadData];
+    
+}
+
+
+-(void)addProductIfNeeded:(NSDictionary *)inDic{
+    
+    
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",[inDic objectForKey: @"product_sku_id"]];
+    
+    NSArray *aFilteredObjects = [arrSuggestedStores filteredArrayUsingPredicate: aPredicate];
+    
+    if (aFilteredObjects && aFilteredObjects.count > 0) {
+        //already exist
+        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
+    else{
+        //add new product
+        [arrSuggestedStores insertObject:inDic atIndex:0];
+        
+    }
+    
+//    [tblView reloadData];
+    
+}
+
 
 @end

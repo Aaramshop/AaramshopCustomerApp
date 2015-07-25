@@ -38,11 +38,12 @@
     appDeleg = APP_DELEGATE;
     [appDeleg findCurrentLocation];
     
+    [self setNavigationBar];
     
     totalNoOfPages = 0;
     pageno = 0;
     isLoading = NO;
-    
+        
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
     aaramShop_ConnectionManager.delegate = self;
     
@@ -147,8 +148,31 @@
 
 -(void)btnDoneClicked
 {
-    
+    if (!selectedStoreModel)
+    {
+        [Utils showAlertView:kAlertTitle message:@"Please choose a store" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    else
+    {
+        [Utils showAlertView:kAlertTitle message:@"Are you sure ?" delegate:self cancelButtonTitle:kAlertBtnNO otherButtonTitles:kAlertBtnYES];
+    }
 }
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        if (self.refreshShoppingList)
+        {
+            self.refreshShoppingList(selectedStoreModel);
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -324,7 +348,6 @@
         }
         
         cell.backgroundColor = [UIColor whiteColor];
-        cell.isRecommendedStore = NO;
         
         ShoppingListChooseStoreModel *objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
         
@@ -346,7 +369,6 @@
         
         
         cell.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
-        cell.isRecommendedStore = NO;
         
         ShoppingListChooseStoreModel *objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
         
@@ -363,26 +385,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    StoreModel *objStoreModel = nil;
+    if (!selectedStoreModel)
+    {
+        selectedStoreModel = [[ShoppingListChooseStoreModel alloc]init];
+    }
+    
     
     if (tableView == tblStores)
     {
-        objStoreModel = [arrAllStores objectAtIndex:indexPath.row];
+        selectedStoreModel = [arrAllStores objectAtIndex:indexPath.row];
     }
     else
     {
-        objStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
+        selectedStoreModel = [arrRecommendedStores objectAtIndex:indexPath.row];
     }
-    
-    
-//    appDeleg.objStoreModel = objStoreModel;
-//    UITabBarController *tabBar = [appDeleg createTabBarRetailer];
-//    tabBar.hidesBottomBarWhenPushed = YES;
-//    self.navigationController.navigationBarHidden = YES;
-//    [self.navigationController pushViewController:tabBar animated:YES];
-    
+
 }
 
 
@@ -468,10 +486,7 @@
         shoppingListChooseStoreModel = [[ShoppingListChooseStoreModel alloc]init];
     }
     
-    
     //*
-    
-    
     
     NSArray *arrTempRecomendedStores = [responseObject objectForKey:@"recommended_stores"];
     NSArray *arrTempHomeStores = [responseObject objectForKey:@"home_stores"];
@@ -619,26 +634,15 @@
 - (void)refreshTable
 {
     pageno = 0;
-    //    [self performSelector:@selector(callWebserviceToGetStoresList) withObject:nil afterDelay:1.0]; // temp commented
-    
-    // once after pagination done, delete the following code..
-    //*
-    isLoading = NO;
-    [self showFooterLoadMoreActivityIndicator:NO];
-    [refreshStoreList endRefreshing];
-    
-    [AppManager stopStatusbarActivityIndicator];
-    
-    //*/
-    
+    [self performSelector:@selector(callWebserviceToGetStoresList) withObject:nil afterDelay:1.0];
 }
 
 -(void)calledPullUp
 {
     if(totalNoOfPages>pageno)
     {
-        //        pageno++;
-        //        [self callWebserviceToGetStoresList]; // temp commented
+        pageno++;
+        [self callWebserviceToGetStoresList];
     }
     else
     {

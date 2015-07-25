@@ -39,7 +39,6 @@
 }
 
 @property(nonatomic, strong) NSIndexPath *indexPath;
-@property(nonatomic,assign) BOOL isRecommendedStore;
 
 -(void)updateCellWithData:(ShoppingListChooseStoreModel  *)objStoreData;
 

@@ -996,7 +996,6 @@
 		6B809DB21B31755D00E91673 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809DA11B31755D00E91673 /* UIImageView+WebCache.m */; };
 		6B809DB31B31755D00E91673 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809DA31B31755D00E91673 /* UIView+WebCacheOperation.m */; };
 		6B83A0B01B53D6C700A00520 /* ShoppingListAddMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B83A0AF1B53D6C700A00520 /* ShoppingListAddMoreViewController.m */; };
-		6B83A0B41B53D87800A00520 /* ShoppingListChooseStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B83A0B31B53D87800A00520 /* ShoppingListChooseStoreViewController.m */; };
 		6B83A0B81B53D9BD00A00520 /* ShoppingListShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B83A0B71B53D9BD00A00520 /* ShoppingListShareViewController.m */; };
 		6B83A0D41B53E81300A00520 /* closeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B83A0BB1B53E81300A00520 /* closeIcon.png */; };
 		6B83A0D51B53E81300A00520 /* closeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B83A0BC1B53E81300A00520 /* closeIcon@2x.png */; };
@@ -1164,6 +1163,14 @@
 		6BB50DE51B32ABE800990161 /* locationPopupTxtFieldHalf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BB50DDF1B32ABE800990161 /* locationPopupTxtFieldHalf@2x.png */; };
 		6BB50DE61B32ABE800990161 /* locationPopupTxtFieldHalf@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BB50DE01B32ABE800990161 /* locationPopupTxtFieldHalf@3x.png */; };
 		6BB50DEA1B32B0CA00990161 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB50DE91B32B0CA00990161 /* AddressModel.m */; };
+		6BC503331B620B6B0089656E /* ShoppingListChooseStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B83A0B31B53D87800A00520 /* ShoppingListChooseStoreViewController.m */; };
+		6BC503371B62309B0089656E /* updateIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC503341B62309B0089656E /* updateIcon.png */; };
+		6BC503381B62309B0089656E /* updateIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC503351B62309B0089656E /* updateIcon@2x.png */; };
+		6BC503391B62309B0089656E /* updateIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC503361B62309B0089656E /* updateIcon@3x.png */; };
+		6BC5033D1B62549B0089656E /* starIconInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC5033A1B62549B0089656E /* starIconInactive.png */; };
+		6BC5033E1B62549B0089656E /* starIconInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC5033B1B62549B0089656E /* starIconInactive@2x.png */; };
+		6BC5033F1B62549B0089656E /* starIconInactive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC5033C1B62549B0089656E /* starIconInactive@3x.png */; };
+		6BC503431B6280880089656E /* SearchStoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC503421B6280880089656E /* SearchStoresViewController.m */; };
 		6BCB093F1B4E67AD00F1A502 /* HomeCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB093E1B4E67AD00F1A502 /* HomeCategoriesViewController.m */; };
 		6BCB09451B4E76FC00F1A502 /* YSLContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB09421B4E76FC00F1A502 /* YSLContainerViewController.m */; };
 		6BCB09461B4E76FC00F1A502 /* YSLScrollMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB09441B4E76FC00F1A502 /* YSLScrollMenuView.m */; };
@@ -2866,6 +2873,14 @@
 		6BB50DE81B32B0CA00990161 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
 		6BB50DE91B32B0CA00990161 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
 		6BC2B8611AF3AC71009E77E3 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		6BC503341B62309B0089656E /* updateIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updateIcon.png; sourceTree = "<group>"; };
+		6BC503351B62309B0089656E /* updateIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "updateIcon@2x.png"; sourceTree = "<group>"; };
+		6BC503361B62309B0089656E /* updateIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "updateIcon@3x.png"; sourceTree = "<group>"; };
+		6BC5033A1B62549B0089656E /* starIconInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starIconInactive.png; sourceTree = "<group>"; };
+		6BC5033B1B62549B0089656E /* starIconInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starIconInactive@2x.png"; sourceTree = "<group>"; };
+		6BC5033C1B62549B0089656E /* starIconInactive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "starIconInactive@3x.png"; sourceTree = "<group>"; };
+		6BC503411B6280880089656E /* SearchStoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStoresViewController.h; sourceTree = "<group>"; };
+		6BC503421B6280880089656E /* SearchStoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStoresViewController.m; sourceTree = "<group>"; };
 		6BCB093D1B4E67AD00F1A502 /* HomeCategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCategoriesViewController.h; sourceTree = "<group>"; };
 		6BCB093E1B4E67AD00F1A502 /* HomeCategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCategoriesViewController.m; sourceTree = "<group>"; };
 		6BCB09411B4E76FC00F1A502 /* YSLContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSLContainerViewController.h; sourceTree = "<group>"; };
@@ -5517,6 +5532,7 @@
 			isa = PBXGroup;
 			children = (
 				6BD9CB5B1B6252F200D8D012 /* RetailerShoppingList */,
+				6BC503401B62800B0089656E /* SearchStoresViewController */,
 				36A69EC31B57C4FA0058EB88 /* WalletViewController */,
 				6BA556C41B578A4E00920DE0 /* SearchViewController */,
 				6B35B8C41B56704600807F25 /* ShoppingListCalenderViewController */,
@@ -6020,6 +6036,12 @@
 				6BD9CB551B624FDE00D8D012 /* listIcon.png */,
 				6BD9CB561B624FDE00D8D012 /* listIcon@2x.png */,
 				6BD9CB571B624FDE00D8D012 /* listIcon@3x.png */,
+				6BC5033A1B62549B0089656E /* starIconInactive.png */,
+				6BC5033B1B62549B0089656E /* starIconInactive@2x.png */,
+				6BC5033C1B62549B0089656E /* starIconInactive@3x.png */,
+				6BC503341B62309B0089656E /* updateIcon.png */,
+				6BC503351B62309B0089656E /* updateIcon@2x.png */,
+				6BC503361B62309B0089656E /* updateIcon@3x.png */,
 				6B8EB2431B23087400402CFC /* shoppingListAddCircle.png */,
 				6B8EB2441B23087400402CFC /* shoppingListAddCircle@2x.png */,
 				6B8EB2451B23087400402CFC /* shoppingListAddCircle@3x.png */,
@@ -6381,6 +6403,15 @@
 				6BB50DE91B32B0CA00990161 /* AddressModel.m */,
 			);
 			path = AddressModel;
+			sourceTree = "<group>";
+		};
+		6BC503401B62800B0089656E /* SearchStoresViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6BC503411B6280880089656E /* SearchStoresViewController.h */,
+				6BC503421B6280880089656E /* SearchStoresViewController.m */,
+			);
+			path = SearchStoresViewController;
 			sourceTree = "<group>";
 		};
 		6BCB093C1B4E66C400F1A502 /* HomeCategoriesViewController */ = {
@@ -7100,6 +7131,7 @@
 				6BE4C9191B035DEF00EF1EDB /* mapPopup.png in Resources */,
 				274F88811B0C659500F85743 /* bg5@2x.jpg in Resources */,
 				6B8EB31F1B27137600402CFC /* CategoryView.xib in Resources */,
+				6BC5033D1B62549B0089656E /* starIconInactive.png in Resources */,
 				36820A3E1B1C46FA002AA93F /* yemen.png in Resources */,
 				6BE4C90B1B034CDE00EF1EDB /* mapPin@2x.png in Resources */,
 				275F7DDA1B05BD390049758B /* menuIcon@3x.png in Resources */,
@@ -7109,6 +7141,7 @@
 				3682099C1B1C46FA002AA93F /* Korea, South.png in Resources */,
 				36820A391B1C46FA002AA93F /* virgin islands-uk.png in Resources */,
 				6B83A0DD1B53E81300A00520 /* shoppingListBgImage.png in Resources */,
+				6BC503381B62309B0089656E /* updateIcon@2x.png in Resources */,
 				274A5A4E1B05C075009112B5 /* homeStoreIcon.png in Resources */,
 				6B87C7681B342B29002BC68C /* homeStoreIdBox@3x.png in Resources */,
 				274A5DC51B05C88B009112B5 /* chatPlayIconWhite@2x.png in Resources */,
@@ -7276,6 +7309,7 @@
 				274A5DDF1B05C88B009112B5 /* SentMessage.wav in Resources */,
 				368209681B1C46FA002AA93F /* france.png in Resources */,
 				368209981B1C46FA002AA93F /* khakassia.png in Resources */,
+				6BC5033F1B62549B0089656E /* starIconInactive@3x.png in Resources */,
 				6BE474481B3B21CE00C09AFD /* right_arrow.png in Resources */,
 				6BD2D31A1B284C8900EC6E54 /* homeRupeesIcon@3x.png in Resources */,
 				368209B11B1C46FA002AA93F /* maldives.png in Resources */,
@@ -7297,6 +7331,7 @@
 				368209651B1C46FA002AA93F /* Faroe Islands.png in Resources */,
 				6B83A0F01B53EB2F00A00520 /* copyIcon@2x.png in Resources */,
 				274F88AB1B0D0E7400F85743 /* homePageBannerImage@2x.png in Resources */,
+				6BC503391B62309B0089656E /* updateIcon@3x.png in Resources */,
 				368209F51B1C46FA002AA93F /* sark.png in Resources */,
 				365395621B524FA60045AAFE /* CouponsBoxInactive@3x.png in Resources */,
 				6B8EB2CC1B26BDCE00402CFC /* homeDetailsDefaultImgae@3x.png in Resources */,
@@ -7742,6 +7777,7 @@
 				6B8EB2B51B26B8BE00402CFC /* homeStoreDetailsGroceryCircle.png in Resources */,
 				6B6098B11B395CAB00277D03 /* chatScreenChatLogo@3x.png in Resources */,
 				368209A31B1C46FA002AA93F /* latvia.png in Resources */,
+				6BC5033E1B62549B0089656E /* starIconInactive@2x.png in Resources */,
 				3682095B1B1C46FA002AA93F /* el-salvador.png in Resources */,
 				2791DE341B036E5C000121BC /* menuAwardsPointsIcon@3x.png in Resources */,
 				365395641B524FA60045AAFE /* discountBoxActive@2x.png in Resources */,
@@ -7830,6 +7866,7 @@
 				6B8EB2CA1B26BDCE00402CFC /* homeDetailsDefaultImgae.png in Resources */,
 				6B6098A81B395CAB00277D03 /* chatBubbleWhite@3x.png in Resources */,
 				368209CD1B1C46FA002AA93F /* niger.png in Resources */,
+				6BC503371B62309B0089656E /* updateIcon.png in Resources */,
 				6B37EAB81B5CE4E400C7A3D8 /* homeStarRedIconHalf.png in Resources */,
 				368209281B1C46FA002AA93F /* bonaire.png in Resources */,
 				368209661B1C46FA002AA93F /* fiji.png in Resources */,
@@ -8050,6 +8087,7 @@
 				36A69EDB1B57D48C0058EB88 /* PointsTableCell.m in Sources */,
 				274A5DA31B05C88B009112B5 /* CLocation.m in Sources */,
 				274A5CDE1B05C4AA009112B5 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
+				6BC503331B620B6B0089656E /* ShoppingListChooseStoreViewController.m in Sources */,
 				36820A451B1C4709002AA93F /* SVProgressHUD.m in Sources */,
 				274A5CB61B05C4AA009112B5 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				274A5DF21B05C88B009112B5 /* SHBaseRequestImage.m in Sources */,
@@ -8115,6 +8153,7 @@
 				274A5DE71B05C88B009112B5 /* HPTextViewInternal.m in Sources */,
 				27BE657E1B0203E6004FA4B4 /* ChatViewController.m in Sources */,
 				274A5CD61B05C4AA009112B5 /* XMPPTransports.m in Sources */,
+				6BC503431B6280880089656E /* SearchStoresViewController.m in Sources */,
 				274A5C971B05C4AA009112B5 /* XMPPModule.m in Sources */,
 				274A5CEA1B05C4AA009112B5 /* XMPPAutoTime.m in Sources */,
 				274A5DFA1B05C88B009112B5 /* ShowFullProfileImageViewController.m in Sources */,
@@ -8236,7 +8275,6 @@
 				6B5C0FB11B53BC6E003C217C /* CreateNewShoppingListViewController.m in Sources */,
 				274A5DFE1B05C88B009112B5 /* RMDownloadIndicator.m in Sources */,
 				274A5D081B05C4AA009112B5 /* DDXMLNode.m in Sources */,
-				6B83A0B41B53D87800A00520 /* ShoppingListChooseStoreViewController.m in Sources */,
 				274A5C951B05C4AA009112B5 /* XMPPJID.m in Sources */,
 				274A5C651B05C4AA009112B5 /* UIImage+SH.m in Sources */,
 				274A5CEC1B05C4AA009112B5 /* NSXMLElement+XEP_0203.m in Sources */,
