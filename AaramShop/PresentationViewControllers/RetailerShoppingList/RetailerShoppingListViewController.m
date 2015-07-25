@@ -32,6 +32,13 @@
 	self.arrShoppingList = [[NSMutableArray alloc] init];
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
 	aaramShop_ConnectionManager.delegate = self;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    _tblView.showsVerticalScrollIndicator = YES;
+    
+    _tblView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
+    
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -107,10 +114,33 @@
 	}
 	return CGFLOAT_MIN;
 }
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//	return [NSString stringWithFormat:@"%ld Shopping List",[self.arrShoppingList count]];
+//}
+
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	return [NSString stringWithFormat:@"%ld Shopping List",[self.arrShoppingList count]];
+    UIView *viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _tblView.frame.size.width, 44)];
+    
+    UILabel *lblTitle = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, viewHeader.frame.size.width - 30, viewHeader.frame.size.height)];
+    
+    lblTitle.textColor = [UIColor colorWithRed:57.0/255.0 green:57.0/255.0 blue:57.0/255.0 alpha:1.0];
+    lblTitle.font = [UIFont fontWithName:kRobotoRegular size:13];
+    
+    lblTitle.text = [NSString stringWithFormat:@"%ld Shopping List",[self.arrShoppingList count]];
+    
+    
+    [viewHeader addSubview:lblTitle];
+    
+    
+    return viewHeader;
 }
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return 75;
