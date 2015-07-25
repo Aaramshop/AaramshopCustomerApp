@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ShoppingListChooseStoreModel.h"
 
+typedef void (^ChooseStoreCompletion) (ShoppingListChooseStoreModel *);
 
 @interface ShoppingListChooseStoreViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -28,11 +29,16 @@
     
     ShoppingListChooseStoreModel *shoppingListChooseStoreModel;
 
+    ShoppingListChooseStoreModel *selectedStoreModel;
+
+
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 
 @property(nonatomic,strong) NSString *strShoppingListId;
+
+@property (nonatomic, copy) ChooseStoreCompletion refreshShoppingList;
 
 
 @end

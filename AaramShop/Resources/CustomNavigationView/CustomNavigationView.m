@@ -74,7 +74,7 @@
         
         // Update Text Color
         lblRightButtonText.textColor = lblLeftButtonText.textColor = lblNavigationTitle.textColor = [UIColor whiteColor];
-        self.image = [UIImage imageNamed:@"homePageBannerImage"];
+        self.image = [UIImage imageNamed:@""];
         if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.1)
         {
             // There was a bug in iOS versions 7.0.x which caused vImage buffers

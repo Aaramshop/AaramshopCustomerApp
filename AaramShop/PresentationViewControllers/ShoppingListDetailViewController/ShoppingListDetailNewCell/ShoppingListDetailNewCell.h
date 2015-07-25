@@ -15,6 +15,7 @@
     __weak IBOutlet UILabel *lblProductName;
     __weak IBOutlet UILabel *lblTotalProducts;
     __weak IBOutlet UILabel *lblProductPerUnitPrice;
+    __weak IBOutlet UILabel *lblOfferPrice;
 }
 
 @property (nonatomic,strong) NSIndexPath *indexPath;

@@ -18,7 +18,6 @@
 @interface RecommendedStoreCell : SWTableViewCell<UIGestureRecognizerDelegate>
 {
     
-    __weak IBOutlet UIImageView *imgHomeIcon;
     __weak IBOutlet UIImageView *imgStore;
     __weak IBOutlet UIImageView *imgCategoryTypeIcon;
     

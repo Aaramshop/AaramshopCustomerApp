@@ -567,7 +567,7 @@
                 CategoryModel *objCategoryModel = [arrTemp objectAtIndex:0];
                 UIActivityIndicatorView *activity = (UIActivityIndicatorView *)[secView viewWithTag:998];
                 [activity startAnimating];
-                [imgVCategoryBanner sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objCategoryModel.category_banner]] placeholderImage:[UIImage imageNamed:@"homePageBannerImage.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                [imgVCategoryBanner sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objCategoryModel.category_banner]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                     if (image) {
                         [activity stopAnimating];
                     }
@@ -657,7 +657,7 @@
     {
         ProductsModel *objProductsModel = nil;
         objProductsModel = [self getObjectOfProductForIndexPath:indexPath];
-        CGSize size= [Utils getLabelSizeByText:objProductsModel.product_name font:[UIFont fontWithName:kRobotoRegular size:16.0f] andConstraintWith:[UIScreen mainScreen].bounds.size.width-175];
+        CGSize size= [Utils getLabelSizeByText:objProductsModel.product_name font:[UIFont fontWithName:kRobotoRegular size:14.0f] andConstraintWith:[UIScreen mainScreen].bounds.size.width-175];
         if (size.height<24) {
             rowHeight = 68.0;
         }

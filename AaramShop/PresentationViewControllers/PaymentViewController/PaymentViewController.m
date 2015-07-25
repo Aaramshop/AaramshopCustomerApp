@@ -294,7 +294,7 @@ static NSString *strCollectionItems = @"collectionItems";
     [self showPickerView:NO];
     [pickerViewSlots removeFromSuperview];
     [datePicker removeFromSuperview];
-    [self.navigationController popViewControllerAnimated:YES];
+	[appDel removeTabBarRetailer];
 }
 #pragma mark - TableView delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

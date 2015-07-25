@@ -889,7 +889,7 @@
 + (NSString *)convertedDate:(NSDate*)date
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.timeStyle = NSDateFormatterShortStyle;
+//    df.timeStyle = NSDateFormatterShortStyle;
     df.dateStyle = NSDateFormatterShortStyle;
     df.doesRelativeDateFormatting = YES;  // this enables relative dates like yesterday, today, tomorrow...
     

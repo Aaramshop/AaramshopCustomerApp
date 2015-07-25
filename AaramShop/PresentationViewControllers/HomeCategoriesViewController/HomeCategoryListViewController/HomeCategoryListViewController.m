@@ -484,9 +484,7 @@
             tabBar.hidesBottomBarWhenPushed = YES;
             self.navigationController.navigationBarHidden = YES;
             [self.navigationController pushViewController:tabBar animated:YES];
-
-            
-            
+			
             
 //            HomeSecondViewController *homeSecondVwController = (HomeSecondViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeSecondScreen"];
 //            homeSecondVwController.strStore_Id = objStoreModel.store_id;
