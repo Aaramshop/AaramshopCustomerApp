@@ -19,6 +19,14 @@
     
     imgHomeIcon.image = [UIImage imageNamed:@"homeScreenHomeIconRed"];
     
+    UIImage *imgStarIcon = [UIImage imageNamed:@"starIconInactive"];
+    imgRating1.image = imgStarIcon;
+    imgRating2.image = imgStarIcon;
+    imgRating3.image = imgStarIcon;
+    imgRating4.image = imgStarIcon;
+    imgRating5.image = imgStarIcon;
+
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
 }
@@ -80,8 +88,59 @@
     
     ////
     // rating images ...
-    viewRating.hidden = YES; // temp
-    ////
+    if ([objStoreData.store_rating integerValue]>0)
+    {
+        //        viewRating.hidden = NO;
+        
+        UIImage *imgStarIcon = [UIImage imageNamed:@"homeStarRedIcon"];
+        
+        switch ([objStoreData.store_rating integerValue])
+        {
+            case 1:
+            {
+                imgRating1.image = imgStarIcon;
+                
+            }
+                break;
+            case 2:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+                
+            }
+                break;
+            case 3:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+                imgRating3.image = imgStarIcon;
+                
+            }
+                break;
+            case 4:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+                imgRating3.image = imgStarIcon;
+                imgRating4.image = imgStarIcon;
+                
+            }
+                break;
+            case 5:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+                imgRating3.image = imgStarIcon;
+                imgRating4.image = imgStarIcon;
+                imgRating5.image = imgStarIcon;
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }    ////
     
     
     ////

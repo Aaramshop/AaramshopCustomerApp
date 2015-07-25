@@ -318,6 +318,7 @@
 #define kURLUpdateShoppingListProducts              @"updateShoppingListProducts"
 #define kURLGetStores								@"getStores"
 #define kURLGetStoreforShoppingList                 @"getStoreforShoppingList"
+#define KURLGetShoppingListProductByStoreId         @"getShoppingListProductByStoreId"
 
 
 //=========== Get Wallet =================================

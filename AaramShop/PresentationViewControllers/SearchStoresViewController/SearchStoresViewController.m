@@ -8,7 +8,7 @@
 
 #import "SearchStoresViewController.h"
 
-#define ssNotificationStatusBarTouched	@"StatusBarTouched"
+#define notificationStatusBarTouched	@"StatusBarTouched"
 #define kProducts						@"products"
 
 
@@ -40,11 +40,44 @@
          [toolbarbackground setAlpha:1.0];
          [tblViewSearch setAlpha:1.0];
      }completion:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarHit) name:ssNotificationStatusBarTouched object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarHit) name:notificationStatusBarTouched object:nil];
+    
+    
+    [self createDataToGetStoresList];
+
 }
+
+
+#pragma mark - Create Data To Get Stores List
+-(void)createDataToGetStoresList
+{
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+    //    [dict setObject:@"26" forKey:@"userId"]; //temp
+    
+    [self callWebserviceToGetStore:dict];
+}
+
+-(void)callWebserviceToGetStore:(NSMutableDictionary *)aDict
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kGetUserAddressURL withInput:aDict withCurrentTask:TASK_GET_USER_ADDRESS andDelegate:self ];
+    
+}
+
+
+
 -(void)viewWillDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:ssNotificationStatusBarTouched object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationStatusBarTouched object:nil];
     [super viewWillDisappear:animated];
 }
 

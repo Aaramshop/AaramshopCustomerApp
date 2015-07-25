@@ -68,7 +68,15 @@
 {
     [super viewWillAppear:YES];
     
-    [self getProductsInitialList];
+    if (!selectedStoreModel)
+    {
+        [self getProductsInitialList];
+    }
+    else
+    {
+//        [self getProductsInitialListFromSelectedStore];
+    }
+    
 }
 
 
@@ -95,6 +103,18 @@
     [dict setObject:@"0" forKey:@"page_no"];
 
     [self callWebServiceToGetProductsList:dict];
+}
+
+
+-(void)getProductsInitialListFromSelectedStore
+{
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+    [dict setObject:_strShoppingListID forKey:@"shoppingListId"];
+    [dict setObject:selectedStoreModel.store_id forKey:@"store_id"];
+    [dict setObject:@"0" forKey:@"page_no"];
+    
+    [self callWebServiceToGetProductsListFromSelectedStore:dict];
 }
 
 
@@ -583,6 +603,20 @@
 }
 
 
+-(void)callWebServiceToGetProductsListFromSelectedStore:(NSMutableDictionary *)aDict
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:KURLGetShoppingListProductByStoreId withInput:aDict withCurrentTask:TASK_TO_GET_SHOPPING_LIST_PRODUCTS_FROM_SELECTED_STORE andDelegate:self];
+}
+
+
 -(void) didFailWithError:(NSError *)error
 {
     isLoading = NO;
@@ -622,6 +656,23 @@
                 [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
                 
 //                [self activateChooseBtn:NO];
+            }
+        }
+            break;
+        case TASK_TO_GET_SHOPPING_LIST_PRODUCTS_FROM_SELECTED_STORE:
+        {
+            
+            if ([[responseObject objectForKey:kstatus] intValue] == 1)
+            {
+//                [self parseResponseData:responseObject];
+                
+                //                [self activateChooseBtn:YES];
+            }
+            else
+            {
+                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+                
+                //                [self activateChooseBtn:NO];
             }
         }
             break;
