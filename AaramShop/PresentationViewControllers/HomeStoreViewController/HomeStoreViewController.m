@@ -413,26 +413,27 @@
 
 -(IBAction)actionDoSearch:(id)sender
 {
-    
+    [self doSearch];
 }
 
 -(void)doSearch
 {
-    searchViewController = (SearchStoresViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchStoresViewController" ];
-    [searchViewController setDelegate:self];
+    searchStoresViewController = (SearchStoresViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchStoresViewController" ];
+    [searchStoresViewController setDelegate:self];
     
-    [appDel.window addSubview:searchViewController.view];
+    [appDel.window addSubview:searchStoresViewController.view];
     
 }
 
 -(void)removeSearchViewFromParentView{
-    [searchViewController.view removeFromSuperview];
+    [searchStoresViewController.view removeFromSuperview];
 }
 
 
--(void)openSearchedUserPrroductFor:(ProductsModel *)product
+
+-(void)openSearchedStores:(StoreModel *)store
 {
-    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",product.product_sku_id];
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"store_id like[cd]  %@",store.store_id];
     
     NSArray *aFilteredObjects = [arrSuggestedStores filteredArrayUsingPredicate: aPredicate];
     
@@ -441,16 +442,12 @@
         [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
     }
     else{
-        //add new product
-        
-        product.quantity = @"1";
-        
-        [arrSuggestedStores insertObject:product atIndex:0];
+
+        // update store name
+        txtStoreId.text = store.store_code;
         
     }
-    
-//    [tblView reloadData];
-    
+
 }
 
 

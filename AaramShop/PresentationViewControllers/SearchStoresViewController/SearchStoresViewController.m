@@ -30,60 +30,15 @@
     }
     return self;
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super  viewWillAppear:animated];
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
-     {
-         [viewSearchBarContainer setFrame:CGRectMake(0, 0, viewSearchBarContainer.frame.size.width, viewSearchBarContainer.frame.size.height)];
-         
-         [toolbarbackground setAlpha:1.0];
-         [tblViewSearch setAlpha:1.0];
-     }completion:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarHit) name:notificationStatusBarTouched object:nil];
-    
-    
-    [self createDataToGetStoresList];
-
-}
-
-
-#pragma mark - Create Data To Get Stores List
--(void)createDataToGetStoresList
-{
-    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    
-    //    [dict setObject:@"26" forKey:@"userId"]; //temp
-    
-    [self callWebserviceToGetStore:dict];
-}
-
--(void)callWebserviceToGetStore:(NSMutableDictionary *)aDict
-{
-    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
-    if (![Utils isInternetAvailable])
-    {
-        [AppManager stopStatusbarActivityIndicator];
-        
-        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-        return;
-    }
-    
-    [aaramShop_ConnectionManager getDataForFunction:kGetUserAddressURL withInput:aDict withCurrentTask:TASK_GET_USER_ADDRESS andDelegate:self ];
-    
-}
-
-
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationStatusBarTouched object:nil];
-    [super viewWillDisappear:animated];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    appDel = (AppDelegate *)APP_DELEGATE;
+    
+    
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate=self;
     
@@ -101,9 +56,6 @@
     totalNoOfPages = 0;
     isLoading = NO;
     [self.view insertSubview:toolbarbackground atIndex:0];
-    
-    
-    
     
     
     tblViewSearch.tableFooterView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0.01f)];
@@ -146,6 +98,47 @@
         activityIndicatorView.center = CGPointMake(self.view.center.x, 150);
         [self.view addSubview:activityIndicatorView];
     }
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super  viewWillAppear:animated];
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
+     {
+         [viewSearchBarContainer setFrame:CGRectMake(0, 0, viewSearchBarContainer.frame.size.width, viewSearchBarContainer.frame.size.height)];
+         
+         [toolbarbackground setAlpha:1.0];
+         [tblViewSearch setAlpha:1.0];
+     }completion:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarHit) name:notificationStatusBarTouched object:nil];
+    
+    
+    [self createDataToGetStoresList];
+
+}
+
+
+#pragma mark - Create Data To Get Stores List
+-(void)createDataToGetStoresList
+{
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
+    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+
+    
+    [self callWebserviceToGetHomeStoreBanner:dict];
+}
+
+
+
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:notificationStatusBarTouched object:nil];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -197,41 +190,12 @@
     }
 }
 
-- (NSMutableArray *)parseData:(id)data{
-    
-    NSMutableArray *array = [[NSMutableArray alloc]init];
-    
-    if([data count]>0)
-    {
-        for(int i =0 ; i < [data count] ; i++)
-        {
-            NSDictionary *dict = [data objectAtIndex:i];
-            ProductsModel *product = [[ProductsModel alloc] init];
-            
-            product.category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:@"category_id"]];
-            product.product_id = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_id"]];
-            product.product_image = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_image"]];
-            product.product_name = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_name"]];
-            
-            product.product_price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_price"]];
-            product.product_sku_id = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_sku_id"]];
-            product.sub_category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:@"sub_category_id"]];
-            product.quantity = @"0";
-            
-            totalNoOfPages = [[dict objectForKey:kTotal_page] intValue];
-            
-            [array addObject:product];
-        }
-        
-    }
-    return array;
-    
-}
+
 #pragma mark - UITableView Delegates & DataSource Methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 45;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -241,32 +205,64 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"SearchCell";
-    
-    
-    SearchTableCell *searchCell = (SearchTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (searchCell == nil) {
-        searchCell = [[SearchTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
     
-    [searchCell updateDetailsFor:[arrSearchResult objectAtIndex:indexPath.row]];
+    [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:nil];
+    StoreModel *objStoreModel = [arrSearchResult objectAtIndex:indexPath.row];
+    UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-56, 45)];
+    lblStoreName.font = [UIFont fontWithName:kRobotoRegular size:16.0];
+    lblStoreName.textColor = [UIColor colorWithRed:45.0/255.0 green:45.0/255.0 blue:45.0/255.0 alpha:1.0];
+    lblStoreName.text = objStoreModel.store_code;
+    [cell.contentView addSubview:lblStoreName];
+    return cell;
     
-    
-    return searchCell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    StoreModel *objStoreModel = [arrSearchResult objectAtIndex:indexPath.row];
     
-    ProductsModel *product = [arrSearchResult objectAtIndex:indexPath.row];
-    
-    if (self.delegate && [self.delegate conformsToProtocol:@protocol(SearchViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(openSearchedUserPrroductFor:)])
+    if (self.delegate && [self.delegate conformsToProtocol:@protocol(SearchStoresViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(openSearchedStores:)])
     {
-        [self.delegate openSearchedUserPrroductFor:product];
+        [self.delegate openSearchedStores:objStoreModel];
     }
     
+    
     [self.view removeFromSuperview];
+    
 }
+
+
+
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
+
+
+
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *view;
     if ([arrSearchResult count]==0) {
@@ -337,7 +333,7 @@
         
         pageNumber = 0;
         
-        [self callWebServiceFor:kProducts withSearchString:searchText];
+//        [self callWebServiceFor:kProducts withSearchString:searchText];
         
     }else{
         boolActivityIndicator = NO;
@@ -348,51 +344,61 @@
     
 }
 
--(void)callWebServiceFor:(NSString *)serviceType withSearchString:(NSString *)searchString{
-    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
-    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    
-    [dict setObject:@"0" forKey:kStore_id];
-    [dict setObject:searchString forKey:kSearch_term];
-    [dict setObject:[NSString stringWithFormat:@"%ld",(long)pageNumber] forKey:kPage_no];
-    
-    [self performSelector:@selector(callWebservicesToGetProducts:) withObject:dict afterDelay:0.1];
-}
-- (void)callWebservicesToGetProducts:(NSMutableDictionary *)aDict
+
+-(void)callWebserviceToGetHomeStoreBanner:(NSMutableDictionary *)aDict
 {
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
     {
         [AppManager stopStatusbarActivityIndicator];
+        
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
-    [aaramShop_ConnectionManager getDataForFunction:KURLSerachStoreProducts withInput:aDict withCurrentTask:TASK_TO_SEARCH_STORE_PRODUCTS andDelegate:self ];
+ 
+        [aDict setObject:@"28.5136781" forKey:kLatitude]; //temp
+        [aDict setObject:@"77.3769436" forKey:kLongitude]; //temp
+
+    
+    
+    [aaramShop_ConnectionManager getDataForFunction:kGetHomeStoreBannerURL withInput:aDict withCurrentTask:TASK_TO_GET_HOME_STORE_BANNER andDelegate:self ];
 }
 
-- (void)responseReceived:(id)responseObject
+
+-(void) responseReceived:(id)responseObject
 {
-    isLoading = NO;
-    if (viewStatus == VIEW_STATUS_POPPED) {
-        return;
-    }
-    [AppManager stopStatusbarActivityIndicator];
-    if(aaramShop_ConnectionManager.currentTask == TASK_TO_SEARCH_STORE_PRODUCTS)
-    {
-        if([[responseObject objectForKey:kstatus] intValue] == 1)
+    if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_HOME_STORE_BANNER) {
+        
+        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
+            
+            [self parseHomeStoreResponseData:responseObject];
+        }
+        else
         {
-            if(pageNumber==0)
-            {
-                [self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:kProducts]]];
-                
-            }
-            else
-            {
-                [self appendDataForPullUp:[self parseData:[responseObject objectForKey:kProducts]]];
-            }
-            [tblViewSearch reloadData];
+            //  [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         }
     }
 }
+
+
+-(void)parseHomeStoreResponseData:(NSMutableDictionary *)responseObject
+{
+    [arrSearchResult removeAllObjects];
+
+    NSArray *arrStores = [responseObject objectForKey:@"suggested_stores"];
+    for (id obj in arrStores) {
+        StoreModel *objStoreModel = [[StoreModel alloc]init];
+        objStoreModel.store_code = [NSString stringWithFormat:@"%@",[obj valueForKey:kStore_code]];
+        objStoreModel.store_distance = [NSString stringWithFormat:@"%@",[obj valueForKey:kStore_distance]];
+        objStoreModel.store_id = [NSString stringWithFormat:@"%@",[obj valueForKey:kStore_id]];
+        
+        [arrSearchResult addObject:objStoreModel];
+    }
+    
+    [tblViewSearch reloadData];
+}
+
+
 - (void)didFailWithError:(NSError *)error
 {
     if (viewStatus == VIEW_STATUS_POPPED) {
@@ -424,8 +430,8 @@
 {
     if(totalNoOfPages>pageNumber)
     {
-        pageNumber++;
-        [self callWebServiceFor:kProducts withSearchString:searchBarMain.text];
+//        pageNumber++;
+//        [self callWebServiceFor:kProducts withSearchString:searchBarMain.text];
     }
     else
     {

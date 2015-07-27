@@ -8,14 +8,14 @@
 
 
 #import <UIKit/UIKit.h>
-#import "ProductsModel.h"
+//#import "ProductsModel.h"
 #import "SearchTableCell.h"
+#import "StoreModel.h"
 
-
-@protocol SearchViewControllerDelegate <NSObject>
+@protocol SearchStoresViewControllerDelegate <NSObject>
 @optional
 -(void)removeSearchViewFromParentView;
--(void)openSearchedUserPrroductFor:(ProductsModel *)product;
+-(void)openSearchedStores:(StoreModel *)store;
 
 @end
 
@@ -43,9 +43,12 @@
     BOOL boolActivityIndicator;
     
     ViewStatus viewStatus;
+    
+    AppDelegate *appDel;
+
 }
 -(void)updateViewWhenAppears;
 
-@property (weak, nonatomic) id <SearchViewControllerDelegate> delegate;
+@property (weak, nonatomic) id <SearchStoresViewControllerDelegate> delegate;
 
 @end

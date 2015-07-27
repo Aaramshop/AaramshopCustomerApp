@@ -16,15 +16,31 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeStoreViewController/HomeStoreViewController.m"
-            timestampString = "459500670.634045"
+            filePath = "AaramShop/PresentationViewControllers/SearchStoresViewController/SearchStoresViewController.m"
+            timestampString = "459672309.592871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
+            landmarkName = "-callWebserviceToGetHomeStoreBanner:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AaramShop/PresentationViewControllers/SearchStoresViewController/SearchStoresViewController.m"
+            timestampString = "459671988.645423"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
             landmarkName = "-responseReceived:"
             landmarkType = "5">
          </BreakpointContent>
@@ -35,76 +51,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeStoreViewController/HomeStoreViewController.m"
-            timestampString = "459500665.403227"
+            filePath = "AaramShop/PresentationViewControllers/SearchStoresViewController/SearchStoresViewController.m"
+            timestampString = "459672309.592871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "-responseReceived:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeStoreViewController/HomeStoreViewController.m"
-            timestampString = "459500676.44822"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "-responseReceived:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/ShoppingListDetailViewController/ShoppingListDetailViewController.m"
-            timestampString = "459520001.209602"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "620"
-            endingLineNumber = "620"
-            landmarkName = "-callWebServiceToGetProductsList:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/ShoppingListDetailViewController/ShoppingListDetailViewController.m"
-            timestampString = "459520001.209602"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "639"
-            endingLineNumber = "639"
-            landmarkName = "-responseReceived:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/ShoppingListDetailViewController/ShoppingListDetailViewController.m"
-            timestampString = "459520001.209602"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "626"
-            endingLineNumber = "626"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
             landmarkName = "-didFailWithError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -112,16 +64,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/ShoppingListDetailViewController/ShoppingListDetailViewController.m"
-            timestampString = "459520001.209602"
+            filePath = "AaramShop/PresentationViewControllers/SearchStoresViewController/SearchStoresViewController.m"
+            timestampString = "459672025.778323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "750"
-            endingLineNumber = "750"
-            landmarkName = "-parseResponseData:"
+            startingLineNumber = "388"
+            endingLineNumber = "388"
+            landmarkName = "-parseHomeStoreResponseData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -131,13 +83,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/ShoppingListDetailViewController/ShoppingListDetailViewController.m"
-            timestampString = "459520001.209602"
+            filePath = "AaramShop/PresentationViewControllers/SearchStoresViewController/SearchStoresViewController.m"
+            timestampString = "459672542.401403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "652"
-            endingLineNumber = "652"
-            landmarkName = "-responseReceived:"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AaramShop/PresentationViewControllers/HomeStoreViewController/HomeStoreViewController.m"
+            timestampString = "459673503.113182"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
+            landmarkName = "-openSearchedStores:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
