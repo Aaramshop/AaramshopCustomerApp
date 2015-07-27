@@ -15,7 +15,8 @@
     IBOutlet UITableView *tblView;
 }
 
-@property(nonatomic, strong) ShoppingListChooseStoreModel *selectedStore;
-@property(nonatomic ,strong) NSMutableArray *arrProductList;
+@property	(nonatomic, strong) ShoppingListChooseStoreModel *selectedStore;
+@property	(nonatomic ,strong) NSMutableArray *arrProductList;
+@property (nonatomic, strong)  NSMutableDictionary *dictProduct;
 
 @end

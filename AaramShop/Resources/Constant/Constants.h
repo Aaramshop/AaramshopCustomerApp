@@ -340,4 +340,5 @@
 #define kGetMoney											@"getMoney"
 #define kOrder_date											@"order_date"
 
-//=========== Get Wallet =================================
+//=========== Cart =================================
+#define kCartData												@"cart"

@@ -122,6 +122,15 @@
     }
     else
         btnMinus.enabled = YES;
+	if([objProductsModel.strCount intValue]==20)
+	{
+		 btnPlus.enabled=NO;
+	}
+	else
+	{
+		btnPlus.enabled = YES;
+	}
+	
     [imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objProductsModel.product_image]] placeholderImage:[UIImage imageNamed:@"homeDetailsDefaultImgae.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
         }
