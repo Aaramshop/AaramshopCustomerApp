@@ -44,6 +44,8 @@
 
     lblProductPerUnitPrice.text = [NSString stringWithFormat:@"%@ %@",strRupee,strAmount];
     
+    
+    //lblOfferPrice
 }
 
 @end

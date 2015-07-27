@@ -310,14 +310,16 @@
 
 //================= SHOPPING LIST MODULE =============
 
-#define KURLSerachStoreProducts					@"serachStoreProducts"
+#define KURLSerachStoreProducts                     @"serachStoreProducts"
 #define kURLCreateShoppingList						@"createShoppingList"
 #define kURLGetShoppingList							@"getShoppingList"
 #define kURLDeleteShoppingList						@"deleteShoppingList"
-#define kURLGetShoppingListProducts			@"getShoppingListProducts"
-#define kURLUpdateShoppingListProducts		@"updateShoppingListProducts"
-#define kURLGetStores										@"getStores"
-#define kURLGetStoreforShoppingList				@"getStoreforShoppingList"
+
+#define kURLGetShoppingListProducts                 @"getShoppingListProducts"
+#define kURLUpdateShoppingListProducts              @"updateShoppingListProducts"
+#define kURLGetStores								@"getStores"
+#define kURLGetStoreforShoppingList                 @"getStoreforShoppingList"
+#define KURLGetShoppingListProductByStoreId         @"getShoppingListProductByStoreId"
 
 
 //=========== Get Wallet =================================

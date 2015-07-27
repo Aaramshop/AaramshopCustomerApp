@@ -20,4 +20,11 @@
 @property(nonatomic,assign) BOOL isSelected;
 @property(nonatomic,strong) NSString *quantity;
 
+
+@property(nonatomic,strong) NSString *free_item;
+@property(nonatomic,strong) NSString *isAvailable;
+@property(nonatomic,strong) NSString *offerType;
+@property(nonatomic,strong) NSString *offer_price;
+
+
 @end

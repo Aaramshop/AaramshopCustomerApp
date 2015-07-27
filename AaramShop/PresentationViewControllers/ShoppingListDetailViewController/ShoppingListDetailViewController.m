@@ -93,7 +93,16 @@
     
     [dict setObject:_strShoppingListID forKey:@"shoppingListId"];
     [dict setObject:@"0" forKey:@"page_no"];
-
+    
+    if (selectedStoreModel)
+    {
+        [dict setObject:selectedStoreModel.store_id forKey:@"store_id"];
+    }
+    else
+    {
+        [dict setObject:@"0" forKey:@"store_id"];
+    }
+    
     [self callWebServiceToGetProductsList:dict];
 }
 
@@ -200,120 +209,120 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-//    if (isStoreSelected==YES)
-//    {
-//        return 2;
-//    }
+    if (selectedStoreModel)
+    {
+        return 2;
+    }
     return 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (selectedStoreModel)
-    {
-        return kTableHeader1Height;
-    }
-    else
-    {
-        return kTableHeader2Height;
-    }
+//    if (selectedStoreModel)
+//    {
+//        return kTableHeader1Height;
+//    }
+//    else
+//    {
+//        return kTableHeader2Height;
+//    }
 
     
     
-//    switch (section)
-//    {
-//        case 0:
-//        {
-//            if (isStoreSelected==YES)
-//            {
-//                return kTableHeader1Height;
-//            }
-//            else
-//            {
-//                return kTableHeader2Height;
-//            }
-//        }
-//            break;
-//        case 1:
-//        {
-//            return kTableHeader2Height;
-//        }
-//            break;
-//            
-//        default:
-//            return CGFLOAT_MIN;
-//            break;
-//    }
+    switch (section)
+    {
+        case 0:
+        {
+            if (selectedStoreModel)
+            {
+                return kTableHeader1Height;
+            }
+            else
+            {
+                return kTableHeader2Height;
+            }
+        }
+            break;
+        case 1:
+        {
+            return kTableHeader2Height;
+        }
+            break;
+            
+        default:
+            return CGFLOAT_MIN;
+            break;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (selectedStoreModel)
-    {
-        return [self viewForHeader1];
-    }
-    else
-    {
-        return [self viewForHeader2];
-    }
+//    if (selectedStoreModel)
+//    {
+//        return [self viewForHeader1];
+//    }
+//    else
+//    {
+//        return [self viewForHeader2];
+//    }
 
     
-//    switch (section)
-//    {
-//        case 0:
-//        {
-//            if (isStoreSelected==YES)
-//            {
-//                return [self viewForHeader1];
-//            }
-//            else
-//            {
-//                return [self viewForHeader2];
-//            }
-//        }
-//            break;
-//        case 1:
-//        {
-//            return [self viewForHeader2];
-//        }
-//            break;
-//            
-//        default:
-//            return nil;
-//            break;
-//    }
+    switch (section)
+    {
+        case 0:
+        {
+            if (selectedStoreModel)
+            {
+                return [self viewForHeader1];
+            }
+            else
+            {
+                return [self viewForHeader2];
+            }
+        }
+            break;
+        case 1:
+        {
+            return [self viewForHeader2];
+        }
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return arrProductList.count;
+//    return arrProductList.count;
 
     
-//    switch (section)
-//    {
-//        case 0:
-//        {
-//            if (isStoreSelected==YES)
-//            {
-//                return 0;
-//            }
-//            else
-//            {
-//                return arrProductList.count;
-//            }
-//        }
-//            break;
-//        case 1:
-//        {
-//            return arrProductList.count;;
-//        }
-//            break;
-//            
-//        default:
-//            return 0;
-//            break;
-//    }
+    switch (section)
+    {
+        case 0:
+        {
+            if (selectedStoreModel)
+            {
+                return 0;
+            }
+            else
+            {
+                return arrProductList.count;
+            }
+        }
+            break;
+        case 1:
+        {
+            return arrProductList.count;;
+        }
+            break;
+            
+        default:
+            return 0;
+            break;
+    }
     
 }
 
@@ -331,9 +340,24 @@
     {
         cell = [[ShoppingListDetailNewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    	cell.indexPath = indexPath;
+    cell.indexPath = indexPath;
     
-    [cell updateCell:[arrProductList objectAtIndex:indexPath.row]];
+    ProductsModel *productsModel = [arrProductList objectAtIndex:indexPath.row];
+
+    [cell updateCell:productsModel];
+    
+    
+    if (selectedStoreModel && [productsModel.isAvailable integerValue]==0)
+    {
+        cell.contentView.backgroundColor = [UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1.0];
+        cell.contentView.alpha = 0.3;
+    }
+    else
+    {
+        cell.contentView.backgroundColor = [UIColor clearColor];
+        cell.contentView.alpha = 1.0;
+    }
+    
     
     return cell;
 }
@@ -417,6 +441,20 @@
     btnCalender.frame = CGRectMake((view.frame.size.width - (kTableHeader2ButtonWidhtHeight + 30)), button_Y, kTableHeader2ButtonWidhtHeight, kTableHeader2ButtonWidhtHeight);
     [btnCalender setImage:[UIImage imageNamed:@"shoppingListCalenderCircle"] forState:UIControlStateNormal];
     [btnCalender addTarget:self action:@selector(btnCalenderClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    if (selectedStoreModel)
+    {
+        btnCalender.enabled = YES;
+        btnAdd.enabled = NO;
+    }
+    else
+    {
+        btnCalender.enabled = NO;
+        btnAdd.enabled = YES;
+    }
+    
     
     
     [view addSubview:imgBackground];
@@ -692,6 +730,15 @@
     [dict setObject:_strShoppingListID forKey:@"shoppingListId"];
     [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:@"page_no"];
     
+    if (selectedStoreModel)
+    {
+        [dict setObject:selectedStoreModel.store_id forKey:@"store_id"];
+    }
+    else
+    {
+        [dict setObject:@"0" forKey:@"store_id"];
+    }
+    
     [self callWebServiceToGetProductsList:dict];
 }
 
@@ -710,11 +757,16 @@
     }
     
 
-    NSArray *arrTemp = [response objectForKey:@"proudcts"];
+    NSArray *arrTemp = [response objectForKey:@"products"];
     
     for (id obj in arrTemp)
     {
         ProductsModel *productsModel = [[ProductsModel alloc]init];
+        
+        productsModel.free_item = [NSString stringWithFormat:@"%@",[obj valueForKey:@"free_item"]];
+        productsModel.isAvailable = [NSString stringWithFormat:@"%@",[obj valueForKey:@"isAvailable"]];
+        productsModel.offerType = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerType"]];
+        productsModel.offer_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_price"]];
         
         productsModel.product_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_id"]];
         productsModel.product_image = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_image"]];
