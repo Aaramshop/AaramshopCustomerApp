@@ -11,6 +11,8 @@
 #import "ProductsModel.h"
 #import "SubCategoryModel.h"
 #import "PaymentViewController.h"
+#import "CartModel.h"
+#import "CartViewController.h"
 
 @interface HomeSecondViewController ()
 {
@@ -23,6 +25,8 @@
     NSString *strSearchTxt;
     NSMutableArray *arrOnlySubCategoryPicker;
     BOOL isSearching;
+	NSMutableArray *arrCartProductIds;
+	NSMutableArray *arrCartProducts;
 
 }
 @end
@@ -60,7 +64,20 @@
     arrOnlySubCategoryPicker = [[NSMutableArray alloc]init];
     
     [self setUpNavigationBar];
-    
+	
+	//================ check global cart ===============
+	arrCartProducts						= [[NSMutableArray alloc]init];
+	arrCartProductIds					= [[NSMutableArray alloc]init];
+	arrCartProducts						= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:self.strStore_Id]];
+	arrCartProductIds					=	[arrCartProducts valueForKey:kProduct_id];
+	NSInteger price = 0;
+	for(ProductsModel *product in arrCartProducts)
+	{
+		price = price + ([product.product_price integerValue] * [product.strCount integerValue]);
+	}
+	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)price];
+	//==============================================
+	
     [self createDataToGetStoreProductCategories];
 
 }
@@ -205,7 +222,6 @@
 }
 -(void)parseStoresSubCategoryCategoryData:(id)responseObject
 {
-    
     [arrOnlySubCategoryPicker removeAllObjects];
 
     NSArray *subCategories = [responseObject objectForKey:@"sub_categories"];
@@ -256,7 +272,7 @@
                 
                 NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@ AND SELF.product_id MATCHES %@",strSelectedCategoryId, strSelectedSubCategoryId,[dictProducts objectForKey:kProduct_id]];
                 NSArray *arrTemp = [arrGetStoreProducts filteredArrayUsingPredicate:predicate1];
-                
+
                 if (arrTemp.count == 0) {
                     ProductsModel *objProductsModel = [[ProductsModel alloc]init];
                     objProductsModel.category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kCategory_id]];
@@ -266,7 +282,17 @@
                     objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
                     objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
                     objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
-                    objProductsModel.strCount = @"0";
+					
+					if([arrCartProductIds containsObject:objProductsModel.product_id])
+					{
+						NSInteger index = [arrCartProductIds indexOfObject:objProductsModel.product_id];
+						ProductsModel *product = [arrCartProducts objectAtIndex:index];
+						objProductsModel.strCount = product.strCount;
+					}
+					else
+					{
+						objProductsModel.strCount = @"0";
+					}
                     [arrGetStoreProducts addObject:objProductsModel];
                 }
                 
@@ -286,22 +312,30 @@
                 objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
                 objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
                 objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
-                objProductsModel.strCount = @"0";
+				if([arrCartProductIds containsObject:objProductsModel.product_id])
+				{
+					NSInteger index = [arrCartProductIds indexOfObject:objProductsModel.product_id];
+					ProductsModel *product = [arrCartProducts objectAtIndex:index];
+					objProductsModel.strCount = product.strCount;
+				}
+				else
+				{
+					objProductsModel.strCount = @"0";
+				}
                 [arrGetStoreProducts addObject:objProductsModel];
             }
         }
     }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ ",strSelectedCategoryId];
+    NSPredicate *predicateCategory = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ ",strSelectedCategoryId];
 
-    [arrOnlySubCategoryPicker addObjectsFromArray:[arrGetStoreProductSubCategory filteredArrayUsingPredicate:predicate]];
-    
+    [arrOnlySubCategoryPicker addObjectsFromArray:[arrGetStoreProductSubCategory filteredArrayUsingPredicate:predicateCategory]];
     tblVwCategory.hidden = NO;
     [tblVwCategory reloadData];
 }
 -(void)parseStoresProductsData:(NSDictionary *)responseObject
 {
         NSArray *arrProductsTemp = [responseObject objectForKey:@"products"];
-    for (NSDictionary *dictProducts in arrProductsTemp) {
+		for (NSDictionary *dictProducts in arrProductsTemp) {
         
         SubCategoryModel *objSubCategory = [arrOnlySubCategoryPicker objectAtIndex:self.mainCategoryIndexPicker];
         
@@ -324,7 +358,16 @@
             objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
             objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
             objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
-            objProductsModel.strCount = @"0";
+			if([arrCartProductIds containsObject:objProductsModel.product_id])
+			{
+				NSInteger index = [arrCartProductIds indexOfObject:objProductsModel.product_id];
+				ProductsModel *product = [arrCartProducts objectAtIndex:index];
+				objProductsModel.strCount = product.strCount;
+			}
+			else
+			{
+				objProductsModel.strCount = @"0";
+			}
             if (isSearching) {
                 [arrSearchGetStoreProducts addObject:objProductsModel];
             }
@@ -334,6 +377,7 @@
             }
         }
     }
+
     [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 }
 #pragma mark Navigation
@@ -416,6 +460,8 @@
 	[appDeleg removeTabBarRetailer];
 }
 -(void)btnCartClicked{
+	CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+	[self.navigationController pushViewController:cartView animated:YES];
 }
 -(void)btnFavClicked{
 }
@@ -726,6 +772,8 @@
     strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
     [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     [tblVwCategory reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+	[AppManager AddOrRemoveFromCart:[arrGetStoreProducts objectAtIndex:inIndexPath.row] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES];
+
 }
 -(void)minusValueByPrice:(NSString *)strPrice atIndexPath:(NSIndexPath *)inIndexPath
 {
@@ -734,6 +782,8 @@
     strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
     [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     [tblVwCategory reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+	
+	[AppManager AddOrRemoveFromCart:[arrGetStoreProducts objectAtIndex:inIndexPath.row] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:NO];
 
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -772,19 +822,14 @@
     }
     else
     {
-    PaymentViewController *paymentScreen = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
-    paymentScreen.strStore_Id = strStore_Id;
+			arrCartProducts						= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:self.strStore_Id]];
+			arrCartProductIds					=	[arrCartProducts valueForKey:kProduct_id];
+
+		PaymentViewController *paymentScreen = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
+		paymentScreen.strStore_Id = strStore_Id;
         paymentScreen.strTotalPrice = strTotalPrice;
-        NSMutableArray *arrSelectedProducts = [[NSMutableArray alloc]init];
-        for (ProductsModel *objProduct in arrGetStoreProducts) {
-            
-            if ([objProduct.strCount integerValue] >0) {
-                [arrSelectedProducts addObject:objProduct];
-            }
-        }
-        paymentScreen.arrSelectedProducts = [[NSMutableArray alloc]init];
-        paymentScreen.arrSelectedProducts = arrSelectedProducts;
-    [self.navigationController pushViewController:paymentScreen animated:YES];
+        paymentScreen.arrSelectedProducts = [NSMutableArray arrayWithArray:arrCartProducts];
+		[self.navigationController pushViewController:paymentScreen animated:YES];
     }
 }
 #pragma mark - HorizontalPickerView DataSource Methods

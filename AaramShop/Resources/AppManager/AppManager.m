@@ -9,7 +9,7 @@
 
 #import "AppManager.h"
 #import "CMCountryList.h"
-
+#import "CartModel.h"
 #define kMax_No_Of_contacts 300
 
 
@@ -584,5 +584,107 @@ void MyAddressBookExternalChangeCallback (
     return toDistance;
     
 }
++(void)AddOrRemoveFromCart:(ProductsModel *)product forStore:(NSDictionary *)store add:(BOOL)isAdd
+{
+	if(![[NSUserDefaults standardUserDefaults] valueForKey:kCartData])
+	{
+		NSData *data		= [[NSData alloc]init];
+		[[NSUserDefaults standardUserDefaults] setObject:data forKey:kCartData];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+	}
+	NSMutableArray *cartArray=nil;
+	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	if([enrollData length]>0)
+	{
+		cartArray									= (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+		NSPredicate *predicate			= [NSPredicate predicateWithFormat:@"SELF.store_id == %@",[store objectForKey:kStore_id]];
+		NSArray *arrayStoreFilter		= [cartArray filteredArrayUsingPredicate:predicate];
+		CartModel *cartModel			= nil;
+		if([arrayStoreFilter count]>0)
+		{
+			cartModel							=	[arrayStoreFilter objectAtIndex:0];
+			NSInteger indexCart			=	[cartArray indexOfObject:cartModel];
+			NSArray *arrIds					= [cartModel.arrProductDetails valueForKey:kProduct_id];
+			if([arrIds containsObject:product.product_id])
+			{
+				NSInteger index				= [arrIds indexOfObject:product.product_id];
+				[cartModel.arrProductDetails replaceObjectAtIndex:index withObject:product];
+				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
+				if(!isAdd)
+				{
+					if([product.strCount integerValue]== 0)
+					{
+						[cartModel.arrProductDetails removeObjectAtIndex:index];
+						if([cartModel.arrProductDetails count]==0)
+						{
+							[cartArray removeObject:cartModel];
+						}
+					}
+				}
+			}
+			else
+			{
+				[cartModel.arrProductDetails addObject:product];
+				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
+			}
+		}
+		else
+		{			
+			cartModel							= [[CartModel alloc]init];
+			cartModel.store_id				= [store objectForKey:kStore_id];
+			cartModel.store_name		= [store objectForKey:kStore_name];
+			cartModel.store_image		= [store objectForKey:kStore_image];
+			cartModel.arrProductDetails = [[NSMutableArray alloc] initWithObjects:product, nil];
+			[cartArray addObject:cartModel];
+		}
+	}
+	else
+	{
+		cartArray								= [[NSMutableArray alloc]init];
+		CartModel *cartModel		= nil;
 
+		cartModel							= [[CartModel alloc]init];
+		cartModel.store_id				= [store objectForKey:kStore_id];
+		cartModel.store_name		= [store objectForKey:kStore_name];
+		cartModel.store_image		= [store objectForKey:kStore_image];
+		cartModel.arrProductDetails = [[NSMutableArray alloc] initWithObjects:product, nil];
+		[cartArray addObject:cartModel];
+	}
+	enrollData	=	[NSKeyedArchiver archivedDataWithRootObject: cartArray];
+
+	[[NSUserDefaults standardUserDefaults] setObject:enrollData forKey:kCartData];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
++ (void)removeCartBasedOnStoreId:(NSString *)store_id
+{
+	NSData *enrollData				= [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	NSMutableArray	*cartArray	= (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+	NSPredicate *predicate			= [NSPredicate predicateWithFormat:@"SELF.store_id == %@",store_id];
+	NSArray *arrayStoreFilter		= [cartArray filteredArrayUsingPredicate:predicate];
+	if([arrayStoreFilter count]>0)
+	{
+		CartModel	*cartModel			=	[arrayStoreFilter objectAtIndex:0];
+		[cartArray removeObject:cartModel];
+		enrollData	=	[NSKeyedArchiver archivedDataWithRootObject: cartArray];
+		
+		[[NSUserDefaults standardUserDefaults]setObject:enrollData forKey:kCartData];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+
+	}
+
+}
++ (NSMutableArray *)getCartProductsByStoreId:(NSString *)store_id
+{
+	NSMutableArray *arrProduct = [[NSMutableArray alloc] init];
+	NSData *enrollData					= [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	NSMutableArray *cartArray		= (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+	NSPredicate *predicate				= [NSPredicate predicateWithFormat:@"SELF.store_id == %@",store_id];
+	NSArray *arrayStoreFilter			= [cartArray filteredArrayUsingPredicate:predicate];
+	if([arrayStoreFilter count]>0)
+	{
+		CartModel *cartModel			= [arrayStoreFilter objectAtIndex:0];
+		arrProduct								= cartModel.arrProductDetails;
+	}
+	return arrProduct;
+}
 @end

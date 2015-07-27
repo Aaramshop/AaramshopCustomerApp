@@ -925,6 +925,7 @@
 		6B1C0B7F1B04C022009DD32D /* txtFLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1C0B7E1B04C022009DD32D /* txtFLocation.m */; };
 		6B1C0B821B04D25B009DD32D /* DPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1C0B811B04D25B009DD32D /* DPAnnotationView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6B1DFC1E1B30495800E5CAE8 /* CustomSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1DFC1D1B30495800E5CAE8 /* CustomSearchDisplayController.m */; };
+		6B2189521B6380EA00BF56BC /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2189511B6380EA00BF56BC /* CartModel.m */; };
 		6B35B8BC1B56538800807F25 /* ShoppingListShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B35B8BB1B56538800807F25 /* ShoppingListShareCell.m */; };
 		6B35B8C11B5665DA00807F25 /* shoppingListDefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B35B8BE1B5665DA00807F25 /* shoppingListDefaultImage.png */; };
 		6B35B8C21B5665DA00807F25 /* shoppingListDefaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B35B8BF1B5665DA00807F25 /* shoppingListDefaultImage@2x.png */; };
@@ -2570,6 +2571,8 @@
 		6B1C0B811B04D25B009DD32D /* DPAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPAnnotationView.m; sourceTree = "<group>"; };
 		6B1DFC1C1B30495800E5CAE8 /* CustomSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchDisplayController.h; sourceTree = "<group>"; };
 		6B1DFC1D1B30495800E5CAE8 /* CustomSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchDisplayController.m; sourceTree = "<group>"; };
+		6B2189501B6380EA00BF56BC /* CartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartModel.h; sourceTree = "<group>"; };
+		6B2189511B6380EA00BF56BC /* CartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartModel.m; sourceTree = "<group>"; };
 		6B35B8BA1B56538800807F25 /* ShoppingListShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListShareCell.h; sourceTree = "<group>"; };
 		6B35B8BB1B56538800807F25 /* ShoppingListShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListShareCell.m; sourceTree = "<group>"; };
 		6B35B8BE1B5665DA00807F25 /* shoppingListDefaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoppingListDefaultImage.png; sourceTree = "<group>"; };
@@ -5319,6 +5322,7 @@
 		6B0676E01B06024B0002259E /* BusinessModel */ = {
 			isa = PBXGroup;
 			children = (
+				6B21894F1B6380C700BF56BC /* CartModel */,
 				36A73CE61B612CF600EA710D /* CMWalletMoney */,
 				36C010311B5FCD5A0099B7F7 /* CMWalletPoints */,
 				362A8DE61B567BAD0009844B /* CMPreferences */,
@@ -5748,6 +5752,15 @@
 				6B1DFC1D1B30495800E5CAE8 /* CustomSearchDisplayController.m */,
 			);
 			path = SearchDisplayController;
+			sourceTree = "<group>";
+		};
+		6B21894F1B6380C700BF56BC /* CartModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B2189501B6380EA00BF56BC /* CartModel.h */,
+				6B2189511B6380EA00BF56BC /* CartModel.m */,
+			);
+			path = CartModel;
 			sourceTree = "<group>";
 		};
 		6B35B8B91B56534900807F25 /* ShoppingListShareCell */ = {
@@ -7972,6 +7985,7 @@
 				6BE474621B3B21CE00C09AFD /* MHTransitionShowOverView.m in Sources */,
 				6BE474581B3B21CE00C09AFD /* MHGalleryItem.m in Sources */,
 				274A5C621B05C4AA009112B5 /* UIDevice+SH.m in Sources */,
+				6B2189521B6380EA00BF56BC /* CartModel.m in Sources */,
 				274A5C8E1B05C4AA009112B5 /* XMPPXOAuth2Google.m in Sources */,
 				274A5CD81B05C4AA009112B5 /* XMPPCapabilities.xcdatamodel in Sources */,
 				6BADA6751B0C9F5200BF7639 /* DataBase.m in Sources */,
@@ -8407,8 +8421,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -8433,7 +8447,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "87183852-376d-42bd-b74a-f2337426942d";
+				PROVISIONING_PROFILE = "67284c8f-c461-4f10-8e71-d6d0982a7c5a";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -8443,8 +8457,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -8469,7 +8483,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "87183852-376d-42bd-b74a-f2337426942d";
+				PROVISIONING_PROFILE = "67284c8f-c461-4f10-8e71-d6d0982a7c5a";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;

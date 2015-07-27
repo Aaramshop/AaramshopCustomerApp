@@ -60,17 +60,14 @@
     [imgProduct sd_setImageWithURL:[NSURL URLWithString:tempProductModel.product_image] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
     
     lblProductName.text = tempProductModel.product_name;
-    
-    if ([tempProductModel.quantity integerValue]==0)
-    {
-        btnRemove.enabled = NO;
-    }
-    else
-    {
-        btnRemove.enabled = YES;
-    }
-    
-    lblCounter.text = tempProductModel.quantity;
+	btnAdd.enabled = YES;
+
+    if([tempProductModel.strCount integerValue]==20)
+	{
+		btnAdd.enabled = NO;
+	}
+	btnRemove.enabled = YES;
+    lblCounter.text = tempProductModel.strCount;
 }
 
 

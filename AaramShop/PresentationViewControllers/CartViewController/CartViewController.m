@@ -7,7 +7,8 @@
 //
 
 #import "CartViewController.h"
-
+#import "CartModel.h"
+#import "ProductsModel.h"
 
 #define kTableCellHeight        70
 #define kTableHeaderHeight      108
@@ -27,8 +28,9 @@
     
     tblView.backgroundColor = [UIColor whiteColor];
     tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
-    
+	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+	
     [self setNavigationBar];
     
     
@@ -113,7 +115,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [self.arrProductList count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -124,8 +126,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+	
+	CartModel *cartModel = [self.arrProductList objectAtIndex:section];
+	
     UIView *viewBackground = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, kTableHeaderHeight)];
-    
     
     UIView *viewTop = [[UIView alloc]initWithFrame:CGRectMake(0, 0, viewBackground.frame.size.width, 40)];
     viewTop.backgroundColor = [UIColor colorWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1.0];
@@ -144,9 +148,15 @@
     
     
     NSString *strRupee = @"\u20B9";
-    NSString *strAmount = _selectedStore.total_product_price;
-    
-    lblTotalAmountValue.text = [NSString stringWithFormat:@"%@ %@",strRupee,strAmount];
+	
+	NSInteger strAmount = 0;
+	for(ProductsModel *product in cartModel.arrProductDetails)
+	{
+		strAmount = strAmount + ([product.strCount integerValue] * [product.product_price integerValue]);
+	}
+	
+	
+    lblTotalAmountValue.text = [NSString stringWithFormat:@"%@ %ld",strRupee,(long)strAmount];
 
     
     [viewTop addSubview:lblTotalAmount];
@@ -169,7 +179,7 @@
     imgStore.contentMode = UIViewContentModeScaleAspectFit;
     
     
-    NSString *strStoreImage = [NSString stringWithFormat:@"%@",_selectedStore.store_image];
+    NSString *strStoreImage = [NSString stringWithFormat:@"%@",cartModel.store_image];
     NSURL *urlStoreImage = [NSURL URLWithString:[strStoreImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     [imgStore sd_setImageWithURL:urlStoreImage placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -182,7 +192,7 @@
     
     lblStoreName.font = [UIFont fontWithName:kRobotoMedium size:15];
     lblStoreName.textColor = [UIColor colorWithRed:49.0/255.0 green:49.0/255.0 blue:49.0/255.0 alpha:1.0];
-    lblStoreName.text = _selectedStore.store_name;
+    lblStoreName.text = cartModel.store_name;
 
     
     
@@ -190,8 +200,8 @@
     
     lblDeliveryTime.font = [UIFont fontWithName:kRobotoRegular size:13];
     lblDeliveryTime.textColor = [UIColor colorWithRed:91.0/255.0 green:91.0/255.0 blue:91.0/255.0 alpha:1.0];
-    lblDeliveryTime.text = @"Deliver in 90 min"; // temp
-    
+//    lblDeliveryTime.text = @"Deliver in 90 min"; // temp
+	
     
     
     UILabel *lblSeparator2 = [[UILabel alloc]initWithFrame:CGRectMake(0, (viewBackground.frame.size.height-1), tblView.frame.size.width, 1)];
@@ -215,7 +225,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _arrProductList.count;
+	CartModel *cartModel = [self.arrProductList objectAtIndex:section];
+    return cartModel.arrProductDetails.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -234,8 +245,8 @@
     }
     cell.indexPath = indexPath;
     cell.delegate = self;
-    
-    [cell updateCell:[_arrProductList objectAtIndex:indexPath.row]];
+    CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
+    [cell updateCell:[cartModel.arrProductDetails objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -251,24 +262,36 @@
 
 -(void)addProduct:(NSIndexPath *)indexPath
 {
-//    int counter = [[[_arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
-//    
-//    counter++;
-//    
-//    [[_arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
-//    
-//    
-//    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+	CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
+	ProductsModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
+	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]+1];
+	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:YES];
+	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+	[tblView reloadSectionIndexTitles];
+    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)removeProduct:(NSIndexPath *)indexPath
 {
-//    int counter = [[[_arrProductList objectAtIndex:indexPath.row] objectForKey:@"quantity"] intValue];
-//    counter--;
-//    
-//    [[_arrProductList objectAtIndex:indexPath.row] setObject:[NSString stringWithFormat:@"%d",counter] forKey:@"quantity"];
-//    
-//    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+	CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
+	ProductsModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
+	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]-1];
+
+	[AppManager AddOrRemoveFromCart:[cartModel.arrProductDetails objectAtIndex:indexPath.row] forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:NO];
+	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+	if([productModel.strCount integerValue] == 0)
+	{
+		[tblView reloadData];
+	}
+	else
+	{
+		NSRange range = NSMakeRange(indexPath.section, 1);
+		NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+		[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
+		[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+	}
 }
 
 

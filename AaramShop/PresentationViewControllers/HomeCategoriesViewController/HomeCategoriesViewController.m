@@ -8,7 +8,7 @@
 
 #import "HomeCategoriesViewController.h"
 #import "HomeCategoryListViewController.h"
-
+#import "CartViewController.h"
 #import "StoreModel.h"
 
 
@@ -174,7 +174,9 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 }
 -(void)btnCartClicked
 {
-    
+	CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+	[self.navigationController pushViewController:cartView animated:YES];
+
 }
 - (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
     [self.navigationController pushViewController:viewC animated:YES];
