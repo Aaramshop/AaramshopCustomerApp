@@ -122,8 +122,8 @@
 	if (draggingSupport) {
         MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
 		[annotationView performSelector:NSSelectorFromString(@"setDraggable:") withObject:[NSNumber numberWithBool:YES]];
-		annotationView.canShowCallout = NO;
-        annotationView.pinColor = MKPinAnnotationColorGreen;
+//        annotationView.pinColor = MKPinAnnotationColorGreen;
+        annotationView.image = [UIImage imageNamed:@"locationCircleStick"];
 		return [annotationView autorelease];
 	} 
 	
@@ -134,6 +134,9 @@
 		
 	if ((self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier])) {
 //		self.image = [UIImage imageNamed:@"mapPinGreen.png"];
+        
+        
+        
 		self.centerOffset = CGPointMake(8, -14);
 		self.calloutOffset = CGPointMake(-8, 0);
 		self.canShowCallout = NO;

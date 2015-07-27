@@ -216,9 +216,9 @@
 //    [dict setObject:@"77.5060438" forKey:kLongitude];
     
     // sec 132 noida
-//    [dict setObject:@"28.5136781" forKey:kLatitude];
-//    [dict setObject:@"77.3769436" forKey:kLongitude];
-//    
+    [dict setObject:@"28.5160458" forKey:kLatitude]; // temp
+    [dict setObject:@"77.3735504" forKey:kLongitude]; // temp
+//
 //    [dict setObject:@"26" forKey:kUserId];
     
     
@@ -362,54 +362,69 @@
         strFullname = [[NSUserDefaults standardUserDefaults] valueForKey:kFullname];
     }
     
-    
+    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+    region.center.latitude = Latitude;
+    region.center.longitude = LongitudeValue;
+    region.span.latitudeDelta = 0.187f;
+    region.span.longitudeDelta = 0.187f;
+    [mapViewLocation setRegion:region];
+
     
     Annotation *annotation = [[Annotation alloc]initWithName:[NSString stringWithFormat:@"%@",strFullname] Address:strYourCurrentAddress Coordinate:coordinateValue imageUrl:@"" showMyLocation:YES];
     [mapViewLocation addAnnotation:annotation];
     
-    [self setRegionOfMap];
+
+//    [self setRegionOfMap];
 
 }
 -(void)setRegionOfMap
 {
-    CLLocationCoordinate2D topLeftCoord;
-    topLeftCoord.latitude = -90;
-    topLeftCoord.longitude = 180;
+//    CLLocationCoordinate2D topLeftCoord;
+//    topLeftCoord.latitude = -90;
+//    topLeftCoord.longitude = 180;
+//    
+//    CLLocationCoordinate2D bottomRightCoord;
+//    bottomRightCoord.latitude = 90;
+//    bottomRightCoord.longitude = -180;
+//    
+//    for (id <MKAnnotation> annotation in mapViewLocation.annotations)
+//    {
+//        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
+//        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
+//        
+//        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
+//        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
+//    }
+//    
+//    MKCoordinateRegion region;
+//    
+//    region.center.latitude=(topLeftCoord.latitude+bottomRightCoord.latitude)/2;
+//    region.center.longitude=(bottomRightCoord.longitude+ topLeftCoord.longitude)/2;
+//    float LatDelta=(topLeftCoord.latitude-bottomRightCoord.latitude)*1.5;
+//    
+//    float LonDelta=(bottomRightCoord.longitude-topLeftCoord.longitude)*1.5;
+//    
+//    if (LatDelta>180)
+//        LatDelta=180;
+//    
+//    if (LonDelta>180)
+//        LonDelta=180;
+//    
+//    region.span.latitudeDelta = LatDelta;
+//    region.span.longitudeDelta = LonDelta;
     
-    CLLocationCoordinate2D bottomRightCoord;
-    bottomRightCoord.latitude = 90;
-    bottomRightCoord.longitude = -180;
-    
-    for (id <MKAnnotation> annotation in mapViewLocation.annotations)
-    {
-        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
-        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
-        
-        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
-        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
-    }
-    
-    MKCoordinateRegion region;
-    
-    region.center.latitude=(topLeftCoord.latitude+bottomRightCoord.latitude)/2;
-    region.center.longitude=(bottomRightCoord.longitude+ topLeftCoord.longitude)/2;
-    float LatDelta=(topLeftCoord.latitude-bottomRightCoord.latitude)*1.5;
-    
-    float LonDelta=(bottomRightCoord.longitude-topLeftCoord.longitude)*1.5;
-    
-    if (LatDelta>180)
-        LatDelta=180;
-    
-    if (LonDelta>180)
-        LonDelta=180;
-    
-    region.span.latitudeDelta = LatDelta;
-    region.span.longitudeDelta = LonDelta;
-    
-    if(region.center.longitude == 0.00000000 && region.center.latitude==0)
-        NSLog(@"Invalid region!");
-    else
-        [mapViewLocation setRegion:region animated:YES];
+//    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+//    region.center.latitude = Latitude;
+//    region.center.longitude = LongitudeValue;
+//    region.span.latitudeDelta = 0.0187f;
+//    region.span.longitudeDelta = 0.0137f;
+//    [mapViewLocation setRegion:region];
+//
+//
+//    if(region.center.longitude == 0.00000000 && region.center.latitude==0)
+//        NSLog(@"Invalid region!");
+//    else
+//        [mapViewLocation setRegion:region animated:YES];
     
     
     
@@ -478,40 +493,79 @@
     static NSString * const kPinAnnotationIdentifier = @"PinIdentifier";
     MKAnnotationView *draggablePinView = [mapViewLocation dequeueReusableAnnotationViewWithIdentifier:kPinAnnotationIdentifier];
     
+    
     if ([annotation isKindOfClass:[Annotation class]]) {
         Annotation *objAnnotation = (Annotation *)annotation;
-        if (objAnnotation.isMyLocation) {
-            
-            if (draggablePinView) {
-                draggablePinView.annotation = annotation;
+        if ( objAnnotation.isMyLocation) {
+            if([draggablePinView isKindOfClass:[DDAnnotationView class]])
+            {
+//                if (draggablePinView) {
+                    draggablePinView.annotation = annotation;
+
+//                }
             }
             else
             {
                 draggablePinView = [DDAnnotationView annotationViewWithAnnotation:annotation reuseIdentifier:kPinAnnotationIdentifier mapView:mapViewLocation];
+                
+                
                 draggablePinView.draggable = YES;
                 
-                if ([draggablePinView isKindOfClass:[DDAnnotationView class]]) {
-                    // draggablePinView is DDAnnotationView on iOS 3.
-                } else {
-                    draggablePinView.draggable = YES;
-                    // draggablePinView instance will be built-in draggable MKPinAnnotationView when running on iOS 4.
-                }
+                
+                
             }
+//            else
+//            {
+            
+//                if ([draggablePinView isKindOfClass:[DDAnnotationView class]]) {
+//                    // draggablePinView is DDAnnotationView on iOS 3.
+//                } else {
+//                    draggablePinView.draggable = YES;
+//                    // draggablePinView instance will be built-in draggable MKPinAnnotationView when running on iOS 4.
+//                }
+//            }
             
         }
         else
         {
-            draggablePinView.enabled = YES;
-            draggablePinView.canShowCallout = NO;
-            draggablePinView.calloutOffset = CGPointMake(0, 0);
-            draggablePinView.image = [UIImage imageNamed:@"mapPin.png"];
-            draggablePinView.annotation = annotation;
-            return draggablePinView;
+            
+            MKPinAnnotationView *annotationPinView =
+            (MKPinAnnotationView *) [mapViewLocation dequeueReusableAnnotationViewWithIdentifier:kPinAnnotationIdentifier];
+            
+
+            
+            if(!annotationPinView)
+            {
+                annotationPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kPinAnnotationIdentifier];
+
+            }
+            annotationPinView.image = [UIImage imageNamed:@"mapPin"];
+            annotationPinView.canShowCallout = NO;
+            annotationPinView.enabled = NO;
+            return annotationPinView;
+            
+//            draggablePinView.enabled = YES;
+//            draggablePinView.canShowCallout = NO;
+//            draggablePinView.calloutOffset = CGPointMake(0, 0);
+//            draggablePinView.image = [UIImage imageNamed:@"mapPin.png"];
+//            draggablePinView.annotation = annotation;
+//            return draggablePinView;
             
         }
     }
     
     return draggablePinView;
+}
+
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+    for (id<MKAnnotation> currentAnnotation in mapView.annotations) {
+        Annotation *objAnnotation = (Annotation *)currentAnnotation;
+        if(objAnnotation.isMyLocation)
+        {
+            [mapView selectAnnotation:currentAnnotation animated:FALSE];
+        }
+    }
 }
 #pragma mark-
 
@@ -525,7 +579,14 @@
                 viewOfCustomAnnotation = (CustomMapAnnotationView *)[[[NSBundle mainBundle] loadNibNamed:@"CustomMapAnnotationView" owner:self options:nil]objectAtIndex:0];
                 viewOfCustomAnnotation.backgroundColor = [UIColor clearColor];
                 CGRect calloutViewFrame = viewOfCustomAnnotation.frame;
-                calloutViewFrame.origin = CGPointMake(-calloutViewFrame.size.width/2 + 7, -calloutViewFrame.size.height);
+                calloutViewFrame.origin = CGPointMake(-calloutViewFrame.size.width/2 + 90, -calloutViewFrame.size.height-4);
+                
+//                calloutViewFrame.origin = CGPointMake(self.view.frame.size.width-calloutViewFrame.size.width/2 + 7, -calloutViewFrame.size.height);
+
+                
+                
+                
+                
                 
                 viewOfCustomAnnotation.frame = calloutViewFrame;
                 
