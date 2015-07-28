@@ -788,7 +788,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JCk-i0-QnH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1865" y="1170"/>
+            <point key="canvasLocation" x="1865" y="1159"/>
         </scene>
         <!--Shopping List View Controller-->
         <scene sceneID="w3B-Z8-AHM">
@@ -3233,8 +3233,19 @@ Please give us your address</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VL5-A2-Umm" customClass="MESegmentedControl">
+                                <rect key="frame" x="16" y="8" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Offers"/>
+                                    <segment title="Broadcast Messages"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="0.058533270399999997" blue="0.063789482760000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="selectionChanged:" destination="uRT-9M-aW1" eventType="valueChanged" id="nk6-ml-pYj"/>
+                                </connections>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="90" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="bqe-wj-H6G">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="411"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -3295,6 +3306,9 @@ Please give us your address</string>
                                                     <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sideArrowGrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="tS4-Yf-0Os">
+                                                    <rect key="frame" x="299" y="38" width="13" height="13"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="pqD-Im-oSv" firstAttribute="leading" secondItem="Hy6-HT-xYi" secondAttribute="leading" constant="83" id="52W-RC-mCr"/>
@@ -3314,6 +3328,7 @@ Please give us your address</string>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="imgBrandLogo" destination="Hy6-HT-xYi" id="naW-E1-Roj"/>
+                                            <outlet property="imgViewArrow" destination="tS4-Yf-0Os" id="z3c-eM-7Fa"/>
                                             <outlet property="lblLine" destination="pzY-mj-hP4" id="Pgl-8w-E12"/>
                                             <outlet property="lblOfferPrice" destination="9fl-JU-uH2" id="p76-Sj-ROd"/>
                                             <outlet property="lblPrice" destination="flO-W9-s90" id="61K-Gg-9tB"/>
@@ -3330,10 +3345,13 @@ Please give us your address</string>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="bqe-wj-H6G" secondAttribute="centerY" id="199-87-pnN"/>
-                            <constraint firstAttribute="centerX" secondItem="bqe-wj-H6G" secondAttribute="centerX" id="2Ow-fc-BdN"/>
-                            <constraint firstItem="bqe-wj-H6G" firstAttribute="width" secondItem="A1c-pQ-aH0" secondAttribute="width" id="7VI-ns-lRr"/>
-                            <constraint firstItem="bqe-wj-H6G" firstAttribute="height" secondItem="A1c-pQ-aH0" secondAttribute="height" id="Smk-nj-SSR"/>
+                            <constraint firstItem="VL5-A2-Umm" firstAttribute="top" secondItem="MKt-Zh-Un3" secondAttribute="bottom" constant="8" id="Mdv-YI-Rz7"/>
+                            <constraint firstItem="VL5-A2-Umm" firstAttribute="leading" secondItem="A1c-pQ-aH0" secondAttribute="leadingMargin" id="cZU-0W-0gE"/>
+                            <constraint firstItem="UHj-ca-j9K" firstAttribute="top" secondItem="bqe-wj-H6G" secondAttribute="bottom" id="cnH-CM-XMa"/>
+                            <constraint firstItem="VL5-A2-Umm" firstAttribute="trailing" secondItem="A1c-pQ-aH0" secondAttribute="trailingMargin" id="fry-U7-JCG"/>
+                            <constraint firstItem="bqe-wj-H6G" firstAttribute="top" secondItem="VL5-A2-Umm" secondAttribute="top" constant="36" id="mVP-9G-SmI"/>
+                            <constraint firstItem="bqe-wj-H6G" firstAttribute="leading" secondItem="A1c-pQ-aH0" secondAttribute="leadingMargin" constant="-16" id="xyZ-xu-8Mu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bqe-wj-H6G" secondAttribute="trailing" constant="-16" id="z7t-Ca-4cp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5CG-be-42D"/>
@@ -3343,7 +3361,7 @@ Please give us your address</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFb-eR-QRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2316" y="4169"/>
+            <point key="canvasLocation" x="2185" y="4162"/>
         </scene>
         <!--Item-->
         <scene sceneID="HJN-Ww-XI7">

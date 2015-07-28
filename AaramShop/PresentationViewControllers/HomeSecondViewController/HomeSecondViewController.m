@@ -409,38 +409,53 @@
     [backBtn setImage:imgBack forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(btnBackClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    
-    NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
+
+	UIImage *imgFav = [UIImage imageNamed:@"homeDetailTabStarIcon.png"];
+
+	UIButton *btnFav = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnFav.bounds = CGRectMake( -10, 0, 20, 20);
+	
+	[btnFav setImage:imgFav forState:UIControlStateNormal];
+	[btnFav addTarget:self action:@selector(btnFavClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnFav = [[UIBarButtonItem alloc] initWithCustomView:btnFav];
+
+	
+    NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack,barBtnFav, nil];
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
     
     UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
     
     UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
     
-    UIImage *imgFav = [UIImage imageNamed:@"homeDetailTabStarIcon.png"];
+
+	UIImage *imgBroadcast = [UIImage imageNamed:@"homeDetailTabStarIcon.png"];
+
 
     UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnCart.bounds = CGRectMake( -10, 0, 30, 30);
+    btnCart.bounds = CGRectMake( -10, 0, 20, 20);
     
     [btnCart setImage:imgCart forState:UIControlStateNormal];
     [btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
     
-    UIButton *btnFav = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnFav.bounds = CGRectMake( -10, 0, 30, 30);
-    
-    [btnFav setImage:imgFav forState:UIControlStateNormal];
-    [btnFav addTarget:self action:@selector(btnFavClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barBtnFav = [[UIBarButtonItem alloc] initWithCustomView:btnFav];
 
     UIButton *btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnSearch.bounds = CGRectMake( -10, 0, 30, 30);
+    btnSearch.bounds = CGRectMake( -10, 0, 20, 20);
     
     [btnSearch setImage:imgSearch forState:UIControlStateNormal];
     [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
-    
-    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnFav, nil];
+	
+	
+	UIButton *btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnBroadcast.bounds = CGRectMake( -10, 0, 20, 20);
+	
+	[btnBroadcast setImage:imgBroadcast forState:UIControlStateNormal];
+	[btnBroadcast addTarget:self action:@selector(btnBroadcastClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnBroadcast = [[UIBarButtonItem alloc] initWithCustomView:btnBroadcast];
+
+	
+    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
     self.navigationItem.rightBarButtonItems = arrBtnsRight;
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
@@ -471,7 +486,10 @@
     [self.navigationController pushViewController:viewC animated:YES];
 }
 
-
+- (void)btnBroadcastClicked
+{
+	
+}
 #pragma mark - TableView Datasource & Delegates
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -770,9 +788,12 @@
     int priceValue = [strTotalPrice intValue];
     priceValue+=[strPrice intValue];
     strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
+	ProductsModel *objProductsModel = nil;
+	objProductsModel = [self getObjectOfProductForIndexPath:inIndexPath];
+
     [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     [tblVwCategory reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-	[AppManager AddOrRemoveFromCart:[arrGetStoreProducts objectAtIndex:inIndexPath.row] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES];
+	[AppManager AddOrRemoveFromCart:objProductsModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES];
 
 }
 -(void)minusValueByPrice:(NSString *)strPrice atIndexPath:(NSIndexPath *)inIndexPath
@@ -780,10 +801,13 @@
     int priceValue = [strTotalPrice intValue];
     priceValue-=[strPrice intValue];
     strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
+	ProductsModel *objProductsModel = nil;
+	objProductsModel = [self getObjectOfProductForIndexPath:inIndexPath];
+
     [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     [tblVwCategory reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
 	
-	[AppManager AddOrRemoveFromCart:[arrGetStoreProducts objectAtIndex:inIndexPath.row] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:NO];
+	[AppManager AddOrRemoveFromCart:objProductsModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:NO];
 
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
