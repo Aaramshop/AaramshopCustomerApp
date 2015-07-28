@@ -216,8 +216,8 @@
 //    [dict setObject:@"77.5060438" forKey:kLongitude];
     
     // sec 132 noida
-    [dict setObject:@"28.5160458" forKey:kLatitude]; // temp
-    [dict setObject:@"77.3735504" forKey:kLongitude]; // temp
+//    [dict setObject:@"28.5160458" forKey:kLatitude]; // temp
+//    [dict setObject:@"77.3735504" forKey:kLongitude]; // temp
 //
 //    [dict setObject:@"26" forKey:kUserId];
     
