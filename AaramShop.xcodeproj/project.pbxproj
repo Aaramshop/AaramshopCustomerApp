@@ -980,6 +980,9 @@
 		6B6098BF1B39647400277D03 /* chatAaramShopIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098BC1B39647400277D03 /* chatAaramShopIcon.png */; };
 		6B6098C01B39647400277D03 /* chatAaramShopIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098BD1B39647400277D03 /* chatAaramShopIcon@2x.png */; };
 		6B6098C11B39647400277D03 /* chatAaramShopIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6098BE1B39647400277D03 /* chatAaramShopIcon@3x.png */; };
+		6B6F2EC41B664AA200B16CD1 /* locationCircleStick.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6F2EC11B664AA200B16CD1 /* locationCircleStick.png */; };
+		6B6F2EC51B664AA200B16CD1 /* locationCircleStick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6F2EC21B664AA200B16CD1 /* locationCircleStick@2x.png */; };
+		6B6F2EC61B664AA200B16CD1 /* locationCircleStick@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6F2EC31B664AA200B16CD1 /* locationCircleStick@3x.png */; };
 		6B809DA41B31755D00E91673 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D841B31755D00E91673 /* MKAnnotationView+WebCache.m */; };
 		6B809DA51B31755D00E91673 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D861B31755D00E91673 /* NSData+ImageContentType.m */; };
 		6B809DA61B31755D00E91673 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B809D881B31755D00E91673 /* SDImageCache.m */; };
@@ -1313,6 +1316,7 @@
 		6BE9A9491B29B31900B960C0 /* homeDeatilsGreyArrowBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE9A9461B29B31900B960C0 /* homeDeatilsGreyArrowBack.png */; };
 		6BE9A94A1B29B31900B960C0 /* homeDeatilsGreyArrowBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE9A9471B29B31900B960C0 /* homeDeatilsGreyArrowBack@2x.png */; };
 		6BE9A94B1B29B31900B960C0 /* homeDeatilsGreyArrowBack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE9A9481B29B31900B960C0 /* homeDeatilsGreyArrowBack@3x.png */; };
+		6BEABEE01B67AC6100398164 /* BroadcastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABEDF1B67AC6100398164 /* BroadcastViewController.m */; };
 		6BEB72D11B2B070F006BFB55 /* searchBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEB72CE1B2B070F006BFB55 /* searchBox.png */; };
 		6BEB72D21B2B070F006BFB55 /* searchBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEB72CF1B2B070F006BFB55 /* searchBox@2x.png */; };
 		6BEB72D31B2B070F006BFB55 /* searchBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEB72D01B2B070F006BFB55 /* searchBox@3x.png */; };
@@ -2636,6 +2640,9 @@
 		6B6098BC1B39647400277D03 /* chatAaramShopIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatAaramShopIcon.png; sourceTree = "<group>"; };
 		6B6098BD1B39647400277D03 /* chatAaramShopIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatAaramShopIcon@2x.png"; sourceTree = "<group>"; };
 		6B6098BE1B39647400277D03 /* chatAaramShopIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatAaramShopIcon@3x.png"; sourceTree = "<group>"; };
+		6B6F2EC11B664AA200B16CD1 /* locationCircleStick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationCircleStick.png; sourceTree = "<group>"; };
+		6B6F2EC21B664AA200B16CD1 /* locationCircleStick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationCircleStick@2x.png"; sourceTree = "<group>"; };
+		6B6F2EC31B664AA200B16CD1 /* locationCircleStick@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationCircleStick@3x.png"; sourceTree = "<group>"; };
 		6B809D831B31755D00E91673 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		6B809D841B31755D00E91673 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		6B809D851B31755D00E91673 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -3057,6 +3064,8 @@
 		6BE9A9461B29B31900B960C0 /* homeDeatilsGreyArrowBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeDeatilsGreyArrowBack.png; sourceTree = "<group>"; };
 		6BE9A9471B29B31900B960C0 /* homeDeatilsGreyArrowBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDeatilsGreyArrowBack@2x.png"; sourceTree = "<group>"; };
 		6BE9A9481B29B31900B960C0 /* homeDeatilsGreyArrowBack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDeatilsGreyArrowBack@3x.png"; sourceTree = "<group>"; };
+		6BEABEDE1B67AC6100398164 /* BroadcastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastViewController.h; sourceTree = "<group>"; };
+		6BEABEDF1B67AC6100398164 /* BroadcastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastViewController.m; sourceTree = "<group>"; };
 		6BEB72CE1B2B070F006BFB55 /* searchBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBox.png; sourceTree = "<group>"; };
 		6BEB72CF1B2B070F006BFB55 /* searchBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBox@2x.png"; sourceTree = "<group>"; };
 		6BEB72D01B2B070F006BFB55 /* searchBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBox@3x.png"; sourceTree = "<group>"; };
@@ -5226,6 +5235,9 @@
 			isa = PBXGroup;
 			children = (
 				36C79B791B579BD50020D77F /* preferencesLocationAddCircle.png */,
+				6B6F2EC11B664AA200B16CD1 /* locationCircleStick.png */,
+				6B6F2EC21B664AA200B16CD1 /* locationCircleStick@2x.png */,
+				6B6F2EC31B664AA200B16CD1 /* locationCircleStick@3x.png */,
 				36C79B7A1B579BD50020D77F /* preferencesLocationAddCircle@2x.png */,
 				36C79B7B1B579BD50020D77F /* preferencesLocationAddCircle@3x.png */,
 			);
@@ -5536,6 +5548,7 @@
 		6B12DC9D1AF2543A00245209 /* PresentationViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6BEABEDD1B67AC4C00398164 /* BroadcastViewController */,
 				6BD9CB5B1B6252F200D8D012 /* RetailerShoppingList */,
 				6BC503401B62800B0089656E /* SearchStoresViewController */,
 				36A69EC31B57C4FA0058EB88 /* WalletViewController */,
@@ -6819,6 +6832,15 @@
 			path = LocationScreenImages;
 			sourceTree = "<group>";
 		};
+		6BEABEDD1B67AC4C00398164 /* BroadcastViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6BEABEDE1B67AC6100398164 /* BroadcastViewController.h */,
+				6BEABEDF1B67AC6100398164 /* BroadcastViewController.m */,
+			);
+			path = BroadcastViewController;
+			sourceTree = "<group>";
+		};
 		6BF82D741B5A1B5B003828BD /* ShoppingListDetailNewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -7157,6 +7179,7 @@
 				6BE4C90B1B034CDE00EF1EDB /* mapPin@2x.png in Resources */,
 				275F7DDA1B05BD390049758B /* menuIcon@3x.png in Resources */,
 				368209871B1C46FA002AA93F /* Iraq.png in Resources */,
+				6B6F2EC51B664AA200B16CD1 /* locationCircleStick@2x.png in Resources */,
 				368209091B1C46FA002AA93F /* afghanistan.png in Resources */,
 				36820A0E1B1C46FA002AA93F /* sri lanka.png in Resources */,
 				3682099C1B1C46FA002AA93F /* Korea, South.png in Resources */,
@@ -7621,6 +7644,7 @@
 				368209131B1C46FA002AA93F /* antarctica.png in Resources */,
 				368209121B1C46FA002AA93F /* anguilla.png in Resources */,
 				6B8EB2561B23087400402CFC /* shoppingListCoverImage@2x.png in Resources */,
+				6B6F2EC61B664AA200B16CD1 /* locationCircleStick@3x.png in Resources */,
 				368209791B1C46FA002AA93F /* guernsey.png in Resources */,
 				368209941B1C46FA002AA93F /* karakalpakstan.png in Resources */,
 				274A5DC81B05C88B009112B5 /* chatRecordBtnActive.png in Resources */,
@@ -7907,6 +7931,7 @@
 				368209821B1C46FA002AA93F /* iceland.png in Resources */,
 				368209E11B1C46FA002AA93F /* Puerto Rico.png in Resources */,
 				368AFED01B38271300417836 /* appyCouponCodeBox@3x.png in Resources */,
+				6B6F2EC41B664AA200B16CD1 /* locationCircleStick.png in Resources */,
 				274F88921B0D0DC700F85743 /* searchIcon.png in Resources */,
 				36D8C51D1B3AF95F00C255EE /* chatScreenMyListLogo@3x.png in Resources */,
 				6BD2D2E31B28408800EC6E54 /* homeRecomondedStoreCallIcon@2x.png in Resources */,
@@ -8048,6 +8073,7 @@
 				274A5C881B05C4AA009112B5 /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				274A5C671B05C4AA009112B5 /* UINavigationController+SH.m in Sources */,
 				274A5CAB1B05C4AA009112B5 /* XMPPIQ+JabberRPCResonse.m in Sources */,
+				6BEABEE01B67AC6100398164 /* BroadcastViewController.m in Sources */,
 				274A5C731B05C4AA009112B5 /* FSRequester.m in Sources */,
 				274A5CE21B05C4AA009112B5 /* XMPPvCardAvatarModule.m in Sources */,
 				6BE4734D1B3AD0DF00C09AFD /* CustomBadge.m in Sources */,

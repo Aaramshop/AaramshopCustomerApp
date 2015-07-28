@@ -346,3 +346,9 @@
 
 //=========== Get BroadCast =============
 #define kURLGetBroadCast										@"getBroadCast"
+
+
+//=========== SEARCH STORES =================================
+
+#define kURLSearchStores                                @"searchStores"
+

@@ -11,7 +11,7 @@
 #import "SearchStoresViewController.h"
 
 
-@interface HomeStoreViewController : UIViewController<AaramShop_ConnectionManager_Delegate,SearchViewControllerDelegate>
+@interface HomeStoreViewController : UIViewController<AaramShop_ConnectionManager_Delegate,SearchStoresViewControllerDelegate>
 {
     
     __weak IBOutlet UITableView *tblSuggestedStores;
@@ -23,7 +23,7 @@
     __weak IBOutlet UIButton *btnStartShopping;
     NSMutableArray *arrSuggestedStores;
     
-    SearchStoresViewController *searchViewController;
+    SearchStoresViewController *searchStoresViewController;
     AppDelegate *appDel;
     
 }

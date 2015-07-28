@@ -98,6 +98,9 @@
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     
+    
+    [dict setObject:@"0" forKey:kPage_no];
+    
 //    [dict setObject:@"26" forKey:@"userId"]; //temp
     
 //    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
@@ -413,44 +416,45 @@
 
 -(IBAction)actionDoSearch:(id)sender
 {
-    
+    [self doSearch];
 }
 
 -(void)doSearch
 {
-    searchViewController = (SearchStoresViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchStoresViewController" ];
-    [searchViewController setDelegate:self];
+    searchStoresViewController = (SearchStoresViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchStoresViewController" ];
+    [searchStoresViewController setDelegate:self];
     
-    [appDel.window addSubview:searchViewController.view];
+    [appDel.window addSubview:searchStoresViewController.view];
     
 }
 
 -(void)removeSearchViewFromParentView{
-    [searchViewController.view removeFromSuperview];
+    [searchStoresViewController.view removeFromSuperview];
 }
 
 
--(void)openSearchedUserPrroductFor:(ProductsModel *)product
+
+-(void)openSearchedStores:(StoreModel *)store
 {
-    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",product.product_sku_id];
     
-    NSArray *aFilteredObjects = [arrSuggestedStores filteredArrayUsingPredicate: aPredicate];
+    txtStoreId.text = store.store_code;
+
     
-    if (aFilteredObjects && aFilteredObjects.count > 0) {
-        //already exist
-        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-    }
-    else{
-        //add new product
-        
-        product.quantity = @"1";
-        
-        [arrSuggestedStores insertObject:product atIndex:0];
-        
-    }
-    
-//    [tblView reloadData];
-    
+//    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"store_id like[cd]  %@",store.store_id];
+//    
+//    NSArray *aFilteredObjects = [arrSuggestedStores filteredArrayUsingPredicate: aPredicate];
+//    
+//    if (aFilteredObjects && aFilteredObjects.count > 0) {
+//        //already exist
+//        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+//    }
+//    else{
+//
+//        // update store name
+//        txtStoreId.text = store.store_code;
+//        
+//    }
+
 }
 
 
