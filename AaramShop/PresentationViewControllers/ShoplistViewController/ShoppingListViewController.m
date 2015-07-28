@@ -316,7 +316,9 @@
             
             if ([[responseObject objectForKey:kstatus] intValue] == 1)
             {
+                totalNoOfPages = [[responseObject valueForKey:@"total_pages"] intValue];
                 [self parseResponseData:responseObject];
+
             }
             else
             {
@@ -360,7 +362,7 @@
 
 -(void)calledPullUp
 {
-    if(totalNoOfPages>pageno)
+    if(totalNoOfPages>pageno + 1)
     {
         pageno++;
         [self getShoppingList];

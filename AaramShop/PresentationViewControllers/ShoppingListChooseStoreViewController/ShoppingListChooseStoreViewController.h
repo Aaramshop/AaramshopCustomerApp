@@ -27,7 +27,7 @@ typedef void (^ChooseStoreCompletion) (ShoppingListChooseStoreModel *);
     UIRefreshControl *refreshStoreList;
     BOOL isLoading;
     
-    ShoppingListChooseStoreModel *shoppingListChooseStoreModel;
+//    ShoppingListChooseStoreModel *shoppingListChooseStoreModel;
 
     ShoppingListChooseStoreModel *selectedStoreModel;
 

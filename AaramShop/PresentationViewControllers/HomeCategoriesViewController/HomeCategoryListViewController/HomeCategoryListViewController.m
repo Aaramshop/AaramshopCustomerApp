@@ -578,10 +578,17 @@
 -(void)parseStoreListData:(NSMutableDictionary *)responseObject
 {
     
-    if (!tempStoreModel)
+    if (pageno == 0)
     {
-        tempStoreModel = [[StoreModel alloc]init];
+        [arrAllStores removeAllObjects];
+        [arrRecommendedStores removeAllObjects];
     }
+
+    
+//    if (!tempStoreModel)
+//    {
+        tempStoreModel = [[StoreModel alloc]init];
+//    }
 
     NSArray *arrTempRecomendedStores = [responseObject objectForKey:@"recommended_stores"];
     NSArray *arrTempHomeStores = [responseObject objectForKey:@"home_stores"];
@@ -659,24 +666,18 @@
     }
     
     
-    if (pageno == 0)
-    {
-        [arrAllStores removeAllObjects];
-        [arrRecommendedStores removeAllObjects];
-    }
-    
-    
-    if (tempStoreModel)
-    {
+//    if (tempStoreModel)
+//    {
         [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
         [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
         [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
         
         [arrRecommendedStores addObjectsFromArray:tempStoreModel.arrRecommendedStores];
-    }
+//    }
     
     
     [tblStores reloadData];
+    [tblRecommendedStore  reloadData];
 }
 
 
@@ -707,7 +708,7 @@
 
 -(void)calledPullUp
 {
-    if(_totalNoOfPages>pageno)
+    if(_totalNoOfPages > pageno+1)
     {
         pageno++;
         [self callWebserviceToGetStoresList];

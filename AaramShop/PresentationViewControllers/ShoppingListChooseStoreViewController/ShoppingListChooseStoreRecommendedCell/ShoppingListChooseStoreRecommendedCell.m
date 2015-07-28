@@ -26,7 +26,9 @@
     imgRating5.image = imgStarIcon;
 
     
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+//    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.selectionStyle = UITableViewCellSelectionStyleGray;
+
     
 }
 
