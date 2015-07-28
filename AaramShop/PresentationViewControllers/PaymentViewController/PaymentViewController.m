@@ -26,29 +26,49 @@ static NSString *strCollectionItems = @"collectionItems";
     NSMutableArray *arrSelectedLastMinPick;
     NSString *strSelectAddress;
     NSString *strSelectedUserAddress_Id;
+	NSString *total_discount;
+	NSString *coupon_code;
+	BOOL isCouponValid;
 }
 @end
 
 @implementation PaymentViewController
 @synthesize strStore_Id,strTotalPrice,arrSelectedProducts,ePickerType;
+ - (void)initializeObjects
+{
+	coupon_code = @"";
+	isCouponValid = NO;
+	total_discount = 0;
+	appDel = APP_DELEGATE;
+	isPickerOpen = NO;
+	ePickerType = enPickerSlots;
+	strDeliveryDate = @"Immediate";
+	strSelectSlot = @"Select Slot";
+	strSelectAddress = @"Select Address";
+	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
+	aaramShop_ConnectionManager.delegate = self;
+	arrAddressData = [[NSMutableArray alloc] init];
+	arrLastMinPick = [[NSMutableArray alloc]init];
+	arrDeliverySlot = [[NSMutableArray alloc]init];
+	arrSelectedLastMinPick = [[NSMutableArray alloc]init];
+	tblView.sectionFooterHeight= 0.0;
+	tblView.sectionHeaderHeight = 0.0;
+	self.automaticallyAdjustsScrollViewInsets = NO;
+	
+	
+}
+- (void)getTotalAmount
+{
+	
+}
+- (void)getTotalDiscount
+{
+	
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    appDel = APP_DELEGATE;
+	[self initializeObjects];
     [self setNavigationBar];
-    isPickerOpen = NO;
-    ePickerType = enPickerSlots;
-    strDeliveryDate = @"Immediate";
-    strSelectSlot = @"Select Slot";
-    strSelectAddress = @"Select Address";
-    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
-    aaramShop_ConnectionManager.delegate = self;
-    arrAddressData = [[NSMutableArray alloc] init];
-    arrLastMinPick = [[NSMutableArray alloc]init];
-    arrDeliverySlot = [[NSMutableArray alloc]init];
-    arrSelectedLastMinPick = [[NSMutableArray alloc]init];
-    tblView.sectionFooterHeight= 0.0;
-    tblView.sectionHeaderHeight = 0.0;
-    self.automaticallyAdjustsScrollViewInsets = NO;
     [self createDataToGetPaymentPageData];
     [self designDatePicker];
     [self designToolBar];
@@ -108,9 +128,13 @@ static NSString *strCollectionItems = @"collectionItems";
     [dict setObject:strDeliveryDate forKey:@"delivery_date"];
     [dict setObject:btnSlot.titleLabel.text forKey:@"delivery_slot"];
     [dict setObject:strTotalPrice forKey:@"total_amount"];
-    [dict setObject:@"0" forKey:@"total_discount"];
-    [dict setObject:@"0.0.0.0" forKey:@"ip_address"];
-    [dict setObject:@"0" forKey:@"coupon_code"];
+    [dict setObject:total_discount forKey:@"total_discount"];
+    [dict setObject:@"0" forKey:@"ip_address"];
+	if(isCouponValid == YES)
+	{
+		[dict setObject:coupon_code forKey:@"coupon_code"];
+	}
+	
     [self callWebServiceForCheckout:dict];
 }
 -(void)callWebServiceForCheckout:(NSMutableDictionary *)aDict

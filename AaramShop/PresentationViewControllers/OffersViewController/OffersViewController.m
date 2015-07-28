@@ -6,10 +6,11 @@
 //
 
 #import "OffersViewController.h"
-
+//#import "ComboDetailViewController.h"
 @interface OffersViewController ()
 {
 	AppDelegate *appDelegate;
+	NSInteger segmentIndex;
 }
 @end
 
@@ -20,6 +21,9 @@
 	// Do any additional setup after loading the view.
 	totalNoOfPages = 0;
 	pageno = 0;
+	broadcastPageNo = 0;
+	broadcastTotalNoOfPages = 0;
+	segmentIndex = 0;
 	isLoading = NO;
 	appDelegate = APP_DELEGATE;
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
@@ -30,6 +34,7 @@
 	aaramShop_ConnectionManager.delegate = self;
 	
 	arrOffers = [[NSMutableArray alloc] init];
+	arrBroadcast = [[NSMutableArray alloc]init];
 	
 //	[arrOffers addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"599",@"mrp",@"499",@"offer",@"43-43-2345",@"date", nil]];
 //	[arrOffers addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"599",@"mrp",@"499",@"offer",@"43-43-2345",@"date", nil]];
@@ -66,7 +71,14 @@
 	titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
 	titleView.textAlignment = NSTextAlignmentCenter;
 	titleView.textColor = [UIColor whiteColor];
-	titleView.text = @"Offers";
+	if(appDelegate.objStoreModel == nil)
+	{
+		titleView.text = @"Offers";
+	}
+	else
+	{
+		titleView.text = appDelegate.objStoreModel.store_name;
+	}
 	titleView.adjustsFontSizeToFitWidth = YES;
 	[_headerTitleSubtitleView addSubview:titleView];
 	self.navigationItem.titleView = _headerTitleSubtitleView;
@@ -132,7 +144,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return arrOffers.count;
+	if(segmentIndex == 0)
+	{
+		return arrOffers.count;
+	}
+	else
+	{
+		return arrBroadcast.count;
+	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -149,14 +168,41 @@
 		cell = [[OffersTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 	}
 	
-	CMOffers *offers = [arrOffers objectAtIndex:indexPath.row];
+	CMOffers *offers = nil;
+	if(segmentIndex ==0)
+	{
+		offers = [arrOffers objectAtIndex:indexPath.row];
+	}
+	else
+	{
+		offers = [arrBroadcast objectAtIndex:indexPath.row];
+	}
 	cell.indexPath=indexPath;
 	[cell updateCellWithData: offers];
 	
 	return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	CMOffers *offers = nil;
+	if(segmentIndex ==0)
+	{
+		offers = [arrOffers objectAtIndex:indexPath.row];
+	}
+	else
+	{
+		offers = [arrBroadcast objectAtIndex:indexPath.row];
+	}
+	if([offers.offerType isEqualToString:@"4"])
+	{
+//		ComboDetailViewController *comboDetail = (ComboDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"comboDetailController"];
+//		comboDetail.cmMyOffers = offers;
+//		[self.navigationController pushViewController:comboDetail animated:YES];
+	}
 
+}
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
 	
 	if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -251,8 +297,33 @@
 
 	[self performSelector:@selector(callWebServiceToOffer:) withObject:dict afterDelay:0.1];
 }
-
-
+- (void)getBroadcastList
+{
+	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
+	[dict setObject:[NSString stringWithFormat:@"%d",broadcastPageNo] forKey:kPage_no];
+	if(appDelegate.objStoreModel == nil)
+	{
+		[dict setObject:@"0" forKey:kStore_id];
+	}
+	else
+	{
+		[dict setObject:appDelegate.objStoreModel.store_id forKey:kStore_id];
+	}
+	
+	[self performSelector:@selector(callWebServiceToGetBroadcast:) withObject:dict afterDelay:0.1];
+}
+- (void)callWebServiceToGetBroadcast:(NSMutableDictionary *)aDict
+{
+	if (![Utils isInternetAvailable])
+	{
+		[AppManager stopStatusbarActivityIndicator];
+		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return;
+	}
+	[aaramShop_ConnectionManager getDataForFunction:kURLGetBroadCast withInput:aDict withCurrentTask:TASK_TO_GET_BROADCAST andDelegate:self ];
+}
 - (void)callWebServiceToOffer:(NSMutableDictionary *)aDict
 {
 	if (![Utils isInternetAvailable])
@@ -268,6 +339,7 @@
 - (void)responseReceived:(id)responseObject
 {
 	isLoading = NO;
+	tblView.hidden = NO;
 	[AppManager stopStatusbarActivityIndicator];
 	switch (aaramShop_ConnectionManager.currentTask) {
 		case TASK_TO_GET_OFFERS:
@@ -284,6 +356,19 @@
 				}
 				 [tblView reloadData];
 			}
+		}
+			break;
+		case TASK_TO_GET_BROADCAST:
+		{
+			if(pageno==0)
+			{
+				[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:@"broadcast_data"]]];
+			}
+			else
+			{
+				[self appendDataForPullUp:[self parseData:[responseObject objectForKey:@"broadcast_data"]]];
+			}
+			[tblView reloadData];
 		}
 			break;
 			
@@ -303,11 +388,23 @@
 
 #pragma mark - Parsing Data
 -(void)createDataForFirstTimeGet:(NSMutableArray*)array{
-	[arrOffers removeAllObjects];
-	for(int i = 0 ; i < [array count];i++)
+	if(segmentIndex == 0)
 	{
-		CMOffers *offers = [array objectAtIndex:i];
-		[arrOffers addObject:offers];
+		[arrOffers removeAllObjects];
+		for(int i = 0 ; i < [array count];i++)
+		{
+			CMOffers *offers = [array objectAtIndex:i];
+			[arrOffers addObject:offers];
+		}
+	}
+	else
+	{
+		[arrBroadcast removeAllObjects];
+		for(int i = 0 ; i < [array count];i++)
+		{
+			CMOffers *offers = [array objectAtIndex:i];
+			[arrBroadcast addObject:offers];
+		}
 	}
 }
 -(void)appendDataForPullDown:(NSMutableArray*)array{
@@ -327,10 +424,13 @@
 	}
 }
 -(void)appendDataForPullUp:(NSMutableArray*)array{
-	for(int i = 0 ; i < [array count];i++)
+	if(segmentIndex ==0)
 	{
-		CMOffers *offers = [array objectAtIndex:i];
-		[arrOffers addObject:offers];
+		for(int i = 0 ; i < [array count];i++)
+		{
+			CMOffers *offers = [array objectAtIndex:i];
+			[arrOffers addObject:offers];
+		}
 	}
 }
 - (NSMutableArray *)parseData:(id)data
@@ -345,27 +445,34 @@
 			NSDictionary *dict = [data objectAtIndex:i];
 			CMOffers *offers  = [[CMOffers alloc] init];
 			
-			offers.offerType					= [dict objectForKey:kOfferType];
-			offers.product_id					= [dict objectForKey:kProduct_id];
-			offers.product_sku_id			= [dict objectForKey:kProduct_sku_id];
-			offers.product_image			= [dict objectForKey:kProduct_image];
-			offers.product_actual_price	= [dict objectForKey:kProduct_actual_price];
-			offers.offer_price					= [dict objectForKey:kOffer_price];
-			offers.isBroadcast					= [NSString stringWithFormat:@"%@",[dict objectForKey:kIsBroadcast]];
-			offers.product_name				= [dict objectForKey:kProduct_name];
-			offers.offerTitle					= [dict objectForKey:kOfferTitle];
-			offers.offer_id						= [dict objectForKey:kOffer_id];
-			offers.overall_purchase_value= [dict objectForKey:kOverall_purchase_value];
-			offers.discount_percentage	= [dict objectForKey:kDiscount_percentage];
-			offers.free_item					= [dict objectForKey:kFree_item];
-			offers.combo_mrp				= [dict objectForKey:kCombo_mrp];
-			offers.combo_offer_price		= [dict objectForKey:kCombo_offer_price];
-			offers.offerDetail					= [dict objectForKey:kOfferDetail];
-			offers.offerDescription			= [dict objectForKey:kOfferDescription];
-			offers.offerImage					= [dict objectForKey:kOfferImage];
-			offers.start_date					= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kStart_date] doubleValue]]];
-			offers.end_date						= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kEnd_date] doubleValue]]];
-			totalNoOfPages						=      [[dict objectForKey:kTotal_page] intValue];
+			offers.offerType							= [dict objectForKey:kOfferType];
+			offers.product_id						= [dict objectForKey:kProduct_id];
+			offers.product_sku_id					= [dict objectForKey:kProduct_sku_id];
+			offers.product_image					=	[dict objectForKey:kProduct_image];
+			offers.product_actual_price		= [dict objectForKey:kProduct_actual_price];
+			offers.offer_price						= [dict objectForKey:kOffer_price];
+			offers.isBroadcast						= [NSString stringWithFormat:@"%@",[dict objectForKey:kIsBroadcast]];
+			offers.product_name					= [dict objectForKey:kProduct_name];
+			offers.offerTitle							= [dict objectForKey:kOfferTitle];
+			offers.offer_id								= [dict objectForKey:kOffer_id];
+			offers.overall_purchase_value	= [dict objectForKey:kOverall_purchase_value];
+			offers.discount_percentage			= [dict objectForKey:kDiscount_percentage];
+			offers.free_item							= [dict objectForKey:kFree_item];
+			offers.combo_mrp						= [dict objectForKey:kCombo_mrp];
+			offers.combo_offer_price			= [dict objectForKey:kCombo_offer_price];
+			offers.offerDetail							= [dict objectForKey:kOfferDetail];
+			offers.offerDescription				= [dict objectForKey:kOfferDescription];
+			offers.offerImage							= [dict objectForKey:kOfferImage];
+			offers.start_date							= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kStart_date] doubleValue]]];
+			offers.end_date							= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kEnd_date] doubleValue]]];
+			if(segmentIndex == 0)
+			{
+				totalNoOfPages						=	[[dict objectForKey:kTotal_page] intValue];
+			}
+			else
+			{
+				broadcastPageNo						=	[[dict objectForKey:kTotal_page] intValue];
+			}
 			[array addObject:offers];
 		}
 	}
@@ -373,5 +480,34 @@
 
 }
 
+
+- (IBAction)selectionChanged:(id)sender {
+	UISegmentedControl *segCtrl = (UISegmentedControl *)sender;
+	segmentIndex = segCtrl.selectedSegmentIndex;
+	if(segmentIndex ==1)
+	{
+		if([arrBroadcast count]==0)
+		{
+			[tblView setHidden:YES];
+			[self getBroadcastList];
+		}
+		else
+		{
+			[tblView reloadData];
+		}
+	}
+	else
+	{
+		if([arrOffers count]==0)
+		{
+			[tblView setHidden:YES];
+			[self createDateToGetOffer];
+		}
+		else
+		{
+			[tblView reloadData];
+		}
+	}
+}
 
 @end

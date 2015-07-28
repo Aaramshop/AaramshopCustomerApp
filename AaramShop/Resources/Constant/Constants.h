@@ -281,6 +281,7 @@
 #define kIsBroadcast											@"isBroadcast"
 #define kOfferTitle											@"offerTitle"
 #define kOffer_id												@"offer_id"
+#define kOfferId													@"offerId"
 #define kOverall_purchase_value						@"overall_purchase_value"
 #define kDiscount_percentage							@"discount_percentage"
 #define kFree_item											@"free_item"
@@ -342,3 +343,6 @@
 
 //=========== Cart =================================
 #define kCartData												@"cart"
+
+//=========== Get BroadCast =============
+#define kURLGetBroadCast										@"getBroadCast"

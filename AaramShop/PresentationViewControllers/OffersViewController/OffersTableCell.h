@@ -17,6 +17,7 @@
 	__weak IBOutlet UILabel *lblPrice;
 	__weak IBOutlet UILabel *lblbrandName;
 	__weak IBOutlet UILabel *lblLine;
+	__weak IBOutlet UIImageView *imgViewArrow;
 }
 @property (nonatomic, strong) NSIndexPath *indexPath;
 - (void)updateCellWithData: (CMOffers *)offers;

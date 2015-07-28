@@ -73,7 +73,15 @@
     titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
     titleView.textAlignment = NSTextAlignmentCenter;
     titleView.textColor = [UIColor whiteColor];
-    titleView.text = @"Order History";
+	if(appDelegate.objStoreModel == nil)
+	{
+		titleView.text = @"Order History";
+	}
+	else
+	{
+		titleView.text = appDelegate.objStoreModel.store_name;
+	}
+
     titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
     self.navigationItem.titleView = _headerTitleSubtitleView;
