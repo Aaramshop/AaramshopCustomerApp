@@ -342,3 +342,10 @@
 
 //=========== Cart =================================
 #define kCartData												@"cart"
+
+
+
+//=========== SEARCH STORES =================================
+
+#define kURLSearchStores                                @"searchStores"
+

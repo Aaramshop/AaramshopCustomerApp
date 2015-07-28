@@ -127,6 +127,12 @@
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
 
+    [dict setObject:@"0" forKey:kPage_no];
+    
+    
+    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
+    [dict setObject:@"77.3769436" forKey:kLongitude]; //temp
+    
     
     [self callWebserviceToGetHomeStoreBanner:dict];
 }
@@ -332,10 +338,15 @@
     if ([searchText length] >=3 ) {
         
         pageNumber = 0;
+        [self callWebserviceToSearchText:searchText];
         
-//        [self callWebServiceFor:kProducts withSearchString:searchText];
-        
-    }else{
+    }
+    else if ([searchText length] ==0 )
+    {
+        pageNumber = 0;
+        [self createDataToGetStoresList];
+    }
+    else{
         boolActivityIndicator = NO;
         [tblViewSearch setSectionFooterHeight:0.01f];
         [tblViewSearch setSectionHeaderHeight:0.01f];
@@ -343,6 +354,40 @@
     }
     
 }
+
+
+-(void)callWebserviceToSearchText:(NSString *)searchText
+{
+    
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
+    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+    
+    [dict setObject:[NSString stringWithFormat:@"%ld",pageNumber] forKey:kPage_no];
+    
+    [dict setObject:searchText forKey:@"search_term"];
+    
+    
+    
+    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
+    [dict setObject:@"77.3769436" forKey:kLongitude]; //temp
+
+    
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+
+    
+    [aaramShop_ConnectionManager getDataForFunction:kURLSearchStores withInput:dict withCurrentTask:TASK_TO_SEARCH_HOME_STORE andDelegate:self ];
+
+}
+
 
 
 -(void)callWebserviceToGetHomeStoreBanner:(NSMutableDictionary *)aDict
@@ -356,11 +401,7 @@
         return;
     }
  
-        [aDict setObject:@"28.5136781" forKey:kLatitude]; //temp
-        [aDict setObject:@"77.3769436" forKey:kLongitude]; //temp
 
-    
-    
     [aaramShop_ConnectionManager getDataForFunction:kGetHomeStoreBannerURL withInput:aDict withCurrentTask:TASK_TO_GET_HOME_STORE_BANNER andDelegate:self ];
 }
 
@@ -371,6 +412,21 @@
         
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
             
+//            totalNoOfPages = [[responseObject valueForKey:@"total_page"] intValue];
+            
+            [self parseHomeStoreResponseData:responseObject];
+        }
+        else
+        {
+            //  [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        }
+    }
+    else if (aaramShop_ConnectionManager.currentTask == TASK_TO_SEARCH_HOME_STORE) {
+        
+        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
+            
+//            totalNoOfPages = [[responseObject valueForKey:@"total_page"] intValue];
+
             [self parseHomeStoreResponseData:responseObject];
         }
         else
@@ -430,8 +486,8 @@
 {
     if(totalNoOfPages>pageNumber)
     {
-//        pageNumber++;
-//        [self callWebServiceFor:kProducts withSearchString:searchBarMain.text];
+        pageNumber++;
+        [self callWebserviceToSearchText:searchBarMain.text];
     }
     else
     {

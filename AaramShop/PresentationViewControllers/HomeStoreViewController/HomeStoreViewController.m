@@ -98,6 +98,9 @@
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     
+    
+    [dict setObject:@"0" forKey:kPage_no];
+    
 //    [dict setObject:@"26" forKey:@"userId"]; //temp
     
 //    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
@@ -433,20 +436,24 @@
 
 -(void)openSearchedStores:(StoreModel *)store
 {
-    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"store_id like[cd]  %@",store.store_id];
     
-    NSArray *aFilteredObjects = [arrSuggestedStores filteredArrayUsingPredicate: aPredicate];
-    
-    if (aFilteredObjects && aFilteredObjects.count > 0) {
-        //already exist
-        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-    }
-    else{
+    txtStoreId.text = store.store_code;
 
-        // update store name
-        txtStoreId.text = store.store_code;
-        
-    }
+    
+//    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"store_id like[cd]  %@",store.store_id];
+//    
+//    NSArray *aFilteredObjects = [arrSuggestedStores filteredArrayUsingPredicate: aPredicate];
+//    
+//    if (aFilteredObjects && aFilteredObjects.count > 0) {
+//        //already exist
+//        [Utils showAlertView:kAlertTitle message:@"This Product is already being added " delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+//    }
+//    else{
+//
+//        // update store name
+//        txtStoreId.text = store.store_code;
+//        
+//    }
 
 }
 
