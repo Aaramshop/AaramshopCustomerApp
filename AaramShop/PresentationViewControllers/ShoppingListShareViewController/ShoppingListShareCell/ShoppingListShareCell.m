@@ -29,6 +29,11 @@
 
 -(void)updateCell
 {
+    
+    //    [imgUser sd_setImageWithURL:[NSURL URLWithString:[user valueForKey:@"profilePic"]] placeholderImage:[UIImage imageNamed:@"shoppingListDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    //        //
+    //    }];
+
     imgUser.image = [UIImage imageNamed:@"shoppingListDefaultImage"];
     lblUserName.text = @"Username";
 }

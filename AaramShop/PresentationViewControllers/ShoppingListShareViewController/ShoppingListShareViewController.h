@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShoppingListShareViewController : UIViewController
+@interface ShoppingListShareViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
 	IBOutlet UITableView *tblView;
     
     NSMutableArray *arrShareList;
+    
+    UIRefreshControl *refreshStoreList;
+    BOOL isLoading;
+
 }
+
+@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+
 @end
+
