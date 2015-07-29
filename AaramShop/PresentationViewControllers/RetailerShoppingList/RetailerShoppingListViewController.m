@@ -8,6 +8,8 @@
 
 #import "RetailerShoppingListViewController.h"
 #import "ShoppingListModel.h"
+#import "RetailerShoppingListDetailViewController.h"
+
 @interface RetailerShoppingListViewController ()
 {
 	AppDelegate *appDeleg;
@@ -175,6 +177,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self navigateToDetailScreen:indexPath];
 	
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -357,5 +361,15 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+#pragma mark - navigate to detail screen
+-(void)navigateToDetailScreen:(NSIndexPath *)indexPath
+{
+    RetailerShoppingListDetailViewController *retailerShoppingListDetailView = (RetailerShoppingListDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"retailerShoppingListDetail"];
+    
+    [self.navigationController pushViewController:retailerShoppingListDetailView animated:YES];
+}
+
 
 @end

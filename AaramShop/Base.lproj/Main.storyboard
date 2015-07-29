@@ -5545,6 +5545,10 @@ It will be used only for verification purposes.</string>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="GjN-79-Lfm" id="Oo1-j2-xVB"/>
+                                    <outlet property="delegate" destination="GjN-79-Lfm" id="ZlG-hG-Alr"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5552,10 +5556,13 @@ It will be used only for verification purposes.</string>
                     <navigationItem key="navigationItem" id="pWp-y3-XW1"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tblView" destination="Vfx-nv-eeu" id="nhs-eA-xHm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3i3-TQ-sam" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2102" y="4936"/>
+            <point key="canvasLocation" x="-2043" y="4936"/>
         </scene>
         <!--Home Category List View Controller-->
         <scene sceneID="fG1-Hp-f0E">
