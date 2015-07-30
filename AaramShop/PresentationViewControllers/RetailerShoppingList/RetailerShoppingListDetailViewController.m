@@ -19,10 +19,10 @@
     int pageno;
     int totalNoOfPages;
     AppDelegate *appDeleg;
-
+    
     NSInteger countTotalProductPrice;
     NSInteger countAvailProducts;
-
+    
 }
 @end
 
@@ -34,7 +34,7 @@
     // Do any additional setup after loading the view.
     
     appDeleg = APP_DELEGATE;
-
+    
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     arrProductList = [[NSMutableArray alloc]init];
@@ -59,12 +59,7 @@
     [refreshShoppingList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = refreshShoppingList;
     
-    
-    
-//    strTotalProductPrice = @"";
-//    strAvailableProductCount = @"";
     strTotalAvailProductPrice = @"";
-
     
 }
 
@@ -84,14 +79,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 
@@ -201,7 +196,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-
+    
     if (section==0)
     {
         return kTableHeader1Height;
@@ -210,24 +205,24 @@
     {
         return kTableHeader2Height;
     }
-
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-        if (section==0)
-        {
-            return [self viewForHeader1];
-        }
-        else
-        {
-            return [self viewForHeader2];
-        }
+    if (section==0)
+    {
+        return [self viewForHeader1];
+    }
+    else
+    {
+        return [self viewForHeader2];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+    
     if (section == 0)
     {
         return 0;
@@ -255,7 +250,7 @@
         cell = [[RetailerShoppingListDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.indexPath = indexPath;
-    
+    cell.delegate = self;
     ProductsModel *productsModel = [arrProductList objectAtIndex:indexPath.row];
     
     [cell updateCell:productsModel];
@@ -309,11 +304,9 @@
     lblTotalPrice.textAlignment = NSTextAlignmentRight;
     
     NSString *strRupee  = @"\u20B9";
-
+    
     lblTotalPrice.text = [NSString stringWithFormat:@"%@ %ld",strRupee,countTotalProductPrice];
     
-
-
     
     
     ////
@@ -323,6 +316,7 @@
     
     lblProductsAvailableText.text = @"Products available at the store";
     
+    
     ////
     UILabel *lblTotalItems = [[UILabel alloc]initWithFrame:CGRectMake(view.frame.size.width- (8+100), (lblTotalPrice.frame.origin.y + lblTotalPrice.frame.size.height + 4), 100, 18)];
     lblTotalItems.font = [UIFont fontWithName:kRobotoRegular size:12];
@@ -330,16 +324,16 @@
     lblTotalItems.textAlignment = NSTextAlignmentRight;
     
     
-    if (countAvailProducts==0)
-    {
-        lblTotalItems.text = [NSString stringWithFormat:@"%ld Item",countAvailProducts];
-    }
-    else
+    if (countAvailProducts>1)
     {
         lblTotalItems.text = [NSString stringWithFormat:@"%ld Items",countAvailProducts];
     }
+    else
+    {
+        lblTotalItems.text = [NSString stringWithFormat:@"%ld Item",countAvailProducts];
+    }
     
-        
+    
     [view addSubview:lblShoppingListName];
     [view addSubview:lblTotalPrice];
     [view addSubview:lblProductsAvailableText];
@@ -356,7 +350,7 @@
     
     view.layer.borderColor = [UIColor colorWithRed:101.0/255.0 green:101.0/255.0 blue:103.0/255.0 alpha:1.0].CGColor;
     view.layer.borderWidth = 0.3;
-
+    
     view.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
     
     
@@ -420,29 +414,64 @@
 
 -(void)addProduct:(NSIndexPath *)indexPath
 {
-    //    ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
-    //
-    //    int counter = [productModel.quantity intValue];
-    //
-    //    counter++;
-    //
-    //    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
-    //
-    //    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
+    
+    int counter = [productModel.quantity intValue];
+    
+    counter++;
+    
+    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+    
+    
+    NSInteger totalAmount;
+    
+    if ([productModel.offerType integerValue]>0)
+    {
+        totalAmount = [strTotalAvailProductPrice integerValue]+[productModel.offer_price integerValue];
+    }
+    else
+    {
+        totalAmount = [strTotalAvailProductPrice integerValue]+[productModel.product_price integerValue];
+    }
+    
+    
+    countTotalProductPrice = countTotalProductPrice + [productModel.product_price integerValue];
+    
+    strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",totalAmount];
+    
+    [tblView reloadData];
 }
 
 
 
 -(void)removeProduct:(NSIndexPath *)indexPath
 {
-    //    ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
-    //
-    //    int counter = [productModel.quantity intValue];
-    //    counter--;
-    //
-    //    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
-    //
-    //    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
+    
+    int counter = [productModel.quantity intValue];
+    counter--;
+    
+    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+    
+    
+    NSInteger totalAmount;
+    
+    if ([productModel.offerType integerValue]>0)
+    {
+        totalAmount = [strTotalAvailProductPrice integerValue]-[productModel.offer_price integerValue];
+    }
+    else
+    {
+        totalAmount = [strTotalAvailProductPrice integerValue]-[productModel.product_price integerValue];
+    }
+    
+    countTotalProductPrice = countTotalProductPrice - [productModel.product_price integerValue];
+    
+    
+    strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",totalAmount];
+    
+    [tblView reloadData];
+    
 }
 
 
@@ -615,7 +644,7 @@
     
     NSArray *arrTemp = [response objectForKey:@"products"];
     
-    strTotalAvailProductPrice = [response objectForKey:@"total_amount"];
+    strTotalAvailProductPrice = [NSString stringWithFormat:@"%@",[response objectForKey:@"total_amount"]];
     
     for (id obj in arrTemp)
     {
@@ -646,24 +675,21 @@
         
         productsModel.offerType = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerType"]];
         productsModel.offer_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_price"]];
-
+        
         if ([productsModel.offerType integerValue]>0)
         {
             countTotalProductPrice = countTotalProductPrice + ([productsModel.offer_price integerValue] * [productsModel.quantity integerValue]);
-
+            
         }
         else
         {
             countTotalProductPrice = countTotalProductPrice + ([productsModel.product_price integerValue] * [productsModel.quantity integerValue]);
-
+            
         }
         
         [arrProductList  addObject:productsModel];
         
     }
-    
-//    strTotalProductPrice = [NSString stringWithFormat:@"%ld",countTotalProductPrice];
-//    strAvailableProductCount = [NSString stringWithFormat:@"%ld",countAvailProducts];
     
     [tblView reloadData];
     

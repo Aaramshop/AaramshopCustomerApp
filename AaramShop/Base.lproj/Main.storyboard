@@ -176,6 +176,7 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="RocketDinerCondensed_0.otf">
             <string>RocketDiner-CondensedRegular</string>
@@ -5459,9 +5460,9 @@ It will be used only for verification purposes.</string>
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Vfx-nv-eeu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vfx-nv-eeu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RetailerShoppingListDetailCell" rowHeight="70" id="uAy-VP-BKw" customClass="RetailerShoppingListDetailCell">
                                         <rect key="frame" x="0.0" y="249" width="320" height="70"/>
@@ -5477,16 +5478,26 @@ It will be used only for verification purposes.</string>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxC-fg-8YC" userLabel="Label - Product name">
-                                                    <rect key="frame" x="73" y="5" width="120" height="60"/>
+                                                    <rect key="frame" x="73" y="5" width="157" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="Wh9-Y7-FRW"/>
+                                                        <constraint firstAttribute="height" constant="40" id="Wh9-Y7-FRW"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                     <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5M-Yd-utQ" userLabel="Label - Price">
+                                                    <rect key="frame" x="73" y="46" width="157" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="6tk-E1-XEZ"/>
+                                                        <constraint firstAttribute="width" constant="157" id="LLb-2M-nXw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q48-oM-PkR" userLabel="Button - Remove">
-                                                    <rect key="frame" x="200" y="20" width="30" height="30"/>
+                                                    <rect key="frame" x="234" y="20" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="mYD-fJ-vIr"/>
                                                         <constraint firstAttribute="width" constant="30" id="xmZ-xB-66N"/>
@@ -5498,10 +5509,10 @@ It will be used only for verification purposes.</string>
                                                         <action selector="actionRemoveProduct:" destination="uAy-VP-BKw" eventType="touchUpInside" id="dXY-ia-xUU"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTU-zh-4Ke" userLabel="Label - Counter">
-                                                    <rect key="frame" x="235" y="5" width="40" height="60"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTU-zh-4Ke" userLabel="Label - Counter">
+                                                    <rect key="frame" x="264" y="5" width="22" height="60"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="8Yr-UK-oBj"/>
+                                                        <constraint firstAttribute="width" constant="22" id="8Yr-UK-oBj"/>
                                                         <constraint firstAttribute="height" constant="60" id="9kg-AQ-BsY"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
@@ -5509,7 +5520,7 @@ It will be used only for verification purposes.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wM3-Zx-N0j" userLabel="Button - Add">
-                                                    <rect key="frame" x="280" y="20" width="30" height="30"/>
+                                                    <rect key="frame" x="286" y="20" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="NXS-vf-Fzd"/>
                                                         <constraint firstAttribute="height" constant="30" id="gZK-aa-zDQ"/>
@@ -5523,17 +5534,19 @@ It will be used only for verification purposes.</string>
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wM3-Zx-N0j" secondAttribute="trailing" constant="-4" id="2zm-i2-k6B"/>
+                                                <constraint firstItem="Q48-oM-PkR" firstAttribute="leading" secondItem="uxC-fg-8YC" secondAttribute="trailing" constant="4" id="DLK-cl-ct1"/>
                                                 <constraint firstItem="PX7-IX-ixI" firstAttribute="top" secondItem="kWh-qV-rW1" secondAttribute="topMargin" constant="-3" id="J7H-QI-bbH"/>
                                                 <constraint firstItem="Q48-oM-PkR" firstAttribute="top" secondItem="kWh-qV-rW1" secondAttribute="topMargin" constant="12" id="M1q-nB-ANq"/>
-                                                <constraint firstItem="Q48-oM-PkR" firstAttribute="leading" secondItem="uxC-fg-8YC" secondAttribute="trailing" constant="7" id="Nir-5t-fog"/>
                                                 <constraint firstItem="uxC-fg-8YC" firstAttribute="top" secondItem="kWh-qV-rW1" secondAttribute="topMargin" constant="-3" id="Nlz-eN-Fq5"/>
-                                                <constraint firstItem="dTU-zh-4Ke" firstAttribute="leading" secondItem="Q48-oM-PkR" secondAttribute="trailing" constant="5" id="UzQ-9P-qmP"/>
+                                                <constraint firstItem="dTU-zh-4Ke" firstAttribute="leading" secondItem="Q48-oM-PkR" secondAttribute="trailing" id="UzQ-9P-qmP"/>
                                                 <constraint firstItem="wM3-Zx-N0j" firstAttribute="top" secondItem="kWh-qV-rW1" secondAttribute="topMargin" constant="12" id="YGl-tP-QE5"/>
+                                                <constraint firstItem="Z5M-Yd-utQ" firstAttribute="top" secondItem="uxC-fg-8YC" secondAttribute="bottom" constant="1" id="aDn-ng-TiF"/>
                                                 <constraint firstItem="dTU-zh-4Ke" firstAttribute="top" secondItem="kWh-qV-rW1" secondAttribute="topMargin" constant="-3" id="dEk-Fp-fCK"/>
                                                 <constraint firstItem="uxC-fg-8YC" firstAttribute="leading" secondItem="PX7-IX-ixI" secondAttribute="trailing" constant="8" id="g5c-Y5-KDf"/>
+                                                <constraint firstItem="Z5M-Yd-utQ" firstAttribute="leading" secondItem="PX7-IX-ixI" secondAttribute="trailing" constant="8" id="m29-u3-eA2"/>
                                                 <constraint firstItem="PX7-IX-ixI" firstAttribute="leading" secondItem="kWh-qV-rW1" secondAttribute="leadingMargin" constant="-3" id="psZ-WU-d5c"/>
-                                                <constraint firstItem="wM3-Zx-N0j" firstAttribute="leading" secondItem="dTU-zh-4Ke" secondAttribute="trailing" constant="5" id="r48-tS-lha"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wM3-Zx-N0j" secondAttribute="trailing" constant="2" id="vbD-vQ-cfd"/>
+                                                <constraint firstItem="wM3-Zx-N0j" firstAttribute="leading" secondItem="dTU-zh-4Ke" secondAttribute="trailing" id="r48-tS-lha"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -5541,6 +5554,7 @@ It will be used only for verification purposes.</string>
                                             <outlet property="btnRemove" destination="Q48-oM-PkR" id="SaI-7a-5DH"/>
                                             <outlet property="imgProduct" destination="PX7-IX-ixI" id="zVn-39-w2d"/>
                                             <outlet property="lblCounter" destination="dTU-zh-4Ke" id="FGX-OA-lKf"/>
+                                            <outlet property="lblPrice" destination="Z5M-Yd-utQ" id="KQV-bO-UE3"/>
                                             <outlet property="lblProductName" destination="uxC-fg-8YC" id="tn0-Ca-Vqd"/>
                                         </connections>
                                     </tableViewCell>

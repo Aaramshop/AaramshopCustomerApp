@@ -11,7 +11,7 @@
 #import "RetailerShoppingListDetailCell.h"
 
 
-@interface RetailerShoppingListDetailViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UITableViewDataSource,UITableViewDelegate>
+@interface RetailerShoppingListDetailViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UITableViewDataSource,UITableViewDelegate,RetailerShoppingListCellDelegate>
 {
     __weak IBOutlet UITableView *tblView;
     
@@ -20,15 +20,12 @@
     UIRefreshControl *refreshShoppingList;
     BOOL isLoading;
     
-//    NSString *strTotalProductPrice;
-//    NSString *strAvailableProductCount;
     NSString *strTotalAvailProductPrice;
     
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 
-//@property(nonatomic,strong) NSString *strStoreName;
 @property(nonatomic,strong) ShoppingListModel *shoppingListModel;
 
 @end

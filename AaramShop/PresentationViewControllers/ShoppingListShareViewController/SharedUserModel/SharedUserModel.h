@@ -14,4 +14,12 @@
 @property (nonatomic,strong) NSString * profileImage;
 @property (nonatomic,strong) NSString * userId;
 
+
+// followings are used in 'getShoppingList' api
+
+@property (nonatomic,strong) NSString * chat_username;
+@property (nonatomic,strong) NSString * email;
+@property (nonatomic,strong) NSString * mobile;
+//@property (nonatomic,strong) NSString * full_name;
+
 @end

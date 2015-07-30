@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     // Initialization code
     
+    [lblProductName setAdjustsFontSizeToFitWidth:YES];
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
@@ -58,7 +60,7 @@
     tempProductModel = productsModel;
     
 
-    [imgProduct sd_setImageWithURL:[NSURL URLWithString:tempProductModel.product_image] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
+    [imgProduct sd_setImageWithURL:[NSURL URLWithString:tempProductModel.product_image] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
     
     lblProductName.text = tempProductModel.product_name;
     
@@ -70,6 +72,16 @@
     {
         btnRemove.enabled = YES;
     }
+    
+    if ([tempProductModel.quantity integerValue]<20)
+    {
+        btnAdd.enabled = YES;
+    }
+    else
+    {
+        btnAdd.enabled = NO;
+    }
+    
     
     lblCounter.text = tempProductModel.quantity;
 }
