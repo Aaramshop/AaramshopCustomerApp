@@ -7,6 +7,7 @@
 //
 
 #import "RetailerShoppingListDetailViewController.h"
+#import "CartViewController.h"
 
 #define kTableHeader1Height 60
 #define kTableHeader2Height 40
@@ -17,6 +18,11 @@
 {
     int pageno;
     int totalNoOfPages;
+    AppDelegate *appDeleg;
+
+    NSInteger countTotalProductPrice;
+    NSInteger countAvailProducts;
+
 }
 @end
 
@@ -26,6 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    appDeleg = APP_DELEGATE;
+
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     arrProductList = [[NSMutableArray alloc]init];
@@ -50,6 +59,13 @@
     [refreshShoppingList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = refreshShoppingList;
     
+    
+    
+//    strTotalProductPrice = @"";
+//    strAvailableProductCount = @"";
+    strTotalAvailProductPrice = @"";
+
+    
 }
 
 
@@ -57,7 +73,8 @@
 {
     [super viewWillAppear:YES];
     
-//    [self getProductsInitialList]; // temp
+    tblView.hidden = YES;
+    [self getProductsInitialList];
 }
 
 
@@ -96,7 +113,7 @@
     titleView.textAlignment = NSTextAlignmentCenter;
     titleView.textColor = [UIColor whiteColor];
     
-    titleView.text = _strShoppingListName;
+    titleView.text = appDeleg.objStoreModel.store_name;
     
     titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
@@ -115,13 +132,13 @@
     
     //
     
-    UIImage *imgCopy = [UIImage imageNamed:@"copyIcon.png"];
-    UIButton *btnCopy = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnCopy.bounds = CGRectMake( -10, 0, 30, 30);
+    UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
+    UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnCart.bounds = CGRectMake( -10, 0, 30, 30);
     
-    [btnCopy setImage:imgCopy forState:UIControlStateNormal];
-    [btnCopy addTarget:self action:@selector(btnCopyClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barBtnCopy = [[UIBarButtonItem alloc] initWithCustomView:btnCopy];
+    [btnCart setImage:imgCart forState:UIControlStateNormal];
+    [btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
     
     //
     UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
@@ -132,9 +149,7 @@
     [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
     
-    //    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnSearch,barBtnCopy, nil];
-    
-    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnSearch, nil];
+    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnSearch,barBtnCart, nil];
     self.navigationItem.rightBarButtonItems = arrBtnsRight;
     
 }
@@ -144,8 +159,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)btnCopyClicked
+-(void)btnCartClicked
 {
+    CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+    [self.navigationController pushViewController:cartView animated:YES];
     
 }
 
@@ -269,50 +286,10 @@
 
 
 #pragma mark - Design for Table Header View
+
 -(UIView *)viewForHeader1
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableHeader1Height)];
-    
-    //
-    UILabel *lblTotalAmount = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 100, view.frame.size.height)];
-    lblTotalAmount.font = [UIFont fontWithName:kRobotoRegular size:14];
-    lblTotalAmount.textColor = [UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1.0];
-    lblTotalAmount.text = @"Total Amount";
-    
-    
-    
-    //
-    UIButton *btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnDone.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width - 40), 0, 40, 40);
-    btnDone.backgroundColor = [UIColor colorWithRed:221.0/255.0 green:34.0/255.0 blue:34.0/255.0 alpha:1.0];
-    [btnDone setImage:[UIImage imageNamed:@"shoppingListSideArrow"] forState:UIControlStateNormal];
-    [btnDone addTarget:self action:@selector(btnDoneClicked) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    
-    
-    NSString *strRupee  = @"\u20B9";
-    NSString *strAmount = @"150";//selectedStoreModel.total_product_price;
-    
-    //
-    UILabel *lblTotalAmountValue = [[UILabel alloc]initWithFrame:CGRectMake((btnDone.frame.origin.x - 120), 0, 100, view.frame.size.height)];
-    lblTotalAmountValue.font = [UIFont fontWithName:kRobotoBold size:16];
-    lblTotalAmountValue.textColor = [UIColor colorWithRed:31.0/255.0 green:31.0/255.0 blue:31.0/255.0 alpha:1.0];
-    lblTotalAmountValue.textAlignment = NSTextAlignmentRight;
-    lblTotalAmountValue.text = [NSString stringWithFormat:@"%@ %@",strRupee,strAmount];
-    
-    
-    
-    [view addSubview:lblTotalAmount];
-    [view addSubview:lblTotalAmountValue];
-    [view addSubview:btnDone];
-    
-    return view;
-}
-
--(UIView *)viewForHeader2
-{
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableHeader2Height)];
     view.backgroundColor = [UIColor whiteColor];
     
     
@@ -322,39 +299,47 @@
     lblShoppingListName.font = [UIFont fontWithName:kRobotoMedium size:14];
     lblShoppingListName.textColor = [UIColor colorWithRed:62.0/255.0 green:62.0/255.0 blue:62.0/255.0 alpha:1.0];
     
-    lblShoppingListName.text = @"Monthly Family Grocery"; // shopping list name
-
+    lblShoppingListName.text = _shoppingListModel.shoppingListName;
     
     
     ////
-    UILabel *lblTotalPrice = [[UILabel alloc]initWithFrame:CGRectMake(view.frame.size.width- (8+55), 12, 55, 18)];
+    UILabel *lblTotalPrice = [[UILabel alloc]initWithFrame:CGRectMake(view.frame.size.width- (8+60), 12, 60, 18)];
     lblTotalPrice.font = [UIFont fontWithName:kRobotoMedium size:14];
     lblTotalPrice.textColor = [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0];
     lblTotalPrice.textAlignment = NSTextAlignmentRight;
     
     NSString *strRupee  = @"\u20B9";
-    
-    lblTotalPrice.text = [NSString stringWithFormat:@"%@ %@",strRupee,@"5200"]; // total price
-    
+
+    lblTotalPrice.text = [NSString stringWithFormat:@"%@ %ld",strRupee,countTotalProductPrice];
     
 
+
+    
+    
     ////
-    UILabel *lblProductsAvailableText = [[UILabel alloc]initWithFrame:CGRectMake(10, (lblShoppingListName.frame.origin.y + lblShoppingListName.frame.size.height + 4), 175, 18)];
+    UILabel *lblProductsAvailableText = [[UILabel alloc]initWithFrame:CGRectMake(10, (lblShoppingListName.frame.origin.y + lblShoppingListName.frame.size.height + 4), 200, 18)];
     lblProductsAvailableText.font = [UIFont fontWithName:kRobotoRegular size:13];
     lblProductsAvailableText.textColor = [UIColor colorWithRed:96.0/255.0 green:96.0/255.0 blue:96.0/255.0 alpha:1.0];
     
     lblProductsAvailableText.text = @"Products available at the store";
-
     
     ////
-    UILabel *lblTotalItems = [[UILabel alloc]initWithFrame:CGRectMake(view.frame.size.width- (8+55), (lblTotalPrice.frame.origin.y + lblTotalPrice.frame.size.height + 4), 55, 18)];
+    UILabel *lblTotalItems = [[UILabel alloc]initWithFrame:CGRectMake(view.frame.size.width- (8+100), (lblTotalPrice.frame.origin.y + lblTotalPrice.frame.size.height + 4), 100, 18)];
     lblTotalItems.font = [UIFont fontWithName:kRobotoRegular size:12];
     lblTotalItems.textColor = [UIColor colorWithRed:218.0/255.0 green:38.0/255.0 blue:19.0/255.0 alpha:1.0];
     lblTotalItems.textAlignment = NSTextAlignmentRight;
     
-    lblTotalItems.text = [NSString stringWithFormat:@"%@, Items",@"24"]; // total items
-
     
+    if (countAvailProducts==0)
+    {
+        lblTotalItems.text = [NSString stringWithFormat:@"%ld Item",countAvailProducts];
+    }
+    else
+    {
+        lblTotalItems.text = [NSString stringWithFormat:@"%ld Items",countAvailProducts];
+    }
+    
+        
     [view addSubview:lblShoppingListName];
     [view addSubview:lblTotalPrice];
     [view addSubview:lblProductsAvailableText];
@@ -364,6 +349,53 @@
     return view;
     
 }
+
+-(UIView *)viewForHeader2
+{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, kTableHeader2Height)];
+    
+    view.layer.borderColor = [UIColor colorWithRed:101.0/255.0 green:101.0/255.0 blue:103.0/255.0 alpha:1.0].CGColor;
+    view.layer.borderWidth = 0.3;
+
+    view.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
+    
+    
+    //
+    UILabel *lblTotalAmount = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 100, view.frame.size.height)];
+    lblTotalAmount.font = [UIFont fontWithName:kRobotoRegular size:14];
+    lblTotalAmount.textColor = [UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1.0];
+    lblTotalAmount.text = @"Total Amount";
+    
+    
+    //
+    UIButton *btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnDone.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width - 40), 0, 40, 40);
+    btnDone.backgroundColor = [UIColor colorWithRed:221.0/255.0 green:34.0/255.0 blue:34.0/255.0 alpha:1.0];
+    [btnDone setImage:[UIImage imageNamed:@"shoppingListSideArrow"] forState:UIControlStateNormal];
+    [btnDone addTarget:self action:@selector(btnDoneClicked) forControlEvents:UIControlEventTouchUpInside];
+    btnDone.layer.borderColor = [UIColor colorWithRed:101.0/255.0 green:101.0/255.0 blue:103.0/255.0 alpha:1.0].CGColor;
+    btnDone.layer.borderWidth = 0.3;
+    
+    
+    
+    NSString *strRupee  = @"\u20B9";
+    
+    //
+    UILabel *lblTotalAmountValue = [[UILabel alloc]initWithFrame:CGRectMake((btnDone.frame.origin.x - (100 + 10)), 0, 100, view.frame.size.height)];
+    lblTotalAmountValue.font = [UIFont fontWithName:kRobotoBold size:16];
+    lblTotalAmountValue.textColor = [UIColor colorWithRed:31.0/255.0 green:31.0/255.0 blue:31.0/255.0 alpha:1.0];
+    lblTotalAmountValue.textAlignment = NSTextAlignmentRight;
+    lblTotalAmountValue.text = [NSString stringWithFormat:@"%@ %@",strRupee,strTotalAvailProductPrice];
+    
+    
+    [view addSubview:lblTotalAmount];
+    [view addSubview:lblTotalAmountValue];
+    [view addSubview:btnDone];
+    
+    return view;
+}
+
+
 
 - (CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
@@ -426,17 +458,10 @@
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-    [dict setObject:_strShoppingListID forKey:@"shoppingListId"];
+    [dict setObject:_shoppingListModel.shoppingListId forKey:@"shoppingListId"];
     [dict setObject:@"0" forKey:@"page_no"];
     
-//    if (selectedStoreModel)
-//    {
-//        [dict setObject:selectedStoreModel.store_id forKey:@"store_id"];
-//    }
-//    else
-//    {
-        [dict setObject:@"0" forKey:@"store_id"]; // temp
-//    }
+    [dict setObject:appDeleg.objStoreModel.store_id forKey:@"store_id"];
     
     [self callWebServiceToGetProductsList:dict];
 }
@@ -444,7 +469,6 @@
 
 -(void)callWebServiceToGetProductsList:(NSMutableDictionary *)aDict
 {
-    //    [self activateChooseBtn:NO];
     
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
@@ -467,7 +491,6 @@
     [AppManager stopStatusbarActivityIndicator];
     [aaramShop_ConnectionManager failureBlockCalled:error];
     
-    //    [self activateChooseBtn:NO];
 }
 
 
@@ -488,16 +511,16 @@
             
             if ([[responseObject objectForKey:kstatus] intValue] == 1)
             {
+                tblView.hidden = NO;
+                
                 totalNoOfPages = [[responseObject valueForKey:@"total_pages"] intValue];
                 [self parseResponseData:responseObject];
                 
-                //                [self activateChooseBtn:YES];
             }
             else
             {
                 [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
                 
-                //                [self activateChooseBtn:NO];
             }
         }
             break;
@@ -565,17 +588,10 @@
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-    [dict setObject:_strShoppingListID forKey:@"shoppingListId"];
+    [dict setObject:_shoppingListModel.shoppingListId forKey:@"shoppingListId"];
     [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:@"page_no"];
     
-//    if (selectedStoreModel)
-//    {
-//        [dict setObject:selectedStoreModel.store_id forKey:@"store_id"];
-//    }
-//    else
-//    {
-        [dict setObject:@"0" forKey:@"store_id"]; // temp
-//    }
+    [dict setObject:appDeleg.objStoreModel.store_id forKey:@"store_id"];
     
     [self callWebServiceToGetProductsList:dict];
 }
@@ -592,10 +608,14 @@
     if (pageno == 0)
     {
         [arrProductList removeAllObjects];
+        countTotalProductPrice = 0;
+        countAvailProducts = 0;
     }
     
     
     NSArray *arrTemp = [response objectForKey:@"products"];
+    
+    strTotalAvailProductPrice = [response objectForKey:@"total_amount"];
     
     for (id obj in arrTemp)
     {
@@ -603,6 +623,12 @@
         
         productsModel.free_item = [NSString stringWithFormat:@"%@",[obj valueForKey:@"free_item"]];
         productsModel.isAvailable = [NSString stringWithFormat:@"%@",[obj valueForKey:@"isAvailable"]];
+        
+        if ([productsModel.isAvailable integerValue]==1)
+        {
+            countAvailProducts ++;
+        }
+        
         productsModel.offerType = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerType"]];
         productsModel.offer_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_price"]];
         
@@ -610,32 +636,38 @@
         productsModel.product_image = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_image"]];
         productsModel.product_name = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_name"]];
         productsModel.product_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_price"]];
+        
+        
+        
         productsModel.product_sku_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_sku_id"]];
         productsModel.quantity = [NSString stringWithFormat:@"%@",[obj valueForKey:@"quantity"]];
         
+        
+        
+        productsModel.offerType = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerType"]];
+        productsModel.offer_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_price"]];
+
+        if ([productsModel.offerType integerValue]>0)
+        {
+            countTotalProductPrice = countTotalProductPrice + ([productsModel.offer_price integerValue] * [productsModel.quantity integerValue]);
+
+        }
+        else
+        {
+            countTotalProductPrice = countTotalProductPrice + ([productsModel.product_price integerValue] * [productsModel.quantity integerValue]);
+
+        }
         
         [arrProductList  addObject:productsModel];
         
     }
     
+//    strTotalProductPrice = [NSString stringWithFormat:@"%ld",countTotalProductPrice];
+//    strAvailableProductCount = [NSString stringWithFormat:@"%ld",countAvailProducts];
+    
     [tblView reloadData];
     
 }
-
-
-//-(void)activateChooseBtn:(BOOL)isActive
-//{
-//    if (isActive)
-//    {
-//        btnChooseStore.userInteractionEnabled = YES;
-//        [btnChooseStore setTitle:@"CHOOSE A STORE" forState:UIControlStateNormal];
-//    }
-//    else
-//    {
-//        btnChooseStore.userInteractionEnabled = NO;
-//        [btnChooseStore setTitle:@"" forState:UIControlStateNormal];
-//    }
-//}
 
 
 @end

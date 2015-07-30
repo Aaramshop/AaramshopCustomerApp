@@ -14,6 +14,8 @@
 #import "RetailerShoppingListViewController.h"
 #import "OffersViewController.h"
 #import "OrderHistViewController.h"
+#import "AFNetworkActivityIndicatorManager.h"
+
 @interface AppDelegate ()
 {
     Reachability *aReachability;
@@ -27,6 +29,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
      [Fabric with:@[CrashlyticsKit]];
     [self initializeAllSingletonObjects];
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

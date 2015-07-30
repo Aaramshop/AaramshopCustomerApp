@@ -68,6 +68,7 @@
 {
     [super viewWillAppear:YES];
     
+    tblView.hidden = YES;
     [self getProductsInitialList];
 }
 
@@ -502,6 +503,8 @@
 {
     ShoppingListShareViewController *shoppingListShareView = (ShoppingListShareViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListShareView"];
     
+    shoppingListShareView.strShoppingListId = _strShoppingListID;
+    
     [self.navigationController pushViewController:shoppingListShareView animated:YES];
 }
 
@@ -651,6 +654,8 @@
             
             if ([[responseObject objectForKey:kstatus] intValue] == 1)
             {
+                tblView.hidden = NO;
+                
                 totalNoOfPages = [[responseObject valueForKey:@"total_pages"] intValue];
                 [self parseResponseData:responseObject];
                 

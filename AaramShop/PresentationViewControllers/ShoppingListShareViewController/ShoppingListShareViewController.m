@@ -9,6 +9,7 @@
 #import "ShoppingListShareViewController.h"
 #import "ShoppingListShareCell.h"
 #import "AddContactsToShareViewController.h"
+#import "SharedUserModel.h"
 
 #define kTableCellHeight    58
 
@@ -139,6 +140,7 @@
 {
     AddContactsToShareViewController *addContactsToShareView = (AddContactsToShareViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"AddContactsToShare"];
     
+    addContactsToShareView.strShoppingListId = _strShoppingListId;
     [self.navigationController pushViewController:addContactsToShareView animated:YES];
 
 }
@@ -161,7 +163,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;//arrShareList.count;
+    return arrShareList.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -180,7 +182,7 @@
         cell = [[ShoppingListShareCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    [cell updateCell];
+    [cell updateCell:[arrShareList objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -206,14 +208,10 @@
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-//    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
-//    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
-//    
-//    [dict setObject:_strShoppingListId forKey:@"shoppingListId"];
-//    [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
+    [dict setObject:_strShoppingListId forKey:@"shoppingListId"];
+    [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
     
     
     if (![Utils isInternetAvailable])
@@ -229,7 +227,7 @@
         return;
     }
     
-    [aaramShop_ConnectionManager getDataForFunction:kURLGetStoreforShoppingList withInput:dict withCurrentTask:TASK_TO_GET_SHOPPING_STORE_LIST andDelegate:self ];
+    [aaramShop_ConnectionManager getDataForFunction:kURLGetShoppingListShareWith withInput:dict withCurrentTask:TASK_TO_GET_SHOPPING_LIST_SHARE_WITH andDelegate:self ];
 }
 
 
@@ -252,12 +250,16 @@
     
     [AppManager stopStatusbarActivityIndicator];
     
-    if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_SHOPPING_STORE_LIST)
+    if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_SHOPPING_LIST_SHARE_WITH)
     {
         if([[responseObject objectForKey:kstatus] intValue] == 1)
         {
             totalNoOfPages = [[responseObject objectForKey:kTotal_page] intValue];
             [self parseResponseData:responseObject];
+        }
+        else
+        {
+            [Utils showAlertView:kAlertTitle message:[responseObject valueForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         }
     }
     
@@ -269,7 +271,60 @@
 -(void)parseResponseData:(NSDictionary *)responseObject
 {
     
+    if (!arrShareList)
+    {
+        arrShareList = [[NSMutableArray alloc]init];
+    }
+    
+    if (pageno == 0)
+    {
+        [arrShareList removeAllObjects];
+    }
+    
+    
+    NSArray *arrTempShareUser = [responseObject valueForKey:@"share_user"];
+    
+    for (id obj in arrTempShareUser)
+    {
+        SharedUserModel *sharedUserModel = [[SharedUserModel alloc]init];
+        sharedUserModel.full_name = [obj valueForKey:@"full_name"];
+        
+        sharedUserModel.profileImage = [NSString stringWithFormat:@"%@",[[obj valueForKey:@"profileImage"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
+        sharedUserModel.userId = [obj valueForKey:@"userId"];
+        
+        [arrShareList addObject:sharedUserModel];
+    }
+    
+    [tblView reloadData];
 }
+
+/*
+ 
+ Printing description of responseObject:
+ {
+ deviceId = 3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0;
+ message = "Share Shopper Data!";
+ "page_no" = 0;
+ "share_user" =     (
+ {
+ "full_name" = "Joy Sharma";
+ profileImage = "http://52.74.220.25/uploaded_files/user/profileImage9.jpg";
+ userId = 26;
+ },
+ {
+ "full_name" = "Neha Saxena";
+ profileImage = "http://52.74.220.25/uploaded_files/user/profileImage12.jpg";
+ userId = 8;
+ }
+ );
+ status = 1;
+ "total_page" = 1;
+ }
+
+ 
+ */
+
 
 
 

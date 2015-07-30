@@ -42,7 +42,6 @@ AppDelegate *appDeleg;
                                                          (__bridge void *)(self)
                                                          );
         }
-        
     }
     return self;
 }
@@ -801,10 +800,16 @@ void MyAddressBookExternalChangeCallback (
             }
             
             
+            
+            ///////////////////////////////////////////////////
+            //////////////////////////////////////////////////
+            
+             
             //get Phone Numbers
             NSMutableArray *phoneNumbers = [[NSMutableArray alloc] init];
             ABMultiValueRef multiPhones = ABRecordCopyValue(person, kABPersonPhoneProperty);
             
+            /*
             for(CFIndex i=0; i<ABMultiValueGetCount(multiPhones); i++) {
                 @autoreleasepool {
                     CFStringRef phoneNumberRef = ABMultiValueCopyValueAtIndex(multiPhones, i);
@@ -819,6 +824,32 @@ void MyAddressBookExternalChangeCallback (
             }
             
             [contacts setNumbers:phoneNumbers];
+            
+            //*/    
+
+            
+            //get all phone numbers
+            ABMultiValueRef phoneNumberMultiValue = ABRecordCopyValue(person, kABPersonPhoneProperty);
+            NSUInteger phoneNumberIndex;
+            for (phoneNumberIndex = 0; phoneNumberIndex < ABMultiValueGetCount(phoneNumberMultiValue); phoneNumberIndex++) {
+                
+                CFStringRef labelStingRef = ABMultiValueCopyLabelAtIndex (phoneNumberMultiValue, phoneNumberIndex);
+                
+                NSString *phoneLabelLocalized = (__bridge NSString*)ABAddressBookCopyLocalizedLabel(labelStingRef);
+                
+                NSString *phoneNumber  = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneNumberMultiValue, phoneNumberIndex);
+                
+                [contacts setNumbers:[NSArray arrayWithObject:phoneNumber]];
+
+                NSLog(@" \n \n mobile ==>> %@ \n \n",phoneNumber);
+
+            }
+            
+
+            
+         ///////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+            
             
             //get Contact email
             NSMutableArray *contactEmails = [NSMutableArray new];

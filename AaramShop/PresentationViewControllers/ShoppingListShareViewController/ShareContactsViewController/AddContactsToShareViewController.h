@@ -18,6 +18,8 @@
     NSMutableArray *arrContactsData;
     
     ContactsData *contacts;
-
 }
+
+@property(nonatomic, strong) NSString *strShoppingListId;
+
 @end

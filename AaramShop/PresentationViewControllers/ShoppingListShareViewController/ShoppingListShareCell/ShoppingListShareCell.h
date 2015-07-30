@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SharedUserModel.h"
 
 @interface ShoppingListShareCell : UITableViewCell
 {
@@ -14,7 +15,10 @@
     __weak IBOutlet UILabel *lblUserName;
 }
 
--(void)updateCell;
+//@property (nonatomic,strong) SharedUserModel *sharedUserModel;
+//@property (nonatomic,strong) NSIndexPath *indexPath;
+
+-(void)updateCell:(SharedUserModel *)sharedUserModel;
 
 
 @end

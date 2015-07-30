@@ -20,11 +20,15 @@
     UIRefreshControl *refreshShoppingList;
     BOOL isLoading;
     
+//    NSString *strTotalProductPrice;
+//    NSString *strAvailableProductCount;
+    NSString *strTotalAvailProductPrice;
+    
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 
-@property(nonatomic,strong) NSString *strShoppingListName;
-@property(nonatomic,strong) NSString *strShoppingListID;
+//@property(nonatomic,strong) NSString *strStoreName;
+@property(nonatomic,strong) ShoppingListModel *shoppingListModel;
 
 @end

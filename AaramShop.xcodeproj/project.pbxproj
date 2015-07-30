@@ -919,6 +919,7 @@
 		6B1374231B60E7FF0015E9EA /* ShoppingListChooseStoreGeneralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1374221B60E7FF0015E9EA /* ShoppingListChooseStoreGeneralCell.m */; };
 		6B1374261B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1374251B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.m */; };
 		6B1374281B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B1374271B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib */; };
+		6B1987C31B6A32C6000497DC /* SharedUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1987C21B6A32C6000497DC /* SharedUserModel.m */; };
 		6B1A9A521B0364740005917B /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A9A511B0364740005917B /* Annotation.m */; };
 		6B1A9A581B03658C0005917B /* CustomMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A9A561B03658C0005917B /* CustomMapAnnotationView.m */; };
 		6B1A9A591B03658C0005917B /* CustomMapAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B1A9A571B03658C0005917B /* CustomMapAnnotationView.xib */; };
@@ -2573,6 +2574,8 @@
 		6B1374241B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListChooseStoreRecommendedCell.h; sourceTree = "<group>"; };
 		6B1374251B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListChooseStoreRecommendedCell.m; sourceTree = "<group>"; };
 		6B1374271B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingListChooseStoreRecommendedCell.xib; sourceTree = "<group>"; };
+		6B1987C11B6A32C6000497DC /* SharedUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedUserModel.h; sourceTree = "<group>"; };
+		6B1987C21B6A32C6000497DC /* SharedUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedUserModel.m; sourceTree = "<group>"; };
 		6B1A9A501B0364740005917B /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
 		6B1A9A511B0364740005917B /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
 		6B1A9A551B03658C0005917B /* CustomMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMapAnnotationView.h; sourceTree = "<group>"; };
@@ -5745,6 +5748,15 @@
 			path = ShoppingListChooseStoreRecommendedCell;
 			sourceTree = "<group>";
 		};
+		6B1987C01B6A32AF000497DC /* SharedUserModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B1987C11B6A32C6000497DC /* SharedUserModel.h */,
+				6B1987C21B6A32C6000497DC /* SharedUserModel.m */,
+			);
+			path = SharedUserModel;
+			sourceTree = "<group>";
+		};
 		6B1A9A4F1B0364740005917B /* Annotation */ = {
 			isa = PBXGroup;
 			children = (
@@ -6040,6 +6052,7 @@
 		6B83A0B51B53D9AA00A00520 /* ShoppingListShareViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6B1987C01B6A32AF000497DC /* SharedUserModel */,
 				6B5490361B68C45600465C82 /* ShareContactsViewController */,
 				6B35B8B91B56534900807F25 /* ShoppingListShareCell */,
 				6B83A0B61B53D9BD00A00520 /* ShoppingListShareViewController.h */,
@@ -8222,6 +8235,7 @@
 				274A5CB01B05C4AA009112B5 /* XMPPRoom.xcdatamodeld in Sources */,
 				6B1C0B7F1B04C022009DD32D /* txtFLocation.m in Sources */,
 				6BFFF9261B02229E00BB2B62 /* PreferencesViewController.m in Sources */,
+				6B1987C31B6A32C6000497DC /* SharedUserModel.m in Sources */,
 				274A5CB51B05C4AA009112B5 /* XMPPRoomHybridStorage.m in Sources */,
 				274A5CDC1B05C4AA009112B5 /* XMPPCapabilities.m in Sources */,
 				6BE4745D1B3B21CE00C09AFD /* MHShareViewController.m in Sources */,

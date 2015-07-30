@@ -37,15 +37,16 @@
     }
     
     
-    if (self.delegate && [self.delegate conformsToProtocol:@protocol(ProductCellDelegate)] && [self.delegate respondsToSelector:@selector(removeProduct:)])
+    if (self.delegate && [self.delegate conformsToProtocol:@protocol(RetailerShoppingListCellDelegate)] && [self.delegate respondsToSelector:@selector(removeProduct:)])
     {
         [self.delegate removeProduct:_indexPath];
     }
 }
 
+
 -(IBAction)actionAddProduct:(id)sender
 {
-    if (self.delegate && [self.delegate conformsToProtocol:@protocol(ProductCellDelegate)] && [self.delegate respondsToSelector:@selector(addProduct:)])
+    if (self.delegate && [self.delegate conformsToProtocol:@protocol(RetailerShoppingListCellDelegate)] && [self.delegate respondsToSelector:@selector(addProduct:)])
     {
         [self.delegate addProduct:_indexPath];
     }

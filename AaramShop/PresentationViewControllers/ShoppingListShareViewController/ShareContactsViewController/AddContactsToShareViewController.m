@@ -138,15 +138,14 @@
 
 -(void)btnShareClicked
 {
-//    if ([arrSelectedContacts count]>0)
-//    {
-//        [self.navigationController popViewControllerAnimated:YES];
-//    // call webservice here ..
-//    }
-//    else
-//    {
-//        [Utils showAlertView:kAlertTitle message:@"Choose contact to share" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-//    }
+    if ([arrContactsData count]>0)
+    {
+        [self callWebServiceToShareShoppingList];
+    }
+    else
+    {
+        [Utils showAlertView:kAlertTitle message:@"Choose contact to share" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
 }
 
 
@@ -232,26 +231,35 @@
     
     NSMutableDictionary *aDict = [Utils setPredefindValueForWebservice];
     
-//    [aDict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_id] forKey:kStore_id];
-//    [aDict setObject:_master_category_id forKey:kMaster_category_id];
-//    [aDict setObject:_category_id forKey:kCategory_id];
-//    [aDict setObject:_subCategoryModel.sub_category_id forKey:kSub_category_id];
-//    [aDict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
-//    
-//    
-//    if (![Utils isInternetAvailable])
-//    {
-//        [AppManager stopStatusbarActivityIndicator];
-//        
-//        isLoading = NO;
-//        [refreshFoodList endRefreshing];
-//        
-//        [self showFooterLoadMoreActivityIndicator:NO];
-//        
-//        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-//        return;
-//    }
-//    [aaramShop_ConnectionManager getDataForFunction:kURLGetProducts withInput:aDict withCurrentTask:TASK_GET_PRODUCTS_LIST andDelegate:self ];
+    NSMutableArray *arrTempMobile = [[NSMutableArray alloc]init];
+    
+    [arrContactsData enumerateObjectsUsingBlock:^(ContactsData *obj, NSUInteger idx, BOOL *stop) {
+        
+        if ([obj.isSelected integerValue]==1)
+        {
+            NSString *strNumer = [obj.numbers objectAtIndex:0];
+            
+            NSString * strippedNumber = [strNumer stringByReplacingOccurrencesOfString:@"[^0-9]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [strNumer length])];
+
+            [arrTempMobile addObject:strippedNumber];
+        }
+    }];
+    
+    
+    NSString *strMobiles = [arrTempMobile componentsJoinedByString:@","];
+    
+    [aDict setObject:_strShoppingListId forKey:@"shoppingListId"];
+    [aDict setObject:strMobiles forKey:@"mobile_no"];
+    
+    
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+    
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    [aaramShop_ConnectionManager getDataForFunction:kURLShareShoppingList withInput:aDict withCurrentTask:TASK_TO_SHARE_SHOPPING_LIST andDelegate:self ];
 }
 
 
@@ -259,13 +267,19 @@
 {
     [AppManager stopStatusbarActivityIndicator];
     
-//    if (aaramShop_ConnectionManager.currentTask == TASK_GET_PRODUCTS_LIST)
-//    {
-//        if([[responseObject objectForKey:kstatus] intValue] == 1)
-//        {
-//
-//        }
-//    }
+    if (aaramShop_ConnectionManager.currentTask == TASK_TO_SHARE_SHOPPING_LIST)
+    {
+        if([[responseObject objectForKey:kstatus] intValue] == 1)
+        {
+            [Utils showAlertView:kAlertTitle message:[responseObject valueForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            [Utils showAlertView:kAlertTitle message:[responseObject valueForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        }
+    }
     
 }
 

@@ -27,15 +27,14 @@
 }
 
 
--(void)updateCell
+-(void)updateCell:(SharedUserModel *)sharedUserModel
 {
     
-    //    [imgUser sd_setImageWithURL:[NSURL URLWithString:[user valueForKey:@"profilePic"]] placeholderImage:[UIImage imageNamed:@"shoppingListDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-    //        //
-    //    }];
+    [imgUser sd_setImageWithURL:[NSURL URLWithString:sharedUserModel.profileImage] placeholderImage:[UIImage imageNamed:@"shoppingListDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 
-    imgUser.image = [UIImage imageNamed:@"shoppingListDefaultImage"];
-    lblUserName.text = @"Username";
+        }];
+
+    lblUserName.text = sharedUserModel.full_name;
 }
 
 @end

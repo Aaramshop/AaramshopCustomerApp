@@ -368,6 +368,12 @@
 {
     RetailerShoppingListDetailViewController *retailerShoppingListDetailView = (RetailerShoppingListDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"retailerShoppingListDetail"];
     
+    
+//    retailerShoppingListDetailView.strStoreName = appDeleg.objStoreModel.store_name;
+
+    ShoppingListModel *shoppingListModel = [self.arrShoppingList objectAtIndex:indexPath.row];
+    retailerShoppingListDetailView.shoppingListModel = shoppingListModel;
+    
     [self.navigationController pushViewController:retailerShoppingListDetailView animated:YES];
 }
 
