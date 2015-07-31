@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
@@ -57,6 +56,7 @@
             <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular_0.ttf">
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -895,11 +895,21 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                                     <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="Shared by you with 300 people" image="shareIcon.png">
+                                                    <state key="normal" image="shareIcon.png">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzN-Df-MYC" userLabel="Label - Share">
+                                                    <rect key="frame" x="32" y="57" width="245" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="245" id="WNU-Mh-Fb5"/>
+                                                        <constraint firstAttribute="height" constant="20" id="gRy-u7-bty"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLh-4N-W4e" userLabel="Button - Delete">
                                                     <rect key="frame" x="272" y="42" width="45" height="45"/>
                                                     <constraints>
@@ -918,9 +928,11 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="TsN-Sj-4zW" secondAttribute="trailing" constant="2" id="0Q9-bP-wiM"/>
+                                                <constraint firstItem="pzN-Df-MYC" firstAttribute="leading" secondItem="EcO-em-GWX" secondAttribute="leadingMargin" constant="24" id="6y2-DA-H76"/>
                                                 <constraint firstItem="FfX-bb-D5c" firstAttribute="top" secondItem="EcO-em-GWX" secondAttribute="topMargin" constant="7" id="DIX-PS-b4P"/>
                                                 <constraint firstItem="0sr-xI-57d" firstAttribute="leading" secondItem="EcO-em-GWX" secondAttribute="leadingMargin" constant="3" id="DiU-4r-8UM"/>
                                                 <constraint firstItem="TsN-Sj-4zW" firstAttribute="leading" secondItem="FfX-bb-D5c" secondAttribute="trailing" constant="9" id="EAx-an-Trk"/>
+                                                <constraint firstItem="pzN-Df-MYC" firstAttribute="top" secondItem="ZxZ-m4-WmP" secondAttribute="bottom" constant="4" id="KvS-NP-dfh"/>
                                                 <constraint firstItem="jLh-4N-W4e" firstAttribute="top" secondItem="TsN-Sj-4zW" secondAttribute="bottom" constant="7" id="WOM-RS-Wx5"/>
                                                 <constraint firstItem="0sr-xI-57d" firstAttribute="top" secondItem="ZxZ-m4-WmP" secondAttribute="bottom" constant="4" id="YsX-7g-nKY"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="jLh-4N-W4e" secondAttribute="trailing" constant="-5" id="cuI-q7-zAs"/>
@@ -936,6 +948,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                             <outlet property="btnShare" destination="0sr-xI-57d" id="bNi-aG-Yv8"/>
                                             <outlet property="btnTime" destination="ZxZ-m4-WmP" id="2F1-eT-iop"/>
                                             <outlet property="lblQuantity" destination="TsN-Sj-4zW" id="jYV-tT-p8o"/>
+                                            <outlet property="lblShare" destination="pzN-Df-MYC" id="NFa-SE-CoB"/>
                                             <outlet property="lblTitle" destination="FfX-bb-D5c" id="IVK-6K-5Lt"/>
                                         </connections>
                                     </tableViewCell>

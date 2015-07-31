@@ -585,7 +585,30 @@
 //    productModel.strCount = [NSString stringWithFormat:@"%d",counter];
 
 //    
-//    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//  //  [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+//    NSInteger totalAmount;
+//    
+//    if ([productModel.offer_type integerValue]>0)
+//    {
+//        totalAmount = [strTotalAvailProductPrice integerValue]+[productModel.offer_price integerValue];
+//    }
+//    else
+//    {
+//        totalAmount = [strTotalAvailProductPrice integerValue]+[productModel.product_price integerValue];
+//    }
+//    
+//    
+//    countTotalProductPrice = countTotalProductPrice + [productModel.product_price integerValue];
+//    
+//    strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",(long)totalAmount];
+//    
+//    [tblView reloadData];
+
+    
+    
+    
+    
 }
 
 
@@ -603,7 +626,26 @@
 //    productModel.strCount = [NSString stringWithFormat:@"%d",counter];
 
 //    
-//    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//   // [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+//    NSInteger totalAmount;
+//    
+//    if ([productModel.offer_type integerValue]>0)
+//    {
+//        totalAmount = [strTotalAvailProductPrice integerValue]-[productModel.offer_price integerValue];
+//    }
+//    else
+//    {
+//        totalAmount = [strTotalAvailProductPrice integerValue]-[productModel.product_price integerValue];
+//    }
+//    
+//    countTotalProductPrice = countTotalProductPrice - [productModel.product_price integerValue];
+//    
+//    
+//    strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",totalAmount];
+//    
+//    [tblView reloadData];
+    
 }
 
 

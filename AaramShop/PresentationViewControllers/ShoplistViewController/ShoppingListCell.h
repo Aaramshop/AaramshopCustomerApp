@@ -20,7 +20,7 @@
 	__weak IBOutlet UILabel *lblQuantity;
     __weak IBOutlet UIButton *btnTime;
 	__weak IBOutlet UIButton *btnShare;
-//    __weak IBOutlet UILabel *lblShare;
+    __weak IBOutlet UILabel *lblShare;
 }
 
 @property(nonatomic,weak) id <ShoppingListCellDelegate>delegate;

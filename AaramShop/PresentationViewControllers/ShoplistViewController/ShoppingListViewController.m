@@ -435,35 +435,35 @@
         shoppingListModel.reminderDate = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminderDate"]];
         
         
-//        NSArray *arrTempSharedBy = [obj valueForKey:@"sharedBy"];
-//        
-//        for (id obj1 in arrTempSharedBy) {
-//            
-//            SharedUserModel *sharedUserModel = [[SharedUserModel alloc]init];
-//            
-//            sharedUserModel.chat_username = [obj1 valueForKey:@"chat_username"];
-//            sharedUserModel.email = [obj1 valueForKey:@"email"];
-//            sharedUserModel.full_name = [obj1 valueForKey:@"full_name"];
-//            sharedUserModel.mobile = [obj1 valueForKey:@"mobile"];
-//            
-//            [shoppingListModel.sharedBy addObject:sharedUserModel];
-//        }
-//        
-//        
-//        
-//        NSArray *arrTempSharedWith = [obj valueForKey:@"sharedWith"];
-//        
-//        for (id obj2 in arrTempSharedWith) {
-//            
-//            SharedUserModel *sharedUserModel = [[SharedUserModel alloc]init];
-//            
-//            sharedUserModel.chat_username = [obj2 valueForKey:@"chat_username"];
-//            sharedUserModel.email = [obj2 valueForKey:@"email"];
-//            sharedUserModel.full_name = [obj2 valueForKey:@"full_name"];
-//            sharedUserModel.mobile = [obj2 valueForKey:@"mobile"];
-//            
-//            [shoppingListModel.sharedWith addObject:sharedUserModel];
-//        }
+        NSArray *arrTempSharedBy = [obj valueForKey:@"sharedBy"];
+        
+        for (id obj1 in arrTempSharedBy) {
+            
+            SharedUserModel *sharedUserModel = [[SharedUserModel alloc]init];
+            
+            sharedUserModel.chat_username = [obj1 valueForKey:@"chat_username"];
+            sharedUserModel.email = [obj1 valueForKey:@"email"];
+            sharedUserModel.full_name = [obj1 valueForKey:@"full_name"];
+            sharedUserModel.mobile = [obj1 valueForKey:@"mobile"];
+            
+            [shoppingListModel.sharedBy addObject:sharedUserModel];
+        }
+        
+        
+        
+        NSArray *arrTempSharedWith = [obj valueForKey:@"sharedWith"];
+        
+        for (id obj2 in arrTempSharedWith) {
+            
+            SharedUserModel *sharedUserModel = [[SharedUserModel alloc]init];
+            
+            sharedUserModel.chat_username = [obj2 valueForKey:@"chat_username"];
+            sharedUserModel.email = [obj2 valueForKey:@"email"];
+            sharedUserModel.full_name = [obj2 valueForKey:@"full_name"];
+            sharedUserModel.mobile = [obj2 valueForKey:@"mobile"];
+            
+            [shoppingListModel.sharedWith addObject:sharedUserModel];
+        }
         
         
         
