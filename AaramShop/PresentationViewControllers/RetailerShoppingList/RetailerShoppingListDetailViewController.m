@@ -425,7 +425,7 @@
     
     NSInteger totalAmount;
     
-    if ([productModel.offerType integerValue]>0)
+    if ([productModel.offer_type integerValue]>0)
     {
         totalAmount = [strTotalAvailProductPrice integerValue]+[productModel.offer_price integerValue];
     }
@@ -437,7 +437,7 @@
     
     countTotalProductPrice = countTotalProductPrice + [productModel.product_price integerValue];
     
-    strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",totalAmount];
+    strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",(long)totalAmount];
     
     [tblView reloadData];
 }
@@ -456,7 +456,7 @@
     
     NSInteger totalAmount;
     
-    if ([productModel.offerType integerValue]>0)
+    if ([productModel.offer_type integerValue]>0)
     {
         totalAmount = [strTotalAvailProductPrice integerValue]-[productModel.offer_price integerValue];
     }
@@ -658,7 +658,7 @@
             countAvailProducts ++;
         }
         
-        productsModel.offerType = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerType"]];
+        productsModel.offer_type = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerType"]];
         productsModel.offer_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_price"]];
         
         productsModel.product_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_id"]];
@@ -673,10 +673,9 @@
         
         
         
-        productsModel.offerType = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerType"]];
         productsModel.offer_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_price"]];
         
-        if ([productsModel.offerType integerValue]>0)
+        if ([productsModel.offer_type integerValue]>0)
         {
             countTotalProductPrice = countTotalProductPrice + ([productsModel.offer_price integerValue] * [productsModel.quantity integerValue]);
             
