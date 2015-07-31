@@ -562,6 +562,7 @@
     {
         ShoppingListCalenderViewController *shoppingListCalenderView = (ShoppingListCalenderViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListCalenderView"];
         
+        shoppingListCalenderView.storeId = selectedStoreModel.store_id;
         shoppingListCalenderView.shoppingListId=_strShoppingListID;
         [self.navigationController pushViewController:shoppingListCalenderView animated:YES];
     }
@@ -574,11 +575,15 @@
 {
 //    ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
 //    
-//    int counter = [productModel.quantity intValue];
+// //    int counter = [productModel.quantity intValue];
+//       int counter = [productModel.strCount intValue];
+
 //    
 //    counter++;
 //    
-//    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+//  //  productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+//    productModel.strCount = [NSString stringWithFormat:@"%d",counter];
+
 //    
 //    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
@@ -589,10 +594,14 @@
 {
 //    ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
 //    
-//    int counter = [productModel.quantity intValue];
+//  //  int counter = [productModel.quantity intValue];
+//    int counter = [productModel.strCount intValue];
+
 //    counter--;
 //    
-//    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+//  //  productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+//    productModel.strCount = [NSString stringWithFormat:@"%d",counter];
+
 //    
 //    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
@@ -777,7 +786,10 @@
         productsModel.product_name = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_name"]];
         productsModel.product_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_price"]];
         productsModel.product_sku_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_sku_id"]];
-        productsModel.quantity = [NSString stringWithFormat:@"%@",[obj valueForKey:@"quantity"]];
+//        productsModel.quantity = [NSString stringWithFormat:@"%@",[obj valueForKey:@"quantity"]];
+        
+        productsModel.strCount = [NSString stringWithFormat:@"%@",[obj valueForKey:@"quantity"]];
+
 
         
         [arrProductList  addObject:productsModel];

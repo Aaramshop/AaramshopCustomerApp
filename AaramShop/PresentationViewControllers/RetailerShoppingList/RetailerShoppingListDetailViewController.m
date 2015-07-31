@@ -260,11 +260,13 @@
     {
         cell.contentView.backgroundColor = [UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1.0];
         cell.contentView.alpha = 0.3;
+        cell.userInteractionEnabled = NO;
     }
     else
     {
         cell.contentView.backgroundColor = [UIColor clearColor];
         cell.contentView.alpha = 1.0;
+        cell.userInteractionEnabled = YES;
     }
     
     
@@ -416,11 +418,15 @@
 {
     ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
     
-    int counter = [productModel.quantity intValue];
+//    int counter = [productModel.quantity intValue];
+    int counter = [productModel.strCount intValue];
+
     
     counter++;
     
-    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+//    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+    productModel.strCount = [NSString stringWithFormat:@"%d",counter];
+
     
     
     NSInteger totalAmount;
@@ -448,10 +454,15 @@
 {
     ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
     
-    int counter = [productModel.quantity intValue];
+//    int counter = [productModel.quantity intValue];
+    
+    int counter = [productModel.strCount intValue];
+
     counter--;
     
-    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+//    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+    productModel.strCount = [NSString stringWithFormat:@"%d",counter];
+
     
     
     NSInteger totalAmount;
@@ -669,7 +680,9 @@
         
         
         productsModel.product_sku_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_sku_id"]];
-        productsModel.quantity = [NSString stringWithFormat:@"%@",[obj valueForKey:@"quantity"]];
+//        productsModel.quantity = [NSString stringWithFormat:@"%@",[obj valueForKey:@"quantity"]];
+        productsModel.strCount = [NSString stringWithFormat:@"%@",[obj valueForKey:@"quantity"]];
+
         
         
         
@@ -677,12 +690,18 @@
         
         if ([productsModel.offer_type integerValue]>0)
         {
-            countTotalProductPrice = countTotalProductPrice + ([productsModel.offer_price integerValue] * [productsModel.quantity integerValue]);
+//            countTotalProductPrice = countTotalProductPrice + ([productsModel.offer_price integerValue] * [productsModel.quantity integerValue]);
+            
+            countTotalProductPrice = countTotalProductPrice + ([productsModel.offer_price integerValue] * [productsModel.strCount integerValue]);
+
             
         }
         else
         {
-            countTotalProductPrice = countTotalProductPrice + ([productsModel.product_price integerValue] * [productsModel.quantity integerValue]);
+//            countTotalProductPrice = countTotalProductPrice + ([productsModel.product_price integerValue] * [productsModel.quantity integerValue]);
+            
+            countTotalProductPrice = countTotalProductPrice + ([productsModel.product_price integerValue] * [productsModel.strCount integerValue]);
+
             
         }
         

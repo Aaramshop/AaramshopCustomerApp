@@ -130,7 +130,9 @@
     
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:_shoppingListId forKey:@"shoppingListId"];
-    [dict setObject:@"1" forKey:@"store_id"];
+    
+    [dict setObject:_storeId forKey:@"store_id"];
+    
     [dict setObject:[NSString stringWithFormat:@"%.0f",[startDate timeIntervalSince1970]] forKey:@"start_date"];
     [dict setObject:[NSString stringWithFormat:@"%.0f",[endDate timeIntervalSince1970]] forKey:@"end_date"];
     
@@ -157,7 +159,7 @@
     
     [dict setObject:reminderSwitch.isOn?@"1":@"0" forKey:@"reminder"];
     
-    [self callWebServiceToGetProductsList:dict];
+    [self callWebServiceToSetShoppingListReminder:dict];
     
     if (reminderSwitch.isOn && [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] == EKAuthorizationStatusAuthorized) {
         
@@ -239,7 +241,7 @@
 }
 #pragma mark - Call Webservice
 
--(void)callWebServiceToGetProductsList:(NSMutableDictionary *)aDict
+-(void)callWebServiceToSetShoppingListReminder:(NSMutableDictionary *)aDict
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
@@ -255,7 +257,6 @@
 
 -(void) didFailWithError:(NSError *)error
 {
-    
     
     [AppManager stopStatusbarActivityIndicator];
     [aaramShop_ConnectionManager failureBlockCalled:error];
@@ -274,14 +275,17 @@
         case TASK_TO_SET_SHOPPING_LIST_REMINDER:
         {
             
-//            if ([[responseObject objectForKey:kstatus] intValue] == 1)
-//            {
-//                [self parseResponseData:responseObject];
-//            }
-//            else
-//            {
-                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-//            }
+            if ([[responseObject objectForKey:kstatus] intValue] == 1)
+            {
+                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }
+            else
+            {
+                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            }
         }
             break;
             

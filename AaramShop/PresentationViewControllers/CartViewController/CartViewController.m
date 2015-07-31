@@ -293,6 +293,23 @@
 		product.strCount				=	productModel.strCount;
 		product.product_price		=	productModel.product_price;
 		[cell updateCell:product];
+        
+        
+        if ([product.isAvailable integerValue]==0)
+        {
+            cell.contentView.backgroundColor = [UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1.0];
+            cell.contentView.alpha = 0.3;
+            cell.userInteractionEnabled = NO;
+        }
+        else
+        {
+            cell.contentView.backgroundColor = [UIColor clearColor];
+            cell.contentView.alpha = 1.0;
+            cell.userInteractionEnabled = YES;
+        }
+
+        
+        
 		
 		return cell;
 	}

@@ -25,7 +25,9 @@
 
 -(IBAction)actionRemoveProduct:(id)sender
 {
-    int counter = [tempProductModel.quantity intValue];
+//    int counter = [tempProductModel.quantity intValue];
+    int counter = [tempProductModel.strCount intValue];
+
 
     if (counter==0)
     {
@@ -60,15 +62,52 @@
     [imgProduct sd_setImageWithURL:[NSURL URLWithString:tempProductModel.product_image] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
     
     lblProductName.text = tempProductModel.product_name;
-	btnAdd.enabled = YES;
-
-    if([tempProductModel.strCount integerValue]==20)
-	{
-		btnAdd.enabled = NO;
-	}
-	btnRemove.enabled = YES;
+    
+    
+//	btnAdd.enabled = YES;
+//
+//    if([tempProductModel.strCount integerValue]==20)
+//	{
+//		btnAdd.enabled = NO;
+//	}
+//	btnRemove.enabled = YES;
+    
+    
+    
+    
+    
+    //   if ([tempProductModel.quantity integerValue]==0)
+    if ([tempProductModel.strCount integerValue]==0)
+    {
+        btnRemove.enabled = NO;
+    }
+    else
+    {
+        btnRemove.enabled = YES;
+    }
+    
+    //  if ([tempProductModel.quantity integerValue]<20)
+    if ([tempProductModel.strCount integerValue]<20)
+    {
+        btnAdd.enabled = YES;
+    }
+    else
+    {
+        btnAdd.enabled = NO;
+    }
+    
+    
+    //  lblCounter.text = tempProductModel.quantity;
+    
+    
+    
+    
     lblCounter.text		= tempProductModel.strCount;
-	lblPrice.text			=	[NSString stringWithFormat:@"₹%@",tempProductModel.product_price];
+    lblPrice.text			=	[NSString stringWithFormat:@"₹%@",tempProductModel.product_price];
+
+    
+    
+    
 }
 
 

@@ -25,7 +25,9 @@
 
 -(IBAction)actionRemoveProduct:(id)sender
 {
-    int counter = [tempProductModel.quantity intValue];
+//    int counter = [tempProductModel.quantity intValue];
+    int counter = [tempProductModel.strCount intValue];
+
 
     if (counter==0)
     {
@@ -64,37 +66,40 @@
     
     
     
-	btnAdd.enabled = YES;
+//	btnAdd.enabled = YES;
+//    
+//    if([tempProductModel.strCount integerValue]==20)
+//	{
+//		btnAdd.enabled = NO;
+//	}
+//	btnRemove.enabled = YES;
+//    lblCounter.text = tempProductModel.strCount;
     
-    if([tempProductModel.strCount integerValue]==20)
-	{
-		btnAdd.enabled = NO;
-	}
-	btnRemove.enabled = YES;
+    
+    
+ //   if ([tempProductModel.quantity integerValue]==0)
+    if ([tempProductModel.strCount integerValue]==0)
+    {
+        btnRemove.enabled = NO;
+    }
+    else
+    {
+        btnRemove.enabled = YES;
+    }
+    
+  //  if ([tempProductModel.quantity integerValue]<20)
+    if ([tempProductModel.strCount integerValue]<20)
+    {
+        btnAdd.enabled = YES;
+    }
+    else
+    {
+        btnAdd.enabled = NO;
+    }
+    
+    
+  //  lblCounter.text = tempProductModel.quantity;
     lblCounter.text = tempProductModel.strCount;
-    
-    
-    
-//    if ([tempProductModel.quantity integerValue]==0)
-//    {
-//        btnRemove.enabled = NO;
-//    }
-//    else
-//    {
-//        btnRemove.enabled = YES;
-//    }
-//    
-//    if ([tempProductModel.quantity integerValue]<20)
-//    {
-//        btnAdd.enabled = YES;
-//    }
-//    else
-//    {
-//        btnAdd.enabled = NO;
-//    }
-//    
-//    
-//    lblCounter.text = tempProductModel.quantity;
 
     
     

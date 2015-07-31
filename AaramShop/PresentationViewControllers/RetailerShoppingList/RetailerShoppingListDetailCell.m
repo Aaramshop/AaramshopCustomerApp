@@ -27,7 +27,10 @@
 
 -(IBAction)actionRemoveProduct:(id)sender
 {
-    int counter = [tempProductModel.quantity intValue];
+//    int counter = [tempProductModel.quantity intValue];
+    
+    int counter = [tempProductModel.strCount intValue];
+
 
     if (counter==0)
     {
@@ -64,7 +67,8 @@
     
     lblProductName.text = tempProductModel.product_name;
     
-    if ([tempProductModel.quantity integerValue]==0)
+//    if ([tempProductModel.quantity integerValue]==0)
+    if ([tempProductModel.strCount integerValue]==0)
     {
         btnRemove.enabled = NO;
     }
@@ -73,7 +77,8 @@
         btnRemove.enabled = YES;
     }
     
-    if ([tempProductModel.quantity integerValue]<20)
+//    if ([tempProductModel.quantity integerValue]<20)
+    if ([tempProductModel.strCount integerValue]<20)
     {
         btnAdd.enabled = YES;
     }
@@ -83,7 +88,9 @@
     }
     
     
-    lblCounter.text = tempProductModel.quantity;
+//    lblCounter.text = tempProductModel.quantity;
+    lblCounter.text = tempProductModel.strCount;
+
 }
 
 
