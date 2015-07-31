@@ -7,6 +7,7 @@
 //
 
 #import "ShoppingListCell.h"
+#import "SharedUserModel.h"
 
 @implementation ShoppingListCell
 
@@ -14,7 +15,7 @@
     // Initialization code
     
     
-//    [btnShare setTitleColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    [btnShare setTitleColor:[UIColor colorWithRed:135.0/255.0 green:135.0/255.0 blue:135.0/255.0 alpha:1.0] forState:UIControlStateNormal];
     
 }
 
@@ -68,10 +69,6 @@
     }
     
     strTime = [[[strTime stringByReplacingOccurrencesOfString:@"/" withString:@"-"] componentsSeparatedByString:@" "] firstObject];
-
-    // firstly remove ',' from last index of string, after uncommenting the above code. Ex - 'Yesterday,'.
-    // Right now, it's - 'Yesterday, 12:00 AM'
-   
     
     if ([strTime hasSuffix:@","])
     {
@@ -82,12 +79,75 @@
     [btnTime setTitle:strTime forState:UIControlStateNormal];
     
     
+    
+    if ([shoppingListModel.sharedBy count]>0)
+    {
+        
+    }
+    else if ([shoppingListModel.sharedWith count]>0)
+    {
+        
+     /*
+        
+        NSDictionary * wordToColorMapping;// = [NSDictionary dictionaryWithObjectsAndKeys:<#(id), ...#>, nil]
+        
+        NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:@""];
+        for (NSString * word in wordToColorMapping) {
+            UIColor * color = [wordToColorMapping objectForKey:word];
+            NSDictionary * attributes = [NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
+            NSAttributedString * subString = [[NSAttributedString alloc] initWithString:word attributes:attributes];
+            [string appendAttributedString:subString];
+        }
+        
+        
+        
+        
+        
+        
+
+        NSString *strText = [NSString stringWithFormat:@"Shared by you with %ld people",[shoppingListModel.sharedWith count]];
+        
+        
+        NSMutableAttributedString *strAttrFinal = [[NSMutableAttributedString alloc] init];
+        
+        
+        NSDictionary* textAttributes = @{
+                                            NSForegroundColorAttributeName :[UIColor colorWithRed:254.0/255.0 green:56.0/255.0 blue:45.0/255.0 alpha:1.0]
+                                            };
+
+        NSAttributedString* textAttrString = [[NSAttributedString alloc] initWithString:strText attributes:textAttributes];
+        
+        
+        
+        //if ([[dicSummary valueForKey:@"priceWithDiscount"] integerValue]==0)
+        {
+            NSDictionary* actPriceAttributes = @{
+                                                 NSForegroundColorAttributeName :[UIColor redColor]
+                                                 };
+            
+            NSAttributedString* actPriceAttrString = [[NSAttributedString alloc] initWithString:strActualPrice attributes:actPriceAttributes];
+            
+            [strAttrFinal appendAttributedString:quantityAttrString];
+            [strAttrFinal appendAttributedString:actPriceAttrString];
+            
+            lblQuantity.attributedText = strAttrFinal;
+            
+        }
+        
+        btnShare setAttributedTitle:(NSAttributedString *) forState:<#(UIControlState)#>
+    }
+
+    //*/
+    
+    
+    
+    
     ////
     
     
     // work remainig for share info..
     
-    
+    }
 }
 
 /*

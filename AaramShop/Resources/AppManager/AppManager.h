@@ -12,6 +12,7 @@
 #import "StoreModel.h"
 #import "ProductsModel.h"
 #import "CartProductModel.h"
+#import "ContactsData.h"
 
 typedef enum {
     eMapDefaultType =0,
@@ -28,6 +29,7 @@ void MyAddressBookExternalChangeCallback (
 @class  CMCountryList;
 @interface AppManager : NSObject{
     ABAddressBookRef addressBookRef;
+    
 }
 @property (nonatomic , assign) BOOL isComingFromChat;
 @property(nonatomic,strong) NSMutableArray *arrImages;
@@ -59,5 +61,7 @@ void MyAddressBookExternalChangeCallback (
 + (void)removeCartBasedOnStoreId:(NSString *)store_id;
 + (NSMutableArray *)getCartProductsByStoreId:(NSString *)store_id;
 + (NSString *)getCountOfProduct:(NSString *)cartProductId withOfferType:(NSString *)offer_type forStore_id:(NSString *)store_id;
++(NSArray *)getAllContacts;
++(NSArray *)addContactToAddressBook;
 @end
 extern AppManager *gAppManager;

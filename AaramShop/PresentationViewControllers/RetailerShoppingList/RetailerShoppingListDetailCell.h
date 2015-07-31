@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ProductsModel.h"
 
-@protocol ProductCellDelegate <NSObject>
+@protocol RetailerShoppingListCellDelegate <NSObject>
 
 -(void)addProduct:(NSIndexPath *)indexPath;
 -(void)removeProduct:(NSIndexPath *)indexPath;
@@ -18,17 +18,17 @@
 
 @interface RetailerShoppingListDetailCell : UITableViewCell
 {
-    __weak IBOutlet UIImageView		*imgProduct;
-    __weak IBOutlet UILabel				*lblProductName;
-	__weak IBOutlet UILabel				*lblPrice;
-    __weak IBOutlet UIButton				*btnRemove;
-    __weak IBOutlet UILabel				*lblCounter;
-    __weak IBOutlet UIButton				*btnAdd;
+    __weak IBOutlet UIImageView *imgProduct;
+    __weak IBOutlet UILabel *lblProductName;
+    __weak IBOutlet UILabel	*lblPrice;
+    __weak IBOutlet UIButton *btnRemove;
+    __weak IBOutlet UILabel *lblCounter;
+    __weak IBOutlet UIButton *btnAdd;
     
     ProductsModel *tempProductModel;
 }
 
-@property (nonatomic,weak) id <ProductCellDelegate> delegate;
+@property (nonatomic,weak) id <RetailerShoppingListCellDelegate> delegate;
 @property (nonatomic,strong) NSIndexPath *indexPath;
 
 -(void)updateCell:(ProductsModel *)productsModel;

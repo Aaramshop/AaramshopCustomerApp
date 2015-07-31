@@ -42,7 +42,6 @@ AppDelegate *appDeleg;
                                                          (__bridge void *)(self)
                                                          );
         }
-        
     }
     return self;
 }
@@ -701,5 +700,200 @@ void MyAddressBookExternalChangeCallback (
 		return [[array objectAtIndex:0] strCount];
 	}
 	return @"0";
+}
+
++(NSArray *)getAllContacts {
+    
+    __block NSArray *arrContacts = [[NSArray alloc]init];
+    
+    
+    // Request authorization to Address Book
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+    
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined)
+    {
+        ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error)
+                                                 {
+                                                     if (granted) {
+                                                         // First time access has been granted, add the contact
+                                                         arrContacts = [self addContactToAddressBook];
+                                                     } else {
+                                                         // User denied access
+                                                         // Display an alert telling user the contact could not be added
+                                                     }
+                                                 });
+    }
+    else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+        // The user has previously given access, add the contact
+        arrContacts = [self addContactToAddressBook];
+    }
+    else {
+        // The user has previously denied access
+        // Send an alert telling user to change privacy setting in settings app
+    }
+    
+    return arrContacts;
+}
+
++(NSArray *)addContactToAddressBook
+{
+    
+    CFErrorRef *error = nil;
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error);
+    ABRecordRef source = ABAddressBookCopyDefaultSource(addressBook);
+    CFArrayRef allPeople = (ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook, source, kABPersonSortByFirstName));
+    //CFIndex nPeople = ABAddressBookGetPersonCount(addressBook);
+    CFIndex nPeople = CFArrayGetCount(allPeople); // bugfix who synced contacts with facebook
+    NSMutableArray* items = [NSMutableArray arrayWithCapacity:nPeople];
+    
+    if (!allPeople || !nPeople) {
+        NSLog(@"people nil");
+    }
+    
+    
+    for (int i = 0; i < nPeople; i++) {
+        
+        @autoreleasepool {
+            
+            //data model
+            ContactsData *contacts = [ContactsData new];
+            
+            ABRecordRef person = CFArrayGetValueAtIndex(allPeople, i);
+            
+            // set contact isSelected..
+            contacts.isSelected = @"0";
+            
+            
+            //get First Name
+            CFStringRef firstName = (CFStringRef)ABRecordCopyValue(person,kABPersonFirstNameProperty);
+            contacts.firstName = [(__bridge NSString*)firstName copy];
+            
+            if (firstName != NULL) {
+                CFRelease(firstName);
+            }
+            
+            
+            //get Last Name
+            CFStringRef lastName = (CFStringRef)ABRecordCopyValue(person,kABPersonLastNameProperty);
+            contacts.lastName = [(__bridge NSString*)lastName copy];
+            
+            if (lastName != NULL) {
+                CFRelease(lastName);
+            }
+            
+            
+            if (!contacts.firstName) {
+                contacts.firstName = @"";
+            }
+            
+            if (!contacts.lastName) {
+                contacts.lastName = @"";
+            }
+            
+            
+            
+            contacts.contactId = ABRecordGetRecordID(person);
+            //append first name and last name
+            contacts.username = [NSString stringWithFormat:@"%@ %@", contacts.firstName, contacts.lastName];
+            
+            
+            // get contacts picture, if pic doesn't exists, show standart one
+            CFDataRef imgData = ABPersonCopyImageData(person);
+            NSData *imageData = (__bridge NSData *)imgData;
+            contacts.profilePic = [UIImage imageWithData:imageData];
+            
+            if (imgData != NULL) {
+                CFRelease(imgData);
+            }
+            
+            if (!contacts.profilePic) {
+                contacts.profilePic = [UIImage imageNamed:@"defaultProfilePic"];
+            }
+            
+            
+            
+            ///////////////////////////////////////////////////
+            //////////////////////////////////////////////////
+            
+             
+            //get Phone Numbers
+            NSMutableArray *phoneNumbers = [[NSMutableArray alloc] init];
+            ABMultiValueRef multiPhones = ABRecordCopyValue(person, kABPersonPhoneProperty);
+            
+            /*
+            for(CFIndex i=0; i<ABMultiValueGetCount(multiPhones); i++) {
+                @autoreleasepool {
+                    CFStringRef phoneNumberRef = ABMultiValueCopyValueAtIndex(multiPhones, i);
+                    NSString *phoneNumber = CFBridgingRelease(phoneNumberRef);
+                    if (phoneNumber != nil)[phoneNumbers addObject:phoneNumber];
+                    //NSLog(@"All numbers %@", phoneNumbers);
+                }
+            }
+            
+            if (multiPhones != NULL) {
+                CFRelease(multiPhones);
+            }
+            
+            [contacts setNumbers:phoneNumbers];
+            
+            //*/    
+
+            
+            //get all phone numbers
+            ABMultiValueRef phoneNumberMultiValue = ABRecordCopyValue(person, kABPersonPhoneProperty);
+            NSUInteger phoneNumberIndex;
+            for (phoneNumberIndex = 0; phoneNumberIndex < ABMultiValueGetCount(phoneNumberMultiValue); phoneNumberIndex++) {
+                
+                CFStringRef labelStingRef = ABMultiValueCopyLabelAtIndex (phoneNumberMultiValue, phoneNumberIndex);
+                
+                NSString *phoneLabelLocalized = (__bridge NSString*)ABAddressBookCopyLocalizedLabel(labelStingRef);
+                
+                NSString *phoneNumber  = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneNumberMultiValue, phoneNumberIndex);
+                
+                [contacts setNumbers:[NSArray arrayWithObject:phoneNumber]];
+
+                NSLog(@" \n \n mobile ==>> %@ \n \n",phoneNumber);
+
+            }
+            
+
+            
+         ///////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+            
+            
+            //get Contact email
+            NSMutableArray *contactEmails = [NSMutableArray new];
+            ABMultiValueRef multiEmails = ABRecordCopyValue(person, kABPersonEmailProperty);
+            
+            for (CFIndex i=0; i<ABMultiValueGetCount(multiEmails); i++) {
+                @autoreleasepool {
+                    CFStringRef contactEmailRef = ABMultiValueCopyValueAtIndex(multiEmails, i);
+                    NSString *contactEmail = CFBridgingRelease(contactEmailRef);
+                    if (contactEmail != nil)[contactEmails addObject:contactEmail];
+                    // NSLog(@"All emails are:%@", contactEmails);
+                }
+            }
+            
+            if (multiPhones != NULL) {
+                CFRelease(multiEmails);
+            }
+            
+            [contacts setEmails:contactEmails];
+            
+            [items addObject:contacts];
+            
+#ifdef DEBUG
+            //NSLog(@"Person is: %@", contacts.firstNames);
+            //NSLog(@"Phones are: %@", contacts.numbers);
+            //NSLog(@"Email is:%@", contacts.emails);
+#endif
+            
+        }
+    } //autoreleasepool
+    CFRelease(allPeople);
+    CFRelease(addressBook);
+    CFRelease(source);
+    return items;
 }
 @end

@@ -481,9 +481,16 @@
 -(void)parseResponseData:(NSDictionary *)responseObject
 {
     
-    if (!shoppingListChooseStoreModel)
+//    if (!shoppingListChooseStoreModel)
+//    {
+        ShoppingListChooseStoreModel *shoppingListChooseStoreModel = [[ShoppingListChooseStoreModel alloc]init];
+//    }
+    
+    
+    if (pageno == 0)
     {
-        shoppingListChooseStoreModel = [[ShoppingListChooseStoreModel alloc]init];
+        [arrAllStores removeAllObjects];
+        [arrRecommendedStores removeAllObjects];
     }
     
     //*
@@ -600,22 +607,15 @@
         [shoppingListChooseStoreModel.arrShoppingStores addObject:objStore];
     }
     
-    
-    if (pageno == 0)
-    {
-        [arrAllStores removeAllObjects];
-        [arrRecommendedStores removeAllObjects];
-    }
-    
-    
-    if (shoppingListChooseStoreModel)
-    {
+ 
+//    if (shoppingListChooseStoreModel)
+//    {
         [arrAllStores addObjectsFromArray:shoppingListChooseStoreModel.arrFavoriteStores];
         [arrAllStores addObjectsFromArray:shoppingListChooseStoreModel.arrHomeStores];
         [arrAllStores addObjectsFromArray:shoppingListChooseStoreModel.arrShoppingStores];
         
         [arrRecommendedStores addObjectsFromArray:shoppingListChooseStoreModel.arrRecommendedStores];
-    }
+//    }
     
     
     [tblStores reloadData];
@@ -639,7 +639,7 @@
 
 -(void)calledPullUp
 {
-    if(totalNoOfPages>pageno)
+    if(totalNoOfPages>pageno+1)
     {
         pageno++;
         [self callWebserviceToGetStoresList];

@@ -113,6 +113,7 @@
      }completion:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarHit) name:notificationStatusBarTouched object:nil];
     
+    isSearchOn = NO;
     
     [self createDataToGetStoresList];
 
@@ -130,8 +131,8 @@
     [dict setObject:@"0" forKey:kPage_no];
     
     
-    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
-    [dict setObject:@"77.3769436" forKey:kLongitude]; //temp
+//    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
+//    [dict setObject:@"77.3769436" forKey:kLongitude]; //temp
     
     
     [self callWebserviceToGetHomeStoreBanner:dict];
@@ -337,12 +338,14 @@
     [arrSearchResult removeAllObjects];
     if ([searchText length] >=3 ) {
         
+        isSearchOn = YES;
         pageNumber = 0;
         [self callWebserviceToSearchText:searchText];
         
     }
     else if ([searchText length] ==0 )
     {
+        isSearchOn = NO;
         pageNumber = 0;
         [self createDataToGetStoresList];
     }
@@ -370,8 +373,8 @@
     
     
     
-    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
-    [dict setObject:@"77.3769436" forKey:kLongitude]; //temp
+//    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
+//    [dict setObject:@"77.3769436" forKey:kLongitude]; //temp
 
     
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
@@ -412,7 +415,7 @@
         
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
             
-//            totalNoOfPages = [[responseObject valueForKey:@"total_page"] intValue];
+            totalNoOfPages = [[responseObject valueForKey:@"total_page"] intValue];
             
             [self parseHomeStoreResponseData:responseObject];
         }
@@ -425,7 +428,7 @@
         
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
             
-//            totalNoOfPages = [[responseObject valueForKey:@"total_page"] intValue];
+            totalNoOfPages = [[responseObject valueForKey:@"total_page"] intValue];
 
             [self parseHomeStoreResponseData:responseObject];
         }
@@ -439,7 +442,10 @@
 
 -(void)parseHomeStoreResponseData:(NSMutableDictionary *)responseObject
 {
-    [arrSearchResult removeAllObjects];
+    if (pageNumber==0)
+    {
+        [arrSearchResult removeAllObjects];
+    }
 
     NSArray *arrStores = [responseObject objectForKey:@"suggested_stores"];
     for (id obj in arrStores) {
@@ -484,10 +490,19 @@
 }
 -(void)calledPullUp
 {
-    if(totalNoOfPages>pageNumber)
+    if(totalNoOfPages>pageNumber+1)
     {
         pageNumber++;
-        [self callWebserviceToSearchText:searchBarMain.text];
+        
+        if (isSearchOn)
+        {
+            [self callWebserviceToSearchText:searchBarMain.text];
+        }
+        else
+        {
+            [self createDataToGetStoresList];
+        }
+        
     }
     else
     {

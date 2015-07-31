@@ -920,6 +920,7 @@
 		6B1374231B60E7FF0015E9EA /* ShoppingListChooseStoreGeneralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1374221B60E7FF0015E9EA /* ShoppingListChooseStoreGeneralCell.m */; };
 		6B1374261B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1374251B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.m */; };
 		6B1374281B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B1374271B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib */; };
+		6B1987C31B6A32C6000497DC /* SharedUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1987C21B6A32C6000497DC /* SharedUserModel.m */; };
 		6B1A9A521B0364740005917B /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A9A511B0364740005917B /* Annotation.m */; };
 		6B1A9A581B03658C0005917B /* CustomMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A9A561B03658C0005917B /* CustomMapAnnotationView.m */; };
 		6B1A9A591B03658C0005917B /* CustomMapAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B1A9A571B03658C0005917B /* CustomMapAnnotationView.xib */; };
@@ -944,6 +945,15 @@
 		6B37EAC51B5D248E00C7A3D8 /* RecommendedStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B37EAC31B5D248E00C7A3D8 /* RecommendedStoreCell.m */; };
 		6B37EAC61B5D248E00C7A3D8 /* RecommendedStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B37EAC41B5D248E00C7A3D8 /* RecommendedStoreCell.xib */; };
 		6B388E191AFCC31800FF3CF3 /* LocationEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */; };
+		6B54903A1B68C46700465C82 /* AddContactsToShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5490391B68C46700465C82 /* AddContactsToShareViewController.m */; };
+		6B54903D1B68C48200465C82 /* AddContactsToShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B54903C1B68C48200465C82 /* AddContactsToShareCell.m */; };
+		6B5490411B68D79D00465C82 /* ContactsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5490401B68D79D00465C82 /* ContactsData.m */; };
+		6B5490481B68E59100465C82 /* checkBoxActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490421B68E59100465C82 /* checkBoxActive.png */; };
+		6B5490491B68E59100465C82 /* checkBoxActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490431B68E59100465C82 /* checkBoxActive@2x.png */; };
+		6B54904A1B68E59100465C82 /* checkBoxActive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490441B68E59100465C82 /* checkBoxActive@3x.png */; };
+		6B54904B1B68E59100465C82 /* checkBoxInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490451B68E59100465C82 /* checkBoxInactive.png */; };
+		6B54904C1B68E59100465C82 /* checkBoxInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490461B68E59100465C82 /* checkBoxInactive@2x.png */; };
+		6B54904D1B68E59100465C82 /* checkBoxInactive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490471B68E59100465C82 /* checkBoxInactive@3x.png */; };
 		6B5C0FAA1B53B69F003C217C /* ShoppingListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FA91B53B69F003C217C /* ShoppingListDetailViewController.m */; };
 		6B5C0FAD1B53B6C3003C217C /* ShoppingListDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FAC1B53B6C3003C217C /* ShoppingListDetailCell.m */; };
 		6B5C0FB11B53BC6E003C217C /* CreateNewShoppingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FB01B53BC6E003C217C /* CreateNewShoppingListViewController.m */; };
@@ -2585,6 +2595,8 @@
 		6B1374241B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListChooseStoreRecommendedCell.h; sourceTree = "<group>"; };
 		6B1374251B60E81B0015E9EA /* ShoppingListChooseStoreRecommendedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListChooseStoreRecommendedCell.m; sourceTree = "<group>"; };
 		6B1374271B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingListChooseStoreRecommendedCell.xib; sourceTree = "<group>"; };
+		6B1987C11B6A32C6000497DC /* SharedUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedUserModel.h; sourceTree = "<group>"; };
+		6B1987C21B6A32C6000497DC /* SharedUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedUserModel.m; sourceTree = "<group>"; };
 		6B1A9A501B0364740005917B /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
 		6B1A9A511B0364740005917B /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
 		6B1A9A551B03658C0005917B /* CustomMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMapAnnotationView.h; sourceTree = "<group>"; };
@@ -2619,6 +2631,18 @@
 		6B37EAC41B5D248E00C7A3D8 /* RecommendedStoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendedStoreCell.xib; sourceTree = "<group>"; };
 		6B388E171AFCC31800FF3CF3 /* LocationEnterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationEnterViewController.h; sourceTree = "<group>"; };
 		6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationEnterViewController.m; sourceTree = "<group>"; };
+		6B5490381B68C46700465C82 /* AddContactsToShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactsToShareViewController.h; sourceTree = "<group>"; };
+		6B5490391B68C46700465C82 /* AddContactsToShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactsToShareViewController.m; sourceTree = "<group>"; };
+		6B54903B1B68C48200465C82 /* AddContactsToShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactsToShareCell.h; sourceTree = "<group>"; };
+		6B54903C1B68C48200465C82 /* AddContactsToShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactsToShareCell.m; sourceTree = "<group>"; };
+		6B54903F1B68D79D00465C82 /* ContactsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsData.h; sourceTree = "<group>"; };
+		6B5490401B68D79D00465C82 /* ContactsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsData.m; sourceTree = "<group>"; };
+		6B5490421B68E59100465C82 /* checkBoxActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxActive.png; sourceTree = "<group>"; };
+		6B5490431B68E59100465C82 /* checkBoxActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxActive@2x.png"; sourceTree = "<group>"; };
+		6B5490441B68E59100465C82 /* checkBoxActive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxActive@3x.png"; sourceTree = "<group>"; };
+		6B5490451B68E59100465C82 /* checkBoxInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxInactive.png; sourceTree = "<group>"; };
+		6B5490461B68E59100465C82 /* checkBoxInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxInactive@2x.png"; sourceTree = "<group>"; };
+		6B5490471B68E59100465C82 /* checkBoxInactive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxInactive@3x.png"; sourceTree = "<group>"; };
 		6B5C0FA81B53B69F003C217C /* ShoppingListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListDetailViewController.h; sourceTree = "<group>"; };
 		6B5C0FA91B53B69F003C217C /* ShoppingListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListDetailViewController.m; sourceTree = "<group>"; };
 		6B5C0FAB1B53B6C3003C217C /* ShoppingListDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListDetailCell.h; sourceTree = "<group>"; };
@@ -5388,6 +5412,7 @@
 			isa = PBXGroup;
 			children = (
 				6BEABEE71B67BC5C00398164 /* CouponModel */,
+				6B54903E1B68D79D00465C82 /* ContactsData */,
 				6B21894F1B6380C700BF56BC /* CartModel */,
 				36A73CE61B612CF600EA710D /* CMWalletMoney */,
 				36C010311B5FCD5A0099B7F7 /* CMWalletPoints */,
@@ -5777,6 +5802,15 @@
 			path = ShoppingListChooseStoreRecommendedCell;
 			sourceTree = "<group>";
 		};
+		6B1987C01B6A32AF000497DC /* SharedUserModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B1987C11B6A32C6000497DC /* SharedUserModel.h */,
+				6B1987C21B6A32C6000497DC /* SharedUserModel.m */,
+			);
+			path = SharedUserModel;
+			sourceTree = "<group>";
+		};
 		6B1A9A4F1B0364740005917B /* Annotation */ = {
 			isa = PBXGroup;
 			children = (
@@ -5846,6 +5880,12 @@
 			isa = PBXGroup;
 			children = (
 				6B35B8C81B567EC000807F25 /* addIconBig.png */,
+				6B5490421B68E59100465C82 /* checkBoxActive.png */,
+				6B5490431B68E59100465C82 /* checkBoxActive@2x.png */,
+				6B5490441B68E59100465C82 /* checkBoxActive@3x.png */,
+				6B5490451B68E59100465C82 /* checkBoxInactive.png */,
+				6B5490461B68E59100465C82 /* checkBoxInactive@2x.png */,
+				6B5490471B68E59100465C82 /* checkBoxInactive@3x.png */,
 				6B35B8C91B567EC000807F25 /* addIconBig@2x.png */,
 				6B35B8CA1B567EC000807F25 /* addIconBig@3x.png */,
 				6B35B8BE1B5665DA00807F25 /* shoppingListDefaultImage.png */,
@@ -5894,6 +5934,34 @@
 				6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */,
 			);
 			path = LocationEnterViewController;
+			sourceTree = "<group>";
+		};
+		6B5490361B68C45600465C82 /* ShareContactsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B5490371B68C45600465C82 /* ShareContactsCell */,
+				6B5490381B68C46700465C82 /* AddContactsToShareViewController.h */,
+				6B5490391B68C46700465C82 /* AddContactsToShareViewController.m */,
+			);
+			path = ShareContactsViewController;
+			sourceTree = "<group>";
+		};
+		6B5490371B68C45600465C82 /* ShareContactsCell */ = {
+			isa = PBXGroup;
+			children = (
+				6B54903B1B68C48200465C82 /* AddContactsToShareCell.h */,
+				6B54903C1B68C48200465C82 /* AddContactsToShareCell.m */,
+			);
+			path = ShareContactsCell;
+			sourceTree = "<group>";
+		};
+		6B54903E1B68D79D00465C82 /* ContactsData */ = {
+			isa = PBXGroup;
+			children = (
+				6B54903F1B68D79D00465C82 /* ContactsData.h */,
+				6B5490401B68D79D00465C82 /* ContactsData.m */,
+			);
+			path = ContactsData;
 			sourceTree = "<group>";
 		};
 		6B5C0FA61B53B681003C217C /* ShoppingListDetailViewController */ = {
@@ -6040,6 +6108,8 @@
 		6B83A0B51B53D9AA00A00520 /* ShoppingListShareViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6B1987C01B6A32AF000497DC /* SharedUserModel */,
+				6B5490361B68C45600465C82 /* ShareContactsViewController */,
 				6B35B8B91B56534900807F25 /* ShoppingListShareCell */,
 				6B83A0B61B53D9BD00A00520 /* ShoppingListShareViewController.h */,
 				6B83A0B71B53D9BD00A00520 /* ShoppingListShareViewController.m */,
@@ -7115,6 +7185,7 @@
 				36D8C51B1B3AF95F00C255EE /* chatScreenMyListLogo.png in Resources */,
 				6BD2D33E1B28A66500EC6E54 /* homeDetailsCoffeeIconInactive.png in Resources */,
 				36D8C5241B3AF9CA00C255EE /* RocketDinerCondensed_0.otf in Resources */,
+				6B54904B1B68E59100465C82 /* checkBoxInactive.png in Resources */,
 				6B12DCCF1AF2720400245209 /* upperBox@2x.png in Resources */,
 				3682092A1B1C46FA002AA93F /* botswana.png in Resources */,
 				6B8EB30B1B2708B100402CFC /* addIconCircle@3x.png in Resources */,
@@ -7135,6 +7206,7 @@
 				3682095F1B1C46FA002AA93F /* equatorial guinea.png in Resources */,
 				2791DE361B036E5C000121BC /* menuCartIcon@2x.png in Resources */,
 				6BD2D3221B284C8900EC6E54 /* homeStarIconActive@2x.png in Resources */,
+				6B5490491B68E59100465C82 /* checkBoxActive@2x.png in Resources */,
 				3682093C1B1C46FA002AA93F /* central african republic.png in Resources */,
 				3653955F1B524FA60045AAFE /* CouponsBoxActive@3x.png in Resources */,
 				6B6098BF1B39647400277D03 /* chatAaramShopIcon.png in Resources */,
@@ -7156,6 +7228,7 @@
 				368AFED61B38343C00417836 /* sideArrowGrey@3x.png in Resources */,
 				6BD2D32B1B28631A00EC6E54 /* homeDetailTabStarIcon@2x.png in Resources */,
 				368209801B1C46FA002AA93F /* hong-kong.png in Resources */,
+				6B54904A1B68E59100465C82 /* checkBoxActive@3x.png in Resources */,
 				36820A0B1B1C46FA002AA93F /* south-sudan.png in Resources */,
 				6BD2D2E41B28408800EC6E54 /* homeRecomondedStoreCallIcon@3x.png in Resources */,
 				36820A041B1C46FA002AA93F /* solomon islands.png in Resources */,
@@ -7267,6 +7340,7 @@
 				274A5A4E1B05C075009112B5 /* homeStoreIcon.png in Resources */,
 				6B87C7681B342B29002BC68C /* homeStoreIdBox@3x.png in Resources */,
 				274A5DC51B05C88B009112B5 /* chatPlayIconWhite@2x.png in Resources */,
+				6B54904D1B68E59100465C82 /* checkBoxInactive@3x.png in Resources */,
 				36BE5A9C1B53C52A0079DAE3 /* packedIconInactive.png in Resources */,
 				6B12DCD01AF2720400245209 /* upperBox@3x.png in Resources */,
 				6BE4744C1B3B21CE00C09AFD /* sliderPoint@2x.png in Resources */,
@@ -7478,6 +7552,7 @@
 				6BE4C8FB1B034BB600EF1EDB /* doneBtn.png in Resources */,
 				6B5CF9511B5534EC003E1DFE /* shoppingListSideArrow@3x.png in Resources */,
 				3682093E1B1C46FA002AA93F /* Chatham Island, New Zealand.png in Resources */,
+				6B5490481B68E59100465C82 /* checkBoxActive.png in Resources */,
 				274A5DBF1B05C88B009112B5 /* chatPauseIcon@2x.png in Resources */,
 				6B8EB2DE1B26F5DD00402CFC /* homeDeatilsGreyArrow@2x.png in Resources */,
 				368209971B1C46FA002AA93F /* kenya.png in Resources */,
@@ -7585,6 +7660,7 @@
 				3682096E1B1C46FA002AA93F /* georgia.png in Resources */,
 				6B12DC8C1AF22C8100245209 /* welcomeScreenBackground.png in Resources */,
 				36820A281B1C46FA002AA93F /* turks & caicos islands.png in Resources */,
+				6B54904C1B68E59100465C82 /* checkBoxInactive@2x.png in Resources */,
 				6B8EB2591B23087400402CFC /* shoppingListShareIcon@2x.png in Resources */,
 				368209601B1C46FA002AA93F /* eritrea.png in Resources */,
 				3682090E1B1C46FA002AA93F /* altai republic.png in Resources */,
@@ -8163,6 +8239,7 @@
 				274A5C671B05C4AA009112B5 /* UINavigationController+SH.m in Sources */,
 				274A5CAB1B05C4AA009112B5 /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				6BEABEE01B67AC6100398164 /* BroadcastViewController.m in Sources */,
+				6B54903A1B68C46700465C82 /* AddContactsToShareViewController.m in Sources */,
 				274A5C731B05C4AA009112B5 /* FSRequester.m in Sources */,
 				274A5CE21B05C4AA009112B5 /* XMPPvCardAvatarModule.m in Sources */,
 				6BE4734D1B3AD0DF00C09AFD /* CustomBadge.m in Sources */,
@@ -8248,6 +8325,7 @@
 				274A5CB01B05C4AA009112B5 /* XMPPRoom.xcdatamodeld in Sources */,
 				6B1C0B7F1B04C022009DD32D /* txtFLocation.m in Sources */,
 				6BFFF9261B02229E00BB2B62 /* PreferencesViewController.m in Sources */,
+				6B1987C31B6A32C6000497DC /* SharedUserModel.m in Sources */,
 				274A5CB51B05C4AA009112B5 /* XMPPRoomHybridStorage.m in Sources */,
 				274A5CDC1B05C4AA009112B5 /* XMPPCapabilities.m in Sources */,
 				6BE4745D1B3B21CE00C09AFD /* MHShareViewController.m in Sources */,
@@ -8427,8 +8505,10 @@
 				274A5DE81B05C88B009112B5 /* UIInputToolbar.m in Sources */,
 				274A5CE31B05C4AA009112B5 /* XMPPMessage+XEP_0172.m in Sources */,
 				6BEEC02A1B047526006481CB /* DDAnnotation.m in Sources */,
+				6B54903D1B68C48200465C82 /* AddContactsToShareCell.m in Sources */,
 				274A5C8B1B05C4AA009112B5 /* XMPPPlainAuthentication.m in Sources */,
 				6B8EB3051B27001600402CFC /* HomeSecondCustomCell.m in Sources */,
+				6B5490411B68D79D00465C82 /* ContactsData.m in Sources */,
 				274A5CD71B05C4AA009112B5 /* NSString+XEP_0106.m in Sources */,
 				274A5DF71B05C88B009112B5 /* ShareLocationViewController.m in Sources */,
 				274A5CB91B05C4AA009112B5 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,

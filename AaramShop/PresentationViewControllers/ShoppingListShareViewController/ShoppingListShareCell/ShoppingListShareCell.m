@@ -27,10 +27,14 @@
 }
 
 
--(void)updateCell
+-(void)updateCell:(SharedUserModel *)sharedUserModel
 {
-    imgUser.image = [UIImage imageNamed:@"shoppingListDefaultImage"];
-    lblUserName.text = @"Username";
+    
+    [imgUser sd_setImageWithURL:[NSURL URLWithString:sharedUserModel.profileImage] placeholderImage:[UIImage imageNamed:@"shoppingListDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+
+        }];
+
+    lblUserName.text = sharedUserModel.full_name;
 }
 
 @end

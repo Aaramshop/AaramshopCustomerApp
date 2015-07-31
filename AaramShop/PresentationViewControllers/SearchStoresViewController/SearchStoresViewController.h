@@ -45,6 +45,8 @@
     ViewStatus viewStatus;
     
     AppDelegate *appDel;
+    
+    BOOL isSearchOn;
 
 }
 -(void)updateViewWhenAppears;
