@@ -2383,63 +2383,84 @@ Please give us your address</string>
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zR-fj-Suz" userLabel="Label - Title">
-                                                <rect key="frame" x="18" y="100" width="284" height="44"/>
+                                                <rect key="frame" x="18" y="115" width="284" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homeDetailStoreBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="TFS-Ps-aZ3">
-                                                <rect key="frame" x="25" y="162" width="270" height="128"/>
+                                                <rect key="frame" x="25" y="164" width="270" height="150"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UI6-Sf-aG1" userLabel="Image View - category icon">
-                                                <rect key="frame" x="35" y="169" width="20" height="20"/>
+                                                <rect key="frame" x="35" y="171" width="20" height="20"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAC-rk-OWM" userLabel="Label - Category name">
-                                                <rect key="frame" x="65" y="163" width="190" height="33"/>
+                                                <rect key="frame" x="65" y="165" width="190" height="33"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UuN-CB-xfV" userLabel="Image View - Store ">
-                                                <rect key="frame" x="42" y="211" width="60" height="60"/>
+                                                <rect key="frame" x="42" y="213" width="60" height="60"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGh-Yp-npL" userLabel="Label - store name">
-                                                <rect key="frame" x="120" y="202" width="152" height="20"/>
+                                                <rect key="frame" x="120" y="207" width="152" height="18"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYv-ZH-rfj" userLabel="View - Rating">
+                                                <rect key="frame" x="120" y="226" width="160" height="18"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="87R-vJ-txs" userLabel="Image View - Rating 1">
+                                                        <rect key="frame" x="0.0" y="1" width="15" height="15"/>
+                                                    </imageView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XC1-Ch-e7K" userLabel="Image View - Rating 2">
+                                                        <rect key="frame" x="15" y="1" width="15" height="15"/>
+                                                    </imageView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="izt-vs-eyH" userLabel="Image View - Rating 3">
+                                                        <rect key="frame" x="30" y="1" width="15" height="15"/>
+                                                    </imageView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76E-ha-2nb" userLabel="Image View - Rating 4">
+                                                        <rect key="frame" x="45" y="1" width="15" height="15"/>
+                                                    </imageView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLz-qS-NwH" userLabel="Image View - Rating 5">
+                                                        <rect key="frame" x="60" y="1" width="15" height="15"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="locationIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="m4f-WU-idT">
-                                                <rect key="frame" x="120" y="222" width="15" height="20"/>
+                                                <rect key="frame" x="120" y="241" width="15" height="20"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ga-rH-J9t" userLabel="Label- distance">
-                                                <rect key="frame" x="136" y="223" width="72" height="17"/>
+                                                <rect key="frame" x="136" y="242" width="72" height="17"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homeStoreDetailsDeleversIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="nfN-ID-uhB">
-                                                <rect key="frame" x="208" y="223" width="17" height="17"/>
+                                                <rect key="frame" x="208" y="242" width="17" height="17"/>
                                             </imageView>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delievers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opv-PU-s2m" userLabel="Label - Delievers">
-                                                <rect key="frame" x="232" y="223" width="60" height="17"/>
+                                                <rect key="frame" x="232" y="242" width="60" height="17"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1WG-ZA-3sX" userLabel="Label - Address">
-                                                <rect key="frame" x="116" y="250" width="172" height="36"/>
+                                                <rect key="frame" x="116" y="268" width="172" height="36"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x10-d2-DfS">
-                                                <rect key="frame" x="25" y="300" width="270" height="95"/>
+                                                <rect key="frame" x="25" y="322" width="270" height="95"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ct1-7W-wsk">
-                                                <rect key="frame" x="25" y="405" width="270" height="44"/>
+                                                <rect key="frame" x="25" y="427" width="270" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                                                 <state key="normal" title="CONFIRM AND START" backgroundImage="newUserBox.png">
@@ -2450,7 +2471,7 @@ Please give us your address</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byV-ie-GuM">
-                                                <rect key="frame" x="25" y="454" width="270" height="46"/>
+                                                <rect key="frame" x="25" y="476" width="270" height="46"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                                                 <state key="normal" title="RE ENTER HOME STORE ID" backgroundImage="homeStoreIdBox.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2490,6 +2511,11 @@ Please give us your address</string>
                     </view>
                     <connections>
                         <outlet property="imgDelivery" destination="nfN-ID-uhB" id="qgu-F9-Pnl"/>
+                        <outlet property="imgRating1" destination="87R-vJ-txs" id="mv3-W3-a62"/>
+                        <outlet property="imgRating2" destination="XC1-Ch-e7K" id="NoD-2h-h4V"/>
+                        <outlet property="imgRating3" destination="izt-vs-eyH" id="uKe-MH-Y0m"/>
+                        <outlet property="imgRating4" destination="76E-ha-2nb" id="2Xt-dr-EXA"/>
+                        <outlet property="imgRating5" destination="YLz-qS-NwH" id="gND-YJ-aq3"/>
                         <outlet property="imgVOfferImage" destination="x10-d2-DfS" id="yhB-Ww-mo1"/>
                         <outlet property="imgVStoreCategoryImage" destination="UI6-Sf-aG1" id="j7a-d5-tCX"/>
                         <outlet property="imgVStoreImage" destination="UuN-CB-xfV" id="XJW-ZP-rVz"/>
@@ -2499,6 +2525,7 @@ Please give us your address</string>
                         <outlet property="lblStoreDistance" destination="8ga-rH-J9t" id="dDU-to-Dwr"/>
                         <outlet property="lblStoreName" destination="dGh-Yp-npL" id="iOo-Ch-rM8"/>
                         <outlet property="lblTitle" destination="2zR-fj-Suz" id="drB-lo-Ltw"/>
+                        <outlet property="viewRating" destination="OYv-ZH-rfj" id="Tyu-h2-6ae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ric-0G-zRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
