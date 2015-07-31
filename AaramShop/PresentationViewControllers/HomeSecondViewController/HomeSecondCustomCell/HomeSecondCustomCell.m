@@ -42,10 +42,21 @@
         lblPrice.numberOfLines = 0;
         lblPrice.font = [UIFont fontWithName:kRobotoRegular size:14.0f];
         lblPrice.textColor = [UIColor colorWithRed:121.0/255.0 green:121.0/255.0 blue:121.0/255.0 alpha:1.0];
-        [lblPrice setTextAlignment:NSTextAlignmentLeft];
+        [lblPrice setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:lblPrice];
-
-
+		
+		lblLine =[[UILabel alloc] init];
+		lblLine.text = @"";
+		lblLine.backgroundColor = [UIColor blackColor];
+		[self addSubview:lblLine];
+		
+		lblOfferPrice = [[UILabel alloc]init];
+		lblOfferPrice.textColor = [UIColor redColor];
+		lblOfferPrice.numberOfLines = 0;
+		lblOfferPrice.font = [UIFont fontWithName:kRobotoRegular size:14.0f];
+		[lblOfferPrice setTextAlignment:NSTextAlignmentLeft];
+		[self addSubview:lblOfferPrice];
+		
         btnMinus = [UIButton buttonWithType:UIButtonTypeCustom];
         [btnMinus addTarget:self action:@selector(btnMinusClick) forControlEvents:UIControlEventTouchUpInside];
         [btnMinus setImage:[UIImage imageNamed:@"minusIconCircle.png"] forState:UIControlStateNormal];
@@ -115,14 +126,32 @@
     lblCount.frame = CGRectMake(btnPlus.frame.origin.x-30, 24, 30, 20);
     btnMinus.frame = CGRectMake(lblCount.frame.origin.x-30, 14, 30, 40);
     lblName.frame = CGRectMake(xPos, 10, [UIScreen mainScreen].bounds.size.width-175, size.height);
-    lblPrice.frame = CGRectMake(xPos, size.height+10, 200, 20);
-
-    if ([objProductsModelMain.strCount intValue]<=0) {
+    lblPrice.frame = CGRectMake(xPos, size.height+10, 58, 20);
+	
+	//////////////////////////////////////////////////////////////////for offer kind of products//////////////////////////////////////////////////////////////////
+	lblLine.frame		=	CGRectMake(lblPrice.frame.origin.x, lblPrice.frame.origin.y+9, 58, 2);
+	lblOfferPrice.frame		=	CGRectMake(lblPrice.frame.origin.x+lblPrice.frame.size.width+8, lblPrice.frame.origin.y, 58, 20);
+	lblLine.hidden = YES;
+	lblOfferPrice.hidden = YES;
+	NSString *strCount = @"0";
+	if([objProductsModel.offer_type integerValue]>0)
+	{
+		lblLine.hidden = NO;
+		lblOfferPrice.hidden = NO;
+		lblOfferPrice.text = [NSString stringWithFormat:@"₹%@",objProductsModel.offer_price];
+		strCount = [AppManager getCountOfProduct:objProductsModel.offer_id withOfferType:objProductsModel.offer_type forStore_id:self.store_id];
+	}
+	else
+	{
+		strCount = [AppManager getCountOfProduct:objProductsModel.product_id withOfferType:objProductsModel.offer_type forStore_id:self.store_id];
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if ([strCount intValue]<=0) {
         btnMinus.enabled=NO;
     }
     else
         btnMinus.enabled = YES;
-	if([objProductsModel.strCount intValue]==20)
+	if([strCount intValue]==20)
 	{
 		 btnPlus.enabled=NO;
 	}
@@ -136,8 +165,9 @@
         }
     }];
     lblName.text= objProductsModel.product_name;
-    lblPrice.text = objProductsModel.product_price;
-    lblCount.text = objProductsModel.strCount;
+    lblPrice.text = [NSString stringWithFormat:@"₹%@",objProductsModel.product_price];
+	lblCount.text = strCount;
+
 }
 
 @end

@@ -72,6 +72,44 @@
 			
 		}];
 	}
+	if ([offers.strCount intValue]<=0) {
+		btnRemove.enabled=NO;
+	}
+	else
+		btnRemove.enabled = YES;
+	if([offers.strCount intValue]==20)
+	{
+		btnAdd.enabled=NO;
+	}
+	else
+	{
+		btnAdd.enabled = YES;
+	}
 	lblValidTill.text	= offers.end_date;
+	lblCounter.text = offers.strCount;
+}
+
+- (IBAction)btnRemoveClicked:(id)sender {
+	if ([self.offers.strCount intValue]>=0) {
+		int Counter = [self.offers.strCount intValue];
+		Counter--;
+		self.offers.strCount = [NSString stringWithFormat:@"%d",Counter];
+		if (self.delegate && [self.delegate conformsToProtocol:@protocol(OffersTableCellDelegate)] && [self.delegate respondsToSelector:@selector(minusValueByPriceAtIndexPath:)])
+		{
+			[self.delegate minusValueByPriceAtIndexPath:self.indexPath];
+		}
+	}
+}
+
+- (IBAction)btnAddClicked:(id)sender {
+	if ([self.offers.strCount intValue]>=0) {
+		int Counter = [self.offers.strCount intValue];
+		Counter++;
+		self.offers.strCount = [NSString stringWithFormat:@"%d",Counter];
+		if (self.delegate && [self.delegate conformsToProtocol:@protocol(OffersTableCellDelegate)] && [self.delegate respondsToSelector:@selector(addedValueByPriceAtIndexPath:)])
+		{
+			[self.delegate addedValueByPriceAtIndexPath:self.indexPath];
+		}
+	}
 }
 @end

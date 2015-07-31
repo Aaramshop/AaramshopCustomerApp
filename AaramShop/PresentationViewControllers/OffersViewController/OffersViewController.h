@@ -8,18 +8,19 @@
 #import <UIKit/UIKit.h>
 #import "OffersTableCell.h"
 #import "CMOffers.h"
+#import "CouponModel.h"
 
-@interface OffersViewController : UIViewController<CDRTranslucentSideBarDelegate,AaramShop_ConnectionManager_Delegate,UITableViewDelegate,UITableViewDataSource>
+@interface OffersViewController : UIViewController<CDRTranslucentSideBarDelegate,AaramShop_ConnectionManager_Delegate,UITableViewDelegate,UITableViewDataSource,OffersTableCellDelegate>
 {
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 
 	__weak IBOutlet UITableView *tblView;
 	NSMutableArray *arrOffers;
-	NSMutableArray *arrBroadcast;
+	NSMutableArray *arrCoupon;
 	
 	int pageno;
-	int broadcastPageNo;
-	int broadcastTotalNoOfPages;
+	int couponPageNo;
+	int couponTotalNoOfPages;
 	int totalNoOfPages;
 	BOOL isLoading;
 }

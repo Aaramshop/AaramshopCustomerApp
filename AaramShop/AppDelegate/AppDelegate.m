@@ -12,7 +12,7 @@
 #import "HomeSecondViewController.h"
 #import "ChatViewController.h"
 #import "RetailerShoppingListViewController.h"
-#import "OffersViewController.h"
+#import "RetailerOfferViewController.h"
 #import "OrderHistViewController.h"
 @interface AppDelegate ()
 {
@@ -31,7 +31,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setBackgroundColor:[UIColor blackColor]];
-   
+   /////remote notification code
 	
 	if ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone Simulator"])
 	{
@@ -63,6 +63,8 @@
 		
 		
 	}
+	
+	//////////////remote notification code end//////////////////
     if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn] == YES) {
         [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
 
@@ -119,7 +121,6 @@
     }
 }
 #pragma mark - Register Device For Device Token
-#pragma mark - Remote Notification Methods
 #pragma mark - Remote Notification Methods
 - (void)application:(UIApplication *)application   didRegisterUserNotificationSettings:   (UIUserNotificationSettings *)notificationSettings
 {
@@ -440,7 +441,7 @@
 //	nav4.navigationBarHidden = YES;
 	//5th tab
 	
-	OffersViewController *offer = [storyboard instantiateViewControllerWithIdentifier:@"offersViewController"];
+	RetailerOfferViewController *offer = [storyboard instantiateViewControllerWithIdentifier:@"retailerOffersViewController"];
 	offer.tabBarItem.image = [[UIImage imageNamed:@"tabBarOffersIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 	offer.extendedLayoutIncludesOpaqueBars = YES;
 	offer.tabBarItem.selectedImage = [[UIImage imageNamed:@"tabBarOffersIconActive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

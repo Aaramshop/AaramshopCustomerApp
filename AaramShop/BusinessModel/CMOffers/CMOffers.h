@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) NSString *offerType;
 @property (nonatomic, strong) NSString *store_id;
+@property (nonatomic, strong) NSString *store_name;
+@property (nonatomic, strong) NSString *store_image;
 @property (nonatomic, strong) NSString *product_id;
 @property (nonatomic, strong) NSString *product_sku_id;
 @property (nonatomic, strong) NSString *product_image;
@@ -31,5 +33,6 @@
 @property (nonatomic, strong) NSString *offerDetail;
 @property (nonatomic, strong) NSString *start_date;
 @property (nonatomic, strong) NSString *end_date;
+@property (nonatomic, strong) NSString *strCount;
 
 @end

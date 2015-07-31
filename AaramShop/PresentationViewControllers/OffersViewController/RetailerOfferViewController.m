@@ -1,51 +1,50 @@
 //
-//  OffersViewController.m
+//  RetailerOfferViewController.m
 //  AaramShop
 //
+//  Created by Neha Saxena on 28/07/2015.
 //  Copyright (c) 2015 Approutes. All rights reserved.
 //
 
-#import "OffersViewController.h"
-//#import "ComboDetailViewController.h"
-@interface OffersViewController ()
+#import "RetailerOfferViewController.h"
+
+@interface RetailerOfferViewController ()
 {
 	AppDelegate *appDelegate;
-	NSInteger segmentIndex;
-	NSString *bannerURL;
-	NSString *couponBannerURL;
+	NSString *bannerURL1;
+	NSString *bannerURL2;
+	NSString *bannerURL3;
+
 }
 @end
 
-@implementation OffersViewController
+@implementation RetailerOfferViewController
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
 	totalNoOfPages = 0;
 	pageno = 0;
-	couponPageNo = 0;
-	couponTotalNoOfPages = 0;
-	segmentIndex = 0;
 	isLoading = NO;
 	appDelegate = APP_DELEGATE;
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
-	self.sideBar = [Utils createLeftBarWithDelegate:self];
 	[self setNavigationBar];
 	
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
 	
 	arrOffers = [[NSMutableArray alloc] init];
-	arrCoupon = [[NSMutableArray alloc]init];
+	self.automaticallyAdjustsScrollViewInsets = NO;
+
+	tblView.showsVerticalScrollIndicator = YES;
 	
-//	[arrOffers addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"599",@"mrp",@"499",@"offer",@"43-43-2345",@"date", nil]];
-//	[arrOffers addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"599",@"mrp",@"499",@"offer",@"43-43-2345",@"date", nil]];
-//	[arrOffers addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"599",@"mrp",@"499",@"offer",@"43-43-2345",@"date", nil]];
+	tblView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
+
 }
 
 - (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -69,42 +68,28 @@
 	titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
 	titleView.textAlignment = NSTextAlignmentCenter;
 	titleView.textColor = [UIColor whiteColor];
-	titleView.text = @"Offers";
+	titleView.text = appDelegate.objStoreModel.store_name;
 	titleView.adjustsFontSizeToFitWidth = YES;
 	[_headerTitleSubtitleView addSubview:titleView];
 	self.navigationItem.titleView = _headerTitleSubtitleView;
 	
-//	UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
-//	sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
-//	[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
-//	[sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
-//	UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
-//	
-//	
-//	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
-//	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
-	UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
-	sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
-	[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
-	[sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
+	UIImage *imgBack = [UIImage imageNamed:@"backBtn.png"];
 	
+	UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	backBtn.bounds = CGRectMake( -10, 0, 30, 30);
 	
-	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
+	[backBtn setImage:imgBack forState:UIControlStateNormal];
+	[backBtn addTarget:self action:@selector(btnBackClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+	
+	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
 	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 	
 }
--(void)SideMenuClicked
+- (void)btnBackClicked
 {
-	[self.sideBar show];
+	[appDelegate removeTabBarRetailer];
 }
-- (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
-	
-	
-	[self.navigationController pushViewController:viewC animated:YES];
-	
-}
-
 #pragma mark -- Table Delegates & Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -112,33 +97,30 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	return 122;
+	return 144;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	UIView *viewSec = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 122)];
-	UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 122)];
+	UIView *viewSec = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 144)];
+	
 	UIActivityIndicatorView *activitIndicator=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
 	[activitIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
 	[activitIndicator setCenter:viewSec.center];
 	[activitIndicator startAnimating];
-
-	[imgView sd_setImageWithURL:[NSURL URLWithString:bannerURL] placeholderImage:[UIImage imageNamed:@"offersBg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+	UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 144)];
+	[imgView sd_setImageWithURL:[NSURL URLWithString:bannerURL2] placeholderImage:[UIImage imageNamed:@"homeDetailOffersBg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 		[activitIndicator stopAnimating];
 	}];
 	[viewSec addSubview:imgView];
+
+	[viewSec addSubview:activitIndicator];
+
 	return viewSec;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if(segmentIndex == 0)
-	{
-		return arrOffers.count;
-	}
-	else
-	{
-		return arrCoupon.count;
-	}
+	return arrOffers.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -148,8 +130,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if(segmentIndex ==0)
-	{
 		static NSString *cellIdentifier = @"OffersCell";
 		
 		OffersTableCell *cell = (OffersTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -162,57 +142,20 @@
 		cell.indexPath=indexPath;
 		cell.offers = offers;
 		[cell updateCellWithData: offers];
-
-		return cell;
-
-	}
-	else
-	{
-		static NSString *cellIdentifier = @"couponCellView";
-		
-		UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-		if (cell == nil) {
-			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-		}
-		
-		CouponModel *coupon = [arrCoupon objectAtIndex:indexPath.row];
-		
-		UIImageView *imgView		= (UIImageView *)[cell.contentView viewWithTag:100];
-		UILabel *lblTitle					= (UILabel *)[cell.contentView viewWithTag:101];
-		UILabel *lblCode				= (UILabel *)[cell.contentView viewWithTag:102];
-		UILabel *lblDate					= (UILabel *) [cell.contentView viewWithTag:103];
-		
-		[imgView sd_setImageWithURL:[NSURL URLWithString:coupon.coupon_image] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-			//
-		}];
-		
-		lblTitle.text							=	coupon.coupon_title;
-		lblCode.text						=	coupon.coupon_code;
-		lblDate.text							=	coupon.coupon_expiry;
-		return cell;
-	}
 	
+		return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	if(segmentIndex ==0)
+	CMOffers *offers  = [arrOffers objectAtIndex:indexPath.row];
+	if([offers.offerType isEqualToString:@"4"])
 	{
-		CMOffers *offers  = [arrOffers objectAtIndex:indexPath.row];
-		if([offers.offerType isEqualToString:@"4"])
-		{
-//			ComboDetailViewController *comboDetail = (ComboDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"comboDetailController"];
-//			comboDetail.cmMyOffers = offers;
-//			[self.navigationController pushViewController:comboDetail animated:YES];
-		}
-
+		//			ComboDetailViewController *comboDetail = (ComboDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"comboDetailController"];
+		//			comboDetail.cmMyOffers = offers;
+		//			[self.navigationController pushViewController:comboDetail animated:YES];
 	}
-	else
-	{
-//		offers = [arrCoupon objectAtIndex:indexPath.row];
-	}
-
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
 	
@@ -230,29 +173,23 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
 	
-	if(segmentIndex == 0)
-	{
-		if ([arrOffers count]==0) {
-			return nil;
-		}
+	if ([arrOffers count]==0) {
+		return nil;
 	}
 	else
 	{
-		if ([arrCoupon count]==0) {
-			return nil;
-		}
+		UIView *subView=[[UIView alloc]initWithFrame:CGRectMake(0, -10, 320, 44)];
+		[subView setBackgroundColor:[UIColor clearColor]];
+		[subView setTag:111112];
+		UIActivityIndicatorView *activitIndicator=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+		[activitIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+		activitIndicator.tag=111111;
+		[activitIndicator setCenter:subView.center];
+		[subView addSubview:activitIndicator];
+		
+		return subView;
 	}
-	UIView *subView=[[UIView alloc]initWithFrame:CGRectMake(0, -10, 320, 44)];
-	[subView setBackgroundColor:[UIColor clearColor]];
-	[subView setTag:111112];
-	UIActivityIndicatorView *activitIndicator=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-	[activitIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-	activitIndicator.tag=111111;
-	[activitIndicator setCenter:subView.center];
-	[subView addSubview:activitIndicator];
 	
-	return subView;
-
 }
 
 -(void)showFooterLoadMoreActivityIndicator:(BOOL)show{
@@ -315,59 +252,30 @@
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
 	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:YES];
 }
-
 #pragma mark - ScrollView Delegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	
-	if(segmentIndex ==0 )
-	{
-		if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height-33 && arrOffers.count > 0 && scrollView.contentOffset.y>0){
-			if (!isLoading) {
-				isLoading=YES;
-				[self showFooterLoadMoreActivityIndicator:YES];
-				[self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5 ];
-			}
-		}
-	}
-	else
-	{
-		if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height-33 && arrCoupon.count > 0 && scrollView.contentOffset.y>0){
-			if (!isLoading) {
-				isLoading=YES;
-				[self showFooterLoadMoreActivityIndicator:YES];
-				[self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5 ];
-			}
+	if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height-33 && arrOffers.count > 0 && scrollView.contentOffset.y>0){
+		if (!isLoading) {
+			isLoading=YES;
+			[self showFooterLoadMoreActivityIndicator:YES];
+			[self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5];
 		}
 	}
 }
-
 -(void)calledPullUp
 {
-	if(segmentIndex == 0)
+	if(totalNoOfPages>pageno+1)
 	{
-		if(totalNoOfPages>pageno+1)
-		{
-			pageno++;
-			[self createDateToGetOffer];
-			return;
-		}
+		pageno++;
+		[self createDateToGetOffer];
 	}
 	else
 	{
-		if(couponTotalNoOfPages>couponPageNo+1)
-		{
-			pageno++;
-			[self getCouponList];
-			return;
-		}
+		isLoading = NO;
+		[self showFooterLoadMoreActivityIndicator:NO];
 	}
-	isLoading = NO;
-	[self showFooterLoadMoreActivityIndicator:NO];
-	
 }
-
-
-
 
 - (void)createDateToGetOffer
 {
@@ -375,26 +283,8 @@
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 	[dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
-	[dict setObject:@"0" forKey:kStore_id];
+	[dict setObject:appDelegate.objStoreModel.store_id forKey:kStore_id];
 	[self performSelector:@selector(callWebServiceToOffer:) withObject:dict afterDelay:0.1];
-}
-- (void)getCouponList
-{
-	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
-	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
-	[dict setObject:[NSString stringWithFormat:@"%d",couponPageNo] forKey:kPage_no];
-	[self performSelector:@selector(callWebServiceToGetCoupons:) withObject:dict afterDelay:0.1];
-}
-- (void)callWebServiceToGetCoupons:(NSMutableDictionary *)aDict
-{
-	if (![Utils isInternetAvailable])
-	{
-		[AppManager stopStatusbarActivityIndicator];
-		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-		return;
-	}
-	[aaramShop_ConnectionManager getDataForFunction:kURLGetCoupons withInput:aDict withCurrentTask:TASK_TO_GET_COUPONS andDelegate:self ];
 }
 - (void)callWebServiceToOffer:(NSMutableDictionary *)aDict
 {
@@ -425,57 +315,14 @@
 				{
 					[self appendDataForPullUp:[self parseData:[responseObject objectForKey:@"offers"]]];
 				}
-				if(IS_IPHONE_5)
-				{
-					bannerURL		= [responseObject objectForKey:@"banner_2x"];
-				}
-				else if(IS_IPHONE_6 || IS_IPHONE_6P)
-				{
-					bannerURL		= [responseObject objectForKey:@"banner_3x"];
-				}
-				else
-				{
-					bannerURL		= [responseObject objectForKey:@"banner"];
-				}
-				totalNoOfPages	=	[[responseObject objectForKey:kTotal_page] intValue];
-
-				tblView.hidden = NO;
-
-				 [tblView reloadData];
+				bannerURL1 = [responseObject objectForKey:@"banner"];
+				bannerURL2 = [responseObject objectForKey:@"banner_2x"];
+				bannerURL3 = [responseObject objectForKey:@"banner_3x"];
+				totalNoOfPages						=	[[responseObject objectForKey:kTotal_page] intValue];
+				[tblView reloadData];
 			}
 		}
 			break;
-		case TASK_TO_GET_COUPONS:
-		{
-			if(couponPageNo==0)
-			{
-				[self createCouponDataForFirstTimeGet:[self parseCouponData:[responseObject objectForKey:kCoupons]]];
-			}
-			else
-			{
-				[self appendCouponDataForPullUp:[self parseCouponData:[responseObject objectForKey:kCoupons]]];
-			}
-			if(IS_IPHONE_5)
-			{
-				couponBannerURL		= [responseObject objectForKey:@"banner_2x"];
-			}
-			else if(IS_IPHONE_6 || IS_IPHONE_6P)
-			{
-				couponBannerURL		= [responseObject objectForKey:@"banner_3x"];
-			}
-			else
-			{
-				couponBannerURL		= [responseObject objectForKey:@"banner"];
-			}
-
-			couponTotalNoOfPages	=	[[responseObject objectForKey:kTotal_page] intValue];
-
-			tblView.hidden = NO;
-
-			[tblView reloadData];
-		}
-			break;
-			
 		default:
 			break;
 	}
@@ -489,15 +336,7 @@
 }
 
 #pragma mark - Parsing Data
--(void)createCouponDataForFirstTimeGet:(NSMutableArray*)array
-{
-	[arrCoupon removeAllObjects];
-	for(int i = 0 ; i < [array count];i++)
-	{
-		CouponModel *coupon = [array objectAtIndex:i];
-		[arrCoupon addObject:coupon];
-	}
-}
+
 -(void)createDataForFirstTimeGet:(NSMutableArray*)array{
 	[arrOffers removeAllObjects];
 	for(int i = 0 ; i < [array count];i++)
@@ -506,23 +345,7 @@
 		[arrOffers addObject:offers];
 	}
 }
--(void)appendCouponDataForPullDown:(NSMutableArray*)array
-{
-	BOOL wasArrayEmpty = NO;
-	
-	if ([arrCoupon count]==0) {
-		arrCoupon=[[NSMutableArray alloc]init];
-		wasArrayEmpty=YES;
-	}
-	for(int i = 0 ; i < [array count];i++)
-	{
-		CouponModel *coupon = [array objectAtIndex:i];
-		if (wasArrayEmpty) {
-			[arrCoupon addObject:coupon];
-		}else
-			[arrCoupon insertObject:coupon atIndex:i];
-	}
-}
+
 -(void)appendDataForPullDown:(NSMutableArray*)array{
 	BOOL wasArrayEmpty = NO;
 	
@@ -539,14 +362,7 @@
 			[arrOffers insertObject:offers atIndex:i];
 	}
 }
--(void)appendCouponDataForPullUp:(NSMutableArray*)array
-{
-	for(int i = 0 ; i < [array count];i++)
-	{
-		CouponModel *coupon = [array objectAtIndex:i];
-		[arrCoupon addObject:coupon];
-	}
-}
+
 -(void)appendDataForPullUp:(NSMutableArray*)array{
 	for(int i = 0 ; i < [array count];i++)
 	{
@@ -554,27 +370,7 @@
 		[arrOffers addObject:offers];
 	}
 }
-- (NSMutableArray *)parseCouponData:(id)data
-{
-	NSMutableArray *array = [[NSMutableArray alloc]init];
-	
-	if([data count]>0)
-	{
-		for(int i =0 ; i < [data count] ; i++)
-		{
-			NSDictionary *dict = [data objectAtIndex:i];
-			CouponModel *coupon  = [[CouponModel alloc] init];
-			
-			coupon.coupon_id					= [dict objectForKey:@"coupon_id"];
-			coupon.coupon_code				= [dict objectForKey:@"coupon_code"];
-			coupon.coupon_image			= [dict objectForKey:@"coupon_image"];
-			coupon.coupon_title				=	[dict objectForKey:@"coupon_title"];
-			coupon.coupon_expiry			= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:@"coupon_expiry"] doubleValue]]];
-			[array addObject:coupon];
-		}
-	}
-	return array;
-}
+
 - (NSMutableArray *)parseData:(id)data
 {
 	
@@ -610,12 +406,13 @@
 			offers.store_image						=	[dict objectForKey:kStore_image];
 			offers.start_date							= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kStart_date] doubleValue]]];
 			offers.end_date							= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kEnd_date] doubleValue]]];
-			offers.strCount							= [self getCountOfOfferProduct:offers];
+			totalNoOfPages							=	[[dict objectForKey:kTotal_page] intValue];
+			offers.strCount							=	[self getCountOfOfferProduct:offers];
 			[array addObject:offers];
 		}
 	}
 	return array;
-
+	
 }
 - (NSString *)getCountOfOfferProduct:(CMOffers *)offers
 {
@@ -629,35 +426,15 @@
 	return @"0";
 }
 
-- (IBAction)selectionChanged:(id)sender {
-	UISegmentedControl *segCtrl = (UISegmentedControl *)sender;
-	segmentIndex = segCtrl.selectedSegmentIndex;
-	if(segmentIndex ==1)
-	{
-		if([arrCoupon count]==0)
-		{
-			[tblView setHidden:YES];
-			[self getCouponList];
-		}
-		else
-		{
-			[tblView setHidden:NO];
-			[tblView reloadData];
-		}
-	}
-	else
-	{
-		if([arrOffers count]==0)
-		{
-			[tblView setHidden:YES];
-			[self createDateToGetOffer];
-		}
-		else
-		{
-			[tblView setHidden:NO];
-			[tblView reloadData];
-		}
-	}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
 
 @end

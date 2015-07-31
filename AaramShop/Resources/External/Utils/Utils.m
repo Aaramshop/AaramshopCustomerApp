@@ -363,7 +363,7 @@
 + (NSString*) stringFromDate:(NSDate*)date
 {
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"MM/dd/YYYY"];
+	[dateFormatter setDateFormat:@"dd-MM-yyyy"];
 	//[dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss a"];
 //	NSLog(@"%@", date);
    	NSString *strDateTime = [dateFormatter stringFromDate:date];

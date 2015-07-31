@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface BroadcastViewController : UIViewController
-
+#import "OffersTableCell.h"
+@interface BroadcastViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,AaramShop_ConnectionManager_Delegate>
+{
+	__weak IBOutlet UITableView *tblView;
+	NSMutableArray *arrBroadcast;
+	int broadcastPageNo;
+	int broadcastTotalNoOfPages;
+	BOOL isLoading;
+}
 @end

@@ -882,6 +882,7 @@
 		6B0676F61B06383F0002259E /* locationPopupUpperRedBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676F31B06383F0002259E /* locationPopupUpperRedBox@2x.png */; };
 		6B0676F71B06383F0002259E /* locationPopupUpperRedBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676F41B06383F0002259E /* locationPopupUpperRedBox@3x.png */; };
 		6B06770D1B070C3C0002259E /* LocationAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B06770C1B070C3C0002259E /* LocationAlertViewController.m */; };
+		6B0A00D91B6A255100A2577A /* CartListDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A00D81B6A255100A2577A /* CartListDetailCell.m */; };
 		6B12DC611AF2294D00245209 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12DC601AF2294D00245209 /* main.m */; };
 		6B12DC6A1AF2294D00245209 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DC681AF2294D00245209 /* Main.storyboard */; };
 		6B12DC6C1AF2294D00245209 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DC6B1AF2294D00245209 /* Images.xcassets */; };
@@ -1317,6 +1318,24 @@
 		6BE9A94A1B29B31900B960C0 /* homeDeatilsGreyArrowBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE9A9471B29B31900B960C0 /* homeDeatilsGreyArrowBack@2x.png */; };
 		6BE9A94B1B29B31900B960C0 /* homeDeatilsGreyArrowBack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE9A9481B29B31900B960C0 /* homeDeatilsGreyArrowBack@3x.png */; };
 		6BEABEE01B67AC6100398164 /* BroadcastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABEDF1B67AC6100398164 /* BroadcastViewController.m */; };
+		6BEABEE41B67B1F100398164 /* bellIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEE11B67B1F100398164 /* bellIcon.png */; };
+		6BEABEE51B67B1F100398164 /* bellIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEE21B67B1F100398164 /* bellIcon@2x.png */; };
+		6BEABEE61B67B1F100398164 /* bellIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEE31B67B1F100398164 /* bellIcon@3x.png */; };
+		6BEABEEA1B67BC6E00398164 /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABEE91B67BC6E00398164 /* CouponModel.m */; };
+		6BEABEED1B67BF4700398164 /* RetailerOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABEEC1B67BF4700398164 /* RetailerOfferViewController.m */; };
+		6BEABEF41B67C87B00398164 /* homeDetailOffersBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEEE1B67C87B00398164 /* homeDetailOffersBg.png */; };
+		6BEABEF51B67C87B00398164 /* homeDetailOffersBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEEF1B67C87B00398164 /* homeDetailOffersBg@2x.png */; };
+		6BEABEF61B67C87B00398164 /* homeDetailOffersBg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEF01B67C87B00398164 /* homeDetailOffersBg@3x.png */; };
+		6BEABEF71B67C87B00398164 /* offersBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEF11B67C87B00398164 /* offersBg.png */; };
+		6BEABEF81B67C87B00398164 /* offersBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEF21B67C87B00398164 /* offersBg@2x.png */; };
+		6BEABEF91B67C87B00398164 /* offersBg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEF31B67C87B00398164 /* offersBg@3x.png */; };
+		6BEABF001B68B8D000398164 /* favorateIconActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEFA1B68B8D000398164 /* favorateIconActive.png */; };
+		6BEABF011B68B8D000398164 /* favorateIconActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEFB1B68B8D000398164 /* favorateIconActive@2x.png */; };
+		6BEABF021B68B8D000398164 /* favorateIconActive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEFC1B68B8D000398164 /* favorateIconActive@3x.png */; };
+		6BEABF031B68B8D000398164 /* homeDetailSideBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEFD1B68B8D000398164 /* homeDetailSideBar.png */; };
+		6BEABF041B68B8D000398164 /* homeDetailSideBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEFE1B68B8D000398164 /* homeDetailSideBar@2x.png */; };
+		6BEABF051B68B8D000398164 /* homeDetailSideBar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEABEFF1B68B8D000398164 /* homeDetailSideBar@3x.png */; };
+		6BEABF081B68D77100398164 /* CartProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABF071B68D77100398164 /* CartProductModel.m */; };
 		6BEB72D11B2B070F006BFB55 /* searchBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEB72CE1B2B070F006BFB55 /* searchBox.png */; };
 		6BEB72D21B2B070F006BFB55 /* searchBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEB72CF1B2B070F006BFB55 /* searchBox@2x.png */; };
 		6BEB72D31B2B070F006BFB55 /* searchBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BEB72D01B2B070F006BFB55 /* searchBox@3x.png */; };
@@ -2516,6 +2535,8 @@
 		6B0676F41B06383F0002259E /* locationPopupUpperRedBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupUpperRedBox@3x.png"; sourceTree = "<group>"; };
 		6B06770B1B070C3C0002259E /* LocationAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationAlertViewController.h; sourceTree = "<group>"; };
 		6B06770C1B070C3C0002259E /* LocationAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAlertViewController.m; sourceTree = "<group>"; };
+		6B0A00D71B6A255100A2577A /* CartListDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartListDetailCell.h; sourceTree = "<group>"; };
+		6B0A00D81B6A255100A2577A /* CartListDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartListDetailCell.m; sourceTree = "<group>"; };
 		6B12DC5B1AF2294D00245209 /* AaramShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AaramShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B12DC5F1AF2294D00245209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B12DC601AF2294D00245209 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -3066,6 +3087,27 @@
 		6BE9A9481B29B31900B960C0 /* homeDeatilsGreyArrowBack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDeatilsGreyArrowBack@3x.png"; sourceTree = "<group>"; };
 		6BEABEDE1B67AC6100398164 /* BroadcastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BroadcastViewController.h; sourceTree = "<group>"; };
 		6BEABEDF1B67AC6100398164 /* BroadcastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BroadcastViewController.m; sourceTree = "<group>"; };
+		6BEABEE11B67B1F100398164 /* bellIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bellIcon.png; sourceTree = "<group>"; };
+		6BEABEE21B67B1F100398164 /* bellIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bellIcon@2x.png"; sourceTree = "<group>"; };
+		6BEABEE31B67B1F100398164 /* bellIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bellIcon@3x.png"; sourceTree = "<group>"; };
+		6BEABEE81B67BC6E00398164 /* CouponModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
+		6BEABEE91B67BC6E00398164 /* CouponModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
+		6BEABEEB1B67BF4700398164 /* RetailerOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetailerOfferViewController.h; sourceTree = "<group>"; };
+		6BEABEEC1B67BF4700398164 /* RetailerOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetailerOfferViewController.m; sourceTree = "<group>"; };
+		6BEABEEE1B67C87B00398164 /* homeDetailOffersBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeDetailOffersBg.png; sourceTree = "<group>"; };
+		6BEABEEF1B67C87B00398164 /* homeDetailOffersBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDetailOffersBg@2x.png"; sourceTree = "<group>"; };
+		6BEABEF01B67C87B00398164 /* homeDetailOffersBg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDetailOffersBg@3x.png"; sourceTree = "<group>"; };
+		6BEABEF11B67C87B00398164 /* offersBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = offersBg.png; sourceTree = "<group>"; };
+		6BEABEF21B67C87B00398164 /* offersBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offersBg@2x.png"; sourceTree = "<group>"; };
+		6BEABEF31B67C87B00398164 /* offersBg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offersBg@3x.png"; sourceTree = "<group>"; };
+		6BEABEFA1B68B8D000398164 /* favorateIconActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorateIconActive.png; sourceTree = "<group>"; };
+		6BEABEFB1B68B8D000398164 /* favorateIconActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorateIconActive@2x.png"; sourceTree = "<group>"; };
+		6BEABEFC1B68B8D000398164 /* favorateIconActive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorateIconActive@3x.png"; sourceTree = "<group>"; };
+		6BEABEFD1B68B8D000398164 /* homeDetailSideBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeDetailSideBar.png; sourceTree = "<group>"; };
+		6BEABEFE1B68B8D000398164 /* homeDetailSideBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDetailSideBar@2x.png"; sourceTree = "<group>"; };
+		6BEABEFF1B68B8D000398164 /* homeDetailSideBar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDetailSideBar@3x.png"; sourceTree = "<group>"; };
+		6BEABF061B68D77100398164 /* CartProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartProductModel.h; sourceTree = "<group>"; };
+		6BEABF071B68D77100398164 /* CartProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartProductModel.m; sourceTree = "<group>"; };
 		6BEB72CE1B2B070F006BFB55 /* searchBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBox.png; sourceTree = "<group>"; };
 		6BEB72CF1B2B070F006BFB55 /* searchBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBox@2x.png"; sourceTree = "<group>"; };
 		6BEB72D01B2B070F006BFB55 /* searchBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBox@3x.png"; sourceTree = "<group>"; };
@@ -4636,6 +4678,8 @@
 				365E753A1B54DECB0091E229 /* OffersTableCell.m */,
 				27BE65821B0203FD004FA4B4 /* OffersViewController.h */,
 				27BE65831B0203FD004FA4B4 /* OffersViewController.m */,
+				6BEABEEB1B67BF4700398164 /* RetailerOfferViewController.h */,
+				6BEABEEC1B67BF4700398164 /* RetailerOfferViewController.m */,
 			);
 			path = OffersViewController;
 			sourceTree = "<group>";
@@ -4684,6 +4728,15 @@
 		365395501B524FA60045AAFE /* OfferImages */ = {
 			isa = PBXGroup;
 			children = (
+				6BEABEEE1B67C87B00398164 /* homeDetailOffersBg.png */,
+				6BEABEEF1B67C87B00398164 /* homeDetailOffersBg@2x.png */,
+				6BEABEF01B67C87B00398164 /* homeDetailOffersBg@3x.png */,
+				6BEABEF11B67C87B00398164 /* offersBg.png */,
+				6BEABEF21B67C87B00398164 /* offersBg@2x.png */,
+				6BEABEF31B67C87B00398164 /* offersBg@3x.png */,
+				6BEABEE11B67B1F100398164 /* bellIcon.png */,
+				6BEABEE21B67B1F100398164 /* bellIcon@2x.png */,
+				6BEABEE31B67B1F100398164 /* bellIcon@3x.png */,
 				36C2457D1B5508A4003714B0 /* chooseCategoryDefaultImage.png */,
 				36C2457E1B5508A4003714B0 /* chooseCategoryDefaultImage@2x.png */,
 				36C2457F1B5508A4003714B0 /* chooseCategoryDefaultImage@3x.png */,
@@ -5334,6 +5387,7 @@
 		6B0676E01B06024B0002259E /* BusinessModel */ = {
 			isa = PBXGroup;
 			children = (
+				6BEABEE71B67BC5C00398164 /* CouponModel */,
 				6B21894F1B6380C700BF56BC /* CartModel */,
 				36A73CE61B612CF600EA710D /* CMWalletMoney */,
 				36C010311B5FCD5A0099B7F7 /* CMWalletPoints */,
@@ -5773,6 +5827,8 @@
 			children = (
 				6B2189501B6380EA00BF56BC /* CartModel.h */,
 				6B2189511B6380EA00BF56BC /* CartModel.m */,
+				6BEABF061B68D77100398164 /* CartProductModel.h */,
+				6BEABF071B68D77100398164 /* CartProductModel.m */,
 			);
 			path = CartModel;
 			sourceTree = "<group>";
@@ -6220,6 +6276,12 @@
 		6B8EB2D91B26F5DD00402CFC /* HomeSecondScreen */ = {
 			isa = PBXGroup;
 			children = (
+				6BEABEFA1B68B8D000398164 /* favorateIconActive.png */,
+				6BEABEFB1B68B8D000398164 /* favorateIconActive@2x.png */,
+				6BEABEFC1B68B8D000398164 /* favorateIconActive@3x.png */,
+				6BEABEFD1B68B8D000398164 /* homeDetailSideBar.png */,
+				6BEABEFE1B68B8D000398164 /* homeDetailSideBar@2x.png */,
+				6BEABEFF1B68B8D000398164 /* homeDetailSideBar@3x.png */,
 				36897D591B3B1D7F002F1485 /* searchIconGrey.png */,
 				36897D5A1B3B1D7F002F1485 /* searchIconGrey@2x.png */,
 				36897D5B1B3B1D7F002F1485 /* searchIconGrey@3x.png */,
@@ -6841,6 +6903,15 @@
 			path = BroadcastViewController;
 			sourceTree = "<group>";
 		};
+		6BEABEE71B67BC5C00398164 /* CouponModel */ = {
+			isa = PBXGroup;
+			children = (
+				6BEABEE81B67BC6E00398164 /* CouponModel.h */,
+				6BEABEE91B67BC6E00398164 /* CouponModel.m */,
+			);
+			path = CouponModel;
+			sourceTree = "<group>";
+		};
 		6BF82D741B5A1B5B003828BD /* ShoppingListDetailNewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -6914,6 +6985,8 @@
 		6BFFF91B1B0221FC00BB2B62 /* CartViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6B0A00D71B6A255100A2577A /* CartListDetailCell.h */,
+				6B0A00D81B6A255100A2577A /* CartListDetailCell.m */,
 				6BFFF9211B02228800BB2B62 /* CartViewController.h */,
 				6BFFF9221B02228800BB2B62 /* CartViewController.m */,
 			);
@@ -6992,6 +7065,7 @@
 				276FFF1B1B0DADC200071B98 /* preferencesDeleveryStatusIcon@2x.png in Resources */,
 				368209401B1C46FA002AA93F /* chechen republic.png in Resources */,
 				36820A2A1B1C46FA002AA93F /* tuvalu.png in Resources */,
+				6BEABF041B68B8D000398164 /* homeDetailSideBar@2x.png in Resources */,
 				274A5C781B05C4AA009112B5 /* pin@2x.png in Resources */,
 				6B35B8C31B5665DA00807F25 /* shoppingListDefaultImage@3x.png in Resources */,
 				2791DE381B036E5C000121BC /* menuFacebookBox.png in Resources */,
@@ -7010,6 +7084,7 @@
 				36BE5AA11B53C52A0079DAE3 /* RecievedIconActive@3x.png in Resources */,
 				274A5DC61B05C88B009112B5 /* chatRecordBtn.png in Resources */,
 				36D8C4CB1B3996DE00C255EE /* callIconGreenCircle@2x.png in Resources */,
+				6BEABEE41B67B1F100398164 /* bellIcon.png in Resources */,
 				6BE474411B3B21CE00C09AFD /* messageMH@2x.png in Resources */,
 				36907ABD1B5BCC720017A504 /* walletMoneyIconActive@2x.png in Resources */,
 				27EC674C1B031FE0007D126E /* aaramShopAppLogo@2x.png in Resources */,
@@ -7019,6 +7094,7 @@
 				6BE9A94A1B29B31900B960C0 /* homeDeatilsGreyArrowBack@2x.png in Resources */,
 				276FFF1E1B0DADC200071B98 /* preferencesLocationIcon@2x.png in Resources */,
 				274A5A451B05C075009112B5 /* addToCardNoBox.png in Resources */,
+				6BEABF051B68B8D000398164 /* homeDetailSideBar@3x.png in Resources */,
 				6B6098AD1B395CAB00277D03 /* chatNumberingCircle@2x.png in Resources */,
 				6BA2F09E1B04B2F30074562F /* mapPinGreen.png in Resources */,
 				2786559E1B0467F400A262A3 /* menuEditIcon@2x.png in Resources */,
@@ -7027,6 +7103,7 @@
 				274A5DDA1B05C88B009112B5 /* profileOutboxIcon.png in Resources */,
 				6B8EB2C61B26BA0600402CFC /* homeDetailStoreBox@3x.png in Resources */,
 				368209AD1B1C46FA002AA93F /* macedonia.png in Resources */,
+				6BEABEF71B67C87B00398164 /* offersBg.png in Resources */,
 				36907AC21B5BCC720017A504 /* walletOffersIconActive.png in Resources */,
 				6B8EB25A1B23087400402CFC /* shoppingListShareIcon@3x.png in Resources */,
 				274929B51B03DC10008ACEFD /* indianFlag.png in Resources */,
@@ -7067,6 +7144,7 @@
 				3653956D1B5294850045AAFE /* arrowOne@2x.png in Resources */,
 				6BE4C90D1B034CDE00EF1EDB /* pencilIcon.png in Resources */,
 				3653955D1B524FA60045AAFE /* CouponsBoxActive.png in Resources */,
+				6BEABF021B68B8D000398164 /* favorateIconActive@3x.png in Resources */,
 				36C79B7C1B579BD50020D77F /* preferencesLocationAddCircle.png in Resources */,
 				36820A3B1B1C46FA002AA93F /* wales.png in Resources */,
 				36BE5A951B53C52A0079DAE3 /* dispatchedIconActive@3x.png in Resources */,
@@ -7245,8 +7323,10 @@
 				6B8EB2BB1B26B8BE00402CFC /* ratingStarFull.png in Resources */,
 				365395771B52A1700045AAFE /* WhiteSingleBox.png in Resources */,
 				6B6098B21B395CAB00277D03 /* sendBtn.png in Resources */,
+				6BEABEF61B67C87B00398164 /* homeDetailOffersBg@3x.png in Resources */,
 				6B12DCAD1AF26B4100245209 /* existingUserBox@2x.png in Resources */,
 				6BE474441B3B21CE00C09AFD /* play.png in Resources */,
+				6BEABEE61B67B1F100398164 /* bellIcon@3x.png in Resources */,
 				3682094D1B1C46FA002AA93F /* Crna Gora.png in Resources */,
 				368209AE1B1C46FA002AA93F /* madagascar.png in Resources */,
 				6BA82A941B57D73C0014CCEF /* circleCrossIcon@2x.png in Resources */,
@@ -7260,6 +7340,7 @@
 				6B12DCB31AF26BF900245209 /* newUserBox@2x.png in Resources */,
 				368209AB1B1C46FA002AA93F /* luxembourg.png in Resources */,
 				36820A271B1C46FA002AA93F /* turkmenistan.png in Resources */,
+				6BEABEF41B67C87B00398164 /* homeDetailOffersBg.png in Resources */,
 				36C245821B5508A4003714B0 /* chooseCategoryDefaultImage@3x.png in Resources */,
 				276FFF1F1B0DADC200071B98 /* preferencesLocationIcon@3x.png in Resources */,
 				6BE474301B3B21CE00C09AFD /* activityMH.png in Resources */,
@@ -7366,6 +7447,7 @@
 				3682095D1B1C46FA002AA93F /* emsat (mobile satellite service).png in Resources */,
 				274A5DD21B05C88B009112B5 /* iconTrash.png in Resources */,
 				6B12DCDA1AF2A09700245209 /* singleBox@2x.png in Resources */,
+				6BEABEF91B67C87B00398164 /* offersBg@3x.png in Resources */,
 				274A5DBA1B05C88B009112B5 /* chatLoadMessages.png in Resources */,
 				368209CB1B1C46FA002AA93F /* new-zealand.png in Resources */,
 				368209A01B1C46FA002AA93F /* kyrgyzstan.png in Resources */,
@@ -7552,6 +7634,7 @@
 				6B83A0E81B53E81300A00520 /* shoppingListCalenderCircle@3x.png in Resources */,
 				6BF1E3331B3005BF0078DD2F /* homeDetailAmountSecondBox@3x.png in Resources */,
 				6B8EB2BC1B26B8BE00402CFC /* ratingStarFull@2x.png in Resources */,
+				6BEABEF51B67C87B00398164 /* homeDetailOffersBg@2x.png in Resources */,
 				6B6098AC1B395CAB00277D03 /* chatNumberingCircle.png in Resources */,
 				6B87C7671B342B29002BC68C /* homeStoreIdBox@2x.png in Resources */,
 				368209481B1C46FA002AA93F /* Congo.png in Resources */,
@@ -7607,6 +7690,7 @@
 				36BE5AAF1B53C9C70079DAE3 /* sepratorBoxThree@2x_2.png in Resources */,
 				368209E21B1C46FA002AA93F /* qatar.png in Resources */,
 				368209D41B1C46FA002AA93F /* oman.png in Resources */,
+				6BEABEF81B67C87B00398164 /* offersBg@2x.png in Resources */,
 				36820A401B1C46FA002AA93F /* zanzibar.png in Resources */,
 				6BFFF9461B0236B800BB2B62 /* tabBarChatIcon@2x.png in Resources */,
 				368209571B1C46FA002AA93F /* dominican republic.png in Resources */,
@@ -7619,6 +7703,7 @@
 				6BD9CB5A1B624FDE00D8D012 /* listIcon@3x.png in Resources */,
 				36D8C51F1B3AF95F00C255EE /* historyScreenOderHistoryIcon@2x.png in Resources */,
 				36820A2D1B1C46FA002AA93F /* Uk.png in Resources */,
+				6BEABF031B68B8D000398164 /* homeDetailSideBar.png in Resources */,
 				368209F71B1C46FA002AA93F /* São Tomé and Príncipe.png in Resources */,
 				36820A1C1B1C46FA002AA93F /* thailand.png in Resources */,
 				36907AC01B5BCC720017A504 /* walletMoneyIconInactive@2x.png in Resources */,
@@ -7627,6 +7712,7 @@
 				27EC674B1B031FE0007D126E /* aaramShopAppLogo.png in Resources */,
 				368209781B1C46FA002AA93F /* guatemala.png in Resources */,
 				368209DB1B1C46FA002AA93F /* paraguay.png in Resources */,
+				6BEABF001B68B8D000398164 /* favorateIconActive.png in Resources */,
 				3682095C1B1C46FA002AA93F /* Ellipso (Mobile Satellite service).png in Resources */,
 				3682099B1B1C46FA002AA93F /* Korea, North.png in Resources */,
 				6BD2D3091B284C8900EC6E54 /* homeChocklateIcon.png in Resources */,
@@ -7920,6 +8006,7 @@
 				36820A2E1B1C46FA002AA93F /* ukraine.png in Resources */,
 				6BD2D2E71B28408800EC6E54 /* homeRecomondedStoreChatIcon@3x.png in Resources */,
 				36820A311B1C46FA002AA93F /* uruguay.png in Resources */,
+				6BEABEE51B67B1F100398164 /* bellIcon@2x.png in Resources */,
 				274F88911B0D0DC700F85743 /* defaultImageMenuTop@3x.png in Resources */,
 				6B8EB31B1B27098F00402CFC /* homeDetailsBannerShade.png in Resources */,
 				6BE4C90E1B034CDE00EF1EDB /* pencilIcon@2x.png in Resources */,
@@ -7928,6 +8015,7 @@
 				368209541B1C46FA002AA93F /* denmark.png in Resources */,
 				6BB50DC61B32AAB300990161 /* locationPopupOp1.png in Resources */,
 				6B8EB2CB1B26BDCE00402CFC /* homeDetailsDefaultImgae@2x.png in Resources */,
+				6BEABF011B68B8D000398164 /* favorateIconActive@2x.png in Resources */,
 				368209821B1C46FA002AA93F /* iceland.png in Resources */,
 				368209E11B1C46FA002AA93F /* Puerto Rico.png in Resources */,
 				368AFED01B38271300417836 /* appyCouponCodeBox@3x.png in Resources */,
@@ -8018,6 +8106,7 @@
 				6BE474621B3B21CE00C09AFD /* MHTransitionShowOverView.m in Sources */,
 				6BE474581B3B21CE00C09AFD /* MHGalleryItem.m in Sources */,
 				274A5C621B05C4AA009112B5 /* UIDevice+SH.m in Sources */,
+				6BEABF081B68D77100398164 /* CartProductModel.m in Sources */,
 				6B2189521B6380EA00BF56BC /* CartModel.m in Sources */,
 				274A5C8E1B05C4AA009112B5 /* XMPPXOAuth2Google.m in Sources */,
 				274A5CD81B05C4AA009112B5 /* XMPPCapabilities.xcdatamodel in Sources */,
@@ -8114,6 +8203,7 @@
 				36A69EE11B57DE4F0058EB88 /* WalletOfferTableCell.m in Sources */,
 				274A5CD11B05C4AA009112B5 /* XMPPMessage+XEP_0066.m in Sources */,
 				6B8EB2801B25AFD600402CFC /* SWLongPressGestureRecognizer.m in Sources */,
+				6BEABEEA1B67BC6E00398164 /* CouponModel.m in Sources */,
 				6BA8F9301B0A269100EAA6A8 /* AaramShop.xcdatamodeld in Sources */,
 				36D8C4F61B3A935D00C255EE /* PaymentModeViewController.m in Sources */,
 				274A5C901B05C4AA009112B5 /* NSNumber+XMPP.m in Sources */,
@@ -8199,6 +8289,7 @@
 				274A5E051B05C88B009112B5 /* SHBaseRequest.m in Sources */,
 				6BA0DCE71B37FCCF00729443 /* CategoryModel.m in Sources */,
 				274A5DE71B05C88B009112B5 /* HPTextViewInternal.m in Sources */,
+				6B0A00D91B6A255100A2577A /* CartListDetailCell.m in Sources */,
 				27BE657E1B0203E6004FA4B4 /* ChatViewController.m in Sources */,
 				274A5CD61B05C4AA009112B5 /* XMPPTransports.m in Sources */,
 				6BC503431B6280880089656E /* SearchStoresViewController.m in Sources */,
@@ -8210,6 +8301,7 @@
 				6BCB09461B4E76FC00F1A502 /* YSLScrollMenuView.m in Sources */,
 				6BD2D3341B28694500EC6E54 /* RightCollectionViewController.m in Sources */,
 				274A5C9F1B05C4AA009112B5 /* XMPPReconnect.m in Sources */,
+				6BEABEED1B67BF4700398164 /* RetailerOfferViewController.m in Sources */,
 				6BE4745C1B3B21CE00C09AFD /* MHOverviewController.m in Sources */,
 				274A5CFE1B05C4AA009112B5 /* DDFileLogger.m in Sources */,
 				27BE65811B0203F2004FA4B4 /* HomeViewController.m in Sources */,

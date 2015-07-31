@@ -11,6 +11,7 @@
 #import <AddressBook/AddressBook.h>
 #import "StoreModel.h"
 #import "ProductsModel.h"
+#import "CartProductModel.h"
 
 typedef enum {
     eMapDefaultType =0,
@@ -54,8 +55,9 @@ void MyAddressBookExternalChangeCallback (
 -(void)createDefaultValuesForDictionay;
 +(void)removeDataFromNSUserDefaults;
 +(NSString *)getDistance:(StoreModel *)objStoreModel;
-+(void)AddOrRemoveFromCart:(ProductsModel *)product forStore:(NSDictionary *)store add:(BOOL)isAdd;
++(void)AddOrRemoveFromCart:(CartProductModel *)product forStore:(NSDictionary *)store add:(BOOL)isAdd;
 + (void)removeCartBasedOnStoreId:(NSString *)store_id;
 + (NSMutableArray *)getCartProductsByStoreId:(NSString *)store_id;
++ (NSString *)getCountOfProduct:(NSString *)cartProductId withOfferType:(NSString *)offer_type forStore_id:(NSString *)store_id;
 @end
 extern AppManager *gAppManager;

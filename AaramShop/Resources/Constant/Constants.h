@@ -1,5 +1,20 @@
 
 
+
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
 #define kRobotoBold											@"Roboto-Bold"
 #define kRobotoRegular									@"Roboto-Regular"
 #define kRobotoMedium									@"Roboto-Medium"
@@ -164,7 +179,7 @@
 #define kProduct_name										@"product_name"
 #define kProduct_price										@"product_price"
 #define kProduct_sku_id									@"product_sku_id"
-
+#define kIsAvailable											@"isAvailable"
 
 #define kPopup_message									@"popup_message"
 #pragma mark - 
@@ -311,16 +326,16 @@
 
 //================= SHOPPING LIST MODULE =============
 
-#define KURLSerachStoreProducts                     @"serachStoreProducts"
+#define KURLSerachStoreProducts					@"serachStoreProducts"
 #define kURLCreateShoppingList						@"createShoppingList"
 #define kURLGetShoppingList							@"getShoppingList"
 #define kURLDeleteShoppingList						@"deleteShoppingList"
 
-#define kURLGetShoppingListProducts                 @"getShoppingListProducts"
-#define kURLUpdateShoppingListProducts              @"updateShoppingListProducts"
-#define kURLGetStores								@"getStores"
-#define kURLGetStoreforShoppingList                 @"getStoreforShoppingList"
-#define KURLGetShoppingListProductByStoreId         @"getShoppingListProductByStoreId"
+#define kURLGetShoppingListProducts			@"getShoppingListProducts"
+#define kURLUpdateShoppingListProducts		@"updateShoppingListProducts"
+#define kURLGetStores										@"getStores"
+#define kURLGetStoreforShoppingList				@"getStoreforShoppingList"
+#define KURLGetShoppingListProductByStoreId		@"getShoppingListProductByStoreId"
 
 
 //=========== Get Wallet =================================
@@ -345,10 +360,16 @@
 #define kCartData												@"cart"
 
 //=========== Get BroadCast =============
-#define kURLGetBroadCast										@"getBroadCast"
+#define kURLGetBroadCast								@"getBroadCast"
 
 
 //=========== SEARCH STORES =================================
 
 #define kURLSearchStores                                @"searchStores"
 
+//=========== Get Coupons =============
+#define kURLGetCoupons									@"getCoupons"
+#define kCoupons												@"coupons"
+
+//=========== make Favorite =============
+#define kURLMakeFavorite								@"makeFavorite"

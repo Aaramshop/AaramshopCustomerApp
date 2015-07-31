@@ -114,7 +114,6 @@
 		[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
 		NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 		[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
-		[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 		[dict setObject:strEmailAddress forKey:kEmail];
 		[dict setObject:strName forKey:kFullname];
 		[self performSelector:@selector(callWebserviceToUpdateInfo:) withObject:dict];

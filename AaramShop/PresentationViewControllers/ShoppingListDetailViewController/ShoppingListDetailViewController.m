@@ -483,9 +483,6 @@
     if ([arrProductList count]>0)
     {
         CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
-        
-        cartView.selectedStore = selectedStoreModel;
-        
         if (!cartView.arrProductList)
         {
             cartView.arrProductList = [[NSMutableArray alloc]init];
@@ -765,8 +762,8 @@
         
         productsModel.free_item = [NSString stringWithFormat:@"%@",[obj valueForKey:@"free_item"]];
         productsModel.isAvailable = [NSString stringWithFormat:@"%@",[obj valueForKey:@"isAvailable"]];
-        productsModel.offerType = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerType"]];
-        productsModel.offer_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_price"]];
+        productsModel.offer_type = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_type"]];
+        productsModel.offer_price = [NSString stringWithFormat:@"%d",[[obj valueForKey:@"offer_price"] intValue]];
         
         productsModel.product_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_id"]];
         productsModel.product_image = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_image"]];
