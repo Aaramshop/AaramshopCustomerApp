@@ -334,7 +334,6 @@
 #define kURLUpdateShoppingListProducts              @"updateShoppingListProducts"
 #define kURLGetStores                               @"getStores"
 #define kURLSetShoppingListReminder                 @"setShoppingListReminder"
-=======
 #define KURLSerachStoreProducts					@"serachStoreProducts"
 #define kURLCreateShoppingList						@"createShoppingList"
 #define kURLGetShoppingList							@"getShoppingList"
