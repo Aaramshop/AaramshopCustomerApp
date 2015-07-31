@@ -14,6 +14,8 @@
     // Initialization code
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    lblProductName.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -63,6 +65,9 @@
     
     lblProductName.text = tempProductModel.product_name;
     
+    NSString *strRupee = @"\u20B9";
+    
+    lblPrice.text = [NSString stringWithFormat:@"%@ %@",strRupee,tempProductModel.product_price];
     
     
     

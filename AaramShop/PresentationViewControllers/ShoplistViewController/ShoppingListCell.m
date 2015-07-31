@@ -104,7 +104,7 @@
     {
         
         NSString *strText1 = @"Shared by you with ";
-        // temp - '3'
+
         NSString *strText2 = [NSString stringWithFormat:@"%ld people",[shoppingListModel.sharedWith count]];
         
         NSString *strFullString = [NSString stringWithFormat:@"%@%@",strText1,strText2];
