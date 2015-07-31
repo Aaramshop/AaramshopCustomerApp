@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -1485,8 +1485,161 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                     <view key="view" contentMode="scaleToFill" id="A6T-wV-CnV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bground-568.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="AJz-6D-daN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="133-xs-HRi">
+                                <rect key="frame" x="15" y="57" width="290" height="34"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Start Date" backgroundImage="weekDaysBox.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnStartDateAction:" destination="ydH-ef-K3d" eventType="touchUpInside" id="jsM-74-eqw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZv-At-XYB">
+                                <rect key="frame" x="15" y="109" width="290" height="34"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="End Date" backgroundImage="weekDaysBox.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnEndDateAction:" destination="ydH-ef-K3d" eventType="touchUpInside" id="Fef-FE-TgU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMP-0e-TAv">
+                                <rect key="frame" x="16" y="161" width="290" height="34"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Repeat" backgroundImage="weekDaysBox.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnRepeatAction:" destination="ydH-ef-K3d" eventType="touchUpInside" id="olS-Zx-3bI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBO-o8-1CC">
+                                <rect key="frame" x="16" y="212" width="290" height="52"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Reminder" backgroundImage="reminderBox.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nww-yY-vpv">
+                                <rect key="frame" x="248" y="222" width="51" height="31"/>
+                                <connections>
+                                    <action selector="reminderSwitchValuChanged:" destination="ydH-ef-K3d" eventType="valueChanged" id="Rdh-kF-8g4"/>
+                                </connections>
+                            </switch>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QX9-up-KzX">
+                                <rect key="frame" x="0.0" y="568" width="320" height="206"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FD3-Xh-A1m">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <items>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="3tI-AL-9oc"/>
+                                            <barButtonItem title="Done" id="oI1-Ld-pdp">
+                                                <connections>
+                                                    <action selector="toolBarDoneAction:" destination="ydH-ef-K3d" id="CIN-EG-RBj"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="PsG-oJ-bae">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="162"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="459410531.34639001">
+                                            <!--2015-07-24 06:02:11 +0000-->
+                                        </date>
+                                        <connections>
+                                            <action selector="datePickerValueChanged:" destination="ydH-ef-K3d" eventType="valueChanged" id="9Re-fg-bqt"/>
+                                        </connections>
+                                    </datePicker>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="206" id="a9n-hu-2w2"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Riq-EK-4hK" userLabel="LabelStartDate">
+                                <rect key="frame" x="129" y="63" width="151" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywr-kx-gbd" userLabel="LabelEndDate">
+                                <rect key="frame" x="129" y="115" width="151" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOW-BG-q8T" userLabel="LabelRepeat">
+                                <rect key="frame" x="129" y="167" width="151" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0c-Vm-trA" userLabel="ViewPicker">
+                                <rect key="frame" x="0.0" y="568" width="320" height="211"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="abY-Da-4wO">
+                                        <rect key="frame" x="1" y="0.0" width="319" height="44"/>
+                                        <items>
+                                            <barButtonItem title="Cancel" id="KrT-px-ReJ">
+                                                <connections>
+                                                    <action selector="toolRepeatCancelACtion:" destination="ydH-ef-K3d" id="riW-2U-OmL"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="Dcg-nU-pvZ"/>
+                                            <barButtonItem title="Done" id="4Fv-TQ-bwq">
+                                                <connections>
+                                                    <action selector="toolRepeatDoneAction:" destination="ydH-ef-K3d" id="CWo-9B-9mV"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f96-K3-LJJ">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="167"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="ydH-ef-K3d" id="Yhb-q8-RRn"/>
+                                            <outlet property="delegate" destination="ydH-ef-K3d" id="uAo-Nl-7hW"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="211" id="tS5-ah-A90"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QX9-up-KzX" firstAttribute="leading" secondItem="A6T-wV-CnV" secondAttribute="leadingMargin" constant="-16" id="CaZ-mp-Vfl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QX9-up-KzX" secondAttribute="trailing" constant="-16" id="GCR-oY-ChJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="R0c-Vm-trA" secondAttribute="trailing" constant="-16" id="Vjh-bS-DtT"/>
+                            <constraint firstItem="R0c-Vm-trA" firstAttribute="leading" secondItem="A6T-wV-CnV" secondAttribute="leadingMargin" constant="-16" id="WVF-H5-zW5"/>
+                            <constraint firstItem="R0c-Vm-trA" firstAttribute="top" secondItem="Q8b-7y-PuU" secondAttribute="bottom" id="j9q-gJ-zH3"/>
+                            <constraint firstItem="QX9-up-KzX" firstAttribute="top" secondItem="Q8b-7y-PuU" secondAttribute="bottom" id="xBa-as-nRh"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btnEndDate" destination="tZv-At-XYB" id="hEg-KW-Wme"/>
+                        <outlet property="btnRepeat" destination="VMP-0e-TAv" id="VFm-55-sH1"/>
+                        <outlet property="btnStartDate" destination="133-xs-HRi" id="TTi-xb-rOa"/>
+                        <outlet property="datePicker_" destination="PsG-oJ-bae" id="4uG-KF-FTK"/>
+                        <outlet property="lblEndDate" destination="Ywr-kx-gbd" id="mYL-vm-Kte"/>
+                        <outlet property="lblRepeat" destination="QOW-BG-q8T" id="Plr-fP-X97"/>
+                        <outlet property="lblStartDate" destination="Riq-EK-4hK" id="ShC-ek-81K"/>
+                        <outlet property="pickerRepeatBottomConstraint" destination="j9q-gJ-zH3" id="vbw-iE-xdr"/>
+                        <outlet property="reminderSwitch" destination="nww-yY-vpv" id="wxC-1f-moz"/>
+                        <outlet property="viewDatePicker" destination="QX9-up-KzX" id="st6-5U-dXP"/>
+                        <outlet property="viewPickerBottomConstraint" destination="xBa-as-nRh" id="R9G-tY-qey"/>
+                        <outlet property="viewRepeatPickerView" destination="R0c-Vm-trA" id="0ES-3H-rxg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXw-4R-W1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -5459,6 +5612,7 @@ It will be used only for verification purposes.</string>
         <image name="bg4.jpg" width="320" height="568"/>
         <image name="bg5.jpg" width="320" height="568"/>
         <image name="bgImageNew.png" width="320" height="480"/>
+        <image name="bground-568.jpg" width="320" height="568"/>
         <image name="callIconGreenCircle.png" width="35" height="35"/>
         <image name="chatNumberingCircle.png" width="30" height="30"/>
         <image name="chatScreenMyListLogo.png" width="180" height="180"/>
@@ -5510,6 +5664,7 @@ It will be used only for verification purposes.</string>
         <image name="popupCloseIcon.png" width="20" height="20"/>
         <image name="preferencesLocationAddCircle.png" width="25" height="25"/>
         <image name="preferencesLocationIcon.png" width="20" height="20"/>
+        <image name="reminderBox.png" width="290" height="49"/>
         <image name="seprator.png" width="271" height="1"/>
         <image name="sepratorBoxThree.png" width="320" height="106"/>
         <image name="sepratorBoxThree_2.png" width="320" height="106"/>
@@ -5518,6 +5673,7 @@ It will be used only for verification purposes.</string>
         <image name="singleBox.png" width="300" height="50"/>
         <image name="smsIconDarkGrey.png" width="35" height="35"/>
         <image name="upperBox.png" width="300" height="49"/>
+        <image name="weekDaysBox.png" width="289" height="34"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
