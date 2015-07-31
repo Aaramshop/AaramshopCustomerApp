@@ -326,6 +326,14 @@
 
 //================= SHOPPING LIST MODULE =============
 
+#define KURLSerachStoreProducts                     @"serachStoreProducts"
+#define kURLCreateShoppingList                      @"createShoppingList"
+#define kURLGetShoppingList                         @"getShoppingList"
+#define kURLDeleteShoppingList                      @"deleteShoppingList"
+#define kURLGetShoppingListProducts                 @"getShoppingListProducts"
+#define kURLUpdateShoppingListProducts              @"updateShoppingListProducts"
+#define kURLGetStores                               @"getStores"
+#define kURLSetShoppingListReminder                 @"setShoppingListReminder"
 #define KURLSerachStoreProducts					@"serachStoreProducts"
 #define kURLCreateShoppingList						@"createShoppingList"
 #define kURLGetShoppingList							@"getShoppingList"
