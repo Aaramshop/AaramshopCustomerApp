@@ -130,7 +130,7 @@
     
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:_shoppingListId forKey:@"shoppingListId"];
-    [dict setObject:@"1" forKey:@"storeId"];
+    [dict setObject:@"1" forKey:@"store_id"];
     [dict setObject:[NSString stringWithFormat:@"%.0f",[startDate timeIntervalSince1970]] forKey:@"start_date"];
     [dict setObject:[NSString stringWithFormat:@"%.0f",[endDate timeIntervalSince1970]] forKey:@"end_date"];
     
