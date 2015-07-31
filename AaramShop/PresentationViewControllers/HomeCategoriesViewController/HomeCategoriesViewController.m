@@ -8,9 +8,9 @@
 
 #import "HomeCategoriesViewController.h"
 #import "HomeCategoryListViewController.h"
-
+#import "CartViewController.h"
 #import "StoreModel.h"
-
+#import "BroadcastViewController.h"
 
 #define kTagForYSLScrollView    1000
 #define kTagForFoodTableView    10
@@ -60,7 +60,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self performSelector:@selector(createDataToGetStores) withObject:nil afterDelay:0.5];
+        
     NSLog(@"value = %f",appDeleg.myCurrentLocation.coordinate.latitude);
     if(![gCXMPPController isConnected])
     {
@@ -82,6 +82,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     collectionMaster.hidden = YES;
     
     arrCategories = [[NSMutableArray alloc]init];
+    
+    totalNoOfPages = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,20 +139,29 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
     
     UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnCart.bounds = CGRectMake( -10, 0, 30, 30);
+    btnCart.bounds = CGRectMake( -10, 0, 20, 20);
     
     [btnCart setImage:imgCart forState:UIControlStateNormal];
     [btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
     
     UIButton *btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnSearch.bounds = CGRectMake( -10, 0, 30, 30);
+    btnSearch.bounds = CGRectMake( -10, 0, 20, 20);
     
     [btnSearch setImage:imgSearch forState:UIControlStateNormal];
     [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
-    
-    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch, nil];
+	
+	UIImage *imgBroadcast = [UIImage imageNamed:@"bellIcon"];
+	
+	UIButton *btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnBroadcast.bounds = CGRectMake( -10, 0, 20, 20);
+	
+	[btnBroadcast setImage:imgBroadcast forState:UIControlStateNormal];
+	[btnBroadcast addTarget:self action:@selector(btnBroadcastClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnBroadcast = [[UIBarButtonItem alloc] initWithCustomView:btnBroadcast];
+
+    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
     self.navigationItem.rightBarButtonItems = arrBtnsRight;
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
@@ -160,7 +171,11 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     }
 
 }
-
+- (void)btnBroadcastClicked
+{
+	BroadcastViewController *broadcastView = (BroadcastViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"broadcastView"];
+	[self.navigationController pushViewController:broadcastView animated:YES];
+}
 
 -(void)btnMenuClicked
 {
@@ -172,7 +187,9 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 }
 -(void)btnCartClicked
 {
-    
+	CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+	[self.navigationController pushViewController:cartView animated:YES];
+
 }
 - (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
     [self.navigationController pushViewController:viewC animated:YES];
@@ -201,7 +218,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
         HomeCategoryListViewController *homeCategoryListView = [sb instantiateViewControllerWithIdentifier:@"HomeCategoryListView"];
         homeCategoryListView.title = storeModel.store_main_category_name;
         homeCategoryListView.storeModel = storeModel;
-        
+        homeCategoryListView.totalNoOfPages = totalNoOfPages;
         [viewControllers addObject:homeCategoryListView];
 
     }
@@ -242,7 +259,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 }
 
 
-#pragma mark - createDataToGetStores
+#pragma mark - Create Data To Get Stores
 
 -(void)createDataToGetStores
 {
@@ -250,9 +267,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     
+    int pageno = 0;
     
-    //    [dict setObject:@"28.5136781" forKey:kLatitude]; // temp
-    //    [dict setObject:@"77.3769436" forKey:kLongitude]; // temp
+    [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
+
+    
+//        [dict setObject:@"28.5136781" forKey:kLatitude]; // temp
+//        [dict setObject:@"77.3769436" forKey:kLongitude]; // temp
     
     
     [self callWebserviceToGetStores:dict];
@@ -289,6 +310,9 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             
             viewOverlay.hidden = NO;
             collectionMaster.hidden = NO;
+            
+            totalNoOfPages = [[responseObject valueForKey:@"total_page"] integerValue];
+            
             [self parseStoreData:responseObject];
         }
         else

@@ -19,17 +19,20 @@ typedef enum
 }enWalletSelectedType;
 @interface WalletViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
-	__weak IBOutlet UIButton *offersBtn;
-	__weak IBOutlet UIButton *moneyBtn;
-	__weak IBOutlet UIButton *pointsBtn;
-	__weak IBOutlet UIView *subView;
+	
 	WalletOffersViewController *walletOfferVC;
 	PointsViewController *pointsVC;
-	MoneyViewController *moneyVC;
+	
+	
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 	enWalletSelectedType selectedWallet;
 
 }
+@property (strong, nonatomic) IBOutlet UIButton *offersBtn;
+@property (strong, nonatomic) IBOutlet UIButton *moneyBtn;
+@property (strong, nonatomic) IBOutlet UIButton *pointsBtn;
+@property (strong, nonatomic) IBOutlet UIView *subView;
+@property (strong, nonatomic) UIButton *btnBack;
 - (IBAction)btnOffers:(id)sender;
 - (IBAction)btnMoney:(id)sender;
 - (IBAction)btnPoints:(id)sender;

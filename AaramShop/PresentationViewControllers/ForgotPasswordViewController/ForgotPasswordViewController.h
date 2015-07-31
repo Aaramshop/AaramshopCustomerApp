@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForgotPasswordViewController : BaseViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
+@interface ForgotPasswordViewController : UIViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
 {
     
     __weak IBOutlet UIScrollView *scrollViewForgotPassword;

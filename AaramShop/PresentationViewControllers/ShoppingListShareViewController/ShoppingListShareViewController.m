@@ -8,25 +8,62 @@
 
 #import "ShoppingListShareViewController.h"
 #import "ShoppingListShareCell.h"
+#import "AddContactsToShareViewController.h"
+#import "SharedUserModel.h"
 
 #define kTableCellHeight    58
 
 @interface ShoppingListShareViewController ()
-
+{
+    AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+    AppDelegate *appDeleg;
+    int pageno;
+    int totalNoOfPages;
+}
 @end
 
 @implementation ShoppingListShareViewController
+@synthesize aaramShop_ConnectionManager;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
     [self setNavigationBar];
     
-    tblView.backgroundColor = [UIColor whiteColor];
     
     arrShareList = [[NSMutableArray alloc]init];
+    
+    
+    totalNoOfPages = 0;
+    pageno = 0;
+    isLoading = NO;
+    
+    aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
+    aaramShop_ConnectionManager.delegate = self;
+    
+    tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    tblView.bounces = YES;
+    tblView.tag = 10;
+    self.view.tag = 100;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    UITableViewController *tableViewController = [[UITableViewController alloc] init];
+    tableViewController.tableView = tblView;
+    refreshStoreList = [[UIRefreshControl alloc] init];
+    [refreshStoreList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    tableViewController.refreshControl = refreshStoreList;
+    
+    ////
+    CGRect frame = CGRectZero;
+    frame.size.height = CGFLOAT_MIN;
+    [tblView setTableHeaderView:[[UIView alloc] initWithFrame:frame]];
+    
+    
+    [self callWebserviceToGetSharedList];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,7 +138,11 @@
 
 -(void)btnAddClicked
 {
+    AddContactsToShareViewController *addContactsToShareView = (AddContactsToShareViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"AddContactsToShare"];
     
+    addContactsToShareView.strShoppingListId = _strShoppingListId;
+    [self.navigationController pushViewController:addContactsToShareView animated:YES];
+
 }
 
 
@@ -122,7 +163,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;//arrShareList.count;
+    return arrShareList.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -141,7 +182,7 @@
         cell = [[ShoppingListShareCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    [cell updateCell];
+    [cell updateCell:[arrShareList objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -152,6 +193,193 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark - Call Webservice
+
+-(void)callWebserviceToGetSharedList
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+    [dict setObject:_strShoppingListId forKey:@"shoppingListId"];
+    [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
+    
+    
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        
+        isLoading = NO;
+        [refreshStoreList endRefreshing];
+        
+        [self showFooterLoadMoreActivityIndicator:NO];
+        
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kURLGetShoppingListShareWith withInput:dict withCurrentTask:TASK_TO_GET_SHOPPING_LIST_SHARE_WITH andDelegate:self ];
+}
+
+
+-(void) didFailWithError:(NSError *)error
+{
+    isLoading = NO;
+    [self showFooterLoadMoreActivityIndicator:NO];
+    [refreshStoreList endRefreshing];
+    
+    [AppManager stopStatusbarActivityIndicator];
+    [aaramShop_ConnectionManager failureBlockCalled:error];
+}
+
+
+- (void)responseReceived:(id)responseObject
+{
+    isLoading = NO;
+    [self showFooterLoadMoreActivityIndicator:NO];
+    [refreshStoreList endRefreshing];
+    
+    [AppManager stopStatusbarActivityIndicator];
+    
+    if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_SHOPPING_LIST_SHARE_WITH)
+    {
+        if([[responseObject objectForKey:kstatus] intValue] == 1)
+        {
+            totalNoOfPages = [[responseObject objectForKey:kTotal_page] intValue];
+            [self parseResponseData:responseObject];
+        }
+        else
+        {
+            [Utils showAlertView:kAlertTitle message:[responseObject valueForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        }
+    }
+    
+}
+
+
+#pragma mark - Parse Response Data
+
+-(void)parseResponseData:(NSDictionary *)responseObject
+{
+    
+    if (!arrShareList)
+    {
+        arrShareList = [[NSMutableArray alloc]init];
+    }
+    
+    if (pageno == 0)
+    {
+        [arrShareList removeAllObjects];
+    }
+    
+    
+    NSArray *arrTempShareUser = [responseObject valueForKey:@"share_user"];
+    
+    for (id obj in arrTempShareUser)
+    {
+        SharedUserModel *sharedUserModel = [[SharedUserModel alloc]init];
+        sharedUserModel.full_name = [obj valueForKey:@"full_name"];
+        
+        sharedUserModel.profileImage = [NSString stringWithFormat:@"%@",[[obj valueForKey:@"profileImage"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
+        sharedUserModel.userId = [obj valueForKey:@"userId"];
+        
+        [arrShareList addObject:sharedUserModel];
+    }
+    
+    [tblView reloadData];
+}
+
+/*
+ 
+ Printing description of responseObject:
+ {
+ deviceId = 3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0;
+ message = "Share Shopper Data!";
+ "page_no" = 0;
+ "share_user" =     (
+ {
+ "full_name" = "Joy Sharma";
+ profileImage = "http://52.74.220.25/uploaded_files/user/profileImage9.jpg";
+ userId = 26;
+ },
+ {
+ "full_name" = "Neha Saxena";
+ profileImage = "http://52.74.220.25/uploaded_files/user/profileImage12.jpg";
+ userId = 8;
+ }
+ );
+ status = 1;
+ "total_page" = 1;
+ }
+
+ 
+ */
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+- (void)refreshTable
+{
+    pageno = 0;
+    [self performSelector:@selector(callWebserviceToGetSharedList) withObject:nil afterDelay:1.0];
+}
+
+-(void)calledPullUp
+{
+    if(totalNoOfPages>pageno+1)
+    {
+        pageno++;
+        [self callWebserviceToGetSharedList];
+    }
+    else
+    {
+        isLoading = NO;
+        [self showFooterLoadMoreActivityIndicator:NO];
+    }
+}
+
+#pragma mark - to refreshing a view
+
+-(void)showFooterLoadMoreActivityIndicator:(BOOL)show{
+    UIView *view=[tblView viewWithTag:111112];
+    UIActivityIndicatorView *activity=(UIActivityIndicatorView*)[view viewWithTag:111111];
+    
+    if (show) {
+        [activity startAnimating];
+    }else
+        [activity stopAnimating];
+}
+
+
+#pragma mark - ScrollView Delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if (scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height-33 && arrShareList.count > 0 && scrollView.contentOffset.y>0){
+        if (!isLoading) {
+            isLoading=YES;
+            [self showFooterLoadMoreActivityIndicator:YES];
+            [self performSelector:@selector(calledPullUp) withObject:nil afterDelay:0.5 ];
+        }
+    }
+    
+}
+
 
 
 @end

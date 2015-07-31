@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ShoppingListDetailCell.h"
-
-@interface CartViewController : UIViewController<ProductCellDelegate>
+#import "CartListDetailCell.h"
+#import "OffersTableCell.h"
+@interface CartViewController : UIViewController<ProductCellDelegate,OffersTableCellDelegate>
 {
     IBOutlet UITableView *tblView;
-    
-    NSMutableArray *arrProductList;
+	__weak IBOutlet UIImageView *imgViewEmptyCart;
+	__weak IBOutlet UILabel *lblInfo1;
+	__weak IBOutlet UILabel *lblInfo2;
 }
+@property	(nonatomic ,strong) NSMutableArray *arrProductList;
+@property (nonatomic, strong)  NSMutableDictionary *dictProduct;
+
 @end

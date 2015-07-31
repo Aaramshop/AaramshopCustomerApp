@@ -363,7 +363,7 @@
 + (NSString*) stringFromDate:(NSDate*)date
 {
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"MM/dd/YYYY"];
+	[dateFormatter setDateFormat:@"dd-MM-yyyy"];
 	//[dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss a"];
 //	NSLog(@"%@", date);
    	NSString *strDateTime = [dateFormatter stringFromDate:date];
@@ -379,6 +379,20 @@
    	NSString *strDateTime = [dateFormatter stringFromDate:date];
 	[dateFormatter release];
 	return strDateTime;
+}
++ (NSString*) stringFromDateForTimeWithAt:(NSDate*)date
+{
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	//	[dateFormatter setDateFormat:@"hha"];
+	[dateFormatter setDateFormat:@"dd-MM-yyyy hh:mma"];
+	
+	NSString *strDateTime = [dateFormatter stringFromDate:date];
+	[dateFormatter release];
+	NSMutableArray *arr = [NSMutableArray arrayWithArray:[strDateTime componentsSeparatedByString:@" "]];
+	NSString *dt = [arr firstObject];
+	NSString *time = [[arr lastObject] lowercaseString];
+	NSString *string = [NSString stringWithFormat:@"%@ at %@",dt,time];
+	return string;
 }
 + (NSString*) stringFromDateForExactTime:(NSDate*)date
 {
@@ -875,7 +889,7 @@
 + (NSString *)convertedDate:(NSDate*)date
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.timeStyle = NSDateFormatterShortStyle;
+//    df.timeStyle = NSDateFormatterShortStyle;
     df.dateStyle = NSDateFormatterShortStyle;
     df.doesRelativeDateFormatting = YES;  // this enables relative dates like yesterday, today, tomorrow...
     

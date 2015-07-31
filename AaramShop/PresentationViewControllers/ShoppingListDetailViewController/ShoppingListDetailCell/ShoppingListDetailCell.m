@@ -61,16 +61,43 @@
     
     lblProductName.text = tempProductModel.product_name;
     
-    if ([tempProductModel.quantity integerValue]==0)
-    {
-        btnRemove.enabled = NO;
-    }
-    else
-    {
-        btnRemove.enabled = YES;
-    }
     
-    lblCounter.text = tempProductModel.quantity;
+    
+    
+	btnAdd.enabled = YES;
+    
+    if([tempProductModel.strCount integerValue]==20)
+	{
+		btnAdd.enabled = NO;
+	}
+	btnRemove.enabled = YES;
+    lblCounter.text = tempProductModel.strCount;
+    
+    
+    
+//    if ([tempProductModel.quantity integerValue]==0)
+//    {
+//        btnRemove.enabled = NO;
+//    }
+//    else
+//    {
+//        btnRemove.enabled = YES;
+//    }
+//    
+//    if ([tempProductModel.quantity integerValue]<20)
+//    {
+//        btnAdd.enabled = YES;
+//    }
+//    else
+//    {
+//        btnAdd.enabled = NO;
+//    }
+//    
+//    
+//    lblCounter.text = tempProductModel.quantity;
+
+    
+    
 }
 
 

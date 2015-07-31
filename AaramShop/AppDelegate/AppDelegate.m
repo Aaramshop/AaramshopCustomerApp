@@ -11,9 +11,11 @@
 #import <Crashlytics/Crashlytics.h>
 #import "HomeSecondViewController.h"
 #import "ChatViewController.h"
-#import "ShoppingListViewController.h"
-#import "OffersViewController.h"
+#import "RetailerShoppingListViewController.h"
+#import "RetailerOfferViewController.h"
 #import "OrderHistViewController.h"
+#import "AFNetworkActivityIndicatorManager.h"
+
 @interface AppDelegate ()
 {
     Reachability *aReachability;
@@ -27,40 +29,45 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
      [Fabric with:@[CrashlyticsKit]];
     [self initializeAllSingletonObjects];
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setBackgroundColor:[UIColor blackColor]];
-   
+   /////remote notification code
 	
-    if ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone Simulator"])
-    {
-        [[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-    }
-    else
-    {
-        if(![[NSUserDefaults standardUserDefaults]valueForKey:kDeviceId])
-        {
-            [[NSUserDefaults standardUserDefaults] setValue:@"1234567890" forKey:kDeviceId];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
-        
-        
-        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
-        {
-            [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        }
-        else
-        {
-            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-             (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
-            
-        }
-        
-        
-    }
+	if ([[[UIDevice currentDevice] model] isEqualToString:@"iPhone Simulator"])
+	{
+		[[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		
+	}
+	else
+	{
+		if(![[NSUserDefaults standardUserDefaults]valueForKey:kDeviceId])
+		{
+			[[NSUserDefaults standardUserDefaults] setValue:@"1234567890" forKey:kDeviceId];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+		}
+		
+		
+		if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)])
+		{
+			[[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+			
+			//            [[UIApplication sharedApplication] registerForRemoteNotifications];
+		}
+		else
+		{
+			[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+			 (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+			
+		}
+		
+		
+	}
+	
+	//////////////remote notification code end//////////////////
     if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn] == YES) {
         [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
 
@@ -74,6 +81,7 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessful:) name:kLoginSuccessfulNotificationName object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout:) name:kLogoutSuccessfulNotificationName object:nil];
+    
 	if ([[NSUserDefaults standardUserDefaults] valueForKey:kUserId] && [[[NSUserDefaults standardUserDefaults] valueForKey:kUserId]length]>0 /*&& [[[NSUserDefaults standardUserDefaults] valueForKey:kIs_active] integerValue]==1*/)
 	{
 		[self loginSuccessful:nil];
@@ -119,47 +127,49 @@
 #pragma mark - Remote Notification Methods
 - (void)application:(UIApplication *)application   didRegisterUserNotificationSettings:   (UIUserNotificationSettings *)notificationSettings
 {
-    //register to receive notifications
-    [application registerForRemoteNotifications];
+	//register to receive notifications
+	[application registerForRemoteNotifications];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    NSString *deviceTokenStr = [[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""] stringByReplacingOccurrencesOfString: @">" withString: @""] stringByReplacingOccurrencesOfString: @" " withString: @""];
-    
-    [[NSUserDefaults standardUserDefaults] setValue:deviceTokenStr forKey:kDeviceId];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    // NSLog(@"Registered");
-    
-    NSLog(@"Device Token: %@ ", deviceTokenStr);
+	NSString *deviceTokenStr = [[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""] stringByReplacingOccurrencesOfString: @">" withString: @""] stringByReplacingOccurrencesOfString: @" " withString: @""];
+	
+	[[NSUserDefaults standardUserDefaults] setValue:deviceTokenStr forKey:kDeviceId];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	// NSLog(@"Registered");
+	
+	NSLog(@"Device Token: %@ ", deviceTokenStr);
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err
 {
-    //    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
-    // NSLog(@"Fail To Register for Push Notification.");
-    
-    [[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+	//    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+	// NSLog(@"Fail To Register for Push Notification.");
+	
+	[[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	NSLog(@"%@ Fail to get register",err);
 }
 
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary* )userInfo
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    // NSLog(@"%@",[[userInfo valueForKey:@"aps"] valueForKey:@"alert"]);
-    
-    
-    //When app is active than only home screen counts should be refreshed
-    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
-        
-    }// If app is in Background or in inactive state than in this case we have to open NotificationViewcontroller or friend request received
-    else
-    {
-        NSInteger badgeCount = [UIApplication sharedApplication].applicationIconBadgeNumber;
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
-    }
-    
+	// NSLog(@"%@",[[userInfo valueForKey:@"aps"] valueForKey:@"alert"]);
+	
+	
+	//When app is active than only home screen counts should be refreshed
+	if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
+		
+	}// If app is in Background or in inactive state than in this case we have to open NotificationViewcontroller or friend request received
+	else
+	{
+		NSInteger badgeCount = [UIApplication sharedApplication].applicationIconBadgeNumber;
+		[[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
+	}
+	
 }
+
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager* )manager didFailWithError:(NSError *)error
@@ -397,7 +407,7 @@
 
 //	nav1.navigationBarHidden = NO;
 	//2nd tab
-	ShoppingListViewController *shoppingList = [storyboard instantiateViewControllerWithIdentifier:@"shoppingListViewController"];
+	RetailerShoppingListViewController *shoppingList = [storyboard instantiateViewControllerWithIdentifier:@"retailerShoppingList"];
 	shoppingList.tabBarItem.image = [[UIImage imageNamed:@"tabBarMyListIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 	shoppingList.extendedLayoutIncludesOpaqueBars = YES;
 	shoppingList.tabBarItem.selectedImage = [[UIImage imageNamed:@"tabBarMyListIconActive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -434,7 +444,7 @@
 //	nav4.navigationBarHidden = YES;
 	//5th tab
 	
-	OffersViewController *offer = [storyboard instantiateViewControllerWithIdentifier:@"offersViewController"];
+	RetailerOfferViewController *offer = [storyboard instantiateViewControllerWithIdentifier:@"retailerOffersViewController"];
 	offer.tabBarItem.image = [[UIImage imageNamed:@"tabBarOffersIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 	offer.extendedLayoutIncludesOpaqueBars = YES;
 	offer.tabBarItem.selectedImage = [[UIImage imageNamed:@"tabBarOffersIconActive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

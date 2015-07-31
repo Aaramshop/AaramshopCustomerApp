@@ -335,9 +335,6 @@
 }
 
 
-
-
-
 -(void)openSearchedUserPrroductFor:(ProductsModel *)product
 {
     NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",product.product_sku_id];

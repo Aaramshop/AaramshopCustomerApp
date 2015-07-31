@@ -10,7 +10,7 @@
 #import "FlagListTableViewController.h"
 #import "CMCountryList.h"
 
-@interface MobileEnterViewController : BaseViewController<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,AaramShop_ConnectionManager_Delegate,FlagListTableViewControllerDelegate>
+@interface MobileEnterViewController : UIViewController<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,AaramShop_ConnectionManager_Delegate,FlagListTableViewControllerDelegate>
 {
     __weak IBOutlet UIImageView *imgVUser;
     __weak IBOutlet UIButton *btnProfile;
@@ -29,6 +29,7 @@
     __weak IBOutlet UIButton *btnContinue;
 }
 @property(nonatomic,assign) BOOL isUpdateMobile;
+
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
  - (IBAction)btnContinueClick:(UIButton *)sender;
 - (IBAction)btnBackClick:(UIButton *)sender;

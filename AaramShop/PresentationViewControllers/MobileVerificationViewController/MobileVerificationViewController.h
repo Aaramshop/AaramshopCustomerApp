@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MobileVerificationViewController : BaseViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
+@interface MobileVerificationViewController : UIViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
 {
     __weak IBOutlet UIButton *backBtn;
     
@@ -23,9 +23,14 @@
 
 @property (nonatomic,strong) NSString *strIsRegistered;
 
+@property (nonatomic,strong) id responseData;
+
+
 - (IBAction)btnBackClick:(UIButton *)sender;
 - (IBAction)btnContinueVerificationClick:(UIButton *)sender;
 - (IBAction)btnResendVerificationClick:(UIButton *)sender;
+
+
 
 
 @end

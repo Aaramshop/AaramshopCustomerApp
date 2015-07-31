@@ -111,7 +111,7 @@ static NSString *strCollectionCellCategory = @"collectionCellCategories";
         activityIndicatorView.hidesWhenStopped = YES;
         
         [activityIndicatorView startAnimating];
-        [imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreModel.store_main_category_banner_1]] placeholderImage:[UIImage imageNamed:@"homePageBannerImage.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreModel.store_main_category_banner_1]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (image) {
                 
             }

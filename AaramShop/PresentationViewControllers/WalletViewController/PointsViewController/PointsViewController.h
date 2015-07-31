@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PointsTableCell.h"
+#import "CMWalletPoints.h"
+@protocol PointsVCDelegate <NSObject>
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView onTableView:(UITableView *)tableView;
+@end
 typedef enum
 {
 	eAaramPoints = 0,
@@ -15,11 +20,23 @@ typedef enum
 	eSelectedPointsTypeNone
 }enSectionType;
 
-@interface PointsViewController : UIViewController
+@interface PointsViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
 	enSectionType selectedPointsType;
 	NSMutableArray *arrTemp;
-	NSString *strPoints;
+	NSMutableDictionary *dicAllPoints;
+	NSString *strAaramPoints;
+	NSString *strBonusPoints;
+	NSString *strBrandPoints;
 	UILabel *lblPointsName;
+	__weak IBOutlet UILabel *lblPoint;
+	
+	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+	__weak IBOutlet UITableView *tblView;
+	int pageno;
+	int totalNoOfPages;
+	BOOL isLoading;
+	
 }
+@property (weak, nonatomic) id <PointsVCDelegate> delegate;
 @end

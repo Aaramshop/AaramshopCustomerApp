@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface OptionViewController : BaseViewController
+@interface OptionViewController : UIViewController
 {
     __weak IBOutlet UIView *subView;
     

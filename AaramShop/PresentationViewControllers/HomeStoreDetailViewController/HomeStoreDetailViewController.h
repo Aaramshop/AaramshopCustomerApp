@@ -21,7 +21,14 @@
     __weak IBOutlet UIImageView *imgVStoreCategoryImage;
     __weak IBOutlet UIImageView *imgVStoreImage;
     
-
+    __weak IBOutlet UIView *viewRating;
+    
+    __weak IBOutlet UIImageView *imgRating1;
+    __weak IBOutlet UIImageView *imgRating2;
+    __weak IBOutlet UIImageView *imgRating3;
+    __weak IBOutlet UIImageView *imgRating4;
+    __weak IBOutlet UIImageView *imgRating5;
+    
 }
 @property(nonatomic,strong) StoreModel *objStoreModel;
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

@@ -21,6 +21,7 @@
     UICollectionView *collectionVwCategory;
     UISearchBar *searchBarCategory;
     NSMutableArray *arrSearchCategories;
+	UIActivityIndicatorView *activity;
 }
 @property(nonatomic,strong) NSMutableArray *arrCategories;
 @property(nonatomic,strong) NSString *strStore_Id;

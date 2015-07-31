@@ -36,12 +36,12 @@
 
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *moviePath1 = [bundle pathForResource:@"disc" ofType:@"mp4"];
-    NSString *moviePath2 = [bundle pathForResource:@"disc2" ofType:@"mp4"];
-    NSString *moviePath3 = [bundle pathForResource:@"disc3" ofType:@"mp4"];
+//    NSString *moviePath2 = [bundle pathForResource:@"disc2" ofType:@"mp4"];
+//    NSString *moviePath3 = [bundle pathForResource:@"disc3" ofType:@"mp4"];
     NSURL *movieURL1 = [NSURL fileURLWithPath:moviePath1];
-    NSURL *movieURL2 = [NSURL fileURLWithPath:moviePath2];
-    NSURL *movieURL3 = [NSURL fileURLWithPath:moviePath3];
-    NSArray *arrMovieURLs = [[NSArray alloc]initWithObjects:movieURL1,movieURL2,movieURL3, nil];
+//    NSURL *movieURL2 = [NSURL fileURLWithPath:moviePath2];
+//    NSURL *movieURL3 = [NSURL fileURLWithPath:moviePath3];
+    NSArray *arrMovieURLs = [[NSArray alloc]initWithObjects:movieURL1/*,movieURL2,movieURL3*/, nil];
     
     theMoviPlayer = [[MPMoviePlayerController alloc] initWithContentURL:[arrMovieURLs objectAtIndex:0]];
        theMoviPlayer.controlStyle = MPMovieControlStyleNone;

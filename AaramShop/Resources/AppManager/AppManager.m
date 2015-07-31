@@ -9,7 +9,7 @@
 
 #import "AppManager.h"
 #import "CMCountryList.h"
-
+#import "CartModel.h"
 #define kMax_No_Of_contacts 300
 
 
@@ -42,7 +42,6 @@ AppDelegate *appDeleg;
                                                          (__bridge void *)(self)
                                                          );
         }
-        
     }
     return self;
 }
@@ -518,7 +517,7 @@ void MyAddressBookExternalChangeCallback (
 	for (id key in dict) {
 		
 		NSString *strKey = (NSString *)key;
-		if ([strKey isEqualToString:kXMPPmyJID1] || [strKey isEqualToString:kXMPPmyPassword1] || [strKey isEqualToString:@"MessageCounter"] || [strKey isEqualToString:kUserId] )
+		if ([strKey isEqualToString:kXMPPmyJID1] || [strKey isEqualToString:kXMPPmyPassword1] || [strKey isEqualToString:@"MessageCounter"] || [strKey isEqualToString:kUserId] || [strKey isEqualToString:kFullname])
 		{
 			[defs removeObjectForKey:key];
 		}else{
@@ -584,5 +583,317 @@ void MyAddressBookExternalChangeCallback (
     return toDistance;
     
 }
++(void)AddOrRemoveFromCart:(CartProductModel *)cartProduct forStore:(NSDictionary *)store add:(BOOL)isAdd
+{
+	if(![[NSUserDefaults standardUserDefaults] valueForKey:kCartData])
+	{
+		NSData *data		= [[NSData alloc]init];
+		[[NSUserDefaults standardUserDefaults] setObject:data forKey:kCartData];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+	}
+	NSMutableArray *cartArray=nil;
+	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	if([enrollData length]>0)
+	{
+		cartArray									= (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+		NSPredicate *predicate			= [NSPredicate predicateWithFormat:@"SELF.store_id == %@",[store objectForKey:kStore_id]];
+		NSArray *arrayStoreFilter		= [cartArray filteredArrayUsingPredicate:predicate];
+		CartModel *cartModel			= nil;
+		if([arrayStoreFilter count]>0)
+		{
+			cartModel							=	[arrayStoreFilter objectAtIndex:0];
+			NSInteger indexCart			=	[cartArray indexOfObject:cartModel];
+			
+			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.cartProductId == %@ and SELF.strOffer_type ==%@",cartProduct.cartProductId,cartProduct.strOffer_type];
+			NSArray *filteredIds = [cartModel.arrProductDetails filteredArrayUsingPredicate:predicate];
+			if([filteredIds count]>0)
+			{
+				CartProductModel *cartProductSaved = [filteredIds objectAtIndex:0];
+				NSInteger index= [cartModel.arrProductDetails indexOfObject:cartProductSaved];
+				[cartModel.arrProductDetails replaceObjectAtIndex:index withObject:cartProduct];
+				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
+				if(!isAdd)
+				{
+					if([cartProduct.strCount integerValue]== 0)
+					{
+						[cartModel.arrProductDetails removeObjectAtIndex:index];
+						if([cartModel.arrProductDetails count]==0)
+						{
+							[cartArray removeObject:cartModel];
+						}
+					}
+				}
+				
+			}
+			else
+			{
+				[cartModel.arrProductDetails addObject:cartProduct];
+				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
+			}
+		}
+		else
+		{			
+			cartModel							= [[CartModel alloc]init];
+			cartModel.store_id				= [store objectForKey:kStore_id];
+			cartModel.store_name		= [store objectForKey:kStore_name];
+			cartModel.store_image		= [store objectForKey:kStore_image];
+			cartModel.arrProductDetails = [[NSMutableArray alloc] initWithObjects:cartProduct, nil];
+			[cartArray addObject:cartModel];
+		}
+	}
+	else
+	{
+		cartArray								= [[NSMutableArray alloc]init];
+		CartModel *cartModel		= nil;
 
+		cartModel							= [[CartModel alloc]init];
+		cartModel.store_id				= [store objectForKey:kStore_id];
+		cartModel.store_name		= [store objectForKey:kStore_name];
+		cartModel.store_image		= [store objectForKey:kStore_image];
+		cartModel.arrProductDetails = [[NSMutableArray alloc] initWithObjects:cartProduct, nil];
+		[cartArray addObject:cartModel];
+	}
+	enrollData	=	[NSKeyedArchiver archivedDataWithRootObject: cartArray];
+
+	[[NSUserDefaults standardUserDefaults] setObject:enrollData forKey:kCartData];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
++ (void)removeCartBasedOnStoreId:(NSString *)store_id
+{
+	NSData *enrollData				= [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	NSMutableArray	*cartArray	= (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+	NSPredicate *predicate			= [NSPredicate predicateWithFormat:@"SELF.store_id == %@",store_id];
+	NSArray *arrayStoreFilter		= [cartArray filteredArrayUsingPredicate:predicate];
+	if([arrayStoreFilter count]>0)
+	{
+		CartModel	*cartModel			=	[arrayStoreFilter objectAtIndex:0];
+		[cartArray removeObject:cartModel];
+		enrollData	=	[NSKeyedArchiver archivedDataWithRootObject: cartArray];
+		
+		[[NSUserDefaults standardUserDefaults]setObject:enrollData forKey:kCartData];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+
+	}
+
+}
++ (NSMutableArray *)getCartProductsByStoreId:(NSString *)store_id
+{
+	NSMutableArray *arrProduct		= [[NSMutableArray alloc] init];
+	NSData *enrollData					= [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	NSMutableArray *cartArray		= (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+	NSPredicate *predicate				= [NSPredicate predicateWithFormat:@"SELF.store_id == %@",store_id];
+	NSArray *arrayStoreFilter			= [cartArray filteredArrayUsingPredicate:predicate];
+	if([arrayStoreFilter count]>0)
+	{
+		CartModel *cartModel			= [arrayStoreFilter objectAtIndex:0];
+		arrProduct								= cartModel.arrProductDetails;
+	}
+	return arrProduct;
+}
++ (NSString *)getCountOfProduct:(NSString *)cartProductId withOfferType:(NSString *)offer_type forStore_id:(NSString *)store_id
+{
+	NSMutableArray *arrCartProduct	= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:store_id]];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF. cartProductId == %@ and SELF.strOffer_type == %@",cartProductId,offer_type];
+	NSArray *array	=	[arrCartProduct filteredArrayUsingPredicate:predicate];
+	if([array count]>0)
+	{
+		return [[array objectAtIndex:0] strCount];
+	}
+	return @"0";
+}
+
++(NSArray *)getAllContacts {
+    
+    __block NSArray *arrContacts = [[NSArray alloc]init];
+    
+    
+    // Request authorization to Address Book
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+    
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined)
+    {
+        ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error)
+                                                 {
+                                                     if (granted) {
+                                                         // First time access has been granted, add the contact
+                                                         arrContacts = [self addContactToAddressBook];
+                                                     } else {
+                                                         // User denied access
+                                                         // Display an alert telling user the contact could not be added
+                                                     }
+                                                 });
+    }
+    else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+        // The user has previously given access, add the contact
+        arrContacts = [self addContactToAddressBook];
+    }
+    else {
+        // The user has previously denied access
+        // Send an alert telling user to change privacy setting in settings app
+    }
+    
+    return arrContacts;
+}
+
++(NSArray *)addContactToAddressBook
+{
+    
+    CFErrorRef *error = nil;
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error);
+    ABRecordRef source = ABAddressBookCopyDefaultSource(addressBook);
+    CFArrayRef allPeople = (ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook, source, kABPersonSortByFirstName));
+    //CFIndex nPeople = ABAddressBookGetPersonCount(addressBook);
+    CFIndex nPeople = CFArrayGetCount(allPeople); // bugfix who synced contacts with facebook
+    NSMutableArray* items = [NSMutableArray arrayWithCapacity:nPeople];
+    
+    if (!allPeople || !nPeople) {
+        NSLog(@"people nil");
+    }
+    
+    
+    for (int i = 0; i < nPeople; i++) {
+        
+        @autoreleasepool {
+            
+            //data model
+            ContactsData *contacts = [ContactsData new];
+            
+            ABRecordRef person = CFArrayGetValueAtIndex(allPeople, i);
+            
+            // set contact isSelected..
+            contacts.isSelected = @"0";
+            
+            
+            //get First Name
+            CFStringRef firstName = (CFStringRef)ABRecordCopyValue(person,kABPersonFirstNameProperty);
+            contacts.firstName = [(__bridge NSString*)firstName copy];
+            
+            if (firstName != NULL) {
+                CFRelease(firstName);
+            }
+            
+            
+            //get Last Name
+            CFStringRef lastName = (CFStringRef)ABRecordCopyValue(person,kABPersonLastNameProperty);
+            contacts.lastName = [(__bridge NSString*)lastName copy];
+            
+            if (lastName != NULL) {
+                CFRelease(lastName);
+            }
+            
+            
+            if (!contacts.firstName) {
+                contacts.firstName = @"";
+            }
+            
+            if (!contacts.lastName) {
+                contacts.lastName = @"";
+            }
+            
+            
+            
+            contacts.contactId = ABRecordGetRecordID(person);
+            //append first name and last name
+            contacts.username = [NSString stringWithFormat:@"%@ %@", contacts.firstName, contacts.lastName];
+            
+            
+            // get contacts picture, if pic doesn't exists, show standart one
+            CFDataRef imgData = ABPersonCopyImageData(person);
+            NSData *imageData = (__bridge NSData *)imgData;
+            contacts.profilePic = [UIImage imageWithData:imageData];
+            
+            if (imgData != NULL) {
+                CFRelease(imgData);
+            }
+            
+            if (!contacts.profilePic) {
+                contacts.profilePic = [UIImage imageNamed:@"defaultProfilePic"];
+            }
+            
+            
+            
+            ///////////////////////////////////////////////////
+            //////////////////////////////////////////////////
+            
+             
+            //get Phone Numbers
+            NSMutableArray *phoneNumbers = [[NSMutableArray alloc] init];
+            ABMultiValueRef multiPhones = ABRecordCopyValue(person, kABPersonPhoneProperty);
+            
+            /*
+            for(CFIndex i=0; i<ABMultiValueGetCount(multiPhones); i++) {
+                @autoreleasepool {
+                    CFStringRef phoneNumberRef = ABMultiValueCopyValueAtIndex(multiPhones, i);
+                    NSString *phoneNumber = CFBridgingRelease(phoneNumberRef);
+                    if (phoneNumber != nil)[phoneNumbers addObject:phoneNumber];
+                    //NSLog(@"All numbers %@", phoneNumbers);
+                }
+            }
+            
+            if (multiPhones != NULL) {
+                CFRelease(multiPhones);
+            }
+            
+            [contacts setNumbers:phoneNumbers];
+            
+            //*/    
+
+            
+            //get all phone numbers
+            ABMultiValueRef phoneNumberMultiValue = ABRecordCopyValue(person, kABPersonPhoneProperty);
+            NSUInteger phoneNumberIndex;
+            for (phoneNumberIndex = 0; phoneNumberIndex < ABMultiValueGetCount(phoneNumberMultiValue); phoneNumberIndex++) {
+                
+                CFStringRef labelStingRef = ABMultiValueCopyLabelAtIndex (phoneNumberMultiValue, phoneNumberIndex);
+                
+                NSString *phoneLabelLocalized = (__bridge NSString*)ABAddressBookCopyLocalizedLabel(labelStingRef);
+                
+                NSString *phoneNumber  = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneNumberMultiValue, phoneNumberIndex);
+                
+                [contacts setNumbers:[NSArray arrayWithObject:phoneNumber]];
+
+                NSLog(@" \n \n mobile ==>> %@ \n \n",phoneNumber);
+
+            }
+            
+
+            
+         ///////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+            
+            
+            //get Contact email
+            NSMutableArray *contactEmails = [NSMutableArray new];
+            ABMultiValueRef multiEmails = ABRecordCopyValue(person, kABPersonEmailProperty);
+            
+            for (CFIndex i=0; i<ABMultiValueGetCount(multiEmails); i++) {
+                @autoreleasepool {
+                    CFStringRef contactEmailRef = ABMultiValueCopyValueAtIndex(multiEmails, i);
+                    NSString *contactEmail = CFBridgingRelease(contactEmailRef);
+                    if (contactEmail != nil)[contactEmails addObject:contactEmail];
+                    // NSLog(@"All emails are:%@", contactEmails);
+                }
+            }
+            
+            if (multiPhones != NULL) {
+                CFRelease(multiEmails);
+            }
+            
+            [contacts setEmails:contactEmails];
+            
+            [items addObject:contacts];
+            
+#ifdef DEBUG
+            //NSLog(@"Person is: %@", contacts.firstNames);
+            //NSLog(@"Phones are: %@", contacts.numbers);
+            //NSLog(@"Email is:%@", contacts.emails);
+#endif
+            
+        }
+    } //autoreleasepool
+    CFRelease(allPeople);
+    CFRelease(addressBook);
+    CFRelease(source);
+    return items;
+}
 @end

@@ -54,11 +54,17 @@ static NSString *strCollectionCategory = @"collectionCategories";
     
     UIView *viewBehindToolBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 54)];
     viewBehindToolBar.backgroundColor = [UIColor whiteColor];
+	
+	activity = [[UIActivityIndicatorView alloc]init];
+	activity.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+	activity.frame = CGRectMake(0, 60, activity.frame.size.width	, activity.frame.size.height);
+	[activity startAnimating];
     
     [self.view addSubview:toolBarBehindView];
     [self.view addSubview:viewBehindToolBar];
     [self.view addSubview:searchBarCategory];
     [self.view addSubview:collectionVwCategory];
+	[self.view addSubview:activity];
     
     
 //    UITextField *searchField;
@@ -311,6 +317,7 @@ static NSString *strCollectionCategory = @"collectionCategories";
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
             
             [self parseSearchCategoryData:responseObject];
+			[activity removeFromSuperview];
         }
         else
         {

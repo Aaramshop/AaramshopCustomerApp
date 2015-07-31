@@ -9,6 +9,7 @@
 #import "CreateNewShoppingListViewController.h"
 #import "ShoppingListDetailViewController.h"
 #import "ShoppingListModel.h"
+#import "SharedUserModel.h"
 
 #define kTableCellHeight	95
 
@@ -101,32 +102,15 @@
     [_headerTitleSubtitleView addSubview:titleView];
     self.navigationItem.titleView = _headerTitleSubtitleView;
     
-    if(appDeleg.objStoreModel == nil)
-	{
-		UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
-		sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
-		[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
-		[sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
-		UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
-		
-		
-		NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
-		self.navigationItem.leftBarButtonItems = arrBtnsLeft;
-	}
-	else
-	{
-		UIImage *imgBack = [UIImage imageNamed:@"backBtn.png"];
-		
-		UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-		backBtn.bounds = CGRectMake( -10, 0, 30, 30);
-		
-		[backBtn setImage:imgBack forState:UIControlStateNormal];
-		[backBtn addTarget:self action:@selector(btnBackClicked) forControlEvents:UIControlEventTouchUpInside];
-		UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-		
-		NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
-		self.navigationItem.leftBarButtonItems = arrBtnsLeft;
-	}
+	UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
+	sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
+	[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
+	[sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
+	
+	
+	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
+	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 	//
 	UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
 	UIButton *btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -140,10 +124,7 @@
 	self.navigationItem.rightBarButtonItems = arrBtnsRight;
 	
 }
-- (void)btnBackClicked
-{
-	[appDeleg removeTabBarRetailer];
-}
+
 - (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
     [self.navigationController pushViewController:viewC animated:YES];
 }
@@ -336,7 +317,9 @@
             
             if ([[responseObject objectForKey:kstatus] intValue] == 1)
             {
+                totalNoOfPages = [[responseObject valueForKey:@"total_pages"] intValue];
                 [self parseResponseData:responseObject];
+
             }
             else
             {
@@ -380,7 +363,7 @@
 
 -(void)calledPullUp
 {
-    if(totalNoOfPages>pageno)
+    if(totalNoOfPages>pageno + 1)
     {
         pageno++;
         [self getShoppingList];
@@ -443,17 +426,46 @@
         [arrShoppingList removeAllObjects];
     }
     
-    NSArray *arrTemp = [response objectForKey:@"shopping_list"];
+    NSArray *arrTempResponse = [response objectForKey:@"shopping_list"];
    
-    for (id obj in arrTemp)
+    for (id obj in arrTempResponse)
     {
         ShoppingListModel *shoppingListModel = [[ShoppingListModel alloc]init];
         shoppingListModel.creationDate = [NSString stringWithFormat:@"%@",[obj valueForKey:@"creationDate"]];
         shoppingListModel.reminderDate = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminderDate"]];
         
-        // temporary commented ... use model here for user info.
-//        shoppingListModel.sharedBy = [NSString stringWithFormat:@"%@",[obj valueForKey:@"sharedBy"]];
-//        shoppingListModel.sharedWith = [NSString stringWithFormat:@"%@",[obj valueForKey:@"sharedWith"]];
+        
+//        NSArray *arrTempSharedBy = [obj valueForKey:@"sharedBy"];
+//        
+//        for (id obj1 in arrTempSharedBy) {
+//            
+//            SharedUserModel *sharedUserModel = [[SharedUserModel alloc]init];
+//            
+//            sharedUserModel.chat_username = [obj1 valueForKey:@"chat_username"];
+//            sharedUserModel.email = [obj1 valueForKey:@"email"];
+//            sharedUserModel.full_name = [obj1 valueForKey:@"full_name"];
+//            sharedUserModel.mobile = [obj1 valueForKey:@"mobile"];
+//            
+//            [shoppingListModel.sharedBy addObject:sharedUserModel];
+//        }
+//        
+//        
+//        
+//        NSArray *arrTempSharedWith = [obj valueForKey:@"sharedWith"];
+//        
+//        for (id obj2 in arrTempSharedWith) {
+//            
+//            SharedUserModel *sharedUserModel = [[SharedUserModel alloc]init];
+//            
+//            sharedUserModel.chat_username = [obj2 valueForKey:@"chat_username"];
+//            sharedUserModel.email = [obj2 valueForKey:@"email"];
+//            sharedUserModel.full_name = [obj2 valueForKey:@"full_name"];
+//            sharedUserModel.mobile = [obj2 valueForKey:@"mobile"];
+//            
+//            [shoppingListModel.sharedWith addObject:sharedUserModel];
+//        }
+        
+        
         
         shoppingListModel.shoppingListId = [NSString stringWithFormat:@"%@",[obj valueForKey:@"shoppingListId"]];
         shoppingListModel.shoppingListName = [NSString stringWithFormat:@"%@",[obj valueForKey:@"shoppingListName"]];
@@ -468,6 +480,37 @@
     [tblView reloadData];
     
 }
+
+
+/*
+ 
+ sharedBy =             {
+ "chat_username" = 14356530153063;
+ "customer_name" = "Joy Sharma";
+ email = "joysharma@gmail.com";
+ mobile = 9999614234;
+ };
+
+ 
+ 
+sharedWith =             (
+                          {
+                              "chat_username" = 14356530153063;
+                              "customer_name" = "Joy Sharma";
+                              email = "joysharma@gmail.com";
+                              mobile = 9999614234;
+                          },
+                          {
+                              "chat_username" = 14351466597519;
+                              "customer_name" = "Neha Saxena";
+                              email = "nehaa.iphone@gmail.com";
+                              mobile = 9711859131;
+                          }
+                          );
+ 
+ 
+ 
+ //*/
 
 
 
