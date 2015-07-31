@@ -23,9 +23,13 @@
 
 @property(nonatomic,strong) NSString *free_item;
 @property(nonatomic,strong) NSString *isAvailable;
-@property(nonatomic,strong) NSString *offerType;
+@property(nonatomic, strong) NSString *offer_id;
 @property(nonatomic,strong) NSString *offer_price;
 
+
 @property(nonatomic,strong) NSString *strCount;
+
+@property (nonatomic, strong) NSString *offer_type;
+
 
 @end

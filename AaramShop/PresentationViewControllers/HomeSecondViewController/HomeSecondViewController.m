@@ -13,7 +13,7 @@
 #import "PaymentViewController.h"
 #import "CartModel.h"
 #import "CartViewController.h"
-
+#import "BroadcastViewController.h"
 @interface HomeSecondViewController ()
 {
     AppDelegate *appDeleg;
@@ -70,12 +70,6 @@
 	arrCartProductIds					= [[NSMutableArray alloc]init];
 	arrCartProducts						= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:self.strStore_Id]];
 	arrCartProductIds					=	[arrCartProducts valueForKey:kProduct_id];
-	NSInteger price = 0;
-	for(ProductsModel *product in arrCartProducts)
-	{
-		price = price + ([product.product_price integerValue] * [product.strCount integerValue]);
-	}
-	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)price];
 	//==============================================
 	
     [self createDataToGetStoreProductCategories];
@@ -85,7 +79,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
+	strTotalPrice = [self getTotalPrice];
+	[tblVwCategory reloadData];
     isViewActive = YES;
 }
 
@@ -144,10 +139,14 @@
 
 -(void) didFailWithError:(NSError *)error
 {
+	[AppManager stopStatusbarActivityIndicator];
+	[Utils stopActivityIndicatorInView:self.view];
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 -(void) responseReceived:(id)responseObject
 {
+	[AppManager stopStatusbarActivityIndicator];
+
     if (!isViewActive)
     {
         return;
@@ -187,8 +186,20 @@
           //  [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         }
     }
-
-
+	else if (aaramShop_ConnectionManager.currentTask == TASK_TO_MAK_FAVORITE)
+	{
+		[Utils stopActivityIndicatorInView:self.view];
+		if([[responseObject objectForKey:kstatus]intValue]==1)
+		{
+			appDeleg.objStoreModel.is_favorite = [NSString stringWithFormat:@"%d",[[responseObject objectForKey:@"isFavorite"] intValue]];
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			[self setUpNavigationBar];
+		}
+		else
+		{
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		}
+	}
 }
 -(void)parseStoresCategoryData:(id)responseObject
 {
@@ -220,12 +231,52 @@
     isSelected = YES;
     [appDeleg.window addSubview:rightCollectionVwContrllr.view];
 }
+- (ProductsModel *)addProductInArray:(NSDictionary *)dictProducts
+{
+	ProductsModel *objProductsModel = [[ProductsModel alloc]init];
+	objProductsModel.category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kCategory_id]];
+	objProductsModel.product_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_id]];
+	objProductsModel.product_image = [NSString stringWithFormat:@"%@",[[dictProducts objectForKey:kProduct_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+	objProductsModel.product_name = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_name]];
+	objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
+	objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
+	objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
+	
+	objProductsModel.offer_id=[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];
+	objProductsModel.offer_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_price]];
+	objProductsModel.offer_type = [NSString stringWithFormat:@"%d",[[dictProducts objectForKey:@"offer_type"] intValue]];
+	objProductsModel.strCount = @"0";
+
+	return objProductsModel;
+}
+#pragma mark - Get Total Price
+- (NSString *)getTotalPrice
+{
+	NSInteger strAmount = 0;
+	NSMutableArray *arrProductList = [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:self.strStore_Id]];
+
+	for(CartProductModel *product in arrProductList)
+	{
+		if([product.strOffer_type integerValue]>0)
+		{
+			strAmount = strAmount + ([product.strCount integerValue] * [product.offer_price integerValue]);
+		}
+		else
+		{
+			strAmount = strAmount + ([product.strCount integerValue] * [product.product_price integerValue]);
+		}
+	}
+
+	return [NSString stringWithFormat:@"%ld",(long)strAmount];
+}
+
+
 -(void)parseStoresSubCategoryCategoryData:(id)responseObject
 {
     [arrOnlySubCategoryPicker removeAllObjects];
 
     NSArray *subCategories = [responseObject objectForKey:@"sub_categories"];
-    
+	
     if (subCategories.count>0) {
         
         NSDictionary *dict = [subCategories objectAtIndex:0];
@@ -274,26 +325,9 @@
                 NSArray *arrTemp = [arrGetStoreProducts filteredArrayUsingPredicate:predicate1];
 
                 if (arrTemp.count == 0) {
-                    ProductsModel *objProductsModel = [[ProductsModel alloc]init];
-                    objProductsModel.category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kCategory_id]];
-                    objProductsModel.product_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_id]];
-                    objProductsModel.product_image = [NSString stringWithFormat:@"%@",[[dictProducts objectForKey:kProduct_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                    objProductsModel.product_name = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_name]];
-                    objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
-                    objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
-                    objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
 					
-					if([arrCartProductIds containsObject:objProductsModel.product_id])
-					{
-						NSInteger index = [arrCartProductIds indexOfObject:objProductsModel.product_id];
-						ProductsModel *product = [arrCartProducts objectAtIndex:index];
-						objProductsModel.strCount = product.strCount;
-					}
-					else
-					{
-						objProductsModel.strCount = @"0";
-					}
-                    [arrGetStoreProducts addObject:objProductsModel];
+                    [arrGetStoreProducts addObject:[self addProductInArray:dictProducts]];
+					
                 }
                 
             }
@@ -304,25 +338,7 @@
 
             for (NSDictionary *dictProducts in arrProductsTemp) {
                 
-                ProductsModel *objProductsModel = [[ProductsModel alloc]init];
-                objProductsModel.category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kCategory_id]];
-                objProductsModel.product_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_id]];
-                objProductsModel.product_image = [NSString stringWithFormat:@"%@",[[dictProducts objectForKey:kProduct_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-                objProductsModel.product_name = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_name]];
-                objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
-                objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
-                objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
-				if([arrCartProductIds containsObject:objProductsModel.product_id])
-				{
-					NSInteger index = [arrCartProductIds indexOfObject:objProductsModel.product_id];
-					ProductsModel *product = [arrCartProducts objectAtIndex:index];
-					objProductsModel.strCount = product.strCount;
-				}
-				else
-				{
-					objProductsModel.strCount = @"0";
-				}
-                [arrGetStoreProducts addObject:objProductsModel];
+                [arrGetStoreProducts addObject:[self addProductInArray:dictProducts]];
             }
         }
     }
@@ -349,31 +365,12 @@
             arrTemp =[arrGetStoreProducts filteredArrayUsingPredicate:predicate];
         }
         if (arrTemp.count == 0) {
-            
-            ProductsModel *objProductsModel = [[ProductsModel alloc]init];
-            objProductsModel.category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kCategory_id]];
-            objProductsModel.product_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_id]];
-            objProductsModel.product_image = [NSString stringWithFormat:@"%@",[[dictProducts objectForKey:kProduct_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            objProductsModel.product_name = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_name]];
-            objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
-            objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
-            objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
-			if([arrCartProductIds containsObject:objProductsModel.product_id])
-			{
-				NSInteger index = [arrCartProductIds indexOfObject:objProductsModel.product_id];
-				ProductsModel *product = [arrCartProducts objectAtIndex:index];
-				objProductsModel.strCount = product.strCount;
-			}
-			else
-			{
-				objProductsModel.strCount = @"0";
-			}
-            if (isSearching) {
-                [arrSearchGetStoreProducts addObject:objProductsModel];
+			if (isSearching) {
+                [arrSearchGetStoreProducts addObject:[self addProductInArray:dictProducts]];
             }
             else
             {
-                [arrGetStoreProducts addObject:objProductsModel];
+                [arrGetStoreProducts addObject:[self addProductInArray:dictProducts]];
             }
         }
     }
@@ -410,8 +407,15 @@
     [backBtn addTarget:self action:@selector(btnBackClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
 
-	UIImage *imgFav = [UIImage imageNamed:@"homeDetailTabStarIcon.png"];
-
+	UIImage *imgFav = nil;
+	if([appDeleg.objStoreModel.is_favorite intValue]==0)
+	{
+		imgFav = [UIImage imageNamed:@"homeDetailTabStarIcon"];
+	}
+	else
+	{
+		imgFav = [UIImage imageNamed:@"favorateIconActive"];
+	}
 	UIButton *btnFav = [UIButton buttonWithType:UIButtonTypeCustom];
 	btnFav.bounds = CGRectMake( -10, 0, 20, 20);
 	
@@ -423,12 +427,12 @@
     NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack,barBtnFav, nil];
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
     
-    UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
+    UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon"];
     
-    UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
+    UIImage *imgSearch = [UIImage imageNamed:@"searchIcon"];
     
 
-	UIImage *imgBroadcast = [UIImage imageNamed:@"homeDetailTabStarIcon.png"];
+	UIImage *imgBroadcast = [UIImage imageNamed:@"bellIcon"];
 
 
     UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -479,6 +483,23 @@
 	[self.navigationController pushViewController:cartView animated:YES];
 }
 -(void)btnFavClicked{
+	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+	[Utils startActivityIndicatorInView:self.view withMessage:nil];
+	if([Utils isInternetAvailable])
+	{
+		NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+		[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
+		[dict setObject:appDeleg.objStoreModel.store_id forKey:kStore_id];
+		[aaramShop_ConnectionManager getDataForFunction:kURLMakeFavorite withInput:dict withCurrentTask:TASK_TO_MAK_FAVORITE andDelegate:self];
+	}
+	else
+	{
+		[AppManager stopStatusbarActivityIndicator];
+		
+		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return;
+
+	}
 }
 -(void)btnSearchClicked{
 }
@@ -488,7 +509,8 @@
 
 - (void)btnBroadcastClicked
 {
-	
+	BroadcastViewController *broadcastView = (BroadcastViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"broadcastView"];
+	[self.navigationController pushViewController:broadcastView animated:YES];
 }
 #pragma mark - TableView Datasource & Delegates
 
@@ -748,10 +770,10 @@
         ProductsModel *objProductsModel = nil;
         objProductsModel = [self getObjectOfProductForIndexPath:indexPath];
         cell.indexPath=indexPath;
+		cell.store_id	=	self.strStore_Id;
         cell.objProductsModelMain = objProductsModel;
         [cell updateCellWithSubCategory:objProductsModel];
         return cell;
-
     }
     else
     {
@@ -783,31 +805,79 @@
 {
     [tblVwCategory reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
+- (CartProductModel *)getCartProductFromOffer:(ProductsModel *)product
+{
+	CartProductModel *cart = [[CartProductModel alloc]init];
+	cart.strOffer_type			= [NSString stringWithFormat:@"%d",[product.offer_type intValue]];
+	cart.offer_price				=	product.offer_price;
+	cart.offerTitle					=	product.product_name;
+	cart.offer_id					=	product.offer_id;
+	if([product.offer_type integerValue] >0)
+	{
+		cart.cartProductId		=	product.offer_id;
+	}
+	else
+	{
+		cart.cartProductId		=	product.product_id;
+	}
+	cart.strCount					=	product.strCount;
+	cart.product_id				=	product.product_id;
+	cart.product_sku_id		=	product.product_sku_id;
+	cart.cartProductImage	= product.product_image;
+	cart.product_name			=	product.product_name;
+	cart.product_price			=	product.product_price;
+	return cart;
+}
 -(void)addedValueByPrice:(NSString *)strPrice atIndexPath:(NSIndexPath *)inIndexPath
 {
-    int priceValue = [strTotalPrice intValue];
-    priceValue+=[strPrice intValue];
-    strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
 	ProductsModel *objProductsModel = nil;
 	objProductsModel = [self getObjectOfProductForIndexPath:inIndexPath];
+	int priceValue = [strTotalPrice intValue];
 
-    [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+	if([objProductsModel.offer_type intValue]>0)
+	{
+		priceValue+=[objProductsModel.offer_price intValue];
+	}
+	else
+	{
+		priceValue+=[objProductsModel.product_price intValue];
+	}
+	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
+	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES];
+
+	NSRange range = NSMakeRange(inIndexPath.section, 1);
+	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+	[tblVwCategory reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
+
+//    [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     [tblVwCategory reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-	[AppManager AddOrRemoveFromCart:objProductsModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES];
 
 }
 -(void)minusValueByPrice:(NSString *)strPrice atIndexPath:(NSIndexPath *)inIndexPath
 {
-    int priceValue = [strTotalPrice intValue];
-    priceValue-=[strPrice intValue];
-    strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
 	ProductsModel *objProductsModel = nil;
 	objProductsModel = [self getObjectOfProductForIndexPath:inIndexPath];
+	int priceValue = [strTotalPrice intValue];
+	
+	if([objProductsModel.offer_type intValue]>0)
+	{
+		priceValue-=[objProductsModel.offer_price intValue];
+	}
+	else
+	{
+		priceValue-=[objProductsModel.product_price intValue];
+	}
+	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
+	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:NO];
 
-    [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+	NSRange range = NSMakeRange(inIndexPath.section, 1);
+	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+	[tblVwCategory reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
+
+	
+//    [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
     [tblVwCategory reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
 	
-	[AppManager AddOrRemoveFromCart:objProductsModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:NO];
 
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -841,20 +911,7 @@
 
 -(void)btnGoToCheckOutScreen
 {
-    if ([strTotalPrice isEqualToString:@"0"]) {
-        [Utils showAlertView:kAlertTitle message:@"Please select Products to continue" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-    }
-    else
-    {
-			arrCartProducts						= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:self.strStore_Id]];
-			arrCartProductIds					=	[arrCartProducts valueForKey:kProduct_id];
-
-		PaymentViewController *paymentScreen = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
-		paymentScreen.strStore_Id = strStore_Id;
-        paymentScreen.strTotalPrice = strTotalPrice;
-        paymentScreen.arrSelectedProducts = [NSMutableArray arrayWithArray:arrCartProducts];
-		[self.navigationController pushViewController:paymentScreen animated:YES];
-    }
+		[self btnCartClicked];
 }
 #pragma mark - HorizontalPickerView DataSource Methods
 - (NSInteger)numberOfElementsInHorizontalPickerView:(V8HorizontalPickerView *)picker

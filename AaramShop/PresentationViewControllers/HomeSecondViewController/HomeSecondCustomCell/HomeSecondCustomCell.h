@@ -19,9 +19,10 @@
 @interface HomeSecondCustomCell : UITableViewCell
 {
     UIImageView *imgV;
-    UILabel *lblPrice, *lblName, *lblCount;
+    UILabel *lblPrice, *lblName, *lblCount,*lblLine,*lblOfferPrice;
     UIButton *btnPlus, *btnMinus;
 }
+@property (nonatomic, strong) NSString *store_id;
 @property(nonatomic,strong) ProductsModel *objProductsModelMain;
 @property(nonatomic,strong) id<HomeSecondCustomCellDelegate> delegate;
 @property(nonatomic,strong) NSIndexPath *indexPath;

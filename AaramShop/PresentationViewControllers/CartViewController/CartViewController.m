@@ -9,8 +9,8 @@
 #import "CartViewController.h"
 #import "CartModel.h"
 #import "ProductsModel.h"
-
-#define kTableCellHeight        70
+#import "PaymentViewController.h"
+#define kTableCellHeight        90
 #define kTableHeaderHeight      108
 
 
@@ -30,13 +30,22 @@
     tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
 	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
-	
     [self setNavigationBar];
-    
-    
-    
+ }
+- (void)hideEmptyCart:(BOOL)show
+{
+	if(show)
+	{
+		[tblView setHidden:NO];
+	}
+	else
+	{
+		[tblView setHidden:YES];
+	}
+	[imgViewEmptyCart setHidden:show];
+	[lblInfo1 setHidden:show];
+	[lblInfo2 setHidden:show];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -74,19 +83,19 @@
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
     
     
-    UIImage *imgCheckout = [UIImage imageNamed:@"doneBtn"];
-    UIButton *btnCheckout = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnCheckout.bounds = CGRectMake( -10, 0, 75, 30);
-    [btnCheckout setTitle:@"Checkout" forState:UIControlStateNormal];
-    [btnCheckout.titleLabel setFont:[UIFont fontWithName:kRobotoRegular size:13.0]];
-    [btnCheckout setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btnCheckout setBackgroundImage:imgCheckout forState:UIControlStateNormal];
-    [btnCheckout addTarget:self action:@selector(btnCheckoutClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barBtnCheckout = [[UIBarButtonItem alloc] initWithCustomView:btnCheckout];
-    
-    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCheckout, nil];
-    self.navigationItem.rightBarButtonItems = arrBtnsRight;
-    
+//    UIImage *imgCheckout = [UIImage imageNamed:@"doneBtn"];
+//    UIButton *btnCheckout = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btnCheckout.bounds = CGRectMake( -10, 0, 75, 30);
+//    [btnCheckout setTitle:@"Checkout" forState:UIControlStateNormal];
+//    [btnCheckout.titleLabel setFont:[UIFont fontWithName:kRobotoRegular size:13.0]];
+//    [btnCheckout setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [btnCheckout setBackgroundImage:imgCheckout forState:UIControlStateNormal];
+//    [btnCheckout addTarget:self action:@selector(btnCheckoutClicked) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *barBtnCheckout = [[UIBarButtonItem alloc] initWithCustomView:btnCheckout];
+//    
+//    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCheckout, nil];
+//    self.navigationItem.rightBarButtonItems = arrBtnsRight;
+	
 }
 
 -(void)backButtonClicked
@@ -94,10 +103,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)btnCheckoutClicked
-{
-    
-}
 
 /*
 #pragma mark - Navigation
@@ -115,6 +120,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+	if([self.arrProductList count]==0)
+	{
+		[self hideEmptyCart:NO];
+	}
+	else
+	{
+		[self hideEmptyCart:YES];
+	}
     return [self.arrProductList count];
 }
 
@@ -150,9 +163,16 @@
     NSString *strRupee = @"\u20B9";
 	
 	NSInteger strAmount = 0;
-	for(ProductsModel *product in cartModel.arrProductDetails)
+	for(CartProductModel *product in cartModel.arrProductDetails)
 	{
-		strAmount = strAmount + ([product.strCount integerValue] * [product.product_price integerValue]);
+		if([product.strOffer_type integerValue]>0)
+		{
+			strAmount = strAmount + ([product.strCount integerValue] * [product.offer_price integerValue]);
+		}
+		else
+		{
+			strAmount = strAmount + ([product.strCount integerValue] * [product.product_price integerValue]);
+		}
 	}
 	
 	
@@ -170,8 +190,8 @@
     
     UIView *viewBottom = [[UIView alloc]initWithFrame:CGRectMake(0, (lblSeparator1.frame.origin.y + lblSeparator1.frame.size.height), viewBackground.frame.size.width, 68)];
     viewBottom.backgroundColor = [UIColor colorWithRed:249.0/255.0 green:249.0/255.0 blue:249.0/255.0 alpha:1.0];
-
-    
+	
+	
     UIImageView *imgStore = [[UIImageView alloc]initWithFrame:CGRectMake(5, (viewBottom.frame.size.height - 54)/2, 54, 54)];
     
     imgStore.layer.cornerRadius = imgStore.frame.size.height/2;
@@ -188,18 +208,28 @@
 
     
     
-    UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake((imgStore.frame.origin.x + imgStore.frame.size.width + 16), 15, 240, 18)];
-    
+    UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake((imgStore.frame.origin.x + imgStore.frame.size.width + 8), 14, 162, 40)];
+//	lblStoreName.backgroundColor = [UIColor greenColor];
     lblStoreName.font = [UIFont fontWithName:kRobotoMedium size:15];
     lblStoreName.textColor = [UIColor colorWithRed:49.0/255.0 green:49.0/255.0 blue:49.0/255.0 alpha:1.0];
     lblStoreName.text = cartModel.store_name;
+	lblStoreName.numberOfLines = 0;
 
-    
-    
-    UILabel *lblDeliveryTime = [[UILabel alloc]initWithFrame:CGRectMake(lblStoreName.frame.origin.x, (lblStoreName.frame.origin.y + lblStoreName.frame.size.height + 6) , 240, 10)];
-    
-    lblDeliveryTime.font = [UIFont fontWithName:kRobotoRegular size:13];
-    lblDeliveryTime.textColor = [UIColor colorWithRed:91.0/255.0 green:91.0/255.0 blue:91.0/255.0 alpha:1.0];
+	UIImage *imgCheckout = [UIImage imageNamed:@"doneBtn"];
+	UIButton *btnCheckout = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnCheckout.frame = CGRectMake( [[UIScreen mainScreen] bounds].size.width-83, 19, 75, 30);
+	[btnCheckout setTitle:@"Checkout" forState:UIControlStateNormal];
+	[btnCheckout.titleLabel setFont:[UIFont fontWithName:kRobotoRegular size:13.0]];
+	[btnCheckout setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[btnCheckout setBackgroundImage:imgCheckout forState:UIControlStateNormal];
+	btnCheckout.tag = section;
+	[btnCheckout addTarget:self action:@selector(btnCheckoutClicked:) forControlEvents:UIControlEventTouchUpInside];
+
+	
+//    UILabel *lblDeliveryTime = [[UILabel alloc]initWithFrame:CGRectMake(lblStoreName.frame.origin.x, (lblStoreName.frame.origin.y + lblStoreName.frame.size.height + 6) , 240, 10)];
+//    
+//    lblDeliveryTime.font = [UIFont fontWithName:kRobotoRegular size:13];
+//    lblDeliveryTime.textColor = [UIColor colorWithRed:91.0/255.0 green:91.0/255.0 blue:91.0/255.0 alpha:1.0];
 //    lblDeliveryTime.text = @"Deliver in 90 min"; // temp
 	
     
@@ -210,8 +240,9 @@
     
     [viewBottom addSubview:imgStore];
     [viewBottom addSubview:lblStoreName];
-    [viewBottom addSubview:lblDeliveryTime];
-    
+	[viewBottom addSubview:btnCheckout];
+//    [viewBottom addSubview:lblDeliveryTime];
+	
     
     [viewBackground addSubview:viewTop];
     [viewBackground addSubview:lblSeparator1];
@@ -231,26 +262,81 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//	CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
+//	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
+//	if([productModel.strOffer_type intValue] > 0)
+//	{
+//		return 90;
+//	}
     return kTableCellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ShoppingListDetailCell";
-    ShoppingListDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    if(cell == nil)
-    {
-        cell = [[ShoppingListDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    cell.indexPath = indexPath;
-    cell.delegate = self;
-    CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
-    [cell updateCell:[cartModel.arrProductDetails objectAtIndex:indexPath.row]];
-    
-    return cell;
-}
+	CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
+	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
 
+	if([productModel.strOffer_type intValue]== 0)
+	{
+		static NSString *CellIdentifier = @"cartListDetailCell";
+		CartListDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+		
+		if(cell == nil)
+		{
+			cell = [[CartListDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		}
+		cell.indexPath = indexPath;
+		cell.delegate = self;
+		ProductsModel *product	= [[ProductsModel alloc]init];
+		product.product_name		= productModel.product_name;
+		product.product_image		=	productModel.cartProductImage;
+		product.strCount				=	productModel.strCount;
+		product.product_price		=	productModel.product_price;
+		[cell updateCell:product];
+		
+		return cell;
+	}
+	else
+	{
+		static NSString *cellIdentifier = @"OffersCell";
+		
+		OffersTableCell *cell = (OffersTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+		if (cell == nil) {
+			cell = [[OffersTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+		}
+		
+		CMOffers *offers	= [[CMOffers alloc]init];
+		offers.offerType		= productModel.strOffer_type;
+		offers.offer_price	= productModel.offer_price;
+		offers.strCount		=	productModel.strCount;
+		offers.end_date		=	@"";
+		if([productModel.strOffer_type intValue]==1)
+		{
+			offers.product_name				= productModel.product_name;
+			offers.product_actual_price	= productModel.product_price;
+			offers.product_image				=	productModel.cartProductImage;
+		}
+		else if([productModel.strOffer_type intValue] == 4)
+		{
+			offers.offerTitle						=	productModel.offerTitle;
+			offers.combo_mrp					=	productModel.product_price;
+			offers.combo_offer_price		=	productModel.offer_price;
+			offers.offerImage						=	productModel.cartProductImage;
+		}
+		else
+		{
+			offers.offerTitle						=	productModel.offerTitle;
+			offers.offerImage						=	productModel.cartProductImage;
+		}
+		cell.delegate = self;
+		cell.indexPath=indexPath;
+		cell.offers = offers;
+		[cell updateCellWithData: offers];
+		
+		return cell;
+	}
+	return nil;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -263,22 +349,25 @@
 -(void)addProduct:(NSIndexPath *)indexPath
 {
 	CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
-	ProductsModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
+	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
 	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]+1];
 	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:YES];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
 	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
-	[tblView reloadSectionIndexTitles];
+
+	NSRange range = NSMakeRange(indexPath.section, 1);
+	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
     [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)removeProduct:(NSIndexPath *)indexPath
 {
 	CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
-	ProductsModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
+	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
 	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]-1];
 
-	[AppManager AddOrRemoveFromCart:[cartModel.arrProductDetails objectAtIndex:indexPath.row] forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:NO];
+	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:NO];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
 	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
 	if([productModel.strCount integerValue] == 0)
@@ -293,6 +382,68 @@
 		[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 	}
 }
+#pragma mark - table section button methods
+-(IBAction)btnCheckoutClicked:(id)sender
+{
+	UIButton *btnCheckout = (UIButton *)sender;
+	CartModel *cartModel = [self.arrProductList objectAtIndex:btnCheckout.tag];
+	NSInteger strAmount = 0;
+	for(CartProductModel *product in cartModel.arrProductDetails)
+	{
+		if([product.strOffer_type integerValue]>0)
+		{
+			strAmount = strAmount + ([product.strCount integerValue] * [product.offer_price integerValue]);
+		}
+		else
+		{
+			strAmount = strAmount + ([product.strCount integerValue] * [product.product_price integerValue]);
+		}
+	}
+	
+	PaymentViewController *paymentScreen = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
+	paymentScreen.strStore_Id = cartModel.store_id;
+	paymentScreen.strTotalPrice = [NSString stringWithFormat:@"%ld",(long)strAmount];
+	paymentScreen.arrSelectedProducts = cartModel.arrProductDetails;
+	[self.navigationController pushViewController:paymentScreen animated:YES];
+}
+
+#pragma mark - table cell delegate methods
+-(void)addedValueByPriceAtIndexPath:(NSIndexPath *)inIndexPath
+{
+	CartModel *cartModel = [self.arrProductList objectAtIndex:inIndexPath.section];
+	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:inIndexPath.row];
+	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]+1];
+	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:YES];
+	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+	
+	NSRange range = NSMakeRange(inIndexPath.section, 1);
+	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
+	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
+-(void)minusValueByPriceAtIndexPath:(NSIndexPath *)inIndexPath
+{
+	CartModel *cartModel = [self.arrProductList objectAtIndex:inIndexPath.section];
+	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:inIndexPath.row];
+	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]-1];
+	
+	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:NO];
+	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+	if([productModel.strCount integerValue] == 0)
+	{
+		[tblView reloadData];
+	}
+	else
+	{
+		NSRange range = NSMakeRange(inIndexPath.section, 1);
+		NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+		[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
+		[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+	}
+}
+
 
 
 @end

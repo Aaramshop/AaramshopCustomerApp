@@ -10,7 +10,7 @@
 #import "HomeCategoryListViewController.h"
 #import "CartViewController.h"
 #import "StoreModel.h"
-
+#import "BroadcastViewController.h"
 
 #define kTagForYSLScrollView    1000
 #define kTagForFoodTableView    10
@@ -139,20 +139,29 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
     
     UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnCart.bounds = CGRectMake( -10, 0, 30, 30);
+    btnCart.bounds = CGRectMake( -10, 0, 20, 20);
     
     [btnCart setImage:imgCart forState:UIControlStateNormal];
     [btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
     
     UIButton *btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnSearch.bounds = CGRectMake( -10, 0, 30, 30);
+    btnSearch.bounds = CGRectMake( -10, 0, 20, 20);
     
     [btnSearch setImage:imgSearch forState:UIControlStateNormal];
     [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
-    
-    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch, nil];
+	
+	UIImage *imgBroadcast = [UIImage imageNamed:@"bellIcon"];
+	
+	UIButton *btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnBroadcast.bounds = CGRectMake( -10, 0, 20, 20);
+	
+	[btnBroadcast setImage:imgBroadcast forState:UIControlStateNormal];
+	[btnBroadcast addTarget:self action:@selector(btnBroadcastClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnBroadcast = [[UIBarButtonItem alloc] initWithCustomView:btnBroadcast];
+
+    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
     self.navigationItem.rightBarButtonItems = arrBtnsRight;
     
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
@@ -162,7 +171,11 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     }
 
 }
-
+- (void)btnBroadcastClicked
+{
+	BroadcastViewController *broadcastView = (BroadcastViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"broadcastView"];
+	[self.navigationController pushViewController:broadcastView animated:YES];
+}
 
 -(void)btnMenuClicked
 {

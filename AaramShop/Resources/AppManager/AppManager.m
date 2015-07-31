@@ -583,7 +583,7 @@ void MyAddressBookExternalChangeCallback (
     return toDistance;
     
 }
-+(void)AddOrRemoveFromCart:(ProductsModel *)product forStore:(NSDictionary *)store add:(BOOL)isAdd
++(void)AddOrRemoveFromCart:(CartProductModel *)cartProduct forStore:(NSDictionary *)store add:(BOOL)isAdd
 {
 	if(![[NSUserDefaults standardUserDefaults] valueForKey:kCartData])
 	{
@@ -603,15 +603,18 @@ void MyAddressBookExternalChangeCallback (
 		{
 			cartModel							=	[arrayStoreFilter objectAtIndex:0];
 			NSInteger indexCart			=	[cartArray indexOfObject:cartModel];
-			NSArray *arrIds					= [cartModel.arrProductDetails valueForKey:kProduct_id];
-			if([arrIds containsObject:product.product_id])
+			
+			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.cartProductId == %@ and SELF.strOffer_type ==%@",cartProduct.cartProductId,cartProduct.strOffer_type];
+			NSArray *filteredIds = [cartModel.arrProductDetails filteredArrayUsingPredicate:predicate];
+			if([filteredIds count]>0)
 			{
-				NSInteger index				= [arrIds indexOfObject:product.product_id];
-				[cartModel.arrProductDetails replaceObjectAtIndex:index withObject:product];
+				CartProductModel *cartProductSaved = [filteredIds objectAtIndex:0];
+				NSInteger index= [cartModel.arrProductDetails indexOfObject:cartProductSaved];
+				[cartModel.arrProductDetails replaceObjectAtIndex:index withObject:cartProduct];
 				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
 				if(!isAdd)
 				{
-					if([product.strCount integerValue]== 0)
+					if([cartProduct.strCount integerValue]== 0)
 					{
 						[cartModel.arrProductDetails removeObjectAtIndex:index];
 						if([cartModel.arrProductDetails count]==0)
@@ -620,10 +623,11 @@ void MyAddressBookExternalChangeCallback (
 						}
 					}
 				}
+				
 			}
 			else
 			{
-				[cartModel.arrProductDetails addObject:product];
+				[cartModel.arrProductDetails addObject:cartProduct];
 				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
 			}
 		}
@@ -633,7 +637,7 @@ void MyAddressBookExternalChangeCallback (
 			cartModel.store_id				= [store objectForKey:kStore_id];
 			cartModel.store_name		= [store objectForKey:kStore_name];
 			cartModel.store_image		= [store objectForKey:kStore_image];
-			cartModel.arrProductDetails = [[NSMutableArray alloc] initWithObjects:product, nil];
+			cartModel.arrProductDetails = [[NSMutableArray alloc] initWithObjects:cartProduct, nil];
 			[cartArray addObject:cartModel];
 		}
 	}
@@ -646,7 +650,7 @@ void MyAddressBookExternalChangeCallback (
 		cartModel.store_id				= [store objectForKey:kStore_id];
 		cartModel.store_name		= [store objectForKey:kStore_name];
 		cartModel.store_image		= [store objectForKey:kStore_image];
-		cartModel.arrProductDetails = [[NSMutableArray alloc] initWithObjects:product, nil];
+		cartModel.arrProductDetails = [[NSMutableArray alloc] initWithObjects:cartProduct, nil];
 		[cartArray addObject:cartModel];
 	}
 	enrollData	=	[NSKeyedArchiver archivedDataWithRootObject: cartArray];
@@ -674,7 +678,7 @@ void MyAddressBookExternalChangeCallback (
 }
 + (NSMutableArray *)getCartProductsByStoreId:(NSString *)store_id
 {
-	NSMutableArray *arrProduct = [[NSMutableArray alloc] init];
+	NSMutableArray *arrProduct		= [[NSMutableArray alloc] init];
 	NSData *enrollData					= [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
 	NSMutableArray *cartArray		= (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
 	NSPredicate *predicate				= [NSPredicate predicateWithFormat:@"SELF.store_id == %@",store_id];
@@ -686,10 +690,17 @@ void MyAddressBookExternalChangeCallback (
 	}
 	return arrProduct;
 }
-
-
-
-
++ (NSString *)getCountOfProduct:(NSString *)cartProductId withOfferType:(NSString *)offer_type forStore_id:(NSString *)store_id
+{
+	NSMutableArray *arrCartProduct	= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:store_id]];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF. cartProductId == %@ and SELF.strOffer_type == %@",cartProductId,offer_type];
+	NSArray *array	=	[arrCartProduct filteredArrayUsingPredicate:predicate];
+	if([array count]>0)
+	{
+		return [[array objectAtIndex:0] strCount];
+	}
+	return @"0";
+}
 
 +(NSArray *)getAllContacts {
     
@@ -885,6 +896,4 @@ void MyAddressBookExternalChangeCallback (
     CFRelease(source);
     return items;
 }
-
-
 @end
