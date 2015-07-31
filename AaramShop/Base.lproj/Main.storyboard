@@ -177,6 +177,9 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="RocketDinerCondensed_0.otf">
             <string>RocketDiner-CondensedRegular</string>
@@ -1023,16 +1026,26 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMM-Og-WAg" userLabel="Label - Product name">
-                                                    <rect key="frame" x="73" y="5" width="120" height="60"/>
+                                                    <rect key="frame" x="73" y="5" width="157" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="GFC-U4-Yys"/>
+                                                        <constraint firstAttribute="height" constant="40" id="GFC-U4-Yys"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                     <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zW7-mi-ADd" userLabel="Label - Price">
+                                                    <rect key="frame" x="73" y="46" width="157" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="157" id="X9c-Dz-czw"/>
+                                                        <constraint firstAttribute="height" constant="18" id="dKe-sP-0Iv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iml-AI-UdJ" userLabel="Button - Remove">
-                                                    <rect key="frame" x="200" y="20" width="30" height="30"/>
+                                                    <rect key="frame" x="234" y="20" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="Kuy-C4-fJa"/>
                                                         <constraint firstAttribute="height" constant="30" id="ovc-FW-GjA"/>
@@ -1045,17 +1058,17 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7A-Va-rEQ" userLabel="Label - Counter">
-                                                    <rect key="frame" x="235" y="5" width="40" height="60"/>
+                                                    <rect key="frame" x="264" y="5" width="22" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="6j5-HV-W6Y"/>
-                                                        <constraint firstAttribute="width" constant="40" id="BFR-GU-H8F"/>
+                                                        <constraint firstAttribute="width" constant="22" id="BFR-GU-H8F"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                     <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSN-xk-tI1" userLabel="Button - Add">
-                                                    <rect key="frame" x="280" y="20" width="30" height="30"/>
+                                                    <rect key="frame" x="286" y="20" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="31S-j6-y2u"/>
                                                         <constraint firstAttribute="width" constant="30" id="T9g-X0-Z3n"/>
@@ -1069,14 +1082,16 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="O7A-Va-rEQ" firstAttribute="leading" secondItem="Iml-AI-UdJ" secondAttribute="trailing" constant="5" id="G8o-tE-coS"/>
+                                                <constraint firstItem="zW7-mi-ADd" firstAttribute="leading" secondItem="s8Q-u9-q4d" secondAttribute="trailing" constant="8" id="28c-g1-t0Y"/>
+                                                <constraint firstItem="O7A-Va-rEQ" firstAttribute="leading" secondItem="Iml-AI-UdJ" secondAttribute="trailing" id="G8o-tE-coS"/>
                                                 <constraint firstItem="s8Q-u9-q4d" firstAttribute="leading" secondItem="2qx-XV-mFf" secondAttribute="leadingMargin" constant="-3" id="Qlk-sY-Iv9"/>
-                                                <constraint firstItem="vSN-xk-tI1" firstAttribute="leading" secondItem="O7A-Va-rEQ" secondAttribute="trailing" constant="5" id="Yz5-NU-2mo"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vSN-xk-tI1" secondAttribute="trailing" constant="-4" id="V1A-ns-5JB"/>
+                                                <constraint firstItem="vSN-xk-tI1" firstAttribute="leading" secondItem="O7A-Va-rEQ" secondAttribute="trailing" id="Yz5-NU-2mo"/>
                                                 <constraint firstItem="RMM-Og-WAg" firstAttribute="leading" secondItem="s8Q-u9-q4d" secondAttribute="trailing" constant="8" id="Z27-XB-O5V"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="vSN-xk-tI1" secondAttribute="trailing" constant="2" id="Z4Q-Zq-1Mp"/>
                                                 <constraint firstItem="O7A-Va-rEQ" firstAttribute="top" secondItem="2qx-XV-mFf" secondAttribute="topMargin" constant="-3" id="dAz-kl-ddY"/>
                                                 <constraint firstItem="s8Q-u9-q4d" firstAttribute="top" secondItem="2qx-XV-mFf" secondAttribute="topMargin" constant="-3" id="e4M-7s-G4h"/>
-                                                <constraint firstItem="Iml-AI-UdJ" firstAttribute="leading" secondItem="RMM-Og-WAg" secondAttribute="trailing" constant="7" id="qK7-I3-5PC"/>
+                                                <constraint firstItem="zW7-mi-ADd" firstAttribute="top" secondItem="RMM-Og-WAg" secondAttribute="bottom" constant="1" id="o3p-GY-OOn"/>
+                                                <constraint firstItem="Iml-AI-UdJ" firstAttribute="leading" secondItem="RMM-Og-WAg" secondAttribute="trailing" constant="4" id="qK7-I3-5PC"/>
                                                 <constraint firstItem="vSN-xk-tI1" firstAttribute="top" secondItem="2qx-XV-mFf" secondAttribute="topMargin" constant="12" id="qve-DA-4rA"/>
                                                 <constraint firstItem="RMM-Og-WAg" firstAttribute="top" secondItem="2qx-XV-mFf" secondAttribute="topMargin" constant="-3" id="rCt-Tl-eQc"/>
                                                 <constraint firstItem="Iml-AI-UdJ" firstAttribute="top" secondItem="2qx-XV-mFf" secondAttribute="topMargin" constant="12" id="zsM-0n-E7f"/>
@@ -1087,6 +1102,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                             <outlet property="btnRemove" destination="Iml-AI-UdJ" id="QSK-Cq-Hjy"/>
                                             <outlet property="imgProduct" destination="s8Q-u9-q4d" id="7p7-cL-b4p"/>
                                             <outlet property="lblCounter" destination="O7A-Va-rEQ" id="b8K-h3-c6S"/>
+                                            <outlet property="lblPrice" destination="zW7-mi-ADd" id="vH1-Q8-tkq"/>
                                             <outlet property="lblProductName" destination="RMM-Og-WAg" id="mWb-9G-GGg"/>
                                         </connections>
                                     </tableViewCell>
@@ -1296,16 +1312,26 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxH-SL-Wqn" userLabel="Label - Product name">
-                                                    <rect key="frame" x="73" y="5" width="120" height="60"/>
+                                                    <rect key="frame" x="73" y="5" width="157" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="ik4-5v-liv"/>
+                                                        <constraint firstAttribute="height" constant="40" id="ik4-5v-liv"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                     <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hs-sO-MMg" userLabel="Label - Price">
+                                                    <rect key="frame" x="73" y="46" width="157" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="157" id="2Zk-gB-xud"/>
+                                                        <constraint firstAttribute="height" constant="18" id="nhc-9Q-jnc"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOY-E4-Ek8" userLabel="Button - Remove">
-                                                    <rect key="frame" x="200" y="20" width="30" height="30"/>
+                                                    <rect key="frame" x="234" y="20" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="qyF-YI-j8G"/>
                                                         <constraint firstAttribute="width" constant="30" id="tDD-O0-p26"/>
@@ -1318,9 +1344,9 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKL-Wd-dyh" userLabel="Label - Counter">
-                                                    <rect key="frame" x="235" y="5" width="40" height="60"/>
+                                                    <rect key="frame" x="264" y="5" width="22" height="60"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="MII-sX-Kd8"/>
+                                                        <constraint firstAttribute="width" constant="22" id="MII-sX-Kd8"/>
                                                         <constraint firstAttribute="height" constant="60" id="Ye7-7C-ZCZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
@@ -1328,7 +1354,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JLq-aQ-QDt" userLabel="Button - Add">
-                                                    <rect key="frame" x="280" y="20" width="30" height="30"/>
+                                                    <rect key="frame" x="286" y="20" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="dSt-3S-GNI"/>
                                                         <constraint firstAttribute="width" constant="30" id="yPh-ul-OHH"/>
@@ -1342,17 +1368,19 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="yKL-Wd-dyh" firstAttribute="leading" secondItem="sOY-E4-Ek8" secondAttribute="trailing" constant="5" id="4Ef-V1-Cqh"/>
+                                                <constraint firstItem="yKL-Wd-dyh" firstAttribute="leading" secondItem="sOY-E4-Ek8" secondAttribute="trailing" id="4Ef-V1-Cqh"/>
                                                 <constraint firstItem="oxH-SL-Wqn" firstAttribute="top" secondItem="3Zg-QD-nnW" secondAttribute="topMargin" constant="-3" id="4l2-w5-KE1"/>
+                                                <constraint firstItem="7hs-sO-MMg" firstAttribute="top" secondItem="oxH-SL-Wqn" secondAttribute="bottom" constant="1" id="6ZX-pp-RKC"/>
                                                 <constraint firstItem="JLq-aQ-QDt" firstAttribute="top" secondItem="3Zg-QD-nnW" secondAttribute="topMargin" constant="12" id="FVX-CG-TQ0"/>
                                                 <constraint firstItem="yKL-Wd-dyh" firstAttribute="top" secondItem="3Zg-QD-nnW" secondAttribute="topMargin" constant="-3" id="Gxn-Oc-gob"/>
-                                                <constraint firstItem="sOY-E4-Ek8" firstAttribute="leading" secondItem="oxH-SL-Wqn" secondAttribute="trailing" constant="7" id="bo2-mw-S9i"/>
+                                                <constraint firstItem="7hs-sO-MMg" firstAttribute="leading" secondItem="i7x-S3-7P1" secondAttribute="trailing" constant="8" id="T4Q-Cl-I1z"/>
+                                                <constraint firstItem="sOY-E4-Ek8" firstAttribute="leading" secondItem="oxH-SL-Wqn" secondAttribute="trailing" constant="4" id="bo2-mw-S9i"/>
                                                 <constraint firstItem="oxH-SL-Wqn" firstAttribute="leading" secondItem="i7x-S3-7P1" secondAttribute="trailing" constant="8" id="cCx-sV-FaU"/>
                                                 <constraint firstItem="i7x-S3-7P1" firstAttribute="leading" secondItem="3Zg-QD-nnW" secondAttribute="leadingMargin" constant="-3" id="eNL-Z1-aEz"/>
                                                 <constraint firstItem="i7x-S3-7P1" firstAttribute="top" secondItem="3Zg-QD-nnW" secondAttribute="topMargin" constant="-3" id="iDI-7u-Gcm"/>
-                                                <constraint firstItem="JLq-aQ-QDt" firstAttribute="leading" secondItem="yKL-Wd-dyh" secondAttribute="trailing" constant="5" id="l7o-hI-I9F"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="JLq-aQ-QDt" secondAttribute="trailing" constant="-4" id="jph-pS-eSp"/>
+                                                <constraint firstItem="JLq-aQ-QDt" firstAttribute="leading" secondItem="yKL-Wd-dyh" secondAttribute="trailing" id="l7o-hI-I9F"/>
                                                 <constraint firstItem="sOY-E4-Ek8" firstAttribute="top" secondItem="3Zg-QD-nnW" secondAttribute="topMargin" constant="12" id="py2-XH-9LX"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="JLq-aQ-QDt" secondAttribute="trailing" constant="2" id="scg-uu-Sji"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1360,6 +1388,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                             <outlet property="btnRemove" destination="sOY-E4-Ek8" id="zR6-yU-ihK"/>
                                             <outlet property="imgProduct" destination="i7x-S3-7P1" id="1cR-tD-65e"/>
                                             <outlet property="lblCounter" destination="yKL-Wd-dyh" id="bsa-6D-k4a"/>
+                                            <outlet property="lblPrice" destination="7hs-sO-MMg" id="9sC-K6-dh5"/>
                                             <outlet property="lblProductName" destination="oxH-SL-Wqn" id="Yrd-GB-lSN"/>
                                         </connections>
                                     </tableViewCell>
@@ -1428,7 +1457,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                         <constraint firstAttribute="height" constant="60" id="tBc-l7-4Lo"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Plaza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ff3-eV-sR2" userLabel="Label - Store Name">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ff3-eV-sR2" userLabel="Label - Store Name">
                                                     <rect key="frame" x="80" y="16" width="145" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="fx1-is-fTS"/>
@@ -1437,7 +1466,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                     <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rs. 9900000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbX-DW-frL" userLabel="Label - Total Price">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbX-DW-frL" userLabel="Label - Total Price">
                                                     <rect key="frame" x="231" y="15" width="80" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="t9G-7T-PKu"/>
@@ -1501,7 +1530,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                                         <constraint firstItem="JUn-fS-n7t" firstAttribute="top" secondItem="xHo-am-Z6x" secondAttribute="top" constant="1" id="vwG-Oo-SS3"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22 Avaiable, 2 Remaining" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nan-8X-061" userLabel="Label - Products available">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nan-8X-061" userLabel="Label - Products available">
                                                     <rect key="frame" x="80" y="54" width="193" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="193" id="8Gc-Tz-Yqg"/>
@@ -2044,16 +2073,26 @@ Please give us your address</string>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4L-07-jSO" userLabel="Label - Product name">
-                                                    <rect key="frame" x="73" y="5" width="120" height="60"/>
+                                                    <rect key="frame" x="73" y="5" width="157" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="RU3-51-MYh"/>
+                                                        <constraint firstAttribute="height" constant="40" id="RU3-51-MYh"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                     <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DvZ-FW-UiG" userLabel="Label - Price">
+                                                    <rect key="frame" x="73" y="46" width="157" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="157" id="aHQ-l0-SZo"/>
+                                                        <constraint firstAttribute="height" constant="18" id="zSP-FR-d5X"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wm0-zH-lpn" userLabel="Button - Remove">
-                                                    <rect key="frame" x="200" y="20" width="30" height="30"/>
+                                                    <rect key="frame" x="234" y="20" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="Gxs-PG-qWO"/>
                                                         <constraint firstAttribute="width" constant="30" id="cVm-6u-Ne5"/>
@@ -2066,9 +2105,9 @@ Please give us your address</string>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTB-a1-VZT" userLabel="Label - Counter">
-                                                    <rect key="frame" x="235" y="5" width="40" height="60"/>
+                                                    <rect key="frame" x="264" y="5" width="22" height="60"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="EUY-ew-EGj"/>
+                                                        <constraint firstAttribute="width" constant="22" id="EUY-ew-EGj"/>
                                                         <constraint firstAttribute="height" constant="60" id="eVz-hX-izE"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
@@ -2076,7 +2115,7 @@ Please give us your address</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Amg-cM-eoL" userLabel="Button - Add">
-                                                    <rect key="frame" x="280" y="20" width="30" height="30"/>
+                                                    <rect key="frame" x="286" y="20" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="0ns-bj-Bwq"/>
                                                         <constraint firstAttribute="width" constant="30" id="Qau-Mc-e3d"/>
@@ -2090,17 +2129,19 @@ Please give us your address</string>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="VTB-a1-VZT" firstAttribute="leading" secondItem="wm0-zH-lpn" secondAttribute="trailing" constant="5" id="1mf-Yv-qms"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Amg-cM-eoL" secondAttribute="trailing" constant="2" id="3jp-2B-YgL"/>
+                                                <constraint firstItem="VTB-a1-VZT" firstAttribute="leading" secondItem="wm0-zH-lpn" secondAttribute="trailing" id="1mf-Yv-qms"/>
+                                                <constraint firstItem="DvZ-FW-UiG" firstAttribute="top" secondItem="B4L-07-jSO" secondAttribute="bottom" constant="1" id="9pJ-x3-QLS"/>
                                                 <constraint firstItem="VTB-a1-VZT" firstAttribute="top" secondItem="8eo-rW-P8t" secondAttribute="topMargin" constant="-3" id="9th-xb-9yX"/>
                                                 <constraint firstItem="B4L-07-jSO" firstAttribute="leading" secondItem="o8f-vd-tUH" secondAttribute="trailing" constant="8" id="Hxf-gO-bsM"/>
-                                                <constraint firstItem="Amg-cM-eoL" firstAttribute="leading" secondItem="VTB-a1-VZT" secondAttribute="trailing" constant="5" id="I3V-fr-J23"/>
+                                                <constraint firstItem="Amg-cM-eoL" firstAttribute="leading" secondItem="VTB-a1-VZT" secondAttribute="trailing" id="I3V-fr-J23"/>
                                                 <constraint firstItem="wm0-zH-lpn" firstAttribute="top" secondItem="8eo-rW-P8t" secondAttribute="topMargin" constant="12" id="LUb-OF-ILx"/>
+                                                <constraint firstItem="DvZ-FW-UiG" firstAttribute="leading" secondItem="o8f-vd-tUH" secondAttribute="trailing" constant="8" id="cMS-mh-REj"/>
                                                 <constraint firstItem="Amg-cM-eoL" firstAttribute="top" secondItem="8eo-rW-P8t" secondAttribute="topMargin" constant="12" id="d0u-0N-r7O"/>
                                                 <constraint firstItem="o8f-vd-tUH" firstAttribute="top" secondItem="8eo-rW-P8t" secondAttribute="topMargin" constant="-3" id="jT6-TW-fpR"/>
                                                 <constraint firstItem="o8f-vd-tUH" firstAttribute="leading" secondItem="8eo-rW-P8t" secondAttribute="leadingMargin" constant="-3" id="kGh-L7-tff"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Amg-cM-eoL" secondAttribute="trailing" constant="-4" id="mpg-QM-ABw"/>
                                                 <constraint firstItem="B4L-07-jSO" firstAttribute="top" secondItem="8eo-rW-P8t" secondAttribute="topMargin" constant="-3" id="sOh-gb-b1x"/>
-                                                <constraint firstItem="wm0-zH-lpn" firstAttribute="leading" secondItem="B4L-07-jSO" secondAttribute="trailing" constant="7" id="tWC-aa-1pR"/>
+                                                <constraint firstItem="wm0-zH-lpn" firstAttribute="leading" secondItem="B4L-07-jSO" secondAttribute="trailing" constant="4" id="tWC-aa-1pR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -2108,6 +2149,7 @@ Please give us your address</string>
                                             <outlet property="btnRemove" destination="wm0-zH-lpn" id="Pvl-tr-gVW"/>
                                             <outlet property="imgProduct" destination="o8f-vd-tUH" id="rCt-kY-9YR"/>
                                             <outlet property="lblCounter" destination="VTB-a1-VZT" id="4KT-aS-1nx"/>
+                                            <outlet property="lblPrice" destination="DvZ-FW-UiG" id="ZLG-OR-ulQ"/>
                                             <outlet property="lblProductName" destination="B4L-07-jSO" id="RHh-bm-gmh"/>
                                         </connections>
                                     </tableViewCell>
@@ -2340,7 +2382,7 @@ Please give us your address</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peq-AO-Y3g">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zR-fj-Suz">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zR-fj-Suz" userLabel="Label - Title">
                                                 <rect key="frame" x="18" y="100" width="284" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -2350,19 +2392,19 @@ Please give us your address</string>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homeDetailStoreBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="TFS-Ps-aZ3">
                                                 <rect key="frame" x="25" y="162" width="270" height="128"/>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UI6-Sf-aG1">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UI6-Sf-aG1" userLabel="Image View - category icon">
                                                 <rect key="frame" x="35" y="169" width="20" height="20"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAC-rk-OWM">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAC-rk-OWM" userLabel="Label - Category name">
                                                 <rect key="frame" x="65" y="163" width="190" height="33"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UuN-CB-xfV">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UuN-CB-xfV" userLabel="Image View - Store ">
                                                 <rect key="frame" x="42" y="211" width="60" height="60"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGh-Yp-npL">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGh-Yp-npL" userLabel="Label - store name">
                                                 <rect key="frame" x="120" y="202" width="152" height="20"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2371,7 +2413,7 @@ Please give us your address</string>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="locationIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="m4f-WU-idT">
                                                 <rect key="frame" x="120" y="222" width="15" height="20"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ga-rH-J9t">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ga-rH-J9t" userLabel="Label- distance">
                                                 <rect key="frame" x="136" y="223" width="72" height="17"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2380,13 +2422,13 @@ Please give us your address</string>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="homeStoreDetailsDeleversIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="nfN-ID-uhB">
                                                 <rect key="frame" x="208" y="223" width="17" height="17"/>
                                             </imageView>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delievers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opv-PU-s2m">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delievers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opv-PU-s2m" userLabel="Label - Delievers">
                                                 <rect key="frame" x="232" y="223" width="60" height="17"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1WG-ZA-3sX">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1WG-ZA-3sX" userLabel="Label - Address">
                                                 <rect key="frame" x="116" y="250" width="172" height="36"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
@@ -2564,7 +2606,7 @@ Please give us your address</string>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3467" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcf-lk-8Au">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcf-lk-8Au">
                                                     <rect key="frame" x="239" y="11" width="71" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="7WC-f8-NtY"/>
@@ -5240,7 +5282,7 @@ It will be used only for verification purposes.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jez-5H-pA2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011" y="3357"/>
+            <point key="canvasLocation" x="1011" y="3447"/>
         </scene>
         <!--Home Categories View Controller-->
         <scene sceneID="rFt-ZO-jRg">
@@ -5398,7 +5440,7 @@ It will be used only for verification purposes.</string>
                                                     <color key="textColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFH-Vj-Hgz">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFH-Vj-Hgz">
                                                     <rect key="frame" x="237" y="5" width="75" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="wEA-ND-KUq"/>
@@ -5509,7 +5551,7 @@ It will be used only for verification purposes.</string>
                                                         <action selector="actionRemoveProduct:" destination="uAy-VP-BKw" eventType="touchUpInside" id="dXY-ia-xUU"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTU-zh-4Ke" userLabel="Label - Counter">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTU-zh-4Ke" userLabel="Label - Counter">
                                                     <rect key="frame" x="264" y="5" width="22" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="22" id="8Yr-UK-oBj"/>
@@ -5620,7 +5662,7 @@ It will be used only for verification purposes.</string>
                                                         <constraint firstAttribute="width" constant="20" id="KAU-tH-Bpn"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chocolate &amp; sweets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfb-5K-hQV" userLabel="Label - Category Name">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfb-5K-hQV" userLabel="Label - Category Name">
                                                     <rect key="frame" x="103" y="16" width="178" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="oet-Ih-av1"/>
@@ -5636,7 +5678,7 @@ It will be used only for verification purposes.</string>
                                                         <constraint firstAttribute="width" constant="25" id="8eX-TS-iYn"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Plaza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PT-qP-55x" userLabel="Label - Store Name">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0PT-qP-55x" userLabel="Label - Store Name">
                                                     <rect key="frame" x="80" y="39" width="201" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="dFI-Ca-sJY"/>
@@ -6053,7 +6095,7 @@ It will be used only for verification purposes.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F2n-IM-0mK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2008" y="2408"/>
+            <point key="canvasLocation" x="-1402" y="2622"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="jS2-nh-jA4">
