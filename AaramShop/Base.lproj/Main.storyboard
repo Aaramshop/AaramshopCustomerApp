@@ -2592,14 +2592,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="ge9-Af-g5X">
+                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="9En-Fe-5XW">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="cgz-by-cV7"/>
-                                </constraints>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="vn9-r5-j1S" id="uFg-Kq-rpA"/>
+                                    <outlet property="delegate" destination="vn9-r5-j1S" id="Fjx-Hz-vpr"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="RIL-QQ-KzR">
@@ -2669,19 +2666,30 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ybM-J5-6Mb" firstAttribute="top" secondItem="RIL-QQ-KzR" secondAttribute="bottom" id="09Y-wi-6Aa"/>
-                            <constraint firstItem="RIL-QQ-KzR" firstAttribute="top" secondItem="ge9-Af-g5X" secondAttribute="bottom" id="12e-mD-N98"/>
                             <constraint firstAttribute="centerX" secondItem="RIL-QQ-KzR" secondAttribute="centerX" id="DVx-XN-KHm"/>
-                            <constraint firstAttribute="width" secondItem="ge9-Af-g5X" secondAttribute="width" id="JrK-GP-hOT"/>
                             <constraint firstItem="RIL-QQ-KzR" firstAttribute="width" secondItem="Yc4-gO-Rdb" secondAttribute="width" id="NnM-IQ-9wL"/>
-                            <constraint firstAttribute="centerX" secondItem="ge9-Af-g5X" secondAttribute="centerX" id="U5T-fF-dgt"/>
-                            <constraint firstItem="ge9-Af-g5X" firstAttribute="top" secondItem="NfD-Ov-XAI" secondAttribute="bottom" id="U6N-Wa-XN8"/>
+                            <constraint firstItem="9En-Fe-5XW" firstAttribute="top" secondItem="NfD-Ov-XAI" secondAttribute="bottom" id="fsS-1a-aDI"/>
+                            <constraint firstAttribute="centerX" secondItem="9En-Fe-5XW" secondAttribute="centerX" id="kTw-VE-2i2"/>
+                            <constraint firstItem="RIL-QQ-KzR" firstAttribute="top" secondItem="9En-Fe-5XW" secondAttribute="bottom" id="okj-Fw-D8z"/>
+                            <constraint firstAttribute="width" secondItem="9En-Fe-5XW" secondAttribute="width" id="sm4-e8-In5"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchDisplayController" destination="1fz-dP-EnO" id="xIR-a7-izs"/>
+                        <outlet property="searchbar" destination="9En-Fe-5XW" id="CWa-53-nfZ"/>
                         <outlet property="tblContacts" destination="RIL-QQ-KzR" id="NjC-3d-VmJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7a-ng-qAD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="1fz-dP-EnO">
+                    <connections>
+                        <outlet property="delegate" destination="vn9-r5-j1S" id="FID-Lr-oav"/>
+                        <outlet property="searchBar" destination="9En-Fe-5XW" id="FuL-VH-2rg"/>
+                        <outlet property="searchContentsController" destination="vn9-r5-j1S" id="Ngf-7J-RAo"/>
+                        <outlet property="searchResultsDataSource" destination="vn9-r5-j1S" id="tVV-j2-TDh"/>
+                        <outlet property="searchResultsDelegate" destination="vn9-r5-j1S" id="NHs-QX-yIL"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1770" y="5535"/>
         </scene>
