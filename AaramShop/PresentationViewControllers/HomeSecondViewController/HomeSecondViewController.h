@@ -22,6 +22,11 @@
     
     BOOL isViewActive;
 
+    
+    UIRefreshControl *refreshShoppingList;
+    BOOL isLoading;
+
+    
 }
 @property (nonatomic) NSInteger mainCategoryIndexPicker;
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

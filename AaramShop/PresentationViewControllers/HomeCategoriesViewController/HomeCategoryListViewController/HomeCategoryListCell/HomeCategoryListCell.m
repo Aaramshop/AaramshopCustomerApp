@@ -172,7 +172,7 @@
     
     ////
     if ([objStoreData.is_favorite isEqualToString:@"1"]) {
-        imgIsFavourite.image = [UIImage imageNamed:@"favourateIcon"];
+        imgIsFavourite.image = [UIImage imageNamed:@"homeStarIconActive"];
     }
     else
         imgIsFavourite.image = [UIImage imageNamed:@"homeStarIconInactive"];
