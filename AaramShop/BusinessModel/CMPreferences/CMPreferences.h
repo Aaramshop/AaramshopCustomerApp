@@ -13,4 +13,5 @@
 @property (nonatomic, strong) NSString *offers_notification;
 @property (nonatomic, strong) NSString *delivery_status_notification;
 @property (nonatomic, strong) NSString *chat_notification;
+@property (nonatomic, strong) NSString *address_count;
 @end

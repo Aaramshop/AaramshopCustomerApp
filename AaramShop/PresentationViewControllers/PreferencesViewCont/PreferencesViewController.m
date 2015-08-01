@@ -17,25 +17,25 @@
 @implementation PreferencesViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+	[super viewDidLoad];
+	// Do any additional setup after loading the view.
 	
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
 	preferencesModel = [[CMPreferences alloc] init];
 	arrLocation = [[NSMutableArray alloc] init];
 	strAddressCount = @"";
-
-    [self setUpNavigationBar];
+	
+	[self setUpNavigationBar];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[self createDataForPreferences];
+	[self createDataForGetPreferences];
 }
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 #pragma mark Navigation
 -(void)setUpNavigationBar
@@ -58,7 +58,7 @@
 	self.navigationItem.titleView = _headerTitleSubtitleView;
 	
 	UIImage *imgBack = [UIImage imageNamed:@"backBtn"];
-	UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 	backBtn.bounds = CGRectMake( -10, 0, 30, 30);
 	
 	[backBtn setImage:imgBack forState:UIControlStateNormal];
@@ -70,12 +70,51 @@
 	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
 	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 	
+	UIImage *imgDone = [UIImage imageNamed:@"doneBtn"];
+	doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	doneBtn.bounds = CGRectMake( -10, 0, 50, 30);
+	[doneBtn setTitle:@"Done" forState:UIControlStateNormal];
+	[doneBtn.titleLabel setFont:[UIFont fontWithName:kRobotoRegular size:13.0]];
+	[doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[doneBtn setBackgroundImage:imgDone forState:UIControlStateNormal];
+	[doneBtn addTarget:self action:@selector(btnDoneClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnDone = [[UIBarButtonItem alloc] initWithCustomView:doneBtn];
+	
+	NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnDone, nil];
+	self.navigationItem.rightBarButtonItems = arrBtnsRight;
+
+	
 }
 
--(void)backBtn
+- (void)backBtn
 {
 	[self.navigationController popViewControllerAnimated:YES];
 }
+- (void)btnDoneClicked
+{
+	[self userInteraction:NO];
+	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
+	[dict setObject:preferencesModel.offers_notification forKey:kOffers_notification];
+	[dict setObject:preferencesModel.delivery_status_notification forKey:kDelivery_status_notification];
+	[dict setObject:preferencesModel.chat_notification forKey:kChat_notification];
+	[self performSelector:@selector(callWebserviceToSavePreferences:) withObject:dict];
+}
+#pragma mark - Call Webservice To Change Password
+- (void)callWebserviceToSavePreferences:(NSMutableDictionary *)aDict
+{
+	if (![Utils isInternetAvailable])
+	{
+		[self userInteraction:YES];
+		
+		[AppManager stopStatusbarActivityIndicator];
+		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return;
+	}
+	[aaramShop_ConnectionManager getDataForFunction:kURLSavePreference withInput:aDict withCurrentTask:TASK_TO_SAVE_PREFERENCES andDelegate:self];
+}
+
 
 
 
@@ -102,33 +141,33 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
-    return 35;
+	return 35;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UILabel *tempLabel=[[UILabel alloc]init];
-    tempLabel.backgroundColor=[UIColor clearColor];
-    tempLabel.textColor = [UIColor blackColor];
-    [tempLabel setFont:[UIFont systemFontOfSize:15]];
-    
-    switch (section)
-    {
-        case 0:
-            tempLabel.text =@"     Notification";
-            
-            break;
-        case 1:
-            tempLabel.text = @"    Locations";
-            break;
-    }
-    return tempLabel;
+	UILabel *tempLabel=[[UILabel alloc]init];
+	tempLabel.backgroundColor=[UIColor clearColor];
+	tempLabel.textColor = [UIColor blackColor];
+	[tempLabel setFont:[UIFont systemFontOfSize:15]];
+	
+	switch (section)
+	{
+		case 0:
+			tempLabel.text =@"     Notification";
+			
+			break;
+		case 1:
+			tempLabel.text = @"    Locations";
+			break;
+	}
+	return tempLabel;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = nil;
-    switch (indexPath.section) {
-        case 0:
-        {
+	UITableViewCell *cell = nil;
+	switch (indexPath.section) {
+		case 0:
+		{
 			static NSString *cellIdentifier = @"NotificationCell";
 			cell =[self createCellSwitch:cellIdentifier];
 			UIImageView *imgView = (UIImageView *)[cell.contentView viewWithTag:101];
@@ -184,78 +223,91 @@
 				default:
 					break;
 			}
-        }
-            break;
-            case 1:
-        {
-            static NSString *cellIdentifier = @"LocationCell";
-            
-            cell =[self createCell:cellIdentifier];
-            UILabel *lbl = (UILabel *)[cell.contentView viewWithTag:202];
-			lbl.text = strAddressCount;
+		}
+			break;
+		case 1:
+		{
+			static NSString *cellIdentifier = @"LocationCell";
 			
-        }
-            break;
-        default:
-            break;
-    }
-    
-    
-    
-    return cell;
+			cell =[self createCell:cellIdentifier];
+			UILabel *lbl = (UILabel *)[cell.contentView viewWithTag:202];
+			if (preferencesModel.address_count == nil) {
+				preferencesModel.address_count = @"0";
+			}
+			lbl.text = [NSString stringWithFormat:@"Manage Location (%@)",preferencesModel.address_count];
+			
+		}
+			break;
+		default:
+			break;
+	}
+	
+	
+	
+	return cell;
 }
 #pragma mark - Calling Cell
 -(UITableViewCell*)createCellSwitch:(NSString*)cellIdentifier{
-    UITableViewCell *cell = (UITableViewCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    return cell;
+	UITableViewCell *cell = (UITableViewCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+	}
+	return cell;
 }
 -(UITableViewCell*)createCell:(NSString*)cellIdentifier{
-    UITableViewCell *cell = (UITableViewCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    return cell;
+	UITableViewCell *cell = (UITableViewCell *)[tblView dequeueReusableCellWithIdentifier:cellIdentifier];
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+	}
+	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tblView deselectRowAtIndexPath:indexPath animated:YES];
-	
+	[tblView deselectRowAtIndexPath:indexPath animated:YES];
+	switch (indexPath.section) {
+		case 1:
+		{
+			AddLocationViewController *addLocationVC = (AddLocationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddLocationView"];
+			[self.navigationController pushViewController:addLocationVC animated:YES];
+		}
+			break;
+			
+		default:
+			break;
+	}
 	
 }
 #pragma mark - Delegate for switch state
 -(void)getSwitchValue:(NSString *)switchBtnText indexPath:(NSIndexPath*)indexPath
 {
-    switch (indexPath.section)
-    {
-        case 0:
-        {
-            if (indexPath.row)
-            {
-                if ([switchBtnText isEqualToString:@"ON"])
-                {
-
-                }
-                else if ([switchBtnText isEqualToString:@"OFF"])
-                {
-
-                }
-            }
-            else
-            {
-//                [dicOnBoardingData setObject:switchBtnText forKey:[[dicDataKeys valueForKey:kOnBoardingUserInfo] objectAtIndex:indexPath.row]];
-            }
-        }
-            break;
-            
-       
-            
-        default:
-            break;
-    }
+	switch (indexPath.section)
+	{
+		case 0:
+		{
+			if (indexPath.row)
+			{
+				if ([switchBtnText isEqualToString:@"ON"])
+				{
+					
+				}
+				else if ([switchBtnText isEqualToString:@"OFF"])
+				{
+					
+				}
+			}
+			else
+			{
+				//                [dicOnBoardingData setObject:switchBtnText forKey:[[dicDataKeys valueForKey:kOnBoardingUserInfo] objectAtIndex:indexPath.row]];
+			}
+		}
+			break;
+			
+			
+			
+		default:
+			break;
+	}
 }
 - (IBAction)setDeliveryStatus:(id)sender
 {
@@ -293,8 +345,10 @@
 		preferencesModel.chat_notification = @"0";
 	}
 }
-- (void)createDataForPreferences
+- (void)createDataForGetPreferences
 {
+	[self userInteraction:NO];
+	[Utils startActivityIndicatorInView:self.view withMessage:@"Please Wait"];
 	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
@@ -306,7 +360,8 @@
 {
 	if (![Utils isInternetAvailable])
 	{
-
+		[self userInteraction:YES];
+		[Utils stopActivityIndicatorInView:self.view];
 		[AppManager stopStatusbarActivityIndicator];
 		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		return;
@@ -316,59 +371,57 @@
 
 - (void)responseReceived:(id)responseObject
 {
-	
+	[self userInteraction:YES];
+		[Utils stopActivityIndicatorInView:self.view];
 	[AppManager stopStatusbarActivityIndicator];
-	if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_PREFERENCES)
-	{
-		if([[responseObject objectForKey:kstatus] intValue] == 1)
+	switch (aaramShop_ConnectionManager.currentTask) {
+  case TASK_TO_GET_PREFERENCES:
 		{
-			
-			preferencesModel.offers_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"offers_notification"]];
-			preferencesModel.delivery_status_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"delivery_status_notification"]];
-			preferencesModel.chat_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"chat_notification"]];
-			
-			[tblView reloadData];
+			if([[responseObject objectForKey:kstatus] intValue] == 1)
+			{
+				
+				preferencesModel.offers_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:kOffers_notification]];
+				preferencesModel.delivery_status_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:kDelivery_status_notification]];
+				preferencesModel.chat_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:kChat_notification]];
+				preferencesModel.address_count = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"address_count"]];
+				
+				[tblView reloadData];
+			}
+			else
+			{
+				[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			}
 		}
-		else
+			break;
+		case TASK_TO_SAVE_PREFERENCES:
 		{
-			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			if([[responseObject objectForKey:kstatus] intValue] == 1)
+			{
+				
+				
+			}
+			else
+			{
+				[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			}
 		}
+			break;
+		default:
+			break;
 	}
+	
 }
 - (void)didFailWithError:(NSError *)error
 {
-	
+	[self userInteraction:YES];
+	[Utils stopActivityIndicatorInView:self.view];
 	[AppManager stopStatusbarActivityIndicator];
 	[aaramShop_ConnectionManager failureBlockCalled:error];
 }
-
--(void)parseData:(id)data
+- (void)userInteraction: (BOOL)enable
 {
-	if(!arrLocation)
-	{
-		arrLocation = [[NSMutableArray alloc] init];
-	}
-	[arrLocation removeAllObjects];
-	if([data count]>0)
-	{
-		for(int i =0 ; i < [data count] ; i++)
-		{
-			NSDictionary *dict = [data objectAtIndex:i];
-			AddressModel *addressModel = [[AddressModel alloc] init];
-			addressModel.user_address_id		=	[NSString stringWithFormat:@"%@",[dict objectForKey:kUser_address_id]];
-			addressModel.title						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kUser_address_title]];
-			
-			addressModel.address					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kAddress]];
-			addressModel.state						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kState]];
-			addressModel.city							=	[NSString stringWithFormat:@"%@",[dict objectForKey:kCity]];
-			addressModel.locality					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kLocality]];
-			addressModel.pincode					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kPincode]];
-			[arrLocation addObject:addressModel];
-		}
-		
-		strAddressCount =[NSString stringWithFormat:@"Manage Addresses (%ld)",(unsigned long)[data count]];
-		
-	}
-	[tblView reloadData];
+	[doneBtn setUserInteractionEnabled:enable];
+	[tblView setUserInteractionEnabled:enable];
+	[backBtn setUserInteractionEnabled:enable];
 }
 @end

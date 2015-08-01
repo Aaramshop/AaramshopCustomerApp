@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -206,6 +206,9 @@
             <string>RocketDiner-CondensedRegular</string>
             <string>RocketDiner-CondensedRegular</string>
         </mutableArray>
+        <mutableArray key="segoepr_1.ttf">
+            <string>SegoePrint</string>
+        </mutableArray>
     </customFonts>
     <scenes>
         <!--Navigation Controller-->
@@ -234,7 +237,7 @@
         <!--Add Location View Controller-->
         <scene sceneID="hdT-Fa-P8c">
             <objects>
-                <viewController id="7DX-Wk-F1t" customClass="AddLocationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddLocationView" id="7DX-Wk-F1t" customClass="AddLocationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0Dg-1b-fsG"/>
                         <viewControllerLayoutGuide type="bottom" id="wr8-Yw-bX2"/>
@@ -243,11 +246,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="xtk-wA-rqF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Multiple Saved Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFf-e9-vDb">
+                                <rect key="frame" x="8" y="30" width="225" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="btq-Bo-wyW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mon-Yu-gva">
+                                <rect key="frame" x="0.0" y="62" width="320" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ph0-Ep-vQ2">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="aqS-JE-YhG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ8-b9-KNL">
+                                        <rect key="frame" x="0.0" y="39" width="320" height="1"/>
+                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="WMm-BB-VBY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISS-Jp-gR4">
+                                        <rect key="frame" x="8" y="9" width="244" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="h6M-g3-pnD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <color key="textColor" red="0.58039215686274503" green="0.58039215686274503" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMk-iP-RxU">
+                                        <rect key="frame" x="8" y="7" width="304" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="NSO-ti-rQr"/>
+                                        </constraints>
+                                        <state key="normal" image="preferencesLocationAddCircle.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnAddLoc:" destination="7DX-Wk-F1t" eventType="touchUpInside" id="AXl-GA-3cz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="2OG-Y7-LIu"/>
+                                    <constraint firstItem="Ph0-Ep-vQ2" firstAttribute="leading" secondItem="Mon-Yu-gva" secondAttribute="leading" id="4nJ-xV-9j2"/>
+                                    <constraint firstAttribute="trailing" secondItem="fJ8-b9-KNL" secondAttribute="trailing" id="AAw-LC-j2j"/>
+                                    <constraint firstAttribute="trailing" secondItem="iMk-iP-RxU" secondAttribute="trailing" constant="8" id="CRu-3e-j8s"/>
+                                    <constraint firstItem="iMk-iP-RxU" firstAttribute="top" secondItem="Ph0-Ep-vQ2" secondAttribute="top" constant="7" id="Dqf-ye-SVE"/>
+                                    <constraint firstAttribute="bottom" secondItem="fJ8-b9-KNL" secondAttribute="bottom" id="IBM-BR-Qy6"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ph0-Ep-vQ2" secondAttribute="trailing" id="QC6-2M-6MF"/>
+                                    <constraint firstItem="Ph0-Ep-vQ2" firstAttribute="top" secondItem="ISS-Jp-gR4" secondAttribute="top" constant="-9" id="Wz7-xj-vb3"/>
+                                    <constraint firstItem="Ph0-Ep-vQ2" firstAttribute="top" secondItem="Mon-Yu-gva" secondAttribute="top" id="eWR-zW-Hct"/>
+                                    <constraint firstItem="iMk-iP-RxU" firstAttribute="leading" secondItem="Mon-Yu-gva" secondAttribute="leading" constant="8" id="fdf-Na-Spl"/>
+                                    <constraint firstItem="ISS-Jp-gR4" firstAttribute="leading" secondItem="Mon-Yu-gva" secondAttribute="leading" constant="8" id="wOM-mI-aWt"/>
+                                    <constraint firstAttribute="trailing" secondItem="ISS-Jp-gR4" secondAttribute="trailing" constant="68" id="wsd-Yv-PvO"/>
+                                    <constraint firstItem="fJ8-b9-KNL" firstAttribute="leading" secondItem="Mon-Yu-gva" secondAttribute="leading" id="zYq-oq-miW"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="xtk-wA-rqF">
                                 <rect key="frame" x="0.0" y="102" width="320" height="466"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="UD0-Gm-Hni">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationCell" rowHeight="70" id="UD0-Gm-Hni" customClass="LocationTableCell">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UD0-Gm-Hni" id="bck-mZ-CjK">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -258,7 +332,7 @@
                                                     <color key="textColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k5A-H1-wty">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="preferencesLocationIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="k5A-H1-wty">
                                                     <rect key="frame" x="8" y="39" width="20" height="20"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbT-Fg-QcD">
@@ -269,6 +343,10 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblAddress" destination="CbT-Fg-QcD" id="Sem-ou-0PH"/>
+                                            <outlet property="lblTitle" destination="KzE-F6-M0j" id="rcr-cI-L3c"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -276,46 +354,20 @@
                                     <outlet property="delegate" destination="7DX-Wk-F1t" id="4Z5-hD-ERm"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Multiple Saved Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFf-e9-vDb">
-                                <rect key="frame" x="8" y="30" width="225" height="21"/>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mon-Yu-gva">
-                                <rect key="frame" x="0.0" y="62" width="320" height="40"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ph0-Ep-vQ2">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
-                                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ8-b9-KNL">
-                                        <rect key="frame" x="0.0" y="39" width="320" height="1"/>
-                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISS-Jp-gR4">
-                                        <rect key="frame" x="8" y="9" width="244" height="22"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                        <color key="textColor" red="0.58039215686274503" green="0.58039215686274503" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMk-iP-RxU">
-                                        <rect key="frame" x="260" y="7" width="52" height="25"/>
-                                        <state key="normal" image="preferencesLocationAddCircle.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LFf-e9-vDb" firstAttribute="leading" secondItem="Rit-Rl-JGx" secondAttribute="leadingMargin" constant="-8" id="0r4-LF-pvy"/>
+                            <constraint firstAttribute="trailing" secondItem="xtk-wA-rqF" secondAttribute="trailing" id="3Xk-oA-AfR"/>
+                            <constraint firstItem="LFf-e9-vDb" firstAttribute="top" secondItem="0Dg-1b-fsG" secondAttribute="bottom" constant="10" id="4lY-aT-Nba"/>
+                            <constraint firstItem="xtk-wA-rqF" firstAttribute="top" secondItem="Mon-Yu-gva" secondAttribute="top" constant="40" id="9Ay-S9-UC2"/>
+                            <constraint firstItem="LFf-e9-vDb" firstAttribute="top" secondItem="Mon-Yu-gva" secondAttribute="top" constant="-32" id="KHB-h6-Ljt"/>
+                            <constraint firstAttribute="trailing" secondItem="Mon-Yu-gva" secondAttribute="trailing" id="Ly9-s5-Bxq"/>
+                            <constraint firstItem="xtk-wA-rqF" firstAttribute="leading" secondItem="Rit-Rl-JGx" secondAttribute="leading" id="P1h-Nk-XOh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LFf-e9-vDb" secondAttribute="trailing" constant="71" id="ReL-RZ-0LZ"/>
+                            <constraint firstItem="wr8-Yw-bX2" firstAttribute="top" secondItem="xtk-wA-rqF" secondAttribute="bottom" id="bG5-hd-cHj"/>
+                            <constraint firstItem="Mon-Yu-gva" firstAttribute="leading" secondItem="Rit-Rl-JGx" secondAttribute="leading" id="dNy-F6-FGx"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tblView" destination="xtk-wA-rqF" id="c0B-vv-lEI"/>
@@ -782,10 +834,10 @@
                                                 <rect key="frame" x="10" y="40" width="240" height="200"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <string key="text">It’s your preferred store. You will get special offers, bonus points &amp; tons of appreciation
-
-from the store. You could have multiple Home Stores. 
-
-Home Stores usually have short cuts, on your device, to enable quick access. Happy Shopping!</string>
+													
+													from the store. You could have multiple Home Stores.
+													
+													Home Stores usually have short cuts, on your device, to enable quick access. Happy Shopping!</string>
                                                 <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1977,7 +2029,7 @@ Home Stores usually have short cuts, on your device, to enable quick access. Hap
                                     <constraint firstAttribute="height" constant="40" id="LK2-xc-aXf"/>
                                 </constraints>
                                 <string key="text">In order to deliver,
-Please give us your address</string>
+									Please give us your address</string>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -2124,7 +2176,7 @@ Please give us your address</string>
                                                 <rect key="frame" x="8" y="92" width="243" height="34"/>
                                                 <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="p9S-PA-MaK" id="Yv3-hy-s43"/>
                                                 </connections>
@@ -2133,7 +2185,7 @@ Please give us your address</string>
                                                 <rect key="frame" x="8" y="134" width="118" height="34"/>
                                                 <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="p9S-PA-MaK" id="ZrO-vl-dDz"/>
                                                 </connections>
@@ -2142,7 +2194,7 @@ Please give us your address</string>
                                                 <rect key="frame" x="133" y="134" width="118" height="34"/>
                                                 <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="p9S-PA-MaK" id="qiw-Wn-iYP"/>
                                                 </connections>
@@ -2151,7 +2203,7 @@ Please give us your address</string>
                                                 <rect key="frame" x="8" y="176" width="118" height="34"/>
                                                 <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="p9S-PA-MaK" id="hp7-nG-FHS"/>
                                                 </connections>
@@ -2160,7 +2212,7 @@ Please give us your address</string>
                                                 <rect key="frame" x="133" y="176" width="118" height="34"/>
                                                 <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="p9S-PA-MaK" id="lqJ-Lc-oyW"/>
                                                 </connections>
@@ -2169,7 +2221,7 @@ Please give us your address</string>
                                                 <rect key="frame" x="8" y="218" width="243" height="34"/>
                                                 <color key="textColor" red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="p9S-PA-MaK" id="i9U-mX-jrM"/>
                                                 </connections>
@@ -4138,7 +4190,6 @@ Please give us your address</string>
                                 <rect key="frame" x="0.0" y="0.0" width="107" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="HKa-QC-loq"/>
-                                    <constraint firstAttribute="width" constant="107" id="fnk-l8-Jcl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4158,7 +4209,6 @@ Please give us your address</string>
                                 <rect key="frame" x="107" y="0.0" width="110" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="Tts-Oq-HnJ"/>
-                                    <constraint firstAttribute="width" constant="110" id="oeE-R4-H2e"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4177,7 +4227,6 @@ Please give us your address</string>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaC-6E-IIo">
                                 <rect key="frame" x="217" y="0.0" width="103" height="95"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="103" id="gsM-AL-CrA"/>
                                     <constraint firstAttribute="height" constant="95" id="ixA-8b-bUm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
@@ -4206,10 +4255,13 @@ Please give us your address</string>
                             <constraint firstItem="NSp-xJ-3I1" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leading" id="6lv-Z7-6Rv"/>
                             <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leadingMargin" constant="-16" id="7Ww-mP-j7P"/>
                             <constraint firstItem="DMe-lw-3Us" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="top" constant="-96" id="8Q9-Lh-yKn"/>
+                            <constraint firstItem="VrK-K4-9VO" firstAttribute="trailing" secondItem="uaC-6E-IIo" secondAttribute="trailing" constant="-103" id="DCM-Na-TuM"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="trailing" secondItem="VrK-K4-9VO" secondAttribute="trailing" constant="-110" id="Jzm-A3-1fR"/>
                             <constraint firstItem="jen-bh-d3e" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="bottom" id="K4t-9b-pv9"/>
+                            <constraint firstItem="VrK-K4-9VO" firstAttribute="leading" secondItem="uaC-6E-IIo" secondAttribute="leading" constant="-110" id="Lh6-e8-nfG"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="VrK-K4-9VO" secondAttribute="leading" constant="-107" id="O04-T7-QfM"/>
                             <constraint firstItem="VrK-K4-9VO" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="Y4p-TT-iFb"/>
                             <constraint firstAttribute="trailing" secondItem="NSp-xJ-3I1" secondAttribute="trailing" id="g2o-jY-Ytq"/>
-                            <constraint firstItem="VrK-K4-9VO" firstAttribute="leading" secondItem="DMe-lw-3Us" secondAttribute="leading" constant="107" id="lrh-Qi-Lsf"/>
                             <constraint firstItem="uaC-6E-IIo" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="t8b-LX-IA8"/>
                         </constraints>
                     </view>
@@ -4255,7 +4307,7 @@ Please give us your address</string>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="3eR-F2-Nxu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3eR-F2-Nxu">
                                 <rect key="frame" x="0.0" y="45" width="320" height="363"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -4396,7 +4448,24 @@ Please give us your address</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TVg-Si-YAf">
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqh-4i-ZEU">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rz-kF-XaR">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
+                                <fontDescription key="fontDescription" name="SegoePrint" family="Segoe Print" pointSize="15"/>
+                                <inset key="titleEdgeInsets" minX="-115" minY="123" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="100" minY="-15" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Tap to start scan" image="scanCode.png">
+                                    <color key="titleColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnScan:" destination="ihp-tp-fnG" eventType="touchUpInside" id="8z9-Qy-Ala"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="TVg-Si-YAf">
                                 <rect key="frame" x="0.0" y="152" width="320" height="264"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -4442,19 +4511,50 @@ Please give us your address</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imgBrandLogo" destination="8KA-RC-fV7" id="vRy-Hf-TLv"/>
+                                            <outlet property="lblLine" destination="VOx-eL-EC3" id="QsT-ZS-GvX"/>
+                                            <outlet property="lblOfferPrice" destination="anv-na-1qY" id="sav-LJ-vsV"/>
+                                            <outlet property="lblPrice" destination="gTH-MC-JJ8" id="m4P-lR-ulN"/>
+                                            <outlet property="lblValidTill" destination="a4Q-z2-Ox9" id="9cH-SE-3Dg"/>
+                                            <outlet property="lblbrandName" destination="aTG-vd-bKt" id="LA5-Ka-YOI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ihp-tp-fnG" id="eGa-Mo-RJE"/>
+                                    <outlet property="delegate" destination="ihp-tp-fnG" id="RBw-TI-PIH"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="subView" destination="jqh-4i-ZEU" id="rLd-gv-6XN"/>
                         <outlet property="tblView" destination="TVg-Si-YAf" id="UNF-ZV-hXr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHx-0A-QqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4981" y="1812"/>
+            <point key="canvasLocation" x="5006" y="1814"/>
+        </scene>
+        <!--Scan Code View Controller-->
+        <scene sceneID="1EU-pE-Rzb">
+            <objects>
+                <viewController storyboardIdentifier="ScanCodeView" id="F9a-Hl-reN" customClass="ScanCodeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4D5-Jh-Phn"/>
+                        <viewControllerLayoutGuide type="bottom" id="A0M-Ys-Po7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pdb-VD-tfQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="03n-fE-T0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5405" y="1817"/>
         </scene>
         <!--Right Collection View Controller-->
         <scene sceneID="34g-yj-OhG">
@@ -5465,7 +5565,7 @@ Please give us your address</string>
                                                     <constraint firstAttribute="height" constant="35" id="FLR-dv-ICf"/>
                                                 </constraints>
                                                 <string key="text">Your phone number will not be shared.
-It will be used only for verification purposes.</string>
+													It will be used only for verification purposes.</string>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -7062,6 +7162,7 @@ It will be used only for verification purposes.</string>
         <image name="preferencesLocationAddCircle.png" width="25" height="25"/>
         <image name="preferencesLocationIcon.png" width="20" height="20"/>
         <image name="reminderBox.png" width="290" height="49"/>
+        <image name="scanCode.png" width="110" height="110"/>
         <image name="seprator.png" width="271" height="1"/>
         <image name="sepratorBoxThree.png" width="320" height="106"/>
         <image name="sepratorBoxThree_2.png" width="320" height="106"/>

@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AddLocationViewController : UIViewController
+#import "LocationTableCell.h"
+#import "AddressModel.h"
+#import "LocationAlertViewController.h"
+@interface AddLocationViewController : UIViewController<LocationAlertViewControllerDelegate>
 {
 	
 	__weak IBOutlet UITableView *tblView;
+	NSMutableArray *datasource;
+	LocationAlertViewController *locationAlert;
 }
+- (IBAction)btnAddLoc:(id)sender;
 @end
