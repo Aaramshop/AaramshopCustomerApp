@@ -17,8 +17,8 @@
 @implementation PointsViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+	[super viewDidLoad];
+	// Do any additional setup after loading the view.
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
 	totalNoOfPages = 0;
 	pageno = 0;
@@ -39,8 +39,8 @@
 	
 }
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 #pragma mark - TableView delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -95,8 +95,8 @@
 			return 0;
 			break;
 	}
-
-
+	
+	
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -129,7 +129,7 @@
 			if(selectedPointsType == eAaramPoints)
 			{
 				[plusBtn setImage:imgMinus forState:UIControlStateNormal];
-				secView.backgroundColor = [UIColor clearColor];
+				secView.backgroundColor = [UIColor colorWithRed:244/255.0f green:244/255.0f blue:244/255.0f alpha:1.0f];
 			}
 			else
 			{
@@ -176,7 +176,7 @@
 			if(selectedPointsType == eBonusPoints)
 			{
 				[plusBtn setImage:imgMinus forState:UIControlStateNormal];
-				secView.backgroundColor = [UIColor clearColor];
+				secView.backgroundColor = [UIColor colorWithRed:244/255.0f green:244/255.0f blue:244/255.0f alpha:1.0f];
 			}
 			else
 			{
@@ -223,7 +223,7 @@
 			if(selectedPointsType == eBrandPoints)
 			{
 				[plusBtn setImage:imgMinus forState:UIControlStateNormal];
-				secView.backgroundColor = [UIColor clearColor];
+				secView.backgroundColor = [UIColor colorWithRed:244/255.0f green:244/255.0f blue:244/255.0f alpha:1.0f];
 			}
 			else
 			{
@@ -252,7 +252,7 @@
 			break;
 		default:
 			return nil;
-		break;
+			break;
 	}
 	
 }
@@ -410,13 +410,13 @@
 		pageno++;
 		switch (selectedPointsType) {
 			case eAaramPoints:
-					[self createDataToGetAaramPoints];
+				[self createDataToGetAaramPoints];
 				break;
 			case eBonusPoints:
-					[self createDataToGetBonusPoints];
+				[self createDataToGetBonusPoints];
 				break;
 			case eBrandPoints:
-					[self createDataToGetBrandPoints];
+				[self createDataToGetBrandPoints];
 				break;
 			default:
 				break;
@@ -547,7 +547,7 @@
 		{
 			NSDictionary *dict = [data objectAtIndex:i];
 			CMWalletPoints *walletPointsModel			=      [[CMWalletPoints alloc] init];
-
+			
 			
 			walletPointsModel.order_id			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kOrder_id]];
 			walletPointsModel.order_code			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kOrder_code]];
