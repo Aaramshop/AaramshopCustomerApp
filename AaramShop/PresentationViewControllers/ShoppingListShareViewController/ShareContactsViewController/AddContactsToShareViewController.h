@@ -11,13 +11,17 @@
 #import "ContactsData.h"
 
 
-@interface AddContactsToShareViewController : UIViewController <ContactListCellDelegate, AaramShop_ConnectionManager_Delegate>
+@interface AddContactsToShareViewController : UIViewController <ContactListCellDelegate, AaramShop_ConnectionManager_Delegate,UISearchDisplayDelegate>
 {
     __weak IBOutlet UITableView *tblContacts;
+    __weak IBOutlet UISearchBar *searchbar;
+    
     
     NSMutableArray *arrContactsData;
+    NSMutableArray *arrFilteredContactsData;
     
     ContactsData *contacts;
+        
 }
 
 @property(nonatomic, strong) NSString *strShoppingListId;

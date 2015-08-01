@@ -54,6 +54,9 @@
     tblVwCategory.sectionHeaderHeight = 0.0;
     tblVwCategory.sectionFooterHeight = 0.0;
     tblVwCategory.alwaysBounceVertical = NO;
+    tblVwCategory.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+
+    
     [self.view addSubview:tblVwCategory];
     
     
@@ -739,7 +742,9 @@
         UIView * secView = (UIView *)[objects objectAtIndex:0];
         UIView *secSubView1 = (UIView *)[secView viewWithTag:23237];
         
-        UISearchBar *searchBarProducts = (UISearchBar *)[secSubView1 viewWithTag:102];
+//        UISearchBar *searchBarProducts = (UISearchBar *)[secSubView1 viewWithTag:102];
+        searchBarProducts = (UISearchBar *)[secSubView1 viewWithTag:102];
+
         searchBarProducts.delegate = self;
         
 //        searchBarProducts.frame = CGRectMake(9, 4, [UIScreen mainScreen].bounds.size.width-18, 33);
@@ -1098,13 +1103,32 @@
 {
     pageno = 0;
     
-    [self performSelector:@selector(createDataToGetStoreProducts) withObject:nil afterDelay:0.4];
+//    if (isSearching)
+//    {
+//        isLoading = NO;
+//        [self showFooterLoadMoreActivityIndicator:NO];
+//        [refreshShoppingList endRefreshing];
+//    }
+//    else
+//    {
+    
+    // crash occured without using this code
+        ///// begin
+        isSearching = NO;
+        strSearchTxt = @"";
+        searchBarProducts.text = strSearchTxt;
+    
+    ///// end
+    
+        [self performSelector:@selector(createDataToGetStoreProducts) withObject:nil afterDelay:0.4];
+//    }
+    
 }
 
 
 -(void)calledPullUp
 {
-    if(totalNoOfPages>pageno + 1)
+    if( !isSearching && totalNoOfPages>pageno + 1)
     {
         pageno++;
         [self createDataToGetStoreProducts];

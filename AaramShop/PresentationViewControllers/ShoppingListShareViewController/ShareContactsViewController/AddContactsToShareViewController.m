@@ -31,10 +31,19 @@
     
     tblContacts.backgroundColor = [UIColor whiteColor];
     
-    arrContactsData = [[NSMutableArray alloc]init];
-    
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
     aaramShop_ConnectionManager.delegate = self;
+
+    arrFilteredContactsData = [[NSMutableArray alloc]init];
+    arrContactsData = [[NSMutableArray alloc]init];
+    
+    
+    [searchbar setShowsScopeBar:NO];
+    [searchbar sizeToFit];
+    
+    
+//    [tblContacts registerClass:[UITableViewCell class] forCellReuseIdentifier:@"AddContactsToShareCell"];
+
 
 }
 
@@ -165,6 +174,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        return arrFilteredContactsData.count;
+    }
+    
     return arrContactsData.count;
 }
 
@@ -186,7 +200,17 @@
     
     cell.delegateContactList = self;
     cell.indexPath = indexPath;
-    [cell updateContactsListCell:[arrContactsData objectAtIndex:indexPath.row]];
+    
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        [cell updateContactsListCell:[arrFilteredContactsData objectAtIndex:indexPath.row]];
+    }
+    else
+    {
+        [cell updateContactsListCell:[arrContactsData objectAtIndex:indexPath.row]];
+    }
+    
     
     return cell;
 }
@@ -206,7 +230,16 @@
 
 -(void)selectContact:(NSIndexPath *)indexPath
 {
-    ContactsData *contactsData = [arrContactsData objectAtIndex:indexPath.row];
+    ContactsData *contactsData;
+    
+    if (tblContacts == self.searchDisplayController.searchResultsTableView)
+    {
+        contactsData = [arrFilteredContactsData objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        contactsData = [arrContactsData objectAtIndex:indexPath.row];
+    }
     
     if ([contactsData.isSelected integerValue]==0)
     {
@@ -294,13 +327,44 @@
 
 
 
+#pragma mark - UISearchDisplayController Delegate Methods
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
 
 
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    // Tells the table data source to reload when scope bar selection changes
+    [self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
 
 
+#pragma mark Content Filtering
 
-
-
-
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    // Update the filtered array based on the search text and scope.
+    
+    // Remove all objects from the filtered search array
+    [arrFilteredContactsData removeAllObjects];
+    
+    // Filter the array using NSPredicate
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.username contains[c] %@",searchText];
+    
+    arrFilteredContactsData = [NSMutableArray arrayWithArray:[arrContactsData filteredArrayUsingPredicate:predicate]];    
+}
 
 @end

@@ -25,6 +25,8 @@
     
     UIRefreshControl *refreshShoppingList;
     BOOL isLoading;
+    
+    UISearchBar *searchBarProducts;
 
     
 }
