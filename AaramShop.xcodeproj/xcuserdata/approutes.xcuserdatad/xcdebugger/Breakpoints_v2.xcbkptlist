@@ -19,13 +19,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/ShoplistViewController/ShoppingListViewController.m"
-            timestampString = "460122213.069644"
+            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/HomeCategoryListCell/HomeCategoryListCell.m"
+            timestampString = "460292261.114066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
-            landmarkName = "-parseResponseData:"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "-updateCellWithData:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/HomeCategoryListViewController.m"
+            timestampString = "460292454.356999"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "623"
+            endingLineNumber = "623"
+            landmarkName = "-parseStoreListData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/ShoppingListCalenderViewController/ShoppingListCalenderViewController.m"
-            timestampString = "460122453.767561"
+            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/HomeCategoryListViewController.m"
+            timestampString = "460292751.116359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
-            landmarkName = "-callWebServiceToSetShoppingListReminder:"
+            startingLineNumber = "625"
+            endingLineNumber = "625"
+            landmarkName = "-parseStoreListData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/ShoppingListCalenderViewController/ShoppingListCalenderViewController.m"
-            timestampString = "460122466.798191"
+            filePath = "AaramShop/PresentationViewControllers/LoginViewController/LoginViewController.m"
+            timestampString = "460293585.86015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "-didFailWithError:"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "-callWebserviceForLogin:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,12 +83,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/ShoppingListCalenderViewController/ShoppingListCalenderViewController.m"
-            timestampString = "460122471.969466"
+            filePath = "AaramShop/PresentationViewControllers/LoginViewController/LoginViewController.m"
+            timestampString = "460293588.285987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "-responseReceived:"
             landmarkType = "5">
          </BreakpointContent>
@@ -83,13 +99,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/ShoplistViewController/ShoppingListViewController.m"
-            timestampString = "460122557.881115"
+            filePath = "AaramShop/PresentationViewControllers/LoginViewController/LoginViewController.m"
+            timestampString = "460293589.140045"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
-            landmarkName = "-callWebServiceToGetShoppingList:"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "-didFailWithError:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

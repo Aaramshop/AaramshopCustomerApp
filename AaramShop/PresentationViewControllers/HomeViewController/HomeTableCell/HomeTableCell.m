@@ -124,7 +124,10 @@
     
     lblCategoryName.text =objStoreData.store_category_name;
     lblDeliveryType.text = @"Delivers";
-    lblDistance.text = [AppManager getDistance:objStoreData];
+//    lblDistance.text = [AppManager getDistance:objStoreData];
+    
+    lblDistance.text = objStoreData.store_distance;
+    
     lblRestaurantName.text =objStoreData.store_name;
     
     if (isRecommendedStore) {

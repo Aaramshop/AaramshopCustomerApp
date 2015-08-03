@@ -158,6 +158,8 @@
 {
 	[activityVw stopAnimating];
 	[aaramShop_ConnectionManager failureBlockCalled:error];
+    [self userInteraction:YES];
+
 }
 -(void) responseReceived:(id)responseObject
 {

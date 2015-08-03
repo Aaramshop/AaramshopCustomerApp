@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "LocationAlertViewController.h"
 
+typedef void (^AddAddressCompletion)(void);
+
+
+
 @interface LocationEnterViewController : UIViewController<UITextFieldDelegate,MKMapViewDelegate,AaramShop_ConnectionManager_Delegate,LocationAlertViewControllerDelegate>
 {
    __weak IBOutlet UITextField *txtFLocation;
@@ -16,6 +20,10 @@
     NSMutableArray *arrShopsData;
 }
 @property (nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager ;
+@property (nonatomic, copy) AddAddressCompletion addAddressCompletion;
+
+
+
 
 - (IBAction)btnDoneClick:(UIButton *)sender;
 - (IBAction)btnEditClick:(UIButton *)sender;

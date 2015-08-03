@@ -920,6 +920,12 @@
 		6B0676F71B06383F0002259E /* locationPopupUpperRedBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0676F41B06383F0002259E /* locationPopupUpperRedBox@3x.png */; };
 		6B06770D1B070C3C0002259E /* LocationAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B06770C1B070C3C0002259E /* LocationAlertViewController.m */; };
 		6B0A00D91B6A255100A2577A /* CartListDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A00D81B6A255100A2577A /* CartListDetailCell.m */; };
+		6B0A00E01B949AD400A2577A /* applyCouponCodeBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A00DA1B949AD400A2577A /* applyCouponCodeBox.png */; };
+		6B0A00E11B949AD400A2577A /* applyCouponCodeBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A00DB1B949AD400A2577A /* applyCouponCodeBox@2x.png */; };
+		6B0A00E21B949AD400A2577A /* applyCouponCodeBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A00DC1B949AD400A2577A /* applyCouponCodeBox@3x.png */; };
+		6B0A00E31B949AD400A2577A /* checkAvialibilityBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A00DD1B949AD400A2577A /* checkAvialibilityBox.png */; };
+		6B0A00E41B949AD400A2577A /* checkAvialibilityBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A00DE1B949AD400A2577A /* checkAvialibilityBox@2x.png */; };
+		6B0A00E51B949AD400A2577A /* checkAvialibilityBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0A00DF1B949AD400A2577A /* checkAvialibilityBox@3x.png */; };
 		6B12DC611AF2294D00245209 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B12DC601AF2294D00245209 /* main.m */; };
 		6B12DC6A1AF2294D00245209 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DC681AF2294D00245209 /* Main.storyboard */; };
 		6B12DC6C1AF2294D00245209 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B12DC6B1AF2294D00245209 /* Images.xcassets */; };
@@ -2629,6 +2635,12 @@
 		6B06770C1B070C3C0002259E /* LocationAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAlertViewController.m; sourceTree = "<group>"; };
 		6B0A00D71B6A255100A2577A /* CartListDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartListDetailCell.h; sourceTree = "<group>"; };
 		6B0A00D81B6A255100A2577A /* CartListDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartListDetailCell.m; sourceTree = "<group>"; };
+		6B0A00DA1B949AD400A2577A /* applyCouponCodeBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = applyCouponCodeBox.png; sourceTree = "<group>"; };
+		6B0A00DB1B949AD400A2577A /* applyCouponCodeBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "applyCouponCodeBox@2x.png"; sourceTree = "<group>"; };
+		6B0A00DC1B949AD400A2577A /* applyCouponCodeBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "applyCouponCodeBox@3x.png"; sourceTree = "<group>"; };
+		6B0A00DD1B949AD400A2577A /* checkAvialibilityBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkAvialibilityBox.png; sourceTree = "<group>"; };
+		6B0A00DE1B949AD400A2577A /* checkAvialibilityBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkAvialibilityBox@2x.png"; sourceTree = "<group>"; };
+		6B0A00DF1B949AD400A2577A /* checkAvialibilityBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkAvialibilityBox@3x.png"; sourceTree = "<group>"; };
 		6B12DC5B1AF2294D00245209 /* AaramShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AaramShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B12DC5F1AF2294D00245209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B12DC601AF2294D00245209 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -5274,6 +5286,12 @@
 		368AFECA1B38271300417836 /* PaymentImages */ = {
 			isa = PBXGroup;
 			children = (
+				6B0A00DA1B949AD400A2577A /* applyCouponCodeBox.png */,
+				6B0A00DB1B949AD400A2577A /* applyCouponCodeBox@2x.png */,
+				6B0A00DC1B949AD400A2577A /* applyCouponCodeBox@3x.png */,
+				6B0A00DD1B949AD400A2577A /* checkAvialibilityBox.png */,
+				6B0A00DE1B949AD400A2577A /* checkAvialibilityBox@2x.png */,
+				6B0A00DF1B949AD400A2577A /* checkAvialibilityBox@3x.png */,
 				6BA82A8D1B57D73C0014CCEF /* circleCrossIcon.png */,
 				6BA82A8E1B57D73C0014CCEF /* circleCrossIcon@2x.png */,
 				6BA82A8F1B57D73C0014CCEF /* circleCrossIcon@3x.png */,
@@ -7390,6 +7408,7 @@
 				27EC675D1B032F9C007D126E /* bg4.jpg in Resources */,
 				368AFED61B38343C00417836 /* sideArrowGrey@3x.png in Resources */,
 				6BD2D32B1B28631A00EC6E54 /* homeDetailTabStarIcon@2x.png in Resources */,
+				6B0A00E31B949AD400A2577A /* checkAvialibilityBox.png in Resources */,
 				368209801B1C46FA002AA93F /* hong-kong.png in Resources */,
 				6B54904A1B68E59100465C82 /* checkBoxActive@3x.png in Resources */,
 				36820A0B1B1C46FA002AA93F /* south-sudan.png in Resources */,
@@ -7593,6 +7612,7 @@
 				274A5DDC1B05C88B009112B5 /* Read.png in Resources */,
 				368AFEDF1B383AEB00417836 /* shopingProductOne@2x.png in Resources */,
 				274A5DAD1B05C88B009112B5 /* btnArrow@2x.png in Resources */,
+				6B0A00E51B949AD400A2577A /* checkAvialibilityBox@3x.png in Resources */,
 				274A5DC11B05C88B009112B5 /* chatPauseIconWhite@2x.png in Resources */,
 				3682090D1B1C46FA002AA93F /* algeria.png in Resources */,
 				368209D11B1C46FA002AA93F /* north ossetia.png in Resources */,
@@ -7667,6 +7687,7 @@
 				2CF41C931B60F9C200F02527 /* leftArrow@3x.png in Resources */,
 				6B12DC8E1AF22C8100245209 /* welcomeScreenBackground@3x.png in Resources */,
 				365395601B524FA60045AAFE /* CouponsBoxInactive.png in Resources */,
+				6B0A00E21B949AD400A2577A /* applyCouponCodeBox@3x.png in Resources */,
 				368209E71B1C46FA002AA93F /* romania.png in Resources */,
 				6BD2D30A1B284C8900EC6E54 /* homeChocklateIcon@2x.png in Resources */,
 				274A5DD31B05C88B009112B5 /* iconTrash@2x.png in Resources */,
@@ -7814,6 +7835,7 @@
 				276FFF1D1B0DADC200071B98 /* preferencesLocationIcon.png in Resources */,
 				6BE4C90C1B034CDE00EF1EDB /* mapPin@3x.png in Resources */,
 				36D8C50C1B3AF79C00C255EE /* OffersLogo.png in Resources */,
+				6B0A00E11B949AD400A2577A /* applyCouponCodeBox@2x.png in Resources */,
 				368209F21B1C46FA002AA93F /* sakha republic.png in Resources */,
 				36D8C4F11B3A896F00C255EE /* locationIconHome@2x.png in Resources */,
 				274A5A481B05C075009112B5 /* favourateIcon.png in Resources */,
@@ -7896,6 +7918,7 @@
 				36820A2B1B1C46FA002AA93F /* udmurtia.png in Resources */,
 				6BFFF9491B0236B800BB2B62 /* tabBarChatIconActive@2x.png in Resources */,
 				6B8EB24F1B23087400402CFC /* shoppingListAddCircle.png in Resources */,
+				6B0A00E01B949AD400A2577A /* applyCouponCodeBox.png in Resources */,
 				36820A0C1B1C46FA002AA93F /* sovereign military of malta.png in Resources */,
 				6B8EB3121B27095000402CFC /* addToCartIcon.png in Resources */,
 				6BD2D31F1B284C8900EC6E54 /* homeScreenHomeIconRed@2x.png in Resources */,
@@ -8111,6 +8134,7 @@
 				2791DE3D1B036E5C000121BC /* menuPreferencesIcon@3x.png in Resources */,
 				2791DE3B1B036E5C000121BC /* menuPreferencesIcon.png in Resources */,
 				6B83A0D91B53E81300A00520 /* createNewShoppingListIcon@3x.png in Resources */,
+				6B0A00E41B949AD400A2577A /* checkAvialibilityBox@2x.png in Resources */,
 				6B5CF94F1B5534EC003E1DFE /* shoppingListSideArrow.png in Resources */,
 				6B5CF9501B5534EC003E1DFE /* shoppingListSideArrow@2x.png in Resources */,
 				6B8EB2521B23087400402CFC /* shoppingListCloseCircle.png in Resources */,

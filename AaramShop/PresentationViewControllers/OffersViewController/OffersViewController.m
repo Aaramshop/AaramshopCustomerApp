@@ -584,8 +584,8 @@
 			NSDictionary *dict = [data objectAtIndex:i];
 			CouponModel *coupon  = [[CouponModel alloc] init];
 			
-			coupon.coupon_id					= [dict objectForKey:@"coupon_id"];
-			coupon.coupon_code				= [dict objectForKey:@"coupon_code"];
+			coupon.coupon_id					= [NSString stringWithFormat:@"%@",[dict objectForKey:@"coupon_id"]];
+			coupon.coupon_code				= [NSString stringWithFormat:@"%@",[dict objectForKey:@"coupon_code"]];;
 			coupon.coupon_image			= [dict objectForKey:@"coupon_image"];
 			coupon.coupon_title				=	[dict objectForKey:@"coupon_title"];
 			coupon.coupon_expiry			= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:@"coupon_expiry"] doubleValue]]];
@@ -606,47 +606,48 @@
 			NSDictionary *dict = [data objectAtIndex:i];
 			CMOffers *offers  = [[CMOffers alloc] init];
 			
-			offers.offerType							= [dict objectForKey:kOfferType];
-			offers.product_id						= [dict objectForKey:kProduct_id];
-			offers.product_sku_id					= [dict objectForKey:kProduct_sku_id];
-			offers.product_image					=	[dict objectForKey:kProduct_image];
-			offers.product_actual_price		= [dict objectForKey:kProduct_actual_price];
-			offers.offer_price						= [dict objectForKey:kOffer_price];
+			offers.offerType							= [NSString stringWithFormat:@"%@",[dict objectForKey:kOfferType]];
+			offers.product_id						= [NSString stringWithFormat:@"%@",[dict objectForKey:kProduct_id]];
+			offers.product_sku_id					= [NSString stringWithFormat:@"%@",[dict objectForKey:kProduct_sku_id]];
+			offers.product_image					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kProduct_image]];
+			offers.product_actual_price		= [NSString stringWithFormat:@"%@",[dict objectForKey:kProduct_actual_price]];
+			offers.offer_price						= [NSString stringWithFormat:@"%@",[dict objectForKey:kOffer_price]];
 			offers.isBroadcast						= [NSString stringWithFormat:@"%@",[dict objectForKey:kIsBroadcast]];
-			offers.product_name					= [dict objectForKey:kProduct_name];
-			offers.offerTitle							= [dict objectForKey:kOfferTitle];
-			offers.offer_id								= [dict objectForKey:kOffer_id];
-			offers.overall_purchase_value	= [dict objectForKey:kOverall_purchase_value];
-			offers.discount_percentage			= [dict objectForKey:kDiscount_percentage];
-			offers.free_item							= [dict objectForKey:kFree_item];
-			offers.combo_mrp						= [dict objectForKey:kCombo_mrp];
-			offers.combo_offer_price			= [dict objectForKey:kCombo_offer_price];
-			offers.offerDetail							= [dict objectForKey:kOfferDetail];
-			offers.offerDescription				= [dict objectForKey:kOfferDescription];
-			offers.offerImage							= [dict objectForKey:kOfferImage];
-			offers.store_id								=	[dict objectForKey:kStore_id];
-			offers.store_name						=	[dict objectForKey:kStore_name];
-			offers.store_image						=	[dict objectForKey:kStore_image];
+			offers.product_name					= [NSString stringWithFormat:@"%@",[dict objectForKey:kProduct_name]];
+			offers.offerTitle							= [NSString stringWithFormat:@"%@",[dict objectForKey:kOfferTitle]];
+			offers.offer_id								= [NSString stringWithFormat:@"%@",[dict objectForKey:kOffer_id]];
+			offers.overall_purchase_value	= [NSString stringWithFormat:@"%@",[dict objectForKey:kOverall_purchase_value]];
+			offers.discount_percentage			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kDiscount_percentage]];
+			offers.free_item							= [NSString stringWithFormat:@"%@",[dict objectForKey:kFree_item]];
+			offers.combo_mrp						= [NSString stringWithFormat:@"%@",[dict objectForKey:kCombo_mrp]];
+			offers.combo_offer_price			= [NSString stringWithFormat:@"%@",[dict objectForKey:kCombo_offer_price]];
+			offers.offerDetail							= [NSString stringWithFormat:@"%@",[dict objectForKey:kOfferDetail]];
+			offers.offerDescription				= [NSString stringWithFormat:@"%@",[dict objectForKey:kOfferDescription]];
+			offers.offerImage							= [NSString stringWithFormat:@"%@",[dict objectForKey:kOfferImage]];
+			offers.store_id								=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_id]];
+			offers.store_name						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_name]];
+			offers.store_image						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_image]];
 			offers.start_date							= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kStart_date] doubleValue]]];
 			offers.end_date							= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kEnd_date] doubleValue]]];
-			offers.strCount							= [self getCountOfOfferProduct:offers];
+			offers.strCount							= [AppManager getCountOfProduct:offers.offer_id withOfferType:offers.offerType forStore_id:offers.store_id];
+//			[self getCountOfOfferProduct:offers];
 			[array addObject:offers];
 		}
 	}
 	return array;
 
 }
-- (NSString *)getCountOfOfferProduct:(CMOffers *)offers
-{
-	NSMutableArray *arrCartProduct	= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:offers.store_id]];
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF. cartProductId == %@ and SELF.strOffer_type == %@",offers.offer_id,offers.offerType];
-	NSArray *array	=	[arrCartProduct filteredArrayUsingPredicate:predicate];
-	if([array count]>0)
-	{
-		return [[array objectAtIndex:0] strCount];
-	}
-	return @"0";
-}
+//- (NSString *)getCountOfOfferProduct:(CMOffers *)offers
+//{
+//	NSMutableArray *arrCartProduct	= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:offers.store_id]];
+//	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF. cartProductId == %@ and SELF.strOffer_type == %@",offers.offer_id,offers.offerType];
+//	NSArray *array	=	[arrCartProduct filteredArrayUsingPredicate:predicate];
+//	if([array count]>0)
+//	{
+//		return [[array objectAtIndex:0] strCount];
+//	}
+//	return @"0";
+//}
 
 - (IBAction)selectionChanged:(id)sender {
 	UISegmentedControl *segCtrl = (UISegmentedControl *)sender;

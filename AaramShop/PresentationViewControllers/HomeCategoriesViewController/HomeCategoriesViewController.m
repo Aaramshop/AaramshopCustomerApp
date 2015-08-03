@@ -274,8 +274,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
 
     
-//        [dict setObject:@"28.5136781" forKey:kLatitude]; // temp
-//        [dict setObject:@"77.3769436" forKey:kLongitude]; // temp
+        [dict setObject:@"28.5160458" forKey:kLatitude]; // temp
+        [dict setObject:@"77.3735504" forKey:kLongitude]; // temp
     
     
     [self callWebserviceToGetStores:dict];
@@ -383,8 +383,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_id]];
             objStore.store_image = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            
+            
             objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_latitude]];
             objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_longitude]];
+            
+            objStore.store_distance = [AppManager getDistance:objStore];
+            
             objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_mobile]];
             objStore.store_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_name]];
             objStore.store_rating = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_rating]];
@@ -405,8 +410,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_id]];
             objStore.store_image = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            
             objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_latitude]];
             objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_longitude]];
+            
+            objStore.store_distance = [AppManager getDistance:objStore];
+            
+            
             objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_mobile]];
             objStore.store_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_name]];
             objStore.store_rating = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_rating]];
@@ -428,8 +438,15 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_id]];
             objStore.store_image = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            
+            
             objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_latitude]];
             objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_longitude]];
+            
+            objStore.store_distance = [AppManager getDistance:objStore];
+            
+            
+            
             objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_mobile]];
             objStore.store_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_name]];
             objStore.store_rating = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_rating]];

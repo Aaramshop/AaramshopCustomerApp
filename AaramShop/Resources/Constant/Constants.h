@@ -271,6 +271,8 @@
 #define DATE_FORMATTER_yyyy_mm_dd	@"yyyy-MM-dd"
 
 #define kGetPaymentPageDataURL					@"getPaymentPageData"
+#define kDelivery_charges									@"delivery_charges"
+#define kTotal_amount										@"total_amount"
 #define kPayment_page_info								@"payment_page_info"
 #define KGetDeliverySlotURL							@"getDeliverySlot"
 #define kcheckoutURL										@"checkout"
@@ -389,3 +391,9 @@
 
 //=========== make Favorite =============
 #define kURLMakeFavorite								@"makeFavorite"
+
+//=========== getMinimumOrderValue =============
+#define kURLGetMinimumOrderValue			@"getMinimumOrderValue"
+
+//===========  validateCoupons =============
+#define kURLValidateCoupons							@"validateCoupons"
