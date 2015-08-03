@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ScanCodeViewController.h"
-#import "CMWalletOffer.h"
+#import "CMOffers.h"
 #import "WalletOfferTableCell.h"
-@interface WalletOffersViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
+#import "OffersTableCell.h"
+#import "MyCustomOfferTableCell.h"
+#import "ComboDetailViewController.h"
+@interface WalletOffersViewController : UIViewController<AaramShop_ConnectionManager_Delegate,OffersTableCellDelegate>
 {
 	
 	__weak IBOutlet UITableView *tblView;
@@ -22,5 +25,5 @@
 	
 }
 - (IBAction)btnScan:(id)sender;
-@property (weak, nonatomic)CMWalletOffer *walletOffer;
+@property (weak, nonatomic)CMOffers *offers;
 @end

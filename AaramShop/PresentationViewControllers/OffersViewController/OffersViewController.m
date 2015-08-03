@@ -143,27 +143,46 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	CMOffers *cmOffers = [arrOffers objectAtIndex: indexPath.row];
+	if([cmOffers.offerType isEqualToString:@"6"])
+	{
+		return 110;
+	}
 	return 90;
+	
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if(segmentIndex ==0)
 	{
-		static NSString *cellIdentifier = @"OffersCell";
+		CMOffers *offers = [arrOffers objectAtIndex: indexPath.row];
+		static NSString *cellIdentifier = nil;
 		
-		OffersTableCell *cell = (OffersTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-		if (cell == nil) {
-			cell = [[OffersTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+		if([offers.offerType isEqualToString:@"6"])
+		{
+			cellIdentifier = @"CustomOffersCell";
+			MyCustomOfferTableCell *cell = (MyCustomOfferTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+			if (cell == nil) {
+				cell = [[MyCustomOfferTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+			}
+			cell.indexPath=indexPath;
+			cell.delegate = self;
+			[cell updateCellWithData: offers];
+			return cell;
 		}
-		
-		CMOffers *offers = [arrOffers objectAtIndex:indexPath.row];
-		cell.delegate = self;
-		cell.indexPath=indexPath;
-		cell.offers = offers;
-		[cell updateCellWithData: offers];
-
-		return cell;
+		else
+		{
+			cellIdentifier = @"OffersCell";
+			OffersTableCell *cell = (OffersTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+			if (cell == nil) {
+				cell = [[OffersTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+			}
+			cell.indexPath=indexPath;
+			cell.delegate = self;
+			[cell updateCellWithData: offers];
+			return cell;
+		}
 
 	}
 	else
@@ -202,9 +221,9 @@
 		CMOffers *offers  = [arrOffers objectAtIndex:indexPath.row];
 		if([offers.offerType isEqualToString:@"4"])
 		{
-//			ComboDetailViewController *comboDetail = (ComboDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"comboDetailController"];
-//			comboDetail.cmMyOffers = offers;
-//			[self.navigationController pushViewController:comboDetail animated:YES];
+			ComboDetailViewController *comboDetail = (ComboDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"comboDetailController"];
+			comboDetail.offersModel = offers;
+			[self.navigationController pushViewController:comboDetail animated:YES];
 		}
 
 	}

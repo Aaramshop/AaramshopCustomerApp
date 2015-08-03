@@ -856,6 +856,8 @@
 		36C79B7C1B579BD50020D77F /* preferencesLocationAddCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C79B791B579BD50020D77F /* preferencesLocationAddCircle.png */; };
 		36C79B7D1B579BD50020D77F /* preferencesLocationAddCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C79B7A1B579BD50020D77F /* preferencesLocationAddCircle@2x.png */; };
 		36C79B7E1B579BD50020D77F /* preferencesLocationAddCircle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36C79B7B1B579BD50020D77F /* preferencesLocationAddCircle@3x.png */; };
+		36CA64331B6F665B00A3BBB1 /* ComboDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CA64321B6F665B00A3BBB1 /* ComboDetailViewController.m */; };
+		36CA64361B6F66D200A3BBB1 /* MyCustomOfferTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CA64351B6F66D200A3BBB1 /* MyCustomOfferTableCell.m */; };
 		36D118F11B6C969F0013C84B /* LocationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D118F01B6C969F0013C84B /* LocationTableCell.m */; };
 		36D118F51B6C97260013C84B /* ScanCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D118F41B6C97260013C84B /* ScanCodeViewController.m */; };
 		36D118F91B6C99CF0013C84B /* CMWalletOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D118F81B6C99CF0013C84B /* CMWalletOffer.m */; };
@@ -2547,6 +2549,11 @@
 		36C79B791B579BD50020D77F /* preferencesLocationAddCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = preferencesLocationAddCircle.png; sourceTree = "<group>"; };
 		36C79B7A1B579BD50020D77F /* preferencesLocationAddCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesLocationAddCircle@2x.png"; sourceTree = "<group>"; };
 		36C79B7B1B579BD50020D77F /* preferencesLocationAddCircle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preferencesLocationAddCircle@3x.png"; sourceTree = "<group>"; };
+		36CA64311B6F665B00A3BBB1 /* ComboDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboDetailViewController.h; sourceTree = "<group>"; };
+		36CA64321B6F665B00A3BBB1 /* ComboDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboDetailViewController.m; sourceTree = "<group>"; };
+		36CA64341B6F66D200A3BBB1 /* MyCustomOfferTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCustomOfferTableCell.h; sourceTree = "<group>"; };
+		36CA64351B6F66D200A3BBB1 /* MyCustomOfferTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCustomOfferTableCell.m; sourceTree = "<group>"; };
+		36CA64371B6F6CC700A3BBB1 /* Protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protocols.h; sourceTree = "<group>"; };
 		36D118EF1B6C969F0013C84B /* LocationTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTableCell.h; sourceTree = "<group>"; };
 		36D118F01B6C969F0013C84B /* LocationTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTableCell.m; sourceTree = "<group>"; };
 		36D118F31B6C97260013C84B /* ScanCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanCodeViewController.h; sourceTree = "<group>"; };
@@ -4776,6 +4783,10 @@
 		27BE65791B0203CC004FA4B4 /* OffersViewController */ = {
 			isa = PBXGroup;
 			children = (
+				36CA64341B6F66D200A3BBB1 /* MyCustomOfferTableCell.h */,
+				36CA64351B6F66D200A3BBB1 /* MyCustomOfferTableCell.m */,
+				36CA64311B6F665B00A3BBB1 /* ComboDetailViewController.h */,
+				36CA64321B6F665B00A3BBB1 /* ComboDetailViewController.m */,
 				365E75391B54DECB0091E229 /* OffersTableCell.h */,
 				365E753A1B54DECB0091E229 /* OffersTableCell.m */,
 				27BE65821B0203FD004FA4B4 /* OffersViewController.h */,
@@ -5666,6 +5677,7 @@
 		6B12DC861AF22C8100245209 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				36CA64371B6F6CC700A3BBB1 /* Protocols.h */,
 				6BE473DA1B3B21CE00C09AFD /* MMHVideoPhotoGallery */,
 				6BE473481B3AD0DF00C09AFD /* NSSegmentBadgeControl */,
 				6B8EB2CD1B26E71600402CFC /* Videos */,
@@ -8379,6 +8391,7 @@
 				274F88C11B0D1C3100F85743 /* RightSideTableCell.m in Sources */,
 				6B8EB2881B25B9BE00402CFC /* HomeStoreViewController.m in Sources */,
 				274A5C5A1B05C4AA009112B5 /* UIWebView+AFNetworking.m in Sources */,
+				36CA64331B6F665B00A3BBB1 /* ComboDetailViewController.m in Sources */,
 				6B388E191AFCC31800FF3CF3 /* LocationEnterViewController.m in Sources */,
 				274A5CD01B05C4AA009112B5 /* XMPPIQ+XEP_0066.m in Sources */,
 				274A5CC01B05C4AA009112B5 /* XMPPvCardCoreDataStorage.m in Sources */,
@@ -8483,6 +8496,7 @@
 				6BC503331B620B6B0089656E /* ShoppingListChooseStoreViewController.m in Sources */,
 				36820A451B1C4709002AA93F /* SVProgressHUD.m in Sources */,
 				274A5CB61B05C4AA009112B5 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
+				36CA64361B6F66D200A3BBB1 /* MyCustomOfferTableCell.m in Sources */,
 				274A5DF21B05C88B009112B5 /* SHBaseRequestImage.m in Sources */,
 				274A5C741B05C4AA009112B5 /* FSTargetCallback.m in Sources */,
 				6B12DCE01AF2A46800245209 /* MobileEnterViewController.m in Sources */,

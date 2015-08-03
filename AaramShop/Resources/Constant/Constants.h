@@ -288,6 +288,7 @@
 
 //================== Offers =================
 #define kURLGetOffers										@"getOffers"
+#define kURLGetComboDetails							@"getComboDetails"
 #define kPage_no												@"page_no"
 #define kTotal_page											@"total_page"
 #define kOfferType											@"offerType"

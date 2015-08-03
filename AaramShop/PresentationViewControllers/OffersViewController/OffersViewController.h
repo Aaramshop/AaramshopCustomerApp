@@ -9,7 +9,8 @@
 #import "OffersTableCell.h"
 #import "CMOffers.h"
 #import "CouponModel.h"
-
+#import "MyCustomOfferTableCell.h"
+#import "ComboDetailViewController.h"
 @interface OffersViewController : UIViewController<CDRTranslucentSideBarDelegate,AaramShop_ConnectionManager_Delegate,UITableViewDelegate,UITableViewDataSource,OffersTableCellDelegate>
 {
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
