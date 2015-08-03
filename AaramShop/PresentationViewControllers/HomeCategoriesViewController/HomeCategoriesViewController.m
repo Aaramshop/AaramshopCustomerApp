@@ -274,9 +274,9 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
 
     
-        [dict setObject:@"28.5160458" forKey:kLatitude]; // temp
-        [dict setObject:@"77.3735504" forKey:kLongitude]; // temp
-    
+//        [dict setObject:@"28.5160458" forKey:kLatitude]; // temp
+//		[dict setObject:@"77.3735504" forKey:kLongitude]; // temp
+	
     
     [self callWebserviceToGetStores:dict];
 }

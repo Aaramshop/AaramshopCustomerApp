@@ -36,6 +36,8 @@ typedef enum
 }
 - (IBAction)btnCrossClicked:(id)sender;
 @property(nonatomic,strong) NSString *strStore_Id;
+@property(nonatomic,strong) NSString *strStore_name;
+@property(nonatomic,strong) NSString *strStore_image;
 @property(nonatomic,strong) NSString *strTotalPrice;
 @property(nonatomic,strong) NSMutableArray *arrSelectedProducts;
 @property(nonatomic,assign) enPickerType ePickerType;
