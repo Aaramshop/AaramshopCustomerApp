@@ -9,7 +9,7 @@
 #import "ShoppingListChooseStoreViewController.h"
 #import "ShoppingListChooseStoreGeneralCell.h"
 #import "ShoppingListChooseStoreRecommendedCell.h"
-
+#import "StoreModel.h"
 
 
 #define kTableRecommendedHeaderTitleHeight          23
@@ -538,8 +538,19 @@
         objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_category_name"]];
         objStore.store_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_id"]];
         objStore.store_image = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_image"]];
+        
         objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_latitude"]];
         objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_longitude"]];
+        
+        StoreModel *store = [[StoreModel alloc]init];
+        store.store_latitude = objStore.store_latitude;
+        store.store_longitude = objStore.store_longitude;
+        
+        objStore.store_distance = [AppManager getDistance:store];
+
+        
+        
+        
         objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_mobile"]];
         objStore.store_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_name"]];
         objStore.store_rating = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_rating"]];
@@ -565,8 +576,18 @@
         objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_category_name"]];
         objStore.store_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_id"]];
         objStore.store_image = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_image"]];
+        
         objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_latitude"]];
         objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_longitude"]];
+        
+        StoreModel *store = [[StoreModel alloc]init];
+        store.store_latitude = objStore.store_latitude;
+        store.store_longitude = objStore.store_longitude;
+        
+        
+        objStore.store_distance = [AppManager getDistance:store];
+        
+        
         objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_mobile"]];
         objStore.store_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_name"]];
         objStore.store_rating = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_rating"]];
@@ -594,8 +615,18 @@
         objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_category_name"]];
         objStore.store_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_id"]];
         objStore.store_image = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_image"]];
+        
+        
         objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_latitude"]];
         objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_longitude"]];
+        
+        StoreModel *store = [[StoreModel alloc]init];
+        store.store_latitude = objStore.store_latitude;
+        store.store_longitude = objStore.store_longitude;
+        
+        objStore.store_distance = [AppManager getDistance:store];
+
+        
         objStore.store_mobile = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_mobile"]];
         objStore.store_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_name"]];
         objStore.store_rating = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_rating"]];

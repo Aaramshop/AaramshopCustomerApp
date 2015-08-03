@@ -56,6 +56,8 @@
 @property(nonatomic,strong) NSString * total_orders;
 @property(nonatomic,strong) NSString * total_product_price;
 @property(nonatomic,strong) NSString * total_products;
+@property(nonatomic,strong) NSString * store_distance;
+
 
 ////////////////////////// new //////////////////////////
 @end
