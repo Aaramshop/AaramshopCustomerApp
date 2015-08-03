@@ -7,6 +7,7 @@
 //
 
 #import "AddLocationViewController.h"
+#import "LocationEnterViewController.h"
 
 @interface AddLocationViewController ()<AaramShop_ConnectionManager_Delegate>
 {
@@ -79,11 +80,22 @@
 
 - (IBAction)btnAddLoc:(id)sender {
 	
-	locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
-	locationAlert.delegate = self;
-	CGRect locationAlertViewRect = [UIScreen mainScreen].bounds;
-	locationAlert.view.frame = locationAlertViewRect;
-	[[UIApplication sharedApplication].keyWindow addSubview:locationAlert.view];
+//	locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
+//	locationAlert.delegate = self;
+//	CGRect locationAlertViewRect = [UIScreen mainScreen].bounds;
+//	locationAlert.view.frame = locationAlertViewRect;
+//	[[UIApplication sharedApplication].keyWindow addSubview:locationAlert.view];
+    
+    
+    LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+    
+    locationScreen.addAddressCompletion = ^(void)
+    {
+        self.navigationController.navigationBarHidden = NO;
+    };
+    
+    [self.navigationController pushViewController:locationScreen animated:YES];
+    
 }
 
 #pragma mark - UITableView Delegates & Data Source Methods

@@ -29,6 +29,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.addAddressCompletion)
+    {
+        self.navigationController.navigationBarHidden = YES;
+    }
+    
     appDeleg = APP_DELEGATE;
     txtFLocation.delegate = self;
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
@@ -713,8 +718,16 @@
 }
 -(void)saveAddress
 {
- HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
- [self.navigationController pushViewController:homeStoreVwController animated:YES];
+    if (self.addAddressCompletion)
+    {
+        self.addAddressCompletion();
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
+        [self.navigationController pushViewController:homeStoreVwController animated:YES];
+    }
 }
 #pragma mark - 
 
