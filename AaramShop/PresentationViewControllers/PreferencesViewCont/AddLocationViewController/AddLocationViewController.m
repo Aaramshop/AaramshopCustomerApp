@@ -110,6 +110,10 @@
 	
 	return cell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[tblView deselectRowAtIndexPath:indexPath animated:YES];
+}
 - (void)createDataToGetUserAddress
 {
 	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];

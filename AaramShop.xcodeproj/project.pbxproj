@@ -863,9 +863,10 @@
 		36D118FF1B6C9A290013C84B /* scanCode.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D118FC1B6C9A290013C84B /* scanCode.png */; };
 		36D119001B6C9A290013C84B /* scanCode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D118FD1B6C9A290013C84B /* scanCode@2x.png */; };
 		36D119011B6C9A290013C84B /* scanCode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D118FE1B6C9A290013C84B /* scanCode@3x.png */; };
-		36D119051B6CA09B0013C84B /* crossIconCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D119021B6CA09B0013C84B /* crossIconCircle.png */; };
-		36D119061B6CA09B0013C84B /* crossIconCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D119031B6CA09B0013C84B /* crossIconCircle@2x.png */; };
-		36D119071B6CA09B0013C84B /* crossIconCircle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D119041B6CA09B0013C84B /* crossIconCircle@3x.png */; };
+		36D1190B1B6CDEA10013C84B /* cancelIconCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D119081B6CDEA10013C84B /* cancelIconCircle.png */; };
+		36D1190C1B6CDEA10013C84B /* cancelIconCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D119091B6CDEA10013C84B /* cancelIconCircle@2x.png */; };
+		36D1190D1B6CDEA10013C84B /* cancelIconCircle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D1190A1B6CDEA10013C84B /* cancelIconCircle@3x.png */; };
+		36D119111B6CE79C0013C84B /* GlobalSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D119101B6CE79C0013C84B /* GlobalSearchViewController.m */; };
 		36D8C4C11B3996A200C255EE /* locationIconRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C4C01B3996A200C255EE /* locationIconRed.png */; };
 		36D8C4CA1B3996DE00C255EE /* callIconGreenCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C4C21B3996DE00C255EE /* callIconGreenCircle.png */; };
 		36D8C4CB1B3996DE00C255EE /* callIconGreenCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D8C4C31B3996DE00C255EE /* callIconGreenCircle@2x.png */; };
@@ -2556,9 +2557,11 @@
 		36D118FC1B6C9A290013C84B /* scanCode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanCode.png; sourceTree = "<group>"; };
 		36D118FD1B6C9A290013C84B /* scanCode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanCode@2x.png"; sourceTree = "<group>"; };
 		36D118FE1B6C9A290013C84B /* scanCode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanCode@3x.png"; sourceTree = "<group>"; };
-		36D119021B6CA09B0013C84B /* crossIconCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crossIconCircle.png; sourceTree = "<group>"; };
-		36D119031B6CA09B0013C84B /* crossIconCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "crossIconCircle@2x.png"; sourceTree = "<group>"; };
-		36D119041B6CA09B0013C84B /* crossIconCircle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "crossIconCircle@3x.png"; sourceTree = "<group>"; };
+		36D119081B6CDEA10013C84B /* cancelIconCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancelIconCircle.png; sourceTree = "<group>"; };
+		36D119091B6CDEA10013C84B /* cancelIconCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancelIconCircle@2x.png"; sourceTree = "<group>"; };
+		36D1190A1B6CDEA10013C84B /* cancelIconCircle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancelIconCircle@3x.png"; sourceTree = "<group>"; };
+		36D1190F1B6CE79C0013C84B /* GlobalSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalSearchViewController.h; sourceTree = "<group>"; };
+		36D119101B6CE79C0013C84B /* GlobalSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalSearchViewController.m; sourceTree = "<group>"; };
 		36D8C4C01B3996A200C255EE /* locationIconRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationIconRed.png; sourceTree = "<group>"; };
 		36D8C4C21B3996DE00C255EE /* callIconGreenCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = callIconGreenCircle.png; sourceTree = "<group>"; };
 		36D8C4C31B3996DE00C255EE /* callIconGreenCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "callIconGreenCircle@2x.png"; sourceTree = "<group>"; };
@@ -5305,9 +5308,9 @@
 		36907A9D1B5BCC720017A504 /* WalletImages */ = {
 			isa = PBXGroup;
 			children = (
-				36D119021B6CA09B0013C84B /* crossIconCircle.png */,
-				36D119031B6CA09B0013C84B /* crossIconCircle@2x.png */,
-				36D119041B6CA09B0013C84B /* crossIconCircle@3x.png */,
+				36D119081B6CDEA10013C84B /* cancelIconCircle.png */,
+				36D119091B6CDEA10013C84B /* cancelIconCircle@2x.png */,
+				36D1190A1B6CDEA10013C84B /* cancelIconCircle@3x.png */,
 				36D118FC1B6C9A290013C84B /* scanCode.png */,
 				36D118FD1B6C9A290013C84B /* scanCode@2x.png */,
 				36D118FE1B6C9A290013C84B /* scanCode@3x.png */,
@@ -5451,6 +5454,15 @@
 				36D118F81B6C99CF0013C84B /* CMWalletOffer.m */,
 			);
 			path = CMWalletOffer;
+			sourceTree = "<group>";
+		};
+		36D1190E1B6CE7880013C84B /* GlobalSearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				36D1190F1B6CE79C0013C84B /* GlobalSearchViewController.h */,
+				36D119101B6CE79C0013C84B /* GlobalSearchViewController.m */,
+			);
+			path = GlobalSearchViewController;
 			sourceTree = "<group>";
 		};
 		36D8C4BF1B3996A200C255EE /* OrderImages */ = {
@@ -5760,6 +5772,7 @@
 		6B12DC9D1AF2543A00245209 /* PresentationViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				36D1190E1B6CE7880013C84B /* GlobalSearchViewController */,
 				36D118F21B6C97260013C84B /* ScanCodeViewController */,
 				6BEABEDD1B67AC4C00398164 /* BroadcastViewController */,
 				6BD9CB5B1B6252F200D8D012 /* RetailerShoppingList */,
@@ -7301,6 +7314,7 @@
 				6BE9A94A1B29B31900B960C0 /* homeDeatilsGreyArrowBack@2x.png in Resources */,
 				276FFF1E1B0DADC200071B98 /* preferencesLocationIcon@2x.png in Resources */,
 				274A5A451B05C075009112B5 /* addToCardNoBox.png in Resources */,
+				36D1190D1B6CDEA10013C84B /* cancelIconCircle@3x.png in Resources */,
 				6BEABF051B68B8D000398164 /* homeDetailSideBar@3x.png in Resources */,
 				6B6098AD1B395CAB00277D03 /* chatNumberingCircle@2x.png in Resources */,
 				6BA2F09E1B04B2F30074562F /* mapPinGreen.png in Resources */,
@@ -7396,7 +7410,6 @@
 				6BD2D33F1B28A66500EC6E54 /* homeDetailsCoffeeIconInactive@2x.png in Resources */,
 				368209881B1C46FA002AA93F /* ireland.png in Resources */,
 				27EC675E1B032F9C007D126E /* bg4@2x.jpg in Resources */,
-				36D119071B6CA09B0013C84B /* crossIconCircle@3x.png in Resources */,
 				36907AB61B5BCC720017A504 /* addBtnCircleGrey.png in Resources */,
 				2791DE3A1B036E5C000121BC /* menuFacebookBox@3x.png in Resources */,
 				6BE474491B3B21CE00C09AFD /* right_arrow@2x.png in Resources */,
@@ -7525,6 +7538,7 @@
 				3682099F1B1C46FA002AA93F /* kuwait.png in Resources */,
 				6B8EB2F81B26FB6D00402CFC /* minusIconCircle@3x.png in Resources */,
 				6BD2D3231B284C8900EC6E54 /* homeStarIconActive@3x.png in Resources */,
+				36D1190B1B6CDEA10013C84B /* cancelIconCircle.png in Resources */,
 				AC2985AF1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@3x.png in Resources */,
 				36820A341B1C46FA002AA93F /* uzbekistan.png in Resources */,
 				274A5DB11B05C88B009112B5 /* chatBubbleGrey@2x.png in Resources */,
@@ -7896,6 +7910,7 @@
 				274A5DCB1B05C88B009112B5 /* chatSendBtn@2x.png in Resources */,
 				6B83A0D71B53E81300A00520 /* createNewShoppingListIcon.png in Resources */,
 				368209CE1B1C46FA002AA93F /* nigeria.png in Resources */,
+				36D1190C1B6CDEA10013C84B /* cancelIconCircle@2x.png in Resources */,
 				6BB50DCE1B32AAB300990161 /* locationPopupOp3@3x.png in Resources */,
 				6BFFF95E1B0236B800BB2B62 /* tabBarOrdersIcon@2x.png in Resources */,
 				36820A361B1C46FA002AA93F /* Venezuela.png in Resources */,
@@ -8088,7 +8103,6 @@
 				6B5CF9501B5534EC003E1DFE /* shoppingListSideArrow@2x.png in Resources */,
 				6B8EB2521B23087400402CFC /* shoppingListCloseCircle.png in Resources */,
 				6B8EB3141B27095000402CFC /* addToCartIcon@3x.png in Resources */,
-				36D119051B6CA09B0013C84B /* crossIconCircle.png in Resources */,
 				368209951B1C46FA002AA93F /* karelia.png in Resources */,
 				36820A351B1C46FA002AA93F /* vanuatu.png in Resources */,
 				6BE474551B3B21CE00C09AFD /* MHGallery.bundle in Resources */,
@@ -8132,7 +8146,6 @@
 				36BE5A9D1B53C52A0079DAE3 /* packedIconInactive@2x.png in Resources */,
 				36907AC61B5BCC720017A504 /* walletOffersIconInactive@2x.png in Resources */,
 				6B8EB3131B27095000402CFC /* addToCartIcon@2x.png in Resources */,
-				36D119061B6CA09B0013C84B /* crossIconCircle@2x.png in Resources */,
 				6B83A0DC1B53E81300A00520 /* shareIcon@3x.png in Resources */,
 				2791DE3C1B036E5C000121BC /* menuPreferencesIcon@2x.png in Resources */,
 				36820A061B1C46FA002AA93F /* somalia.png in Resources */,
@@ -8501,6 +8514,7 @@
 				274A5CB41B05C4AA009112B5 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				6BD9CB5E1B62532C00D8D012 /* RetailerShoppingListViewController.m in Sources */,
 				274A5CA21B05C4AA009112B5 /* XMPPRoster.xcdatamodel in Sources */,
+				36D119111B6CE79C0013C84B /* GlobalSearchViewController.m in Sources */,
 				6B8EB2651B257DC900402CFC /* HomeTableCell.m in Sources */,
 				36C010341B5FCD6D0099B7F7 /* CMWalletPoints.m in Sources */,
 				36D118F11B6C969F0013C84B /* LocationTableCell.m in Sources */,

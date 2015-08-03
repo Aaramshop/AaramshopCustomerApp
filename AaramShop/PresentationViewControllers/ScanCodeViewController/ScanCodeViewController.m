@@ -77,12 +77,11 @@
 			   action:@selector(hideSuperView)
 	 forControlEvents:UIControlEventTouchUpInside];
 //	[button setTitle:@"Show View" forState:UIControlStateNormal];
-	[button setImage:[UIImage imageNamed:@"crossIconCircle"] forState:UIControlStateNormal];
-	button.frame = CGRectMake(80.0, 210.0, 30, 30);
+	[button setImage:[UIImage imageNamed:@"cancelIconCircle"] forState:UIControlStateNormal];
+	button.frame = CGRectMake(10, 32, 65, 30);
 	[self.view addSubview:button];
 	
 	[self.view bringSubviewToFront:_highlightView];
-//	 [self.view bringSubviewToFront:_label];
 }
 - (void)hideSuperView
 {

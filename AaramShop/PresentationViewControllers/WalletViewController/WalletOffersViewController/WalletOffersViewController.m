@@ -66,7 +66,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	count ++;
-	if(count >= 3)
+	if(count > 3)
 	{
 		return 1;
 	}
