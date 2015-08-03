@@ -69,24 +69,69 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	CMOffers *cmOffers = [dataSource objectAtIndex: indexPath.row];
+	if([cmOffers.offerType isEqualToString:@"6"])
+	{
+		return 110;
+	}
 	return 90;
+	
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	CMOffers *offers = [dataSource objectAtIndex: indexPath.row];
+	static NSString *cellIdentifier = nil;
 	
-	static NSString *cellIdentifier = @"WalletOfferCell";
+	if([offers.offerType isEqualToString:@"6"])
+	{
+		cellIdentifier = @"CustomOffersCell";
+		MyCustomOfferTableCell *cell = (MyCustomOfferTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+		if (cell == nil) {
+			cell = [[MyCustomOfferTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+		}
+		cell.indexPath=indexPath;
+		cell.delegate = self;
+		[cell updateCellWithData: offers];
+		return cell;
+	}
+	else
+	{
+		cellIdentifier = @"OffersCell";
+		OffersTableCell *cell = (OffersTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+		if (cell == nil) {
+			cell = [[OffersTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+		}
+		cell.indexPath=indexPath;
+		cell.delegate = self;
+		[cell updateCellWithData: offers];
+		return cell;
+	}
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	CMOffers *offers  = [dataSource objectAtIndex:indexPath.row];
+	if([offers.offerType isEqualToString:@"4"])
+	{
+		ComboDetailViewController *comboDetail = (ComboDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"comboDetailController"];
+		comboDetail.offersModel = offers;
+		[self.navigationController pushViewController:comboDetail animated:YES];
+	}
+}
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
 	
-	WalletOfferTableCell *cell = (WalletOfferTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-	if (cell == nil) {
-		cell = [[WalletOfferTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+	if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+		[tableView setSeparatorInset:UIEdgeInsetsZero];
 	}
 	
-	CMWalletOffer *walletOfferModel = [dataSource objectAtIndex:indexPath.row];
-	cell.indexPath = indexPath;
-	[cell updateCellWithData: walletOfferModel];
+	if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+		[tableView setLayoutMargins:UIEdgeInsetsZero];
+	}
 	
-	return cell;
-	
+	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+		[cell setLayoutMargins:UIEdgeInsetsZero];
+	}
 }
 
 @end

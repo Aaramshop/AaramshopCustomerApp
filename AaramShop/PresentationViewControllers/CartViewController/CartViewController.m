@@ -267,12 +267,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//	CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
-//	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
-//	if([productModel.strOffer_type intValue] > 0)
-//	{
-//		return 90;
-//	}
+	CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
+	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
+	if([productModel.strOffer_type intValue] == 6)
+	{
+		return 110;
+	}
+	
     return kTableCellHeight;
 }
 
@@ -320,14 +321,7 @@
 	}
 	else
 	{
-		static NSString *cellIdentifier = @"OffersCell";
-		
-		OffersTableCell *cell = (OffersTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-		if (cell == nil) {
-			cell = [[OffersTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-		}
-		
-		CMOffers *offers	= [[CMOffers alloc]init];
+		offers	= [[CMOffers alloc]init];
 		offers.offerType		= productModel.strOffer_type;
 		offers.offer_price	= productModel.offer_price;
 		offers.strCount		=	productModel.strCount;
@@ -350,19 +344,53 @@
 			offers.offerTitle						=	productModel.offerTitle;
 			offers.offerImage						=	productModel.cartProductImage;
 		}
-		cell.delegate = self;
-		cell.indexPath=indexPath;
-		cell.offers = offers;
-		[cell updateCellWithData: offers];
+
+		static NSString *cellIdentifier = nil;
 		
-		return cell;
+		if([offers.offerType isEqualToString:@"6"])
+		{
+			cellIdentifier = @"CustomOffersCell";
+			MyCustomOfferTableCell *cell = (MyCustomOfferTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+			if (cell == nil) {
+				cell = [[MyCustomOfferTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+			}
+						cell.delegate = self;
+			cell.indexPath=indexPath;
+			cell.offers = offers;
+			[cell updateCellWithData: offers];
+			return cell;
+		}
+		else
+		{
+			cellIdentifier = @"OffersCell";
+			OffersTableCell *cell = (OffersTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+			if (cell == nil) {
+				cell = [[OffersTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+			}
+			cell.delegate = self;
+			cell.indexPath=indexPath;
+			cell.offers = offers;
+			[cell updateCellWithData: offers];
+			return cell;
+		}
+
 	}
 	return nil;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+	CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
+	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
+	if([productModel.strOffer_type intValue] == 6)
+	{
+		ComboDetailViewController *comboDetail = (ComboDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"comboDetailController"];
+		comboDetail.offersModel = offers;
+		[self.navigationController pushViewController:comboDetail animated:YES];
+	}
 }
 
 

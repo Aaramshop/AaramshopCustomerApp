@@ -264,11 +264,11 @@
 {
     if (self.tag == 0) {
         UIImage* image;
-        NSArray *arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+        NSArray *arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kAddressForLocation];
         NSMutableDictionary *dictAddress  = nil;
         for (NSMutableDictionary *dict in arrAddress) {
             
-            if ([[dict objectForKey:kUser_address_title] isEqualToString:@"Home"]) {
+            if ([[dict objectForKey:kTitle] isEqualToString:@"Home"]) {
                 dictAddress = dict;
                 break;
             }
@@ -305,9 +305,19 @@
         lblAddress.numberOfLines = 2;
         lblAddress.lineBreakMode = NSLineBreakByWordWrapping;
         lblAddress.font=[UIFont fontWithName:kRobotoRegular size:15];
-        lblAddress.text = [dictAddress objectForKey:kAddress];
+		NSString *strAddress =	[dictAddress objectForKey:kAddress];
+		
+		if ([strAddress rangeOfString:@","].location == NSNotFound)
+		{
+			NSString *strFullAddress = [NSString stringWithFormat:@"%@, %@, %@, %@",[dictAddress objectForKey:kAddress],[dictAddress objectForKey:@"locality"],[dictAddress objectForKey:@"city"],[dictAddress objectForKey:@"state"]];
+			lblAddress.text = strFullAddress;
+		}
+		else
+		{
+			lblAddress.text = [dictAddress objectForKey:kAddress];
+		}
+		
         lblAddress.textColor=[UIColor whiteColor];
-        
         UIButton *btnEdit=[[UIButton alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-16, 34)];
         [btnEdit setImage:[UIImage imageNamed:@"menuEditIcon"] forState:UIControlStateNormal];
         [btnEdit setImageEdgeInsets:UIEdgeInsetsMake(-12.0f, 0.0f, 0.0f, -225.0f)];

@@ -9,5 +9,16 @@
 #ifndef AaramShop_Protocols_h
 #define AaramShop_Protocols_h
 
+//=====================================================
+@protocol OffersTableCellDelegate <NSObject>
+
+- (void)addedValueByPriceAtIndexPath:(NSIndexPath *)inIndexPath;
+- (void)minusValueByPriceAtIndexPath:(NSIndexPath *)inIndexPath;
+- (void)updateTableAtIndexPath:(NSIndexPath *)inIndexPath;
+
+@end
+
+//===========================================
+
 
 #endif
