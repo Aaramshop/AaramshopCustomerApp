@@ -533,11 +533,12 @@
         objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"is_home_store"]];
         objStore.is_open = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"is_open"]];
         objStore.remaining_products = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"remaining_products"]];
-        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_category_icon"]];
+        
+        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:@"store_category_icon"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_category_id"]];
         objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_category_name"]];
         objStore.store_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_id"]];
-        objStore.store_image = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_image"]];
+        objStore.store_image = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:@"store_image"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         
         objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_latitude"]];
         objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:@"store_longitude"]];
@@ -571,11 +572,16 @@
         objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"is_home_store"]];
         objStore.is_open = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"is_open"]];
         objStore.remaining_products = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"remaining_products"]];
-        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_category_icon"]];
+        
+        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:@"store_category_icon"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+        
         objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_category_id"]];
         objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_category_name"]];
         objStore.store_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_id"]];
-        objStore.store_image = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_image"]];
+        
+        objStore.store_image = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:@"store_image"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
         
         objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_latitude"]];
         objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:@"store_longitude"]];
@@ -610,11 +616,16 @@
         objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"is_home_store"]];
         objStore.is_open = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"is_open"]];
         objStore.remaining_products = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"remaining_products"]];
-        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_category_icon"]];
+        
+        objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:@"store_category_icon"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
+        
         objStore.store_category_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_category_id"]];
         objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_category_name"]];
         objStore.store_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_id"]];
-        objStore.store_image = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_image"]];
+        
+        objStore.store_image = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:@"store_image"]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+
         
         
         objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:@"store_latitude"]];
