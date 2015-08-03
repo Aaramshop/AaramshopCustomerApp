@@ -265,8 +265,7 @@
 
 -(void) responseReceived:(id)responseObject
 {
-    
-    
+ 
     [AppManager stopStatusbarActivityIndicator];
     
     

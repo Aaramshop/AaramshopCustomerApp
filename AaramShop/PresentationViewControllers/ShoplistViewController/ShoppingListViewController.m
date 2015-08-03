@@ -432,7 +432,8 @@
     {
         ShoppingListModel *shoppingListModel = [[ShoppingListModel alloc]init];
         shoppingListModel.creationDate = [NSString stringWithFormat:@"%@",[obj valueForKey:@"creationDate"]];
-        shoppingListModel.reminderDate = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminderDate"]];
+        shoppingListModel.reminder_start_date = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminder_start_date"]];
+        shoppingListModel.reminder_end_date = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminder_end_date"]];
         
         
         NSArray *arrTempSharedBy = [obj valueForKey:@"sharedBy"];
@@ -482,35 +483,6 @@
 }
 
 
-/*
- 
- sharedBy =             {
- "chat_username" = 14356530153063;
- "customer_name" = "Joy Sharma";
- email = "joysharma@gmail.com";
- mobile = 9999614234;
- };
-
- 
- 
-sharedWith =             (
-                          {
-                              "chat_username" = 14356530153063;
-                              "customer_name" = "Joy Sharma";
-                              email = "joysharma@gmail.com";
-                              mobile = 9999614234;
-                          },
-                          {
-                              "chat_username" = 14351466597519;
-                              "customer_name" = "Neha Saxena";
-                              email = "nehaa.iphone@gmail.com";
-                              mobile = 9711859131;
-                          }
-                          );
- 
- 
- 
- //*/
 
 
 
@@ -531,42 +503,5 @@ sharedWith =             (
 }
 
 
-/*
-Printing description of responseObject:
-{
-    deviceId = 3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0;
-    message = "Shopping Lists";
-    "page_no" = 0;
-    "shopping_list" =     (
-                           {
-                               creationDate = 1436985000;
-                               reminderDate = "";
-                               sharedBy =             (
-                               );
-                               sharedWith =             (
-                               );
-                               shoppingListId = 4;
-                               shoppingListName = "Test list 001";
-                               totalItems = 2;
-                               "total_people" = 0;
-                           },
-                           {
-                               creationDate = 1436985000;
-                               reminderDate = "";
-                               sharedBy =             (
-                               );
-                               sharedWith =             (
-                               );
-                               shoppingListId = 5;
-                               shoppingListName = "Test list 002";
-                               totalItems = 2;
-                               "total_people" = 0;
-                           }
-                           );
-    status = 1;
-    "total_pages" = 1;
-}
-(lldb)
-*/
 
 @end

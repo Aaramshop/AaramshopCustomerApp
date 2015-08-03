@@ -53,12 +53,12 @@
     
     NSString *strTime = @"";
     
-    if ([shoppingListModel.reminderDate length]>0)
+    if ([shoppingListModel.reminder_start_date length]>0)
     {
         [btnTime setImage:[UIImage imageNamed:@"clockIconRed"] forState:UIControlStateNormal];
         [btnTime setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
         
-        strTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[shoppingListModel.reminderDate doubleValue]]];
+        strTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[shoppingListModel.reminder_start_date doubleValue]]];
     }
     else
     {
