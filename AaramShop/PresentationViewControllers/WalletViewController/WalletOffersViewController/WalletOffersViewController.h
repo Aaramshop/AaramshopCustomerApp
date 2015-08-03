@@ -17,9 +17,9 @@
 	AppDelegate *appDel;
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 	NSMutableArray *dataSource;
-	CMWalletOffer *cmWalletOffer;
 	__weak IBOutlet UIView *subView;
 	NSInteger count;
+	
 }
 - (IBAction)btnScan:(id)sender;
 @property (weak, nonatomic)CMWalletOffer *walletOffer;

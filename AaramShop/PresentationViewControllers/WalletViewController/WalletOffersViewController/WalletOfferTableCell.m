@@ -19,9 +19,9 @@
 
     // Configure the view for the selected state
 }
--(void)updateCellWithData:(CMWalletOffer *)walletOfferModel
+- (void)updateCellWithData:(CMWalletOffer *)walletOfferModel
 {
-	if ([walletOfferModel.offerType isEqualToString:@"1"])//Discount Offer
+	if (walletOfferModel.offerType.integerValue == 1)//Discount Offer
 	{
 		lblbrandName.text = walletOfferModel.product_name;
 		[lblLine setHidden:NO];

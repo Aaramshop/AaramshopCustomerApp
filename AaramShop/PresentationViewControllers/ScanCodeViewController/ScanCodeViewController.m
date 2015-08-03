@@ -191,21 +191,21 @@
 - (void)parseData:(id)dict
 {
 	walletOfferModel = [[CMWalletOffer alloc] init];
-	walletOfferModel.offerType                        = [dict objectForKey:kOfferType];
-	walletOfferModel.product_id                      = [dict objectForKey:kProduct_id];
-	walletOfferModel.product_sku_id               = [dict objectForKey:kProduct_sku_id];
-	walletOfferModel.product_image                = [dict objectForKey:kProduct_image];
-	walletOfferModel.product_actual_price       = [dict objectForKey:kProduct_actual_price];
-	walletOfferModel.offer_price                      = [dict objectForKey:kOffer_price];
-	walletOfferModel.product_name                 = [dict objectForKey:kProduct_name];
-	walletOfferModel.offerTitle                         = [dict objectForKey:kOfferTitle];
-	walletOfferModel.offer_id                           = [dict objectForKey:kOffer_id];
-	walletOfferModel.free_item                        = [dict objectForKey:kFree_item];
-	walletOfferModel.combo_mrp                    = [dict objectForKey:kCombo_mrp];
-	walletOfferModel.combo_offer_price          = [dict objectForKey:kCombo_offer_price];
-	walletOfferModel.offerDetail                      = [dict objectForKey:kOfferDetail];
-	walletOfferModel.offerDescription             = [dict objectForKey:kOfferDescription];
-	walletOfferModel.offerImage                      = [dict objectForKey:kOfferImage];
+	walletOfferModel.offerType                        = [NSString stringWithFormat:@"%@",[dict objectForKey:kOfferType]];
+	walletOfferModel.product_id                      = [NSString stringWithFormat:@"%@",[dict objectForKey:kProduct_id]];
+	walletOfferModel.product_sku_id               = [NSString stringWithFormat:@"%@",[dict objectForKey:kProduct_sku_id]];
+	walletOfferModel.product_image                = [NSString stringWithFormat:@"%@",[dict objectForKey:kProduct_image]];
+	walletOfferModel.product_actual_price       = [NSString stringWithFormat:@"%@",[dict objectForKey:kProduct_actual_price]];
+	walletOfferModel.offer_price                      = [NSString stringWithFormat:@"%@",[dict objectForKey:kOffer_price]];
+	walletOfferModel.product_name                 = [NSString stringWithFormat:@"%@",[dict objectForKey:kProduct_name]];
+	walletOfferModel.offerTitle                         = [NSString stringWithFormat:@"%@",[dict objectForKey:kOfferTitle]];
+	walletOfferModel.offer_id                           = [NSString stringWithFormat:@"%@",[dict objectForKey:kOffer_id]];
+	walletOfferModel.free_item                        = [NSString stringWithFormat:@"%@",[dict objectForKey:kFree_item]];
+	walletOfferModel.combo_mrp                    = [NSString stringWithFormat:@"%@",[dict objectForKey:kCombo_mrp]];
+	walletOfferModel.combo_offer_price          = [NSString stringWithFormat:@"%@",[dict objectForKey:kCombo_offer_price]];
+	walletOfferModel.offerDetail                      = [NSString stringWithFormat:@"%@",[dict objectForKey:kOfferDetail]];
+	walletOfferModel.offerDescription             = [NSString stringWithFormat:@"%@",[dict objectForKey:kOfferDescription]];
+	walletOfferModel.offerImage                      = [NSString stringWithFormat:@"%@",[dict objectForKey:kOfferImage]];
 	walletOfferModel.start_date                      = [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kStart_date] doubleValue]]];
 	walletOfferModel.end_date                      = [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kEnd_date] doubleValue]]];
 	

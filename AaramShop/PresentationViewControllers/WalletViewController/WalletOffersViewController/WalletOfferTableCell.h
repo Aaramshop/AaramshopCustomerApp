@@ -18,5 +18,5 @@
 }
 @property (nonatomic, strong)	IBOutlet UILabel *lblLine;
 @property (nonatomic, strong) NSIndexPath *indexPath;
--(void)updateCellWithData:(CMWalletOffer *)walletOfferModel;
+- (void)updateCellWithData:(CMWalletOffer *)walletOfferModel;
 @end

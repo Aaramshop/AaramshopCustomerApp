@@ -20,6 +20,7 @@
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	appDel = APP_DELEGATE;
+	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
 	aaramShop_ConnectionManager.delegate = self;
 	dataSource = [[NSMutableArray alloc] init];
@@ -51,9 +52,8 @@
 	[appDel.window addSubview:scanCodeVC.view];
 }
 - (void)removeSuperviewWithModel: (CMWalletOffer *)walletOfferModel
-{
-	cmWalletOffer = walletOfferModel;
-	
+{	
+	[dataSource insertObject:walletOfferModel atIndex:0];
 	[scanCodeVC.view removeFromSuperview];
 	scanCodeVC = nil;
 	[tblView reloadData];
@@ -65,13 +65,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	count ++;
-	if(count > 3)
-	{
-		return 1;
-	}
-	else
-		return 0;
+	return dataSource.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -87,7 +81,9 @@
 		cell = [[WalletOfferTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 	}
 	
-		[cell updateCellWithData: cmWalletOffer];
+	CMWalletOffer *walletOfferModel = [dataSource objectAtIndex:indexPath.row];
+	cell.indexPath = indexPath;
+	[cell updateCellWithData: walletOfferModel];
 	
 	return cell;
 	
