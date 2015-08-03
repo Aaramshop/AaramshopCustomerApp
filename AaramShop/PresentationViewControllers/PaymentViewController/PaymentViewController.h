@@ -10,6 +10,7 @@
 #import "TotalPriceTableCell.h"
 #import "PickLastTableCell.h"
 #import "HomeSecondCustomCell.h"
+#import "LocationAlertViewController.h"
 typedef enum
 {
     enPickerSlots,
@@ -17,7 +18,7 @@ typedef enum
 }enPickerType;
 
 
-@interface PaymentViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UICollectionViewDelegate,UICollectionViewDataSource,UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate,HomeSecondCustomCellDelegate>
+@interface PaymentViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UICollectionViewDelegate,UICollectionViewDataSource,UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate,HomeSecondCustomCellDelegate,UITableViewDataSource,UITableViewDelegate,LocationAlertViewControllerDelegate>
 {
     __weak IBOutlet UITableView *tblView;
     NSMutableArray *arrAddressData;
@@ -27,7 +28,7 @@ typedef enum
     UIDatePicker *datePicker;
     UIToolbar *keyBoardToolBar;
     UIPickerView *pickerViewSlots;
-    
+	LocationAlertViewController *locationAlert;
     __weak IBOutlet UIButton *btnPay;
     
 	__weak IBOutlet UIView *viewOverallValueStatus;

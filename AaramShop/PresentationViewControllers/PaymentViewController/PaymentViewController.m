@@ -112,31 +112,79 @@ static NSString *strCollectionItems = @"collectionItems";
     pickerViewSlots.showsSelectionIndicator = YES;
     [self.view addSubview:pickerViewSlots];
 }
+- (NSDictionary *)getProductIdandProductQty
+{
+	
+	NSString *productIds				= @"";
+	NSString *product_sku_ids	= @"";
+	NSString *offer_types				= @"";
+	NSString *productqtys			= @"";
+	NSString *product_prices		=	@"";
+
+	
+	NSPredicate *predicate =[NSPredicate predicateWithFormat:@"NOT (SELF.strOffer_type CONTAINS %@)",@"0"] ;
+	NSArray *array = [arrSelectedProducts filteredArrayUsingPredicate:predicate];
+	if([array count]>0)
+	{
+		NSArray *arrIDs = [array valueForKey:@"offer_id"];
+		productIds = [arrIDs componentsJoinedByString:@","];
+		
+		arrIDs = [array valueForKey:@"strCount"];
+		productqtys =[arrIDs componentsJoinedByString:@","];
+		
+		arrIDs = [array valueForKey:@"product_sku_id"];
+		product_sku_ids = [arrIDs componentsJoinedByString:@","];
+		
+		arrIDs = [array valueForKey:@"offer_price"];
+		product_prices = [arrIDs componentsJoinedByString:@","];
+
+		arrIDs = [array valueForKey:@"strOffer_type"];
+		offer_types = [arrIDs componentsJoinedByString:@","];
+}
+	predicate = [NSPredicate predicateWithFormat:@"SELF.strOffer_type == %@",@"0"];
+	array = [arrSelectedProducts filteredArrayUsingPredicate:predicate];
+	if([array count]>0)
+	{
+		NSMutableArray *arrIDs = [NSMutableArray arrayWithArray:[array valueForKey:@"product_id"]];
+		[arrIDs addObjectsFromArray:[productIds componentsSeparatedByString:@","]];
+		productIds = [arrIDs componentsJoinedByString:@","];
+		
+		arrIDs = [NSMutableArray arrayWithArray:[array valueForKey:@"strCount"]];
+		[arrIDs addObjectsFromArray:[productqtys componentsSeparatedByString:@","]];
+		productqtys =[arrIDs componentsJoinedByString:@","];
+		
+		arrIDs = [NSMutableArray arrayWithArray:[array valueForKey:@"product_sku_id"]];
+		[arrIDs addObjectsFromArray:[product_sku_ids componentsSeparatedByString:@","]];
+		product_sku_ids =[arrIDs componentsJoinedByString:@","];
+
+		arrIDs = [NSMutableArray arrayWithArray:[array valueForKey:@"product_price"]];
+		[arrIDs addObjectsFromArray:[product_prices componentsSeparatedByString:@","]];
+		product_prices =[arrIDs componentsJoinedByString:@","];
+
+		arrIDs = [NSMutableArray arrayWithArray:[array valueForKey:@"strOffer_type"]];
+		[arrIDs addObjectsFromArray:[offer_types componentsSeparatedByString:@","]];
+		offer_types =[arrIDs componentsJoinedByString:@","];
+
+	}
+	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:productIds,@"product_ids",productqtys,@"product_qtys",product_sku_ids,@"product_sku_ids",product_prices,@"product_prices",offer_types,@"offer_types", nil];
+	return dict;
+}
 -(void)createDataForCheckout
 {
+	NSDictionary *getProductListDetails = [self getProductIdandProductQty];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:strStore_Id forKey:kStore_id];
     [dict setObject:strSelectedUserAddress_Id forKey:kUser_address_id];
     
-    if (arrSelectedLastMinPick.count>0) {
-        [arrSelectedProducts addObjectsFromArray:arrSelectedLastMinPick];
-    }
-    NSArray *arrayProductId = [arrSelectedProducts valueForKey:kProduct_id];
-    NSString *strProductId = [arrayProductId componentsJoinedByString:@","];
-    [dict setObject:strProductId forKey:@"product_ids"];
+	[dict setObject:[getProductListDetails objectForKey:@"product_ids"] forKey:@"product_ids"];
     
-    arrayProductId = [arrSelectedProducts valueForKey:kProduct_sku_id];
-    NSString *strProductSKUId = [arrayProductId componentsJoinedByString:@","];
-    [dict setObject:strProductSKUId forKey:@"product_sku_ids"];
+	[dict setObject:[getProductListDetails objectForKey:@"product_sku_ids"] forKey:@"product_sku_ids"];
     
-    arrayProductId = [arrSelectedProducts valueForKey:kProduct_price];
-    NSString *strProductPrice = [arrayProductId  componentsJoinedByString:@","];
-    [dict setObject:strProductPrice forKey:@"product_prices"];
-    
-    
-    arrayProductId = [arrSelectedProducts valueForKey:@"strCount"];
-    NSString *strProductQTY = [arrayProductId componentsJoinedByString:@","];
-    [dict setObject:strProductQTY forKey:@"product_qtys"];
+	[dict setObject:[getProductListDetails objectForKey:@"product_prices"] forKey:@"product_prices"];
+	
+	[dict setObject:[getProductListDetails objectForKey:@"product_qtys"] forKey:@"product_qtys"];
+	
+	[dict setObject:[getProductListDetails objectForKey:@"offer_types"] forKey:@"offer_types"];
     
     UITableViewCell *cell = (UITableViewCell *)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
 
@@ -198,6 +246,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	[aDict setObject:productqtys forKey:@"product_qtys"];
 	[aaramShop_ConnectionManager getDataForFunction:kURLValidateCoupons withInput:aDict withCurrentTask:TASK_VALIDATE_COUPON andDelegate:self ];
 }
+
 - (void)callWebServiceToGetMinOrderValue
 {
 	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
@@ -257,7 +306,8 @@ static NSString *strCollectionItems = @"collectionItems";
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
 	[dict setObject:self.strTotalPrice forKey:kTotal_amount];
-    [self callWebServiceToGetPaymentPageData:dict];
+	[Utils startActivityIndicatorInView:self.view withMessage:nil];
+	[self performSelector:@selector(callWebServiceToGetPaymentPageData:) withObject:dict afterDelay:0.1];
 }
 -(void)callWebServiceToGetPaymentPageData: (NSMutableDictionary *)aDict
 {
@@ -309,8 +359,7 @@ static NSString *strCollectionItems = @"collectionItems";
 			min_order_value =[responseObject objectForKey:@"minimum_order_value" ];
 			if([strTotalPrice integerValue] < [[responseObject objectForKey:@"minimum_order_value" ] integerValue])
 			{
-				viewOverallValueStatus.hidden = NO;
-				lblOverallValueStatus.text = [NSString stringWithFormat:@"Minimum order value for this store is ₹%@",[responseObject objectForKey:@"minimum_order_value" ]];
+				[self showPopupWithMessage:[NSString stringWithFormat:@"Minimum order value for this store is ₹%@. Please add more products.",[responseObject objectForKey:@"minimum_order_value" ]]];
 			}
 		}
 	}
@@ -365,6 +414,19 @@ static NSString *strCollectionItems = @"collectionItems";
     NSArray *arrLastMinPickTemp = [data objectForKey:@"last_minute_pick"];
     NSArray *arrAddressTemp = [data objectForKey:@"address"];
 	NSString *popup_message = [data objectForKey:kPopup_message];
+	[arrAddressData removeAllObjects];
+	
+	AddressModel *objAddressModel = [[AddressModel alloc]init];
+	objAddressModel.user_address_id = @"0";
+	objAddressModel.title = @"Add new address";
+	objAddressModel.state = @"";
+	objAddressModel.city = @"";
+	objAddressModel.pincode = @"";
+	objAddressModel.locality = @"";
+	objAddressModel.address = @"";
+	
+	[arrAddressData addObject:objAddressModel];
+
     for (NSDictionary *dictAddress in arrAddressTemp) {
 
         AddressModel *objAddressModel = [[AddressModel alloc]init];
@@ -399,15 +461,14 @@ static NSString *strCollectionItems = @"collectionItems";
 		objProducts.offer_price			=	[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_price]];
 		objProducts.offer_type			=	[NSString stringWithFormat:@"%d",[[dictProducts objectForKey:@"offer_type"] intValue]];
 		objProducts.offer_id				=	[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];
-		objProducts.strCount				= @"0";
+		objProducts.strCount				= [AppManager getCountOfProduct:objProducts.offer_id withOfferType:objProducts.offer_type forStore_id:self.strStore_Id];
 
         objProducts.isSelected = NO;
         [arrLastMinPick addObject:objProducts];
     }
 	if([popup_message length]>0)
 	{
-		viewOverallValueStatus.hidden = NO;
-		lblOverallValueStatus.text = popup_message;
+		[self showPopupWithMessage:popup_message];
 	}
     [tblView reloadData];
 }
@@ -498,21 +559,40 @@ static NSString *strCollectionItems = @"collectionItems";
     }
     
 }
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	if(section ==4)
+	{
+		UIView *sectionView		=	[[UIView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 44)];
+		UILabel *lblTitle				=	[[UILabel alloc]initWithFrame:CGRectMake(0, 10, [[UIScreen mainScreen] bounds].size.width, 34)];
+		lblTitle.textColor			=	[UIColor colorWithRed:62.0/255.0 green:62.0/255.0 blue:62.0/255.0 alpha:1.0];
+		lblTitle.font						=	[UIFont fontWithName:kRobotoBold size:14.0];
+		lblTitle.text						=	@"  Last Minute Pick";
+		lblTitle.backgroundColor	=	[UIColor whiteColor];
+		lblTitle.textAlignment	=	NSTextAlignmentLeft;
+		[sectionView addSubview:lblTitle];
+		return sectionView;
+	}
+	return nil;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     switch (section) {
         case 0:
+			return CGFLOAT_MIN;
+			break;
         case 1:
+			return CGFLOAT_MIN;
+			break;
         case 2:
-        {
-            return CGFLOAT_MIN;
-        }
-            break;
+			return CGFLOAT_MIN;
+			break;
         case 3:
+			return CGFLOAT_MIN;
+			break;
         case 4:
-        {
-            return 10;
-        }
+			return 44;
+			break;
         default:
             return CGFLOAT_MIN;
             break;
@@ -723,23 +803,48 @@ static NSString *strCollectionItems = @"collectionItems";
 {
 	ProductsModel *objProductsModel = nil;
 	objProductsModel = [arrLastMinPick objectAtIndex:inIndexPath.row];
-	int priceValue = [strTotalPrice intValue];
 	
+	NSInteger discount = [total_discount integerValue];
+	NSInteger sub_total = [subTotal integerValue];
 	if([objProductsModel.offer_type intValue]>0)
 	{
-		priceValue+=[objProductsModel.offer_price intValue];
+		discount += ([objProductsModel.product_price integerValue]-[objProductsModel.offer_price integerValue]);
+		if([objProductsModel.offer_type intValue]== 6)
+		{
+			sub_total+=[objProductsModel.offer_price intValue];
+		}
 	}
-	else
-	{
-		priceValue+=[objProductsModel.product_price intValue];
-	}
-	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
+	sub_total+=[objProductsModel.product_price intValue];
+	
+	subTotal = [NSString stringWithFormat:@"%ld",(long)sub_total];
+	total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
+	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([subTotal integerValue]-[total_discount integerValue])];
+
+	
+//	if([productModel.strOffer_type integerValue]==1 || [productModel.strOffer_type integerValue]==4 )
+//	{
+//		discount += ([productModel.product_price integerValue]-[productModel.offer_price integerValue])*[productModel.strCount integerValue];
+//	}
+//	if([productModel.strOffer_type integerValue] == 6)
+//	{
+//		sub_total +=[productModel.offer_price integerValue]*[productModel.strCount integerValue];
+//	}
+
+	
+	
+//	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
 	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDel.objStoreModel.store_id,kStore_id,appDel.objStoreModel.store_name,kStore_name,appDel.objStoreModel.store_image,kStore_image, nil] add:YES];
+	
+	arrSelectedProducts		=	(NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
+
 	
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
-	
+	range = NSMakeRange(0, 1);
+	sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
+
 	//    [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
 	
@@ -748,22 +853,45 @@ static NSString *strCollectionItems = @"collectionItems";
 {
 	ProductsModel *objProductsModel = nil;
 	objProductsModel = [arrLastMinPick objectAtIndex:inIndexPath.row];
-	int priceValue = [strTotalPrice intValue];
 	
+	NSInteger discount = [total_discount integerValue];
+	NSInteger sub_total = [subTotal integerValue];
 	if([objProductsModel.offer_type intValue]>0)
 	{
-		priceValue-=[objProductsModel.offer_price intValue];
+		discount -= ([objProductsModel.product_price integerValue]-[objProductsModel.offer_price integerValue]);
+		if([objProductsModel.offer_type intValue]== 6)
+		{
+			sub_total-=[objProductsModel.offer_price intValue];
+		}
 	}
-	else
-	{
-		priceValue-=[objProductsModel.product_price intValue];
-	}
-	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
-	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDel.objStoreModel.store_id,kStore_id,appDel.objStoreModel.store_name,kStore_name,appDel.objStoreModel.store_image,kStore_image, nil] add:NO];
+	sub_total-=[objProductsModel.product_price intValue];
+	
+	subTotal = [NSString stringWithFormat:@"%ld",(long)sub_total];
+	total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
+	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([subTotal integerValue]-[total_discount integerValue])];
+
+//	int priceValue = [strTotalPrice intValue];
+//	
+//	if([objProductsModel.offer_type intValue]>0)
+//	{
+//		priceValue-=[objProductsModel.offer_price intValue];
+//	}
+//	else
+//	{
+//		priceValue-=[objProductsModel.product_price intValue];
+//	}
+//	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
+	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,appDel.objStoreModel.store_name,kStore_name,appDel.objStoreModel.store_image,kStore_image, nil] add:NO];
+	
+	arrSelectedProducts = (NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
 	
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
+	range = NSMakeRange(0, 1);
+	sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
+
 	
 	
 	//    [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
@@ -833,17 +961,27 @@ static NSString *strCollectionItems = @"collectionItems";
 -(void)setSlot
 {
     if (ePickerType == enPickerAddress) {
-        
         AddressModel *objaddressModel = [arrAddressData objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
-        UITableViewCell *cell = (UITableViewCell *)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
-        
-        UIButton *btnTitle = (UIButton *)[cell.contentView viewWithTag:401];
+		if([objaddressModel.user_address_id integerValue]==0)
+		{
+			locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
+			locationAlert.delegate = self;
+			CGRect locationAlertViewRect = [UIScreen mainScreen].bounds;
+			locationAlert.view.frame = locationAlertViewRect;
+			[[UIApplication sharedApplication].keyWindow addSubview:locationAlert.view];
+		}
+		else
+		{
+			UITableViewCell *cell = (UITableViewCell *)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
+			
+			UIButton *btnTitle = (UIButton *)[cell.contentView viewWithTag:401];
 
-        strSelectAddress = objaddressModel.address;
-        [btnTitle setTitle:strSelectAddress forState:UIControlStateNormal];
-        strSelectedUserAddress_Id = objaddressModel.user_address_id;
-		[Utils startActivityIndicatorInView:self.view withMessage:nil];
-		[self performSelector:@selector(callWebServiceToGetMinOrderValue) withObject:nil afterDelay:0.2];
+			strSelectAddress = objaddressModel.address;
+			[btnTitle setTitle:strSelectAddress forState:UIControlStateNormal];
+			strSelectedUserAddress_Id = objaddressModel.user_address_id;
+			[Utils startActivityIndicatorInView:self.view withMessage:nil];
+			[self performSelector:@selector(callWebServiceToGetMinOrderValue) withObject:nil afterDelay:0.2];
+		}
     }
     else
     {
@@ -855,7 +993,12 @@ static NSString *strCollectionItems = @"collectionItems";
     }
 }
 
+#pragma mark -- Location alert Delegate Method
 
+-(void)saveAddress
+{
+	[self createDataToGetPaymentPageData];
+}
 #pragma mark - CollectionView Delegates & DataSource
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView
 {
@@ -1001,7 +1144,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	{
 		btnPay.enabled = YES;
 
-		[Utils showAlertView:kAlertTitle message:[NSString stringWithFormat:@"Minimum order value for this store is ₹%@",min_order_value] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		[Utils showAlertView:kAlertTitle message:[NSString stringWithFormat:@"Minimum order value for this store is ₹%@. Please add more products.",min_order_value] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 	}
 	else if([coupon_code length]>0 && isCouponValid == -1)
 	{
@@ -1144,15 +1287,19 @@ static NSString *strCollectionItems = @"collectionItems";
     }
 }
 
-
-
 #pragma mark -
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)showPopupWithMessage:(NSString *)message
+{
+	tblView.userInteractionEnabled = NO;
+	viewOverallValueStatus.hidden = NO;
+	lblOverallValueStatus.text = message;
+}
 - (IBAction)btnCrossClicked:(id)sender {
+	tblView.userInteractionEnabled = YES;
 	viewOverallValueStatus.hidden = YES;
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField

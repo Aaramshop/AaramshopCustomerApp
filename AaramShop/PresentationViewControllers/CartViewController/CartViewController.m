@@ -28,10 +28,15 @@
     
     tblView.backgroundColor = [UIColor whiteColor];
     tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
-	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
     [self setNavigationBar];
  }
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
+	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
+	[tblView reloadData];
+}
 - (void)hideEmptyCart:(BOOL)show
 {
 	if(show)
@@ -295,18 +300,18 @@
 		[cell updateCell:product];
         
         
-        if ([product.isAvailable integerValue]==0)
-        {
-            cell.contentView.backgroundColor = [UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1.0];
-            cell.contentView.alpha = 0.3;
-            cell.userInteractionEnabled = NO;
-        }
-        else
-        {
-            cell.contentView.backgroundColor = [UIColor clearColor];
-            cell.contentView.alpha = 1.0;
-            cell.userInteractionEnabled = YES;
-        }
+//        if ([product.isAvailable integerValue]==0)
+//        {
+//            cell.contentView.backgroundColor = [UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1.0];
+//            cell.contentView.alpha = 0.3;
+//            cell.userInteractionEnabled = NO;
+//        }
+//        else
+//        {
+//            cell.contentView.backgroundColor = [UIColor clearColor];
+//            cell.contentView.alpha = 1.0;
+//            cell.userInteractionEnabled = YES;
+//        }
 
         
         
