@@ -42,9 +42,7 @@
     [searchbar sizeToFit];
     
     
-//    [tblContacts registerClass:[UITableViewCell class] forCellReuseIdentifier:@"AddContactsToShareCell"];
-
-
+    [self.searchDisplayController.searchResultsTableView registerClass:[AddContactsToShareCell class] forCellReuseIdentifier:@"AddContactsToShareCell"];
 }
 
 
@@ -52,10 +50,6 @@
 {
     [super viewWillAppear:YES];
     
-    
-//    [self performSelector:@selector(get) withObject:nil afterDelay:0.2];
-    
-//    [self fetchContactsFromDevice];
     
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     [self performSelector:@selector(fetchContactsFromDevice) withObject:nil afterDelay:0.2];
@@ -174,7 +168,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView)
+    if(isSearching)
     {
         return arrFilteredContactsData.count;
     }
@@ -189,8 +183,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"AddContactsToShareCell";
-    
+    static NSString *CellIdentifier;
+
+    CellIdentifier = @"AddContactsToShareCell";
+
     AddContactsToShareCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if(cell == nil)
@@ -201,8 +197,7 @@
     cell.delegateContactList = self;
     cell.indexPath = indexPath;
     
-    
-    if (tableView == self.searchDisplayController.searchResultsTableView)
+    if(isSearching)
     {
         [cell updateContactsListCell:[arrFilteredContactsData objectAtIndex:indexPath.row]];
     }
@@ -232,9 +227,14 @@
 {
     ContactsData *contactsData;
     
-    if (tblContacts == self.searchDisplayController.searchResultsTableView)
+    if (isSearching)
     {
         contactsData = [arrFilteredContactsData objectAtIndex:indexPath.row];
+        
+        isSearching=NO;
+        searchbar.text = @"";
+        [searchbar resignFirstResponder];
+        [tblContacts reloadData];
     }
     else
     {
@@ -324,47 +324,90 @@
 }
 
 
+#pragma mark - Search bar delegate methods
 
-
-
-#pragma mark - UISearchDisplayController Delegate Methods
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    // Tells the table data source to reload when text changes
-    [self filterContentForSearchText:searchString scope:
-     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    
-    // Return YES to cause the search result table view to be reloaded.
-    return YES;
-}
-
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
-{
-    // Tells the table data source to reload when scope bar selection changes
-    [self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:
-     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
-    
-    // Return YES to cause the search result table view to be reloaded.
-    return YES;
-}
-
-
-#pragma mark Content Filtering
-
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
-    // Update the filtered array based on the search text and scope.
-    
-    // Remove all objects from the filtered search array
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [arrFilteredContactsData removeAllObjects];
     
-    // Filter the array using NSPredicate
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.username contains[c] %@",searchBar.text];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.username contains[c] %@",searchText];
+    NSArray *arrPredicate = [NSArray arrayWithObjects:predicate, nil];
     
-    arrFilteredContactsData = [NSMutableArray arrayWithArray:[arrContactsData filteredArrayUsingPredicate:predicate]];    
+    NSPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:arrPredicate];
+    
+    
+    NSArray *array = [arrContactsData filteredArrayUsingPredicate:compoundPredicate];
+    arrFilteredContactsData = [NSMutableArray arrayWithArray:array];
+    
+    
+    if(searchBar.text.length>0)
+        isSearching=YES;
+    
+    else
+        isSearching=NO;
+    
+    [tblContacts reloadData];
+    
+    
 }
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar{
+    
+    [searchbar resignFirstResponder];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.username contains[c] %@",searchbar.text];
+    
+    NSArray *arrPredicate = [NSArray arrayWithObjects:predicate, nil];
+    
+    NSPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:arrPredicate];
+    
+    [arrFilteredContactsData removeAllObjects];
+    //    isLocalSearching=YES;
+    NSArray *arr = [arrContactsData filteredArrayUsingPredicate:compoundPredicate];
+    
+    arrFilteredContactsData = [NSMutableArray arrayWithArray:arr];
+    
+    if(searchbar.text.length>0)
+        isSearching=YES;
+    else
+        isSearching=NO;
+    [tblContacts reloadData];
+    
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    //    isLocalSearching = YES;
+    //    isKeyboardVisible = YES;
+    [searchbar setShowsCancelButton:YES animated:YES];
+    
+    if (!arrFilteredContactsData) {
+        arrContactsData = [NSMutableArray array];
+    }
+    return YES;
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBa
+{
+    [searchbar setShowsCancelButton:NO animated:YES];
+    //    isKeyboardVisible = NO;
+    return YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)_searchBar
+{
+    
+    [searchbar resignFirstResponder];
+    //    isKeyboardVisible = NO;
+    //    if(searchBarFriends.text.length>0)
+    //        isLocalSearching=YES;
+    //
+    //    //    else
+    isSearching=NO;
+    searchbar.text = @"";
+    [tblContacts reloadData];
+    
+}
+
 
 @end

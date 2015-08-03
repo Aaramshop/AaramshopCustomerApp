@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -2662,7 +2662,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zig-ga-WNM" id="IWZ-Tr-A5y">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="onB-QA-nEV">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="onB-QA-nEV">
                                                     <rect key="frame" x="15" y="7" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="23C-Tz-X5f"/>
@@ -2737,7 +2737,6 @@
                 <searchDisplayController id="1fz-dP-EnO">
                     <connections>
                         <outlet property="delegate" destination="vn9-r5-j1S" id="FID-Lr-oav"/>
-                        <outlet property="searchBar" destination="9En-Fe-5XW" id="FuL-VH-2rg"/>
                         <outlet property="searchContentsController" destination="vn9-r5-j1S" id="Ngf-7J-RAo"/>
                         <outlet property="searchResultsDataSource" destination="vn9-r5-j1S" id="tVV-j2-TDh"/>
                         <outlet property="searchResultsDelegate" destination="vn9-r5-j1S" id="NHs-QX-yIL"/>
