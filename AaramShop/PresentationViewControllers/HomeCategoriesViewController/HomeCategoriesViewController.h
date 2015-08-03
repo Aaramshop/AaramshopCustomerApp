@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HomeCategoriesCollectionCell.h"
 #import "YSLContainerViewController.h"
-
+#import "GlobalSearchViewController.h"
 
 @interface HomeCategoriesViewController : UIViewController<AaramShop_ConnectionManager_Delegate,CDRTranslucentSideBarDelegate,CustomNavigationDelegate>
 {

@@ -25,17 +25,22 @@
 
 -(void)updateCell:(ProductsModel *)productsModel
 {
-    [imgProduct sd_setImageWithURL:[NSURL URLWithString:productsModel.product_image] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
+    [imgProduct sd_setImageWithURL:[NSURL URLWithString:productsModel.product_image] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
     
     lblProductName.text = productsModel.product_name;
     
-    if ([productsModel.quantity integerValue]>1)
+//    if ([productsModel.quantity integerValue]>1)
+    if ([productsModel.strCount integerValue]>1)
     {
-        lblTotalProducts.text = [NSString stringWithFormat:@"%@ Items",productsModel.quantity];
+//        lblTotalProducts.text = [NSString stringWithFormat:@"%@ Items",productsModel.quantity];
+        lblTotalProducts.text = [NSString stringWithFormat:@"%@ Items",productsModel.strCount];
+
     }
     else
     {
-        lblTotalProducts.text = [NSString stringWithFormat:@"%@ Item",productsModel.quantity];
+//        lblTotalProducts.text = [NSString stringWithFormat:@"%@ Item",productsModel.quantity];
+        lblTotalProducts.text = [NSString stringWithFormat:@"%@ Item",productsModel.strCount];
+
     }
     
 

@@ -182,7 +182,7 @@
 #define kIsAvailable											@"isAvailable"
 
 #define kPopup_message									@"popup_message"
-#pragma mark - 
+#pragma mark -
 
 #define kSearch_term										@"search_term"
 
@@ -237,12 +237,12 @@
 #define kServerUserNameId								@"userNameId"
 
 
-#pragma mark - 
+#pragma mark -
 
 #define kContactsAccessPermission					@"contactsAccessPermission"
 #define kType														@"type"
 
-#pragma mark - 
+#pragma mark -
 #define kAddressForLocation								@"addressForLocation"
 
 //==========Last Min Pick=========
@@ -324,10 +324,22 @@
 
 //================= Preferences============
 #define kURLGetPreferences							@"getPreferences"
-
+#define kURLSavePreference							@"savePreference"
+#define kURLGetUserAddress						@"getUserAddress"
+#define kOffers_notification							@"offers_notification"
+#define kDelivery_status_notification			@"delivery_status_notification"
+#define kChat_notification							@"chat_notification"
 
 //================= SHOPPING LIST MODULE =============
 
+#define KURLSerachStoreProducts                     @"serachStoreProducts"
+#define kURLCreateShoppingList                      @"createShoppingList"
+#define kURLGetShoppingList                         @"getShoppingList"
+#define kURLDeleteShoppingList                      @"deleteShoppingList"
+#define kURLGetShoppingListProducts                 @"getShoppingListProducts"
+#define kURLUpdateShoppingListProducts              @"updateShoppingListProducts"
+#define kURLGetStores                               @"getStores"
+#define kURLSetShoppingListReminder                 @"setShoppingListReminder"
 #define KURLSerachStoreProducts					@"serachStoreProducts"
 #define kURLCreateShoppingList						@"createShoppingList"
 #define kURLGetShoppingList							@"getShoppingList"
@@ -345,6 +357,7 @@
 //=========== Get Wallet =================================
 #define kURLGetWallet									@"getWallet"
 #define kURLGetPoints										@"getPoints"
+#define kURLGetWalletOffers							@"getWalletOffers"
 #define kURLGetBrandPoints							@"getBrandPoints"
 #define kURLGetBonusPoints							@"getBonusPoints"
 #define kURLGetAaramPoints							@"getAaramPoints"

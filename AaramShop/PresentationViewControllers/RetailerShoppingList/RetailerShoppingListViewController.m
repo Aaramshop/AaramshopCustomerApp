@@ -9,6 +9,7 @@
 #import "RetailerShoppingListViewController.h"
 #import "ShoppingListModel.h"
 #import "RetailerShoppingListDetailViewController.h"
+//#import "SharedUserModel.h"
 
 @interface RetailerShoppingListViewController ()
 {
@@ -339,11 +340,45 @@
     {
         ShoppingListModel *shoppingListModel = [[ShoppingListModel alloc]init];
         shoppingListModel.creationDate = [NSString stringWithFormat:@"%@",[obj valueForKey:@"creationDate"]];
-        shoppingListModel.reminderDate = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminderDate"]];
+        shoppingListModel.reminder_start_date = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminder_start_date"]];
         
-        // temporary commented ... use model here for user info.
-        //        shoppingListModel.sharedBy = [NSString stringWithFormat:@"%@",[obj valueForKey:@"sharedBy"]];
-        //        shoppingListModel.sharedWith = [NSString stringWithFormat:@"%@",[obj valueForKey:@"sharedWith"]];
+        shoppingListModel.reminder_end_date = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminder_end_date"]];
+
+        
+        /*
+         
+        NSArray *arrTempSharedBy = [obj valueForKey:@"sharedBy"];
+        
+        for (id obj1 in arrTempSharedBy) {
+            
+            SharedUserModel *sharedUserModel = [[SharedUserModel alloc]init];
+            
+            sharedUserModel.chat_username = [obj1 valueForKey:@"chat_username"];
+            sharedUserModel.email = [obj1 valueForKey:@"email"];
+            sharedUserModel.full_name = [obj1 valueForKey:@"full_name"];
+            sharedUserModel.mobile = [obj1 valueForKey:@"mobile"];
+            
+            [shoppingListModel.sharedBy addObject:sharedUserModel];
+        }
+        
+        
+        
+        NSArray *arrTempSharedWith = [obj valueForKey:@"sharedWith"];
+        
+        for (id obj2 in arrTempSharedWith) {
+            
+            SharedUserModel *sharedUserModel = [[SharedUserModel alloc]init];
+            
+            sharedUserModel.chat_username = [obj2 valueForKey:@"chat_username"];
+            sharedUserModel.email = [obj2 valueForKey:@"email"];
+            sharedUserModel.full_name = [obj2 valueForKey:@"full_name"];
+            sharedUserModel.mobile = [obj2 valueForKey:@"mobile"];
+            
+            [shoppingListModel.sharedWith addObject:sharedUserModel];
+        }
+        
+        //*/
+        
         
         shoppingListModel.shoppingListId = [NSString stringWithFormat:@"%@",[obj valueForKey:@"shoppingListId"]];
         shoppingListModel.shoppingListName = [NSString stringWithFormat:@"%@",[obj valueForKey:@"shoppingListName"]];

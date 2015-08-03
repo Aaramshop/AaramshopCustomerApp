@@ -127,11 +127,15 @@
     [_arrProductList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
         ProductsModel *productModel = [_arrProductList objectAtIndex:idx];
-        if ([productModel.quantity integerValue]>0)
+//        if ([productModel.quantity integerValue]>0)
+        if ([productModel.strCount integerValue]>0)
         {
             strProductID = [NSString stringWithFormat:@"%@,%@",strProductID,productModel.product_id];
             
-            strQuantity = [NSString stringWithFormat:@"%@,%@",strQuantity,productModel.quantity];
+//            strQuantity = [NSString stringWithFormat:@"%@,%@",strQuantity,productModel.quantity];
+            
+            strQuantity = [NSString stringWithFormat:@"%@,%@",strQuantity,productModel.strCount];
+
         }
     }];
     
@@ -219,11 +223,16 @@
 {
     ProductsModel *productModel = [_arrProductList objectAtIndex:indexPath.row];
     
-    int counter = [productModel.quantity intValue];
+//    int counter = [productModel.quantity intValue];
+    
+    int counter = [productModel.strCount intValue];
+
     
     counter++;
     
-    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+//    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+    productModel.strCount = [NSString stringWithFormat:@"%d",counter];
+
     
     [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
@@ -232,10 +241,14 @@
 {
     ProductsModel *productModel = [_arrProductList objectAtIndex:indexPath.row];
     
-    int counter = [productModel.quantity intValue];
+//    int counter = [productModel.quantity intValue];
+    int counter = [productModel.strCount intValue];
+
     counter--;
     
-    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+//    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
+    productModel.strCount = [NSString stringWithFormat:@"%d",counter];
+
     
     [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
@@ -271,7 +284,9 @@
     else{
         //add new product
         
-        product.quantity = @"1";
+//        product.quantity = @"1";
+        product.strCount = @"1";
+
         
         [_arrProductList insertObject:product atIndex:0];
         

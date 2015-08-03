@@ -38,14 +38,6 @@
     [self bindData];
 
     
-    //    [picker selectRow:0 inComponent:0 animated:YES];
-    
-    // txtVAddress.text = strAddress;
-    //dataSource=[[NSMutableArray alloc]initWithObjects:@"Home Address",@"Office Address",@"Custom Address", nil];
-    //   [dropDownBtn setTitle:@"Home Address" forState:UIControlStateNormal];
-
-//    [self ToolBarDesignes];
-//    [self PickerView];
 }
 -(void)bindData
 {

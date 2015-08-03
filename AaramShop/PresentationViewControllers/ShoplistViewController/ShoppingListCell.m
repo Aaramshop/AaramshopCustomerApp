@@ -14,9 +14,6 @@
 - (void)awakeFromNib {
     // Initialization code
     
-    
-    [btnShare setTitleColor:[UIColor colorWithRed:135.0/255.0 green:135.0/255.0 blue:135.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -56,12 +53,12 @@
     
     NSString *strTime = @"";
     
-    if ([shoppingListModel.reminderDate length]>0)
+    if ([shoppingListModel.reminder_start_date length]>0)
     {
         [btnTime setImage:[UIImage imageNamed:@"clockIconRed"] forState:UIControlStateNormal];
         [btnTime setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
         
-        strTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[shoppingListModel.reminderDate doubleValue]]];
+        strTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[shoppingListModel.reminder_start_date doubleValue]]];
     }
     else
     {
@@ -79,82 +76,55 @@
     [btnTime setTitle:strTime forState:UIControlStateNormal];
     
     
-    
+    btnShare.hidden = NO;
+
     if ([shoppingListModel.sharedBy count]>0)
     {
+        SharedUserModel *sharedUserModel = [shoppingListModel.sharedBy objectAtIndex:0];
+        
+        NSString *strText1 = sharedUserModel.full_name;
+        NSString *strText2 = @" is sharing with you";
+        
+        NSString *strFullString = [NSString stringWithFormat:@"%@%@",strText1,strText2];
+
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:strFullString];
+        
+        
+        [attrString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:12.0],NSFontAttributeName,[UIColor colorWithRed:254.0/255.0 green:56.0/255.0 blue:45.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(0 , strText1.length)];
+
+        [attrString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:12.0],NSFontAttributeName,[UIColor colorWithRed:135.0/255.0 green:135.0/255.0 blue:135.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(strText1.length, strFullString.length-(3+strText1.length))];
+        
+        [attrString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:12.0],NSFontAttributeName,[UIColor colorWithRed:254.0/255.0 green:56.0/255.0 blue:45.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(strFullString.length-3 , 3)];
+        
+        
+        lblShare.attributedText = attrString;
         
     }
     else if ([shoppingListModel.sharedWith count]>0)
     {
         
-     /*
-        
-        NSDictionary * wordToColorMapping;// = [NSDictionary dictionaryWithObjectsAndKeys:<#(id), ...#>, nil]
-        
-        NSMutableAttributedString * string = [[NSMutableAttributedString alloc] initWithString:@""];
-        for (NSString * word in wordToColorMapping) {
-            UIColor * color = [wordToColorMapping objectForKey:word];
-            NSDictionary * attributes = [NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
-            NSAttributedString * subString = [[NSAttributedString alloc] initWithString:word attributes:attributes];
-            [string appendAttributedString:subString];
-        }
-        
-        
-        
-        
-        
-        
+        NSString *strText1 = @"Shared by you with ";
 
-        NSString *strText = [NSString stringWithFormat:@"Shared by you with %ld people",[shoppingListModel.sharedWith count]];
+        NSString *strText2 = [NSString stringWithFormat:@"%ld people",[shoppingListModel.sharedWith count]];
         
+        NSString *strFullString = [NSString stringWithFormat:@"%@%@",strText1,strText2];
         
-        NSMutableAttributedString *strAttrFinal = [[NSMutableAttributedString alloc] init];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:strFullString];
         
+        [attrString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:12.0],NSFontAttributeName,[UIColor colorWithRed:135.0/255.0 green:135.0/255.0 blue:135.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(0, strText1.length)];
         
-        NSDictionary* textAttributes = @{
-                                            NSForegroundColorAttributeName :[UIColor colorWithRed:254.0/255.0 green:56.0/255.0 blue:45.0/255.0 alpha:1.0]
-                                            };
+        [attrString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:12.0],NSFontAttributeName,[UIColor colorWithRed:254.0/255.0 green:56.0/255.0 blue:45.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(strText1.length, strText2.length)];
 
-        NSAttributedString* textAttrString = [[NSAttributedString alloc] initWithString:strText attributes:textAttributes];
         
+        lblShare.attributedText = attrString;
+
         
-        
-        //if ([[dicSummary valueForKey:@"priceWithDiscount"] integerValue]==0)
-        {
-            NSDictionary* actPriceAttributes = @{
-                                                 NSForegroundColorAttributeName :[UIColor redColor]
-                                                 };
-            
-            NSAttributedString* actPriceAttrString = [[NSAttributedString alloc] initWithString:strActualPrice attributes:actPriceAttributes];
-            
-            [strAttrFinal appendAttributedString:quantityAttrString];
-            [strAttrFinal appendAttributedString:actPriceAttrString];
-            
-            lblQuantity.attributedText = strAttrFinal;
-            
-        }
-        
-        btnShare setAttributedTitle:(NSAttributedString *) forState:<#(UIControlState)#>
     }
-
-    //*/
-    
-    
-    
-    
-    ////
-    
-    
-    // work remainig for share info..
-    
+    else
+    {
+        btnShare.hidden = YES;
     }
 }
-
-/*
- @property(nonatomic,strong) NSString * sharedBy; // temp // user model here
- @property(nonatomic,strong) NSString * sharedWith; // temp // user model here
- @property(nonatomic,strong) NSString * total_people;
- */
 
 
 @end

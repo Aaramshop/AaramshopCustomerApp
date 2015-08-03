@@ -183,7 +183,9 @@
             product.product_price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_price"]];
             product.product_sku_id = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_sku_id"]];
             product.sub_category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:@"sub_category_id"]];
-            product.quantity = @"0";
+//            product.quantity = @"0";
+            product.strCount = @"0";
+
             
             totalNoOfPages = [[dict objectForKey:kTotal_page] intValue];
             

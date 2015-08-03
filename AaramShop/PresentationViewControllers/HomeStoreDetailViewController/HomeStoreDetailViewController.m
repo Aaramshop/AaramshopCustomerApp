@@ -29,20 +29,34 @@
 -(void)bindData
 {
     NSString *strName = objStoreModel.store_name;
-    NSString *strTitle = [NSString stringWithFormat:@"you have choosen %@ as your HOME STORE.",strName];
+    
+    NSString *strText1 = @"You have choosen ";
+    NSString *strText2 = @" as your ";
+    NSString *strText3 = @"HOME STORE.";
+    
+    NSString *strTitle = [NSString stringWithFormat:@"%@%@%@%@",strText1,strName,strText2,strText3];
+    
     NSMutableAttributedString *hogan = [[NSMutableAttributedString alloc] initWithString:strTitle];
-    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:15.0],NSFontAttributeName,[UIColor colorWithRed:189.0/255.0 green:189.0/255.0 blue:189.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(0, 15)];
+    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:15.0],NSFontAttributeName,[UIColor colorWithRed:189.0/255.0 green:189.0/255.0 blue:189.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(0, strText1.length)];
     
-    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoBold size:18.0],NSFontAttributeName,[UIColor whiteColor],NSForegroundColorAttributeName, nil] range:NSMakeRange(16, strName.length)];
+    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoBold size:18.0],NSFontAttributeName,[UIColor whiteColor],NSForegroundColorAttributeName, nil] range:NSMakeRange(strText1.length, strName.length)];
     
-    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:15.0],NSFontAttributeName,[UIColor colorWithRed:189.0/255.0 green:189.0/255.0 blue:189.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(16+strName.length, 10)];
+    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:15.0],NSFontAttributeName,[UIColor colorWithRed:189.0/255.0 green:189.0/255.0 blue:189.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(strText1.length+strName.length, strText2.length)];
     
-    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoBold size:18.0],NSFontAttributeName,[UIColor whiteColor],NSForegroundColorAttributeName, nil] range:NSMakeRange(24+strName.length, 11)];
+    
+    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoBold size:18.0],NSFontAttributeName,[UIColor whiteColor],NSForegroundColorAttributeName, nil] range:NSMakeRange(strTitle.length - strText3.length, strText3.length)];
+    
     
     lblTitle.attributedText = hogan;
 
     lblStoreCategoryName.text = objStoreModel.store_category_name;
+    lblStoreName.adjustsFontSizeToFitWidth = YES;
+    lblStoreName.minimumScaleFactor = 10.0;
     lblStoreName.text = objStoreModel.store_name;
+    
+    [self setStoreRating];
+    
+    
     lblStoreDistance.text = objStoreModel.store_distance;
     lblStoreAddress.text = objStoreModel.store_address;
     
@@ -96,6 +110,70 @@
     }];
     
 }
+
+
+-(void)setStoreRating
+{
+    
+    if ([objStoreModel.store_rating integerValue]>0)
+    {
+        //        viewRating.hidden = NO;
+        
+        UIImage *imgStarIcon = [UIImage imageNamed:@"ratingStarFull"];
+        
+        switch ([objStoreModel.store_rating integerValue])
+        {
+            case 1:
+            {
+                imgRating1.image = imgStarIcon;
+                
+            }
+                break;
+            case 2:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+                
+            }
+                break;
+            case 3:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+                imgRating3.image = imgStarIcon;
+                
+            }
+                break;
+            case 4:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+                imgRating3.image = imgStarIcon;
+                imgRating4.image = imgStarIcon;
+                
+            }
+                break;
+            case 5:
+            {
+                imgRating1.image = imgStarIcon;
+                imgRating2.image = imgStarIcon;
+                imgRating3.image = imgStarIcon;
+                imgRating4.image = imgStarIcon;
+                imgRating5.image = imgStarIcon;
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }    ////
+
+    
+}
+
+
+
 
 
 #pragma mark Navigation

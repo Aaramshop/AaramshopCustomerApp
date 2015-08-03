@@ -19,5 +19,5 @@
 @property (nonatomic, retain) NSString		*	offer_price;
 @property (nonatomic, retain) NSString		*	offerTitle;
 @property (nonatomic, retain) NSString		*	strCount;
-@property (nonatomic, retain) NSString		* strOffer_type;
+@property (nonatomic, retain) NSString		*   strOffer_type;
 @end

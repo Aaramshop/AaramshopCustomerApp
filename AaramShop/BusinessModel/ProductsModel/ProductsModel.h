@@ -16,7 +16,7 @@
 @property(nonatomic,strong) NSString *product_price;
 @property(nonatomic,strong) NSString *product_sku_id;
 @property(nonatomic,strong) NSString *sub_category_id;
-@property(nonatomic,strong) NSString *strCount;
+
 @property(nonatomic,assign) BOOL isSelected;
 @property(nonatomic,strong) NSString *quantity;
 
@@ -25,6 +25,11 @@
 @property(nonatomic,strong) NSString *isAvailable;
 @property(nonatomic, strong) NSString *offer_id;
 @property(nonatomic,strong) NSString *offer_price;
+
+
+@property(nonatomic,strong) NSString *strCount;
+
 @property (nonatomic, strong) NSString *offer_type;
+
 
 @end

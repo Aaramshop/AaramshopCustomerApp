@@ -7,10 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface WalletOffersViewController : UIViewController
+#import "ScanCodeViewController.h"
+#import "CMWalletOffer.h"
+#import "WalletOfferTableCell.h"
+@interface WalletOffersViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
 	
 	__weak IBOutlet UITableView *tblView;
+	AppDelegate *appDel;
+	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+	NSMutableArray *dataSource;
+	__weak IBOutlet UIView *subView;
+	NSInteger count;
+	
 }
+- (IBAction)btnScan:(id)sender;
+@property (weak, nonatomic)CMWalletOffer *walletOffer;
 @end

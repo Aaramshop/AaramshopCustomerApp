@@ -14,6 +14,8 @@
     // Initialization code
     
     [lblProductName setAdjustsFontSizeToFitWidth:YES];
+    lblPrice.numberOfLines = 0;
+    [lblPrice sizeToFit];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
@@ -27,7 +29,10 @@
 
 -(IBAction)actionRemoveProduct:(id)sender
 {
-    int counter = [tempProductModel.quantity intValue];
+//    int counter = [tempProductModel.quantity intValue];
+    
+    int counter = [tempProductModel.strCount intValue];
+
 
     if (counter==0)
     {
@@ -64,7 +69,42 @@
     
     lblProductName.text = tempProductModel.product_name;
     
-    if ([tempProductModel.quantity integerValue]==0)
+    
+    
+    //// offer - begin ///    
+    
+    NSString *strRupee = @"\u20B9";
+    NSString *strActualPrice = [NSString stringWithFormat:@"%@ %@",strRupee,tempProductModel.product_price];
+
+    
+    
+    if([tempProductModel.offer_type integerValue]==1)
+    {
+        lblOfferPrice.hidden = NO;
+        
+        NSDictionary* actPriceAttributes = @{
+                                             NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle],
+                                             NSForegroundColorAttributeName : [UIColor colorWithRed:121.0/255.0 green:121.0/255.0 blue:121.0/255.0 alpha:1.0]
+                                             };
+        
+        NSAttributedString* actPriceAttrString = [[NSAttributedString alloc] initWithString:strActualPrice attributes:actPriceAttributes];
+        
+        
+        lblPrice.attributedText = actPriceAttrString;
+        lblOfferPrice.text = [NSString stringWithFormat:@"%@ %@",strRupee,tempProductModel.offer_price];
+
+    }
+    else
+    {
+        lblOfferPrice.hidden = YES;
+        lblPrice.text = strActualPrice;
+    }
+    //// offer - end ///
+
+    
+    
+//    if ([tempProductModel.quantity integerValue]==0)
+    if ([tempProductModel.strCount integerValue]==0)
     {
         btnRemove.enabled = NO;
     }
@@ -73,7 +113,8 @@
         btnRemove.enabled = YES;
     }
     
-    if ([tempProductModel.quantity integerValue]<20)
+//    if ([tempProductModel.quantity integerValue]<20)
+    if ([tempProductModel.strCount integerValue]<20)
     {
         btnAdd.enabled = YES;
     }
@@ -83,7 +124,9 @@
     }
     
     
-    lblCounter.text = tempProductModel.quantity;
+//    lblCounter.text = tempProductModel.quantity;
+    lblCounter.text = tempProductModel.strCount;
+
 }
 
 

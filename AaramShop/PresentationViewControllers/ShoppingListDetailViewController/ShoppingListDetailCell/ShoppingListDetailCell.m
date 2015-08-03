@@ -14,6 +14,8 @@
     // Initialization code
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    lblProductName.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -25,7 +27,9 @@
 
 -(IBAction)actionRemoveProduct:(id)sender
 {
-    int counter = [tempProductModel.quantity intValue];
+//    int counter = [tempProductModel.quantity intValue];
+    int counter = [tempProductModel.strCount intValue];
+
 
     if (counter==0)
     {
@@ -60,14 +64,50 @@
     [imgProduct sd_setImageWithURL:[NSURL URLWithString:tempProductModel.product_image] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
     
     lblProductName.text = tempProductModel.product_name;
-	btnAdd.enabled = YES;
-
-    if([tempProductModel.strCount integerValue]==20)
-	{
-		btnAdd.enabled = NO;
-	}
-	btnRemove.enabled = YES;
+    
+    NSString *strRupee = @"\u20B9";
+    
+    lblPrice.text = [NSString stringWithFormat:@"%@ %@",strRupee,tempProductModel.product_price];
+    
+    
+    
+//	btnAdd.enabled = YES;
+//    
+//    if([tempProductModel.strCount integerValue]==20)
+//	{
+//		btnAdd.enabled = NO;
+//	}
+//	btnRemove.enabled = YES;
+//    lblCounter.text = tempProductModel.strCount;
+    
+    
+    
+ //   if ([tempProductModel.quantity integerValue]==0)
+    if ([tempProductModel.strCount integerValue]==0)
+    {
+        btnRemove.enabled = NO;
+    }
+    else
+    {
+        btnRemove.enabled = YES;
+    }
+    
+  //  if ([tempProductModel.quantity integerValue]<20)
+    if ([tempProductModel.strCount integerValue]<20)
+    {
+        btnAdd.enabled = YES;
+    }
+    else
+    {
+        btnAdd.enabled = NO;
+    }
+    
+    
+  //  lblCounter.text = tempProductModel.quantity;
     lblCounter.text = tempProductModel.strCount;
+
+    
+    
 }
 
 
