@@ -21,8 +21,8 @@
 }
 -(void)updateCellWithData:(NSDictionary *)inDataDic
 {
-    lblDeliveryCharges.text = [inDataDic objectForKey:kDeliveryCharges];
-    lblDiscount.text = [inDataDic objectForKey:kDiscount];
+    lblDeliveryCharges.text = [NSString stringWithFormat:@"+%@",[inDataDic objectForKey:kDeliveryCharges]];
+    lblDiscount.text = [NSString stringWithFormat:@"-%@",[inDataDic objectForKey:kDiscount]];
     lblSubTotal.text = [inDataDic objectForKey:kSubTotalPrice];
     lblTotal.text = [inDataDic objectForKey:kTotalPrice];
 }
