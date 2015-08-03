@@ -200,6 +200,8 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="RocketDinerCondensed_0.otf">
             <string>RocketDiner-CondensedRegular</string>
@@ -4906,20 +4908,35 @@ Please give us your address</string>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kjj-YT-kpt" id="2Q2-Ba-35b">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ce4-gk-WFc">
-                                                    <rect key="frame" x="10" y="5" width="300" height="39"/>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter Coupon Code" minimumFontSize="17" background="applyCouponCodeBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ite-A8-jbw">
+                                                    <rect key="frame" x="10" y="5" width="205" height="39"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="39" id="N8n-Ue-xzf"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                    <state key="normal" title="Apply Coupon Code" backgroundImage="appyCouponCodeBox.png">
-                                                        <color key="titleColor" red="0.86274509803921573" green="0.20392156862745098" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="7Fv-Uz-q9I" id="V2p-qw-bsz"/>
+                                                    </connections>
+                                                </textField>
+                                                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYJ-Ft-4yH">
+                                                    <rect key="frame" x="215" y="5" width="96" height="39"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="39" id="fFu-B1-2fC"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <state key="normal" title="Check Validity" backgroundImage="checkAvialibilityBox.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ce4-gk-WFc" secondAttribute="trailing" constant="2" id="1K0-tc-DCf"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ce4-gk-WFc" secondAttribute="bottom" constant="-3" id="BJZ-Xm-DtC"/>
-                                                <constraint firstItem="ce4-gk-WFc" firstAttribute="top" secondItem="2Q2-Ba-35b" secondAttribute="topMargin" constant="-3" id="auc-yn-TNY"/>
-                                                <constraint firstItem="ce4-gk-WFc" firstAttribute="leading" secondItem="2Q2-Ba-35b" secondAttribute="leadingMargin" constant="2" id="zYh-hh-Ktm"/>
+                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="leading" secondItem="wYJ-Ft-4yH" secondAttribute="leading" constant="-205" id="4ML-49-Ico"/>
+                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="top" secondItem="2Q2-Ba-35b" secondAttribute="topMargin" constant="-3" id="QRl-FY-2XG"/>
+                                                <constraint firstItem="wYJ-Ft-4yH" firstAttribute="top" secondItem="2Q2-Ba-35b" secondAttribute="topMargin" constant="-3" id="RAl-1c-Gr9"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wYJ-Ft-4yH" secondAttribute="trailing" constant="1" id="lQJ-C8-ztF"/>
+                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="leading" secondItem="2Q2-Ba-35b" secondAttribute="leadingMargin" constant="2" id="yrh-dM-RZf"/>
+                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="trailing" secondItem="wYJ-Ft-4yH" secondAttribute="trailing" constant="-96" id="zHk-yJ-ydQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -5101,30 +5118,47 @@ Please give us your address</string>
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9L-aZ-cwB">
-                                <rect key="frame" x="6" y="5" width="308" height="112"/>
+                                <rect key="frame" x="6" y="10" width="308" height="112"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymentNotificationBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="QQJ-n0-a06">
                                         <rect key="frame" x="0.0" y="0.0" width="308" height="112"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-9y-Ii0">
-                                        <rect key="frame" x="8" y="8" width="292" height="96"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-9y-Ii0">
+                                        <rect key="frame" x="9" y="29" width="290" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="Tqf-CP-WST"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOS-7K-vEm">
+                                        <rect key="frame" x="275" y="3" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="HRP-Ah-uWc"/>
+                                            <constraint firstAttribute="height" constant="30" id="ILZ-C0-ES5"/>
+                                        </constraints>
+                                        <state key="normal" image="circleCrossIcon.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnCrossClicked:" destination="7Fv-Uz-q9I" eventType="touchUpInside" id="eFk-8Y-y5L"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="QQJ-n0-a06" secondAttribute="trailing" id="0AI-xh-cXF"/>
-                                    <constraint firstAttribute="bottom" secondItem="vwv-9y-Ii0" secondAttribute="bottom" constant="8" id="3gx-0G-xKt"/>
-                                    <constraint firstAttribute="trailing" secondItem="vwv-9y-Ii0" secondAttribute="trailing" constant="8" id="D3J-62-tFg"/>
+                                    <constraint firstAttribute="trailing" secondItem="vwv-9y-Ii0" secondAttribute="trailing" constant="9" id="FXG-cN-Muq"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="29" id="H5D-7u-T9l"/>
                                     <constraint firstItem="QQJ-n0-a06" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" id="KYb-sS-3OW"/>
-                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="8" id="Yi3-Cr-i9k"/>
+                                    <constraint firstAttribute="trailing" secondItem="bOS-7K-vEm" secondAttribute="trailing" constant="3" id="Wbw-Ud-Uue"/>
+                                    <constraint firstItem="bOS-7K-vEm" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="3" id="XzW-VU-J6r"/>
                                     <constraint firstAttribute="width" constant="308" id="csR-Qz-iO2"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" constant="9" id="gr4-bh-J5N"/>
                                     <constraint firstItem="QQJ-n0-a06" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" id="huH-yr-CsN"/>
                                     <constraint firstAttribute="bottom" secondItem="QQJ-n0-a06" secondAttribute="bottom" id="oy1-u3-9th"/>
                                     <constraint firstAttribute="height" constant="112" id="rLk-lb-rCq"/>
-                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" constant="8" id="vXg-m9-gOj"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qn3-R3-ILi">
@@ -5149,9 +5183,9 @@ Please give us your address</string>
                             <constraint firstItem="d9L-aZ-cwB" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leadingMargin" constant="-10" id="Mbp-dv-dFp"/>
                             <constraint firstItem="qn3-R3-ILi" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leading" id="SUE-p0-oTB"/>
                             <constraint firstAttribute="trailing" secondItem="qn3-R3-ILi" secondAttribute="trailing" id="V5b-zF-QGA"/>
+                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="10" id="dKY-4T-Pob"/>
                             <constraint firstAttribute="trailingMargin" secondItem="d9L-aZ-cwB" secondAttribute="trailing" constant="-10" id="kYU-H1-sVG"/>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="4" id="oAF-bZ-j4Y"/>
-                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="5" id="oJ0-yc-gCy"/>
                             <constraint firstAttribute="trailing" secondItem="owd-6E-OdS" secondAttribute="trailing" id="rPQ-gD-RKL"/>
                             <constraint firstItem="wIn-xs-BLK" firstAttribute="top" secondItem="qn3-R3-ILi" secondAttribute="bottom" id="rwu-wp-Lvc"/>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="bottom" secondItem="qn3-R3-ILi" secondAttribute="bottom" constant="-44" id="wZB-Kp-YUi"/>
@@ -5161,12 +5195,14 @@ Please give us your address</string>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnPay" destination="qn3-R3-ILi" id="xdE-j6-pZG"/>
+                        <outlet property="lblOverallValueStatus" destination="vwv-9y-Ii0" id="nHu-BB-Hla"/>
                         <outlet property="tblView" destination="owd-6E-OdS" id="CZH-Yw-zms"/>
+                        <outlet property="viewOverallValueStatus" destination="d9L-aZ-cwB" id="oev-z1-S8E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f56-7B-nEM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2727" y="3495"/>
+            <point key="canvasLocation" x="2456" y="3559"/>
         </scene>
         <!--Pick Collection View Controller-->
         <scene sceneID="2ou-Mb-JCg">
@@ -6803,7 +6839,7 @@ It will be used only for verification purposes.</string>
         <image name="WhiteSingleBox.png" width="307" height="35"/>
         <image name="aaramShopAppLogo.png" width="292" height="292"/>
         <image name="addIconCircle.png" width="30" height="30"/>
-        <image name="appyCouponCodeBox.png" width="300" height="39"/>
+        <image name="applyCouponCodeBox.png" width="205" height="39"/>
         <image name="arrowBox.png" width="300" height="46"/>
         <image name="backBtn.png" width="30" height="30"/>
         <image name="bg2.jpg" width="320" height="568"/>
@@ -6813,9 +6849,11 @@ It will be used only for verification purposes.</string>
         <image name="callIconGreenCircle.png" width="35" height="35"/>
         <image name="chatNumberingCircle.png" width="30" height="30"/>
         <image name="chatScreenMyListLogo.png" width="180" height="180"/>
+        <image name="checkAvialibilityBox.png" width="96" height="39"/>
         <image name="checkBoxActive.png" width="19" height="19"/>
         <image name="checkBoxInactive.png" width="19" height="19"/>
         <image name="chooseCategoryDefaultImage.png" width="56" height="56"/>
+        <image name="circleCrossIcon.png" width="30" height="30"/>
         <image name="closeIcon.png" width="20" height="20"/>
         <image name="defalutCameraIconNew.png" width="130" height="130"/>
         <image name="dispatchedIconActive.png" width="35" height="35"/>

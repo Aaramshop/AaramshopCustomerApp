@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TotalPriceTableCell.h"
 #import "PickLastTableCell.h"
+#import "HomeSecondCustomCell.h"
 typedef enum
 {
     enPickerSlots,
@@ -16,7 +17,7 @@ typedef enum
 }enPickerType;
 
 
-@interface PaymentViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UICollectionViewDelegate,UICollectionViewDataSource,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface PaymentViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UICollectionViewDelegate,UICollectionViewDataSource,UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate,HomeSecondCustomCellDelegate>
 {
     __weak IBOutlet UITableView *tblView;
     NSMutableArray *arrAddressData;
@@ -29,7 +30,10 @@ typedef enum
     
     __weak IBOutlet UIButton *btnPay;
     
+	__weak IBOutlet UIView *viewOverallValueStatus;
+	__weak IBOutlet UILabel *lblOverallValueStatus;
 }
+- (IBAction)btnCrossClicked:(id)sender;
 @property(nonatomic,strong) NSString *strStore_Id;
 @property(nonatomic,strong) NSString *strTotalPrice;
 @property(nonatomic,strong) NSMutableArray *arrSelectedProducts;
