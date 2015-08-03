@@ -18,10 +18,10 @@
 
 @interface AddContactsToShareCell : UITableViewCell
 {
-    __weak IBOutlet UIImageView *imgUser;
-    __weak IBOutlet UILabel *lblUserName;
-    __weak IBOutlet UIButton *btnSelectContact;
-
+     IBOutlet UIImageView *imgUser;
+     IBOutlet UILabel *lblUserName;
+     IBOutlet UIButton *btnSelectContact;
+    
 }
 
 @property (nonatomic,strong) NSIndexPath *indexPath;

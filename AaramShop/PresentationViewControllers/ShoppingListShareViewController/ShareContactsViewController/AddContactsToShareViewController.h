@@ -21,7 +21,9 @@
     NSMutableArray *arrFilteredContactsData;
     
     ContactsData *contacts;
-        
+    
+    BOOL isSearching;
+    
 }
 
 @property(nonatomic, strong) NSString *strShoppingListId;
