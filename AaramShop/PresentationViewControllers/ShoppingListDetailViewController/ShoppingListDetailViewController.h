@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ShoppingListDetailNewCell.h"
+#import "ShoppingListDetailCell.h"
 
-@interface ShoppingListDetailViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
+@interface ShoppingListDetailViewController : UIViewController<AaramShop_ConnectionManager_Delegate,ProductCellDelegate>
 {
 	__weak IBOutlet UITableView *tblView;
     __weak IBOutlet UIButton *btnChooseStore;
