@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "LocationAlertViewController.h"
+@protocol LocationEnterViewControllerDelegate <NSObject>
+
+-(void)saveAddressInLocationEnter;
+@end
 
 typedef void (^AddAddressCompletion)(void);
 
@@ -19,6 +23,8 @@ typedef void (^AddAddressCompletion)(void);
     __weak IBOutlet MKMapView *mapViewLocation;
     NSMutableArray *arrShopsData;
 }
+@property(nonatomic,weak) id<LocationEnterViewControllerDelegate> delegate;
+
 @property (nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager ;
 @property (nonatomic, copy) AddAddressCompletion addAddressCompletion;
 

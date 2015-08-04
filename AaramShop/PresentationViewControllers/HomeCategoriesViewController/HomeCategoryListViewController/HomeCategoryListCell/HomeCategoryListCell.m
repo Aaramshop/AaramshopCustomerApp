@@ -50,7 +50,7 @@
     
     ////
     NSString *strStoreCategoryIcon = [NSString stringWithFormat:@"%@",objStoreData.store_category_icon];
-    NSURL *urlStoreCategoryIcon = [NSURL URLWithString:[strStoreCategoryIcon stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *urlStoreCategoryIcon = [NSURL URLWithString:strStoreCategoryIcon];
 
     [imgCategoryTypeIcon sd_setImageWithURL:urlStoreCategoryIcon placeholderImage:[UIImage imageNamed:@"homeChocklateIcon.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
@@ -60,7 +60,7 @@
     
     ////
     NSString *strStoreImage = [NSString stringWithFormat:@"%@",objStoreData.store_image];
-    NSURL *urlStoreImage = [NSURL URLWithString:[strStoreImage stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *urlStoreImage = [NSURL URLWithString:strStoreImage];
 
     [imgStore sd_setImageWithURL:urlStoreImage placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
@@ -143,9 +143,7 @@
     }    ////
     
     
-    ////
-//    [btnDistance setTitle:[AppManager getDistance:objStoreData] forState:UIControlStateNormal];
-    
+    ////    
     [btnDistance setTitle:objStoreData.store_distance forState:UIControlStateNormal];
 
     

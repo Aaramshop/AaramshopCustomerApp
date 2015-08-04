@@ -8,11 +8,11 @@
 
 #import "RetailerShoppingListDetailViewController.h"
 #import "CartViewController.h"
+#import "PaymentViewController.h"
 
 #define kTableHeader1Height 60
 #define kTableHeader2Height 40
 #define kTableCellHeight    80
-
 
 @interface RetailerShoppingListDetailViewController ()
 {
@@ -39,9 +39,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     arrProductList = [[NSMutableArray alloc]init];
     [self setNavigationBar];
-    
-    self.tabBarController.tabBar.hidden = YES;
-    
+        
     tblView.backgroundColor = [UIColor whiteColor];
     
     totalNoOfPages = 0;
@@ -400,10 +398,60 @@
 
 
 #pragma mark - Button Methods
-
+- (CartProductModel *)getCartProductFromProduct:(ProductsModel *)product
+{
+	CartProductModel *cart = [[CartProductModel alloc]init];
+	cart.strOffer_type			= [NSString stringWithFormat:@"%d",[product.offer_type intValue]];
+	cart.offer_price				=	product.offer_price;
+	cart.offerTitle					=	product.product_name;
+	cart.offer_id					=	product.offer_id;
+	if([product.offer_type integerValue] >0)
+	{
+		cart.cartProductId		=	product.offer_id;
+	}
+	else
+	{
+		cart.cartProductId		=	product.product_id;
+	}
+	cart.strCount					=	product.strCount;
+	cart.product_id				=	product.product_id;
+	cart.product_sku_id		=	product.product_sku_id;
+	cart.cartProductImage	= product.product_image;
+	cart.product_name			=	product.product_name;
+	cart.product_price			=	product.product_price;
+	return cart;
+}
 -(void)btnDoneClicked
 {
-    
+	NSMutableArray *arrCartProducts = [[NSMutableArray	 alloc]init];
+	if ([arrProductList count]>0)
+	{
+		NSInteger strAmount = 0;
+		for (ProductsModel *productModel in arrProductList) {
+			if([productModel.isAvailable intValue] == 1)
+			{
+				[arrCartProducts addObject:[self getCartProductFromProduct:productModel]];
+				if([productModel.offer_type integerValue]>0)
+				{
+					strAmount = strAmount + ([productModel.strCount integerValue] * [productModel.offer_price integerValue]);
+				}
+				else
+				{
+					strAmount = strAmount + ([productModel.strCount integerValue] * [productModel.product_price integerValue]);
+				}
+			}
+		}
+		
+		PaymentViewController *paymentScreen	= (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
+		paymentScreen.strStore_Id							= appDeleg.objStoreModel.store_id;
+		paymentScreen.strStore_image					= appDeleg.objStoreModel.store_image;
+		paymentScreen.strStore_name					=	appDeleg.objStoreModel.store_name;
+		paymentScreen.strTotalPrice						= [NSString stringWithFormat:@"%ld",(long)strAmount];
+		paymentScreen.arrSelectedProducts			= arrCartProducts;
+		paymentScreen.fromCart							=	YES;
+		[self.navigationController pushViewController:paymentScreen animated:YES];
+		
+	}
 }
 
 

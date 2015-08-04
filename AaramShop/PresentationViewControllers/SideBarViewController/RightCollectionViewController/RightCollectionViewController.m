@@ -57,7 +57,7 @@ static NSString *strCollectionCategory = @"collectionCategories";
 	
 	activity = [[UIActivityIndicatorView alloc]init];
 	activity.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-	activity.frame = CGRectMake(0, 60, activity.frame.size.width	, activity.frame.size.height);
+	activity.frame = CGRectMake([[UIScreen mainScreen] bounds].size.width-(activity.frame.size.width/2), 60, activity.frame.size.width	, activity.frame.size.height);
 	[activity startAnimating];
     
     [self.view addSubview:toolBarBehindView];
@@ -68,7 +68,7 @@ static NSString *strCollectionCategory = @"collectionCategories";
     
     
 //    UITextField *searchField;
-    UIView *subviews = [searchBarCategory.subviews lastObject];
+//    UIView *subviews = [searchBarCategory.subviews lastObject];
 //    searchField = (id)[subviews.subviews objectAtIndex:1];
 //        for (UIView *subView in searchBarCategory.subviews){
 //            for (UIView *ndLeveSubView in subView.subviews){

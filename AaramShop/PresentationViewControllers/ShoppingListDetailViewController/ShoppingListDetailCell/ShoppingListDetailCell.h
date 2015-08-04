@@ -21,6 +21,7 @@
     __weak IBOutlet UIImageView *imgProduct;
     __weak IBOutlet UILabel *lblProductName;
     __weak IBOutlet UILabel	*lblPrice;
+    __weak IBOutlet UILabel	*lblOfferPrice;
     __weak IBOutlet UIButton *btnRemove;
     __weak IBOutlet UILabel *lblCounter;
     __weak IBOutlet UIButton *btnAdd;

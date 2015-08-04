@@ -10,7 +10,7 @@
 #import "TotalPriceTableCell.h"
 #import "PickLastTableCell.h"
 #import "HomeSecondCustomCell.h"
-#import "LocationAlertViewController.h"
+#import "LocationEnterViewController.h"
 typedef enum
 {
     enPickerSlots,
@@ -18,7 +18,7 @@ typedef enum
 }enPickerType;
 
 
-@interface PaymentViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UICollectionViewDelegate,UICollectionViewDataSource,UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate,HomeSecondCustomCellDelegate,UITableViewDataSource,UITableViewDelegate,LocationAlertViewControllerDelegate>
+@interface PaymentViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UICollectionViewDelegate,UICollectionViewDataSource,UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate,HomeSecondCustomCellDelegate,UITableViewDataSource,UITableViewDelegate,LocationEnterViewControllerDelegate>
 {
     __weak IBOutlet UITableView *tblView;
     NSMutableArray *arrAddressData;
@@ -36,10 +36,12 @@ typedef enum
 }
 - (IBAction)btnCrossClicked:(id)sender;
 @property(nonatomic,strong) NSString *strStore_Id;
+@property(nonatomic,strong) NSString *strStore_name;
+@property(nonatomic,strong) NSString *strStore_image;
 @property(nonatomic,strong) NSString *strTotalPrice;
 @property(nonatomic,strong) NSMutableArray *arrSelectedProducts;
 @property(nonatomic,assign) enPickerType ePickerType;
-
+@property (nonatomic, assign) BOOL fromCart;
 - (IBAction)btnPayClick:(UIButton *)sender;
 
 @end

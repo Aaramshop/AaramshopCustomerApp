@@ -274,8 +274,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
 
     
-        [dict setObject:@"28.5160458" forKey:kLatitude]; // temp
-        [dict setObject:@"77.3735504" forKey:kLongitude]; // temp
+//        [dict setObject:@"28.5160458" forKey:kLatitude]; // temp
+//        [dict setObject:@"77.3735504" forKey:kLongitude]; // temp
     
     
     [self callWebserviceToGetStores:dict];
@@ -434,9 +434,12 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             objStore.is_favorite = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_favorite]];
             objStore.is_home_store = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_home_store]];
             objStore.is_open = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kIs_open]];
+            
             objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_id]];
+            
             objStore.store_image = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             
             

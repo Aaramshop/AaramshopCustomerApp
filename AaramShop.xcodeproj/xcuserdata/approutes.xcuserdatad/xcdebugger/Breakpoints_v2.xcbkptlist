@@ -16,15 +16,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/HomeCategoryListCell/HomeCategoryListCell.m"
-            timestampString = "460292261.114066"
+            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/RecommendedStoreCell/RecommendedStoreCell.m"
+            timestampString = "460371386.386441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "-updateCellWithData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -32,16 +32,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/HomeCategoryListViewController.m"
-            timestampString = "460292454.356999"
+            filePath = "AaramShop/PresentationViewControllers/ShoppingListDetailViewController/ShoppingListDetailViewController.m"
+            timestampString = "460382642.43671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "623"
-            endingLineNumber = "623"
-            landmarkName = "-parseStoreListData:"
+            startingLineNumber = "636"
+            endingLineNumber = "636"
+            landmarkName = "-actionChooseStore:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,61 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/HomeCategoriesViewController/HomeCategoryListViewController/HomeCategoryListViewController.m"
-            timestampString = "460292751.116359"
+            filePath = "AaramShop/PresentationViewControllers/ShoppingListDetailViewController/ShoppingListDetailViewController.m"
+            timestampString = "460382788.83899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "625"
-            endingLineNumber = "625"
-            landmarkName = "-parseStoreListData:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "460293585.86015"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "-callWebserviceForLogin:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "460293588.285987"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "-responseReceived:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AaramShop/PresentationViewControllers/LoginViewController/LoginViewController.m"
-            timestampString = "460293589.140045"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "-didFailWithError:"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
+            landmarkName = "-viewForHeader1"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -978,6 +978,7 @@
 		6B1C0B821B04D25B009DD32D /* DPAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1C0B811B04D25B009DD32D /* DPAnnotationView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6B1DFC1E1B30495800E5CAE8 /* CustomSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1DFC1D1B30495800E5CAE8 /* CustomSearchDisplayController.m */; };
 		6B2189521B6380EA00BF56BC /* CartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2189511B6380EA00BF56BC /* CartModel.m */; };
+		6B2CFEAA1B70E87200ECB72C /* PrescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2CFEA91B70E87200ECB72C /* PrescriptionViewController.m */; };
 		6B35B8BC1B56538800807F25 /* ShoppingListShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B35B8BB1B56538800807F25 /* ShoppingListShareCell.m */; };
 		6B35B8C11B5665DA00807F25 /* shoppingListDefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B35B8BE1B5665DA00807F25 /* shoppingListDefaultImage.png */; };
 		6B35B8C21B5665DA00807F25 /* shoppingListDefaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B35B8BF1B5665DA00807F25 /* shoppingListDefaultImage@2x.png */; };
@@ -2720,6 +2721,8 @@
 		6B1DFC1D1B30495800E5CAE8 /* CustomSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchDisplayController.m; sourceTree = "<group>"; };
 		6B2189501B6380EA00BF56BC /* CartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartModel.h; sourceTree = "<group>"; };
 		6B2189511B6380EA00BF56BC /* CartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartModel.m; sourceTree = "<group>"; };
+		6B2CFEA81B70E87200ECB72C /* PrescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrescriptionViewController.h; sourceTree = "<group>"; };
+		6B2CFEA91B70E87200ECB72C /* PrescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrescriptionViewController.m; sourceTree = "<group>"; };
 		6B35B8BA1B56538800807F25 /* ShoppingListShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListShareCell.h; sourceTree = "<group>"; };
 		6B35B8BB1B56538800807F25 /* ShoppingListShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListShareCell.m; sourceTree = "<group>"; };
 		6B35B8BE1B5665DA00807F25 /* shoppingListDefaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoppingListDefaultImage.png; sourceTree = "<group>"; };
@@ -5865,6 +5868,7 @@
 			children = (
 				36CA64461B70EC3D00A3BBB1 /* SearchViewController */,
 				36CA643F1B70DC6200A3BBB1 /* GlobalSearchResultViewC */,
+				6B2CFEA71B70E84800ECB72C /* PrescriptionViewController */,
 				36D1190E1B6CE7880013C84B /* GlobalSearchViewController */,
 				36D118F21B6C97260013C84B /* ScanCodeViewController */,
 				6BEABEDD1B67AC4C00398164 /* BroadcastViewController */,
@@ -6104,6 +6108,15 @@
 				6BEABF071B68D77100398164 /* CartProductModel.m */,
 			);
 			path = CartModel;
+			sourceTree = "<group>";
+		};
+		6B2CFEA71B70E84800ECB72C /* PrescriptionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B2CFEA81B70E87200ECB72C /* PrescriptionViewController.h */,
+				6B2CFEA91B70E87200ECB72C /* PrescriptionViewController.m */,
+			);
+			path = PrescriptionViewController;
 			sourceTree = "<group>";
 		};
 		6B35B8B91B56534900807F25 /* ShoppingListShareCell */ = {
@@ -8660,6 +8673,7 @@
 				274A5CA81B05C4AA009112B5 /* XMPPRoster.m in Sources */,
 				274A5C941B05C4AA009112B5 /* XMPPIQ.m in Sources */,
 				6B809DB11B31755D00E91673 /* UIImageView+HighlightedWebCache.m in Sources */,
+				6B2CFEAA1B70E87200ECB72C /* PrescriptionViewController.m in Sources */,
 				6B809DB21B31755D00E91673 /* UIImageView+WebCache.m in Sources */,
 				274A5C991B05C4AA009112B5 /* XMPPPresence.m in Sources */,
 				6BCB094B1B4E8C5900F1A502 /* ArtistsViewController.m in Sources */,
@@ -8921,7 +8935,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "67284c8f-c461-4f10-8e71-d6d0982a7c5a";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -8957,7 +8971,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "67284c8f-c461-4f10-8e71-d6d0982a7c5a";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;

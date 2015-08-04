@@ -721,6 +721,10 @@
     if (self.addAddressCompletion)
     {
         self.addAddressCompletion();
+		if(self.delegate && [self.delegate respondsToSelector:@selector(saveAddressInLocationEnter)])
+		{
+			[self.delegate saveAddressInLocationEnter];
+		}
         [self.navigationController popViewControllerAnimated:YES];
     }
     else

@@ -410,10 +410,10 @@
 -(void)navigateToDetailScreen:(NSIndexPath *)indexPath
 {
     RetailerShoppingListDetailViewController *retailerShoppingListDetailView = (RetailerShoppingListDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"retailerShoppingListDetail"];
-    
+	retailerShoppingListDetailView.hidesBottomBarWhenPushed = YES;
+
     ShoppingListModel *shoppingListModel = [self.arrShoppingList objectAtIndex:indexPath.row];
     retailerShoppingListDetailView.shoppingListModel = shoppingListModel;
-    
     [self.navigationController pushViewController:retailerShoppingListDetailView animated:YES];
 }
 
