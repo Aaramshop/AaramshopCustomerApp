@@ -456,7 +456,7 @@
 	paymentScreen.strStore_name					=	cartModel.store_name;
 	paymentScreen.strTotalPrice						= [NSString stringWithFormat:@"%ld",(long)strAmount];
 	paymentScreen.arrSelectedProducts			= cartModel.arrProductDetails;
-	paymentScreen.fromCart							= NO;
+	paymentScreen.fromCart							= YES;
 	[self.navigationController pushViewController:paymentScreen animated:YES];
 }
 

@@ -382,6 +382,10 @@ static NSString *strCollectionItems = @"collectionItems";
 				isCouponValid = -1;
 				[tblView reloadData];
 			}
+			else
+			{
+				NSLog(@"%@",responseObject);
+			}
 			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		}
 	}
@@ -837,7 +841,14 @@ static NSString *strCollectionItems = @"collectionItems";
 	NSArray *arrProduct		=	[arrSelectedProducts filteredArrayUsingPredicate:predicate];
 	if([arrProduct count]>0)
 	{
-		
+		int index = [arrSelectedProducts indexOfObject:[arrProduct objectAtIndex:0]];
+		if ([productModel.strCount intValue]==0) {
+			[arrSelectedProducts removeObject:[arrProduct objectAtIndex:0]];
+		}
+		else
+		{
+			[arrSelectedProducts replaceObjectAtIndex:index withObject:[self getCartProductFromOffer:productModel]];
+		}
 	}
 	else
 	{

@@ -548,48 +548,31 @@
     NSMutableArray *arrCartProducts = [[NSMutableArray	 alloc]init];
     if ([arrProductList count]>0)
     {
-        NSInteger strAmount = 0;
-        for (ProductsModel *productModel in arrProductList) {
-            if([productModel.isAvailable intValue] == 1)
-            {
-                [arrCartProducts addObject:[self getCartProductFromProduct:productModel]];
-                if([productModel.offer_type integerValue]>0)
-                {
-                    strAmount = strAmount + ([productModel.strCount integerValue] * [productModel.offer_price integerValue]);
-                }
-                else
-                {
-                    strAmount = strAmount + ([productModel.strCount integerValue] * [productModel.product_price integerValue]);
-                }
-                
-            }
-        }
-        
-        PaymentViewController *paymentScreen = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
-        paymentScreen.strStore_Id = selectedStoreModel.store_id;
-        paymentScreen.strStore_image = selectedStoreModel.store_image;
-        paymentScreen.strStore_name	=	selectedStoreModel.store_name;
-        paymentScreen.strTotalPrice = [NSString stringWithFormat:@"%ld",(long)strAmount];
-        paymentScreen.arrSelectedProducts = arrCartProducts;
-        [self.navigationController pushViewController:paymentScreen animated:YES];
-        
-        
-        
-        //		StoreModel *storeModel	= [[StoreModel alloc]init];
-        //		storeModel.store_id			=	selectedStoreModel.store_id;
-        //		storeModel.store_image		=	selectedStoreModel.store_image;
-        //		storeModel.store_name		=	selectedStoreModel.store_name;
-        //		AppDelegate *appdel			=	APP_DELEGATE;
-        //		appdel.objStoreModel			=	storeModel;
-        //
-        //        CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
-        //        if (!cartView.arrProductList)
-        //        {
-        //            cartView.arrProductList = [[NSMutableArray alloc]init];
-        //        }
-        //
-        //        [cartView.arrProductList addObjectsFromArray:arrCartProducts];
-        //        [self.navigationController pushViewController:cartView animated:YES];
+		NSInteger strAmount = 0;
+		for (ProductsModel *productModel in arrProductList) {
+			if([productModel.isAvailable intValue] == 1)
+			{
+				[arrCartProducts addObject:[self getCartProductFromProduct:productModel]];
+				if([productModel.offer_type integerValue]>0)
+				{
+					strAmount = strAmount + ([productModel.strCount integerValue] * [productModel.offer_price integerValue]);
+				}
+				else
+				{
+					strAmount = strAmount + ([productModel.strCount integerValue] * [productModel.product_price integerValue]);
+				}
+
+			}
+		}
+				
+		PaymentViewController *paymentScreen	= (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
+		paymentScreen.strStore_Id							= selectedStoreModel.store_id;
+		paymentScreen.strStore_image					= selectedStoreModel.store_image;
+		paymentScreen.strStore_name					=	selectedStoreModel.store_name;
+		paymentScreen.strTotalPrice						= [NSString stringWithFormat:@"%ld",(long)strAmount];
+		paymentScreen.arrSelectedProducts			= arrCartProducts;
+		paymentScreen.fromCart							=	YES;
+		[self.navigationController pushViewController:paymentScreen animated:YES];
     }
     
 }
