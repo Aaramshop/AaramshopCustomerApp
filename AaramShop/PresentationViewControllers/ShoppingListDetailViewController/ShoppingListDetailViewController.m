@@ -62,6 +62,8 @@
     [refreshShoppingList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = refreshShoppingList;
     
+    strTotalAvailProductPrice = @"";
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -69,7 +71,6 @@
     [super viewWillAppear:YES];
     
     tblView.hidden = YES;
-	
     [self getProductsInitialList];
 }
 
@@ -437,7 +438,7 @@
     
     
     NSString *strRupee = @"\u20B9";
-    NSString *strAmount = selectedStoreModel.total_product_price;
+    NSString *strAmount = strTotalAvailProductPrice;
     
     //
     UILabel *lblTotalAmountValue = [[UILabel alloc]initWithFrame:CGRectMake((btnDone.frame.origin.x - 120), 0, 100, view.frame.size.height)];
@@ -639,7 +640,7 @@
             
             selectedStoreModel = chooseStoreModel;
             
-            //            [self activateChooseBtn:NO];
+            strTotalAvailProductPrice = selectedStoreModel.total_product_price;
             
             [tblView reloadData];
         };
@@ -686,57 +687,22 @@
     
     NSInteger totalAmount;
     
-    //    if ([productModel.offer_type integerValue]>0)
-    //    {
-    //        totalAmount = [strTotalAvailProductPrice integerValue]+[productModel.offer_price integerValue];
-    //    }
-    //    else
-    //    {
-    //        totalAmount = [strTotalAvailProductPrice integerValue]+[productModel.product_price integerValue];
-    //    }
-    //
-    //
-    //    countTotalProductPrice = countTotalProductPrice + [productModel.product_price integerValue];
-    //
-    //    strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",(long)totalAmount];
+        if ([productModel.offer_type integerValue]>0)
+        {
+            totalAmount = [strTotalAvailProductPrice integerValue]+[productModel.offer_price integerValue];
+        }
+        else
+        {
+            totalAmount = [strTotalAvailProductPrice integerValue]+[productModel.product_price integerValue];
+        }
+    
+    
+//        countTotalProductPrice = countTotalProductPrice + [productModel.product_price integerValue];
+    
+        strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",(long)totalAmount];
     
     [tblView reloadData];
 }
-//{
-//    ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
-//
-// //    int counter = [productModel.quantity intValue];
-//       int counter = [productModel.strCount intValue];
-
-//
-//    counter++;
-//
-//  //  productModel.quantity = [NSString stringWithFormat:@"%d",counter];
-//    productModel.strCount = [NSString stringWithFormat:@"%d",counter];
-
-//
-//  //  [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-
-//    NSInteger totalAmount;
-//
-//    if ([productModel.offer_type integerValue]>0)
-//    {
-//        totalAmount = [strTotalAvailProductPrice integerValue]+[productModel.offer_price integerValue];
-//    }
-//    else
-//    {
-//        totalAmount = [strTotalAvailProductPrice integerValue]+[productModel.product_price integerValue];
-//    }
-//
-//
-//    countTotalProductPrice = countTotalProductPrice + [productModel.product_price integerValue];
-//
-//    strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",(long)totalAmount];
-//
-//    [tblView reloadData];
-//
-//}
-
 
 
 -(void)removeProduct:(NSIndexPath *)indexPath
@@ -756,55 +722,23 @@
     
     NSInteger totalAmount;
     
-    //    if ([productModel.offer_type integerValue]>0)
-    //    {
-    //        totalAmount = [strTotalAvailProductPrice integerValue]-[productModel.offer_price integerValue];
-    //    }
-    //    else
-    //    {
-    //        totalAmount = [strTotalAvailProductPrice integerValue]-[productModel.product_price integerValue];
-    //    }
-    //
-    //    countTotalProductPrice = countTotalProductPrice - [productModel.product_price integerValue];
-    //
-    //
-    //    strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",(long)totalAmount];
+        if ([productModel.offer_type integerValue]>0)
+        {
+            totalAmount = [strTotalAvailProductPrice integerValue]-[productModel.offer_price integerValue];
+        }
+        else
+        {
+            totalAmount = [strTotalAvailProductPrice integerValue]-[productModel.product_price integerValue];
+        }
+    
+//        countTotalProductPrice = countTotalProductPrice - [productModel.product_price integerValue];
+    
+    
+        strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",(long)totalAmount];
     
     [tblView reloadData];
     
 }
-//{
-//    ProductsModel *productModel = [arrProductList objectAtIndex:indexPath.row];
-//
-//  //  int counter = [productModel.quantity intValue];
-//    int counter = [productModel.strCount intValue];
-
-//    counter--;
-//
-//  //  productModel.quantity = [NSString stringWithFormat:@"%d",counter];
-//    productModel.strCount = [NSString stringWithFormat:@"%d",counter];
-
-//
-//   // [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-
-//    NSInteger totalAmount;
-//
-//    if ([productModel.offer_type integerValue]>0)
-//    {
-//        totalAmount = [strTotalAvailProductPrice integerValue]-[productModel.offer_price integerValue];
-//    }
-//    else
-//    {
-//        totalAmount = [strTotalAvailProductPrice integerValue]-[productModel.product_price integerValue];
-//    }
-//
-//    countTotalProductPrice = countTotalProductPrice - [productModel.product_price integerValue];
-//
-//
-//    strTotalAvailProductPrice = [NSString stringWithFormat:@"%ld",totalAmount];
-//
-//    [tblView reloadData];
-//}
 
 
 //////////////////////////////////////////////////////////////////////////////

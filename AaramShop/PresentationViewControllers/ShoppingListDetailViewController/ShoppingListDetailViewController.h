@@ -19,6 +19,8 @@
         
     UIRefreshControl *refreshShoppingList;
     BOOL isLoading;
+    
+    NSString *strTotalAvailProductPrice;
 
 }
 
