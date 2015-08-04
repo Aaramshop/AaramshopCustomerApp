@@ -80,6 +80,8 @@
         
         UIImage *imgStarIcon = [UIImage imageNamed:@"homeStarRedIcon"];
         
+//        objStoreData.store_rating = @"2"; // for testing
+        
         switch ([objStoreData.store_rating integerValue])
         {
             case 1:

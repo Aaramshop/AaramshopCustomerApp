@@ -64,6 +64,10 @@
     
     
     ////
+    lblCategoryName.text =objStoreData.store_category_name;
+    
+    
+    ////
     if ([objStoreData.is_open isEqualToString:@"1"]) {
         imgStoreStatusIcon.image = [UIImage imageNamed:@"homeLockIconOpen.png"];
     }
