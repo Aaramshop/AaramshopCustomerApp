@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PrescriptionViewController : UIViewController
+@interface PrescriptionViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+{
+    __weak IBOutlet UIImageView *imgBackground;
+    __weak IBOutlet UIImageView *imgPrescription;
 
+    __weak IBOutlet UIButton *btnPrescriptionImage;
+    __weak IBOutlet UILabel *lblDescription;
+    __weak IBOutlet UIButton *btnContinue;
+    
+}
 @end
