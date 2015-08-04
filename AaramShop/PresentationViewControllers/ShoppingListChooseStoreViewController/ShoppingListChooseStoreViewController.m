@@ -13,7 +13,7 @@
 
 
 #define kTableRecommendedHeaderTitleHeight          23
-#define kTableParentHeaderDefaultHeight             115
+#define kTableParentHeaderDefaultHeight             123//115
 #define kTableParentHeaderExpandedHeight            260
 #define kTableParentCellHeight                      100
 
@@ -659,8 +659,8 @@
         [arrRecommendedStores addObjectsFromArray:shoppingListChooseStoreModel.arrRecommendedStores];
 //    }
     
-    
     [tblStores reloadData];
+    [tblRecommendedStore reloadData];
     
     //*/
 }

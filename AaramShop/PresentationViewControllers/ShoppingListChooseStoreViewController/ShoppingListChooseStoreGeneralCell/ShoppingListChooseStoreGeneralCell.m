@@ -80,6 +80,8 @@
         
         UIImage *imgStarIcon = [UIImage imageNamed:@"homeStarRedIcon"];
         
+//        objStoreData.store_rating = @"2"; // for testing
+        
         switch ([objStoreData.store_rating integerValue])
         {
             case 1:
@@ -153,17 +155,9 @@
     
     
     
-    ////
-    
-    StoreModel * objStore = [[StoreModel alloc]init];
-    
-    objStore.store_latitude = objStoreData.store_latitude;
-    objStore.store_longitude = objStoreData.store_longitude;
-    
-//    [btnDistance setTitle:[AppManager getDistance:objStore] forState:UIControlStateNormal];
-    
-    
-    [btnDistance setTitle:objStore.store_distance forState:UIControlStateNormal];
+    ////    
+    [btnDistance setTitle:objStoreData.store_distance forState:UIControlStateNormal];
+
 
     
     

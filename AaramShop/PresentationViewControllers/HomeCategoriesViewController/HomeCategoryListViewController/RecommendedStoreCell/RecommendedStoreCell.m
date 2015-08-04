@@ -64,6 +64,10 @@
     
     
     ////
+    lblCategoryName.text =objStoreData.store_category_name;
+    
+    
+    ////
     if ([objStoreData.is_open isEqualToString:@"1"]) {
         imgStoreStatusIcon.image = [UIImage imageNamed:@"homeLockIconOpen.png"];
     }
@@ -134,9 +138,7 @@
     }    ////
     
     
-    ////
-//    [btnDistance setTitle:[AppManager getDistance:objStoreData] forState:UIControlStateNormal];
-    
+    ////    
     [btnDistance setTitle:objStoreData.store_distance forState:UIControlStateNormal];
 
     

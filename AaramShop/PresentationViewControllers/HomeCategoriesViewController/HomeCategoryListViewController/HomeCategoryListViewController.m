@@ -697,6 +697,44 @@
 //    }
     
     
+    
+    
+    /*
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];
+    [arrAllStores addObjectsFromArray:tempStoreModel.arrShoppingStores];
+    //*/
+    
+    
+    
+    
     [tblStores reloadData];
     [tblRecommendedStore  reloadData];
 }
