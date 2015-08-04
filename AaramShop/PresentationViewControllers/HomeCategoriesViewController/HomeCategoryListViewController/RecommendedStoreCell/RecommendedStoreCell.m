@@ -134,9 +134,7 @@
     }    ////
     
     
-    ////
-//    [btnDistance setTitle:[AppManager getDistance:objStoreData] forState:UIControlStateNormal];
-    
+    ////    
     [btnDistance setTitle:objStoreData.store_distance forState:UIControlStateNormal];
 
     

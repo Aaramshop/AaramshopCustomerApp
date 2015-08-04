@@ -659,8 +659,8 @@
         [arrRecommendedStores addObjectsFromArray:shoppingListChooseStoreModel.arrRecommendedStores];
 //    }
     
-    
     [tblStores reloadData];
+    [tblRecommendedStore reloadData];
     
     //*/
 }
