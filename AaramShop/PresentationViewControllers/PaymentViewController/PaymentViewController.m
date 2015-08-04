@@ -349,7 +349,14 @@ static NSString *strCollectionItems = @"collectionItems";
         {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 			[AppManager removeCartBasedOnStoreId:self.strStore_Id];
-			[appDel removeTabBarRetailer];
+			if([self.tabBarController isEqual:appDel.tabBarControllerRetailer])
+			{
+				[appDel removeTabBarRetailer];
+			}
+			else
+			{
+				[self.navigationController popToRootViewControllerAnimated:YES];
+			}
         }
     }
 	else if (aaramShop_ConnectionManager.currentTask == TASK_GET_MINIMUM_ORDER_VALUE)
@@ -513,7 +520,15 @@ static NSString *strCollectionItems = @"collectionItems";
     [self showPickerView:NO];
     [pickerViewSlots removeFromSuperview];
     [datePicker removeFromSuperview];
-	[self.navigationController popViewControllerAnimated:YES];
+	if([self.tabBarController isEqual:appDel.tabBarControllerRetailer])
+	{
+		[appDel removeTabBarRetailer];
+	}
+	else
+	{
+		[self.navigationController popToRootViewControllerAnimated:YES];
+	}
+//	[self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - TableView delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -833,7 +848,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	
 	
 //	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
-	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDel.objStoreModel.store_id,kStore_id,appDel.objStoreModel.store_name,kStore_name,appDel.objStoreModel.store_image,kStore_image, nil] add:YES];
+	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:YES];
 	
 	arrSelectedProducts		=	(NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
 
@@ -881,7 +896,7 @@ static NSString *strCollectionItems = @"collectionItems";
 //		priceValue-=[objProductsModel.product_price intValue];
 //	}
 //	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
-	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,appDel.objStoreModel.store_name,kStore_name,appDel.objStoreModel.store_image,kStore_image, nil] add:NO];
+	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:NO];
 	
 	arrSelectedProducts = (NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
 	
@@ -964,11 +979,19 @@ static NSString *strCollectionItems = @"collectionItems";
         AddressModel *objaddressModel = [arrAddressData objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
 		if([objaddressModel.user_address_id integerValue]==0)
 		{
-			locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
-			locationAlert.delegate = self;
-			CGRect locationAlertViewRect = [UIScreen mainScreen].bounds;
-			locationAlert.view.frame = locationAlertViewRect;
-			[[UIApplication sharedApplication].keyWindow addSubview:locationAlert.view];
+//			locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];
+//			locationAlert.delegate = self;
+//			CGRect locationAlertViewRect = [UIScreen mainScreen].bounds;
+//			locationAlert.view.frame = locationAlertViewRect;
+//			[[UIApplication sharedApplication].keyWindow addSubview:locationAlert.view];
+			LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+			locationScreen.delegate							= self;
+			locationScreen.addAddressCompletion	= ^(void)
+			{
+				self.navigationController.navigationBarHidden = NO;
+			};
+			
+			[self.navigationController pushViewController:locationScreen animated:YES];
 		}
 		else
 		{
@@ -995,7 +1018,7 @@ static NSString *strCollectionItems = @"collectionItems";
 
 #pragma mark -- Location alert Delegate Method
 
--(void)saveAddress
+-(void)saveAddressInLocationEnter
 {
 	[self createDataToGetPaymentPageData];
 }

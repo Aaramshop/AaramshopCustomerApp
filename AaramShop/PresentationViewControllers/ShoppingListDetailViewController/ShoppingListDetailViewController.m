@@ -13,7 +13,7 @@
 #import "CartViewController.h"
 #import "ProductsModel.h"
 #import "ShoppingListChooseStoreViewController.h"
-
+#import "PaymentViewController.h"
 #import "ShoppingListChooseStoreModel.h"
 
 
@@ -478,21 +478,78 @@
 
 
 #pragma mark - Button Methods
-
+- (CartProductModel *)getCartProductFromProduct:(ProductsModel *)product
+{
+	CartProductModel *cart = [[CartProductModel alloc]init];
+	cart.strOffer_type			= [NSString stringWithFormat:@"%d",[product.offer_type intValue]];
+	cart.offer_price				=	product.offer_price;
+	cart.offerTitle					=	product.product_name;
+	cart.offer_id					=	product.offer_id;
+	if([product.offer_type integerValue] >0)
+	{
+		cart.cartProductId		=	product.offer_id;
+	}
+	else
+	{
+		cart.cartProductId		=	product.product_id;
+	}
+	cart.strCount					=	product.strCount;
+	cart.product_id				=	product.product_id;
+	cart.product_sku_id		=	product.product_sku_id;
+	cart.cartProductImage	= product.product_image;
+	cart.product_name			=	product.product_name;
+	cart.product_price			=	product.product_price;
+	return cart;
+}
 -(void)btnDoneClicked
 {
+	NSMutableArray *arrCartProducts = [[NSMutableArray	 alloc]init];
     if ([arrProductList count]>0)
     {
-        CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
-        if (!cartView.arrProductList)
-        {
-            cartView.arrProductList = [[NSMutableArray alloc]init];
-        }
-        
-        [cartView.arrProductList addObjectsFromArray:arrProductList];
-        [self.navigationController pushViewController:cartView animated:YES];
+		NSInteger strAmount = 0;
+		for (ProductsModel *productModel in arrProductList) {
+			if([productModel.isAvailable intValue] == 1)
+			{
+				[arrCartProducts addObject:[self getCartProductFromProduct:productModel]];
+				if([productModel.offer_type integerValue]>0)
+				{
+					strAmount = strAmount + ([productModel.strCount integerValue] * [productModel.offer_price integerValue]);
+				}
+				else
+				{
+					strAmount = strAmount + ([productModel.strCount integerValue] * [productModel.product_price integerValue]);
+				}
+
+			}
+		}
+				
+		PaymentViewController *paymentScreen = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
+		paymentScreen.strStore_Id = selectedStoreModel.store_id;
+		paymentScreen.strStore_image = selectedStoreModel.store_image;
+		paymentScreen.strStore_name	=	selectedStoreModel.store_name;
+		paymentScreen.strTotalPrice = [NSString stringWithFormat:@"%ld",(long)strAmount];
+		paymentScreen.arrSelectedProducts = arrCartProducts;
+		[self.navigationController pushViewController:paymentScreen animated:YES];
+
+		
+		
+//		StoreModel *storeModel	= [[StoreModel alloc]init];
+//		storeModel.store_id			=	selectedStoreModel.store_id;
+//		storeModel.store_image		=	selectedStoreModel.store_image;
+//		storeModel.store_name		=	selectedStoreModel.store_name;
+//		AppDelegate *appdel			=	APP_DELEGATE;
+//		appdel.objStoreModel			=	storeModel;
+//		
+//        CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+//        if (!cartView.arrProductList)
+//        {
+//            cartView.arrProductList = [[NSMutableArray alloc]init];
+//        }
+//        
+//        [cartView.arrProductList addObjectsFromArray:arrCartProducts];
+//        [self.navigationController pushViewController:cartView animated:YES];
     }
-    
+	
 }
 
 
@@ -816,30 +873,29 @@
     
     for (id obj in arrTemp)
     {
-        ProductsModel *productsModel = [[ProductsModel alloc]init];
-        
-        productsModel.free_item = [NSString stringWithFormat:@"%@",[obj valueForKey:@"free_item"]];
-        productsModel.isAvailable = [NSString stringWithFormat:@"%@",[obj valueForKey:@"isAvailable"]];
-        productsModel.offer_type = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_type"]];
-        productsModel.offer_price = [NSString stringWithFormat:@"%d",[[obj valueForKey:@"offer_price"] intValue]];
-        
-        productsModel.product_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_id"]];
-        productsModel.product_image = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_image"]];
-        productsModel.product_name = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_name"]];
-        productsModel.product_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_price"]];
-        productsModel.product_sku_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_sku_id"]];
-//        productsModel.quantity = [NSString stringWithFormat:@"%@",[obj valueForKey:@"quantity"]];
-        
-        productsModel.strCount = [NSString stringWithFormat:@"%@",[obj valueForKey:@"quantity"]];
-
-
-        
-        [arrProductList  addObject:productsModel];
-        
+        [arrProductList  addObject:[self addProductInArray:obj]];
     }
     
     [tblView reloadData];
 
+}
+- (ProductsModel *)addProductInArray:(NSDictionary *)dictProducts
+{
+	ProductsModel *objProductsModel = [[ProductsModel alloc]init];
+	objProductsModel.category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kCategory_id]];
+	objProductsModel.product_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_id]];
+	objProductsModel.product_image = [NSString stringWithFormat:@"%@",[[dictProducts objectForKey:kProduct_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+	objProductsModel.product_name = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_name]];
+	objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
+	objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
+	objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
+	
+	objProductsModel.offer_id=[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];
+	objProductsModel.offer_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_price]];
+	objProductsModel.offer_type = [NSString stringWithFormat:@"%d",[[dictProducts objectForKey:@"offerType"] intValue]];
+	objProductsModel.strCount = [NSString stringWithFormat:@"%d",[[dictProducts valueForKey:@"quantity"] intValue]];
+	
+	return objProductsModel;
 }
 
 

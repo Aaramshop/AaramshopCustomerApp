@@ -39,9 +39,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     arrProductList = [[NSMutableArray alloc]init];
     [self setNavigationBar];
-    
-    self.tabBarController.tabBar.hidden = YES;
-    
+        
     tblView.backgroundColor = [UIColor whiteColor];
     
     totalNoOfPages = 0;

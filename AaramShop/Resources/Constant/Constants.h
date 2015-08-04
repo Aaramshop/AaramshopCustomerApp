@@ -290,7 +290,7 @@
 
 //================== Offers =================
 #define kURLGetOffers										@"getOffers"
-#define kURLGetComboDetails							@"getComboDetails"
+#define kURLGetComboDetails						@"getComboDetails"
 #define kPage_no												@"page_no"
 #define kTotal_page											@"total_page"
 #define kOfferType											@"offerType"
@@ -325,22 +325,22 @@
 
 //================= Preferences============
 #define kURLGetPreferences							@"getPreferences"
-#define kURLSavePreference							@"savePreference"
-#define kURLGetUserAddress						@"getUserAddress"
-#define kOffers_notification							@"offers_notification"
-#define kDelivery_status_notification			@"delivery_status_notification"
-#define kChat_notification							@"chat_notification"
+#define kURLSavePreference								@"savePreference"
+#define kURLGetUserAddress							@"getUserAddress"
+#define kOffers_notification								@"offers_notification"
+#define kDelivery_status_notification				@"delivery_status_notification"
+#define kChat_notification									@"chat_notification"
 
 //================= SHOPPING LIST MODULE =============
 
-#define KURLSerachStoreProducts                     @"serachStoreProducts"
-#define kURLCreateShoppingList                      @"createShoppingList"
+#define KURLSerachStoreProducts					@"serachStoreProducts"
+#define kURLCreateShoppingList						@"createShoppingList"
 #define kURLGetShoppingList                         @"getShoppingList"
-#define kURLDeleteShoppingList                      @"deleteShoppingList"
-#define kURLGetShoppingListProducts                 @"getShoppingListProducts"
+#define kURLDeleteShoppingList						@"deleteShoppingList"
+#define kURLGetShoppingListProducts			@"getShoppingListProducts"
 #define kURLUpdateShoppingListProducts              @"updateShoppingListProducts"
-#define kURLGetStores                               @"getStores"
-#define kURLSetShoppingListReminder                 @"setShoppingListReminder"
+#define kURLGetStores										@"getStores"
+#define kURLSetShoppingListReminder			@"setShoppingListReminder"
 #define KURLSerachStoreProducts					@"serachStoreProducts"
 #define kURLCreateShoppingList						@"createShoppingList"
 #define kURLGetShoppingList							@"getShoppingList"

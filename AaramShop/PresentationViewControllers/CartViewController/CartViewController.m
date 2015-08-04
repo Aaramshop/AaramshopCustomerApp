@@ -452,6 +452,8 @@
 	
 	PaymentViewController *paymentScreen = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
 	paymentScreen.strStore_Id = cartModel.store_id;
+	paymentScreen.strStore_image = cartModel.store_image;
+	paymentScreen.strStore_name	=	cartModel.store_name;
 	paymentScreen.strTotalPrice = [NSString stringWithFormat:@"%ld",(long)strAmount];
 	paymentScreen.arrSelectedProducts = cartModel.arrProductDetails;
 	[self.navigationController pushViewController:paymentScreen animated:YES];
