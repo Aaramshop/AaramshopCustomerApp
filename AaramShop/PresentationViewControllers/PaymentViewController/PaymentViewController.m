@@ -468,7 +468,14 @@ static NSString *strCollectionItems = @"collectionItems";
 		objProducts.offer_price			=	[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_price]];
 		objProducts.offer_type			=	[NSString stringWithFormat:@"%d",[[dictProducts objectForKey:@"offer_type"] intValue]];
 		objProducts.offer_id				=	[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];
-		objProducts.strCount				= [AppManager getCountOfProduct:objProducts.offer_id withOfferType:objProducts.offer_type forStore_id:self.strStore_Id];
+		if(self.fromCart)
+		{
+			objProducts.strCount			=	[AppManager getCountOfProduct:objProducts.offer_id withOfferType:objProducts.offer_type forStore_id:self.strStore_Id];
+		}
+		else
+		{
+			objProducts.strCount				= [self getCountOfProduct:objProducts.offer_id withOfferType:objProducts.offer_type forStoreId:self.strStore_Id];
+		}
 
         objProducts.isSelected = NO;
         [arrLastMinPick addObject:objProducts];
@@ -479,7 +486,17 @@ static NSString *strCollectionItems = @"collectionItems";
 	}
     [tblView reloadData];
 }
-
+- (NSString *)getCountOfProduct:(NSString *)productOrOfferId withOfferType:(NSString *)offerType forStoreId:(NSString *)store_id
+{
+//	NSMutableArray *arrCartProduct	= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:store_id]];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF. cartProductId == %@ and SELF.strOffer_type == %@",productOrOfferId,offerType];
+	NSArray *array	=	[arrSelectedProducts filteredArrayUsingPredicate:predicate];
+	if([array count]>0)
+	{
+		return [[array objectAtIndex:0] strCount];
+	}
+	return @"0";
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -814,6 +831,19 @@ static NSString *strCollectionItems = @"collectionItems";
 	cart.product_price			=	product.product_price;
 	return cart;
 }
+- (void)modifyCartForShoppingListByData:(ProductsModel *)productModel
+{
+	NSPredicate *predicate	= [NSPredicate predicateWithFormat:@"SELF.cartProductId == %@ and SELF.strOffer_type ==%@",productModel.offer_id,productModel.offer_type];
+	NSArray *arrProduct		=	[arrSelectedProducts filteredArrayUsingPredicate:predicate];
+	if([arrProduct count]>0)
+	{
+		
+	}
+	else
+	{
+		[arrSelectedProducts addObject:[self getCartProductFromOffer:productModel]];
+	}
+}
 -(void)addedValueByPrice:(NSString *)strPrice atIndexPath:(NSIndexPath *)inIndexPath
 {
 	ProductsModel *objProductsModel = nil;
@@ -835,23 +865,16 @@ static NSString *strCollectionItems = @"collectionItems";
 	total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
 	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([subTotal integerValue]-[total_discount integerValue])];
 
-	
-//	if([productModel.strOffer_type integerValue]==1 || [productModel.strOffer_type integerValue]==4 )
-//	{
-//		discount += ([productModel.product_price integerValue]-[productModel.offer_price integerValue])*[productModel.strCount integerValue];
-//	}
-//	if([productModel.strOffer_type integerValue] == 6)
-//	{
-//		sub_total +=[productModel.offer_price integerValue]*[productModel.strCount integerValue];
-//	}
-
-	
-	
-//	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
-	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:YES];
-	
-	arrSelectedProducts		=	(NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
-
+	if(self.fromCart)
+	{
+		[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:YES];
+		
+		arrSelectedProducts		=	(NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
+	}
+	else
+	{
+		[self modifyCartForShoppingListByData:objProductsModel];
+	}
 	
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -885,21 +908,16 @@ static NSString *strCollectionItems = @"collectionItems";
 	total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
 	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([subTotal integerValue]-[total_discount integerValue])];
 
-//	int priceValue = [strTotalPrice intValue];
-//	
-//	if([objProductsModel.offer_type intValue]>0)
-//	{
-//		priceValue-=[objProductsModel.offer_price intValue];
-//	}
-//	else
-//	{
-//		priceValue-=[objProductsModel.product_price intValue];
-//	}
-//	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
-	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:NO];
-	
-	arrSelectedProducts = (NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
-	
+	if(self.fromCart)
+	{
+		[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:NO];
+		
+		arrSelectedProducts = (NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
+	}
+	else
+	{
+		[self modifyCartForShoppingListByData:objProductsModel];
+	}
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];

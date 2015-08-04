@@ -41,7 +41,7 @@ typedef enum
 @property(nonatomic,strong) NSString *strTotalPrice;
 @property(nonatomic,strong) NSMutableArray *arrSelectedProducts;
 @property(nonatomic,assign) enPickerType ePickerType;
-
+@property (nonatomic, assign) BOOL fromCart;
 - (IBAction)btnPayClick:(UIButton *)sender;
 
 @end

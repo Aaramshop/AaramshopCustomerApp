@@ -69,6 +69,7 @@
     [super viewWillAppear:YES];
     
     tblView.hidden = YES;
+	
     [self getProductsInitialList];
 }
 
@@ -882,15 +883,16 @@
 - (ProductsModel *)addProductInArray:(NSDictionary *)dictProducts
 {
 	ProductsModel *objProductsModel = [[ProductsModel alloc]init];
-	objProductsModel.category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kCategory_id]];
-	objProductsModel.product_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_id]];
+	objProductsModel.category_id = [NSString stringWithFormat:@"%d",[[dictProducts objectForKey:kCategory_id] intValue]];
+	objProductsModel.product_id = [NSString stringWithFormat:@"%d",[[dictProducts objectForKey:kProduct_id] intValue]];
 	objProductsModel.product_image = [NSString stringWithFormat:@"%@",[[dictProducts objectForKey:kProduct_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+	objProductsModel.isAvailable			=	[NSString stringWithFormat:@"%d", [[dictProducts objectForKey:kIsAvailable] intValue]];
 	objProductsModel.product_name = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_name]];
 	objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
-	objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
-	objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
+	objProductsModel.product_sku_id = [NSString stringWithFormat:@"%d",[[dictProducts objectForKey:kProduct_sku_id] intValue]];
+	objProductsModel.sub_category_id = [NSString stringWithFormat:@"%d",[[dictProducts objectForKey:kSub_category_id] intValue]];
 	
-	objProductsModel.offer_id=[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];
+	objProductsModel.offer_id=[NSString stringWithFormat:@"%d",[[dictProducts objectForKey:kOffer_id] intValue]];
 	objProductsModel.offer_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_price]];
 	objProductsModel.offer_type = [NSString stringWithFormat:@"%d",[[dictProducts objectForKey:@"offerType"] intValue]];
 	objProductsModel.strCount = [NSString stringWithFormat:@"%d",[[dictProducts valueForKey:@"quantity"] intValue]];
