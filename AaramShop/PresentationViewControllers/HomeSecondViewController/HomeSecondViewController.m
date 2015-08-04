@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    isSelected = NO;
+	
     strSearchTxt = @"";
     strTotalPrice = @"0";
     isSearching=NO;
@@ -102,7 +102,7 @@
 	arrCartProductIds					=	[arrCartProducts valueForKey:kProduct_id];
 	//==============================================
 	
-    [self createDataToGetStoreProductCategories];
+	
 
 }
 
@@ -112,8 +112,12 @@
 {
     [super viewWillAppear:YES];
 	strTotalPrice = [self getTotalPrice];
+	isSelected = NO;
+	[arrGetStoreProductCategories removeAllObjects];
+	[self createDataToGetStoreProductCategories];
 	[tblVwCategory reloadData];
     isViewActive = YES;
+	
 }
 
 
@@ -269,7 +273,7 @@
     rightCollectionVwContrllr.delegate=self;
     rightCollectionVwContrllr.strStore_Id= strStore_Id;
      [rightCollectionVwContrllr.arrCategories addObjectsFromArray:arrGetStoreProductCategories];
-    isSelected = YES;
+//    isSelected = YES;
     [appDeleg.window addSubview:rightCollectionVwContrllr.view];
 }
 - (ProductsModel *)addProductInArray:(NSDictionary *)dictProducts
@@ -528,7 +532,8 @@
 
 	[appDeleg removeTabBarRetailer];
 }
--(void)btnCartClicked{
+- (void)btnCartClicked{
+	[self btnCategoryClick];
 	CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
 	[self.navigationController pushViewController:cartView animated:YES];
 }
@@ -552,13 +557,18 @@
 	}
 }
 -(void)btnSearchClicked{
+	[self btnCategoryClick];
+	GlobalSearchResultViewC *globalSearchResultViewC = (GlobalSearchResultViewC *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GlobalSearchResultView" ];
+	[self.navigationController pushViewController:globalSearchResultViewC animated:YES];
 }
+
 - (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
     [self.navigationController pushViewController:viewC animated:YES];
 }
 
 - (void)btnBroadcastClicked
 {
+	[self btnCategoryClick];
 	BroadcastViewController *broadcastView = (BroadcastViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"broadcastView"];
 	[self.navigationController pushViewController:broadcastView animated:YES];
 }
@@ -948,16 +958,20 @@
 //        }
 //    }
 }
--(void)btnCategoryClick
+- (void)btnCategoryClick
 {
-    isSelected = !isSelected;
+//    isSelected = !isSelected;
     if (isSelected) {
+		isSelected = NO;
         if (strSelectedCategoryId.length>0) {
             [appDeleg.window addSubview:rightCollectionVwContrllr.view];
         }
     }
     else
+	{
+		isSelected = YES;
         [rightCollectionVwContrllr.view removeFromSuperview];
+	}
     [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 

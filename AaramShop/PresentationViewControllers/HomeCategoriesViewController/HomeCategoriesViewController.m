@@ -183,8 +183,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 }
 -(void)btnSearchClicked
 {
-	GlobalSearchViewController *searchView = (GlobalSearchViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"GlobalSearchView"];
-	[self.navigationController pushViewController:searchView animated:YES];
+	GlobalSearchResultViewC *globalSearchResultViewC = (GlobalSearchResultViewC *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GlobalSearchResultView" ];
+	[self.navigationController pushViewController:globalSearchResultViewC animated:YES];
 
 }
 -(void)btnCartClicked

@@ -111,7 +111,8 @@
 }
 -(void)btnSearchClicked
 {
-    
+	GlobalSearchResultViewC *globalSearchResultViewC = (GlobalSearchResultViewC *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GlobalSearchResultView" ];
+	[self.navigationController pushViewController:globalSearchResultViewC animated:YES];
 }
 #pragma mark - tableview methods
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

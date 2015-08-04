@@ -8,7 +8,7 @@
 
 #ifndef AaramShop_Protocols_h
 #define AaramShop_Protocols_h
-
+#import "CMGlobalSearch.h"
 //=====================================================
 @protocol OffersTableCellDelegate <NSObject>
 
@@ -19,6 +19,11 @@
 @end
 
 //===========================================
+@protocol GlobalSearchViewControllerDelegate <NSObject>
+@optional
+-(void)removeSearchViewFromParentView;
+-(void)openSearchedUserPrroductFor:(CMGlobalSearch *)globalSearchModel;
 
+@end
 
 #endif

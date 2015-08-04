@@ -291,15 +291,17 @@
 //================== Offers =================
 #define kURLGetOffers										@"getOffers"
 #define kURLGetComboDetails							@"getComboDetails"
+#define kURLGetUserScans								@"getUserScans"
 #define kPage_no												@"page_no"
 #define kTotal_page											@"total_page"
+#define kTotal_pages										@"total_pages"
 #define kOfferType											@"offerType"
 #define kProduct_actual_price							@"product_actual_price"
 #define kOffer_price											@"offer_price"
 #define kIsBroadcast											@"isBroadcast"
 #define kOfferTitle											@"offerTitle"
 #define kOffer_id												@"offer_id"
-#define kOfferId													@"offerId"
+#define kOfferId												@"offerId"
 #define kOverall_purchase_value						@"overall_purchase_value"
 #define kDiscount_percentage							@"discount_percentage"
 #define kFree_item											@"free_item"
@@ -333,20 +335,20 @@
 
 //================= SHOPPING LIST MODULE =============
 
-#define KURLSerachStoreProducts                     @"serachStoreProducts"
-#define kURLCreateShoppingList                      @"createShoppingList"
-#define kURLGetShoppingList                         @"getShoppingList"
+#define KURLSerachStoreProducts						@"serachStoreProducts"
+#define kURLCreateShoppingList						@"createShoppingList"
+#define kURLGetShoppingList							@"getShoppingList"
 #define kURLDeleteShoppingList                      @"deleteShoppingList"
-#define kURLGetShoppingListProducts                 @"getShoppingListProducts"
+#define kURLGetShoppingListProducts				@"getShoppingListProducts"
 #define kURLUpdateShoppingListProducts              @"updateShoppingListProducts"
-#define kURLGetStores                               @"getStores"
-#define kURLSetShoppingListReminder                 @"setShoppingListReminder"
-#define KURLSerachStoreProducts					@"serachStoreProducts"
+#define kURLGetStores										@"getStores"
+#define kURLSetShoppingListReminder				@"setShoppingListReminder"
+#define KURLSerachStoreProducts						@"serachStoreProducts"
 #define kURLCreateShoppingList						@"createShoppingList"
 #define kURLGetShoppingList							@"getShoppingList"
 #define kURLDeleteShoppingList						@"deleteShoppingList"
 
-#define kURLGetShoppingListProducts			@"getShoppingListProducts"
+#define kURLGetShoppingListProducts				@"getShoppingListProducts"
 #define kURLUpdateShoppingListProducts		@"updateShoppingListProducts"
 #define kURLGetStores										@"getStores"
 #define kURLGetStoreforShoppingList				@"getStoreforShoppingList"
@@ -356,19 +358,19 @@
 
 
 //=========== Get Wallet =================================
-#define kURLGetWallet									@"getWallet"
+#define kURLGetWallet										@"getWallet"
 #define kURLGetPoints										@"getPoints"
 #define kURLGetWalletOffers							@"getWalletOffers"
-#define kURLGetBrandPoints							@"getBrandPoints"
+#define kURLGetBrandPoints								@"getBrandPoints"
 #define kURLGetBonusPoints							@"getBonusPoints"
 #define kURLGetAaramPoints							@"getAaramPoints"
-#define kOrder_code											@"order_code"
+#define kOrder_code										@"order_code"
 #define kPoint													@"point"
 #define kOrder_amount									@"order_amount"
 #define kBrandPointsDetails								@"BrandPointsDetails"
 #define kBonus_points										@"bonus_points"
 #define kBrand_name										@"brand_name"
-#define kAaramPointsDetails								@"AaramPointsDetails"
+#define kAaramPointsDetails							@"AaramPointsDetails"
 
 
 #define kGetMoney											@"getMoney"
@@ -385,7 +387,7 @@
 
 #define kURLSearchStores                                @"searchStores"
 
-//=========== Get Coupons =============
+//================ Get Coupons ==============================
 #define kURLGetCoupons									@"getCoupons"
 #define kCoupons												@"coupons"
 
@@ -393,7 +395,24 @@
 #define kURLMakeFavorite								@"makeFavorite"
 
 //=========== getMinimumOrderValue =============
-#define kURLGetMinimumOrderValue			@"getMinimumOrderValue"
+#define kURLGetMinimumOrderValue				@"getMinimumOrderValue"
 
 //===========  validateCoupons =============
 #define kURLValidateCoupons							@"validateCoupons"
+
+//============== Global Search ==============================
+#define kURLGlobalSearch								@"globalSearch"
+#define ssNotificationStatusBarTouched			@"StatusBarTouched"
+#define kGetStorefromProductId						@"getStorefromProductId"
+
+
+
+
+
+
+
+
+
+
+
+

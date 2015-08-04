@@ -7,12 +7,36 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CMGlobalSearch.h"
+#import "GlobalSearchTableCell.h"
 @interface GlobalSearchViewController : UIViewController
 {
 	
-	__weak IBOutlet UITableView *tblView;
-	BOOL isSearching;
+	IBOutlet UISearchBar *searchBarMain;
+	UIToolbar *toolbarbackground;
+	IBOutlet UIView *viewSearchBarContainer;
+	NSMutableDictionary *dicSearchResult;
+	IBOutlet UITableView *tblViewSearch;
+	
+	NSMutableArray *arrSearchResult;
+	NSMutableArray *allSections;
+	
+	NSString *globalURL;
+	
+	BOOL isKeyboardVisible;
+	
+	BOOL isLoading;
+	
+	NSInteger pageNumber;
+	int totalNoOfPages;
+	
+	UIActivityIndicatorView *activityIndicatorView;
+	BOOL boolActivityIndicator;
+	
+	ViewStatus viewStatus;
+	NSString *searchType;
+
 }
-@property (strong, nonatomic) IBOutlet UISearchBar *searchCustomer;
+-(void)updateViewWhenAppears;
+@property (weak, nonatomic) id <GlobalSearchViewControllerDelegate> delegate;
 @end

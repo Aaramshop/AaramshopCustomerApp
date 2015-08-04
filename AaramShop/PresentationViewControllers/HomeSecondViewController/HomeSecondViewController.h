@@ -11,7 +11,7 @@
 #import "RightCollectionViewController.h"
 #import "HomeSecondCustomCell.h"
 
-@interface HomeSecondViewController : UIViewController<V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,UISearchBarDelegate,AaramShop_ConnectionManager_Delegate,RightControllerDelegate,UITableViewDataSource,UITableViewDelegate,HomeSecondCustomCellDelegate>
+@interface HomeSecondViewController : UIViewController<V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,UISearchBarDelegate,AaramShop_ConnectionManager_Delegate,RightControllerDelegate,UITableViewDataSource,UITableViewDelegate,HomeSecondCustomCellDelegate,GlobalSearchViewControllerDelegate>
 {    
     UITableView *tblVwCategory;
     RightCollectionViewController *rightCollectionVwContrllr;
@@ -19,7 +19,7 @@
     NSMutableArray *arrGetStoreProducts;
     NSMutableArray *arrSearchGetStoreProducts;
     NSMutableArray *arrGetStoreProductSubCategory;
-    
+	
     BOOL isViewActive;
 
     
