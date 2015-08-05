@@ -330,7 +330,7 @@ static NSString *strCollectionItems = @"collectionItems";
         if([[responseObject objectForKey:kstatus] intValue] == 1)
         {
 			delivery_charges =[NSString stringWithFormat:@"%d", [[responseObject objectForKey:kDelivery_charges]intValue]];
-			strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([strTotalPrice integerValue]+[delivery_charges integerValue])];
+			strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
             [self parsePaymentPageData:[responseObject objectForKey:@"payment_page_info"]];
         }
     }
@@ -351,7 +351,14 @@ static NSString *strCollectionItems = @"collectionItems";
 			[AppManager removeCartBasedOnStoreId:self.strStore_Id];
 			if([self.tabBarController isEqual:appDel.tabBarControllerRetailer])
 			{
-				[appDel removeTabBarRetailer];
+				if(self.fromCart)
+				{
+					[appDel removeTabBarRetailer];
+				}
+				else
+				{
+					[self.navigationController popToRootViewControllerAnimated:YES];
+				}
 			}
 			else
 			{
@@ -384,6 +391,14 @@ static NSString *strCollectionItems = @"collectionItems";
 			}
 			else
 			{
+				NSString *coupon_value = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"coupon_value"] ];
+				total_discount = [NSString stringWithFormat:@"%ld",(long)([total_discount integerValue]+[coupon_value integerValue])];
+				strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
+
+				NSRange range = NSMakeRange(0, 1);
+				NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+				[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
+
 				NSLog(@"%@",responseObject);
 			}
 			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
@@ -541,15 +556,8 @@ static NSString *strCollectionItems = @"collectionItems";
     [self showPickerView:NO];
     [pickerViewSlots removeFromSuperview];
     [datePicker removeFromSuperview];
-	if([self.tabBarController isEqual:appDel.tabBarControllerRetailer])
-	{
-		[appDel removeTabBarRetailer];
-	}
-	else
-	{
-		[self.navigationController popToRootViewControllerAnimated:YES];
-	}
-//	[self.navigationController popViewControllerAnimated:YES];
+
+	[self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - TableView delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -726,6 +734,7 @@ static NSString *strCollectionItems = @"collectionItems";
 			objProductsModel = [arrLastMinPick objectAtIndex:indexPath.row];
 			cell.indexPath=indexPath;
 			cell.store_id	=	self.strStore_Id;
+			cell.fromCart	=	self.fromCart;
 			cell.objProductsModelMain = objProductsModel;
 			[cell updateCellWithSubCategory:objProductsModel];
 			return cell;
@@ -874,7 +883,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	
 	subTotal = [NSString stringWithFormat:@"%ld",(long)sub_total];
 	total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
-	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([subTotal integerValue]-[total_discount integerValue])];
+	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
 
 	if(self.fromCart)
 	{
@@ -917,7 +926,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	
 	subTotal = [NSString stringWithFormat:@"%ld",(long)sub_total];
 	total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
-	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([subTotal integerValue]-[total_discount integerValue])];
+	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
 
 	if(self.fromCart)
 	{
