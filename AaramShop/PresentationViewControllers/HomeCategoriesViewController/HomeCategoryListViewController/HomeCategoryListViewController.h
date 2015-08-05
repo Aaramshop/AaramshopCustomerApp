@@ -30,7 +30,7 @@
     
     UIRefreshControl *refreshStoreList;
     BOOL isLoading;
-    
+	AppDelegate *appDel;
     StoreModel *tempStoreModel;
 
 }

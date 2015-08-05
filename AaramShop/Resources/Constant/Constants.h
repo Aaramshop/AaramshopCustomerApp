@@ -79,10 +79,8 @@
 #define kDob														@"dob"
 #define kEmail													@"email"
 #define kFemaleChild											@"femaleChild"
-//#define kFirstName											@"firstName"
 #define kGender													@"gender"
 #define kIncome													@"income"
-//#define kLastName											@"lastName"
 #define kMaleChild											@"maleChild"
 #define kMessage												@"message"
 #define kMobile_verified									@"mobile_verified"
@@ -90,7 +88,6 @@
 #define kQualification										@"qualification"
 #define kState														@"state"
 #define kToddlers												@"toddlers"
-
 #define kNewUserURL										@"newUser"
 #define kOtpValidateURL									@"otpValidate"
 #define kResendOtpURL									@"resendOtp"

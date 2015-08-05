@@ -43,7 +43,7 @@
     strSearchTxt = @"";
     strTotalPrice = @"0";
     isSearching=NO;
-    appDeleg = (AppDelegate *)APP_DELEGATE;
+    appDeleg = APP_DELEGATE;
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     tblVwCategory = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49-64) style:UITableViewStyleGrouped];
@@ -757,27 +757,7 @@
 
         searchBarProducts.delegate = self;
         
-//        searchBarProducts.frame = CGRectMake(9, 4, [UIScreen mainScreen].bounds.size.width-18, 33);
-//        UITextField *searchField;
-//        
-//        for (UIView *subView in searchBarProducts.subviews){
-//            for (UIView *ndLeveSubView in subView.subviews){
-//                if ([ndLeveSubView isKindOfClass:[UITextField class]])
-//                {
-//                    searchField = (UITextField *)ndLeveSubView;
-//                    break;
-//                }
-//            }
-//        }
-//        searchField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-        
-//        if(searchField == nil) {
-//            searchField.textColor = [UIColor blackColor];
-//            [searchField setBackground: [UIImage imageNamed:@"searchBox.png"]];
-//            [searchField setBorderStyle:UITextBorderStyleNone];
-//        }
-        [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor colorWithRed:207/255.0f green:207/255.0f blue:207/255.0f alpha:1.0f]];
-//        [searchBarProducts setImage:[UIImage imageNamed:@"searchIcon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+   [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor colorWithRed:207/255.0f green:207/255.0f blue:207/255.0f alpha:1.0f]];
         searchBarProducts.placeholder = @"Search";
         searchBarProducts.text = strSearchTxt;
         

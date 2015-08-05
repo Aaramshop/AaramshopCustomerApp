@@ -21,6 +21,7 @@
 //===========================================
 @protocol GlobalSearchViewControllerDelegate <NSObject>
 @optional
+- (void)pushToAnotherView:(CMGlobalSearch *)globalSearchModel;
 -(void)removeSearchViewFromParentView;
 -(void)openSearchedUserPrroductFor:(CMGlobalSearch *)globalSearchModel;
 

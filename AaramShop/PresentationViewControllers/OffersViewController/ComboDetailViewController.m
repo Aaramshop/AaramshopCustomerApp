@@ -123,7 +123,7 @@
 {
 	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_id] forKey:kStore_id];
+	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 	[dict setObject:self.offersModel.offer_id forKey:kOfferId];
 	[self callWebServiceToGetDetails:dict];
 }
@@ -151,7 +151,7 @@
 	}
 	else
 	{
-		[Utils showAlertView:kAlertTitle message:[responseObject objectForKey: kMessage ] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 	}
 }
 - (void)didFailWithError:(NSError *)error

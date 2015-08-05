@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CMGlobalSearch.h"
 #import "GlobalSearchTableCell.h"
+#import "StoreModel.h"
 @interface GlobalSearchViewController : UIViewController
 {
 	
@@ -32,7 +33,7 @@
 	
 	UIActivityIndicatorView *activityIndicatorView;
 	BOOL boolActivityIndicator;
-	
+	AppDelegate *appDel;
 	ViewStatus viewStatus;
 	NSString *searchType;
 

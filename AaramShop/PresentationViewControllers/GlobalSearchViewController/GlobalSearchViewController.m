@@ -50,7 +50,7 @@ AaramShop_ConnectionManager_Delegate>
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
 	aaramShop_ConnectionManager.delegate=self;
 	allSections = [[NSMutableArray alloc] init];
-	
+	appDel = APP_DELEGATE;
 	
 	[allSections addObject:@"stores"];
 	[allSections addObject:@"products"];
@@ -223,8 +223,6 @@ AaramShop_ConnectionManager_Delegate>
 		totalNoOfPages = [[dict objectForKey:kTotal_pages] intValue];
 		
 		[arrProducts addObject:globalSearchModel];
-		
-		
 	}
 	
 	[dicSearchResult setObject:[NSMutableArray arrayWithArray:arrProducts] forKey:@"products"];
@@ -281,12 +279,34 @@ AaramShop_ConnectionManager_Delegate>
 	if ([searchType intValue]== 3) {
 		return allSections.count;
 	}
-	else
+	else if([searchType intValue]==2 || [searchType intValue] == 1)
 		return 1;
+	else
+		return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	return 10;
+	return 20;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	UILabel *tempLabel=[[UILabel alloc]init];
+	tempLabel.backgroundColor=[UIColor clearColor];
+	[tempLabel setFont:[UIFont fontWithName:kRobotoRegular size:14]];
+	
+	tempLabel.textColor = [UIColor blackColor];
+	switch (section) {
+	case 0:
+		 tempLabel.text =@"  STORES";
+			break;
+	case 1:
+		 tempLabel.text =@"  PRODUCTS";
+			break;
+	default:
+			 tempLabel.text =@"";
+			break;
+	}
+	return tempLabel;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -304,7 +324,7 @@ AaramShop_ConnectionManager_Delegate>
 		}
 	}
 	else
-		return arrSearchResult.count;
+		toReturn = arrSearchResult.count;
 	return toReturn;
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -368,21 +388,44 @@ AaramShop_ConnectionManager_Delegate>
 	return searchCell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	CMGlobalSearch *globalSearchModel;
+	CMGlobalSearch *globalSearchModel = nil;
 	if([searchType intValue] == 3)
 	{
-		globalSearchModel = [arrSearchResult objectAtIndex:indexPath.section];
+		arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
+		globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
+		if (globalSearchModel.store_id == nil) {
+			if (self.delegate && [self.delegate conformsToProtocol:@protocol(GlobalSearchViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(openSearchedUserPrroductFor:)])
+			{
+				[self.delegate openSearchedUserPrroductFor:globalSearchModel];
+			}
+		}
+		else
+		{
+			if (self.delegate && [self.delegate conformsToProtocol:@protocol(GlobalSearchViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(pushToAnotherView:)])
+			{
+				
+				[self.delegate pushToAnotherView:globalSearchModel];
+			}
+
+		}
+	}
+	else if([searchType intValue] == 2)
+	{
+		arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
+		globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
 		if (self.delegate && [self.delegate conformsToProtocol:@protocol(GlobalSearchViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(openSearchedUserPrroductFor:)])
 		{
 			[self.delegate openSearchedUserPrroductFor:globalSearchModel];
 		}
 	}
-	else if([searchType intValue] == 2)
+	else
 	{
+		arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
 		globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
-		if (self.delegate && [self.delegate conformsToProtocol:@protocol(GlobalSearchViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(openSearchedUserPrroductFor:)])
+		if (self.delegate && [self.delegate conformsToProtocol:@protocol(GlobalSearchViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(pushToAnotherView:)])
 		{
-			[self.delegate openSearchedUserPrroductFor:globalSearchModel];
+			
+			[self.delegate pushToAnotherView:globalSearchModel];
 		}
 	}
 	

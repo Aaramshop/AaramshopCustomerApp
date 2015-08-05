@@ -10,6 +10,8 @@
 #import "ProductsModel.h"
 #import "GlobalSearchViewController.h"
 #import "HomeSecondCustomCell.h"
+#import "StoreModel.h"
+#import "SubCategoryModel.h"
 @interface GlobalSearchResultViewC : UIViewController<HomeSecondCustomCellDelegate,AaramShop_ConnectionManager_Delegate,GlobalSearchViewControllerDelegate>
 {
 	NSMutableArray *arrGlobalSearchResult;
@@ -25,6 +27,10 @@
 	NSString *strSelectedCategoryId;
 	NSString *strSelectedSubCategoryId;
 	NSString *strProductId;
+	NSString *strStoreName;
+	NSString *strStore_image;
+	ProductsModel *cmProductModel;
+	NSIndexPath *atIndexPath;
 }
 @property(nonatomic,strong) NSString *strStore_Id;
 @property(nonatomic,strong) NSString *strStore_CategoryName;
