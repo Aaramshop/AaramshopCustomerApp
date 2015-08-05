@@ -80,12 +80,6 @@
     
     ////
     
-    
-    
-    
-    
-    
-    
 
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate= self;
@@ -1017,21 +1011,21 @@
 
 -(void)selectCategory:(NSDictionary *)dict
 {
-    // if button ==>> medicine ..
-    // go to prescription page ..
-    
-    /*
-     PrescriptionViewController *prescriptionView = (PrescriptionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"PrescriptionViewController"];
-     [self.navigationController pushViewController:prescriptionView animated:YES];
-     //*/
-    
-    //*
-    strSelectedCategoryName = [dict objectForKey:kCategory_name];
     strSelectedCategoryId = [dict objectForKey:kCategory_id];
-    isSelected = NO;
-    tblVwCategory.hidden = YES;
-    [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
-     //*/
+    
+//    if ([strSelectedCategoryId integerValue] == 100) // temp - '100'
+//    {
+//        PrescriptionViewController *prescriptionView = (PrescriptionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"PrescriptionViewController"];
+//        [self.navigationController pushViewController:prescriptionView animated:YES];
+//    }
+//    else
+    {
+        strSelectedCategoryName = [dict objectForKey:kCategory_name];
+        isSelected = NO;
+        tblVwCategory.hidden = YES;
+        [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
+    }
+    
 }
 
 -(void)createDataToGetStoreProducts
