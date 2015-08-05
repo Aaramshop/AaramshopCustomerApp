@@ -17,7 +17,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    imgPrescription.layer.cornerRadius = imgPrescription.frame.size.height/2;
+    imgPrescription.clipsToBounds = YES;
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -38,6 +56,13 @@
 
 
 #pragma mark - UIButton Methods
+
+-(IBAction)actionBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 
 -(IBAction)actionUploadImage:(id)sender
 {
@@ -115,16 +140,8 @@
     
     [pickerVw dismissViewControllerAnimated:YES completion:^{
         
-//        imgPrescription = [UIImage scaleDownOriginalImage:[info objectForKey:@"UIImagePickerControllerEditedImage"]];
-//        
-////        gAppManager.imgProfile = imgPrescription;
-////        imageData = [NSMutableData dataWithData:UIImageJPEGRepresentation(gAppManager.imgProfile, 1.0)];
-//        imgVUser.image = gAppManager.imgProfile;
-//        imgBackground.image = gAppManager.imgProfile;
-//        effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:gAppManager.imgProfile];
-//        imgBackground.image=effectImage;
-//        imgBackground.contentMode = UIViewContentModeScaleAspectFill;
-//        lbltakeyourselfie.text = @"Change Picture";
+        imgPrescription.image = [UIImage scaleDownOriginalImage:[info objectForKey:@"UIImagePickerControllerEditedImage"]];
+        lblUploadPicture.text = @"Change Picture";
     }];
     
 }

@@ -12,6 +12,7 @@
 {
     __weak IBOutlet UIImageView *imgBackground;
     __weak IBOutlet UIImageView *imgPrescription;
+    __weak IBOutlet UILabel *lblUploadPicture;
 
     __weak IBOutlet UIButton *btnPrescriptionImage;
     __weak IBOutlet UILabel *lblDescription;

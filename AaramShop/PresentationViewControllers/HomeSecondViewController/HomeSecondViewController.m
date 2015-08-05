@@ -14,6 +14,10 @@
 #import "CartModel.h"
 #import "CartViewController.h"
 #import "BroadcastViewController.h"
+
+#import "PrescriptionViewController.h"
+
+
 @interface HomeSecondViewController ()
 {
     AppDelegate *appDeleg;
@@ -75,12 +79,6 @@
     tableViewController.refreshControl = refreshShoppingList;
     
     ////
-    
-    
-    
-    
-    
-    
     
 
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
@@ -1020,11 +1018,21 @@
 
 -(void)selectCategory:(NSDictionary *)dict
 {
-    strSelectedCategoryName = [dict objectForKey:kCategory_name];
     strSelectedCategoryId = [dict objectForKey:kCategory_id];
-    isSelected = NO;
-    tblVwCategory.hidden = YES;
-    [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
+    
+//    if ([strSelectedCategoryId integerValue] == 100) // temp - '100'
+//    {
+//        PrescriptionViewController *prescriptionView = (PrescriptionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"PrescriptionViewController"];
+//        [self.navigationController pushViewController:prescriptionView animated:YES];
+//    }
+//    else
+    {
+        strSelectedCategoryName = [dict objectForKey:kCategory_name];
+        isSelected = NO;
+        tblVwCategory.hidden = YES;
+        [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
+    }
+    
 }
 
 -(void)createDataToGetStoreProducts
