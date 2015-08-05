@@ -9,6 +9,8 @@
 #import "PaymentViewController.h"
 #import "ProductsModel.h"
 #import "AddressModel.h"
+#import "FeedbackViewController.h"
+
 
 #define kBtnDone   33454
 #define kBtnCancel 33455
@@ -362,7 +364,8 @@ static NSString *strCollectionItems = @"collectionItems";
 			}
 			else
 			{
-				[self.navigationController popToRootViewControllerAnimated:YES];
+                [self openFeedbackScreen];
+                
 			}
         }
     }
@@ -1383,4 +1386,31 @@ static NSString *strCollectionItems = @"collectionItems";
 	coupon_code = textField.text;
 	return YES;
 }
+
+
+
+#pragma mark - Feedback screen
+
+-(void)openFeedbackScreen
+{
+    FeedbackViewController *feedBack = [[FeedbackViewController alloc]initWithNibName:@"FeedbackViewController" bundle:nil];
+    
+    feedBack.strStore_Id = strStore_Id;
+    feedBack.strStore_name = _strStore_name;
+    feedBack.strStore_image = _strStore_image;
+    
+    CGRect customFeedbackViewRect = self.view.bounds;
+    feedBack.view.frame = customFeedbackViewRect;
+    
+    feedBack.feedbackCompletion = ^(void)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    };
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:feedBack.view];
+    
+}
+
+
+
 @end

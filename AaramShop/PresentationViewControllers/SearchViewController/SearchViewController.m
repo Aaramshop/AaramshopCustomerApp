@@ -48,7 +48,8 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
@@ -107,6 +108,19 @@
                                                object:nil];
     
     
+    
+    
+    [UIView beginAnimations:@"HAnimation" context:NULL];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDelegate:self];
+    
+    [viewSearchBarContainer setFrame:CGRectMake(0, 0, viewSearchBarContainer.frame.size.width, viewSearchBarContainer.frame.size.height-1)];
+    
+    [toolbarbackground setAlpha:1.0];
+    [tblViewSearch setAlpha:1.0];
+    
+    [UIView commitAnimations];
+    
     if (!activityIndicatorView) {
         activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [activityIndicatorView setHidesWhenStopped:YES];
@@ -114,6 +128,7 @@
         [self.view addSubview:activityIndicatorView];
     }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -271,18 +286,30 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar{
     
     
-    NSLog(@"%@",NSStringFromCGRect(viewSearchBarContainer.frame));
-    [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^
-     {
-         [viewSearchBarContainer setFrame:CGRectMake(0, -64, viewSearchBarContainer.frame.size.width, viewSearchBarContainer.frame.size.height)];
-         [toolbarbackground setAlpha:0.0];
-         [tblViewSearch setAlpha:0.0];
-         [tblViewSearch setSectionFooterHeight:0.01f];
-         
-         [self performSelector:@selector(dismissView) withObject:nil afterDelay:0.4];
-         
-         
-     }completion:nil];
+//    NSLog(@"%@",NSStringFromCGRect(viewSearchBarContainer.frame));
+//    [UIView animateWithDuration:0.3 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut animations:^
+//     {
+//         [viewSearchBarContainer setFrame:CGRectMake(0, -64, viewSearchBarContainer.frame.size.width, viewSearchBarContainer.frame.size.height)];
+//         [toolbarbackground setAlpha:0.0];
+//         [tblViewSearch setAlpha:0.0];
+//         [tblViewSearch setSectionFooterHeight:0.01f];
+//         
+//         [self performSelector:@selector(dismissView) withObject:nil afterDelay:0.4];
+//         
+//         
+//     }completion:nil];
+    
+    
+    
+    [UIView beginAnimations:@"HAnimation" context:NULL];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDelegate:self];
+    [viewSearchBarContainer setFrame:CGRectMake(0, -64, viewSearchBarContainer.frame.size.width, viewSearchBarContainer.frame.size.height-1)];
+    [toolbarbackground setAlpha:0.0];
+    [tblViewSearch setAlpha:0.0];
+    [UIView commitAnimations];
+    [tblViewSearch setSectionFooterHeight:0.01f];
+    [self performSelector:@selector(dismissView) withObject:nil afterDelay:0.4];
     
     
     

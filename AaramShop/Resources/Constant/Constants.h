@@ -407,9 +407,9 @@
 #define kGetStorefromProductId						@"getStorefromProductId"
 
 
+//============== User Review ==============================
 
-
-
+#define kURLUserReview                                      @"userReview"
 
 
 
