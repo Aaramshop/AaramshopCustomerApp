@@ -89,26 +89,46 @@
 }
 
 - (IBAction)btnRemoveClicked:(id)sender {
-	if ([self.offers.strCount intValue]>=0) {
-		int Counter = [self.offers.strCount intValue];
-		Counter--;
-		self.offers.strCount = [NSString stringWithFormat:@"%d",Counter];
-		if (self.delegate && [self.delegate conformsToProtocol:@protocol(OffersTableCellDelegate)] && [self.delegate respondsToSelector:@selector(minusValueByPriceAtIndexPath:)])
-		{
-			[self.delegate minusValueByPriceAtIndexPath:self.indexPath];
+	@try {
+		if ([self.offers.strCount intValue]>=0) {
+			[Utils playSound:@"beepUnselect"];
+			int Counter = [self.offers.strCount intValue];
+			Counter--;
+			self.offers.strCount = [NSString stringWithFormat:@"%d",Counter];
+			if (self.delegate && [self.delegate conformsToProtocol:@protocol(OffersTableCellDelegate)] && [self.delegate respondsToSelector:@selector(minusValueByPriceAtIndexPath:)])
+			{
+				[self.delegate minusValueByPriceAtIndexPath:self.indexPath];
+			}
 		}
 	}
+	@catch (NSException *exception) {
+		NSLog(@"%@",exception);
+	}
+	@finally {
+		//
+	}
+
 }
 
 - (IBAction)btnAddClicked:(id)sender {
-	if ([self.offers.strCount intValue]>=0) {
-		int Counter = [self.offers.strCount intValue];
-		Counter++;
-		self.offers.strCount = [NSString stringWithFormat:@"%d",Counter];
-		if (self.delegate && [self.delegate conformsToProtocol:@protocol(OffersTableCellDelegate)] && [self.delegate respondsToSelector:@selector(addedValueByPriceAtIndexPath:)])
-		{
-			[self.delegate addedValueByPriceAtIndexPath:self.indexPath];
+	@try {
+		if ([self.offers.strCount intValue]>=0) {
+			[Utils playSound:@"beepSelect"];
+			int Counter = [self.offers.strCount intValue];
+			Counter++;
+			self.offers.strCount = [NSString stringWithFormat:@"%d",Counter];
+			if (self.delegate && [self.delegate conformsToProtocol:@protocol(OffersTableCellDelegate)] && [self.delegate respondsToSelector:@selector(addedValueByPriceAtIndexPath:)])
+			{
+				[self.delegate addedValueByPriceAtIndexPath:self.indexPath];
+			}
 		}
+
+	}
+	@catch (NSException *exception) {
+		NSLog(@"%@",exception);
+	}
+	@finally {
+		//
 	}
 }
 @end

@@ -28,9 +28,11 @@
 @synthesize aaramShop_ConnectionManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+	btnCancel.hidden=YES;
+	
     if (self.addAddressCompletion)
     {
+		btnCancel.hidden=NO;
         self.navigationController.navigationBarHidden = YES;
     }
     
@@ -56,7 +58,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coordinateChanged_:) name:@"DDAnnotationCoordinateDidChangeNotification" object:nil];
     [self createDataToGetAaramShops];
     
@@ -370,8 +371,8 @@
     MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
     region.center.latitude = Latitude;
     region.center.longitude = LongitudeValue;
-    region.span.latitudeDelta = 0.187f;
-    region.span.longitudeDelta = 0.187f;
+    region.span.latitudeDelta = 0.0287f;
+    region.span.longitudeDelta = 0.0287f;
     [mapViewLocation setRegion:region];
 
     
@@ -686,6 +687,11 @@
     return YES;
 }
 #pragma mark - Button Actions
+
+- (IBAction)btnCancelClicked:(id)sender {
+	self.addAddressCompletion();
+	[self.navigationController popViewControllerAnimated:YES];
+}
 
 - (IBAction)btnDoneClick:(UIButton *)sender {
     

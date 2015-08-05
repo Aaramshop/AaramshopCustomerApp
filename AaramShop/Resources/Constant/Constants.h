@@ -24,7 +24,7 @@
 
 #pragma mark - Alert titles and Internet alerts
 
-#define kAlertTitle												@"Aaram shop"
+#define kAlertTitle												@"AaramShop"
 #define kAlertBtnOK											@"OK"
 #define kAlertBtnYES										@"YES"
 #define kAlertBtnNO										@"NO"
@@ -404,9 +404,9 @@
 #define kGetStorefromProductId						@"getStorefromProductId"
 
 
+//============== User Review ==============================
 
-
-
+#define kURLUserReview                                      @"userReview"
 
 
 

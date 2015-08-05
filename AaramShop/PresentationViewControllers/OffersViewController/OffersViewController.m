@@ -156,6 +156,7 @@
 				cell = [[MyCustomOfferTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 			}
 			cell.indexPath=indexPath;
+			cell.offers	=	offers;
 			cell.delegate = self;
 			[cell updateCellWithData: offers];
 			return cell;
@@ -168,6 +169,7 @@
 				cell = [[OffersTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 			}
 			cell.indexPath=indexPath;
+			cell.offers		=offers;
 			cell.delegate = self;
 			[cell updateCellWithData: offers];
 			return cell;

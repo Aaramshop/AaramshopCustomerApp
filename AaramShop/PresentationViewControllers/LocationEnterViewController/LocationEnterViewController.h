@@ -22,6 +22,7 @@ typedef void (^AddAddressCompletion)(void);
    __weak IBOutlet UITextField *txtFLocation;
     __weak IBOutlet MKMapView *mapViewLocation;
     NSMutableArray *arrShopsData;
+	__weak IBOutlet UIButton *btnCancel;
 }
 @property(nonatomic,weak) id<LocationEnterViewControllerDelegate> delegate;
 
@@ -30,6 +31,7 @@ typedef void (^AddAddressCompletion)(void);
 
 
 
+- (IBAction)btnCancelClicked:(id)sender;
 
 - (IBAction)btnDoneClick:(UIButton *)sender;
 - (IBAction)btnEditClick:(UIButton *)sender;

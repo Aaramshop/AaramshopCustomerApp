@@ -85,6 +85,7 @@
 -(void)btnMinusClick
 {
     if ([objProductsModelMain.strCount intValue]>=0) {
+		[Utils playSound:@"beepUnselect"];
         int Counter = [objProductsModelMain.strCount intValue];
         Counter--;
         objProductsModelMain.strCount = [NSString stringWithFormat:@"%d",Counter];
@@ -99,6 +100,7 @@
 -(void)btnPlusClick
 {
     if ([objProductsModelMain.strCount intValue]>=0) {
+		[Utils playSound:@"beepSelect"];
         int Counter = [objProductsModelMain.strCount intValue];
         Counter++;
         objProductsModelMain.strCount = [NSString stringWithFormat:@"%d",Counter];
@@ -139,7 +141,14 @@
 		lblLine.hidden = NO;
 		lblOfferPrice.hidden = NO;
 		lblOfferPrice.text = [NSString stringWithFormat:@"₹%@",objProductsModel.offer_price];
-		strCount = [AppManager getCountOfProduct:objProductsModel.offer_id withOfferType:objProductsModel.offer_type forStore_id:self.store_id];
+		if(self.fromCart)
+		{
+			strCount = [AppManager getCountOfProduct:objProductsModel.offer_id withOfferType:objProductsModel.offer_type forStore_id:self.store_id];
+		}
+		else
+		{
+			strCount = objProductsModel.strCount;
+		}
 	}
 	else
 	{

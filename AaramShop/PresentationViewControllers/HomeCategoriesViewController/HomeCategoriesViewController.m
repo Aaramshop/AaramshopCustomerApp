@@ -53,14 +53,16 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     appDeleg = APP_DELEGATE;
     [appDeleg findCurrentLocation];
-    
-    [self createDataToGetStores];
+	
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-        
+	if([arrCategories count]==0)
+	{
+		[self createDataToGetStores];
+	}
     NSLog(@"value = %f",appDeleg.myCurrentLocation.coordinate.latitude);
     if(![gCXMPPController isConnected])
     {
@@ -458,10 +460,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             
             [objStoreModel.arrShoppingStores addObject:objStore];
         }
-        
         [arrCategories addObject:objStoreModel];
     }
-    
     [collectionMaster reloadData];
     [self setupViewDesign];
 

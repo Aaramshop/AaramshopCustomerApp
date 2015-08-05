@@ -897,6 +897,7 @@
 }
 
 +(void) playSound:(NSString *)tone{
+	return;
     NSString *soundPath = [[NSBundle mainBundle] pathForResource:tone ofType:@"wav"];
     SystemSoundID soundID;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath: soundPath], &soundID);

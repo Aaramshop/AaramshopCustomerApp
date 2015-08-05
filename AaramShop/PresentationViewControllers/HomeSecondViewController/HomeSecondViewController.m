@@ -14,6 +14,10 @@
 #import "CartModel.h"
 #import "CartViewController.h"
 #import "BroadcastViewController.h"
+
+#import "PrescriptionViewController.h"
+
+
 @interface HomeSecondViewController ()
 {
     AppDelegate *appDeleg;
@@ -27,7 +31,7 @@
     BOOL isSearching;
 	NSMutableArray *arrCartProductIds;
 	NSMutableArray *arrCartProducts;
-
+	NSInteger selectedIndex;
     int pageno;
     int totalNoOfPages;
 
@@ -39,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-	
+	isSelected = YES;
     strSearchTxt = @"";
     strTotalPrice = @"0";
     isSearching=NO;
@@ -76,12 +80,6 @@
     
     ////
     
-    
-    
-    
-    
-    
-    
 
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate= self;
@@ -101,7 +99,8 @@
 	arrCartProducts						= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:self.strStore_Id]];
 	arrCartProductIds					=	[arrCartProducts valueForKey:kProduct_id];
 	//==============================================
-	
+	[self createDataToGetStoreProductCategories];
+
 	
 
 }
@@ -112,9 +111,11 @@
 {
     [super viewWillAppear:YES];
 	strTotalPrice = [self getTotalPrice];
-	isSelected = NO;
-	[arrGetStoreProductCategories removeAllObjects];
-	[self createDataToGetStoreProductCategories];
+	[arrGetStoreProducts removeAllObjects];
+	if([strSelectedCategoryId integerValue]>0 && self.mainCategoryIndexPicker>=0)
+	{
+		[self createDataToGetStoreProducts];
+	}
 	[tblVwCategory reloadData];
     isViewActive = YES;
 	
@@ -135,13 +136,15 @@
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict removeObjectForKey:kUserId];
     [dict setObject:strStore_Id forKey:kStore_id];
-    [self callWebserviceTogetStoreProductCategories:dict];
+	[Utils startActivityIndicatorInView:self.view withMessage:nil];
+    [self performSelector:@selector(callWebserviceTogetStoreProductCategories:) withObject:dict afterDelay:0.1];
 }
 -(void)callWebserviceTogetStoreProductCategories:(NSMutableDictionary *)aDict
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
     {
+		[Utils stopActivityIndicatorInView:self.view];
         [AppManager stopStatusbarActivityIndicator];
         
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
@@ -159,8 +162,8 @@
     [dict setObject:strCategoryId forKey:kCategory_id];
     
     [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
-    
-    [self callWebserviceTogetStoreProductSubCategories:dict];
+	[Utils startActivityIndicatorInView:self.view withMessage:nil];
+	[self performSelector:@selector(callWebserviceTogetStoreProductSubCategories:) withObject:dict afterDelay:0.1];
 }
 -(void)callWebserviceTogetStoreProductSubCategories:(NSMutableDictionary *)aDict
 {
@@ -168,7 +171,7 @@
     if (![Utils isInternetAvailable])
     {
         [AppManager stopStatusbarActivityIndicator];
-        
+		[Utils stopActivityIndicatorInView:self.view];
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
@@ -184,7 +187,7 @@
 }
 -(void) responseReceived:(id)responseObject
 {
-    
+	[Utils stopActivityIndicatorInView:self.view];
     isLoading = NO;
     [self showFooterLoadMoreActivityIndicator:NO];
     [refreshShoppingList endRefreshing];
@@ -264,7 +267,11 @@
         CategoryModel *objCategoryModel = [arrGetStoreProductCategories objectAtIndex:0];
         strSelectedCategoryId = objCategoryModel.category_id;
     }
-    
+		if(rightCollectionVwContrllr)
+		{
+			[rightCollectionVwContrllr.view removeFromSuperview];
+			rightCollectionVwContrllr = nil;
+		}
         rightCollectionVwContrllr = (RightCollectionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"rightCollectionView"];
         rightCollectionVwContrllr.arrCategories = [[NSMutableArray alloc]init];
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -273,8 +280,7 @@
     rightCollectionVwContrllr.delegate=self;
     rightCollectionVwContrllr.strStore_Id= strStore_Id;
      [rightCollectionVwContrllr.arrCategories addObjectsFromArray:arrGetStoreProductCategories];
-//    isSelected = YES;
-    [appDeleg.window addSubview:rightCollectionVwContrllr.view];
+    [self.view addSubview:rightCollectionVwContrllr.view];
 }
 - (ProductsModel *)addProductInArray:(NSDictionary *)dictProducts
 {
@@ -429,7 +435,7 @@
         }
     }
 
-    [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+    [tblVwCategory reloadData];
 }
 #pragma mark Navigation
 
@@ -533,7 +539,6 @@
 	[appDeleg removeTabBarRetailer];
 }
 - (void)btnCartClicked{
-	[self btnCategoryClick];
 	CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
 	[self.navigationController pushViewController:cartView animated:YES];
 }
@@ -557,7 +562,6 @@
 	}
 }
 -(void)btnSearchClicked{
-	[self btnCategoryClick];
 	GlobalSearchResultViewC *globalSearchResultViewC = (GlobalSearchResultViewC *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GlobalSearchResultView" ];
 	[self.navigationController pushViewController:globalSearchResultViewC animated:YES];
 }
@@ -568,7 +572,6 @@
 
 - (void)btnBroadcastClicked
 {
-	[self btnCategoryClick];
 	BroadcastViewController *broadcastView = (BroadcastViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"broadcastView"];
 	[self.navigationController pushViewController:broadcastView animated:YES];
 }
@@ -672,21 +675,22 @@
         NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CategoryView"
                                                          owner:self options:nil];
         UIView * secView = (UIView *)[objects objectAtIndex:0];
-        UIView *smallview = (UIView*)[secView.subviews objectAtIndex:0];
-        UIView *smallview1 = (UIView*)[smallview.subviews objectAtIndex:1];
-        UIButton *btnCategory;
+//        UIView *smallview = (UIView*)[secView.subviews objectAtIndex:0];
+//        UIView *smallview1 = (UIView*)[smallview.subviews objectAtIndex:1];
+		UIView *arrowView = (UIView *)[secView viewWithTag:100];
+		UIButton *btnCategory = (UIButton *)[arrowView viewWithTag:1000];
 
-        if (!btnCategory) {
-            for (UIButton *btn in smallview1.subviews) {
-                if ([btn isKindOfClass:[UIButton class]]) {
-                    btnCategory = (UIButton *)btn;
-                }
-            }
+//        if (!btnCategory) {
+//            for (UIButton *btn in smallview1.subviews) {
+//                if ([btn isKindOfClass:[UIButton class]]) {
+//                    btnCategory = (UIButton *)btn;
+//                }
+//            }
 
-        }
+//        }
         [btnCategory addTarget:self action:@selector(btnCategoryClick) forControlEvents:UIControlEventTouchUpInside];
         
-        UILabel *lblCategory = (UILabel *)[smallview1 viewWithTag:1001];
+        UILabel *lblCategory = (UILabel *)[arrowView viewWithTag:1001];
 
         lblCategory.text = strSelectedCategoryName;
         if (isSelected)
@@ -941,15 +945,15 @@
 - (void)btnCategoryClick
 {
 //    isSelected = !isSelected;
-    if (isSelected) {
-		isSelected = NO;
+    if (!isSelected) {
+		isSelected = YES;
         if (strSelectedCategoryId.length>0) {
-            [appDeleg.window addSubview:rightCollectionVwContrllr.view];
+            [self.view addSubview:rightCollectionVwContrllr.view];
         }
     }
     else
 	{
-		isSelected = YES;
+		isSelected = NO;
         [rightCollectionVwContrllr.view removeFromSuperview];
 	}
     [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
@@ -986,6 +990,7 @@
     
     if (self.mainCategoryIndexPicker != index) {
         self.mainCategoryIndexPicker = index;
+		pageno = 0;
         [self createDataToGetStoreProducts];
     }
     
@@ -993,11 +998,21 @@
 
 -(void)selectCategory:(NSDictionary *)dict
 {
-    strSelectedCategoryName = [dict objectForKey:kCategory_name];
     strSelectedCategoryId = [dict objectForKey:kCategory_id];
-    isSelected = NO;
-    tblVwCategory.hidden = YES;
-    [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
+    
+//    if ([strSelectedCategoryId integerValue] == 100) // temp - '100'
+//    {
+//        PrescriptionViewController *prescriptionView = (PrescriptionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"PrescriptionViewController"];
+//        [self.navigationController pushViewController:prescriptionView animated:YES];
+//    }
+//    else
+    {
+        strSelectedCategoryName = [dict objectForKey:kCategory_name];
+        isSelected = NO;
+        tblVwCategory.hidden = YES;
+        [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
+    }
+    
 }
 
 -(void)createDataToGetStoreProducts
@@ -1012,7 +1027,8 @@
     
     strSelectedSubCategoryId = objSubCategory.sub_category_id;
     [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:@"page_no"];
-    [self callWebserviceToGetStoreProducts:dict];
+	[Utils startActivityIndicatorInView:self.view withMessage:nil];
+	[self performSelector:@selector(callWebserviceToGetStoreProducts:) withObject:dict afterDelay:0.1];
 }
 -(void)callWebserviceToGetStoreProducts:(NSMutableDictionary *)aDict
 {
@@ -1020,7 +1036,7 @@
     if (![Utils isInternetAvailable])
     {
         [AppManager stopStatusbarActivityIndicator];
-        
+		[Utils stopActivityIndicatorInView:self.view];
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
@@ -1076,7 +1092,8 @@
 //        [tblVwCategory reloadData];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.product_name contains[cd] %@",strSearchTxt];
         [arrSearchGetStoreProducts addObjectsFromArray:[arrGetStoreProducts filteredArrayUsingPredicate:predicate]];
-        [tblVwCategory reloadData];
+
+		[tblVwCategory reloadData];
         
     }
 }

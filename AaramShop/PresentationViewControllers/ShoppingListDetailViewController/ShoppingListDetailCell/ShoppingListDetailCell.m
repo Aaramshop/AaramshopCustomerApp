@@ -47,6 +47,7 @@
     
     if (self.delegate && [self.delegate conformsToProtocol:@protocol(ProductCellDelegate)] && [self.delegate respondsToSelector:@selector(removeProduct:)])
     {
+		[Utils playSound:@"beepUnselect"];
         [self.delegate removeProduct:_indexPath];
     }
 }
@@ -55,6 +56,7 @@
 {
     if (self.delegate && [self.delegate conformsToProtocol:@protocol(ProductCellDelegate)] && [self.delegate respondsToSelector:@selector(addProduct:)])
     {
+		[Utils playSound:@"beepSelect"];
         [self.delegate addProduct:_indexPath];
     }
 }

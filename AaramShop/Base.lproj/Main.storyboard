@@ -60,6 +60,7 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular_0.ttf">
             <string>Roboto-Regular</string>
@@ -1065,7 +1066,7 @@
         <!--Prescription View Controller-->
         <scene sceneID="Vbp-2e-Kec">
             <objects>
-                <viewController id="Mcj-H4-vsS" customClass="PrescriptionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PrescriptionViewController" hidesBottomBarWhenPushed="YES" id="Mcj-H4-vsS" customClass="PrescriptionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="caI-Ll-O44"/>
                         <viewControllerLayoutGuide type="bottom" id="PfO-La-65g"/>
@@ -1074,15 +1075,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NT1-41-yiL" userLabel="Image View - Background">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NT1-41-yiL" userLabel="Image View - Background">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.81176477670000002" green="0.51372551919999998" blue="0.16078431900000001" alpha="1" colorSpace="deviceRGB"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dMK-is-bOO" userLabel="Image View - Prescription">
-                                <rect key="frame" x="40" y="93" width="240" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6q-Ns-zMb">
+                                <rect key="frame" x="11" y="20" width="60" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="4ym-AW-a5d"/>
+                                    <constraint firstAttribute="width" constant="60" id="cVb-9Y-vrS"/>
+                                </constraints>
+                                <state key="normal" image="backBtn.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionBack:" destination="Mcj-H4-vsS" eventType="touchUpInside" id="NCv-SB-To4"/>
+                                    <action selector="btnBackClick:" destination="rv3-1T-r4d" eventType="touchUpInside" id="zep-WX-3UB"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defalutCameraIconNew.png" translatesAutoresizingMaskIntoConstraints="NO" id="dMK-is-bOO" userLabel="Image View - Prescription">
+                                <rect key="frame" x="88" y="84" width="145" height="145"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jc7-g4-OFK" userLabel="Button - upload image">
-                                <rect key="frame" x="40" y="93" width="240" height="128"/>
-                                <color key="backgroundColor" red="1" green="0.96044231830000004" blue="0.1963373638" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="80" y="84" width="160" height="180"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1102,10 +1117,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oH-62-5uB" userLabel="Button - CONTINUE">
-                                <rect key="frame" x="65" y="348" width="190" height="30"/>
-                                <color key="backgroundColor" red="0.36269278519999998" green="1" blue="0.31238269169999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="CONTINUE">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oH-62-5uB" userLabel="Button - CONTINUE">
+                                <rect key="frame" x="12" y="499" width="297" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="297" id="ih5-gf-wi8"/>
+                                    <constraint firstAttribute="height" constant="47" id="lS5-Pk-aoy"/>
+                                </constraints>
+                                <state key="normal" title="CONTINUE" backgroundImage="newUserBox.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1114,13 +1132,26 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="NT1-41-yiL" secondAttribute="width" id="2Ku-gm-kqu"/>
+                            <constraint firstItem="PfO-La-65g" firstAttribute="top" secondItem="4oH-62-5uB" secondAttribute="bottom" constant="22" id="3Sk-nY-DTs"/>
+                            <constraint firstAttribute="centerX" secondItem="NT1-41-yiL" secondAttribute="centerX" id="6Ed-Kq-uKA"/>
+                            <constraint firstAttribute="height" secondItem="NT1-41-yiL" secondAttribute="height" id="6PH-Kh-R8X"/>
+                            <constraint firstAttribute="centerX" secondItem="4oH-62-5uB" secondAttribute="centerX" constant="-0.5" id="6vs-Va-FEC"/>
+                            <constraint firstItem="P6q-Ns-zMb" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" id="Ufb-Iu-X5G"/>
+                            <constraint firstItem="P6q-Ns-zMb" firstAttribute="leading" secondItem="T3B-1C-qeA" secondAttribute="leadingMargin" constant="-5" id="chd-aR-bDo"/>
+                            <constraint firstAttribute="centerY" secondItem="NT1-41-yiL" secondAttribute="centerY" id="mFu-Fp-n4N"/>
+                        </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnContinue" destination="4oH-62-5uB" id="O7N-xu-t7K"/>
                         <outlet property="btnPrescriptionImage" destination="jc7-g4-OFK" id="pEc-Im-dfR"/>
                         <outlet property="imgBackground" destination="NT1-41-yiL" id="Wf2-YT-ts0"/>
                         <outlet property="imgPrescription" destination="dMK-is-bOO" id="IKO-oq-B7j"/>
                         <outlet property="lblDescription" destination="5Yw-bR-XZB" id="LoK-Cd-BFI"/>
+                        <outlet property="lblUploadPicture" destination="muv-yf-e2w" id="0kj-tZ-mh4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JpD-Uo-wYv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2209,6 +2240,20 @@
                                     <constraint firstAttribute="height" constant="95" id="dLL-DF-bZx"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLt-tF-XB7">
+                                <rect key="frame" x="8" y="28" width="50" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Hym-eN-0Mj"/>
+                                    <constraint firstAttribute="height" constant="25" id="QQR-vZ-oLD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                                <state key="normal" title="Cancel" backgroundImage="doneBtn.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnCancelClicked:" destination="Kva-dY-HCj" eventType="touchUpInside" id="Fr5-Fs-l30"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BK-lU-vgp">
                                 <rect key="frame" x="267" y="28" width="45" height="25"/>
                                 <constraints>
@@ -2270,6 +2315,7 @@
                             <constraint firstAttribute="trailing" secondItem="1R3-jU-aTN" secondAttribute="trailing" id="KDb-wb-g91"/>
                             <constraint firstAttribute="width" secondItem="ccN-pn-OzU" secondAttribute="width" id="MfR-ZZ-Pu7"/>
                             <constraint firstAttribute="centerY" secondItem="ccN-pn-OzU" secondAttribute="centerY" id="SyH-x3-tyV"/>
+                            <constraint firstItem="yLt-tF-XB7" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="8" id="UgH-18-V61"/>
                             <constraint firstItem="oI3-dS-uae" firstAttribute="trailing" secondItem="1R3-jU-aTN" secondAttribute="trailing" constant="-42" id="XZq-9d-WHf"/>
                             <constraint firstAttribute="centerX" secondItem="ccN-pn-OzU" secondAttribute="centerX" id="bRO-RK-G89"/>
                             <constraint firstItem="1R3-jU-aTN" firstAttribute="top" secondItem="c02-wz-VZS" secondAttribute="top" constant="95" id="d5h-2S-vOi"/>
@@ -2278,6 +2324,7 @@
                             <constraint firstItem="c02-wz-VZS" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leading" id="hE5-tV-zDU"/>
                             <constraint firstItem="yer-4o-KdU" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="29" id="oCl-Ul-usq"/>
                             <constraint firstItem="0BK-lU-vgp" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="8" id="wTW-Lk-HeS"/>
+                            <constraint firstItem="yLt-tF-XB7" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leadingMargin" constant="-8" id="wjT-G6-89h"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -2286,6 +2333,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="btnCancel" destination="yLt-tF-XB7" id="zwd-hk-kvY"/>
                         <outlet property="mapViewLocation" destination="ccN-pn-OzU" id="rix-Aq-Jjh"/>
                         <outlet property="txtFLocation" destination="oI3-dS-uae" id="FUD-f6-Be8"/>
                     </connections>
