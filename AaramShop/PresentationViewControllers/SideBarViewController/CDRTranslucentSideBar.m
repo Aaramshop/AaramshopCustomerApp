@@ -122,12 +122,12 @@
     arrMenu=[[NSMutableArray alloc]initWithObjects:@"Account Settings",@"Preferences",@"Wallet",@"Logout",nil];
     arrOptions = [[NSMutableArray alloc]init];
     
-    [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Beverages",@"name", nil]];
-    [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Bakery",@"name", nil]];
-    [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Soaps & Shampoos",@"name", nil]];
-    [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Tea & Coffee",@"name", nil]];
-    [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Snacks",@"name", nil]];
-    
+//    [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Beverages",@"name", nil]];
+//    [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Bakery",@"name", nil]];
+//    [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Soaps & Shampoos",@"name", nil]];
+//    [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Tea & Coffee",@"name", nil]];
+//    [arrOptions addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"enterMobileNoDefaultCameraIcon",@"image",@"Snacks",@"name", nil]];
+	
     arrImages=[[NSMutableArray alloc]initWithObjects:@"menuAccountSettingsIcon",@"menuPreferencesIcon",@"walletIcon",@"menuLogoutIcon",nil];
     
     
@@ -264,11 +264,11 @@
 {
     if (self.tag == 0) {
         UIImage* image;
-        NSArray *arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kAddressForLocation];
+        NSArray *arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
         NSMutableDictionary *dictAddress  = nil;
         for (NSMutableDictionary *dict in arrAddress) {
             
-            if ([[dict objectForKey:kTitle] isEqualToString:@"Home"]) {
+            if ([[dict objectForKey:@"user_address_title"] isEqualToString:@"Home"]) {
                 dictAddress = dict;
                 break;
             }
@@ -305,17 +305,17 @@
         lblAddress.numberOfLines = 2;
         lblAddress.lineBreakMode = NSLineBreakByWordWrapping;
         lblAddress.font=[UIFont fontWithName:kRobotoRegular size:15];
-		NSString *strAddress =	[dictAddress objectForKey:kAddress];
-		
-		if ([strAddress rangeOfString:@","].location == NSNotFound)
-		{
-			NSString *strFullAddress = [NSString stringWithFormat:@"%@, %@, %@, %@",[dictAddress objectForKey:kAddress],[dictAddress objectForKey:@"locality"],[dictAddress objectForKey:@"city"],[dictAddress objectForKey:@"state"]];
+//		NSString *strAddress =	[dictAddress objectForKey:kAddress];
+//		
+//		if ([strAddress rangeOfString:@","].location == NSNotFound)
+//		{
+			NSString *strFullAddress = [NSString stringWithFormat:@"%@, %@, %@",[dictAddress objectForKey:kAddress],[dictAddress objectForKey:@"city"],[dictAddress objectForKey:@"state"]];
 			lblAddress.text = strFullAddress;
-		}
-		else
-		{
-			lblAddress.text = [dictAddress objectForKey:kAddress];
-		}
+//		}
+//		else
+//		{
+//			lblAddress.text = [dictAddress objectForKey:kAddress];
+//		}
 		
         lblAddress.textColor=[UIColor whiteColor];
         UIButton *btnEdit=[[UIButton alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-16, 34)];

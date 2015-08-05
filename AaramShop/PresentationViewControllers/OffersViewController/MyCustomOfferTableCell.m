@@ -88,6 +88,7 @@
 }
 - (IBAction)btnRemoveClicked:(id)sender {
 	if ([self.offers.strCount intValue]>=0) {
+		[Utils playSound:@"beepUnselect"];
 		int Counter = [self.offers.strCount intValue];
 		Counter--;
 		self.offers.strCount = [NSString stringWithFormat:@"%d",Counter];
@@ -100,6 +101,7 @@
 
 - (IBAction)btnAddClicked:(id)sender {
 	if ([self.offers.strCount intValue]>=0) {
+		[Utils playSound:@"beepSelect"];
 		int Counter = [self.offers.strCount intValue];
 		Counter++;
 		self.offers.strCount = [NSString stringWithFormat:@"%d",Counter];

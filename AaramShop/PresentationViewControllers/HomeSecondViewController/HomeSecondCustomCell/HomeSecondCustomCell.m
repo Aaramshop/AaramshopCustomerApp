@@ -85,6 +85,7 @@
 -(void)btnMinusClick
 {
     if ([objProductsModelMain.strCount intValue]>=0) {
+		[Utils playSound:@"beepUnselect"];
         int Counter = [objProductsModelMain.strCount intValue];
         Counter--;
         objProductsModelMain.strCount = [NSString stringWithFormat:@"%d",Counter];
@@ -99,6 +100,7 @@
 -(void)btnPlusClick
 {
     if ([objProductsModelMain.strCount intValue]>=0) {
+		[Utils playSound:@"beepSelect"];
         int Counter = [objProductsModelMain.strCount intValue];
         Counter++;
         objProductsModelMain.strCount = [NSString stringWithFormat:@"%d",Counter];

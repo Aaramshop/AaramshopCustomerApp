@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,6 +22,7 @@
             <string>Roboto-Bold</string>
         </mutableArray>
         <mutableArray key="Roboto-Medium_0.ttf">
+            <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
@@ -825,7 +826,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIh-fd-D0d">
@@ -2230,6 +2231,20 @@
                                     <constraint firstAttribute="height" constant="95" id="dLL-DF-bZx"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLt-tF-XB7">
+                                <rect key="frame" x="8" y="28" width="50" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Hym-eN-0Mj"/>
+                                    <constraint firstAttribute="height" constant="25" id="QQR-vZ-oLD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                                <state key="normal" title="Cancel" backgroundImage="doneBtn.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnCancelClicked:" destination="Kva-dY-HCj" eventType="touchUpInside" id="Fr5-Fs-l30"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0BK-lU-vgp">
                                 <rect key="frame" x="267" y="28" width="45" height="25"/>
                                 <constraints>
@@ -2291,6 +2306,7 @@
                             <constraint firstAttribute="trailing" secondItem="1R3-jU-aTN" secondAttribute="trailing" id="KDb-wb-g91"/>
                             <constraint firstAttribute="width" secondItem="ccN-pn-OzU" secondAttribute="width" id="MfR-ZZ-Pu7"/>
                             <constraint firstAttribute="centerY" secondItem="ccN-pn-OzU" secondAttribute="centerY" id="SyH-x3-tyV"/>
+                            <constraint firstItem="yLt-tF-XB7" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="8" id="UgH-18-V61"/>
                             <constraint firstItem="oI3-dS-uae" firstAttribute="trailing" secondItem="1R3-jU-aTN" secondAttribute="trailing" constant="-42" id="XZq-9d-WHf"/>
                             <constraint firstAttribute="centerX" secondItem="ccN-pn-OzU" secondAttribute="centerX" id="bRO-RK-G89"/>
                             <constraint firstItem="1R3-jU-aTN" firstAttribute="top" secondItem="c02-wz-VZS" secondAttribute="top" constant="95" id="d5h-2S-vOi"/>
@@ -2299,6 +2315,7 @@
                             <constraint firstItem="c02-wz-VZS" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leading" id="hE5-tV-zDU"/>
                             <constraint firstItem="yer-4o-KdU" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="29" id="oCl-Ul-usq"/>
                             <constraint firstItem="0BK-lU-vgp" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="8" id="wTW-Lk-HeS"/>
+                            <constraint firstItem="yLt-tF-XB7" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leadingMargin" constant="-8" id="wjT-G6-89h"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -2307,6 +2324,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="btnCancel" destination="yLt-tF-XB7" id="zwd-hk-kvY"/>
                         <outlet property="mapViewLocation" destination="ccN-pn-OzU" id="rix-Aq-Jjh"/>
                         <outlet property="txtFLocation" destination="oI3-dS-uae" id="FUD-f6-Be8"/>
                     </connections>
@@ -3838,7 +3856,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sepratorBoxThree.png" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-ID-M4P">

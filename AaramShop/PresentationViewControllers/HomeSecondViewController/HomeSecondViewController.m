@@ -1112,7 +1112,8 @@
 //        [tblVwCategory reloadData];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.product_name contains[cd] %@",strSearchTxt];
         [arrSearchGetStoreProducts addObjectsFromArray:[arrGetStoreProducts filteredArrayUsingPredicate:predicate]];
-        [tblVwCategory reloadData];
+
+		[tblVwCategory reloadData];
         
     }
 }
