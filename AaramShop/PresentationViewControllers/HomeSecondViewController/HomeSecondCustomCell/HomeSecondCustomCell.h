@@ -22,6 +22,7 @@
     UILabel *lblPrice, *lblName, *lblCount,*lblLine,*lblOfferPrice;
     UIButton *btnPlus, *btnMinus;
 }
+@property (nonatomic, assign) BOOL fromCart;
 @property (nonatomic, strong) NSString *store_id;
 @property(nonatomic,strong) ProductsModel *objProductsModelMain;
 @property(nonatomic,strong) id<HomeSecondCustomCellDelegate> delegate;
