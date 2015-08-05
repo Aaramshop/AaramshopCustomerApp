@@ -9,12 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ProductsModel.h"
 
-@protocol HomeSecondCustomCellDelegate <NSObject>
 
--(void)addedValueByPrice:(NSString*)strPrice atIndexPath:(NSIndexPath *)inIndexPath;
--(void)minusValueByPrice:(NSString*)strPrice atIndexPath:(NSIndexPath *)inIndexPath;
--(void)updateTableAtIndexPath:(NSIndexPath *)inIndexPath;
-@end
 
 @interface HomeSecondCustomCell : UITableViewCell
 {

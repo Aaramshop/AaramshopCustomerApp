@@ -262,7 +262,15 @@
 #pragma mark - UITableView Delegates & DataSource Methods
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 68;
+	return 108;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return 10;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+	return CGFLOAT_MIN;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -272,46 +280,21 @@
 {
 	return 1;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-	return 40;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-	return CGFLOAT_MIN;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-	ProductsModel *productModel = [arrGlobalSearchResult objectAtIndex:atIndexPath.section];
-	UIView *secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, 40)];
-	secView.backgroundColor = [UIColor clearColor];
-	UIView *thirdView = [[UIView alloc] initWithFrame:CGRectMake(0, 10, [[UIScreen mainScreen] bounds].size.width, 30)];
-	thirdView.backgroundColor = [UIColor whiteColor];
-	UIImageView *imgStore = [[UIImageView alloc] initWithFrame:CGRectMake(16, (thirdView.frame.size.height - 26)/2, 26, 26)];
-	[imgStore sd_setImageWithURL:[NSURL URLWithString:productModel.store_image] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
-	UILabel *lblStoreName = [[UILabel alloc] initWithFrame:CGRectMake(imgStore.frame.size.width + imgStore.frame.origin.x + 4, (thirdView.frame.size.height - 21)/2, [[UIScreen mainScreen] bounds].size.width - imgStore.frame.size.width - 28, 21)];
-	lblStoreName.font = [UIFont fontWithName:kRobotoRegular size:15];
-	lblStoreName.textColor = [UIColor colorWithRed:44/255.0f green:44/255.0f blue:44/255.0f alpha:1.0f];
-	lblStoreName.text = productModel.store_name;
-	[thirdView addSubview:lblStoreName];
-	[thirdView addSubview:imgStore];
-	[secView addSubview:thirdView];
-	return secView;
-}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	
-	static NSString *cellIdentifier = @"Cell";
-	HomeSecondCustomCell *cell = (HomeSecondCustomCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	static NSString *cellIdentifier = @"ResultCell";
+	GlobalSearchResultTableCell *cell = (GlobalSearchResultTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 		if (cell == nil) {
-			cell = [[HomeSecondCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-			cell.delegate=self;
+			cell = [[GlobalSearchResultTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+			
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		}
 		ProductsModel *objProductsModel = nil;
 	
 		objProductsModel = [self getObjectOfProductForIndexPath:indexPath];
 		atIndexPath = indexPath;
+		cell.delegate=self;
 		cell.indexPath=indexPath;
 		cell.store_id	=	self.strStore_Id;
 		cell.objProductsModelMain = objProductsModel;
@@ -334,16 +317,11 @@
 //		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,strSelectedSubCategoryId];
 //		NSArray *arrTemp = [arrGlobalSearchResult filteredArrayUsingPredicate:predicate];
 	objProductsModel = [arrGlobalSearchResult objectAtIndex: IndexPath.section];
-	cmProductModel = objProductsModel;
 	return objProductsModel;
 	
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-	
-	[tblView deselectRowAtIndexPath:indexPath animated:YES];
-}
 -(void)updateTableAtIndexPath:(NSIndexPath *)inIndexPath
 {
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];

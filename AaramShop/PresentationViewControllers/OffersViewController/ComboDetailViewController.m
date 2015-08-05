@@ -20,14 +20,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	[self setNavigationBar];
+	if (self.offersModel.combo_mrp == nil ) {
+		lblActualPrice.text		= [NSString stringWithFormat:@"₹%@", self.cartProductModel.product_price];
+		lblOfferPrice.text		=	[NSString stringWithFormat:@"₹%@", self.cartProductModel.offer_price];
+		lblOfferName.text		=	self.cartProductModel.offerTitle;
+		lblValidTill.text			=	[NSString stringWithFormat:@"Valid till %@",self.offersModel.end_date];
+		[imgViewOffer sd_setImageWithURL:[NSURL URLWithString:self.cartProductModel.cartProductImage] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+			
+		}];
+
+	}
+	else
+	{
 	lblActualPrice.text		= [NSString stringWithFormat:@"₹%@", self.offersModel.combo_mrp];
 	lblOfferPrice.text		=	[NSString stringWithFormat:@"₹%@", self.offersModel.combo_offer_price];
 	lblOfferName.text		=	self.offersModel.offerTitle;
-	lblValidTill.text			=	[NSString stringWithFormat:@"Valid till %@",self.offersModel.end_date];
+	
 	[imgViewOffer sd_setImageWithURL:[NSURL URLWithString:self.offersModel.offerImage] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 		
 	}];
-	
+	}
+	lblValidTill.text			=	[NSString stringWithFormat:@"Valid till %@",self.offersModel.end_date];
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
 
@@ -124,7 +137,12 @@
 	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
-	[dict setObject:self.offersModel.offer_id forKey:kOfferId];
+	if(self.offersModel.offer_id == nil)
+	{
+		[dict setObject:self.cartProductModel.offer_id forKey:kOfferId];
+	}
+	else
+		[dict setObject:self.offersModel.offer_id forKey:kOfferId];
 	[self callWebServiceToGetDetails:dict];
 }
 

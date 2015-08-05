@@ -11,6 +11,7 @@
 #import "GlobalSearchViewController.h"
 #import "HomeSecondCustomCell.h"
 #import "StoreModel.h"
+#import "GlobalSearchResultTableCell.h"
 #import "SubCategoryModel.h"
 @interface GlobalSearchResultViewC : UIViewController<HomeSecondCustomCellDelegate,AaramShop_ConnectionManager_Delegate,GlobalSearchViewControllerDelegate>
 {

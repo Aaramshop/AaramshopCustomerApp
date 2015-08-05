@@ -27,4 +27,11 @@
 
 @end
 
+//=====================================================
+@protocol HomeSecondCustomCellDelegate <NSObject>
+
+-(void)addedValueByPrice:(NSString*)strPrice atIndexPath:(NSIndexPath *)inIndexPath;
+-(void)minusValueByPrice:(NSString*)strPrice atIndexPath:(NSIndexPath *)inIndexPath;
+-(void)updateTableAtIndexPath:(NSIndexPath *)inIndexPath;
+@end
 #endif

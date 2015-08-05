@@ -385,10 +385,12 @@
 
 	CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
 	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
-	if([productModel.strOffer_type intValue] == 6)
+	if([productModel.strOffer_type intValue] == 4)
 	{
 		ComboDetailViewController *comboDetail = (ComboDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"comboDetailController"];
 		comboDetail.offersModel = offers;
+		comboDetail.cartProductModel = productModel;
+		
 		[self.navigationController pushViewController:comboDetail animated:YES];
 	}
 }
