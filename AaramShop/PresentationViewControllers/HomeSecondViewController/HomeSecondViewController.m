@@ -27,7 +27,7 @@
     BOOL isSearching;
 	NSMutableArray *arrCartProductIds;
 	NSMutableArray *arrCartProducts;
-
+	NSInteger selectedIndex;
     int pageno;
     int totalNoOfPages;
 
@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    isSelected = NO;
+	isSelected = YES;
     strSearchTxt = @"";
     strTotalPrice = @"0";
     isSearching=NO;
@@ -101,8 +101,9 @@
 	arrCartProducts						= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:self.strStore_Id]];
 	arrCartProductIds					=	[arrCartProducts valueForKey:kProduct_id];
 	//==============================================
+	[self createDataToGetStoreProductCategories];
+
 	
-    [self createDataToGetStoreProductCategories];
 
 }
 
@@ -112,8 +113,14 @@
 {
     [super viewWillAppear:YES];
 	strTotalPrice = [self getTotalPrice];
+	[arrGetStoreProducts removeAllObjects];
+	if([strSelectedCategoryId integerValue]>0 && self.mainCategoryIndexPicker>=0)
+	{
+		[self createDataToGetStoreProducts];
+	}
 	[tblVwCategory reloadData];
     isViewActive = YES;
+	
 }
 
 
@@ -262,7 +269,11 @@
         CategoryModel *objCategoryModel = [arrGetStoreProductCategories objectAtIndex:0];
         strSelectedCategoryId = objCategoryModel.category_id;
     }
-    
+		if(rightCollectionVwContrllr)
+		{
+			[rightCollectionVwContrllr.view removeFromSuperview];
+			rightCollectionVwContrllr = nil;
+		}
         rightCollectionVwContrllr = (RightCollectionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"rightCollectionView"];
         rightCollectionVwContrllr.arrCategories = [[NSMutableArray alloc]init];
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -271,7 +282,6 @@
     rightCollectionVwContrllr.delegate=self;
     rightCollectionVwContrllr.strStore_Id= strStore_Id;
      [rightCollectionVwContrllr.arrCategories addObjectsFromArray:arrGetStoreProductCategories];
-    isSelected = YES;
     [self.view addSubview:rightCollectionVwContrllr.view];
 }
 - (ProductsModel *)addProductInArray:(NSDictionary *)dictProducts
@@ -427,7 +437,7 @@
         }
     }
 
-    [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+    [tblVwCategory reloadData];
 }
 #pragma mark Navigation
 
@@ -530,7 +540,7 @@
 
 	[appDeleg removeTabBarRetailer];
 }
--(void)btnCartClicked{
+- (void)btnCartClicked{
 	CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
 	[self.navigationController pushViewController:cartView animated:YES];
 }
@@ -554,7 +564,10 @@
 	}
 }
 -(void)btnSearchClicked{
+	GlobalSearchResultViewC *globalSearchResultViewC = (GlobalSearchResultViewC *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GlobalSearchResultView" ];
+	[self.navigationController pushViewController:globalSearchResultViewC animated:YES];
 }
+
 - (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
     [self.navigationController pushViewController:viewC animated:YES];
 }
@@ -951,16 +964,20 @@
 //        }
 //    }
 }
--(void)btnCategoryClick
+- (void)btnCategoryClick
 {
-    isSelected = !isSelected;
-    if (isSelected) {
+//    isSelected = !isSelected;
+    if (!isSelected) {
+		isSelected = YES;
         if (strSelectedCategoryId.length>0) {
             [self.view addSubview:rightCollectionVwContrllr.view];
         }
     }
     else
+	{
+		isSelected = NO;
         [rightCollectionVwContrllr.view removeFromSuperview];
+	}
     [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
@@ -995,6 +1012,7 @@
     
     if (self.mainCategoryIndexPicker != index) {
         self.mainCategoryIndexPicker = index;
+		pageno = 0;
         [self createDataToGetStoreProducts];
     }
     

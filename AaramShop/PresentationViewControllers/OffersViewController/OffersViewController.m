@@ -38,9 +38,6 @@
 	arrOffers = [[NSMutableArray alloc] init];
 	arrCoupon = [[NSMutableArray alloc]init];
 	
-//	[arrOffers addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"599",@"mrp",@"499",@"offer",@"43-43-2345",@"date", nil]];
-//	[arrOffers addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"599",@"mrp",@"499",@"offer",@"43-43-2345",@"date", nil]];
-//	[arrOffers addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Hello",@"name",@"599",@"mrp",@"499",@"offer",@"43-43-2345",@"date", nil]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,15 +71,7 @@
 	[_headerTitleSubtitleView addSubview:titleView];
 	self.navigationItem.titleView = _headerTitleSubtitleView;
 	
-//	UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
-//	sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
-//	[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];
-//	[sideMenu addTarget:self action:@selector(SideMenuClicked) forControlEvents:UIControlEventTouchUpInside];
-//	UIBarButtonItem *btnHome = [[UIBarButtonItem alloc] initWithCustomView:sideMenu];
-//	
-//	
-//	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:btnHome, nil];
-//	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+
 	UIButton *sideMenu = [UIButton buttonWithType:UIButtonTypeCustom];
 	sideMenu.bounds = CGRectMake( 0, 0, 30, 30 );
 	[sideMenu setImage:[UIImage imageNamed:@"menuIcon.png"] forState:UIControlStateNormal];

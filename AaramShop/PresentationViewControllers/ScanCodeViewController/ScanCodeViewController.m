@@ -153,6 +153,7 @@
 {
 	if (![Utils isInternetAvailable])
 	{
+		count = 0;
 		[AppManager stopStatusbarActivityIndicator];
 		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		return;
@@ -167,8 +168,12 @@
 		{
 			if([[responseObject objectForKey:kstatus] intValue] == 1)
 			{
-			
-				[self parseData:[responseObject objectForKey:@"result"]];
+				if (self.delegate && [self.delegate conformsToProtocol:@protocol(ScanCodeVCDelegate)] && [self.delegate respondsToSelector:@selector(removeSuperview)])
+				{
+					[self.delegate removeSuperview];
+				}
+
+//				[self parseData:[responseObject objectForKey:@"result"]];
 			}
 			else
 			{
@@ -185,6 +190,7 @@
 }
 - (void)didFailWithError:(NSError *)error
 {
+	count = 0;
 	[AppManager stopStatusbarActivityIndicator];
 	[aaramShop_ConnectionManager failureBlockCalled:error];
 }

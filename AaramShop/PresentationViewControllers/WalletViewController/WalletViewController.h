@@ -17,7 +17,7 @@ typedef enum
 	eSelectedWalletOffer
 	
 }enWalletSelectedType;
-@interface WalletViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
+@interface WalletViewController : UIViewController<AaramShop_ConnectionManager_Delegate,OffersVCDelegate>
 {
 	
 	WalletOffersViewController *walletOfferVC;

@@ -37,6 +37,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)callWebService
+{
+	[self createDataToGetWallet];
+}
 - (void)createDataToGetWallet
 {
 	[self userInteraction:NO];

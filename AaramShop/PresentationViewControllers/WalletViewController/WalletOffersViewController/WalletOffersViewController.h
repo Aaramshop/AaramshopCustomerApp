@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ScanCodeViewController.h"
 #import "CMOffers.h"
-#import "WalletOfferTableCell.h"
 #import "OffersTableCell.h"
 #import "MyCustomOfferTableCell.h"
 #import "ComboDetailViewController.h"
+@protocol OffersVCDelegate <NSObject>
+@optional
+- (void)callWebService;
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView onTableView:(UITableView *)tableView;
+
+@end
 @interface WalletOffersViewController : UIViewController<AaramShop_ConnectionManager_Delegate,OffersTableCellDelegate>
 {
 	
@@ -20,10 +25,12 @@
 	AppDelegate *appDel;
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 	NSMutableArray *dataSource;
-	__weak IBOutlet UIView *subView;
-	NSInteger count;
+	int pageno;
+	int totalNoOfPages;
+	BOOL isLoading;
 	
 }
 - (IBAction)btnScan:(id)sender;
+@property (weak, nonatomic) id <OffersVCDelegate> delegate;
 @property (weak, nonatomic)CMOffers *offers;
 @end

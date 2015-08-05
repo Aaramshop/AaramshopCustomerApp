@@ -10,7 +10,7 @@
 #import "CMWalletOffer.h"
 #import "WalletOffersViewController.h"
 @protocol ScanCodeVCDelegate <NSObject>
-
+@optional
 -(void)removeSuperviewWithModel: (CMWalletOffer *)walletOfferModel;
 -(void)removeSuperview;
 
