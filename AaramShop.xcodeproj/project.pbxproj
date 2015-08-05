@@ -1005,6 +1005,8 @@
 		6B54904B1B68E59100465C82 /* checkBoxInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490451B68E59100465C82 /* checkBoxInactive.png */; };
 		6B54904C1B68E59100465C82 /* checkBoxInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490461B68E59100465C82 /* checkBoxInactive@2x.png */; };
 		6B54904D1B68E59100465C82 /* checkBoxInactive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490471B68E59100465C82 /* checkBoxInactive@3x.png */; };
+		6B570E001B721E7800F27515 /* beepSelect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6B570DFE1B721E7800F27515 /* beepSelect.wav */; };
+		6B570E031B721EA400F27515 /* beepUnselect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6B570E021B721EA400F27515 /* beepUnselect.wav */; };
 		6B5C0FAA1B53B69F003C217C /* ShoppingListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FA91B53B69F003C217C /* ShoppingListDetailViewController.m */; };
 		6B5C0FAD1B53B6C3003C217C /* ShoppingListDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FAC1B53B6C3003C217C /* ShoppingListDetailCell.m */; };
 		6B5C0FB11B53BC6E003C217C /* CreateNewShoppingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FB01B53BC6E003C217C /* CreateNewShoppingListViewController.m */; };
@@ -2756,6 +2758,8 @@
 		6B5490451B68E59100465C82 /* checkBoxInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxInactive.png; sourceTree = "<group>"; };
 		6B5490461B68E59100465C82 /* checkBoxInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxInactive@2x.png"; sourceTree = "<group>"; };
 		6B5490471B68E59100465C82 /* checkBoxInactive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxInactive@3x.png"; sourceTree = "<group>"; };
+		6B570DFE1B721E7800F27515 /* beepSelect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beepSelect.wav; sourceTree = "<group>"; };
+		6B570E021B721EA400F27515 /* beepUnselect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beepUnselect.wav; sourceTree = "<group>"; };
 		6B5C0FA81B53B69F003C217C /* ShoppingListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListDetailViewController.h; sourceTree = "<group>"; };
 		6B5C0FA91B53B69F003C217C /* ShoppingListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListDetailViewController.m; sourceTree = "<group>"; };
 		6B5C0FAB1B53B6C3003C217C /* ShoppingListDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListDetailCell.h; sourceTree = "<group>"; };
@@ -5758,6 +5762,7 @@
 		6B12DC861AF22C8100245209 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6B570DFD1B721E7800F27515 /* Audio */,
 				36CA64371B6F6CC700A3BBB1 /* Protocols.h */,
 				6BE473DA1B3B21CE00C09AFD /* MMHVideoPhotoGallery */,
 				6BE473481B3AD0DF00C09AFD /* NSSegmentBadgeControl */,
@@ -6214,6 +6219,15 @@
 				6B5490401B68D79D00465C82 /* ContactsData.m */,
 			);
 			path = ContactsData;
+			sourceTree = "<group>";
+		};
+		6B570DFD1B721E7800F27515 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				6B570E021B721EA400F27515 /* beepUnselect.wav */,
+				6B570DFE1B721E7800F27515 /* beepSelect.wav */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		6B5C0FA61B53B681003C217C /* ShoppingListDetailViewController */ = {
@@ -7877,6 +7891,7 @@
 				2CF41C8C1B60F9C200F02527 /* calenderSecondBox@2x.png in Resources */,
 				365395661B524FA60045AAFE /* discountBoxInactive.png in Resources */,
 				6BD2D30B1B284C8900EC6E54 /* homeChocklateIcon@3x.png in Resources */,
+				6B570E031B721EA400F27515 /* beepUnselect.wav in Resources */,
 				2CF41C961B60F9C200F02527 /* reminderBox@3x.png in Resources */,
 				6B0676F71B06383F0002259E /* locationPopupUpperRedBox@3x.png in Resources */,
 				368209891B1C46FA002AA93F /* isle of man.png in Resources */,
@@ -8058,6 +8073,7 @@
 				36BE5A9B1B53C52A0079DAE3 /* packedIconActive@3x.png in Resources */,
 				368209D31B1C46FA002AA93F /* norway.png in Resources */,
 				3682099A1B1C46FA002AA93F /* komi.png in Resources */,
+				6B570E001B721E7800F27515 /* beepSelect.wav in Resources */,
 				368209A41B1C46FA002AA93F /* lebanon.png in Resources */,
 				274A5D091B05C4AA009112B5 /* build-libidn.sh in Resources */,
 				36210B7F1B33F254005B8DFB /* backBtn.png in Resources */,
