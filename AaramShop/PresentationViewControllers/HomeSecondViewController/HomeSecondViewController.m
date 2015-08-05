@@ -14,6 +14,10 @@
 #import "CartModel.h"
 #import "CartViewController.h"
 #import "BroadcastViewController.h"
+
+#import "PrescriptionViewController.h"
+
+
 @interface HomeSecondViewController ()
 {
     AppDelegate *appDeleg;
@@ -1013,11 +1017,21 @@
 
 -(void)selectCategory:(NSDictionary *)dict
 {
+    // if button ==>> medicine ..
+    // go to prescription page ..
+    
+    /*
+     PrescriptionViewController *prescriptionView = (PrescriptionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"PrescriptionViewController"];
+     [self.navigationController pushViewController:prescriptionView animated:YES];
+     //*/
+    
+    //*
     strSelectedCategoryName = [dict objectForKey:kCategory_name];
     strSelectedCategoryId = [dict objectForKey:kCategory_id];
     isSelected = NO;
     tblVwCategory.hidden = YES;
     [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
+     //*/
 }
 
 -(void)createDataToGetStoreProducts
