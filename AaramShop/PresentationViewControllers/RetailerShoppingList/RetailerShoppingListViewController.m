@@ -9,6 +9,7 @@
 #import "RetailerShoppingListViewController.h"
 #import "ShoppingListModel.h"
 #import "RetailerShoppingListDetailViewController.h"
+#import "CartViewController.h"
 //#import "SharedUserModel.h"
 
 @interface RetailerShoppingListViewController ()
@@ -100,11 +101,30 @@
     [btnSearch setImage:imgSearch forState:UIControlStateNormal];
     [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
-    
-    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnSearch, nil];
+	
+	
+	
+	UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
+	UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnCart.bounds = CGRectMake( -10, 0, 30, 30);
+	
+	[btnCart setImage:imgCart forState:UIControlStateNormal];
+	[btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
+	
+
+	
+    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnSearch, barBtnCart, nil];
     self.navigationItem.rightBarButtonItems = arrBtnsRight;
     
 }
+-(void)btnCartClicked
+{
+	CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+	[self.navigationController pushViewController:cartView animated:YES];
+	
+}
+
 - (void)btnBackClicked
 {
     [appDeleg removeTabBarRetailer];

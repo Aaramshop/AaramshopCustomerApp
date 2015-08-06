@@ -546,6 +546,12 @@
 }
 -(void)btnDoneClicked
 {
+    if ([strTotalAvailProductPrice integerValue]==0)
+    {
+        return;
+    }
+    
+    
     NSMutableArray *arrCartProducts = [[NSMutableArray	 alloc]init];
     if ([arrProductList count]>0)
     {

@@ -19,4 +19,9 @@
     __weak IBOutlet UIButton *btnContinue;
     
 }
+
+@property(nonatomic,strong) NSString *strStoreName;
+@property(nonatomic,strong) NSString *strStoreId;
+
+
 @end

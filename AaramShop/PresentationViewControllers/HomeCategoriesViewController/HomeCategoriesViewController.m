@@ -384,7 +384,11 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     // ContainerView
     float statusHeight = 0;
     float navigationHeight = 0;
-    
+    if(containerVC)
+	{
+		[containerVC.view removeFromSuperview];
+		containerVC = nil;
+	}
     containerVC = [[YSLContainerViewController alloc]initWithControllers:viewControllers
                                                                                         topBarHeight:statusHeight + navigationHeight
                                                                                 parentViewController:self];
@@ -616,6 +620,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
         [arrCategories addObject:objStoreModel];
     }
     [collectionMaster reloadData];
+	
     [self setupViewDesign];
 
 }

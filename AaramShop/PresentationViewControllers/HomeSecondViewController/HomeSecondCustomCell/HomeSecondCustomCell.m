@@ -26,6 +26,7 @@
     if (self) {
         
         imgV = [[UIImageView alloc]init];
+		imgV.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:imgV];
         
         lblName = [[UILabel alloc] init];

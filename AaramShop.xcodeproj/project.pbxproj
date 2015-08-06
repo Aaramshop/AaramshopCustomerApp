@@ -1195,6 +1195,13 @@
 		6BA0DCE71B37FCCF00729443 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA0DCE61B37FCCF00729443 /* CategoryModel.m */; };
 		6BA0DCEC1B3818EB00729443 /* ProductsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA0DCEB1B3818EB00729443 /* ProductsModel.m */; };
 		6BA0DCEF1B3818F900729443 /* SubCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA0DCEE1B3818F900729443 /* SubCategoryModel.m */; };
+		6BA262241B732E7500F520E4 /* cameraBgImage-568h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2621D1B732E7500F520E4 /* cameraBgImage-568h@2x.jpg */; };
+		6BA262251B732E7500F520E4 /* cameraBgImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2621E1B732E7500F520E4 /* cameraBgImage.jpg */; };
+		6BA262261B732E7500F520E4 /* cameraBgImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2621F1B732E7500F520E4 /* cameraBgImage@2x.jpg */; };
+		6BA262271B732E7500F520E4 /* cameraBgImage@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BA262201B732E7500F520E4 /* cameraBgImage@3x.jpg */; };
+		6BA262281B732E7500F520E4 /* defaultCameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA262211B732E7500F520E4 /* defaultCameraIcon.png */; };
+		6BA262291B732E7500F520E4 /* defaultCameraIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA262221B732E7500F520E4 /* defaultCameraIcon@2x.png */; };
+		6BA2622A1B732E7500F520E4 /* defaultCameraIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA262231B732E7500F520E4 /* defaultCameraIcon@3x.png */; };
 		6BA2F09E1B04B2F30074562F /* mapPinGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09B1B04B2F30074562F /* mapPinGreen.png */; };
 		6BA2F09F1B04B2F30074562F /* mapPinGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09C1B04B2F30074562F /* mapPinGreen@2x.png */; };
 		6BA2F0A01B04B2F30074562F /* mapPinGreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA2F09D1B04B2F30074562F /* mapPinGreen@3x.png */; };
@@ -3012,6 +3019,13 @@
 		6BA0DCEB1B3818EB00729443 /* ProductsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsModel.m; sourceTree = "<group>"; };
 		6BA0DCED1B3818F900729443 /* SubCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubCategoryModel.h; sourceTree = "<group>"; };
 		6BA0DCEE1B3818F900729443 /* SubCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubCategoryModel.m; sourceTree = "<group>"; };
+		6BA2621D1B732E7500F520E4 /* cameraBgImage-568h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cameraBgImage-568h@2x.jpg"; sourceTree = "<group>"; };
+		6BA2621E1B732E7500F520E4 /* cameraBgImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cameraBgImage.jpg; sourceTree = "<group>"; };
+		6BA2621F1B732E7500F520E4 /* cameraBgImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cameraBgImage@2x.jpg"; sourceTree = "<group>"; };
+		6BA262201B732E7500F520E4 /* cameraBgImage@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cameraBgImage@3x.jpg"; sourceTree = "<group>"; };
+		6BA262211B732E7500F520E4 /* defaultCameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultCameraIcon.png; sourceTree = "<group>"; };
+		6BA262221B732E7500F520E4 /* defaultCameraIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultCameraIcon@2x.png"; sourceTree = "<group>"; };
+		6BA262231B732E7500F520E4 /* defaultCameraIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultCameraIcon@3x.png"; sourceTree = "<group>"; };
 		6BA2F09B1B04B2F30074562F /* mapPinGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapPinGreen.png; sourceTree = "<group>"; };
 		6BA2F09C1B04B2F30074562F /* mapPinGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPinGreen@2x.png"; sourceTree = "<group>"; };
 		6BA2F09D1B04B2F30074562F /* mapPinGreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapPinGreen@3x.png"; sourceTree = "<group>"; };
@@ -5824,6 +5838,7 @@
 		6B12DC871AF22C8100245209 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6BA2621C1B732E7500F520E4 /* PrescriptionScreenImages */,
 				6B9FF9661B72255E004A32B6 /* RatingScreen */,
 				36CA64541B712A8F00A3BBB1 /* SearchImages */,
 				6BA76BA51B67550F00C53B67 /* CartImages */,
@@ -6767,6 +6782,20 @@
 			path = SubCategoryModel;
 			sourceTree = "<group>";
 		};
+		6BA2621C1B732E7500F520E4 /* PrescriptionScreenImages */ = {
+			isa = PBXGroup;
+			children = (
+				6BA2621D1B732E7500F520E4 /* cameraBgImage-568h@2x.jpg */,
+				6BA2621E1B732E7500F520E4 /* cameraBgImage.jpg */,
+				6BA2621F1B732E7500F520E4 /* cameraBgImage@2x.jpg */,
+				6BA262201B732E7500F520E4 /* cameraBgImage@3x.jpg */,
+				6BA262211B732E7500F520E4 /* defaultCameraIcon.png */,
+				6BA262221B732E7500F520E4 /* defaultCameraIcon@2x.png */,
+				6BA262231B732E7500F520E4 /* defaultCameraIcon@3x.png */,
+			);
+			path = PrescriptionScreenImages;
+			sourceTree = "<group>";
+		};
 		6BA556CC1B57DEDB00920DE0 /* ShoppingListModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -7466,6 +7495,7 @@
 				36907ABD1B5BCC720017A504 /* walletMoneyIconActive@2x.png in Resources */,
 				27EC674C1B031FE0007D126E /* aaramShopAppLogo@2x.png in Resources */,
 				274A5DB01B05C88B009112B5 /* chatBubbleGrey.png in Resources */,
+				6BA262241B732E7500F520E4 /* cameraBgImage-568h@2x.jpg in Resources */,
 				274A5DA81B05C88B009112B5 /* ChatCustomCell.xib in Resources */,
 				368209D81B1C46FA002AA93F /* palestinian.png in Resources */,
 				6BE9A94A1B29B31900B960C0 /* homeDeatilsGreyArrowBack@2x.png in Resources */,
@@ -7488,6 +7518,7 @@
 				36D8C4CD1B3996DE00C255EE /* locationIconRed@2x.png in Resources */,
 				6B8EB2BD1B26B8BE00402CFC /* ratingStarFull@3x.png in Resources */,
 				6BD2D31C1B284C8900EC6E54 /* homeScreenArrowBox@2x.png in Resources */,
+				6BA262261B732E7500F520E4 /* cameraBgImage@2x.jpg in Resources */,
 				274F88941B0D0DC700F85743 /* searchIcon@3x.png in Resources */,
 				368209C41B1C46FA002AA93F /* nagorno karabakh republic.png in Resources */,
 				36D8C51B1B3AF95F00C255EE /* chatScreenMyListLogo.png in Resources */,
@@ -7824,6 +7855,7 @@
 				368209E71B1C46FA002AA93F /* romania.png in Resources */,
 				6BD2D30A1B284C8900EC6E54 /* homeChocklateIcon@2x.png in Resources */,
 				274A5DD31B05C88B009112B5 /* iconTrash@2x.png in Resources */,
+				6BA262281B732E7500F520E4 /* defaultCameraIcon.png in Resources */,
 				6BD2D3201B284C8900EC6E54 /* homeScreenHomeIconRed@3x.png in Resources */,
 				368209191B1C46FA002AA93F /* azerbaijan.png in Resources */,
 				274A5DDF1B05C88B009112B5 /* SentMessage.wav in Resources */,
@@ -8156,6 +8188,7 @@
 				6BB50DD91B32AB2300990161 /* locationPopupRadioInactive@2x.png in Resources */,
 				6B12DCCC1AF2720400245209 /* lowerBox@2x.png in Resources */,
 				3682099D1B1C46FA002AA93F /* kosovo.png in Resources */,
+				6BA2622A1B732E7500F520E4 /* defaultCameraIcon@3x.png in Resources */,
 				6BFFF94C1B0236B800BB2B62 /* tabBarHomeIcon@2x.png in Resources */,
 				6BD2D30E1B284C8900EC6E54 /* homeDownArrow@3x.png in Resources */,
 				36820A1F1B1C46FA002AA93F /* tokelau.png in Resources */,
@@ -8276,6 +8309,7 @@
 				368209551B1C46FA002AA93F /* djibouti.png in Resources */,
 				6B6098A51B395CAB00277D03 /* chatBubbleRed@3x.png in Resources */,
 				2791DE3D1B036E5C000121BC /* menuPreferencesIcon@3x.png in Resources */,
+				6BA262251B732E7500F520E4 /* cameraBgImage.jpg in Resources */,
 				2791DE3B1B036E5C000121BC /* menuPreferencesIcon.png in Resources */,
 				6B83A0D91B53E81300A00520 /* createNewShoppingListIcon@3x.png in Resources */,
 				6B0A00E41B949AD400A2577A /* checkAvialibilityBox@2x.png in Resources */,
@@ -8352,6 +8386,7 @@
 				365395651B524FA60045AAFE /* discountBoxActive@3x.png in Resources */,
 				368209EB1B1C46FA002AA93F /* Saint Barthélemy.png in Resources */,
 				2CF41C971B60F9C200F02527 /* rightArrow.png in Resources */,
+				6BA262291B732E7500F520E4 /* defaultCameraIcon@2x.png in Resources */,
 				36D8C4DF1B3A824E00C255EE /* bgImageNew@2x.png in Resources */,
 				276FFF1C1B0DADC200071B98 /* preferencesDeleveryStatusIcon@3x.png in Resources */,
 				6B12DCCB1AF2720400245209 /* lowerBox.png in Resources */,
@@ -8364,6 +8399,7 @@
 				3682091B1B1C46FA002AA93F /* bahamas.png in Resources */,
 				36D8C4F01B3A896F00C255EE /* locationIconHome.png in Resources */,
 				6B8EB2571B23087400402CFC /* shoppingListCoverImage@3x.png in Resources */,
+				6BA262271B732E7500F520E4 /* cameraBgImage@3x.jpg in Resources */,
 				36BE5A981B53C52A0079DAE3 /* dispatchedIconInactive@3x.png in Resources */,
 				6BD2D31B1B284C8900EC6E54 /* homeScreenArrowBox.png in Resources */,
 				274F88AC1B0D0E7400F85743 /* homePageBannerImage@3x.png in Resources */,
