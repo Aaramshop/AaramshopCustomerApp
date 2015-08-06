@@ -18,8 +18,30 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+//    if ([[UIScreen mainScreen]bounds].size.height>480)
+//    {
+//        imgBackground.image = [UIImage imageNamed:@""];
+//    }
+//    else
+//    {
+//        imgBackground.image = [UIImage imageNamed:@""];
+//    }
+    
+    
+    
     imgPrescription.layer.cornerRadius = imgPrescription.frame.size.height/2;
     imgPrescription.clipsToBounds = YES;
+    
+    
+    NSString *strText = @"Take a picture of your prescription \nto share it directly with\n";
+    NSString *strFullText = [NSString stringWithFormat:@"%@%@",strText,_strStoreName];
+    
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:strFullText];
+    
+    [attrString addAttribute:NSFontAttributeName value:[UIFont fontWithName:kRobotoRegular size:14] range:NSMakeRange(0, strText.length)];
+    [attrString addAttribute:NSFontAttributeName value:[UIFont fontWithName:kRobotoBold size:14] range:NSMakeRange(strText.length, _strStoreName.length)];
+    
+    lblDescription.attributedText = attrString;
 }
 
 -(void)viewWillAppear:(BOOL)animated
