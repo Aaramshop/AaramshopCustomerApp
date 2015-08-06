@@ -24,7 +24,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     CGFloat kCollectionHeight;
     CGFloat kYSLScrollMenuViewHeight;
     CGFloat kTabbarHeight;
-    
+	NSString *strHeaderTitle;
     AppDelegate *appDeleg;
 
 }
@@ -39,6 +39,12 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     // Do any additional setup after loading the view.
     
     self.navigationController.navigationBarHidden = NO;
+	 arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+		if (appDeleg.myCurrentLocation == nil) {
+			CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[[arrAddress objectAtIndex:0] objectForKey:@"latitude"] doubleValue] longitude:[[[arrAddress objectAtIndex:0] objectForKey:@"longitude"] doubleValue]];
+			appDeleg.myCurrentLocation = newLocation;
+			strHeaderTitle =[[arrAddress objectAtIndex:0] objectForKey:@"user_address_title"];
+		}
 
     [self setUpNavigationBar];
 	[self designPickerViewSlots];
@@ -52,7 +58,6 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     self.sideBar = [Utils createLeftBarWithDelegate:self];
 
-    arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
 	
     appDeleg = APP_DELEGATE;
     [appDeleg findCurrentLocation];
@@ -121,7 +126,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	btnPicker.titleLabel.textAlignment=NSTextAlignmentCenter;
 	btnPicker.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:15];
 	btnPicker.titleLabel.adjustsFontSizeToFitWidth = YES;
-	[btnPicker setTitle:@"dasadsda" forState:UIControlStateNormal];
+	[btnPicker setTitle:strHeaderTitle forState:UIControlStateNormal];
 	[btnPicker addTarget:self action:@selector(btnPicker) forControlEvents:UIControlEventTouchUpInside];
 	[btnPicker setShowsTouchWhenHighlighted:YES];
 	[_headerTitleSubtitleView addSubview:btnPicker];
@@ -254,7 +259,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 		[self userInteraction:YES];
 		[self showOptionPatch:NO];
 		[self showPickerView:NO];
-		[btnPicker setTitle:[dictPickerValue objectForKey:@"user_address_title"] forState:UIControlStateNormal];
+		strHeaderTitle =[dictPickerValue objectForKey:@"user_address_title"];
+		[btnPicker setTitle:strHeaderTitle forState:UIControlStateNormal];
 		CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[dictPickerValue objectForKey:@"latitude"] doubleValue] longitude:[[dictPickerValue objectForKey:@"longitude"] doubleValue]];
 		appDeleg.myCurrentLocation = newLocation;
 		[self createDataToGetStores];
