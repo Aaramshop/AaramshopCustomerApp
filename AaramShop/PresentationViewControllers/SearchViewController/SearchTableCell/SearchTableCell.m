@@ -34,6 +34,8 @@
         imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
         imgView.layer.cornerRadius = imgView.bounds.size.width/2;
         imgView.layer.masksToBounds = YES;
+		imgView.contentMode = UIViewContentModeScaleAspectFit;
+		imgView.backgroundColor	=	[UIColor whiteColor];
         [self.contentView addSubview:imgView];
         
         lblProductName = [[UILabel alloc] initWithFrame:CGRectZero ];
@@ -50,9 +52,6 @@
         lblProductPrice.textAlignment = NSTextAlignmentRight;
         [lblProductPrice setFont:[UIFont fontWithName:kRobotoRegular size:10.0]];
         [self.contentView addSubview:lblProductPrice];
-        
-        
-        
     }
     return self;
 }
@@ -75,6 +74,7 @@
     imgViewRect.origin.x                  =     padding;
     imgViewRect.origin.y                  =     (selfRect.size.height - imgViewRect.size.height)/2;
     imgView.frame                       =   imgViewRect;
+	
     
     lblProductNameRect.size.width              =   selfRect.size.width - padding*3 - imgSize - 64;
     lblProductNameRect.size.height             =   lblNameHeight;

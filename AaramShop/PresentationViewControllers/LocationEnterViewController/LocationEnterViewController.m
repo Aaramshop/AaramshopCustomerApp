@@ -702,14 +702,14 @@
 - (IBAction)btnEditClick:(UIButton *)sender {
     txtFLocation.userInteractionEnabled = NO;
     [txtFLocation resignFirstResponder];
-    AddressModel *addressModelTemp ;
-    addressModelTemp.address = @"";
-    addressModelTemp.state = @"";
-    addressModelTemp.city = @"";
-    addressModelTemp.locality = @"";
-    addressModelTemp.pincode = @"";
+//    AddressModel *addressModelTemp ;
+//    addressModelTemp.address = @"";
+//    addressModelTemp.state = @"";
+//    addressModelTemp.city = @"";
+//    addressModelTemp.locality = @"";
+//    addressModelTemp.pincode = @"";
 
-    [self addLocationScreen:addressModelTemp];
+    [self addLocationScreen:addressModel];
 }
 -(void)addLocationScreen:(AddressModel *)addModel
 {

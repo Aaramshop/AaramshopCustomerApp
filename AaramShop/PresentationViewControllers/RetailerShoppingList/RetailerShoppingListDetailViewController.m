@@ -424,6 +424,7 @@
 -(void)btnDoneClicked
 {
 	NSMutableArray *arrCartProducts = [[NSMutableArray	 alloc]init];
+
 	if ([arrProductList count]>0)
 	{
 		NSInteger strAmount = 0;

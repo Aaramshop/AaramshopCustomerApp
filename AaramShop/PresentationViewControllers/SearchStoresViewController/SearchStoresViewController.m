@@ -367,7 +367,7 @@
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
     
-    [dict setObject:[NSString stringWithFormat:@"%ld",pageNumber] forKey:kPage_no];
+    [dict setObject:[NSString stringWithFormat:@"%ld",(long)pageNumber] forKey:kPage_no];
     
     [dict setObject:searchText forKey:@"search_term"];
     
