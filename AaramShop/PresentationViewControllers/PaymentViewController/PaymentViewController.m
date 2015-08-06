@@ -853,7 +853,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	NSArray *arrProduct		=	[arrSelectedProducts filteredArrayUsingPredicate:predicate];
 	if([arrProduct count]>0)
 	{
-		int index = [arrSelectedProducts indexOfObject:[arrProduct objectAtIndex:0]];
+		NSInteger index = [arrSelectedProducts indexOfObject:[arrProduct objectAtIndex:0]];
 		if ([productModel.strCount intValue]==0) {
 			[arrSelectedProducts removeObject:[arrProduct objectAtIndex:0]];
 		}

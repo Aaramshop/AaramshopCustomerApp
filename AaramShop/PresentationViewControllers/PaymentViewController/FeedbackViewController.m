@@ -218,9 +218,9 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
 {
-    [self animateViewToDown];
+//    [self animateViewToDown];
     
-    [self.view endEditing:YES];
+//    [self.view endEditing:YES];
     
 }
 
