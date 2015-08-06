@@ -93,6 +93,7 @@
 		}
 		cell.indexPath=indexPath;
 		cell.delegate = self;
+		cell.offers= offers;
 		[cell updateCellWithData: offers];
 		return cell;
 	}
@@ -105,6 +106,7 @@
 		}
 		cell.indexPath=indexPath;
 		cell.delegate = self;
+		cell.offers= offers;
 		[cell updateCellWithData: offers];
 		return cell;
 	}

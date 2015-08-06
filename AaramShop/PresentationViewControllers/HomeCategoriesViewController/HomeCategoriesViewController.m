@@ -14,7 +14,8 @@
 
 #define kTagForYSLScrollView    1000
 #define kTagForFoodTableView    10
-
+#define kBtnDone   33454
+#define kBtnCancel 33455
 static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 @interface HomeCategoriesViewController ()<YSLContainerViewControllerDelegate>
@@ -23,7 +24,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     CGFloat kCollectionHeight;
     CGFloat kYSLScrollMenuViewHeight;
     CGFloat kTabbarHeight;
-    
+	NSString *strHeaderTitle;
     AppDelegate *appDeleg;
 
 }
@@ -38,8 +39,16 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     // Do any additional setup after loading the view.
     
     self.navigationController.navigationBarHidden = NO;
+	 arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+		if (appDeleg.myCurrentLocation == nil) {
+			CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[[arrAddress objectAtIndex:0] objectForKey:@"latitude"] doubleValue] longitude:[[[arrAddress objectAtIndex:0] objectForKey:@"longitude"] doubleValue]];
+			appDeleg.myCurrentLocation = newLocation;
+			strHeaderTitle =[[arrAddress objectAtIndex:0] objectForKey:@"user_address_title"];
+		}
 
     [self setUpNavigationBar];
+	[self designPickerViewSlots];
+	[self toolBarDesignes];
     [self initilizeData];
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
@@ -49,10 +58,9 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     self.sideBar = [Utils createLeftBarWithDelegate:self];
 
-    
-    
+	
     appDeleg = APP_DELEGATE;
-    [appDeleg findCurrentLocation];
+//    [appDeleg findCurrentLocation];
 	
 }
 
@@ -109,24 +117,40 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void)setUpNavigationBar
 {
     CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 150, 44);
-    UIView* _headerTitleSubtitleView = [[UILabel alloc] initWithFrame:headerTitleSubtitleFrame];
+    UIView* _headerTitleSubtitleView = [[UIView alloc] initWithFrame:headerTitleSubtitleFrame];
     _headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
     _headerTitleSubtitleView.autoresizesSubviews = NO;
     
-    CGRect titleFrame = CGRectMake(0,0, 150, 44);
-    UILabel* titleView = [[UILabel alloc] initWithFrame:titleFrame];
-    titleView.backgroundColor = [UIColor clearColor];
-    titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
-    titleView.textAlignment = NSTextAlignmentCenter;
-    titleView.textColor = [UIColor whiteColor];
-    titleView.text = @"";
-    titleView.adjustsFontSizeToFitWidth = YES;
-    [_headerTitleSubtitleView addSubview:titleView];
-    self.navigationItem.titleView = _headerTitleSubtitleView;
-    
+	btnPicker = [UIButton buttonWithType:UIButtonTypeCustom];
+	[btnPicker setFrame:CGRectMake(0, 0, 150, 44)];
+	btnPicker.titleLabel.textAlignment=NSTextAlignmentCenter;
+	btnPicker.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:15];
+	btnPicker.titleLabel.adjustsFontSizeToFitWidth = YES;
+	[btnPicker setTitle:strHeaderTitle forState:UIControlStateNormal];
+	[btnPicker addTarget:self action:@selector(btnPicker) forControlEvents:UIControlEventTouchUpInside];
+	[btnPicker setShowsTouchWhenHighlighted:YES];
+	[_headerTitleSubtitleView addSubview:btnPicker];
+	
+	//add your spacer images and button1 and button2...
+	
+	self.navigationItem.titleView = _headerTitleSubtitleView;
+	
+//    UIButton* titleView = [[UIButton alloc] initWithFrame:titleFrame];
+//    titleView.backgroundColor = [UIColor clearColor];
+//	titleView.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:15];
+////    titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
+//    titleView.titleLabel.textAlignment = NSTextAlignmentCenter;
+//	[titleView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+////    titleView.textColor = [UIColor whiteColor];
+//	[titleView addTarget:self action:@selector(btnPicker) forControlEvents:UIControlEventTouchUpInside];
+//	[backPicker setTitle:@"sasaaasas" forState:UIControlStateNormal];
+////    titleView.titleLabel.adjustsFontSizeToFitWidth = YES;
+//    [_headerTitleSubtitleView addSubview:backPicker];
+//    self.navigationItem.titleView = _headerTitleSubtitleView;
+	
     UIImage *imgBack = [UIImage imageNamed:@"menuIcon.png"];
     
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.bounds = CGRectMake( -10, 0, 30, 30);
     
     [backBtn setImage:imgBack forState:UIControlStateNormal];
@@ -140,14 +164,14 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
     
-    UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
     btnCart.bounds = CGRectMake( -10, 0, 20, 20);
     
     [btnCart setImage:imgCart forState:UIControlStateNormal];
     [btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
     
-    UIButton *btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
     btnSearch.bounds = CGRectMake( -10, 0, 20, 20);
     
     [btnSearch setImage:imgSearch forState:UIControlStateNormal];
@@ -156,7 +180,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	
 	UIImage *imgBroadcast = [UIImage imageNamed:@"bellIcon"];
 	
-	UIButton *btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
 	btnBroadcast.bounds = CGRectMake( -10, 0, 20, 20);
 	
 	[btnBroadcast setImage:imgBroadcast forState:UIControlStateNormal];
@@ -173,6 +197,141 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     }
 
 }
+- (void)userInteraction:(BOOL)enable
+{
+	btnBroadcast.userInteractionEnabled = enable;
+	btnCart.userInteractionEnabled = enable;
+	btnSearch.userInteractionEnabled = enable;
+	backBtn.userInteractionEnabled = enable;
+	collectionMaster.userInteractionEnabled = enable;
+	viewOverlay.userInteractionEnabled = enable;
+	viewSubcategories.userInteractionEnabled = enable;
+}
+- (void)btnPicker
+{
+	[self userInteraction:NO];
+	[self showPickerView:YES];
+	[self showOptionPatch:YES];
+}
+-(void)designPickerViewSlots
+{
+	pickerViewSlots=[[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds)+100, 320,216)];
+	pickerViewSlots.delegate =self;
+	pickerViewSlots.dataSource =self;
+	pickerViewSlots.backgroundColor=[UIColor whiteColor];
+	pickerViewSlots.showsSelectionIndicator = YES;
+	[self.view addSubview:pickerViewSlots];
+}
+-(void)toolBarDesignes
+{
+	if (keyBoardToolBar==nil)
+	{
+		keyBoardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 610 , [[UIScreen mainScreen]bounds].size.width, 40)];
+		UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
+		btnCancel.tag = kBtnCancel;
+		
+		keyBoardToolBar.backgroundColor=[UIColor blackColor];
+		UIBarButtonItem *tempDistance = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+		UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
+		btnDone.tag = kBtnDone;
+		keyBoardToolBar.items = [NSArray arrayWithObjects:btnCancel,tempDistance,btnDone, nil];
+	}
+	else
+	{
+		[keyBoardToolBar removeFromSuperview];
+	}
+	
+	[self.view addSubview:keyBoardToolBar];
+	[self.view bringSubviewToFront:keyBoardToolBar];
+}
+
+-(void)toolBarBtnClicked:(UIBarButtonItem *)sender
+{
+	if ([sender tag] == kBtnCancel) {
+		[self showOptionPatch:NO];
+		[self showPickerView:NO];
+		[self userInteraction:YES];
+		
+	}
+	else if ([sender tag] == kBtnDone)
+	{
+
+		[self userInteraction:YES];
+		[self showOptionPatch:NO];
+		[self showPickerView:NO];
+		strHeaderTitle =[dictPickerValue objectForKey:@"user_address_title"];
+		[btnPicker setTitle:strHeaderTitle forState:UIControlStateNormal];
+		CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[dictPickerValue objectForKey:@"latitude"] doubleValue] longitude:[[dictPickerValue objectForKey:@"longitude"] doubleValue]];
+		appDeleg.myCurrentLocation = newLocation;
+		[self createDataToGetStores];
+		
+	}
+}
+-(void)showOptionPatch:(BOOL)isShow
+{
+	if(isShow)
+	{
+		[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
+		 {
+			 keyBoardToolBar.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) -(196 + 20 +49) , [[UIScreen mainScreen]bounds].size.width, 40 );
+		 }completion:nil];
+		
+	}
+	else
+	{
+		[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
+		 {
+			 keyBoardToolBar.frame = CGRectMake(0, [[UIScreen mainScreen]bounds].size.height + 40 +49, [[UIScreen mainScreen]bounds].size.width, 40);
+		 }
+						 completion:nil];
+	}
+}
+-(void)showPickerView:(BOOL)isShow
+{
+	if(isShow)
+	{
+		[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+			pickerViewSlots.frame = CGRectMake(0,CGRectGetHeight(self.view.bounds)-(196-20+49), [[UIScreen mainScreen]bounds].size.width, 196);
+			
+		}
+						 completion:nil];
+		
+	}
+	else
+	{
+		[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+						 animations:^{
+							 pickerViewSlots.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds)+100-49, [[UIScreen mainScreen]bounds].size.width,196);
+						 }
+						 completion:nil];
+		
+	}
+}
+#pragma mark PickerView Methods & Delegates
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+	
+	return arrAddress.count;
+}
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+	return 1;
+}
+
+// Display each row's data.
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+	
+	return [arrAddress [row] objectForKey:@"user_address_title"];
+	
+}
+- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+	
+	dictPickerValue= [arrAddress objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
+	
+	
+}
+
 - (void)btnBroadcastClicked
 {
 	BroadcastViewController *broadcastView = (BroadcastViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"broadcastView"];
@@ -231,7 +390,11 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     // ContainerView
     float statusHeight = 0;
     float navigationHeight = 0;
-    
+    if(containerVC)
+	{
+		[containerVC.view removeFromSuperview];
+		containerVC = nil;
+	}
     containerVC = [[YSLContainerViewController alloc]initWithControllers:viewControllers
                                                                                         topBarHeight:statusHeight + navigationHeight
                                                                                 parentViewController:self];
@@ -463,6 +626,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
         [arrCategories addObject:objStoreModel];
     }
     [collectionMaster reloadData];
+	
     [self setupViewDesign];
 
 }

@@ -155,6 +155,9 @@
 	{
 		if([[responseObject objectForKey:kstatus] intValue] == 1)
 		{
+			[[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:kUser_address] forKey:kUser_address];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+
 			[self parseData:[responseObject objectForKey:@"user_address"]];
 			
 			

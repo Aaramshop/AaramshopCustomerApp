@@ -25,11 +25,11 @@
 @end
 
 @implementation LocationEnterViewController
-@synthesize aaramShop_ConnectionManager;
+@synthesize aaramShop_ConnectionManager,locationManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
 	btnCancel.hidden=YES;
-	
+	[self findCurrentLocation];
     if (self.addAddressCompletion)
     {
 		btnCancel.hidden=NO;
@@ -55,16 +55,26 @@
         [[AppManager sharedManager] performSelector:@selector(createDefaultValuesForDictionay) withObject:nil];
 
 }
+-(void)findCurrentLocation
+{
+	
+	locationManager = [[CLLocationManager alloc] init];
+	geocoder = [[CLGeocoder alloc] init];
+	
+	if ([CLLocationManager locationServicesEnabled])
+	{
+		locationManager.delegate = self;
+		if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+			[locationManager requestWhenInUseAuthorization];
+		}
+		[locationManager startUpdatingLocation];
+		
+	}
+}
 - (void)viewWillAppear:(BOOL)animated {
-    
+	
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(coordinateChanged_:) name:@"DDAnnotationCoordinateDidChangeNotification" object:nil];
-    [self createDataToGetAaramShops];
-    
-    cordinatesLocation = CLLocationCoordinate2DMake(appDeleg.myCurrentLocation.coordinate.latitude, appDeleg.myCurrentLocation.coordinate.longitude);
-    
-    [self getAddressFromLatitude:cordinatesLocation.latitude andLongitude:cordinatesLocation.longitude];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -76,8 +86,9 @@
 -(void)getAddressFromLatitude:(CLLocationDegrees)Latitude andLongitude:(CLLocationDegrees)LongitudeValue
 {
     if ([Utils isInternetAvailable]) {
-        
+		
         [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+		[Utils startActivityIndicatorInView:self.view withMessage:@""];
         NSString*urlStrings = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=%.8f,%.8f&sensor=false",Latitude, LongitudeValue];
         
         NSURL *url=[NSURL URLWithString:[urlStrings stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -89,10 +100,12 @@
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
                                    if (error) {
                                        [AppManager stopStatusbarActivityIndicator];
+									   [Utils stopActivityIndicatorInView:self.view];
                                        NSLog(@"error:%@", error.localizedDescription);
                                    }
                                    else
                                    {
+									   [Utils startActivityIndicatorInView:self.view withMessage:@""];
                                        data = [NSData dataWithContentsOfURL:url];
                                        if (data!=nil) {
                                            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
@@ -103,8 +116,11 @@
                                                [self fetchedData:data];
                                            }
                                            else
+										   {
                                                [AppManager stopStatusbarActivityIndicator];
-                                           
+											   [Utils stopActivityIndicatorInView:self.view];
+										   }
+										   
                                            
    
                                        }
@@ -193,7 +209,7 @@
                         txtFLocation.text = strYourCurrentAddress;
                         
                     }
-
+					[Utils stopActivityIndicatorInView:self.view ];
                 [self updateMapScreenFromLatitude:cordinatesLocation.latitude  andLongitude:cordinatesLocation.longitude];
                     
                 }];
@@ -203,17 +219,19 @@
     }
     @catch (NSException *exception)
     {
+		[Utils stopActivityIndicatorInView:self.view];
         NSLog(@"%@",exception);
     }
 }
 
 
--(void)createDataToGetAaramShops
+-(void)createDataToGetAaramShopsWithLocation:(CLLocation *)location
 {
+//	[Utils startActivityIndicatorInView:self.view withMessage:@""];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
-    [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+    [dict setObject:[NSString stringWithFormat:@"%f",location.coordinate.latitude] forKey:kLatitude];
+    [dict setObject:[NSString stringWithFormat:@"%f",location.coordinate.longitude] forKey:kLongitude];
     
     
     
@@ -235,8 +253,10 @@
 -(void)callWebserviceToGetAaramShops:(NSMutableDictionary *)aDict
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+//	[Utils startActivityIndicatorInView:self.view withMessage:@""];
     if (![Utils isInternetAvailable])
     {
+		[Utils stopActivityIndicatorInView:self.view];
         [AppManager stopStatusbarActivityIndicator];
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
@@ -246,11 +266,13 @@
 }
 -(void) didFailWithError:(NSError *)error
 {
+	[Utils stopActivityIndicatorInView:self.view];
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 -(void) responseReceived:(id)responseObject
 {
     if (aaramShop_ConnectionManager.currentTask == TASK_ENTER_LOCATION) {
+		[Utils stopActivityIndicatorInView:self.view];
         [self parseResponseForAaramShops:responseObject];
     }
 }
@@ -702,14 +724,14 @@
 - (IBAction)btnEditClick:(UIButton *)sender {
     txtFLocation.userInteractionEnabled = NO;
     [txtFLocation resignFirstResponder];
-    AddressModel *addressModelTemp ;
-    addressModelTemp.address = @"";
-    addressModelTemp.state = @"";
-    addressModelTemp.city = @"";
-    addressModelTemp.locality = @"";
-    addressModelTemp.pincode = @"";
+//    AddressModel *addressModelTemp ;
+//    addressModelTemp.address = @"";
+//    addressModelTemp.state = @"";
+//    addressModelTemp.city = @"";
+//    addressModelTemp.locality = @"";
+//    addressModelTemp.pincode = @"";
 
-    [self addLocationScreen:addressModelTemp];
+    [self addLocationScreen:addressModel];
 }
 -(void)addLocationScreen:(AddressModel *)addModel
 {
@@ -744,6 +766,32 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager* )manager didFailWithError:(NSError *)error
+{
+	
+}
+
+
+- (void)locationManager:(CLLocationManager* )manager didUpdateLocations:(NSArray* )locations
+{
+	CLLocation* newLocation = [locations lastObject];
+	
+	[self getUpdatedLocation:newLocation];
+}
+
+
+-(void)getUpdatedLocation:(CLLocation *)newLocation
+{
+	[self createDataToGetAaramShopsWithLocation:newLocation];
+	
+	cordinatesLocation = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+	
+	[self getAddressFromLatitude:cordinatesLocation.latitude andLongitude:cordinatesLocation.longitude];
+
+	[locationManager stopUpdatingLocation];
 }
 
 

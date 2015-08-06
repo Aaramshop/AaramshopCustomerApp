@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -834,7 +833,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIh-fd-D0d">
@@ -863,11 +862,7 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4x7-ck-MOu">
                                                 <rect key="frame" x="10" y="40" width="240" height="200"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <string key="text">It’s your preferred store. You will get special offers, bonus points &amp; tons of appreciation
-													
-													from the store. You could have multiple Home Stores.
-													
-													Home Stores usually have short cuts, on your device, to enable quick access. Happy Shopping!</string>
+                                                <string key="text">It’s your preferred store. You will get special offers, bonus points &amp; tons of appreciation from the store. You could have multiple Home Stores. Home Stores usually have short cuts, on your device, to enable quick access. Happy Shopping!</string>
                                                 <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -3901,7 +3896,7 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sepratorBoxThree.png" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-ID-M4P">
@@ -4194,7 +4189,7 @@ Your family will be able to add products of their choice and create a master sho
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M5C-Lb-29c" id="UyZ-Jj-jke">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chooseCategoryDefaultImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hy6-HT-xYi">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chooseCategoryDefaultImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hy6-HT-xYi">
                                                     <rect key="frame" x="8" y="7" width="75" height="75"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="deviceRGB"/>
                                                     <constraints>
@@ -4330,7 +4325,7 @@ Your family will be able to add products of their choice and create a master sho
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tOA-D3-7ky" id="kGp-j7-nUr">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="C6E5B97C-3D19-40C4-BFF5-ED0132936C2F" translatesAutoresizingMaskIntoConstraints="NO" id="3J0-OH-JJn">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="C6E5B97C-3D19-40C4-BFF5-ED0132936C2F" translatesAutoresizingMaskIntoConstraints="NO" id="3J0-OH-JJn">
                                                     <rect key="frame" x="8" y="17" width="75" height="75"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="deviceRGB"/>
                                                 </imageView>
@@ -4415,7 +4410,7 @@ Your family will be able to add products of their choice and create a master sho
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r87-tV-zI3" id="Hl6-Nc-AFq">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Mo-it-NJo">
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Mo-it-NJo">
                                                     <rect key="frame" x="8" y="7" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="75" id="5ku-ib-If9"/>
@@ -4998,7 +4993,7 @@ Your family will be able to add products of their choice and create a master sho
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fvs-Ws-3XM" id="K2W-HW-mc9">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="3DB901BC-6235-4E0B-9D3A-E32C8759D8BF" translatesAutoresizingMaskIntoConstraints="NO" id="0bI-qI-1Wr">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="3DB901BC-6235-4E0B-9D3A-E32C8759D8BF" translatesAutoresizingMaskIntoConstraints="NO" id="0bI-qI-1Wr">
                                                     <rect key="frame" x="8" y="17" width="75" height="75"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="deviceRGB"/>
                                                 </imageView>
@@ -5083,7 +5078,7 @@ Your family will be able to add products of their choice and create a master sho
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gOv-vS-8HC" id="cwM-NZ-2ic">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chooseCategoryDefaultImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gkx-sb-1Gl">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chooseCategoryDefaultImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gkx-sb-1Gl">
                                                     <rect key="frame" x="8" y="7" width="75" height="75"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="deviceRGB"/>
                                                     <constraints>
@@ -6259,13 +6254,11 @@ Your family will be able to add products of their choice and create a master sho
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="BwE-Bc-Bwf">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your phone number will not be shared. It will be used only for verification purposes." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="BwE-Bc-Bwf">
                                                 <rect key="frame" x="20" y="248" width="280" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="FLR-dv-ICf"/>
                                                 </constraints>
-                                                <string key="text">Your phone number will not be shared.
-													It will be used only for verification purposes.</string>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -7377,7 +7370,7 @@ Your family will be able to add products of their choice and create a master sho
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lKI-tI-XIQ" id="uqr-a0-bUO">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chooseCategoryDefaultImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="oPg-b0-4w1">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chooseCategoryDefaultImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="oPg-b0-4w1">
                                                     <rect key="frame" x="8" y="7" width="75" height="75"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="deviceRGB"/>
                                                     <constraints>
@@ -7653,7 +7646,7 @@ Your family will be able to add products of their choice and create a master sho
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2jG-tr-5mJ" id="EQA-Hh-JCA">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AD31B285-DE5B-4A4B-BD43-AFCDFAF20C85" translatesAutoresizingMaskIntoConstraints="NO" id="eQ6-nU-nih">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AD31B285-DE5B-4A4B-BD43-AFCDFAF20C85" translatesAutoresizingMaskIntoConstraints="NO" id="eQ6-nU-nih">
                                                     <rect key="frame" x="8" y="17" width="75" height="75"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="deviceRGB"/>
                                                 </imageView>
@@ -7738,7 +7731,7 @@ Your family will be able to add products of their choice and create a master sho
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oeO-xI-3rA" id="3v6-dN-a8J">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chooseCategoryDefaultImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="yKS-wN-yM7">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chooseCategoryDefaultImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="yKS-wN-yM7">
                                                     <rect key="frame" x="8" y="7" width="75" height="75"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="deviceRGB"/>
                                                     <constraints>
@@ -8240,7 +8233,7 @@ Your family will be able to add products of their choice and create a master sho
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="MWv-Fn-fOd" firstAttribute="top" secondItem="SGY-zB-IbH" secondAttribute="top" constant="-45" id="2uJ-vq-hLl"/>
                             <constraint firstItem="MWv-Fn-fOd" firstAttribute="top" secondItem="dU8-MZ-LDn" secondAttribute="bottom" id="4Xd-wJ-zZ3"/>

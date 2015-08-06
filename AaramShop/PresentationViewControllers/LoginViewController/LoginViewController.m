@@ -179,9 +179,9 @@
 			[[NSUserDefaults standardUserDefaults ]synchronize];
 			[gCXMPPController connect];
 			[AppManager saveUserDatainUserDefault];
-//			[[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessfulNotificationName object:self userInfo:nil];
-			LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
-			[self.navigationController pushViewController:locationScreen animated:YES];
+			[[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessfulNotificationName object:self userInfo:nil];
+//			LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+//			[self.navigationController pushViewController:locationScreen animated:YES];
 		}
 		else
 		{

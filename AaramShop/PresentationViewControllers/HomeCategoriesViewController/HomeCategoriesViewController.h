@@ -11,18 +11,24 @@
 #import "YSLContainerViewController.h"
 #import "GlobalSearchViewController.h"
 
-@interface HomeCategoriesViewController : UIViewController<AaramShop_ConnectionManager_Delegate,CDRTranslucentSideBarDelegate,CustomNavigationDelegate>
+@interface HomeCategoriesViewController : UIViewController<AaramShop_ConnectionManager_Delegate,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     YSLContainerViewController *containerVC;
 
     IBOutlet UICollectionView *collectionMaster;
     IBOutlet UIView *viewOverlay;
     IBOutlet UIView *viewSubcategories;
-    
+    UIToolbar *keyBoardToolBar;
     NSMutableArray *arrCategories;
-    
+	UIPickerView *pickerViewSlots;
     NSInteger totalNoOfPages;
-    
+	NSArray *arrAddress;
+	NSDictionary *dictPickerValue;
+	UIButton *backBtn;
+	UIButton *btnPicker;
+	UIButton *btnCart;
+	UIButton *btnSearch;
+	UIButton *btnBroadcast;
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

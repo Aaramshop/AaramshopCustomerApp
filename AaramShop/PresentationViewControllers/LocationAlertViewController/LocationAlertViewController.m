@@ -219,6 +219,8 @@
 
         
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
+			[[NSUserDefaults standardUserDefaults] setObject:[responseObject objectForKey:kUser_address] forKey:kUser_address];
+			[[NSUserDefaults standardUserDefaults] synchronize];
             [self saveAddressIntoDataBase];
         }
         else

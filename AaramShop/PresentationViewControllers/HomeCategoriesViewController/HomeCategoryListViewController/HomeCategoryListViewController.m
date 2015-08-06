@@ -32,8 +32,8 @@
     // Do any additional setup after loading the view.
     
     appDeleg = APP_DELEGATE;
-    [appDeleg findCurrentLocation];
-    
+//    [appDeleg findCurrentLocation];
+	
     
 //    totalNoOfPages = 0;
     pageno = 0;
