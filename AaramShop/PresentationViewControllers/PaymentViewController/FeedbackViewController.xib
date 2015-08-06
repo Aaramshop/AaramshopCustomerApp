@@ -30,6 +30,7 @@
                 <outlet property="lblPlaceHolder" destination="KiS-9f-z8n" id="WOd-0Y-YL8"/>
                 <outlet property="lblStoreName" destination="avf-r3-kxg" id="ZIb-0L-9Uq"/>
                 <outlet property="txtView" destination="jsa-HH-Cip" id="Kp5-JI-4E1"/>
+                <outlet property="view" destination="iN0-l3-epB" id="gvm-hd-NXo"/>
                 <outlet property="viewRating" destination="J1h-hU-o81" id="h2K-b4-WjZ"/>
             </connections>
         </placeholder>
@@ -38,7 +39,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbT-Ax-g5A" userLabel="View - Overlay">
+                <view hidden="YES" alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbT-Ax-g5A" userLabel="View - Overlay">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -105,7 +106,7 @@
                                 <constraint firstAttribute="width" constant="299" id="vyU-0T-Bab"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QjQ-y4-3RX" userLabel="Button - Rating1">
@@ -186,7 +187,7 @@
                                 <constraint firstAttribute="width" constant="299" id="ydt-Pe-akp"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jsa-HH-Cip" userLabel="Text View - Comment">
@@ -211,7 +212,7 @@
                                 <constraint firstAttribute="height" constant="1" id="PqI-QQ-ie7"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDi-KM-fIX" userLabel="Button - OK">
@@ -238,7 +239,7 @@
                                 <constraint firstAttribute="height" constant="40" id="nkB-77-ngU"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wHo-FH-ShT" userLabel="Button - CANCEL">

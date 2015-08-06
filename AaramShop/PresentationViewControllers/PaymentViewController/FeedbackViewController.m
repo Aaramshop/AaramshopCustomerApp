@@ -77,11 +77,11 @@
 {
     btnOK.enabled = YES;
     
-    btnRating1.selected = NO;
-    btnRating2.selected = NO;
-    btnRating3.selected = NO;
-    btnRating4.selected = NO;
-    btnRating5.selected = NO;
+//    btnRating1.selected = NO;
+//    btnRating2.selected = NO;
+//    btnRating3.selected = NO;
+//    btnRating4.selected = NO;
+//    btnRating5.selected = NO;
     
     
     switch (sender.tag)
@@ -228,12 +228,14 @@
 
 -(void)removeFeedBackScreen
 {
-    if (self.feedbackCompletion)
-    {
-        self.feedbackCompletion();
-    }
+    [self.navigationController popViewControllerAnimated:YES];
     
-    [self.view removeFromSuperview];
+//    if (self.feedbackCompletion)
+//    {
+//        self.feedbackCompletion();
+//    }
+//    
+//    [self.view removeFromSuperview];
 }
 
 @end

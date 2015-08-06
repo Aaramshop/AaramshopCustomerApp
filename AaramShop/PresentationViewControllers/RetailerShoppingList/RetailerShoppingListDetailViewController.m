@@ -425,6 +425,7 @@
 {
     if ([strTotalAvailProductPrice integerValue]==0)
     {
+        [Utils showAlertView:kAlertTitle message:@"No products available." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
     
