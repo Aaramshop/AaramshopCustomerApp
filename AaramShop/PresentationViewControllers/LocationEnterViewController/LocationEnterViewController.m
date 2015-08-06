@@ -76,8 +76,9 @@
 -(void)getAddressFromLatitude:(CLLocationDegrees)Latitude andLongitude:(CLLocationDegrees)LongitudeValue
 {
     if ([Utils isInternetAvailable]) {
-        
+		
         [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+		[Utils startActivityIndicatorInView:self.view withMessage:@""];
         NSString*urlStrings = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=%.8f,%.8f&sensor=false",Latitude, LongitudeValue];
         
         NSURL *url=[NSURL URLWithString:[urlStrings stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -89,10 +90,12 @@
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
                                    if (error) {
                                        [AppManager stopStatusbarActivityIndicator];
+									   [Utils stopActivityIndicatorInView:self.view];
                                        NSLog(@"error:%@", error.localizedDescription);
                                    }
                                    else
                                    {
+									   [Utils startActivityIndicatorInView:self.view withMessage:@""];
                                        data = [NSData dataWithContentsOfURL:url];
                                        if (data!=nil) {
                                            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
@@ -103,8 +106,11 @@
                                                [self fetchedData:data];
                                            }
                                            else
+										   {
                                                [AppManager stopStatusbarActivityIndicator];
-                                           
+											   [Utils stopActivityIndicatorInView:self.view];
+										   }
+										   
                                            
    
                                        }
@@ -193,7 +199,7 @@
                         txtFLocation.text = strYourCurrentAddress;
                         
                     }
-
+					[Utils stopActivityIndicatorInView:self.view ];
                 [self updateMapScreenFromLatitude:cordinatesLocation.latitude  andLongitude:cordinatesLocation.longitude];
                     
                 }];
@@ -203,6 +209,7 @@
     }
     @catch (NSException *exception)
     {
+		[Utils stopActivityIndicatorInView:self.view];
         NSLog(@"%@",exception);
     }
 }
@@ -210,6 +217,7 @@
 
 -(void)createDataToGetAaramShops
 {
+//	[Utils startActivityIndicatorInView:self.view withMessage:@""];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
     [dict setObject:[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
@@ -235,8 +243,10 @@
 -(void)callWebserviceToGetAaramShops:(NSMutableDictionary *)aDict
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+//	[Utils startActivityIndicatorInView:self.view withMessage:@""];
     if (![Utils isInternetAvailable])
     {
+		[Utils stopActivityIndicatorInView:self.view];
         [AppManager stopStatusbarActivityIndicator];
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
@@ -246,11 +256,13 @@
 }
 -(void) didFailWithError:(NSError *)error
 {
+	[Utils stopActivityIndicatorInView:self.view];
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 -(void) responseReceived:(id)responseObject
 {
     if (aaramShop_ConnectionManager.currentTask == TASK_ENTER_LOCATION) {
+		[Utils stopActivityIndicatorInView:self.view];
         [self parseResponseForAaramShops:responseObject];
     }
 }
@@ -702,14 +714,14 @@
 - (IBAction)btnEditClick:(UIButton *)sender {
     txtFLocation.userInteractionEnabled = NO;
     [txtFLocation resignFirstResponder];
-    AddressModel *addressModelTemp ;
-    addressModelTemp.address = @"";
-    addressModelTemp.state = @"";
-    addressModelTemp.city = @"";
-    addressModelTemp.locality = @"";
-    addressModelTemp.pincode = @"";
+//    AddressModel *addressModelTemp ;
+//    addressModelTemp.address = @"";
+//    addressModelTemp.state = @"";
+//    addressModelTemp.city = @"";
+//    addressModelTemp.locality = @"";
+//    addressModelTemp.pincode = @"";
 
-    [self addLocationScreen:addressModelTemp];
+    [self addLocationScreen:addressModel];
 }
 -(void)addLocationScreen:(AddressModel *)addModel
 {

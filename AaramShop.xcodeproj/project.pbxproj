@@ -807,6 +807,9 @@
 		36907ACB1B5BCC720017A504 /* walletPointsIconInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 36907AB31B5BCC720017A504 /* walletPointsIconInactive.png */; };
 		36907ACC1B5BCC720017A504 /* walletPointsIconInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36907AB41B5BCC720017A504 /* walletPointsIconInactive@2x.png */; };
 		36907ACD1B5BCC720017A504 /* walletPointsIconInactive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36907AB51B5BCC720017A504 /* walletPointsIconInactive@3x.png */; };
+		36939B151B73705B008E6851 /* dropDownArrowLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 36939B121B73705B008E6851 /* dropDownArrowLocation.png */; };
+		36939B161B73705B008E6851 /* dropDownArrowLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36939B131B73705B008E6851 /* dropDownArrowLocation@2x.png */; };
+		36939B171B73705B008E6851 /* dropDownArrowLocation@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36939B141B73705B008E6851 /* dropDownArrowLocation@3x.png */; };
 		36A413451B53F6F3001FECD2 /* UserContactTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A413441B53F6F3001FECD2 /* UserContactTableCell.m */; };
 		36A413481B53F9A6001FECD2 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A413471B53F9A6001FECD2 /* TPKeyboardAvoidingTableView.m */; };
 		36A69EC91B57C52A0058EB88 /* WalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A69EC81B57C52A0058EB88 /* WalletViewController.m */; };
@@ -2513,6 +2516,9 @@
 		36907AB31B5BCC720017A504 /* walletPointsIconInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walletPointsIconInactive.png; sourceTree = "<group>"; };
 		36907AB41B5BCC720017A504 /* walletPointsIconInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walletPointsIconInactive@2x.png"; sourceTree = "<group>"; };
 		36907AB51B5BCC720017A504 /* walletPointsIconInactive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walletPointsIconInactive@3x.png"; sourceTree = "<group>"; };
+		36939B121B73705B008E6851 /* dropDownArrowLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropDownArrowLocation.png; sourceTree = "<group>"; };
+		36939B131B73705B008E6851 /* dropDownArrowLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropDownArrowLocation@2x.png"; sourceTree = "<group>"; };
+		36939B141B73705B008E6851 /* dropDownArrowLocation@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropDownArrowLocation@3x.png"; sourceTree = "<group>"; };
 		36A413431B53F6F3001FECD2 /* UserContactTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserContactTableCell.h; sourceTree = "<group>"; };
 		36A413441B53F6F3001FECD2 /* UserContactTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserContactTableCell.m; sourceTree = "<group>"; };
 		36A413461B53F9A6001FECD2 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
@@ -3373,6 +3379,9 @@
 		274A5A381B05C075009112B5 /* HomeImages */ = {
 			isa = PBXGroup;
 			children = (
+				36939B121B73705B008E6851 /* dropDownArrowLocation.png */,
+				36939B131B73705B008E6851 /* dropDownArrowLocation@2x.png */,
+				36939B141B73705B008E6851 /* dropDownArrowLocation@3x.png */,
 				274A5A391B05C075009112B5 /* addToCardNoBox.png */,
 				274A5A3A1B05C075009112B5 /* addToCardNoBox@2x.png */,
 				274A5A3B1B05C075009112B5 /* addToCardNoBox@3x.png */,
@@ -7649,6 +7658,7 @@
 				6B54904D1B68E59100465C82 /* checkBoxInactive@3x.png in Resources */,
 				36BE5A9C1B53C52A0079DAE3 /* packedIconInactive.png in Resources */,
 				36CA645F1B712B5F00A3BBB1 /* defaultSearchBox@2x.png in Resources */,
+				36939B151B73705B008E6851 /* dropDownArrowLocation.png in Resources */,
 				6B12DCD01AF2720400245209 /* upperBox@3x.png in Resources */,
 				6BE4744C1B3B21CE00C09AFD /* sliderPoint@2x.png in Resources */,
 				274929B61B03DC10008ACEFD /* indianFlag@2x.png in Resources */,
@@ -7826,6 +7836,7 @@
 				368209B11B1C46FA002AA93F /* maldives.png in Resources */,
 				36820A071B1C46FA002AA93F /* south georgia flag.png in Resources */,
 				6BD2D3401B28A66500EC6E54 /* homeDetailsCoffeeIconInactive@3x.png in Resources */,
+				36939B171B73705B008E6851 /* dropDownArrowLocation@3x.png in Resources */,
 				36C245881B552B9E003714B0 /* menuLogoutIcon@3x.png in Resources */,
 				36820A0F1B1C46FA002AA93F /* sudan.png in Resources */,
 				368209A71B1C46FA002AA93F /* libya.png in Resources */,
@@ -7981,6 +7992,7 @@
 				3682096E1B1C46FA002AA93F /* georgia.png in Resources */,
 				6B12DC8C1AF22C8100245209 /* welcomeScreenBackground.png in Resources */,
 				36820A281B1C46FA002AA93F /* turks & caicos islands.png in Resources */,
+				36939B161B73705B008E6851 /* dropDownArrowLocation@2x.png in Resources */,
 				6B54904C1B68E59100465C82 /* checkBoxInactive@2x.png in Resources */,
 				6B8EB2591B23087400402CFC /* shoppingListShareIcon@2x.png in Resources */,
 				368209601B1C46FA002AA93F /* eritrea.png in Resources */,
