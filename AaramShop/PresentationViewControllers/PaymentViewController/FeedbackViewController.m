@@ -32,7 +32,15 @@
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate=self;
     
+    
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(handleSingleTap:)];
+    [self.view addGestureRecognizer:singleFingerTap];
+    
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -77,11 +85,11 @@
 {
     btnOK.enabled = YES;
     
-//    btnRating1.selected = NO;
-//    btnRating2.selected = NO;
-//    btnRating3.selected = NO;
-//    btnRating4.selected = NO;
-//    btnRating5.selected = NO;
+    btnRating1.selected = NO;
+    btnRating2.selected = NO;
+    btnRating3.selected = NO;
+    btnRating4.selected = NO;
+    btnRating5.selected = NO;
     
     
     switch (sender.tag)
@@ -162,6 +170,8 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
+    [self animateviewUpWithHeight:200];
+    
     return YES;
 }
 
@@ -179,6 +189,39 @@
     {
         lblPlaceHolder.hidden = YES;
     }
+}
+
+
+
+-(void)animateviewUpWithHeight:(CGFloat)inHeight
+{
+    [UIView animateWithDuration:.4 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        self.view.frame = CGRectMake(0, -inHeight, self.view.frame.size.width,self.view.frame.size.height);
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+-(void)animateViewToDown
+{
+    [UIView animateWithDuration:.1 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height);
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
+    [self animateViewToDown];
+    
+    [self.view endEditing:YES];
+    
 }
 
 
@@ -228,14 +271,14 @@
 
 -(void)removeFeedBackScreen
 {
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
     
-//    if (self.feedbackCompletion)
-//    {
-//        self.feedbackCompletion();
-//    }
-//    
-//    [self.view removeFromSuperview];
+    if (self.feedbackCompletion)
+    {
+        self.feedbackCompletion();
+    }
+    
+    [self.view removeFromSuperview];
 }
 
 @end
