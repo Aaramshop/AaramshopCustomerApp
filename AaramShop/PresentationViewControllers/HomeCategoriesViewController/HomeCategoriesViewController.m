@@ -55,7 +55,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
 	
     appDeleg = APP_DELEGATE;
-    [appDeleg findCurrentLocation];
+//    [appDeleg findCurrentLocation];
 	
 }
 

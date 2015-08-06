@@ -23,7 +23,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize navController,myCurrentLocation,locationManager,arrOptions;
+@synthesize navController,myCurrentLocation,arrOptions;
 @synthesize tabBarControllerRetailer = _tabBarControllerRetailer;
 @synthesize objStoreModel = _objStoreModel;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -75,7 +75,7 @@
 
     arrOptions = [NSArray arrayWithObjects:@"Home Address",@"Office Address", @"Others", nil];
     [self registerDeviceForDeviceToken:application];
-    [self findCurrentLocation];
+//    [self findCurrentLocation];
 
     NSLog(@"value =%f",[UIScreen mainScreen].bounds.size.height);
 
@@ -107,22 +107,22 @@
 	
     return YES;
 }
--(void)findCurrentLocation
-{
-    
-    locationManager = [[CLLocationManager alloc] init];
-    geocoder = [[CLGeocoder alloc] init];
-    
-    if ([CLLocationManager locationServicesEnabled])
-    {
-        locationManager.delegate = self;
-        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-            [locationManager requestWhenInUseAuthorization];
-        }
-        [locationManager startUpdatingLocation];
-        
-    }
-}
+//-(void)findCurrentLocation
+//{
+//    
+//    locationManager = [[CLLocationManager alloc] init];
+//    geocoder = [[CLGeocoder alloc] init];
+//    
+//    if ([CLLocationManager locationServicesEnabled])
+//    {
+//        locationManager.delegate = self;
+//        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+//            [locationManager requestWhenInUseAuthorization];
+//        }
+//        [locationManager startUpdatingLocation];
+//        
+//    }
+//}
 #pragma mark - Register Device For Device Token
 #pragma mark - Remote Notification Methods
 - (void)application:(UIApplication *)application   didRegisterUserNotificationSettings:   (UIUserNotificationSettings *)notificationSettings
@@ -170,27 +170,27 @@
 	
 }
 
-#pragma mark - CLLocationManagerDelegate
-
-- (void)locationManager:(CLLocationManager* )manager didFailWithError:(NSError *)error
-{
-    
-}
-
-
-- (void)locationManager:(CLLocationManager* )manager didUpdateLocations:(NSArray* )locations
-{
-    CLLocation* newLocation = [locations lastObject];
-    
-    [self getUpdatedLocation:newLocation];
-}
-
-
--(void)getUpdatedLocation:(CLLocation *)newLocation
-{
-    myCurrentLocation = newLocation;
-	[locationManager stopUpdatingLocation];
-}
+//#pragma mark - CLLocationManagerDelegate
+//
+//- (void)locationManager:(CLLocationManager* )manager didFailWithError:(NSError *)error
+//{
+//    
+//}
+//
+//
+//- (void)locationManager:(CLLocationManager* )manager didUpdateLocations:(NSArray* )locations
+//{
+//    CLLocation* newLocation = [locations lastObject];
+//    
+//    [self getUpdatedLocation:newLocation];
+//}
+//
+//
+//-(void)getUpdatedLocation:(CLLocation *)newLocation
+//{
+//    myCurrentLocation = newLocation;
+//	[locationManager stopUpdatingLocation];
+//}
 
 #pragma mark - Core Data stack
 

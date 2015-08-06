@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
+//#import <CoreLocation/CoreLocation.h>
 #import "SMChatViewController.h"
 #import <CoreData/CoreData.h>
 #import "StoreModel.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate,UITabBarControllerDelegate,UINavigationControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate,UINavigationControllerDelegate>
 {
-	CLGeocoder *geocoder;
+//	CLGeocoder *geocoder;
 	UIBackgroundTaskIdentifier bgTask;
 	__weak NSObject <SMMessageDelegate> *_messageDelegate;
 
@@ -33,12 +33,12 @@
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
 @property (nonatomic, strong) CLLocation *myCurrentLocation;
-@property (nonatomic, strong) CLLocationManager *locationManager;
+//@property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic,  strong) NSArray *arrOptions;
 @property (nonatomic, strong) UITabBarController *tabBarControllerRetailer;
 @property (nonatomic, strong) StoreModel *objStoreModel;
 -(id)getDateAndFromString:(NSString *)strDate andDate:(NSDate *)date needSting:(BOOL)needString dateFormat:(NSString *)dateFormat;
--(void)findCurrentLocation;
+//-(void)findCurrentLocation;
 
 #pragma mark - chat
 @property(nonatomic,assign)BOOL isChatViewOpened;
