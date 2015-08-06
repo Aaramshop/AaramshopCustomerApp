@@ -71,7 +71,17 @@
     [super viewWillAppear:YES];
     
     tblView.hidden = YES;
+    
     [self getProductsInitialList];
+    
+    if (selectedStoreModel)
+    {
+        [btnChooseStore setTitle:@"CHANGE STORE" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [btnChooseStore setTitle:@"CHOOSE A STORE" forState:UIControlStateNormal];
+    }
 }
 
 
@@ -548,6 +558,7 @@
 {
     if ([strTotalAvailProductPrice integerValue]==0)
     {
+        [Utils showAlertView:kAlertTitle message:@"No products available." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
         return;
     }
     
@@ -895,6 +906,16 @@
     
     
     NSArray *arrTemp = [response objectForKey:@"products"];
+    
+    if (pageno==0 && arrTemp.count==0)
+    {
+        btnChooseStore.hidden = YES;
+    }
+    else
+    {
+        btnChooseStore.hidden = NO;
+    }
+    
     
     for (id obj in arrTemp)
     {

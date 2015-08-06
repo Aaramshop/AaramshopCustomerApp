@@ -11,6 +11,7 @@
 @interface ShoppingListShareViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
 	IBOutlet UITableView *tblView;
+    IBOutlet UILabel *lblMessage;
     
     NSMutableArray *arrShareList;
     

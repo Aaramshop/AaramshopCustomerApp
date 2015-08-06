@@ -32,7 +32,6 @@
     
     [self setNavigationBar];
     
-    
     arrShareList = [[NSMutableArray alloc]init];
     
     
@@ -62,8 +61,23 @@
     [tblView setTableHeaderView:[[UIView alloc] initWithFrame:frame]];
     
     
-    [self callWebserviceToGetSharedList];
+//    [self callWebserviceToGetSharedList];
 
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    [self callWebserviceToGetSharedList];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:YES];
+    
+    lblMessage.hidden = YES;
+    tblView.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -283,6 +297,19 @@
     
     
     NSArray *arrTempShareUser = [responseObject valueForKey:@"share_user"];
+    
+    if (arrTempShareUser.count==0 && pageno==0)
+    {
+        lblMessage.hidden = NO;
+        tblView.hidden = YES;
+    }
+    else
+    {
+        lblMessage.hidden = YES;
+        tblView.hidden = NO;
+    }
+    
+    
     
     for (id obj in arrTempShareUser)
     {
