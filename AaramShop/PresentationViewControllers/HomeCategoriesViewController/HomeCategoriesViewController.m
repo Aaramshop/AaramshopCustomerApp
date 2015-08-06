@@ -60,7 +60,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 	
     appDeleg = APP_DELEGATE;
-    [appDeleg findCurrentLocation];
+//    [appDeleg findCurrentLocation];
 	
 }
 
