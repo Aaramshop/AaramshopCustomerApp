@@ -43,7 +43,7 @@ AppDelegate *appDeleg;
 {
     NSManagedObjectContext *context;
     if (!context) {
-        appDeleg = (AppDelegate *)APP_DELEGATE;
+        appDeleg = APP_DELEGATE;
         context = [appDeleg managedObjectContext];
     }
     NSError *error;
@@ -188,7 +188,7 @@ AppDelegate *appDeleg;
 -(NSArray *)fetchDataFromDatabaseForEntity:(NSString *)entityName{
     NSManagedObjectContext *context;
     if (!context) {
-        appDeleg = (AppDelegate *)APP_DELEGATE;
+        appDeleg = APP_DELEGATE;
         context = [appDeleg managedObjectContext];
     }
     NSEntityDescription *entityDescription = [NSEntityDescription
@@ -210,7 +210,7 @@ AppDelegate *appDeleg;
 }
 -(NSArray *)CallForGetContacts
 {
-    appDeleg = (AppDelegate *)APP_DELEGATE;
+    appDeleg = APP_DELEGATE;
     NSManagedObjectContext *context =[appDeleg managedObjectContext];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

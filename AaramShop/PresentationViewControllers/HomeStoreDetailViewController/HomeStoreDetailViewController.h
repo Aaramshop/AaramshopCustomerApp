@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StoreModel.h"
+#import "PreferencesViewController.h"
 @interface HomeStoreDetailViewController : UIViewController<CustomNavigationDelegate,AaramShop_ConnectionManager_Delegate>
 {
     __weak IBOutlet UILabel *lblTitle;
@@ -29,6 +30,7 @@
     __weak IBOutlet UIImageView *imgRating4;
     __weak IBOutlet UIImageView *imgRating5;
     
+	__weak IBOutlet UIButton *confirmBtn;
 }
 @property(nonatomic,strong) StoreModel *objStoreModel;
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

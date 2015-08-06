@@ -136,12 +136,13 @@ AaramShop_ConnectionManager_Delegate>
 	//    [self.navigationController popViewControllerAnimated:NO];
 	
 	viewStatus = VIEW_STATUS_POPPED;
-	//    if ([self.delegate respondsToSelector:@selector(removeSearchViewFromParentView)]) {
-	//        [self.delegate removeSearchViewFromParentView];
-	//    }
+	
+	    if ([self.delegate respondsToSelector:@selector(removeSearchViewFromParentView)]) {
+	        [self.delegate removeSearchViewFromParentView];
+	    }
 	[searchBarMain resignFirstResponder];
 	
-	[self.view removeFromSuperview];
+//	[self.view removeFromSuperview];
 	
 	
 	//    [self removeFromParentViewController];

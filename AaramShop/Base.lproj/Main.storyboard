@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -790,6 +791,15 @@
                                     <constraint firstItem="7AP-lG-sDM" firstAttribute="leading" secondItem="JMK-I9-ndw" secondAttribute="leading" id="k3K-Vt-ww8"/>
                                 </constraints>
                             </scrollView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qy6-FI-cvk">
+                                <rect key="frame" x="11" y="21" width="60" height="44"/>
+                                <state key="normal" image="backBtn.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnBack:" destination="I5R-kO-Iws" eventType="touchUpInside" id="Kfi-s0-rwi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -804,6 +814,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backBtn" destination="qy6-FI-cvk" id="OXD-al-doB"/>
                         <outlet property="btnStartShopping" destination="qaf-oR-Eoh" id="Xm7-8U-Uap"/>
                         <outlet property="btnWhatsHomeStore" destination="NJ6-iD-vu4" id="4UU-7h-fAF"/>
                         <outlet property="imgVOffer" destination="sCF-fI-ibE" id="IG7-XL-vuQ"/>
@@ -833,7 +844,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIh-fd-D0d">
@@ -3291,6 +3302,7 @@ Your family will be able to add products of their choice and create a master sho
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="confirmBtn" destination="ct1-7W-wsk" id="v5U-YM-Rsh"/>
                         <outlet property="imgDelivery" destination="nfN-ID-uhB" id="qgu-F9-Pnl"/>
                         <outlet property="imgRating1" destination="87R-vJ-txs" id="mv3-W3-a62"/>
                         <outlet property="imgRating2" destination="XC1-Ch-e7K" id="NoD-2h-h4V"/>
@@ -3896,7 +3908,7 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sepratorBoxThree.png" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-ID-M4P">
@@ -7517,7 +7529,7 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-6l-spl">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-6l-spl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Nk-6H-B7O">
@@ -7544,14 +7556,10 @@ Your family will be able to add products of their choice and create a master sho
                         </subviews>
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="mw4-6l-spl" firstAttribute="top" secondItem="Fdg-Ir-DIv" secondAttribute="top" constant="-64" id="5LJ-1p-KiV"/>
-                            <constraint firstAttribute="trailing" secondItem="Fdg-Ir-DIv" secondAttribute="trailing" id="FsF-MG-e07"/>
-                            <constraint firstAttribute="trailing" secondItem="mw4-6l-spl" secondAttribute="trailing" id="NZq-v8-37I"/>
-                            <constraint firstItem="JqZ-NA-9Ag" firstAttribute="top" secondItem="Fdg-Ir-DIv" secondAttribute="bottom" id="UE1-4K-iJu"/>
-                            <constraint firstItem="Fdg-Ir-DIv" firstAttribute="leading" secondItem="e7z-fc-EFV" secondAttribute="leading" id="bsj-AK-8BA"/>
-                            <constraint firstItem="Fdg-Ir-DIv" firstAttribute="bottom" secondItem="mw4-6l-spl" secondAttribute="bottom" constant="504" id="cg9-MI-ObF"/>
-                            <constraint firstItem="mw4-6l-spl" firstAttribute="top" secondItem="Ubi-hp-oq6" secondAttribute="bottom" constant="-20" id="vbX-en-AFo"/>
-                            <constraint firstItem="mw4-6l-spl" firstAttribute="leading" secondItem="e7z-fc-EFV" secondAttribute="leading" id="xyt-fa-8dP"/>
+                            <constraint firstAttribute="centerX" secondItem="Fdg-Ir-DIv" secondAttribute="centerX" id="7NF-6S-g8C"/>
+                            <constraint firstItem="JqZ-NA-9Ag" firstAttribute="top" secondItem="Fdg-Ir-DIv" secondAttribute="bottom" id="7UF-FO-WZ2"/>
+                            <constraint firstAttribute="width" secondItem="Fdg-Ir-DIv" secondAttribute="width" id="M9h-Bo-1gE"/>
+                            <constraint firstItem="Fdg-Ir-DIv" firstAttribute="top" secondItem="Ubi-hp-oq6" secondAttribute="bottom" constant="44" id="kUe-Mu-2Y2"/>
                         </constraints>
                     </view>
                     <connections>
@@ -7576,7 +7584,7 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZD-xx-AEw">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FZD-xx-AEw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zak-4P-GW3">
@@ -7593,7 +7601,7 @@ Your family will be able to add products of their choice and create a master sho
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Oaz-2o-wyL">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="pCi-Sv-M7g" id="Dig-Nz-Xws"/>
@@ -7603,14 +7611,10 @@ Your family will be able to add products of their choice and create a master sho
                         </subviews>
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="FZD-xx-AEw" firstAttribute="top" secondItem="Oaz-2o-wyL" secondAttribute="top" constant="-64" id="7yy-Yn-Nt2"/>
-                            <constraint firstItem="FZD-xx-AEw" firstAttribute="top" secondItem="wJB-ID-dFz" secondAttribute="bottom" constant="-20" id="ChF-kH-ko2"/>
-                            <constraint firstItem="FZD-xx-AEw" firstAttribute="leading" secondItem="rId-bD-Ecw" secondAttribute="leading" id="Gtl-Xf-3UE"/>
-                            <constraint firstAttribute="trailing" secondItem="Oaz-2o-wyL" secondAttribute="trailing" id="RM1-qF-A6n"/>
-                            <constraint firstItem="Oaz-2o-wyL" firstAttribute="leading" secondItem="rId-bD-Ecw" secondAttribute="leading" id="SbY-bD-ll1"/>
-                            <constraint firstItem="G5K-np-bgs" firstAttribute="top" secondItem="Oaz-2o-wyL" secondAttribute="bottom" id="b4a-Ka-3P3"/>
-                            <constraint firstItem="Oaz-2o-wyL" firstAttribute="bottom" secondItem="FZD-xx-AEw" secondAttribute="bottom" constant="504" id="nPp-M6-4uu"/>
-                            <constraint firstAttribute="trailing" secondItem="FZD-xx-AEw" secondAttribute="trailing" id="zCw-bz-Lz4"/>
+                            <constraint firstItem="G5K-np-bgs" firstAttribute="top" secondItem="Oaz-2o-wyL" secondAttribute="bottom" id="FCa-vk-Trm"/>
+                            <constraint firstItem="Oaz-2o-wyL" firstAttribute="width" secondItem="rId-bD-Ecw" secondAttribute="width" id="GSa-K2-Fbu"/>
+                            <constraint firstItem="Oaz-2o-wyL" firstAttribute="top" secondItem="wJB-ID-dFz" secondAttribute="bottom" constant="44" id="VFn-xT-QeD"/>
+                            <constraint firstAttribute="centerX" secondItem="Oaz-2o-wyL" secondAttribute="centerX" id="eZR-aH-3h0"/>
                         </constraints>
                     </view>
                     <connections>
@@ -8086,7 +8090,7 @@ Your family will be able to add products of their choice and create a master sho
                                 </subviews>
                                 <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="gaf-uj-bQJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="gaf-uj-bQJ">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -8097,6 +8101,12 @@ Your family will be able to add products of their choice and create a master sho
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="vLc-pP-6zN" firstAttribute="top" secondItem="gaf-uj-bQJ" secondAttribute="bottom" id="3rG-Hd-5O0"/>
+                            <constraint firstItem="gaf-uj-bQJ" firstAttribute="top" secondItem="cHJ-Nt-8EF" secondAttribute="bottom" constant="44" id="JgD-vG-c4J"/>
+                            <constraint firstAttribute="width" secondItem="gaf-uj-bQJ" secondAttribute="width" id="Png-pk-bq1"/>
+                            <constraint firstAttribute="centerX" secondItem="gaf-uj-bQJ" secondAttribute="centerX" id="tdP-6f-uB7"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="searchBarMain" destination="Ygb-ih-b0V" id="Wdm-er-ftg"/>

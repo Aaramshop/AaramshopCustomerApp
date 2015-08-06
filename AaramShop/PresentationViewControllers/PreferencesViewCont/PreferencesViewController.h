@@ -10,6 +10,7 @@
 #import "CMPreferences.h"
 #import "AddressModel.h"
 #import "AddLocationViewController.h"
+#import "HomeStoreViewController.h"
 @interface PreferencesViewController : UIViewController<CustomNavigationDelegate,AaramShop_ConnectionManager_Delegate>
 {
 	
@@ -20,5 +21,6 @@
 	NSString *strAddressCount;
 	UIButton *doneBtn;
 	UIButton *backBtn;
+	AppDelegate *appDel;
 }
 @end

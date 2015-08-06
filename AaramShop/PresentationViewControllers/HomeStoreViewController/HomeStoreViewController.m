@@ -21,7 +21,8 @@
 @synthesize aaramShop_ConnectionManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    appDel = (AppDelegate *)APP_DELEGATE;
+    appDel = APP_DELEGATE;
+	
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate = self;
     
@@ -59,6 +60,22 @@
         return;
     }
     [self hideKeyboard];
+
+
+		
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	if (appDel.isLoggedIn == YES) {
+		[backBtn setHidden:NO];
+		self.navigationController.navigationBarHidden = YES;
+		[btnStartShopping setTitle:@"CONTINUE" forState:UIControlStateNormal];
+		if ([txtStoreId.placeholder isEqualToString:@"Select Home Store"]) {
+			[btnStartShopping setEnabled:NO];
+		}
+		
+	}
 }
 
 -(void)hideKeyboard
@@ -439,7 +456,9 @@
 {
     
     txtStoreId.text = store.store_code;
-
+	if (appDel.isLoggedIn == YES) {
+		[btnStartShopping setEnabled:YES];
+	}
     
 //    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"store_id like[cd]  %@",store.store_id];
 //    
@@ -481,4 +500,7 @@
 }
 
 
+- (IBAction)btnBack:(id)sender {
+	[self.navigationController popViewControllerAnimated:YES];
+}
 @end

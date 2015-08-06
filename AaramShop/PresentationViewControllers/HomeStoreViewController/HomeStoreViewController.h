@@ -10,7 +10,6 @@
 
 #import "SearchStoresViewController.h"
 
-
 @interface HomeStoreViewController : UIViewController<AaramShop_ConnectionManager_Delegate,SearchStoresViewControllerDelegate>
 {
     
@@ -25,8 +24,11 @@
     
     SearchStoresViewController *searchStoresViewController;
     AppDelegate *appDel;
+	__weak IBOutlet UIButton *backBtn;
     
 }
+- (IBAction)btnBack:(id)sender;
+
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 
 - (IBAction)btnStart:(id)sender;
