@@ -853,7 +853,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	NSArray *arrProduct		=	[arrSelectedProducts filteredArrayUsingPredicate:predicate];
 	if([arrProduct count]>0)
 	{
-		int index = [arrSelectedProducts indexOfObject:[arrProduct objectAtIndex:0]];
+		NSInteger index = [arrSelectedProducts indexOfObject:[arrProduct objectAtIndex:0]];
 		if ([productModel.strCount intValue]==0) {
 			[arrSelectedProducts removeObject:[arrProduct objectAtIndex:0]];
 		}
@@ -1407,9 +1407,9 @@ static NSString *strCollectionItems = @"collectionItems";
         [self.navigationController popViewControllerAnimated:YES];
     };
     
-    [self.navigationController pushViewController:feedBack animated:YES];
+//    [self.navigationController pushViewController:feedBack animated:YES];
     
-//    [[UIApplication sharedApplication].keyWindow addSubview:feedBack.view];
+    [[UIApplication sharedApplication].keyWindow addSubview:feedBack.view];
     
 }
 
