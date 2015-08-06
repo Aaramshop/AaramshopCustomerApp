@@ -40,10 +40,21 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     self.navigationController.navigationBarHidden = NO;
 	 arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+	appDeleg = APP_DELEGATE;
 		if (appDeleg.myCurrentLocation == nil) {
-			CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[[arrAddress objectAtIndex:0] objectForKey:@"latitude"] doubleValue] longitude:[[[arrAddress objectAtIndex:0] objectForKey:@"longitude"] doubleValue]];
-			appDeleg.myCurrentLocation = newLocation;
-			strHeaderTitle =[[arrAddress objectAtIndex:0] objectForKey:@"user_address_title"];
+			if([arrAddress count]>0)
+			{
+				CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[[arrAddress objectAtIndex:0] objectForKey:@"latitude"] doubleValue] longitude:[[[arrAddress objectAtIndex:0] objectForKey:@"longitude"] doubleValue]];
+				appDeleg.myCurrentLocation = newLocation;
+					strHeaderTitle =[[arrAddress objectAtIndex:0] objectForKey:@"user_address_title"];
+			}
+			else
+			{
+				CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:0.00000f longitude:0.00000f];
+				appDeleg.myCurrentLocation = newLocation;
+				strHeaderTitle =@"";
+
+			}
 		}
 
     [self setUpNavigationBar];
@@ -59,14 +70,14 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     self.sideBar = [Utils createLeftBarWithDelegate:self];
 
 	
-    appDeleg = APP_DELEGATE;
-//    [appDeleg findCurrentLocation];
 	
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+	arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+
 	if([arrCategories count]==0)
 	{
 		[self createDataToGetStores];

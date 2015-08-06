@@ -305,12 +305,15 @@
         lblAddress.numberOfLines = 2;
         lblAddress.lineBreakMode = NSLineBreakByWordWrapping;
         lblAddress.font=[UIFont fontWithName:kRobotoRegular size:15];
-//		NSString *strAddress =	[dictAddress objectForKey:kAddress];
-//		
-//		if ([strAddress rangeOfString:@","].location == NSNotFound)
-//		{
+		if(dictAddress!=nil)
+		{
 			NSString *strFullAddress = [NSString stringWithFormat:@"%@, %@, %@",[dictAddress objectForKey:kAddress],[dictAddress objectForKey:@"city"],[dictAddress objectForKey:@"state"]];
 			lblAddress.text = strFullAddress;
+		}
+		else
+		{
+			lblAddress.text = nil;
+		}
 //		}
 //		else
 //		{

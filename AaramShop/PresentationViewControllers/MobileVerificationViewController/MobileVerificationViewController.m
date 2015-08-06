@@ -108,7 +108,6 @@
     
     if (aaramShop_ConnectionManager.currentTask == TASK_VERIFY_MOBILE) {
         if ([[responseObject objectForKey:kIsValid] isEqualToString:@"1"] && [[responseObject objectForKey:kstatus] intValue] == 1) {
-            [AppManager saveUserDatainUserDefault];
 
             // temporary commented , for testing purpose
             

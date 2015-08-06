@@ -237,6 +237,8 @@
 //            UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
 //            tabBarController.selectedIndex = 0;
 //            appDeleg.window.rootViewController = tabBarController;
+			[AppManager saveUserDatainUserDefault];
+
 			[[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessfulNotificationName object:self userInfo:nil];
         }
         else

@@ -36,7 +36,7 @@
     // Do any additional setup after loading the view.
     
     
-    appDel = (AppDelegate *)APP_DELEGATE;
+    appDel = APP_DELEGATE;
     
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
