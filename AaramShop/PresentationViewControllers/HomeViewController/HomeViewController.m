@@ -31,7 +31,7 @@
     self.navigationController.navigationBarHidden = NO;
     
     appDeleg = APP_DELEGATE;
-    [appDeleg findCurrentLocation];
+//    [appDeleg findCurrentLocation];
     isOffEffect = YES;
     isRefreshing= NO;
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];

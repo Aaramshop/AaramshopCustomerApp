@@ -36,8 +36,8 @@
     // Do any additional setup after loading the view.
     
     appDeleg = APP_DELEGATE;
-    [appDeleg findCurrentLocation];
-    
+//    [appDeleg findCurrentLocation];
+	
     [self setNavigationBar];
     
     totalNoOfPages = 0;

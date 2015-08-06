@@ -123,17 +123,17 @@
     NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:batBtnBack, nil];
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
     
-    //
-    
-    UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
-    UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnCart.bounds = CGRectMake( -10, 0, 30, 30);
-    
-    [btnCart setImage:imgCart forState:UIControlStateNormal];
-    [btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
-    
-    //
+//    
+//    
+//    UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
+//    UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
+//    btnCart.bounds = CGRectMake( -10, 0, 30, 30);
+//    
+//    [btnCart setImage:imgCart forState:UIControlStateNormal];
+//    [btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
+//	
+//    
     UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
     UIButton *btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
     btnSearch.bounds = CGRectMake( -10, 0, 30, 30);
@@ -142,7 +142,7 @@
     [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
     
-    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnSearch,barBtnCart, nil];
+    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnSearch,/*barBtnCart,*/ nil];
     self.navigationItem.rightBarButtonItems = arrBtnsRight;
     
 }
@@ -152,12 +152,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)btnCartClicked
-{
-    CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
-    [self.navigationController pushViewController:cartView animated:YES];
-    
-}
+//-(void)btnCartClicked
+//{
+//    CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+//    [self.navigationController pushViewController:cartView animated:YES];
+//    
+//}
 
 -(void)btnSearchClicked
 {
