@@ -383,6 +383,7 @@
     }
     else
     {
+		[AppManager saveUserDatainUserDefault];
         [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessfulNotificationName object:self userInfo:nil];
 
     }
