@@ -210,6 +210,7 @@
 	objProductsModel.product_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_actual_price]];
 	objProductsModel.product_sku_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
 	objProductsModel.sub_category_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kSub_category_id]];
+	objProductsModel.store_id = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kStore_id]];
 	objProductsModel.store_name = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kStore_name]];
 	objProductsModel.store_image = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kStore_image]];
 	objProductsModel.offer_id=[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];

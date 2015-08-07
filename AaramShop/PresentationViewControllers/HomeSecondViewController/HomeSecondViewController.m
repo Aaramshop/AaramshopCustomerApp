@@ -100,9 +100,6 @@
 	arrCartProductIds					=	[arrCartProducts valueForKey:kProduct_id];
 	//==============================================
 	[self createDataToGetStoreProductCategories];
-
-	
-
 }
 
 
@@ -484,9 +481,8 @@
 	UIBarButtonItem *barBtnFav = [[UIBarButtonItem alloc] initWithCustomView:btnFav];
 
 	
-    NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack,barBtnFav, nil];
-    self.navigationItem.leftBarButtonItems = arrBtnsLeft;
-    
+	
+	
     UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon"];
     
     UIImage *imgSearch = [UIImage imageNamed:@"searchIcon"];
@@ -518,16 +514,17 @@
 	[btnBroadcast addTarget:self action:@selector(btnBroadcastClicked) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *barBtnBroadcast = [[UIBarButtonItem alloc] initWithCustomView:btnBroadcast];
 
-	
+	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack,barBtnFav, nil];
+	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
     NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
     self.navigationItem.rightBarButtonItems = arrBtnsRight;
     
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        
-        UIImage *image = [UIImage imageNamed:@"navigation.png"];
-        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    }
+//    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
+//    {
+//        
+//        UIImage *image = [UIImage imageNamed:@"navigation.png"];
+//        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+//    }
 }
 -(void)btnBackClicked
 {
@@ -816,6 +813,7 @@
         ProductsModel *objProductsModel = nil;
         objProductsModel = [self getObjectOfProductForIndexPath:indexPath];
         cell.indexPath=indexPath;
+		cell.fromCart = YES;
 		cell.store_id	=	self.strStore_Id;
         cell.objProductsModelMain = objProductsModel;
         [cell updateCellWithSubCategory:objProductsModel];
@@ -1000,8 +998,8 @@
 {
     strSelectedCategoryId = [dict objectForKey:kCategory_id];
     
-//    if ([strSelectedCategoryId integerValue] == 496) // value for medicine
-//    {
+    if ([strSelectedCategoryId integerValue] == 496) // value for medicine
+    {
         PrescriptionViewController *prescriptionView = (PrescriptionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"PrescriptionViewController"];
     
         prescriptionView.strStoreId = strStore_Id;
@@ -1009,15 +1007,15 @@
     
     
         [self.navigationController pushViewController:prescriptionView animated:YES];
-//    }
-//    else
-//    {
-//        strSelectedCategoryName = [dict objectForKey:kCategory_name];
-//        isSelected = NO;
-//        tblVwCategory.hidden = YES;
-//        [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
-//    }
-    
+    }
+    else
+    {
+        strSelectedCategoryName = [dict objectForKey:kCategory_name];
+        isSelected = NO;
+        tblVwCategory.hidden = YES;
+        [self createDataToGetStoreProductSubCategory:strSelectedCategoryId];
+    }
+	
 }
 
 -(void)createDataToGetStoreProducts

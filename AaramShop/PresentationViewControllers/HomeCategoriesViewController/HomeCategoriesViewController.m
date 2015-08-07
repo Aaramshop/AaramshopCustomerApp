@@ -127,13 +127,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 -(void)setUpNavigationBar
 {
-    CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 150, 44);
+    CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 100, 44);
     UIView* _headerTitleSubtitleView = [[UIView alloc] initWithFrame:headerTitleSubtitleFrame];
     _headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
     _headerTitleSubtitleView.autoresizesSubviews = NO;
     
 	btnPicker = [UIButton buttonWithType:UIButtonTypeCustom];
-	[btnPicker setFrame:CGRectMake(0, 0, 150, 44)];
+	[btnPicker setFrame:CGRectMake(0, 0, 100, 44)];
 	btnPicker.titleLabel.textAlignment=NSTextAlignmentCenter;
 	btnPicker.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:15];
 	btnPicker.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -155,20 +155,20 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 	
-	UIView *rightContainer=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 71, 44)];
-	    [rightContainer setBackgroundColor:[UIColor blueColor]];
+	UIView *rightContainer=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 26, 44)];
+	    [rightContainer setBackgroundColor:[UIColor clearColor]];
 	UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
 	btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnCart.bounds = CGRectMake( 0, 10, 24, 24);
+	btnCart.frame = CGRectMake((rightContainer.frame.size.width - 20)/2, (rightContainer.frame.size.height - 20)/2, 20, 20);
 	
 	[btnCart setImage:imgCart forState:UIControlStateNormal];
 	[btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
 	
 	[rightContainer addSubview:btnCart];
 	
 	UIButton *badgeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 	badgeBtn.frame = CGRectMake(16, 5, 21, 21);
+	[badgeBtn addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
 	[badgeBtn setBackgroundImage:[UIImage imageNamed:@"addToCardNoBox"] forState:UIControlStateNormal];
 	
 	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+5 , 10, 10, 8)];
@@ -180,8 +180,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 //	if([[USER_DEFAULT objectForKey:BADGEINFO]intValue]>0)
 //	{
 //		[lab setText:[USER_DEFAULT objectForKey:BADGEINFO]];
-//		[rightContainer addSubview:badgeBtn];
-//		[rightContainer addSubview:lab];
+		[rightContainer addSubview:badgeBtn];
+		[rightContainer addSubview:lab];
 //	}
 	
     
@@ -189,7 +189,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	
     
     btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnSearch.bounds = CGRectMake( -10, 0, 20, 20);
+    btnSearch.bounds = CGRectMake( 0, 0, 24, 24);
     
     [btnSearch setImage:imgSearch forState:UIControlStateNormal];
     [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -198,15 +198,17 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	UIImage *imgBroadcast = [UIImage imageNamed:@"bellIcon"];
 	
 	btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnBroadcast.bounds = CGRectMake( -10, 0, 20, 20);
+	btnBroadcast.bounds = CGRectMake( 0, 0, 24, 24);
 	
 	[btnBroadcast setImage:imgBroadcast forState:UIControlStateNormal];
 	[btnBroadcast addTarget:self action:@selector(btnBroadcastClicked) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *barBtnBroadcast = [[UIBarButtonItem alloc] initWithCustomView:btnBroadcast];
-
-    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:rightContainer, nil];
-//    self.navigationItem.rightBarButtonItems = rightContainer;
 	
+	
+	UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
+	
+	NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
+	self.navigationItem.rightBarButtonItems = arrBtnsRight;
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
     {
         UIImage *image = [UIImage imageNamed:@"navigation.png"];

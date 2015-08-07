@@ -4525,11 +4525,10 @@ Your family will be able to add products of their choice and create a master sho
                     <tabBarItem key="tabBarItem" title="Item" id="Ivd-EJ-5Tz"/>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QL0-ih-g4u">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="QL0-ih-g4u">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="0.0" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -4572,6 +4571,7 @@ Your family will be able to add products of their choice and create a master sho
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="qKx-Xf-eDd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -4592,6 +4592,7 @@ Your family will be able to add products of their choice and create a master sho
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="pWF-bV-g9f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -4612,6 +4613,7 @@ Your family will be able to add products of their choice and create a master sho
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="DGs-RB-4n9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -4632,6 +4634,7 @@ Your family will be able to add products of their choice and create a master sho
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="h0m-ab-zK7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -6586,7 +6589,7 @@ Your family will be able to add products of their choice and create a master sho
         <!--Broadcast View Controller-->
         <scene sceneID="o7C-5S-PL5">
             <objects>
-                <viewController storyboardIdentifier="broadcastView" id="rt0-8L-fk4" customClass="BroadcastViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="broadcastView" hidesBottomBarWhenPushed="YES" id="rt0-8L-fk4" customClass="BroadcastViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VO4-1M-hXz"/>
                         <viewControllerLayoutGuide type="bottom" id="HvH-q2-iJn"/>
@@ -7620,7 +7623,7 @@ Your family will be able to add products of their choice and create a master sho
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Oaz-2o-wyL">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="pCi-Sv-M7g" id="Dig-Nz-Xws"/>
