@@ -11,6 +11,9 @@
 @interface ShoppingListModel : NSObject
 
 @property(nonatomic,strong) NSString * creationDate;
+@property(nonatomic,strong) NSString * frequency;
+@property(nonatomic,strong) NSString * reminder;
+
 @property(nonatomic,strong) NSString * reminder_start_date;
 @property(nonatomic,strong) NSString * reminder_end_date;
 

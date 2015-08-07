@@ -32,6 +32,66 @@
     aaramShop_ConnectionManager.delegate= self;
     
     arrPickerData=@[@"Select",@"Every day",@"30 days",@"15 days",@"7 days"];
+    
+    
+    //*
+     
+     if([_shoppingListModel.reminder_start_date integerValue]>0)
+     {
+         btnRemoveReminder.hidden = NO;
+         
+         lblStartDate.text = [self convertTimeStampToDate:_shoppingListModel.reminder_start_date];
+         
+         lblEndDate.text = [self convertTimeStampToDate:_shoppingListModel.reminder_end_date];
+         
+         switch ([_shoppingListModel.frequency integerValue])
+         {
+             case 1:
+             {
+                 lblRepeat.text = @"Every day";
+             }
+                 break;
+             case 7:
+             {
+                 lblRepeat.text = @"7 days";
+             }
+                 break;
+             case 15:
+             {
+                 lblRepeat.text = @"15 days";
+             }
+                 break;
+             case 30:
+             {
+                 lblRepeat.text = @"30 days";
+             }
+                 break;
+
+                 
+             default:
+                 break;
+         }
+         
+         if ([_shoppingListModel.reminder integerValue]==0)
+         {
+             [reminderSwitch setOn:NO];
+         }
+         else
+         {
+            [reminderSwitch setOn:YES];
+         }
+         
+     }
+    else
+    {
+        btnRemoveReminder.hidden = YES;
+    }
+     
+     
+     //*/
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,7 +189,7 @@
     NSDate *endDate = [dateFormatter dateFromString:lblEndDate.text];
     
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    [dict setObject:_shoppingListId forKey:@"shoppingListId"];
+    [dict setObject:_shoppingListModel.shoppingListId forKey:@"shoppingListId"];
     
     [dict setObject:_storeId forKey:@"store_id"];
     
@@ -175,7 +235,7 @@
 //
         
         EKReminder *reminder = [EKReminder reminderWithEventStore:store];
-        [reminder setTitle:!_shoppingListName?_shoppingListName:@"My Shopping List"];
+        [reminder setTitle:!_shoppingListModel.shoppingListName?_shoppingListModel.shoppingListName:@"My Shopping List"];
         EKCalendar *defaultReminderList = [store defaultCalendarForNewReminders];
         
         [reminder setCalendar:defaultReminderList];
@@ -255,6 +315,21 @@
 }
 
 
+-(void)callWebServiceToRemoveReminder:(NSMutableDictionary *)aDict
+{
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [aaramShop_ConnectionManager getDataForFunction:kURLRemoveShoppingListReminder withInput:aDict withCurrentTask:TASK_TO_REMOVE_SHOPPING_LIST_REMINDER andDelegate:self ];
+}
+
+
+
 -(void) didFailWithError:(NSError *)error
 {
     
@@ -277,6 +352,37 @@
             if ([[responseObject objectForKey:kstatus] intValue] == 1)
             {
                 [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+                
+                // add reminder data in model
+                
+                _shoppingListModel.frequency = [responseObject valueForKey:@"frequency"];
+                _shoppingListModel.reminder = [responseObject valueForKey:@"reminder"];
+                _shoppingListModel.reminder_end_date = [responseObject valueForKey:@"reminder_end_date"];
+                _shoppingListModel.reminder_start_date = [responseObject valueForKey:@"reminder_start_date"];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }
+            else
+            {
+                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            }
+        }
+            break;
+            
+        case TASK_TO_REMOVE_SHOPPING_LIST_REMINDER:
+        {
+            
+            if ([[responseObject objectForKey:kstatus] intValue] == 1)
+            {
+                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+                
+                // remove reminder data from model
+                
+                _shoppingListModel.frequency = @"0";
+                _shoppingListModel.reminder = @"0";
+                _shoppingListModel.reminder_end_date = @"0";
+                _shoppingListModel.reminder_start_date = @"0";
                 
                 [self.navigationController popViewControllerAnimated:YES];
                 
@@ -437,4 +543,45 @@
 
 - (IBAction)reminderSwitchValuChanged:(UISwitch *)sender {
 }
+
+
+- (IBAction)actionRemoveReminder:(id)sender
+{
+    [Utils showAlertView:kAlertTitle message:@"Do you want to remove reminder?" delegate:self cancelButtonTitle:kAlertBtnNO otherButtonTitles:kAlertBtnYES];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1)
+    {
+        NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+        [dict setObject:_shoppingListModel.shoppingListId forKey:@"shoppingListId"];
+        
+        [self callWebServiceToRemoveReminder:dict];
+    }
+}
+
+
+
+-(NSString *)convertTimeStampToDate:(NSString *)time
+{
+    NSString *strDate = [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time doubleValue]]];
+    
+    NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
+    [dateFormatter1 setDateFormat:@"dd-MM-yyyy"];
+    NSDate *dateFromString = [dateFormatter1 dateFromString:strDate];
+    
+    
+    NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+    dateFormatter2.locale=[NSLocale localeWithLocaleIdentifier:@"en_US"];
+    [dateFormatter2 setDateFormat:@"MMM dd, yyyy"];
+    
+    return [dateFormatter2 stringFromDate:dateFromString];
+}
+
+
+
+
+
 @end
