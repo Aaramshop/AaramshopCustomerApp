@@ -10,6 +10,7 @@
 
 @interface ProductsModel : NSObject
 
+@property(nonatomic,strong) NSString *store_id;
 @property(nonatomic,strong) NSString *store_name;
 @property(nonatomic,strong) NSString *store_image;
 @property(nonatomic,strong) NSString *category_id;
