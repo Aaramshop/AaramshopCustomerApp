@@ -188,15 +188,15 @@ static NSString *strCollectionItems = @"collectionItems";
 	
 	[dict setObject:[getProductListDetails objectForKey:@"offer_types"] forKey:@"offer_types"];
     
-    UITableViewCell *cell = (UITableViewCell *)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
+//    UITableViewCell *cell = (UITableViewCell *)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
 
-    UIButton *btnSlot = (UIButton *)[cell.contentView viewWithTag:302];
-    
+//    UIButton *btnSlot = (UIButton *)[cell.contentView viewWithTag:302];
+	
     if ([strDeliveryDate isEqualToString:@"Immediate" ]) {
         strDeliveryDate = [appDel getDateAndFromString:nil andDate:[NSDate date] needSting:YES dateFormat:DATE_FORMATTER_yyyy_mm_dd];
     }
     [dict setObject:strDeliveryDate forKey:@"delivery_date"];
-    [dict setObject:btnSlot.titleLabel.text forKey:@"delivery_slot"];
+    [dict setObject:strSelectSlot forKey:@"delivery_slot"];
     [dict setObject:strTotalPrice forKey:@"total_amount"];
     [dict setObject:total_discount forKey:@"total_discount"];
     [dict setObject:@"0" forKey:@"ip_address"];
@@ -490,13 +490,23 @@ static NSString *strCollectionItems = @"collectionItems";
 		objProducts.offer_price			=	[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_price]];
 		objProducts.offer_type			=	[NSString stringWithFormat:@"%d",[[dictProducts objectForKey:@"offer_type"] intValue]];
 		objProducts.offer_id				=	[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];
-		if(self.fromCart)
+		NSString *strId = @"0";
+		if([objProducts.offer_type  integerValue]>0)
 		{
-			objProducts.strCount			=	[AppManager getCountOfProduct:objProducts.offer_id withOfferType:objProducts.offer_type forStore_id:self.strStore_Id];
+			strId =	objProducts.offer_id;
 		}
 		else
 		{
-			objProducts.strCount				= [self getCountOfProduct:objProducts.offer_id withOfferType:objProducts.offer_type forStoreId:self.strStore_Id];
+			strId = objProducts.product_id;
+		}
+
+		if(self.fromCart)
+		{
+			objProducts.strCount			=	[AppManager getCountOfProduct:strId withOfferType:objProducts.offer_type forStore_id:self.strStore_Id];
+		}
+		else
+		{
+			objProducts.strCount			= [self getCountOfProduct:strId withOfferType:objProducts.offer_type forStoreId:self.strStore_Id];
 		}
 
         objProducts.isSelected = NO;
@@ -849,7 +859,15 @@ static NSString *strCollectionItems = @"collectionItems";
 }
 - (void)modifyCartForShoppingListByData:(ProductsModel *)productModel
 {
-	NSPredicate *predicate	= [NSPredicate predicateWithFormat:@"SELF.cartProductId == %@ and SELF.strOffer_type ==%@",productModel.offer_id,productModel.offer_type];
+	NSString *strId = @"0";
+	if([productModel.offer_type integerValue]>0)
+	{
+		strId = productModel.offer_id;
+	}
+	else
+		strId = productModel.product_id;
+	
+	NSPredicate *predicate	= [NSPredicate predicateWithFormat:@"SELF.cartProductId == %@ and SELF.strOffer_type ==%@",strId,productModel.offer_type];
 	NSArray *arrProduct		=	[arrSelectedProducts filteredArrayUsingPredicate:predicate];
 	if([arrProduct count]>0)
 	{
@@ -1259,9 +1277,11 @@ static NSString *strCollectionItems = @"collectionItems";
         {
             UITableViewCell *cell = (UITableViewCell *)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
             UIButton *btnImmdediate = (UIButton *)[cell.contentView viewWithTag:301];
-
-            strDeliveryDate = [appDel getDateAndFromString:nil andDate:datePicker.date needSting:YES dateFormat:DATE_FORMATTER_yyyy_mm_dd];
-            [btnImmdediate setTitle:strDeliveryDate forState:UIControlStateNormal];
+			if(!isPickerOpen)
+			{
+				strDeliveryDate = [appDel getDateAndFromString:nil andDate:datePicker.date needSting:YES dateFormat:DATE_FORMATTER_yyyy_mm_dd];
+				[btnImmdediate setTitle:strDeliveryDate forState:UIControlStateNormal];
+			}
             [self showOptionPatch:NO];
             [self showDatePickerView:NO];
 

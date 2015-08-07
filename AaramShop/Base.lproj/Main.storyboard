@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -1080,10 +1080,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cameraBgImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="NT1-41-yiL" userLabel="Image View - Background">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="NT1-41-yiL" userLabel="Image View - Background">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6q-Ns-zMb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6q-Ns-zMb" userLabel="Button - Back">
                                 <rect key="frame" x="11" y="20" width="60" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4ym-AW-a5d"/>
@@ -1097,14 +1097,22 @@
                                     <action selector="btnBackClick:" destination="rv3-1T-r4d" eventType="touchUpInside" id="zep-WX-3UB"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultCameraIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="dMK-is-bOO" userLabel="Image View - Prescription">
-                                <rect key="frame" x="85" y="192" width="150" height="150"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgCameraIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="VcI-n5-hzf" userLabel="Image View - Camera">
+                                <rect key="frame" x="25" y="85" width="265" height="260"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="265" id="4Z0-bz-ynD"/>
+                                    <constraint firstAttribute="height" constant="260" id="nwa-7c-z5T"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultCameraIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="dMK-is-bOO" userLabel="Image View - Prescription">
+                                <rect key="frame" x="85" y="154" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="1Ue-Yc-Rcd"/>
                                     <constraint firstAttribute="height" constant="150" id="ccH-gy-3nC"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muv-yf-e2w" userLabel="Label - Upload Picture">
-                                <rect key="frame" x="60" y="344" width="200" height="21"/>
+                                <rect key="frame" x="60" y="321" width="200" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Ssf-dI-ewf"/>
                                     <constraint firstAttribute="height" constant="21" id="s9L-Fb-G8v"/>
@@ -1114,7 +1122,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jc7-g4-OFK" userLabel="Button - upload image">
-                                <rect key="frame" x="80" y="184" width="160" height="180"/>
+                                <rect key="frame" x="80" y="146" width="160" height="195"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1123,7 +1131,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yw-bR-XZB" userLabel="Label - Take a picture of your prescription to share it directly with MEDI CARE">
-                                <rect key="frame" x="30" y="372" width="260" height="65"/>
+                                <rect key="frame" x="30" y="349" width="260" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="CR3-XA-FxF"/>
                                     <constraint firstAttribute="height" constant="65" id="D35-2F-kXr"/>
@@ -1151,24 +1159,24 @@ MEDI CARE</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jc7-g4-OFK" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="164" id="0nF-bp-WBF"/>
+                            <constraint firstItem="jc7-g4-OFK" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="126" id="0nF-bp-WBF"/>
                             <constraint firstAttribute="width" secondItem="NT1-41-yiL" secondAttribute="width" id="2Ku-gm-kqu"/>
                             <constraint firstItem="PfO-La-65g" firstAttribute="top" secondItem="4oH-62-5uB" secondAttribute="bottom" constant="22" id="3Sk-nY-DTs"/>
+                            <constraint firstAttribute="centerX" secondItem="VcI-n5-hzf" secondAttribute="centerX" constant="2.5" id="40j-Kp-hMH"/>
                             <constraint firstAttribute="centerX" secondItem="NT1-41-yiL" secondAttribute="centerX" id="6Ed-Kq-uKA"/>
                             <constraint firstAttribute="height" secondItem="NT1-41-yiL" secondAttribute="height" id="6PH-Kh-R8X"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dMK-is-bOO" secondAttribute="trailing" constant="69" id="6pe-jd-tyq"/>
                             <constraint firstAttribute="centerX" secondItem="4oH-62-5uB" secondAttribute="centerX" constant="-0.5" id="6vs-Va-FEC"/>
+                            <constraint firstItem="VcI-n5-hzf" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="65" id="9HW-Co-CBH"/>
                             <constraint firstAttribute="centerX" secondItem="5Yw-bR-XZB" secondAttribute="centerX" id="9Ka-IR-lF3"/>
                             <constraint firstItem="5Yw-bR-XZB" firstAttribute="top" secondItem="muv-yf-e2w" secondAttribute="bottom" constant="7" id="J7u-p9-fIl"/>
-                            <constraint firstItem="muv-yf-e2w" firstAttribute="top" secondItem="dMK-is-bOO" secondAttribute="bottom" constant="2" id="U2F-zm-EOx"/>
+                            <constraint firstItem="muv-yf-e2w" firstAttribute="top" secondItem="dMK-is-bOO" secondAttribute="bottom" constant="17" id="U2F-zm-EOx"/>
                             <constraint firstItem="P6q-Ns-zMb" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" id="Ufb-Iu-X5G"/>
                             <constraint firstAttribute="centerX" secondItem="dMK-is-bOO" secondAttribute="centerX" id="Zfr-4W-PRA"/>
                             <constraint firstItem="P6q-Ns-zMb" firstAttribute="leading" secondItem="T3B-1C-qeA" secondAttribute="leadingMargin" constant="-5" id="chd-aR-bDo"/>
                             <constraint firstItem="muv-yf-e2w" firstAttribute="top" secondItem="jc7-g4-OFK" secondAttribute="bottom" constant="-20" id="itt-YS-Ad8"/>
-                            <constraint firstItem="dMK-is-bOO" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="172" id="mCb-bl-1W8"/>
+                            <constraint firstItem="dMK-is-bOO" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="134" id="mCb-bl-1W8"/>
                             <constraint firstAttribute="centerY" secondItem="NT1-41-yiL" secondAttribute="centerY" id="mFu-Fp-n4N"/>
                             <constraint firstAttribute="centerX" secondItem="muv-yf-e2w" secondAttribute="centerX" id="rhd-mg-uUM"/>
-                            <constraint firstItem="dMK-is-bOO" firstAttribute="leading" secondItem="T3B-1C-qeA" secondAttribute="leadingMargin" constant="69" id="toP-24-idD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jc7-g4-OFK" secondAttribute="trailing" constant="64" id="x7G-zm-nBq"/>
                             <constraint firstItem="jc7-g4-OFK" firstAttribute="leading" secondItem="T3B-1C-qeA" secondAttribute="leadingMargin" constant="64" id="xZZ-Au-dYb"/>
                         </constraints>
@@ -8283,10 +8291,11 @@ Your family will be able to add products of their choice and create a master sho
         <image name="bg2.jpg" width="320" height="568"/>
         <image name="bg4.jpg" width="320" height="568"/>
         <image name="bg5.jpg" width="320" height="568"/>
+        <image name="bgCameraIcon.png" width="265" height="260"/>
+        <image name="bgImage.jpg" width="320" height="568"/>
         <image name="bgImageNew.png" width="320" height="480"/>
         <image name="bground-568.jpg" width="320" height="568"/>
         <image name="callIconGreenCircle.png" width="35" height="35"/>
-        <image name="cameraBgImage.jpg" width="320" height="480"/>
         <image name="chatNumberingCircle.png" width="30" height="30"/>
         <image name="chatScreenMyListLogo.png" width="180" height="180"/>
         <image name="checkAvialibilityBox.png" width="96" height="39"/>
