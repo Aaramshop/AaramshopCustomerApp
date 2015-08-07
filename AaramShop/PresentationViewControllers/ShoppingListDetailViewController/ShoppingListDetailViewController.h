@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ShoppingListDetailNewCell.h"
 #import "ShoppingListDetailCell.h"
+#import "ShoppingListModel.h"
 
 @interface ShoppingListDetailViewController : UIViewController<AaramShop_ConnectionManager_Delegate,ProductCellDelegate>
 {
@@ -26,8 +27,10 @@
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 
-@property(nonatomic,strong) NSString *strShoppingListName;
-@property(nonatomic,strong) NSString *strShoppingListID;
+@property(nonatomic,strong) ShoppingListModel *shoppingListModel;
+
+//@property(nonatomic,strong) NSString *strShoppingListName;
+//@property(nonatomic,strong) NSString *strShoppingListID;
 
 
 @end

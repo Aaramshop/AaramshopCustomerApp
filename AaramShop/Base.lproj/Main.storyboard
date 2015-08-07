@@ -1098,21 +1098,21 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgCameraIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="VcI-n5-hzf" userLabel="Image View - Camera">
-                                <rect key="frame" x="25" y="85" width="265" height="260"/>
+                                <rect key="frame" x="23" y="85" width="275" height="225"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="265" id="4Z0-bz-ynD"/>
-                                    <constraint firstAttribute="height" constant="260" id="nwa-7c-z5T"/>
+                                    <constraint firstAttribute="width" constant="275" id="4Z0-bz-ynD"/>
+                                    <constraint firstAttribute="height" constant="225" id="nwa-7c-z5T"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultCameraIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="dMK-is-bOO" userLabel="Image View - Prescription">
-                                <rect key="frame" x="85" y="154" width="150" height="150"/>
+                                <rect key="frame" x="85" y="138" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="1Ue-Yc-Rcd"/>
                                     <constraint firstAttribute="height" constant="150" id="ccH-gy-3nC"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muv-yf-e2w" userLabel="Label - Upload Picture">
-                                <rect key="frame" x="60" y="321" width="200" height="21"/>
+                                <rect key="frame" x="60" y="305" width="200" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Ssf-dI-ewf"/>
                                     <constraint firstAttribute="height" constant="21" id="s9L-Fb-G8v"/>
@@ -1122,7 +1122,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jc7-g4-OFK" userLabel="Button - upload image">
-                                <rect key="frame" x="80" y="146" width="160" height="195"/>
+                                <rect key="frame" x="80" y="130" width="160" height="195"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1131,7 +1131,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yw-bR-XZB" userLabel="Label - Take a picture of your prescription to share it directly with MEDI CARE">
-                                <rect key="frame" x="30" y="349" width="260" height="65"/>
+                                <rect key="frame" x="30" y="341" width="260" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="CR3-XA-FxF"/>
                                     <constraint firstAttribute="height" constant="65" id="D35-2F-kXr"/>
@@ -1159,24 +1159,24 @@ MEDI CARE</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jc7-g4-OFK" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="126" id="0nF-bp-WBF"/>
                             <constraint firstAttribute="width" secondItem="NT1-41-yiL" secondAttribute="width" id="2Ku-gm-kqu"/>
                             <constraint firstItem="PfO-La-65g" firstAttribute="top" secondItem="4oH-62-5uB" secondAttribute="bottom" constant="22" id="3Sk-nY-DTs"/>
-                            <constraint firstAttribute="centerX" secondItem="VcI-n5-hzf" secondAttribute="centerX" constant="2.5" id="40j-Kp-hMH"/>
                             <constraint firstAttribute="centerX" secondItem="NT1-41-yiL" secondAttribute="centerX" id="6Ed-Kq-uKA"/>
                             <constraint firstAttribute="height" secondItem="NT1-41-yiL" secondAttribute="height" id="6PH-Kh-R8X"/>
                             <constraint firstAttribute="centerX" secondItem="4oH-62-5uB" secondAttribute="centerX" constant="-0.5" id="6vs-Va-FEC"/>
                             <constraint firstItem="VcI-n5-hzf" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="65" id="9HW-Co-CBH"/>
                             <constraint firstAttribute="centerX" secondItem="5Yw-bR-XZB" secondAttribute="centerX" id="9Ka-IR-lF3"/>
-                            <constraint firstItem="5Yw-bR-XZB" firstAttribute="top" secondItem="muv-yf-e2w" secondAttribute="bottom" constant="7" id="J7u-p9-fIl"/>
                             <constraint firstItem="muv-yf-e2w" firstAttribute="top" secondItem="dMK-is-bOO" secondAttribute="bottom" constant="17" id="U2F-zm-EOx"/>
                             <constraint firstItem="P6q-Ns-zMb" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" id="Ufb-Iu-X5G"/>
                             <constraint firstAttribute="centerX" secondItem="dMK-is-bOO" secondAttribute="centerX" id="Zfr-4W-PRA"/>
                             <constraint firstItem="P6q-Ns-zMb" firstAttribute="leading" secondItem="T3B-1C-qeA" secondAttribute="leadingMargin" constant="-5" id="chd-aR-bDo"/>
+                            <constraint firstAttribute="centerX" secondItem="VcI-n5-hzf" secondAttribute="centerX" constant="-0.5" id="hL7-Wq-px8"/>
                             <constraint firstItem="muv-yf-e2w" firstAttribute="top" secondItem="jc7-g4-OFK" secondAttribute="bottom" constant="-20" id="itt-YS-Ad8"/>
-                            <constraint firstItem="dMK-is-bOO" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="134" id="mCb-bl-1W8"/>
                             <constraint firstAttribute="centerY" secondItem="NT1-41-yiL" secondAttribute="centerY" id="mFu-Fp-n4N"/>
+                            <constraint firstItem="dMK-is-bOO" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="118" id="nEb-nE-j5h"/>
+                            <constraint firstItem="jc7-g4-OFK" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="110" id="oWP-gB-vib"/>
                             <constraint firstAttribute="centerX" secondItem="muv-yf-e2w" secondAttribute="centerX" id="rhd-mg-uUM"/>
+                            <constraint firstItem="5Yw-bR-XZB" firstAttribute="top" secondItem="muv-yf-e2w" secondAttribute="bottom" constant="15" id="vmR-sY-OMC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jc7-g4-OFK" secondAttribute="trailing" constant="64" id="x7G-zm-nBq"/>
                             <constraint firstItem="jc7-g4-OFK" firstAttribute="leading" secondItem="T3B-1C-qeA" secondAttribute="leadingMargin" constant="64" id="xZZ-Au-dYb"/>
                         </constraints>
@@ -2156,6 +2156,34 @@ Your family will be able to add products of their choice and create a master sho
                                     <action selector="reminderSwitchValuChanged:" destination="ydH-ef-K3d" eventType="valueChanged" id="Rdh-kF-8g4"/>
                                 </connections>
                             </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Riq-EK-4hK" userLabel="LabelStartDate">
+                                <rect key="frame" x="129" y="63" width="151" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywr-kx-gbd" userLabel="LabelEndDate">
+                                <rect key="frame" x="129" y="115" width="151" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOW-BG-q8T" userLabel="LabelRepeat">
+                                <rect key="frame" x="129" y="167" width="151" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="607-hX-Ong" userLabel="Button - Remove Reminder">
+                                <rect key="frame" x="15" y="273" width="290" height="47"/>
+                                <state key="normal" title="Remove Reminder" backgroundImage="newUserBox.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionContinue:" destination="Mcj-H4-vsS" eventType="touchUpInside" id="SyQ-gr-L5u"/>
+                                    <action selector="actionRemoveReminder:" destination="ydH-ef-K3d" eventType="touchUpInside" id="X9u-cN-bNa"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QX9-up-KzX">
                                 <rect key="frame" x="0.0" y="568" width="320" height="206"/>
                                 <subviews>
@@ -2185,24 +2213,6 @@ Your family will be able to add products of their choice and create a master sho
                                     <constraint firstAttribute="height" constant="206" id="a9n-hu-2w2"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Riq-EK-4hK" userLabel="LabelStartDate">
-                                <rect key="frame" x="129" y="63" width="151" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywr-kx-gbd" userLabel="LabelEndDate">
-                                <rect key="frame" x="129" y="115" width="151" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOW-BG-q8T" userLabel="LabelRepeat">
-                                <rect key="frame" x="129" y="167" width="151" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0c-Vm-trA" userLabel="ViewPicker">
                                 <rect key="frame" x="0.0" y="568" width="320" height="211"/>
                                 <subviews>
@@ -2248,6 +2258,7 @@ Your family will be able to add products of their choice and create a master sho
                     </view>
                     <connections>
                         <outlet property="btnEndDate" destination="tZv-At-XYB" id="hEg-KW-Wme"/>
+                        <outlet property="btnRemoveReminder" destination="607-hX-Ong" id="K81-1m-4oW"/>
                         <outlet property="btnRepeat" destination="VMP-0e-TAv" id="VFm-55-sH1"/>
                         <outlet property="btnStartDate" destination="133-xs-HRi" id="TTi-xb-rOa"/>
                         <outlet property="datePicker_" destination="PsG-oJ-bae" id="4uG-KF-FTK"/>
@@ -8288,7 +8299,7 @@ Your family will be able to add products of their choice and create a master sho
         <image name="bg2.jpg" width="320" height="568"/>
         <image name="bg4.jpg" width="320" height="568"/>
         <image name="bg5.jpg" width="320" height="568"/>
-        <image name="bgCameraIcon.png" width="265" height="260"/>
+        <image name="bgCameraIcon.png" width="275" height="225"/>
         <image name="bgImage.jpg" width="320" height="568"/>
         <image name="bgImageNew.png" width="320" height="480"/>
         <image name="bground-568.jpg" width="320" height="568"/>

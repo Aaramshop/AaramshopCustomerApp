@@ -223,10 +223,8 @@
 {
     ShoppingListDetailViewController *shoppingListDetail = (ShoppingListDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListDetail"];
     
-    
     ShoppingListModel *shoppingListModel = [arrShoppingList objectAtIndex:index];
-    shoppingListDetail.strShoppingListID = shoppingListModel.shoppingListId;
-    shoppingListDetail.strShoppingListName = shoppingListModel.shoppingListName;
+    shoppingListDetail.shoppingListModel = shoppingListModel;
     
     [self.navigationController pushViewController:shoppingListDetail animated:YES];
 }
@@ -433,6 +431,10 @@
     {
         ShoppingListModel *shoppingListModel = [[ShoppingListModel alloc]init];
         shoppingListModel.creationDate = [NSString stringWithFormat:@"%@",[obj valueForKey:@"creationDate"]];
+
+        shoppingListModel.frequency = [NSString stringWithFormat:@"%@",[obj valueForKey:@"frequency"]];
+        shoppingListModel.reminder = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminder"]];
+        
         shoppingListModel.reminder_start_date = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminder_start_date"]];
         shoppingListModel.reminder_end_date = [NSString stringWithFormat:@"%@",[obj valueForKey:@"reminder_end_date"]];
         

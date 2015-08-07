@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <EventKit/EventKit.h>
+#import "ShoppingListModel.h"
+
 @interface ShoppingListCalenderViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 
 {
@@ -30,6 +32,9 @@
     __weak IBOutlet UIView *viewRepeatPickerView;
     __weak IBOutlet UISwitch *reminderSwitch;
     
+    __weak IBOutlet UIButton *btnRemoveReminder;
+
+    
     NSArray *arrPickerData;
     
     EKEventStore *store;
@@ -38,8 +43,8 @@
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 @property(nonatomic,strong) NSString *storeId;
-@property(nonatomic,strong) NSString *shoppingListId;
-@property(nonatomic,strong) NSString *shoppingListName;
+@property(nonatomic,strong) ShoppingListModel *shoppingListModel;
+
 - (IBAction)toolRepeatCancelACtion:(id)sender;
 
 - (IBAction)toolRepeatDoneAction:(UIBarButtonItem *)sender;
