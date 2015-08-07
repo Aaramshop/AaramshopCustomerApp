@@ -49,7 +49,7 @@
     isSearching=NO;
     appDeleg = APP_DELEGATE;
     self.automaticallyAdjustsScrollViewInsets = NO;
-
+	self.navigationItem.hidesBackButton = YES;
     tblVwCategory = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49-64) style:UITableViewStyleGrouped];
     tblVwCategory.delegate = self;
     tblVwCategory.dataSource = self;
