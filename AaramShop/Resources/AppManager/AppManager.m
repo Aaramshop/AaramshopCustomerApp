@@ -611,7 +611,10 @@ void MyAddressBookExternalChangeCallback (
 				CartProductModel *cartProductSaved = [filteredIds objectAtIndex:0];
 				NSInteger index= [cartModel.arrProductDetails indexOfObject:cartProductSaved];
 				[cartModel.arrProductDetails replaceObjectAtIndex:index withObject:cartProduct];
-				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
+				[cartArray removeObjectAtIndex:indexCart];
+				[cartArray insertObject:cartModel atIndex:0];
+//				[cartArray addObject:cartModel];
+//				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
 				if(!isAdd)
 				{
 					if([cartProduct.strCount integerValue]== 0)
@@ -628,7 +631,10 @@ void MyAddressBookExternalChangeCallback (
 			else
 			{
 				[cartModel.arrProductDetails addObject:cartProduct];
-				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
+				[cartArray removeObjectAtIndex:indexCart];
+				[cartArray insertObject:cartModel atIndex:0];
+//				[cartArray addObject:cartModel];
+//				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
 			}
 		}
 		else
@@ -638,7 +644,8 @@ void MyAddressBookExternalChangeCallback (
 			cartModel.store_name		= [store objectForKey:kStore_name];
 			cartModel.store_image		= [store objectForKey:kStore_image];
 			cartModel.arrProductDetails = [[NSMutableArray alloc] initWithObjects:cartProduct, nil];
-			[cartArray addObject:cartModel];
+			[cartArray insertObject:cartModel atIndex:0];
+//			[cartArray addObject:cartModel];
 		}
 	}
 	else

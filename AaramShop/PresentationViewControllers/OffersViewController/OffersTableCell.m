@@ -37,7 +37,7 @@
 		[imgBrandLogo sd_setImageWithURL:[NSURL URLWithString:offers.product_image] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 			
 		}];
-		
+		lblViewDetails.hidden= YES;
 	}
 	else if([offers.offerType isEqualToString:@"4"])//Combo Offer
 	{
@@ -60,6 +60,7 @@
 		[imgBrandLogo sd_setImageWithURL:[NSURL URLWithString:offers.offerImage] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 			
 		}];
+		lblViewDetails.hidden = YES;
 	}
 	else if([offers.offerType isEqualToString:@"6"])//Custom Offer
 	{
@@ -70,6 +71,7 @@
 		[imgBrandLogo sd_setImageWithURL:[NSURL URLWithString:offers.offerImage] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 			
 		}];
+		lblViewDetails.hidden = YES;
 	}
 	if ([offers.strCount intValue]<=0) {
 		btnRemove.enabled=NO;

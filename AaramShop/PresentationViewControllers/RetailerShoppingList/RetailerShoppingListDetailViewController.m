@@ -421,6 +421,7 @@
 	cart.product_price			=	product.product_price;
 	return cart;
 }
+
 -(void)btnDoneClicked
 {
     if ([strTotalAvailProductPrice integerValue]==0)
@@ -429,35 +430,25 @@
         return;
     }
     
-    
-	NSMutableArray *arrCartProducts = [[NSMutableArray	 alloc]init];
-
 	if ([arrProductList count]>0)
 	{
-		NSInteger strAmount = 0;
 		for (ProductsModel *productModel in arrProductList) {
 			if([productModel.isAvailable intValue] == 1)
 			{
-				[arrCartProducts addObject:[self getCartProductFromProduct:productModel]];
-				if([productModel.offer_type integerValue]>0)
-				{
-					strAmount = strAmount + ([productModel.strCount integerValue] * [productModel.offer_price integerValue]);
-				}
-				else
-				{
-					strAmount = strAmount + ([productModel.strCount integerValue] * [productModel.product_price integerValue]);
-				}
+				[AppManager AddOrRemoveFromCart:[self getCartProductFromProduct:productModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES];
 			}
 		}
-		
-		PaymentViewController *paymentScreen	= (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
-		paymentScreen.strStore_Id							= appDeleg.objStoreModel.store_id;
-		paymentScreen.strStore_image					= appDeleg.objStoreModel.store_image;
-		paymentScreen.strStore_name					=	appDeleg.objStoreModel.store_name;
-		paymentScreen.strTotalPrice						= [NSString stringWithFormat:@"%ld",(long)strAmount];
-		paymentScreen.arrSelectedProducts			= arrCartProducts;
-		paymentScreen.fromCart							=	NO;
-		[self.navigationController pushViewController:paymentScreen animated:YES];
+		CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+		[self.navigationController pushViewController:cartView animated:YES];
+
+//		PaymentViewController *paymentScreen	= (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewScene"];
+//		paymentScreen.strStore_Id							= appDeleg.objStoreModel.store_id;
+//		paymentScreen.strStore_image					= appDeleg.objStoreModel.store_image;
+//		paymentScreen.strStore_name					=	appDeleg.objStoreModel.store_name;
+//		paymentScreen.strTotalPrice						= [NSString stringWithFormat:@"%ld",(long)strAmount];
+//		paymentScreen.arrSelectedProducts			= arrCartProducts;
+//		paymentScreen.fromCart							=	NO;
+//		[self.navigationController pushViewController:paymentScreen animated:YES];
 		
 	}
 }
