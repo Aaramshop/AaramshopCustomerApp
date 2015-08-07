@@ -1182,6 +1182,12 @@
 		6B8EB31F1B27137600402CFC /* CategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB31E1B27137600402CFC /* CategoryView.xib */; };
 		6B8EB3211B27157800402CFC /* SubCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B8EB3201B27157800402CFC /* SubCategoryView.xib */; };
 		6B8EB3251B271C2500402CFC /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8EB3241B271C2500402CFC /* CategoryViewController.m */; };
+		6B97C3461B749D6200D469CD /* bgCameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B97C3401B749D6200D469CD /* bgCameraIcon.png */; };
+		6B97C3471B749D6200D469CD /* bgCameraIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B97C3411B749D6200D469CD /* bgCameraIcon@2x.png */; };
+		6B97C3481B749D6200D469CD /* bgCameraIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B97C3421B749D6200D469CD /* bgCameraIcon@3x.png */; };
+		6B97C3491B749D6200D469CD /* bgImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B97C3431B749D6200D469CD /* bgImage.jpg */; };
+		6B97C34A1B749D6200D469CD /* bgImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B97C3441B749D6200D469CD /* bgImage@2x.jpg */; };
+		6B97C34B1B749D6200D469CD /* bgImage@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B97C3451B749D6200D469CD /* bgImage@3x.jpg */; };
 		6B9FF9651B7217A9004A32B6 /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B9FF9641B7217A9004A32B6 /* FeedbackViewController.xib */; };
 		6B9FF9701B72255E004A32B6 /* popupCloseBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B9FF9671B72255E004A32B6 /* popupCloseBtn.png */; };
 		6B9FF9711B72255E004A32B6 /* popupCloseBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B9FF9681B72255E004A32B6 /* popupCloseBtn@2x.png */; };
@@ -3003,6 +3009,12 @@
 		6B8EB3201B27157800402CFC /* SubCategoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubCategoryView.xib; sourceTree = "<group>"; };
 		6B8EB3231B271C2500402CFC /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
 		6B8EB3241B271C2500402CFC /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		6B97C3401B749D6200D469CD /* bgCameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgCameraIcon.png; sourceTree = "<group>"; };
+		6B97C3411B749D6200D469CD /* bgCameraIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgCameraIcon@2x.png"; sourceTree = "<group>"; };
+		6B97C3421B749D6200D469CD /* bgCameraIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgCameraIcon@3x.png"; sourceTree = "<group>"; };
+		6B97C3431B749D6200D469CD /* bgImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bgImage.jpg; sourceTree = "<group>"; };
+		6B97C3441B749D6200D469CD /* bgImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bgImage@2x.jpg"; sourceTree = "<group>"; };
+		6B97C3451B749D6200D469CD /* bgImage@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bgImage@3x.jpg"; sourceTree = "<group>"; };
 		6B9FF9641B7217A9004A32B6 /* FeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackViewController.xib; sourceTree = "<group>"; };
 		6B9FF9671B72255E004A32B6 /* popupCloseBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = popupCloseBtn.png; sourceTree = "<group>"; };
 		6B9FF9681B72255E004A32B6 /* popupCloseBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popupCloseBtn@2x.png"; sourceTree = "<group>"; };
@@ -6739,6 +6751,19 @@
 			path = CategoryViewController;
 			sourceTree = "<group>";
 		};
+		6B97C33F1B749D6200D469CD /* Prescription_New_Images */ = {
+			isa = PBXGroup;
+			children = (
+				6B97C3401B749D6200D469CD /* bgCameraIcon.png */,
+				6B97C3411B749D6200D469CD /* bgCameraIcon@2x.png */,
+				6B97C3421B749D6200D469CD /* bgCameraIcon@3x.png */,
+				6B97C3431B749D6200D469CD /* bgImage.jpg */,
+				6B97C3441B749D6200D469CD /* bgImage@2x.jpg */,
+				6B97C3451B749D6200D469CD /* bgImage@3x.jpg */,
+			);
+			path = Prescription_New_Images;
+			sourceTree = "<group>";
+		};
 		6B9FF9661B72255E004A32B6 /* RatingScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -6786,6 +6811,7 @@
 			isa = PBXGroup;
 			children = (
 				6BA2621D1B732E7500F520E4 /* cameraBgImage-568h@2x.jpg */,
+				6B97C33F1B749D6200D469CD /* Prescription_New_Images */,
 				6BA2621E1B732E7500F520E4 /* cameraBgImage.jpg */,
 				6BA2621F1B732E7500F520E4 /* cameraBgImage@2x.jpg */,
 				6BA262201B732E7500F520E4 /* cameraBgImage@3x.jpg */,
@@ -7615,6 +7641,7 @@
 				3682098A1B1C46FA002AA93F /* israel.png in Resources */,
 				3682090F1B1C46FA002AA93F /* american samoa.png in Resources */,
 				36907AB71B5BCC720017A504 /* addBtnCircleGrey@2x.png in Resources */,
+				6B97C3471B749D6200D469CD /* bgCameraIcon@2x.png in Resources */,
 				6BE4C9141B0351FD00EF1EDB /* mapPopupBox@2x.png in Resources */,
 				368209761B1C46FA002AA93F /* guam.png in Resources */,
 				6BF1E3311B3005BF0078DD2F /* homeDetailAmountSecondBox.png in Resources */,
@@ -7678,6 +7705,7 @@
 				6B6F2EC51B664AA200B16CD1 /* locationCircleStick@2x.png in Resources */,
 				368209091B1C46FA002AA93F /* afghanistan.png in Resources */,
 				36820A0E1B1C46FA002AA93F /* sri lanka.png in Resources */,
+				6B97C34A1B749D6200D469CD /* bgImage@2x.jpg in Resources */,
 				3682099C1B1C46FA002AA93F /* Korea, South.png in Resources */,
 				36820A391B1C46FA002AA93F /* virgin islands-uk.png in Resources */,
 				6B83A0DD1B53E81300A00520 /* shoppingListBgImage.png in Resources */,
@@ -7946,6 +7974,7 @@
 				6BA82A971B57D73C0014CCEF /* paymentNotificationBox@2x.png in Resources */,
 				36D119001B6C9A290013C84B /* scanCode@2x.png in Resources */,
 				3682092E1B1C46FA002AA93F /* British Virgin Islands.png in Resources */,
+				6B97C3461B749D6200D469CD /* bgCameraIcon.png in Resources */,
 				6B8EB2E31B26F95000402CFC /* homeDeatilsWhiteArrow.png in Resources */,
 				36820A121B1C46FA002AA93F /* swaziland.png in Resources */,
 				6BFFF9501B0236B800BB2B62 /* tabBarHomeIconActive@3x.png in Resources */,
@@ -8162,6 +8191,7 @@
 				368209781B1C46FA002AA93F /* guatemala.png in Resources */,
 				368209DB1B1C46FA002AA93F /* paraguay.png in Resources */,
 				6BEABF001B68B8D000398164 /* favorateIconActive.png in Resources */,
+				6B97C3491B749D6200D469CD /* bgImage.jpg in Resources */,
 				3682095C1B1C46FA002AA93F /* Ellipso (Mobile Satellite service).png in Resources */,
 				3682099B1B1C46FA002AA93F /* Korea, North.png in Resources */,
 				6BD2D3091B284C8900EC6E54 /* homeChocklateIcon.png in Resources */,
@@ -8200,6 +8230,7 @@
 				6B6098C01B39647400277D03 /* chatAaramShopIcon@2x.png in Resources */,
 				6B12DCD91AF2A09700245209 /* singleBox.png in Resources */,
 				6BA82A931B57D73C0014CCEF /* circleCrossIcon.png in Resources */,
+				6B97C3481B749D6200D469CD /* bgCameraIcon@3x.png in Resources */,
 				274A5DBB1B05C88B009112B5 /* chatLoadMessages@2x.png in Resources */,
 				6BB50DC81B32AAB300990161 /* locationPopupOp1@3x.png in Resources */,
 				36BE5A941B53C52A0079DAE3 /* dispatchedIconActive@2x.png in Resources */,
@@ -8419,6 +8450,7 @@
 				2CF41C8E1B60F9C200F02527 /* calenderThirdBox.png in Resources */,
 				276FFF221B0DADC200071B98 /* preferencesOffersIcon@3x.png in Resources */,
 				368209C21B1C46FA002AA93F /* mozambique.png in Resources */,
+				6B97C34B1B749D6200D469CD /* bgImage@3x.jpg in Resources */,
 				274A5D041B05C4AA009112B5 /* README.txt in Resources */,
 				6BD2D33B1B28A66500EC6E54 /* homeDetailsBeverageIconInactive.png in Resources */,
 				36D8C4C11B3996A200C255EE /* locationIconRed.png in Resources */,
