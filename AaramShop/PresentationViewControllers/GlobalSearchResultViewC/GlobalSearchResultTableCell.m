@@ -61,18 +61,11 @@
 		lblLine.hidden = NO;
 		lblOfferPrice.hidden = NO;
 		lblOfferPrice.text = [NSString stringWithFormat:@"₹%@",objProductsModel.offer_price];
-		if(self.fromCart)
-		{
-			strCount = [AppManager getCountOfProduct:objProductsModel.offer_id withOfferType:objProductsModel.offer_type forStore_id:self.store_id];
-		}
-		else
-		{
-			strCount = objProductsModel.strCount;
-		}
+		strCount = [AppManager getCountOfProduct:objProductsModel.offer_id withOfferType:objProductsModel.offer_type forStore_id:objProductsModel.store_id];
 	}
 	else
 	{
-		strCount = [AppManager getCountOfProduct:objProductsModel.product_id withOfferType:objProductsModel.offer_type forStore_id:self.store_id];
+		strCount = [AppManager getCountOfProduct:objProductsModel.product_id withOfferType:objProductsModel.offer_type forStore_id:objProductsModel.store_id];
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	if ([strCount intValue]<=0) {

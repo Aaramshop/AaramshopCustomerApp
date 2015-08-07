@@ -715,7 +715,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 /*
 
-Printing description of responseObject:
+
 {
     categories =     (
                       {
@@ -723,11 +723,11 @@ Printing description of responseObject:
                                                        {
                                                            "chat_username" = 14351391776712;
                                                            "home_delivery" = 1;
-                                                           "is_favorite" = 0;
+                                                           "is_favorite" = 1;
                                                            "is_home_store" = 1;
                                                            "is_open" = 0;
                                                            "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
-                                                           "store_category_id" = 3;
+                                                           "store_category_id" = 2;
                                                            "store_category_name" = Grocery;
                                                            "store_id" = 9206;
                                                            "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/S1435139177.png";
@@ -736,34 +736,34 @@ Printing description of responseObject:
                                                            "store_mobile" = 8377944952;
                                                            "store_name" = "Sabka Bazar";
                                                            "store_rating" = 5;
-                                                           "total_orders" = 7;
+                                                           "total_orders" = 24;
                                                        },
                                                        {
                                                            "chat_username" = 14351708254740;
-                                                           "home_delivery" = 0;
-                                                           "is_favorite" = 0;
+                                                           "home_delivery" = 1;
+                                                           "is_favorite" = 1;
                                                            "is_home_store" = 1;
                                                            "is_open" = 0;
                                                            "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
-                                                           "store_category_id" = 3;
+                                                           "store_category_id" = 2;
                                                            "store_category_name" = Grocery;
                                                            "store_id" = 9212;
                                                            "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/P1435170825.png";
-                                                           "store_latitude" = "28.516046";
-                                                           "store_longitude" = "77.373550";
+                                                           "store_latitude" = "";
+                                                           "store_longitude" = "";
                                                            "store_mobile" = 9582150033;
                                                            "store_name" = Prateek;
                                                            "store_rating" = 5;
-                                                           "total_orders" = 3;
+                                                           "total_orders" = 5;
                                                        },
                                                        {
                                                            "chat_username" = 14369559578164;
                                                            "home_delivery" = 1;
-                                                           "is_favorite" = 0;
+                                                           "is_favorite" = 1;
                                                            "is_home_store" = 1;
                                                            "is_open" = 1;
                                                            "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
-                                                           "store_category_id" = 3;
+                                                           "store_category_id" = 2;
                                                            "store_category_name" = Grocery;
                                                            "store_id" = 9267;
                                                            "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/M1436955957.png";
@@ -773,46 +773,28 @@ Printing description of responseObject:
                                                            "store_name" = "Malik Stores ";
                                                            "store_rating" = 5;
                                                            "total_orders" = 0;
+                                                       },
+                                                       {
+                                                           "chat_username" = 14377229557840;
+                                                           "home_delivery" = 1;
+                                                           "is_favorite" = 0;
+                                                           "is_home_store" = 1;
+                                                           "is_open" = 0;
+                                                           "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+                                                           "store_category_id" = 2;
+                                                           "store_category_name" = Grocery;
+                                                           "store_id" = 9271;
+                                                           "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/A1437722955.png";
+                                                           "store_latitude" = "28.515737";
+                                                           "store_longitude" = "77.373311";
+                                                           "store_mobile" = 7811806364;
+                                                           "store_name" = aaram132;
+                                                           "store_rating" = 5;
+                                                           "total_orders" = 1;
                                                        }
                                                        );
                           "recommended_stores" =             (
-                                                              {
-                                                                  "chat_username" = 1435156460661;
-                                                                  "home_delivery" = 1;
-                                                                  "is_favorite" = 0;
-                                                                  "is_home_store" = 0;
-                                                                  "is_open" = 1;
-                                                                  "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
-                                                                  "store_category_id" = 3;
-                                                                  "store_category_name" = Grocery;
-                                                                  "store_id" = 3706;
-                                                                  "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/";
-                                                                  "store_latitude" = "28.519364";
-                                                                  "store_longitude" = "77.38737";
-                                                                  "store_mobile" = 1204325682;
-                                                                  "store_name" = "Big Shop";
-                                                                  "store_rating" = 5;
-                                                                  "total_orders" = 0;
-                                                              },
-                                                              {
-                                                                  "chat_username" = 14351410003250;
-                                                                  "home_delivery" = 1;
-                                                                  "is_favorite" = 0;
-                                                                  "is_home_store" = 0;
-                                                                  "is_open" = 0;
-                                                                  "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
-                                                                  "store_category_id" = 3;
-                                                                  "store_category_name" = Grocery;
-                                                                  "store_id" = 9207;
-                                                                  "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/A1435141000.png";
-                                                                  "store_latitude" = "28.516395";
-                                                                  "store_longitude" = "77.372966";
-                                                                  "store_mobile" = 8744944068;
-                                                                  "store_name" = "Arbab Ahmed Khan";
-                                                                  "store_rating" = 5;
-                                                                  "total_orders" = 0;
-                                                              }
-                                                              );
+                          );
                           "shopping_store" =             (
                                                           {
                                                               "chat_username" = 14351571438319;
@@ -821,7 +803,7 @@ Printing description of responseObject:
                                                               "is_home_store" = 0;
                                                               "is_open" = 1;
                                                               "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
-                                                              "store_category_id" = 3;
+                                                              "store_category_id" = 2;
                                                               "store_category_name" = Grocery;
                                                               "store_id" = 69;
                                                               "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/01-30-46894064714.jpg";
@@ -830,7 +812,7 @@ Printing description of responseObject:
                                                               "store_mobile" = 1126166277;
                                                               "store_name" = "City Stores";
                                                               "store_rating" = 5;
-                                                              "total_orders" = 2;
+                                                              "total_orders" = 32;
                                                           }
                                                           );
                           "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/1-Grocery.png";
@@ -839,16 +821,22 @@ Printing description of responseObject:
                           "store_main_category_name" = "My Stores";
                       },
                       {
+                          "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/1-Grocery.png";
+                          "store_main_category_banner_2" = "";
+                          "store_main_category_id" = 2;
+                          "store_main_category_name" = Grocery;
+                      },
+                      {
                           "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/3-Personal Care.png";
                           "store_main_category_banner_2" = "";
-                          "store_main_category_id" = 1;
+                          "store_main_category_id" = 7;
                           "store_main_category_name" = "Personal Care";
                       },
                       {
-                          "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/1-Grocery.png";
+                          "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/2-Medical.png";
                           "store_main_category_banner_2" = "";
-                          "store_main_category_id" = 3;
-                          "store_main_category_name" = Grocery;
+                          "store_main_category_id" = 10;
+                          "store_main_category_name" = Medicine;
                       }
                       );
     deviceId = 3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0;
@@ -856,9 +844,9 @@ Printing description of responseObject:
     message = "Store Category Related Data!";
     "page_no" = 0;
     status = 1;
+    "total_page" = 1;
     userId = 8;
 }
-(lldb) 
 
 
 

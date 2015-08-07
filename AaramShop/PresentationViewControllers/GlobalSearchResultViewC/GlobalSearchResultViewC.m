@@ -216,10 +216,18 @@
 	objProductsModel.offer_id=[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];
 	objProductsModel.offer_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_price]];
 	objProductsModel.offer_type = [NSString stringWithFormat:@"%d",[[dictProducts objectForKey:@"offer_type"] intValue]];
-	objProductsModel.strCount = @"0";
-	
+	if([objProductsModel.offer_type integerValue]>0)
+	{
+		objProductsModel.strCount = [AppManager getCountOfProduct:objProductsModel.offer_id withOfferType:objProductsModel.offer_type forStore_id:objProductsModel.store_id];
+	}
+	else
+	{
+		objProductsModel.strCount = [AppManager getCountOfProduct:objProductsModel.product_id withOfferType:objProductsModel.offer_type forStore_id:objProductsModel.store_id];
+	}
+
 	return objProductsModel;
 }
+
 #pragma mark - to refreshing a view
 
 -(void)showFooterLoadMoreActivityIndicator:(BOOL)show{
@@ -365,7 +373,7 @@
 		priceValue+=[objProductsModel.product_price intValue];
 	}
 	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
-	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES];
+	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:objProductsModel.store_id,kStore_id,objProductsModel.store_name,kStore_name,objProductsModel.store_image,kStore_image, nil] add:YES];
 	
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -389,7 +397,7 @@
 		priceValue-=[objProductsModel.product_price intValue];
 	}
 	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
-	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:NO];
+	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:objProductsModel.store_id,kStore_id,objProductsModel.store_name,kStore_name,objProductsModel.store_image,kStore_image, nil] add:NO];
 	
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];

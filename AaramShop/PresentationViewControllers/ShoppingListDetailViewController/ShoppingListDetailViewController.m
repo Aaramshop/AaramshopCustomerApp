@@ -104,7 +104,7 @@
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-    [dict setObject:_strShoppingListID forKey:@"shoppingListId"];
+    [dict setObject:_shoppingListModel.shoppingListId forKey:@"shoppingListId"];
     [dict setObject:@"0" forKey:@"page_no"];
     
     if (selectedStoreModel)
@@ -138,7 +138,7 @@
     titleView.textAlignment = NSTextAlignmentCenter;
     titleView.textColor = [UIColor whiteColor];
     
-    titleView.text = _strShoppingListName;
+    titleView.text = _shoppingListModel.shoppingListName;
     
     titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
@@ -600,7 +600,7 @@
 {
     ShoppingListShareViewController *shoppingListShareView = (ShoppingListShareViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListShareView"];
     
-    shoppingListShareView.strShoppingListId = _strShoppingListID;
+    shoppingListShareView.strShoppingListId = _shoppingListModel.shoppingListId;
     
     [self.navigationController pushViewController:shoppingListShareView animated:YES];
 }
@@ -612,7 +612,7 @@
     shoppingListAddMore.arrProductList = [[NSMutableArray alloc]init];
     [shoppingListAddMore.arrProductList addObjectsFromArray:arrProductList];
     
-    shoppingListAddMore.strShoppingListId = _strShoppingListID;
+    shoppingListAddMore.strShoppingListId = _shoppingListModel.shoppingListId;
     
     
     [self.navigationController pushViewController:shoppingListAddMore animated:YES];
@@ -630,7 +630,7 @@
     {
         ShoppingListChooseStoreViewController *shoppingListChooseStoreView = (ShoppingListChooseStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListChooseStoreView"];
         
-        shoppingListChooseStoreView.strShoppingListId = _strShoppingListID;
+        shoppingListChooseStoreView.strShoppingListId = _shoppingListModel.shoppingListId;
         
         shoppingListChooseStoreView.refreshShoppingList = ^(ShoppingListChooseStoreModel *chooseStoreModel)
         {
@@ -663,7 +663,8 @@
         ShoppingListCalenderViewController *shoppingListCalenderView = (ShoppingListCalenderViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListCalenderView"];
         
         shoppingListCalenderView.storeId = selectedStoreModel.store_id;
-        shoppingListCalenderView.shoppingListId=_strShoppingListID;
+        shoppingListCalenderView.shoppingListModel=_shoppingListModel;
+        
         [self.navigationController pushViewController:shoppingListCalenderView animated:YES];
     }
 }
@@ -875,7 +876,7 @@
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-    [dict setObject:_strShoppingListID forKey:@"shoppingListId"];
+    [dict setObject:_shoppingListModel.shoppingListId forKey:@"shoppingListId"];
     [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:@"page_no"];
     
     if (selectedStoreModel)
