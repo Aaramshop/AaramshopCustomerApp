@@ -30,7 +30,7 @@
 	strDispached = @"";
 	strCompleted = @"";
     self.sideBar = [Utils createLeftBarWithDelegate:self];
-    [self setNavigationBar];
+	
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
     aaramShop_ConnectionManager.delegate = self;
@@ -45,6 +45,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:YES];
+	 [self setNavigationBar];
 	[self callWebServiceToGetOrderHistory];
 }
 - (void)refreshTable
@@ -125,18 +126,23 @@
 	[rightContainer addSubview:btnCart];
 	
 	UIButton *badgeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-	badgeBtn.frame = CGRectMake(16, 5, 21, 21);
+	badgeBtn.frame = CGRectMake(16, 5, 23, 23);
 	[badgeBtn addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
 	[badgeBtn setBackgroundImage:[UIImage imageNamed:@"addToCardNoBox"] forState:UIControlStateNormal];
 	
-	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+5 , 10, 10, 8)];
-	[lab setFont:[UIFont boldSystemFontOfSize:8.0f]];
+	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+1	, 13, 20, 8)];
+	lab.font = [UIFont fontWithName:kRobotoRegular size:9];
 	[lab setTextAlignment:NSTextAlignmentCenter];
 	[lab setTextColor:[UIColor whiteColor]];
 	[lab setBackgroundColor:[UIColor clearColor]];
 	NSInteger count = [AppManager getCountOfProductsInCart];
 	if (count > 0) {
-		lab.text = [NSString stringWithFormat:@"%ld",(long)count];
+		gAppManager.intCount = count;
+		if (count>99) {
+			lab.text = @"99+";
+		}
+		else
+			lab.text = [NSString stringWithFormat:@"%ld",(long)count];
 		[rightContainer addSubview:badgeBtn];
 		[rightContainer addSubview:lab];
 	}

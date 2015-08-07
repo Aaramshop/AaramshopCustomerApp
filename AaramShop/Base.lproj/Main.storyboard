@@ -5860,8 +5860,8 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="owd-6E-OdS">
-                                <rect key="frame" x="0.0" y="24" width="320" height="500"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="owd-6E-OdS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TotalPriceCell" rowHeight="130" id="bkf-A0-Pye" customClass="TotalPriceTableCell">
@@ -5994,9 +5994,9 @@ Your family will be able to add products of their choice and create a master sho
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter Coupon Code" minimumFontSize="17" background="applyCouponCodeBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ite-A8-jbw">
-                                                    <rect key="frame" x="10" y="5" width="205" height="39"/>
+                                                    <rect key="frame" x="10" y="5" width="204" height="39"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="39" id="N8n-Ue-xzf"/>
+                                                        <constraint firstAttribute="height" constant="39" id="fL5-0R-8uP"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -6005,9 +6005,9 @@ Your family will be able to add products of their choice and create a master sho
                                                     </connections>
                                                 </textField>
                                                 <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYJ-Ft-4yH">
-                                                    <rect key="frame" x="215" y="5" width="96" height="39"/>
+                                                    <rect key="frame" x="214" y="5" width="96" height="39"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="39" id="fFu-B1-2fC"/>
+                                                        <constraint firstAttribute="height" constant="39" id="cDO-nZ-MaA"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                     <state key="normal" title="Check Validity" backgroundImage="checkAvialibilityBox.png">
@@ -6016,12 +6016,12 @@ Your family will be able to add products of their choice and create a master sho
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="leading" secondItem="wYJ-Ft-4yH" secondAttribute="leading" constant="-205" id="4ML-49-Ico"/>
-                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="top" secondItem="2Q2-Ba-35b" secondAttribute="topMargin" constant="-3" id="QRl-FY-2XG"/>
-                                                <constraint firstItem="wYJ-Ft-4yH" firstAttribute="top" secondItem="2Q2-Ba-35b" secondAttribute="topMargin" constant="-3" id="RAl-1c-Gr9"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wYJ-Ft-4yH" secondAttribute="trailing" constant="1" id="lQJ-C8-ztF"/>
-                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="leading" secondItem="2Q2-Ba-35b" secondAttribute="leadingMargin" constant="2" id="yrh-dM-RZf"/>
-                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="trailing" secondItem="wYJ-Ft-4yH" secondAttribute="trailing" constant="-96" id="zHk-yJ-ydQ"/>
+                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="top" secondItem="2Q2-Ba-35b" secondAttribute="topMargin" constant="-3" id="Aoe-mV-DZz"/>
+                                                <constraint firstAttribute="trailing" secondItem="wYJ-Ft-4yH" secondAttribute="trailing" constant="10" id="Uu3-th-iG6"/>
+                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="leading" secondItem="2Q2-Ba-35b" secondAttribute="leading" constant="10" id="XwC-1r-fcM"/>
+                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="trailing" secondItem="wYJ-Ft-4yH" secondAttribute="trailing" constant="-96" id="Ypy-hV-abK"/>
+                                                <constraint firstItem="Ite-A8-jbw" firstAttribute="leading" secondItem="wYJ-Ft-4yH" secondAttribute="leading" constant="-204" id="epl-SG-iOM"/>
+                                                <constraint firstItem="wYJ-Ft-4yH" firstAttribute="top" secondItem="2Q2-Ba-35b" secondAttribute="topMargin" constant="-3" id="zGL-MN-jxw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -6173,20 +6173,11 @@ Your family will be able to add products of their choice and create a master sho
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymentNotificationBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="QQJ-n0-a06">
                                         <rect key="frame" x="0.0" y="0.0" width="308" height="112"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-9y-Ii0">
-                                        <rect key="frame" x="9" y="29" width="290" height="55"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="55" id="Tqf-CP-WST"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOS-7K-vEm">
                                         <rect key="frame" x="275" y="3" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="HRP-Ah-uWc"/>
-                                            <constraint firstAttribute="height" constant="30" id="ILZ-C0-ES5"/>
+                                            <constraint firstAttribute="width" constant="30" id="LDD-l2-zSL"/>
+                                            <constraint firstAttribute="height" constant="30" id="UJP-WF-UT3"/>
                                         </constraints>
                                         <state key="normal" image="circleCrossIcon.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -6195,20 +6186,26 @@ Your family will be able to add products of their choice and create a master sho
                                             <action selector="btnCrossClicked:" destination="7Fv-Uz-q9I" eventType="touchUpInside" id="eFk-8Y-y5L"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-9y-Ii0">
+                                        <rect key="frame" x="9" y="29" width="290" height="55"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="QQJ-n0-a06" secondAttribute="trailing" id="0AI-xh-cXF"/>
-                                    <constraint firstAttribute="trailing" secondItem="vwv-9y-Ii0" secondAttribute="trailing" constant="9" id="FXG-cN-Muq"/>
-                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="29" id="H5D-7u-T9l"/>
+                                    <constraint firstAttribute="height" constant="112" id="78n-fw-XZ4"/>
+                                    <constraint firstItem="bOS-7K-vEm" firstAttribute="trailing" secondItem="QQJ-n0-a06" secondAttribute="trailing" constant="-3" id="8yz-NA-BGn"/>
+                                    <constraint firstItem="bOS-7K-vEm" firstAttribute="top" secondItem="QQJ-n0-a06" secondAttribute="top" constant="3" id="B63-XG-Ajn"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="trailing" secondItem="QQJ-n0-a06" secondAttribute="trailing" constant="-9" id="CpX-CM-BA2"/>
                                     <constraint firstItem="QQJ-n0-a06" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" id="KYb-sS-3OW"/>
-                                    <constraint firstAttribute="trailing" secondItem="bOS-7K-vEm" secondAttribute="trailing" constant="3" id="Wbw-Ud-Uue"/>
-                                    <constraint firstItem="bOS-7K-vEm" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="3" id="XzW-VU-J6r"/>
-                                    <constraint firstAttribute="width" constant="308" id="csR-Qz-iO2"/>
-                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" constant="9" id="gr4-bh-J5N"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="bottom" secondItem="QQJ-n0-a06" secondAttribute="bottom" constant="-28" id="bTI-I6-A7u"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="top" secondItem="QQJ-n0-a06" secondAttribute="top" constant="29" id="fDt-Qa-Hff"/>
                                     <constraint firstItem="QQJ-n0-a06" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" id="huH-yr-CsN"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="leading" secondItem="QQJ-n0-a06" secondAttribute="leading" constant="9" id="nbf-pu-T2Z"/>
                                     <constraint firstAttribute="bottom" secondItem="QQJ-n0-a06" secondAttribute="bottom" id="oy1-u3-9th"/>
-                                    <constraint firstAttribute="height" constant="112" id="rLk-lb-rCq"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qn3-R3-ILi">
@@ -6230,15 +6227,15 @@ Your family will be able to add products of their choice and create a master sho
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="owd-6E-OdS" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leading" id="MEN-a0-fbd"/>
-                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leadingMargin" constant="-10" id="Mbp-dv-dFp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="d9L-aZ-cwB" secondAttribute="trailing" constant="-10" id="OIu-Ix-Zjn"/>
                             <constraint firstItem="qn3-R3-ILi" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leading" id="SUE-p0-oTB"/>
+                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="10" id="Tdp-OM-7E1"/>
                             <constraint firstAttribute="trailing" secondItem="qn3-R3-ILi" secondAttribute="trailing" id="V5b-zF-QGA"/>
-                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="10" id="dKY-4T-Pob"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="d9L-aZ-cwB" secondAttribute="trailing" constant="-10" id="kYU-H1-sVG"/>
-                            <constraint firstItem="owd-6E-OdS" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" constant="4" id="oAF-bZ-j4Y"/>
+                            <constraint firstItem="owd-6E-OdS" firstAttribute="top" secondItem="5gX-zx-IvN" secondAttribute="bottom" id="Z0B-t7-fj8"/>
+                            <constraint firstItem="qn3-R3-ILi" firstAttribute="bottom" secondItem="owd-6E-OdS" secondAttribute="bottom" constant="44" id="aE8-6H-f3S"/>
                             <constraint firstAttribute="trailing" secondItem="owd-6E-OdS" secondAttribute="trailing" id="rPQ-gD-RKL"/>
                             <constraint firstItem="wIn-xs-BLK" firstAttribute="top" secondItem="qn3-R3-ILi" secondAttribute="bottom" id="rwu-wp-Lvc"/>
-                            <constraint firstItem="owd-6E-OdS" firstAttribute="bottom" secondItem="qn3-R3-ILi" secondAttribute="bottom" constant="-44" id="wZB-Kp-YUi"/>
+                            <constraint firstItem="d9L-aZ-cwB" firstAttribute="leading" secondItem="GUC-0e-h8w" secondAttribute="leadingMargin" constant="-10" id="xRu-7I-kft"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
