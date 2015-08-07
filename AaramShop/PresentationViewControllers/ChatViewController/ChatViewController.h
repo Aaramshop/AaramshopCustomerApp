@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MESegmentedControl.h"
+#import "CartViewController.h"
 @interface ChatViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,CDRTranslucentSideBarDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tViewChat;
 @property (weak, nonatomic) IBOutlet MESegmentedControl *segChatSelection;

@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ShoppingListCell.h"
-
+#import "CartViewController.h"
 @interface ShoppingListViewController : UIViewController<CDRTranslucentSideBarDelegate,AaramShop_ConnectionManager_Delegate,ShoppingListCellDelegate>
 {
     __weak IBOutlet UITableView *tblView;

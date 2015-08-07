@@ -484,9 +484,8 @@
 	UIBarButtonItem *barBtnFav = [[UIBarButtonItem alloc] initWithCustomView:btnFav];
 
 	
-    NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack,barBtnFav, nil];
-    self.navigationItem.leftBarButtonItems = arrBtnsLeft;
-    
+	
+	
     UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon"];
     
     UIImage *imgSearch = [UIImage imageNamed:@"searchIcon"];
@@ -518,16 +517,17 @@
 	[btnBroadcast addTarget:self action:@selector(btnBroadcastClicked) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *barBtnBroadcast = [[UIBarButtonItem alloc] initWithCustomView:btnBroadcast];
 
-	
+	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack,barBtnFav, nil];
+	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
     NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
     self.navigationItem.rightBarButtonItems = arrBtnsRight;
     
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        
-        UIImage *image = [UIImage imageNamed:@"navigation.png"];
-        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    }
+//    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
+//    {
+//        
+//        UIImage *image = [UIImage imageNamed:@"navigation.png"];
+//        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+//    }
 }
 -(void)btnBackClicked
 {

@@ -88,22 +88,7 @@
 	}else{
 		[self logout:nil];
 	}
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    
-//    if ([[NSUserDefaults standardUserDefaults] valueForKey:kUserId] && [[NSUserDefaults standardUserDefaults] valueForKey:kIsLoggedIn]) {
-//        
-//        navController = [storyboard instantiateViewControllerWithIdentifier:@"tabbarScreen"];
-//        navController.delegate = self;
-//        self.window.rootViewController = navController;
-//    }
-//    else
-//    {
-//        navController = [storyboard instantiateViewControllerWithIdentifier:@"optionNav"];
-//        navController.delegate = self;
-//        self.window.rootViewController = navController;
-//    }
-//
-//    [self.window makeKeyAndVisible];
+
 	
     return YES;
 }

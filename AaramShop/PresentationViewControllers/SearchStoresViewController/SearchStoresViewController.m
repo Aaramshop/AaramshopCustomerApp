@@ -48,7 +48,7 @@
     [searchBarMain becomeFirstResponder];
     
     toolbarbackground = [[UIToolbar alloc] initWithFrame:self.view.frame];
-    toolbarbackground.barStyle = UIBarStyleBlack;
+    toolbarbackground.barStyle = UIBarStyleDefault;
     [toolbarbackground setAlpha:0.0];
     
     
@@ -206,7 +206,14 @@
 {
     return 45;
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return 10;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+	return CGFLOAT_MIN;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return arrSearchResult.count;

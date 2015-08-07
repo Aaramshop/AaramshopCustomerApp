@@ -164,6 +164,9 @@
 		case 1:
 			tempLabel.text = @"    Locations";
 			break;
+		case 2:
+			tempLabel.text = @"    Stores";
+			break;
 	}
 	return tempLabel;
 }
@@ -250,11 +253,7 @@
 			cell =[self createCell:cellIdentifier];
 			UIImageView *imgView = (UIImageView *)[cell.contentView viewWithTag:201];
 			UILabel *lbl = (UILabel *)[cell.contentView viewWithTag:202];
-			[imgView setHidden:YES];
-//			if (preferencesModel.address_count == nil) {
-//				preferencesModel.address_count = @"0";
-//			}
-//			lbl.text = [NSString stringWithFormat:@"Manage Location (%@)",preferencesModel.address_count];
+			imgView.image= [UIImage imageNamed:@"tabBarHomeIcon"];
 			lbl.text = @"Home Stores";
 			
 		}

@@ -492,14 +492,18 @@ AaramShop_ConnectionManager_Delegate>
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
 	[arrSearchResult removeAllObjects];
-	if ([searchText length] >0 ) {
+	if (![searchText isEqualToString:@""]) {
 		
 		pageNumber = 0;
-		
 		[self callWebServiceForGlobalSearch:searchText];
 		
 		
 	}else{
+		if([dicSearchResult count]>0)
+		{
+			[dicSearchResult removeAllObjects];
+		}
+		[arrSearchResult removeAllObjects];
 		boolActivityIndicator = NO;
 		[tblViewSearch setSectionFooterHeight:0.01f];
 		[tblViewSearch setSectionHeaderHeight:0.01f];
