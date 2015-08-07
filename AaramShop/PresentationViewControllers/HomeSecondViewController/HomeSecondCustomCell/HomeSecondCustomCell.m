@@ -153,7 +153,15 @@
 	}
 	else
 	{
-		strCount = [AppManager getCountOfProduct:objProductsModel.product_id withOfferType:objProductsModel.offer_type forStore_id:self.store_id];
+		if(self.fromCart)
+		{
+			strCount = [AppManager getCountOfProduct:objProductsModel.product_id withOfferType:objProductsModel.offer_type forStore_id:self.store_id];
+		}
+		else
+		{
+			strCount = objProductsModel.strCount;
+		}
+
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     if ([strCount intValue]<=0) {
