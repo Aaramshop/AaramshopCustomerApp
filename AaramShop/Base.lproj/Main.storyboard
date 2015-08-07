@@ -4744,7 +4744,7 @@ Your family will be able to add products of their choice and create a master sho
         <!--Wallet View Controller-->
         <scene sceneID="qLy-pd-VpG">
             <objects>
-                <viewController storyboardIdentifier="WalletViewScene" id="E49-Tz-xPQ" customClass="WalletViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalletViewScene" hidesBottomBarWhenPushed="YES" id="E49-Tz-xPQ" customClass="WalletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eIh-GE-MjR"/>
                         <viewControllerLayoutGuide type="bottom" id="jen-bh-d3e"/>

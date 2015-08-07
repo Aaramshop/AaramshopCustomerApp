@@ -64,7 +64,49 @@
 	UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
 	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
 	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+	
+	UIView *rightContainer=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 26, 44)];
+	[rightContainer setBackgroundColor:[UIColor clearColor]];
+	UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
+	UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnCart.frame = CGRectMake((rightContainer.frame.size.width - 20)/2, (rightContainer.frame.size.height - 20)/2, 20, 20);
+	
+	[btnCart setImage:imgCart forState:UIControlStateNormal];
+	[btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+	
+	[rightContainer addSubview:btnCart];
+	
+	UIButton *badgeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	badgeBtn.frame = CGRectMake(16, 5, 21, 21);
+	[badgeBtn addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+	[badgeBtn setBackgroundImage:[UIImage imageNamed:@"addToCardNoBox"] forState:UIControlStateNormal];
+	
+	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+5 , 10, 10, 8)];
+	[lab setFont:[UIFont boldSystemFontOfSize:8.0f]];
+	[lab setTextAlignment:NSTextAlignmentCenter];
+	[lab setTextColor:[UIColor whiteColor]];
+	[lab setBackgroundColor:[UIColor clearColor]];
+	NSInteger count = [AppManager getCountOfProductsInCart];
+	if (count > 0) {
+		lab.text = [NSString stringWithFormat:@"%ld",(long)count];
+		[rightContainer addSubview:badgeBtn];
+		[rightContainer addSubview:lab];
+	}
+	
+	
+	UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
+	NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart, nil];
+	self.navigationItem.rightBarButtonItems = arrBtnsRight;
+	
+	
 }
+-(void)btnCartClicked
+{
+	CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+	[self.navigationController pushViewController:cartView animated:YES];
+	
+}
+
 - (void)btnBackClicked
 {
 	[self.navigationController popViewControllerAnimated:YES];
@@ -374,7 +416,9 @@
 	}
 	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
 	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:objProductsModel.store_id,kStore_id,objProductsModel.store_name,kStore_name,objProductsModel.store_image,kStore_image, nil] add:YES];
-	
+	gAppManager.intCount++;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+	[self setUpNavigationBar];
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
@@ -398,7 +442,9 @@
 	}
 	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
 	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:objProductsModel.store_id,kStore_id,objProductsModel.store_name,kStore_name,objProductsModel.store_image,kStore_image, nil] add:NO];
-	
+	gAppManager.intCount++;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+	[self setUpNavigationBar];
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];

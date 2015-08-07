@@ -57,7 +57,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 			}
 		}
 
-    [self setUpNavigationBar];
+	
 	[self designPickerViewSlots];
 	[self toolBarDesignes];
     [self initilizeData];
@@ -76,6 +76,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+	 [self setUpNavigationBar];
 	arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
 
 	if([arrCategories count]==0)
