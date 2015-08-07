@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
+	appDel = APP_DELEGATE;
 	
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
@@ -31,6 +32,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+	self.navigationController.navigationBarHidden = NO;
 	[self createDataForGetPreferences];
 }
 - (void)didReceiveMemoryWarning {
@@ -122,7 +124,7 @@
 #pragma mark - UITableView Delegates & Data Source Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
-	return 2;
+	return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -131,6 +133,9 @@
 			return 3;
 			break;
 		case 1:
+			return 1;
+			break;
+		case 2:
 			return 1;
 			break;
 			
@@ -238,6 +243,22 @@
 			
 		}
 			break;
+		case 2:
+		{
+			static NSString *cellIdentifier = @"LocationCell";
+			
+			cell =[self createCell:cellIdentifier];
+			UIImageView *imgView = (UIImageView *)[cell.contentView viewWithTag:201];
+			UILabel *lbl = (UILabel *)[cell.contentView viewWithTag:202];
+			[imgView setHidden:YES];
+//			if (preferencesModel.address_count == nil) {
+//				preferencesModel.address_count = @"0";
+//			}
+//			lbl.text = [NSString stringWithFormat:@"Manage Location (%@)",preferencesModel.address_count];
+			lbl.text = @"Home Stores";
+			
+		}
+			break;
 		default:
 			break;
 	}
@@ -270,6 +291,14 @@
 		{
 			AddLocationViewController *addLocationVC = (AddLocationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddLocationView"];
 			[self.navigationController pushViewController:addLocationVC animated:YES];
+		}
+			break;
+		case 2:
+		{
+			appDel.isLoggedIn = YES;
+			HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
+			
+			[self.navigationController pushViewController:homeStoreVwController animated:YES];
 		}
 			break;
 			

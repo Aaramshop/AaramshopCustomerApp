@@ -18,9 +18,15 @@
 @synthesize objStoreModel,aaramShop_ConnectionManager;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self setUpNavigationView];
+	
+		
+//    [self setUpNavigationView];
+	
     appDeleg = APP_DELEGATE;
+	if (appDeleg.isLoggedIn == YES) {
+		self.navigationController.navigationBarHidden = YES;
+		[confirmBtn setTitle:@"CONFIRM" forState:UIControlStateNormal];
+	}
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate = self;
     [self bindData];
@@ -237,9 +243,21 @@
 //            UITabBarController *tabBarController = (UITabBarController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbarScreen"];
 //            tabBarController.selectedIndex = 0;
 //            appDeleg.window.rootViewController = tabBarController;
+
+			if (appDeleg.isLoggedIn == NO) {
 			[AppManager saveUserDatainUserDefault];
 
 			[[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessfulNotificationName object:self userInfo:nil];
+			}
+			else
+			{
+				NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
+				for (UIViewController *aViewController in allViewControllers) {
+					if ([aViewController isKindOfClass:[PreferencesViewController class]]) {
+						[self.navigationController popToViewController:aViewController animated:NO];
+					}
+				}
+			}
         }
         else
         {

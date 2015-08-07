@@ -145,9 +145,12 @@
     viewStatus = VIEW_STATUS_POPPED;
     
     [searchBarMain resignFirstResponder];
-    
-    [self.view removeFromSuperview];
-    
+	if ([self.delegate respondsToSelector:@selector(removeSearchViewFromParentView)]) {
+		        [self.delegate removeSearchViewFromParentView];
+		    }
+	
+//    [self.view removeFromSuperview];
+	
 }
 -(void)createDataForFirstTimeGet:(NSMutableArray*)array{
     for(int i = 0 ; i < [array count];i++)

@@ -23,14 +23,14 @@
 @end
 
 @implementation AppDelegate
-@synthesize navController,myCurrentLocation,arrOptions;
+@synthesize navController,myCurrentLocation,arrOptions,isLoggedIn;
 @synthesize tabBarControllerRetailer = _tabBarControllerRetailer;
 @synthesize objStoreModel = _objStoreModel;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
      [Fabric with:@[CrashlyticsKit]];
     [self initializeAllSingletonObjects];
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-
+	isLoggedIn = NO;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setBackgroundColor:[UIColor blackColor]];

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -790,6 +791,15 @@
                                     <constraint firstItem="7AP-lG-sDM" firstAttribute="leading" secondItem="JMK-I9-ndw" secondAttribute="leading" id="k3K-Vt-ww8"/>
                                 </constraints>
                             </scrollView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qy6-FI-cvk">
+                                <rect key="frame" x="11" y="21" width="60" height="44"/>
+                                <state key="normal" image="backBtn.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnBack:" destination="I5R-kO-Iws" eventType="touchUpInside" id="Kfi-s0-rwi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -804,6 +814,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backBtn" destination="qy6-FI-cvk" id="OXD-al-doB"/>
                         <outlet property="btnStartShopping" destination="qaf-oR-Eoh" id="Xm7-8U-Uap"/>
                         <outlet property="btnWhatsHomeStore" destination="NJ6-iD-vu4" id="4UU-7h-fAF"/>
                         <outlet property="imgVOffer" destination="sCF-fI-ibE" id="IG7-XL-vuQ"/>
@@ -833,7 +844,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIh-fd-D0d">
@@ -1069,10 +1080,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cameraBgImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="NT1-41-yiL" userLabel="Image View - Background">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgImage.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="NT1-41-yiL" userLabel="Image View - Background">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6q-Ns-zMb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6q-Ns-zMb" userLabel="Button - Back">
                                 <rect key="frame" x="11" y="20" width="60" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4ym-AW-a5d"/>
@@ -1086,14 +1097,22 @@
                                     <action selector="btnBackClick:" destination="rv3-1T-r4d" eventType="touchUpInside" id="zep-WX-3UB"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultCameraIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="dMK-is-bOO" userLabel="Image View - Prescription">
-                                <rect key="frame" x="85" y="192" width="150" height="150"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgCameraIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="VcI-n5-hzf" userLabel="Image View - Camera">
+                                <rect key="frame" x="25" y="85" width="265" height="260"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="265" id="4Z0-bz-ynD"/>
+                                    <constraint firstAttribute="height" constant="260" id="nwa-7c-z5T"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultCameraIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="dMK-is-bOO" userLabel="Image View - Prescription">
+                                <rect key="frame" x="85" y="154" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="1Ue-Yc-Rcd"/>
                                     <constraint firstAttribute="height" constant="150" id="ccH-gy-3nC"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muv-yf-e2w" userLabel="Label - Upload Picture">
-                                <rect key="frame" x="60" y="344" width="200" height="21"/>
+                                <rect key="frame" x="60" y="321" width="200" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Ssf-dI-ewf"/>
                                     <constraint firstAttribute="height" constant="21" id="s9L-Fb-G8v"/>
@@ -1103,7 +1122,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jc7-g4-OFK" userLabel="Button - upload image">
-                                <rect key="frame" x="80" y="184" width="160" height="180"/>
+                                <rect key="frame" x="80" y="146" width="160" height="195"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1112,7 +1131,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yw-bR-XZB" userLabel="Label - Take a picture of your prescription to share it directly with MEDI CARE">
-                                <rect key="frame" x="30" y="372" width="260" height="65"/>
+                                <rect key="frame" x="30" y="349" width="260" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="CR3-XA-FxF"/>
                                     <constraint firstAttribute="height" constant="65" id="D35-2F-kXr"/>
@@ -1140,24 +1159,24 @@ MEDI CARE</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jc7-g4-OFK" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="164" id="0nF-bp-WBF"/>
+                            <constraint firstItem="jc7-g4-OFK" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="126" id="0nF-bp-WBF"/>
                             <constraint firstAttribute="width" secondItem="NT1-41-yiL" secondAttribute="width" id="2Ku-gm-kqu"/>
                             <constraint firstItem="PfO-La-65g" firstAttribute="top" secondItem="4oH-62-5uB" secondAttribute="bottom" constant="22" id="3Sk-nY-DTs"/>
+                            <constraint firstAttribute="centerX" secondItem="VcI-n5-hzf" secondAttribute="centerX" constant="2.5" id="40j-Kp-hMH"/>
                             <constraint firstAttribute="centerX" secondItem="NT1-41-yiL" secondAttribute="centerX" id="6Ed-Kq-uKA"/>
                             <constraint firstAttribute="height" secondItem="NT1-41-yiL" secondAttribute="height" id="6PH-Kh-R8X"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dMK-is-bOO" secondAttribute="trailing" constant="69" id="6pe-jd-tyq"/>
                             <constraint firstAttribute="centerX" secondItem="4oH-62-5uB" secondAttribute="centerX" constant="-0.5" id="6vs-Va-FEC"/>
+                            <constraint firstItem="VcI-n5-hzf" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="65" id="9HW-Co-CBH"/>
                             <constraint firstAttribute="centerX" secondItem="5Yw-bR-XZB" secondAttribute="centerX" id="9Ka-IR-lF3"/>
                             <constraint firstItem="5Yw-bR-XZB" firstAttribute="top" secondItem="muv-yf-e2w" secondAttribute="bottom" constant="7" id="J7u-p9-fIl"/>
-                            <constraint firstItem="muv-yf-e2w" firstAttribute="top" secondItem="dMK-is-bOO" secondAttribute="bottom" constant="2" id="U2F-zm-EOx"/>
+                            <constraint firstItem="muv-yf-e2w" firstAttribute="top" secondItem="dMK-is-bOO" secondAttribute="bottom" constant="17" id="U2F-zm-EOx"/>
                             <constraint firstItem="P6q-Ns-zMb" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" id="Ufb-Iu-X5G"/>
                             <constraint firstAttribute="centerX" secondItem="dMK-is-bOO" secondAttribute="centerX" id="Zfr-4W-PRA"/>
                             <constraint firstItem="P6q-Ns-zMb" firstAttribute="leading" secondItem="T3B-1C-qeA" secondAttribute="leadingMargin" constant="-5" id="chd-aR-bDo"/>
                             <constraint firstItem="muv-yf-e2w" firstAttribute="top" secondItem="jc7-g4-OFK" secondAttribute="bottom" constant="-20" id="itt-YS-Ad8"/>
-                            <constraint firstItem="dMK-is-bOO" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="172" id="mCb-bl-1W8"/>
+                            <constraint firstItem="dMK-is-bOO" firstAttribute="top" secondItem="caI-Ll-O44" secondAttribute="bottom" constant="134" id="mCb-bl-1W8"/>
                             <constraint firstAttribute="centerY" secondItem="NT1-41-yiL" secondAttribute="centerY" id="mFu-Fp-n4N"/>
                             <constraint firstAttribute="centerX" secondItem="muv-yf-e2w" secondAttribute="centerX" id="rhd-mg-uUM"/>
-                            <constraint firstItem="dMK-is-bOO" firstAttribute="leading" secondItem="T3B-1C-qeA" secondAttribute="leadingMargin" constant="69" id="toP-24-idD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jc7-g4-OFK" secondAttribute="trailing" constant="64" id="x7G-zm-nBq"/>
                             <constraint firstItem="jc7-g4-OFK" firstAttribute="leading" secondItem="T3B-1C-qeA" secondAttribute="leadingMargin" constant="64" id="xZZ-Au-dYb"/>
                         </constraints>
@@ -3291,6 +3310,7 @@ Your family will be able to add products of their choice and create a master sho
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="confirmBtn" destination="ct1-7W-wsk" id="v5U-YM-Rsh"/>
                         <outlet property="imgDelivery" destination="nfN-ID-uhB" id="qgu-F9-Pnl"/>
                         <outlet property="imgRating1" destination="87R-vJ-txs" id="mv3-W3-a62"/>
                         <outlet property="imgRating2" destination="XC1-Ch-e7K" id="NoD-2h-h4V"/>
@@ -3896,7 +3916,7 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sepratorBoxThree.png" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-ID-M4P">
@@ -7517,7 +7537,7 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-6l-spl">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-6l-spl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Nk-6H-B7O">
@@ -7544,14 +7564,10 @@ Your family will be able to add products of their choice and create a master sho
                         </subviews>
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="mw4-6l-spl" firstAttribute="top" secondItem="Fdg-Ir-DIv" secondAttribute="top" constant="-64" id="5LJ-1p-KiV"/>
-                            <constraint firstAttribute="trailing" secondItem="Fdg-Ir-DIv" secondAttribute="trailing" id="FsF-MG-e07"/>
-                            <constraint firstAttribute="trailing" secondItem="mw4-6l-spl" secondAttribute="trailing" id="NZq-v8-37I"/>
-                            <constraint firstItem="JqZ-NA-9Ag" firstAttribute="top" secondItem="Fdg-Ir-DIv" secondAttribute="bottom" id="UE1-4K-iJu"/>
-                            <constraint firstItem="Fdg-Ir-DIv" firstAttribute="leading" secondItem="e7z-fc-EFV" secondAttribute="leading" id="bsj-AK-8BA"/>
-                            <constraint firstItem="Fdg-Ir-DIv" firstAttribute="bottom" secondItem="mw4-6l-spl" secondAttribute="bottom" constant="504" id="cg9-MI-ObF"/>
-                            <constraint firstItem="mw4-6l-spl" firstAttribute="top" secondItem="Ubi-hp-oq6" secondAttribute="bottom" constant="-20" id="vbX-en-AFo"/>
-                            <constraint firstItem="mw4-6l-spl" firstAttribute="leading" secondItem="e7z-fc-EFV" secondAttribute="leading" id="xyt-fa-8dP"/>
+                            <constraint firstAttribute="centerX" secondItem="Fdg-Ir-DIv" secondAttribute="centerX" id="7NF-6S-g8C"/>
+                            <constraint firstItem="JqZ-NA-9Ag" firstAttribute="top" secondItem="Fdg-Ir-DIv" secondAttribute="bottom" id="7UF-FO-WZ2"/>
+                            <constraint firstAttribute="width" secondItem="Fdg-Ir-DIv" secondAttribute="width" id="M9h-Bo-1gE"/>
+                            <constraint firstItem="Fdg-Ir-DIv" firstAttribute="top" secondItem="Ubi-hp-oq6" secondAttribute="bottom" constant="44" id="kUe-Mu-2Y2"/>
                         </constraints>
                     </view>
                     <connections>
@@ -7576,7 +7592,7 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZD-xx-AEw">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FZD-xx-AEw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zak-4P-GW3">
@@ -7593,7 +7609,7 @@ Your family will be able to add products of their choice and create a master sho
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Oaz-2o-wyL">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="pCi-Sv-M7g" id="Dig-Nz-Xws"/>
@@ -7603,14 +7619,10 @@ Your family will be able to add products of their choice and create a master sho
                         </subviews>
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="FZD-xx-AEw" firstAttribute="top" secondItem="Oaz-2o-wyL" secondAttribute="top" constant="-64" id="7yy-Yn-Nt2"/>
-                            <constraint firstItem="FZD-xx-AEw" firstAttribute="top" secondItem="wJB-ID-dFz" secondAttribute="bottom" constant="-20" id="ChF-kH-ko2"/>
-                            <constraint firstItem="FZD-xx-AEw" firstAttribute="leading" secondItem="rId-bD-Ecw" secondAttribute="leading" id="Gtl-Xf-3UE"/>
-                            <constraint firstAttribute="trailing" secondItem="Oaz-2o-wyL" secondAttribute="trailing" id="RM1-qF-A6n"/>
-                            <constraint firstItem="Oaz-2o-wyL" firstAttribute="leading" secondItem="rId-bD-Ecw" secondAttribute="leading" id="SbY-bD-ll1"/>
-                            <constraint firstItem="G5K-np-bgs" firstAttribute="top" secondItem="Oaz-2o-wyL" secondAttribute="bottom" id="b4a-Ka-3P3"/>
-                            <constraint firstItem="Oaz-2o-wyL" firstAttribute="bottom" secondItem="FZD-xx-AEw" secondAttribute="bottom" constant="504" id="nPp-M6-4uu"/>
-                            <constraint firstAttribute="trailing" secondItem="FZD-xx-AEw" secondAttribute="trailing" id="zCw-bz-Lz4"/>
+                            <constraint firstItem="G5K-np-bgs" firstAttribute="top" secondItem="Oaz-2o-wyL" secondAttribute="bottom" id="FCa-vk-Trm"/>
+                            <constraint firstItem="Oaz-2o-wyL" firstAttribute="width" secondItem="rId-bD-Ecw" secondAttribute="width" id="GSa-K2-Fbu"/>
+                            <constraint firstItem="Oaz-2o-wyL" firstAttribute="top" secondItem="wJB-ID-dFz" secondAttribute="bottom" constant="44" id="VFn-xT-QeD"/>
+                            <constraint firstAttribute="centerX" secondItem="Oaz-2o-wyL" secondAttribute="centerX" id="eZR-aH-3h0"/>
                         </constraints>
                     </view>
                     <connections>
@@ -8086,7 +8098,7 @@ Your family will be able to add products of their choice and create a master sho
                                 </subviews>
                                 <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="gaf-uj-bQJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="gaf-uj-bQJ">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -8097,6 +8109,12 @@ Your family will be able to add products of their choice and create a master sho
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="vLc-pP-6zN" firstAttribute="top" secondItem="gaf-uj-bQJ" secondAttribute="bottom" id="3rG-Hd-5O0"/>
+                            <constraint firstItem="gaf-uj-bQJ" firstAttribute="top" secondItem="cHJ-Nt-8EF" secondAttribute="bottom" constant="44" id="JgD-vG-c4J"/>
+                            <constraint firstAttribute="width" secondItem="gaf-uj-bQJ" secondAttribute="width" id="Png-pk-bq1"/>
+                            <constraint firstAttribute="centerX" secondItem="gaf-uj-bQJ" secondAttribute="centerX" id="tdP-6f-uB7"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="searchBarMain" destination="Ygb-ih-b0V" id="Wdm-er-ftg"/>
@@ -8270,10 +8288,11 @@ Your family will be able to add products of their choice and create a master sho
         <image name="bg2.jpg" width="320" height="568"/>
         <image name="bg4.jpg" width="320" height="568"/>
         <image name="bg5.jpg" width="320" height="568"/>
+        <image name="bgCameraIcon.png" width="265" height="260"/>
+        <image name="bgImage.jpg" width="320" height="568"/>
         <image name="bgImageNew.png" width="320" height="480"/>
         <image name="bground-568.jpg" width="320" height="568"/>
         <image name="callIconGreenCircle.png" width="35" height="35"/>
-        <image name="cameraBgImage.jpg" width="320" height="480"/>
         <image name="chatNumberingCircle.png" width="30" height="30"/>
         <image name="chatScreenMyListLogo.png" width="180" height="180"/>
         <image name="checkAvialibilityBox.png" width="96" height="39"/>

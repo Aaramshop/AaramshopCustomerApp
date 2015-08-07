@@ -137,50 +137,56 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	btnPicker.titleLabel.textAlignment=NSTextAlignmentCenter;
 	btnPicker.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:15];
 	btnPicker.titleLabel.adjustsFontSizeToFitWidth = YES;
-	[btnPicker setTitle:strHeaderTitle forState:UIControlStateNormal];
+	[btnPicker setImage:[UIImage imageNamed:@"dropDownArrowLocation"] forState:UIControlStateNormal];
+	[btnPicker setTitle:[NSString stringWithFormat:@" %@", strHeaderTitle] forState:UIControlStateNormal];
+	
 	[btnPicker addTarget:self action:@selector(btnPicker) forControlEvents:UIControlEventTouchUpInside];
 	[btnPicker setShowsTouchWhenHighlighted:YES];
 	[_headerTitleSubtitleView addSubview:btnPicker];
-	
-	//add your spacer images and button1 and button2...
-	
 	self.navigationItem.titleView = _headerTitleSubtitleView;
 	
-//    UIButton* titleView = [[UIButton alloc] initWithFrame:titleFrame];
-//    titleView.backgroundColor = [UIColor clearColor];
-//	titleView.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:15];
-////    titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
-//    titleView.titleLabel.textAlignment = NSTextAlignmentCenter;
-//	[titleView setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-////    titleView.textColor = [UIColor whiteColor];
-//	[titleView addTarget:self action:@selector(btnPicker) forControlEvents:UIControlEventTouchUpInside];
-//	[backPicker setTitle:@"sasaaasas" forState:UIControlStateNormal];
-////    titleView.titleLabel.adjustsFontSizeToFitWidth = YES;
-//    [_headerTitleSubtitleView addSubview:backPicker];
-//    self.navigationItem.titleView = _headerTitleSubtitleView;
-	
     UIImage *imgBack = [UIImage imageNamed:@"menuIcon.png"];
-    
     backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.bounds = CGRectMake( -10, 0, 30, 30);
-    
     [backBtn setImage:imgBack forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(btnMenuClicked) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barBtnBack = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     
     NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
-    
-    UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
+	
+	UIView *rightContainer=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 71, 44)];
+	    [rightContainer setBackgroundColor:[UIColor blueColor]];
+	UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
+	btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnCart.bounds = CGRectMake( 0, 10, 24, 24);
+	
+	[btnCart setImage:imgCart forState:UIControlStateNormal];
+	[btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
+	
+	[rightContainer addSubview:btnCart];
+	
+	UIButton *badgeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	badgeBtn.frame = CGRectMake(16, 5, 21, 21);
+	[badgeBtn setBackgroundImage:[UIImage imageNamed:@"addToCardNoBox"] forState:UIControlStateNormal];
+	
+	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+5 , 10, 10, 8)];
+	[lab setFont:[UIFont boldSystemFontOfSize:8.0f]];
+	[lab setTextAlignment:NSTextAlignmentCenter];
+	[lab setTextColor:[UIColor whiteColor]];
+	[lab setBackgroundColor:[UIColor clearColor]];
+	
+//	if([[USER_DEFAULT objectForKey:BADGEINFO]intValue]>0)
+//	{
+//		[lab setText:[USER_DEFAULT objectForKey:BADGEINFO]];
+//		[rightContainer addSubview:badgeBtn];
+//		[rightContainer addSubview:lab];
+//	}
+	
     
     UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
-    
-    btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnCart.bounds = CGRectMake( -10, 0, 20, 20);
-    
-    [btnCart setImage:imgCart forState:UIControlStateNormal];
-    [btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
+	
     
     btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
     btnSearch.bounds = CGRectMake( -10, 0, 20, 20);
@@ -198,9 +204,9 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	[btnBroadcast addTarget:self action:@selector(btnBroadcastClicked) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *barBtnBroadcast = [[UIBarButtonItem alloc] initWithCustomView:btnBroadcast];
 
-    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
-    self.navigationItem.rightBarButtonItems = arrBtnsRight;
-    
+    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:rightContainer, nil];
+//    self.navigationItem.rightBarButtonItems = rightContainer;
+	
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
     {
         UIImage *image = [UIImage imageNamed:@"navigation.png"];
@@ -271,7 +277,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 		[self showOptionPatch:NO];
 		[self showPickerView:NO];
 		strHeaderTitle =[dictPickerValue objectForKey:@"user_address_title"];
-		[btnPicker setTitle:strHeaderTitle forState:UIControlStateNormal];
+		[btnPicker setTitle:[NSString stringWithFormat:@" %@", strHeaderTitle] forState:UIControlStateNormal];
 		CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[dictPickerValue objectForKey:@"latitude"] doubleValue] longitude:[[dictPickerValue objectForKey:@"longitude"] doubleValue]];
 		appDeleg.myCurrentLocation = newLocation;
 		[self createDataToGetStores];

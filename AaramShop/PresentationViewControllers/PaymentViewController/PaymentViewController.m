@@ -1427,9 +1427,9 @@ static NSString *strCollectionItems = @"collectionItems";
         [self.navigationController popViewControllerAnimated:YES];
     };
     
-    [self.navigationController pushViewController:feedBack animated:YES];
+//    [self.navigationController pushViewController:feedBack animated:YES];
     
-//    [[UIApplication sharedApplication].keyWindow addSubview:feedBack.view];
+    [[UIApplication sharedApplication].keyWindow addSubview:feedBack.view];
     
 }
 
