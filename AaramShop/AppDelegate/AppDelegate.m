@@ -69,7 +69,7 @@
 	
 	//////////////remote notification code end//////////////////
     if ([[NSUserDefaults standardUserDefaults]boolForKey:kIsLoggedIn] == YES) {
-        [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
+        [gAppManager performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
 
     }
 

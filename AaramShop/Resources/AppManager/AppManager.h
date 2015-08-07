@@ -31,11 +31,12 @@ void MyAddressBookExternalChangeCallback (
     ABAddressBookRef addressBookRef;
     
 }
-@property (nonatomic , assign) BOOL isComingFromChat;
-@property(nonatomic,strong) NSMutableArray *arrImages;
-@property(nonatomic,assign)BOOL isFetchingContacts;
-@property(nonatomic,strong) CMCountryList *cmCountryList;
-@property(nonatomic, strong) UIImage *imgProfile;
+@property (nonatomic, assign) BOOL isComingFromChat;
+@property (nonatomic, strong) NSMutableArray *arrImages;
+@property (nonatomic, assign)BOOL isFetchingContacts;
+@property (nonatomic, assign)NSInteger intCount;
+@property (nonatomic, strong) CMCountryList *cmCountryList;
+@property (nonatomic, strong) UIImage *imgProfile;
 
 #pragma Methods
 +(AppManager *)sharedManager;
@@ -58,6 +59,8 @@ void MyAddressBookExternalChangeCallback (
 +(void)removeDataFromNSUserDefaults;
 +(NSString *)getDistance:(StoreModel *)objStoreModel;
 +(void)AddOrRemoveFromCart:(CartProductModel *)product forStore:(NSDictionary *)store add:(BOOL)isAdd;
++(void)saveCountOfProductsInCart:(NSInteger)productQuantity;
++(NSInteger)getCountOfProductsInCart;
 + (void)removeCartBasedOnStoreId:(NSString *)store_id;
 + (NSMutableArray *)getCartProductsByStoreId:(NSString *)store_id;
 + (NSString *)getCountOfProduct:(NSString *)cartProductId withOfferType:(NSString *)offer_type forStore_id:(NSString *)store_id;

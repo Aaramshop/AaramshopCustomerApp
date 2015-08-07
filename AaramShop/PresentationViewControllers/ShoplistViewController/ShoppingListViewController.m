@@ -137,12 +137,12 @@
 	[lab setTextColor:[UIColor whiteColor]];
 	[lab setBackgroundColor:[UIColor clearColor]];
 	
-	//	if([[USER_DEFAULT objectForKey:BADGEINFO]intValue]>0)
-	//	{
-	//		[lab setText:[USER_DEFAULT objectForKey:BADGEINFO]];
-	[rightContainer addSubview:badgeBtn];
-	[rightContainer addSubview:lab];
-	//	}
+	NSInteger count = [AppManager getCountOfProductsInCart];
+	if (count > 0) {
+		lab.text = [NSString stringWithFormat:@"%ld",(long)count];
+		[rightContainer addSubview:badgeBtn];
+		[rightContainer addSubview:lab];
+	}
 	
 	
 	UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];

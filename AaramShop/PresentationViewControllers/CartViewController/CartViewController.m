@@ -336,7 +336,7 @@
 		{
 			offers.offerTitle						=	productModel.offerTitle;
 			offers.combo_mrp					=	productModel.product_price;
-			offers.combo_offer_price		=	productModel.offer_price;
+			offers.combo_offer_price			=	productModel.offer_price;
 			offers.offerImage						=	productModel.cartProductImage;
 		}
 		else
@@ -404,6 +404,8 @@
 	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
 	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]+1];
 	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:YES];
+	gAppManager.intCount++;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
 	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
 
@@ -420,6 +422,8 @@
 	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]-1];
 
 	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:NO];
+	gAppManager.intCount--;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
 	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
 	if([productModel.strCount integerValue] == 0)
@@ -471,7 +475,8 @@
 	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:YES];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
 	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
-	
+	gAppManager.intCount++;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
@@ -484,6 +489,8 @@
 	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]-1];
 	
 	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:NO];
+	gAppManager.intCount++;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
 	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
 	if([productModel.strCount integerValue] == 0)

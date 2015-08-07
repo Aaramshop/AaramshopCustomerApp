@@ -156,7 +156,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 	
 	UIView *rightContainer=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 26, 44)];
-	    [rightContainer setBackgroundColor:[UIColor clearColor]];
+	[rightContainer setBackgroundColor:[UIColor clearColor]];
 	UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
 	btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
 	btnCart.frame = CGRectMake((rightContainer.frame.size.width - 20)/2, (rightContainer.frame.size.height - 20)/2, 20, 20);
@@ -176,24 +176,26 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	[lab setTextAlignment:NSTextAlignmentCenter];
 	[lab setTextColor:[UIColor whiteColor]];
 	[lab setBackgroundColor:[UIColor clearColor]];
-	
-//	if([[USER_DEFAULT objectForKey:BADGEINFO]intValue]>0)
-//	{
-//		[lab setText:[USER_DEFAULT objectForKey:BADGEINFO]];
+	NSInteger count = [AppManager getCountOfProductsInCart];
+	if (count > 0) {
+		lab.text = [NSString stringWithFormat:@"%ld",(long)count];
 		[rightContainer addSubview:badgeBtn];
 		[rightContainer addSubview:lab];
-//	}
+	}
 	
-    
-    UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
 	
-    
-    btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnSearch.bounds = CGRectMake( 0, 0, 24, 24);
-    
-    [btnSearch setImage:imgSearch forState:UIControlStateNormal];
-    [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
+	UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
+	
+	
+	btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnSearch.bounds = CGRectMake( 0, 0, 24, 24);
+	
+	[btnSearch setImage:imgSearch forState:UIControlStateNormal];
+	[btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
+	UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
+
+	
 	
 	UIImage *imgBroadcast = [UIImage imageNamed:@"bellIcon"];
 	
@@ -205,15 +207,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	UIBarButtonItem *barBtnBroadcast = [[UIBarButtonItem alloc] initWithCustomView:btnBroadcast];
 	
 	
-	UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
-	
 	NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
 	self.navigationItem.rightBarButtonItems = arrBtnsRight;
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        UIImage *image = [UIImage imageNamed:@"navigation.png"];
-        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    }
 
 }
 - (void)userInteraction:(BOOL)enable

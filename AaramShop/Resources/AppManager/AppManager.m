@@ -583,6 +583,19 @@ void MyAddressBookExternalChangeCallback (
     return toDistance;
     
 }
++(void)saveCountOfProductsInCart:(NSInteger)productsCount
+{
+	 [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%ld",(long)productsCount] forKey:kProductsCount];
+}
++(NSInteger)getCountOfProductsInCart
+{
+//	[[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%ld",(long)productsCount] forKey:kProductsCount];
+	NSString *strCount = [[NSUserDefaults standardUserDefaults] objectForKey: kProductsCount];
+	
+	return [strCount integerValue];
+}
+
+
 +(void)AddOrRemoveFromCart:(CartProductModel *)cartProduct forStore:(NSDictionary *)store add:(BOOL)isAdd
 {
 	if(![[NSUserDefaults standardUserDefaults] valueForKey:kCartData])
@@ -613,7 +626,7 @@ void MyAddressBookExternalChangeCallback (
 				[cartModel.arrProductDetails replaceObjectAtIndex:index withObject:cartProduct];
 				[cartArray removeObjectAtIndex:indexCart];
 				[cartArray insertObject:cartModel atIndex:0];
-//				[cartArray addObject:cartModel];
+				//				[cartArray addObject:cartModel];
 //				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
 				if(!isAdd)
 				{
@@ -664,6 +677,7 @@ void MyAddressBookExternalChangeCallback (
 
 	[[NSUserDefaults standardUserDefaults] setObject:enrollData forKey:kCartData];
 	[[NSUserDefaults standardUserDefaults] synchronize];
+//	[self TotalProductQuantityInCart:cartProduct];
 }
 + (void)removeCartBasedOnStoreId:(NSString *)store_id
 {
