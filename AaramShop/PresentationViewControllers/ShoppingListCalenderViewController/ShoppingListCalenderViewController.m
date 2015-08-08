@@ -221,89 +221,10 @@
     
     [self callWebServiceToSetShoppingListReminder:dict];
     
-//    [self saveLocalNotification];
     
 
     
-    /*
-    
-    if (reminderSwitch.isOn && [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] == EKAuthorizationStatusAuthorized) {
-        
-//        EKEvent *event = [EKEvent eventWithEventStore:store];
-//        event.title = !_shoppingListName?_shoppingListName:@"My Shopping List";
-//        event.startDate = startDate; //today
-//        event.endDate = endDate;  
-//        event.calendar = [store defaultCalendarForNewEvents];
-//        NSError *err = nil;
-//        
-//
-//        [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
-//
-        
-        EKReminder *reminder = [EKReminder reminderWithEventStore:store];
-        [reminder setTitle:!_shoppingListModel.shoppingListName?_shoppingListModel.shoppingListName:@"My Shopping List"];
-        EKCalendar *defaultReminderList = [store defaultCalendarForNewReminders];
-        
-        [reminder setCalendar:defaultReminderList];
-        
-        EKRecurrenceRule *recurrenceRule = nil;
-        
-//        if ([lblRepeat.text isEqualToString:@"Every day"])
-//        {
-//            strRepeatDays=@"1";
-//            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 daysOfTheWeek:nil daysOfTheMonth:nil monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
-//        }else if ([lblRepeat.text isEqualToString:@"30 days"])
-//        {
-            strRepeatDays=@"30";
-            
-            NSDate *newDate1 = [startDate dateByAddingTimeInterval:60*60*24*strRepeatDays.intValue];
-            NSCalendar* calendar = [NSCalendar currentCalendar];
-            NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:newDate1];
-            
-            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyMonthly interval:1 daysOfTheWeek:nil daysOfTheMonth:@[[NSString stringWithFormat:@"%ld",(long)components.day]] monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
-            
-            
-//        }else if ([lblRepeat.text isEqualToString:@"15 days"])
-//        {
-//            strRepeatDays=@"15";
-//            NSDate *newDate1 = [startDate dateByAddingTimeInterval:60*60*24*strRepeatDays.intValue];
-//            NSCalendar* calendar = [NSCalendar currentCalendar];
-//            NSDateComponents* components1 = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:newDate1];
-//            NSDateComponents* components2 = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:startDate];
-//            
-//            
-//            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyMonthly interval:1 daysOfTheWeek:nil daysOfTheMonth:@[[NSString stringWithFormat:@"%ld",(long)components1.day],[NSString stringWithFormat:@"%ld",(long)components2.day]] monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
-//        }else if ([lblRepeat.text isEqualToString:@"7 days"])
-//        {
-//            strRepeatDays=@"7";
-//            
-//            
-//             NSCalendar* calendar = [NSCalendar currentCalendar];
-//            NSDateComponents *comps = [calendar components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
-//
-            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly interval:1 daysOfTheWeek:@[[NSString stringWithFormat:@"%ld",(long)comps.weekday]] daysOfTheMonth:nil monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
-//        }
-
-        
-        
-        reminder.recurrenceRules = [NSArray arrayWithObject:recurrenceRule];
-
-        int daysToAdd = strRepeatDays.intValue;
-        NSDate *newDate1 = [startDate dateByAddingTimeInterval:60*60*24*daysToAdd];
-        EKAlarm *alarm = [EKAlarm alarmWithAbsoluteDate: newDate1];
-        [reminder addAlarm:alarm];
-        
-        
-        NSError *error = nil;
-        BOOL success = [store saveReminder:reminder
-                                    commit:YES
-                                     error:&error];
-        if (!success) {
-            NSLog(@"Error saving reminder: %@", [error localizedDescription]);
-        }
-    }
-     
-     //*/
+  
     
 }
 #pragma mark - Call Webservice
@@ -639,8 +560,6 @@
             
             localNotification.fireDate = [NextFireDate dateByAddingTimeInterval:-1800];
     
-//            localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:+60]; // for testing..
-
             
             localNotification.soundName = UILocalNotificationDefaultSoundName;
             
