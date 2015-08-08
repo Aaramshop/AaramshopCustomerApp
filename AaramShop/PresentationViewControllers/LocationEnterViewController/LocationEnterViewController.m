@@ -50,9 +50,9 @@
 //    [mapViewLocation setShowsUserLocation:YES];
     
     
-        [[AppManager sharedManager] performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
+        [gAppManager performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
     
-        [[AppManager sharedManager] performSelector:@selector(createDefaultValuesForDictionay) withObject:nil];
+        [gAppManager performSelector:@selector(createDefaultValuesForDictionay) withObject:nil];
 
 }
 -(void)findCurrentLocation

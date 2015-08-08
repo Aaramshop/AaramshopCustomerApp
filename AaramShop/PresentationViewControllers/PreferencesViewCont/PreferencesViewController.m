@@ -376,7 +376,7 @@
 - (void)createDataForGetPreferences
 {
 	[self userInteraction:NO];
-	[Utils startActivityIndicatorInView:self.view withMessage:@"Please Wait"];
+//	[Utils startActivityIndicatorInView:self.view withMessage:@"Please Wait"];
 	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
@@ -389,7 +389,7 @@
 	if (![Utils isInternetAvailable])
 	{
 		[self userInteraction:YES];
-		[Utils stopActivityIndicatorInView:self.view];
+//		[Utils stopActivityIndicatorInView:self.view];
 		[AppManager stopStatusbarActivityIndicator];
 		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		return;
@@ -400,7 +400,7 @@
 - (void)responseReceived:(id)responseObject
 {
 	[self userInteraction:YES];
-		[Utils stopActivityIndicatorInView:self.view];
+//		[Utils stopActivityIndicatorInView:self.view];
 	[AppManager stopStatusbarActivityIndicator];
 	switch (aaramShop_ConnectionManager.currentTask) {
   case TASK_TO_GET_PREFERENCES:
@@ -442,7 +442,7 @@
 - (void)didFailWithError:(NSError *)error
 {
 	[self userInteraction:YES];
-	[Utils stopActivityIndicatorInView:self.view];
+//	[Utils stopActivityIndicatorInView:self.view];
 	[AppManager stopStatusbarActivityIndicator];
 	[aaramShop_ConnectionManager failureBlockCalled:error];
 }

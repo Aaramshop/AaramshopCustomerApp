@@ -901,7 +901,8 @@ static NSString *strCollectionItems = @"collectionItems";
 	{
 		[self modifyCartForShoppingListByData:objProductsModel];
 	}
-	
+	gAppManager.intCount++;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
@@ -944,6 +945,9 @@ static NSString *strCollectionItems = @"collectionItems";
 	{
 		[self modifyCartForShoppingListByData:objProductsModel];
 	}
+	
+	gAppManager.intCount--;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];

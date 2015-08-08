@@ -57,7 +57,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 			}
 		}
 
-    [self setUpNavigationBar];
+	
 	[self designPickerViewSlots];
 	[self toolBarDesignes];
     [self initilizeData];
@@ -76,6 +76,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+	 [self setUpNavigationBar];
 	arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
 
 	if([arrCategories count]==0)
@@ -156,7 +157,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 	
 	UIView *rightContainer=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 26, 44)];
-	    [rightContainer setBackgroundColor:[UIColor clearColor]];
+	[rightContainer setBackgroundColor:[UIColor clearColor]];
 	UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
 	btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
 	btnCart.frame = CGRectMake((rightContainer.frame.size.width - 20)/2, (rightContainer.frame.size.height - 20)/2, 20, 20);
@@ -167,33 +168,40 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	[rightContainer addSubview:btnCart];
 	
 	UIButton *badgeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-	badgeBtn.frame = CGRectMake(16, 5, 21, 21);
+	badgeBtn.frame = CGRectMake(16, 5, 23, 23);
 	[badgeBtn addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
 	[badgeBtn setBackgroundImage:[UIImage imageNamed:@"addToCardNoBox"] forState:UIControlStateNormal];
 	
-	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+5 , 10, 10, 8)];
-	[lab setFont:[UIFont boldSystemFontOfSize:8.0f]];
+	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+1	, 13, 20, 8)];
+	lab.font = [UIFont fontWithName:kRobotoRegular size:9];
 	[lab setTextAlignment:NSTextAlignmentCenter];
 	[lab setTextColor:[UIColor whiteColor]];
 	[lab setBackgroundColor:[UIColor clearColor]];
-	
-//	if([[USER_DEFAULT objectForKey:BADGEINFO]intValue]>0)
-//	{
-//		[lab setText:[USER_DEFAULT objectForKey:BADGEINFO]];
+	NSInteger count = [AppManager getCountOfProductsInCart];
+	if (count > 0) {
+		gAppManager.intCount = count;
+		if (count>99) {
+			lab.text = @"99+";
+		}
+		else
+			lab.text = [NSString stringWithFormat:@"%ld",(long)count];
 		[rightContainer addSubview:badgeBtn];
 		[rightContainer addSubview:lab];
-//	}
+	}
 	
-    
-    UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
 	
-    
-    btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnSearch.bounds = CGRectMake( 0, 0, 24, 24);
-    
-    [btnSearch setImage:imgSearch forState:UIControlStateNormal];
-    [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
+	UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
+	
+	
+	btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnSearch.bounds = CGRectMake( 0, 0, 24, 24);
+	
+	[btnSearch setImage:imgSearch forState:UIControlStateNormal];
+	[btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
+	UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
+
+	
 	
 	UIImage *imgBroadcast = [UIImage imageNamed:@"bellIcon"];
 	
@@ -205,15 +213,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	UIBarButtonItem *barBtnBroadcast = [[UIBarButtonItem alloc] initWithCustomView:btnBroadcast];
 	
 	
-	UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
-	
 	NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
 	self.navigationItem.rightBarButtonItems = arrBtnsRight;
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        UIImage *image = [UIImage imageNamed:@"navigation.png"];
-        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    }
 
 }
 - (void)userInteraction:(BOOL)enable
