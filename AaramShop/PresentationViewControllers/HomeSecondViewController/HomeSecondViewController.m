@@ -103,6 +103,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+	self.navigationController.navigationBarHidden = NO;
 	[self setUpNavigationBar];
 	strTotalPrice = [self getTotalPrice];
 	[arrGetStoreProducts removeAllObjects];
