@@ -1256,7 +1256,7 @@ CXMPPController * gCXMPPController = nil;
         //
         return;
     }
-    if([[presence attributeStringValueForName:@"type"]isEqualToString:@"unavailable"])
+    if(messageDelegate && [[presence attributeStringValueForName:@"type"]isEqualToString:@"unavailable"])
     {
 		if([messageDelegate respondsToSelector:@selector(userPresence:)])
 		{

@@ -10,8 +10,9 @@
 #import "HomeCategoriesCollectionCell.h"
 #import "YSLContainerViewController.h"
 #import "GlobalSearchViewController.h"
+#import "LocationEnterViewController.h"
 
-@interface HomeCategoriesViewController : UIViewController<AaramShop_ConnectionManager_Delegate,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface HomeCategoriesViewController : UIViewController<AaramShop_ConnectionManager_Delegate,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIPickerViewDataSource,UIPickerViewDelegate,LocationEnterViewControllerDelegate>
 {
     YSLContainerViewController *containerVC;
 

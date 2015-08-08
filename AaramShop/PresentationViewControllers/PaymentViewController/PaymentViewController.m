@@ -205,8 +205,9 @@ static NSString *strCollectionItems = @"collectionItems";
 	{
 		[dict setObject:coupon_code forKey:@"coupon_code"];
 	}
-	
-    [self callWebServiceForCheckout:dict];
+	[Utils stopActivityIndicatorInView:self.view];
+	[Utils startActivityIndicatorInView:self.view withMessage:nil];
+    [self performSelector:@selector(callWebServiceForCheckout:) withObject:dict afterDelay:0.1];
 }
 - (void)callWebServiceToCheckCouponValidation
 {
@@ -310,6 +311,7 @@ static NSString *strCollectionItems = @"collectionItems";
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
     [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
 	[dict setObject:self.strTotalPrice forKey:kTotal_amount];
+	[Utils stopActivityIndicatorInView:self.view];
 	[Utils startActivityIndicatorInView:self.view withMessage:nil];
 	[self performSelector:@selector(callWebServiceToGetPaymentPageData:) withObject:dict afterDelay:0.1];
 }
@@ -1056,6 +1058,7 @@ static NSString *strCollectionItems = @"collectionItems";
 			strSelectAddress = objaddressModel.address;
 			[btnTitle setTitle:strSelectAddress forState:UIControlStateNormal];
 			strSelectedUserAddress_Id = objaddressModel.user_address_id;
+			[Utils stopActivityIndicatorInView:self.view];
 			[Utils startActivityIndicatorInView:self.view withMessage:nil];
 			[self performSelector:@selector(callWebServiceToGetMinOrderValue) withObject:nil afterDelay:0.2];
 		}
@@ -1176,6 +1179,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	[tfCouponCode resignFirstResponder];
     if([coupon_code length]>0)
 	{
+		[Utils stopActivityIndicatorInView:self.view];
 		[Utils startActivityIndicatorInView:self.view withMessage:nil];
 		[self performSelector:@selector(callWebServiceToCheckCouponValidation) withObject:nil afterDelay:0.1];
 	}
@@ -1205,9 +1209,6 @@ static NSString *strCollectionItems = @"collectionItems";
 }
 - (IBAction)btnPayClick:(UIButton *)sender {
     
-//    [self openFeedbackScreen];
-//    return;
-    
     btnPay.enabled = NO;
     if ([strSelectSlot isEqualToString:@"Select Slot"]) {
         btnPay.enabled = YES;
@@ -1233,6 +1234,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	}
     else
 	{
+		[Utils stopActivityIndicatorInView:self.view];
 		[Utils startActivityIndicatorInView:self.view withMessage:nil];
 		[self performSelector:@selector(createDataForCheckout) withObject:nil afterDelay:0.1 ];
 	}
@@ -1295,6 +1297,7 @@ static NSString *strCollectionItems = @"collectionItems";
             else
             {
                 if (![datePicker.date isEqualToDate:[NSDate date]]) {
+					[Utils stopActivityIndicatorInView:self.view];
 					[Utils startActivityIndicatorInView:self.view withMessage:nil];
                     [self performSelector:@selector(createDataToGetDeliverySlots) withObject:nil afterDelay:0.1];
                 }
