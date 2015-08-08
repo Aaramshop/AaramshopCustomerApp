@@ -108,6 +108,22 @@
 //        
 //    }
 //}
+
+#pragma mark - local notification
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    
+    [Utils showAlertView:kAlertTitle message:notification.alertBody delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    
+    [self.tabBarController setSelectedIndex:1];
+    
+}
+
+
+
+
+
+
 #pragma mark - Register Device For Device Token
 #pragma mark - Remote Notification Methods
 - (void)application:(UIApplication *)application   didRegisterUserNotificationSettings:   (UIUserNotificationSettings *)notificationSettings

@@ -287,14 +287,28 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    if(self.segChatSelection.selectedSegmentIndex ==0)
-    {
-        return 1;
-    }
-    else
-    {
-        return [self.arrCustomers count];
-    }
+	if(appDelegate.objStoreModel == nil)
+	{
+		if(self.segChatSelection.selectedSegmentIndex ==0)
+		{
+			return 1;
+		}
+		else
+		{
+			return [self.arrCustomers count];
+		}
+	}
+	else
+	{
+		if(self.segChatSelection.selectedSegmentIndex ==0)
+		{
+			return 1;
+		}
+		else
+		{
+			return 1;
+		}
+	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -322,95 +336,199 @@
     UILabel *lblTime = (UILabel *)[cell.contentView viewWithTag:103];
     UIButton *btnMessageCounter = (UIButton *)[cell.contentView viewWithTag:104];
     btnMessageCounter.hidden = YES;
+	
+	if(appDelegate.objStoreModel == nil)
+	{
+		XMPPMessageArchiving_Contact_CoreDataObject *cont = nil;
+		if(self.segChatSelection.selectedSegmentIndex == 0)
+		{
+			if([arrCustomerSupport count]>0)
+			{
+				cont = [arrCustomerSupport objectAtIndex:indexPath.row];
+				lblMessage.text = cont.mostRecentMessageBody;
+				lblTime.text = [Utils convertedDate:cont.mostRecentMessageTimestamp];
+				NSMutableArray *arrMsg = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:MESSAGE_COUNTER]];
+				if([arrMsg count]>0)
+				{
+					NSPredicate *predicate = nil;
+					if([cont.bareJidStr rangeOfString:STRChatServerURL].length>0)
+					{
+						predicate = [NSPredicate predicateWithFormat:@"self = %@",cont.bareJidStr];
+					}
+					//            else
+					//            {
+					//                predicate = [NSPredicate predicateWithFormat:@"self = %@",[[NSString stringWithFormat:@"%@@%@",addFriends.charUserName,STRChatServerURL] lowercaseString]];
+					//            }
+					
+					NSArray *aRecentArr = [arrMsg filteredArrayUsingPredicate:predicate];
+					if([aRecentArr count]>0)
+					{
+						if([aRecentArr count]>99)
+						{
+							[btnMessageCounter setTitle:[NSString stringWithFormat:@"99+"] forState:UIControlStateNormal];
+						}
+						else
+						{
+							[btnMessageCounter setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[aRecentArr count]] forState:UIControlStateNormal];
+						}
+						btnMessageCounter.hidden = NO;
+					}
+					
+				}
+			}
+			else
+			{
+				lblTime.text = @"";
+				lblMessage.text = @"";
+			}
+			imgViewProfile.image = [UIImage imageNamed:@"chatAaramShopIcon"];
+			lblName.text = @"Customer Support";
+			
+		}
+		else
+		{
+			cont = [self.arrCustomers objectAtIndex:indexPath.row];
+			[imgViewProfile sd_setImageWithURL:[NSURL URLWithString:cont.imgURL] placeholderImage:[UIImage imageNamed:@"chatDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+				//
+			}];
+			lblName.text = cont.nickname;
+			if(cont.mostRecentMessageBody.length> 0)
+			{
+				lblTime.text = [Utils convertedDate:cont.mostRecentMessageTimestamp];
+				lblMessage.text = cont.mostRecentMessageBody;
+			}
 
-    XMPPMessageArchiving_Contact_CoreDataObject *cont = nil;
-    if(self.segChatSelection.selectedSegmentIndex == 0)
-    {
-        if([arrCustomerSupport count]>0)
-        {
-            cont = [arrCustomerSupport objectAtIndex:indexPath.row];
-            lblMessage.text = cont.mostRecentMessageBody;
-            lblTime.text = [Utils convertedDate:cont.mostRecentMessageTimestamp];
-            NSMutableArray *arrMsg = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:MESSAGE_COUNTER]];
-            if([arrMsg count]>0)
-            {
-                NSPredicate *predicate = nil;
-                if([cont.bareJidStr rangeOfString:STRChatServerURL].length>0)
-                {
-                    predicate = [NSPredicate predicateWithFormat:@"self = %@",cont.bareJidStr];
-                }
-                //            else
-                //            {
-                //                predicate = [NSPredicate predicateWithFormat:@"self = %@",[[NSString stringWithFormat:@"%@@%@",addFriends.charUserName,STRChatServerURL] lowercaseString]];
-                //            }
-                
-                NSArray *aRecentArr = [arrMsg filteredArrayUsingPredicate:predicate];
-                if([aRecentArr count]>0)
-                {
-                    if([aRecentArr count]>99)
-                    {
-                        [btnMessageCounter setTitle:[NSString stringWithFormat:@"99+"] forState:UIControlStateNormal];
-                    }
-                    else
-                    {
-                        [btnMessageCounter setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[aRecentArr count]] forState:UIControlStateNormal];
-                    }
-                    btnMessageCounter.hidden = NO;
-                }
-                
-            }
-        }
-        else
-        {
-            lblTime.text = @"";
-            lblMessage.text = @"";
-        }
-        imgViewProfile.image = [UIImage imageNamed:@"chatAaramShopIcon"];
-        lblName.text = @"Customer Support";
-        
-    }
-    else
-    {
-        cont = [self.arrCustomers objectAtIndex:indexPath.row];
-        [imgViewProfile sd_setImageWithURL:[NSURL URLWithString:cont.imgURL] placeholderImage:[UIImage imageNamed:@"chatDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            //
-        }];
-        lblName.text = cont.nickname;
-        if(cont.mostRecentMessageBody.length> 0)
-        {
-            lblTime.text = [Utils convertedDate:cont.mostRecentMessageTimestamp];
-            lblMessage.text = cont.mostRecentMessageBody;
-        }
+			NSMutableArray *arrMsg = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:MESSAGE_COUNTER]];
+			if([arrMsg count]>0)
+			{
+				NSPredicate *predicate = nil;
+				if([cont.bareJidStr rangeOfString:STRChatServerURL].length>0)
+				{
+					predicate = [NSPredicate predicateWithFormat:@"self = %@",cont.bareJidStr];
+				}
+	//            else
+	//            {
+	//                predicate = [NSPredicate predicateWithFormat:@"self = %@",[[NSString stringWithFormat:@"%@@%@",addFriends.charUserName,STRChatServerURL] lowercaseString]];
+	//            }
+				
+				NSArray *aRecentArr = [arrMsg filteredArrayUsingPredicate:predicate];
+				if([aRecentArr count]>0)
+				{
+					if([aRecentArr count]>99)
+					{
+						[btnMessageCounter setTitle:[NSString stringWithFormat:@"99+"] forState:UIControlStateNormal];
+					}
+					else
+					{
+						[btnMessageCounter setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[aRecentArr count]] forState:UIControlStateNormal];
+					}
+					btnMessageCounter.hidden = NO;
+				}
+				
+			}
+		}
+	}
+	else
+	{
+		if(self.segChatSelection.selectedSegmentIndex == 0)
+		{
+			XMPPMessageArchiving_Contact_CoreDataObject *cont = nil;
+			if([arrCustomerSupport count]>0)
+			{
+				cont = [arrCustomerSupport objectAtIndex:indexPath.row];
+				lblMessage.text = cont.mostRecentMessageBody;
+				lblTime.text = [Utils convertedDate:cont.mostRecentMessageTimestamp];
+				NSMutableArray *arrMsg = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:MESSAGE_COUNTER]];
+				if([arrMsg count]>0)
+				{
+					NSPredicate *predicate = nil;
+					if([cont.bareJidStr rangeOfString:STRChatServerURL].length>0)
+					{
+						predicate = [NSPredicate predicateWithFormat:@"self = %@",cont.bareJidStr];
+					}
+					//            else
+					//            {
+					//                predicate = [NSPredicate predicateWithFormat:@"self = %@",[[NSString stringWithFormat:@"%@@%@",addFriends.charUserName,STRChatServerURL] lowercaseString]];
+					//            }
+					
+					NSArray *aRecentArr = [arrMsg filteredArrayUsingPredicate:predicate];
+					if([aRecentArr count]>0)
+					{
+						if([aRecentArr count]>99)
+						{
+							[btnMessageCounter setTitle:[NSString stringWithFormat:@"99+"] forState:UIControlStateNormal];
+						}
+						else
+						{
+							[btnMessageCounter setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[aRecentArr count]] forState:UIControlStateNormal];
+						}
+						btnMessageCounter.hidden = NO;
+					}
+					
+				}
+			}
+			else
+			{
+				lblTime.text = @"";
+				lblMessage.text = @"";
+			}
+			imgViewProfile.image = [UIImage imageNamed:@"chatAaramShopIcon"];
+			lblName.text = @"Customer Support";
+			
+		}
+		else
+		{
+			XMPPMessageArchiving_Contact_CoreDataObject *cont = nil;
+			if([self.arrCustomers count]>0)
+			{
+				cont = [self.arrCustomers objectAtIndex:indexPath.row];
+			}
 
-        NSMutableArray *arrMsg = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:MESSAGE_COUNTER]];
-        if([arrMsg count]>0)
-        {
-            NSPredicate *predicate = nil;
-            if([cont.bareJidStr rangeOfString:STRChatServerURL].length>0)
-            {
-                predicate = [NSPredicate predicateWithFormat:@"self = %@",cont.bareJidStr];
-            }
-//            else
-//            {
-//                predicate = [NSPredicate predicateWithFormat:@"self = %@",[[NSString stringWithFormat:@"%@@%@",addFriends.charUserName,STRChatServerURL] lowercaseString]];
-//            }
-            
-            NSArray *aRecentArr = [arrMsg filteredArrayUsingPredicate:predicate];
-            if([aRecentArr count]>0)
-            {
-                if([aRecentArr count]>99)
-                {
-                    [btnMessageCounter setTitle:[NSString stringWithFormat:@"99+"] forState:UIControlStateNormal];
-                }
-                else
-                {
-                    [btnMessageCounter setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[aRecentArr count]] forState:UIControlStateNormal];
-                }
-                btnMessageCounter.hidden = NO;
-            }
-            
-        }
-    }
+			[imgViewProfile sd_setImageWithURL:[NSURL URLWithString:appDelegate.objStoreModel.store_image] placeholderImage:[UIImage imageNamed:@"chatDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+				//
+			}];
+			lblName.text = appDelegate.objStoreModel.store_name;
+			if(cont.mostRecentMessageBody.length> 0)
+			{
+				lblTime.text = [Utils convertedDate:cont.mostRecentMessageTimestamp];
+				lblMessage.text = cont.mostRecentMessageBody;
+			}
+			else
+			{
+				lblTime.text		=	@"";
+				lblMessage.text	=	@"";
+			}
+			
+			NSMutableArray *arrMsg = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:MESSAGE_COUNTER]];
+			if([arrMsg count]>0)
+			{
+				NSPredicate *predicate = nil;
+//				if([appDelegate.objStoreModel.chat_username rangeOfString:STRChatServerURL].length>0)
+//				{
+//					predicate = [NSPredicate predicateWithFormat:@"self = %@",appDelegate.objStoreModel.chat_username];
+//				}
+//				//            else
+//				//            {
+					predicate = [NSPredicate predicateWithFormat:@"self = %@",[[NSString stringWithFormat:@"%@@%@",appDelegate.objStoreModel.chat_username,STRChatServerURL] lowercaseString]];
+				//            }
+				
+				NSArray *aRecentArr = [arrMsg filteredArrayUsingPredicate:predicate];
+				if([aRecentArr count]>0)
+				{
+					if([aRecentArr count]>99)
+					{
+						[btnMessageCounter setTitle:[NSString stringWithFormat:@"99+"] forState:UIControlStateNormal];
+					}
+					else
+					{
+						[btnMessageCounter setTitle:[NSString stringWithFormat:@"%lu",(unsigned long)[aRecentArr count]] forState:UIControlStateNormal];
+					}
+					btnMessageCounter.hidden = NO;
+				}
+				
+			}
+		}
+	}
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -428,12 +546,23 @@
     }
     else
     {
-        XMPPMessageArchiving_Contact_CoreDataObject *cont = [self.arrCustomers objectAtIndex:indexPath.row];
-        chatView = [deleg createChatViewByChatUserNameIfNeeded:[[cont.bareJidStr componentsSeparatedByString:@"@"] firstObject]];
-        chatView.chatWithUser =cont.bareJidStr;
-        chatView.friendNameId = cont.userId;
-        chatView.imageString = cont.imgURL;
-        chatView.userName = cont.nickname;
+		if(appDelegate.objStoreModel == nil)
+		{
+			XMPPMessageArchiving_Contact_CoreDataObject *cont = [self.arrCustomers objectAtIndex:indexPath.row];
+			chatView = [deleg createChatViewByChatUserNameIfNeeded:[[cont.bareJidStr componentsSeparatedByString:@"@"] firstObject]];
+			chatView.chatWithUser =cont.bareJidStr;
+			chatView.friendNameId = cont.userId;
+			chatView.imageString = cont.imgURL;
+			chatView.userName = cont.nickname;
+		}
+		else
+		{
+			chatView = [deleg createChatViewByChatUserNameIfNeeded:appDelegate.objStoreModel.chat_username];
+			chatView.chatWithUser =[NSString stringWithFormat:@"%@@%@",appDelegate.objStoreModel.chat_username,STRChatServerURL];
+			chatView.friendNameId = appDelegate.objStoreModel.store_id;
+			chatView.imageString = appDelegate.objStoreModel.store_image;
+			chatView.userName = appDelegate.objStoreModel.store_name;
+		}
     }
    
     chatView.hidesBottomBarWhenPushed = YES;
@@ -465,7 +594,8 @@
 }
 - (void)reloadTableView
 {
-    [self fetchedResultsController];
+
+	[self fetchedResultsController];
 //    if([self.arrFriends count]>0)
 //    {
 //        [tblViewMessages setHidden:NO];
