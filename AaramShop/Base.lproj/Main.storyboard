@@ -7127,7 +7127,7 @@ Your family will be able to add products of their choice and create a master sho
         <!--Invite Friends View Controller-->
         <scene sceneID="i92-EA-37L">
             <objects>
-                <viewController storyboardIdentifier="InviteFriendsView" id="8YR-bY-vaE" customClass="InviteFriendsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InviteFriendsView" hidesBottomBarWhenPushed="YES" id="8YR-bY-vaE" customClass="InviteFriendsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d9j-om-FoY"/>
                         <viewControllerLayoutGuide type="bottom" id="oQf-o7-Gwb"/>
