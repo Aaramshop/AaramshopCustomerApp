@@ -1,4 +1,4 @@
-//
+ //
 //  FeedbackViewController.m
 //  AaramShop
 //
@@ -31,13 +31,6 @@
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate=self;
-    
-    
-    UITapGestureRecognizer *singleFingerTap =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(handleSingleTap:)];
-    [self.view addGestureRecognizer:singleFingerTap];
-    
     
 }
 
@@ -85,54 +78,54 @@
 {
     btnOK.enabled = YES;
     
-    btnRating1.selected = NO;
-    btnRating2.selected = NO;
-    btnRating3.selected = NO;
-    btnRating4.selected = NO;
-    btnRating5.selected = NO;
+    [btnRating1 setImage:[UIImage imageNamed:@"popupStarIconGrey"] forState:UIControlStateNormal];
+    [btnRating2 setImage:[UIImage imageNamed:@"popupStarIconGrey"] forState:UIControlStateNormal];
+    [btnRating3 setImage:[UIImage imageNamed:@"popupStarIconGrey"] forState:UIControlStateNormal];
+    [btnRating4 setImage:[UIImage imageNamed:@"popupStarIconGrey"] forState:UIControlStateNormal];
+    [btnRating5 setImage:[UIImage imageNamed:@"popupStarIconGrey"] forState:UIControlStateNormal];
     
     
     switch (sender.tag)
     {
         case 1:
         {
-            btnRating1.selected = YES;
+			[btnRating1 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
             rating = 1;
         }
             break;
         case 2:
         {
-            btnRating1.selected = YES;
-            btnRating2.selected = YES;
+            [btnRating1 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
+            [btnRating2 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
             rating = 2;
         }
             break;
         case 3:
         {
-            btnRating1.selected = YES;
-            btnRating2.selected = YES;
-            btnRating3.selected = YES;
+            [btnRating1 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
+            [btnRating2 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
+            [btnRating3 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
             rating = 3;
 
         }
             break;
         case 4:
         {
-            btnRating1.selected = YES;
-            btnRating2.selected = YES;
-            btnRating3.selected = YES;
-            btnRating4.selected = YES;
+            [btnRating1 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
+            [btnRating2 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
+            [btnRating3 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
+            [btnRating4 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
             rating = 4;
 
         }
             break;
         case 5:
         {
-            btnRating1.selected = YES;
-            btnRating2.selected = YES;
-            btnRating3.selected = YES;
-            btnRating4.selected = YES;
-            btnRating5.selected = YES;
+            [btnRating1 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
+            [btnRating2 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
+            [btnRating3 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
+            [btnRating4 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
+            [btnRating5 setImage:[UIImage imageNamed:@"popupStarIconRed"] forState:UIControlStateNormal];
             rating = 5;
 
 
@@ -150,8 +143,6 @@
     txtView.text = [txtView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     [self callWebserviceToSendReview];
-    
-    
 }
 
 -(IBAction)actionCancel:(id)sender
@@ -216,7 +207,7 @@
 }
 
 
-- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+- (IBAction)handleSingleTap:(id)sender
 {
     [self animateViewToDown];
     

@@ -9,7 +9,9 @@
 #import "PrescriptionViewController.h"
 
 @interface PrescriptionViewController ()
-
+{
+	NSDictionary *dictToSend;
+}
 @end
 
 @implementation PrescriptionViewController
@@ -105,13 +107,19 @@
 
 -(IBAction)actionContinue:(id)sender
 {
-    
+	AppDelegate *deleg = APP_DELEGATE;
+	SMChatViewController *chatView = nil;
+	chatView = [deleg createChatViewByChatUserNameIfNeeded:deleg.objStoreModel.chat_username];
+	chatView.chatWithUser =[NSString stringWithFormat:@"%@@%@",deleg.objStoreModel.chat_username,STRChatServerURL];
+	chatView.friendNameId = deleg.objStoreModel.store_id;
+	chatView.imageString = deleg.objStoreModel.store_image;
+	chatView.userName = deleg.objStoreModel.store_name;
+	chatView.isMediaAvailable	=	YES;
+	chatView.dictMessageMedia	=	dictToSend;
+	chatView.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:chatView animated:YES];
+
 }
-
-
-
-
-
 
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -161,7 +169,7 @@
 {
     
     [pickerVw dismissViewControllerAnimated:YES completion:^{
-        
+		dictToSend= [NSDictionary dictionaryWithDictionary: info];
         imgPrescription.image = [UIImage scaleDownOriginalImage:[info objectForKey:@"UIImagePickerControllerEditedImage"]];
         lblUploadPicture.text = @"Change Picture";
     }];

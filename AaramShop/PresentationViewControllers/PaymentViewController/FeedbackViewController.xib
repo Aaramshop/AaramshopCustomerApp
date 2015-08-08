@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -39,10 +38,16 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view hidden="YES" alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbT-Ax-g5A" userLabel="View - Overlay">
+                <button opaque="NO" alpha="0.64999999999999969" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iZ-J3-Gdr">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
+                    <color key="backgroundColor" red="0.082352943720000002" green="0.066666670139999995" blue="0.019607843829999999" alpha="1" colorSpace="deviceRGB"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="handleSingleTap:" destination="-1" eventType="touchUpInside" id="Huc-UB-l4A"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J1h-hU-o81" userLabel="View - Rating">
                     <rect key="frame" x="11" y="100" width="299" height="365"/>
                     <subviews>
@@ -118,7 +123,6 @@
                             <state key="normal" image="popupStarIconGrey.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" image="popupStarIconRed.png"/>
                             <connections>
                                 <action selector="actionRating:" destination="-1" eventType="touchUpInside" id="4Y1-tk-rda"/>
                             </connections>
@@ -132,7 +136,6 @@
                             <state key="normal" image="popupStarIconGrey.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" image="popupStarIconRed.png"/>
                             <connections>
                                 <action selector="actionRating:" destination="-1" eventType="touchUpInside" id="vOn-Vg-zoz"/>
                             </connections>
@@ -146,7 +149,6 @@
                             <state key="normal" image="popupStarIconGrey.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" image="popupStarIconRed.png"/>
                             <connections>
                                 <action selector="actionRating:" destination="-1" eventType="touchUpInside" id="T2G-c6-9mm"/>
                             </connections>
@@ -160,7 +162,6 @@
                             <state key="normal" image="popupStarIconGrey.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" image="popupStarIconRed.png"/>
                             <connections>
                                 <action selector="actionRating:" destination="-1" eventType="touchUpInside" id="E1Z-QR-18y"/>
                             </connections>
@@ -174,7 +175,6 @@
                             <state key="normal" image="popupStarIconGrey.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" image="popupStarIconRed.png"/>
                             <connections>
                                 <action selector="actionRating:" destination="-1" eventType="touchUpInside" id="6DE-EB-wd7"/>
                             </connections>
@@ -320,12 +320,13 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="centerY" secondItem="J1h-hU-o81" secondAttribute="centerY" constant="1.5" id="1rY-e5-hHb"/>
                 <constraint firstAttribute="centerX" secondItem="J1h-hU-o81" secondAttribute="centerX" constant="-0.5" id="2OO-HP-BIA"/>
                 <constraint firstItem="J1h-hU-o81" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="DAS-k5-Gl1"/>
-                <constraint firstItem="CbT-Ax-g5A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Rcg-mH-jhb"/>
-                <constraint firstAttribute="bottom" secondItem="CbT-Ax-g5A" secondAttribute="bottom" id="gqw-bU-xfM"/>
-                <constraint firstAttribute="trailing" secondItem="CbT-Ax-g5A" secondAttribute="trailing" id="je8-fe-Qwr"/>
-                <constraint firstItem="CbT-Ax-g5A" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mgy-5j-0eb"/>
+                <constraint firstAttribute="trailing" secondItem="2iZ-J3-Gdr" secondAttribute="trailing" id="Ebi-yP-ASj"/>
+                <constraint firstAttribute="bottom" secondItem="2iZ-J3-Gdr" secondAttribute="bottom" id="GqQ-PM-pdQ"/>
+                <constraint firstItem="2iZ-J3-Gdr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ieF-tL-1Vt"/>
+                <constraint firstItem="2iZ-J3-Gdr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="oDf-Ys-hmQ"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="180" y="317"/>
@@ -334,6 +335,5 @@
     <resources>
         <image name="popupCloseBtn.png" width="20" height="20"/>
         <image name="popupStarIconGrey.png" width="17" height="17"/>
-        <image name="popupStarIconRed.png" width="17" height="17"/>
     </resources>
 </document>
