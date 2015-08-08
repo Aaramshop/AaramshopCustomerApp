@@ -253,7 +253,7 @@
 			cell =[self createCell:cellIdentifier];
 			UIImageView *imgView = (UIImageView *)[cell.contentView viewWithTag:201];
 			UILabel *lbl = (UILabel *)[cell.contentView viewWithTag:202];
-			imgView.image= [UIImage imageNamed:@"tabBarHomeIcon"];
+			imgView.image= [UIImage imageNamed:@"homeScreenHomeIconRed"];
 			lbl.text = @"Home Stores";
 			
 		}

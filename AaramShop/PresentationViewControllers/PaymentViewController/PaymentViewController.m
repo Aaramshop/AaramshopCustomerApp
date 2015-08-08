@@ -272,6 +272,7 @@ static NSString *strCollectionItems = @"collectionItems";
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
     {
+		[Utils stopActivityIndicatorInView:self.view];
         btnPay.enabled = NO;
         [AppManager stopStatusbarActivityIndicator];
         [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
@@ -352,6 +353,8 @@ static NSString *strCollectionItems = @"collectionItems";
         {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 			[AppManager removeCartBasedOnStoreId:self.strStore_Id];
+			gAppManager.intCount = 0;
+			[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 			[self openFeedbackScreen];
         }
     }
@@ -418,7 +421,6 @@ static NSString *strCollectionItems = @"collectionItems";
 - (void)didFailWithError:(NSError *)error
 {
 	[Utils stopActivityIndicatorInView:self.view];
-
     btnPay.enabled = YES;
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
@@ -897,13 +899,14 @@ static NSString *strCollectionItems = @"collectionItems";
 		[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:YES];
 		
 		arrSelectedProducts		=	(NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
+		gAppManager.intCount++;
+		[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+
 	}
 	else
 	{
 		[self modifyCartForShoppingListByData:objProductsModel];
 	}
-	gAppManager.intCount++;
-	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
@@ -941,14 +944,15 @@ static NSString *strCollectionItems = @"collectionItems";
 		[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:NO];
 		
 		arrSelectedProducts = (NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
+		gAppManager.intCount--;
+		[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+
 	}
 	else
 	{
 		[self modifyCartForShoppingListByData:objProductsModel];
 	}
 	
-	gAppManager.intCount--;
-	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
 	NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
@@ -1199,8 +1203,6 @@ static NSString *strCollectionItems = @"collectionItems";
     [pickerViewSlots reloadAllComponents];
 }
 - (IBAction)btnPayClick:(UIButton *)sender {
-	[self openFeedbackScreen];
-	return;
     btnPay.enabled = NO;
     if ([strSelectSlot isEqualToString:@"Select Slot"]) {
         btnPay.enabled = YES;
@@ -1225,7 +1227,10 @@ static NSString *strCollectionItems = @"collectionItems";
 		[Utils showAlertView:kAlertTitle message:@"Please check coupon validity" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 	}
     else
-    [self createDataForCheckout];
+	{
+		[Utils startActivityIndicatorInView:self.view withMessage:nil];
+		[self performSelector:@selector(createDataForCheckout) withObject:nil afterDelay:0.1 ];
+	}
 }
 
 -(void)designToolBar
