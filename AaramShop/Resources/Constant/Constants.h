@@ -358,6 +358,8 @@
 #define kURLShareShoppingList						@"shareShoppingList"
 #define kURLGetShoppingListShareWith			@"getShoppingListShareWith"
 
+#define kShoppingListID                       @"shoppingListID"
+
 
 //=========== Get Wallet =================================
 #define kURLGetWallet										@"getWallet"

@@ -191,7 +191,7 @@
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:_shoppingListModel.shoppingListId forKey:@"shoppingListId"];
     
-    [dict setObject:_storeId forKey:@"store_id"];
+    [dict setObject:_selectedStoreModel.store_id forKey:@"store_id"];
     
     [dict setObject:[NSString stringWithFormat:@"%.0f",[startDate timeIntervalSince1970]] forKey:@"start_date"];
     [dict setObject:[NSString stringWithFormat:@"%.0f",[endDate timeIntervalSince1970]] forKey:@"end_date"];
@@ -219,12 +219,11 @@
     
     [dict setObject:reminderSwitch.isOn?@"1":@"0" forKey:@"reminder"];
     
-//    [self callWebServiceToSetShoppingListReminder:dict]; // temp
+    [self callWebServiceToSetShoppingListReminder:dict];
     
+//    [self saveLocalNotification];
     
-    
-//    [self setLocalNotification];
-    
+
     
     /*
     
@@ -361,6 +360,8 @@
             {
                 [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
                 
+                [self saveLocalNotification];
+                
                 // add reminder data in model
                 
                 _shoppingListModel.frequency = [responseObject valueForKey:@"frequency"];
@@ -384,6 +385,9 @@
             if ([[responseObject objectForKey:kstatus] intValue] == 1)
             {
                 [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+                
+                
+                [self removeShoppingListReminder];
                 
                 // remove reminder data from model
                 
@@ -589,38 +593,94 @@
 }
 
 
-#pragma mark - Set local notification
-/*
--(void)setLocalNotification
+#pragma mark - Save local notification
+
+-(void)saveLocalNotification
 {
     
-    NSString *startTime = [NSString stringWithFormat:@"%@",event.originaltime];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMM dd, yyyy"];
     
-    pickerDate = [[Database database] getDatefrom:event.originaldate withTime:startTime];
+    NSDate *startDate = [dateFormatter dateFromString:lblStartDate.text];
+    NSDate *endDate = [dateFormatter dateFromString:lblEndDate.text];
     
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = pickerDate;
-    localNotification.alertBody = [NSString stringWithFormat:@"%@ Vs %@\n%@\nWill start soon..",event.team_A_name,event.team_B_name,event.competitionname];
-    localNotification.alertAction = @"Show me the item";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.soundName = UILocalNotificationDefaultSoundName;
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    int noOfDaysInterval= 0;
     
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    localNotification = nil;
+
+    if ([lblRepeat.text isEqualToString:@"Every day"])
+    {
+        noOfDaysInterval = 1;
+        
+    }else if ([lblRepeat.text isEqualToString:@"30 days"])
+    {
+        noOfDaysInterval = 30;
+        
+    }else if ([lblRepeat.text isEqualToString:@"15 days"])
+    {
+        noOfDaysInterval = 15;
+        
+    }else if ([lblRepeat.text isEqualToString:@"7 days"])
+    {
+        noOfDaysInterval = 7;
+    }
+    NSDate *NextFireDate = startDate;
+    int endLoop = 0;
+    for(int i = 0 ;i<=endLoop ; i++)
+    {
+        NextFireDate = [NextFireDate dateByAddingTimeInterval:+(noOfDaysInterval*86400)];
+        NSComparisonResult result = [NextFireDate compare:endDate];
+        if(result == NSOrderedDescending)
+        {
+        }
+        else
+        {
+            UILocalNotification *localNotification = [[UILocalNotification alloc]init];
+            localNotification.alertAction = @"Ok";
+            
+            localNotification.fireDate = [NextFireDate dateByAddingTimeInterval:-1800];
     
-    pickerDate = [[Database database] getDateforten:event.originaldate withTime:startTime];
-    
-    localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = pickerDate;
-    localNotification.alertBody = [NSString stringWithFormat:@"%@ Vs %@\n%@\nStarts in ten minutes !!",event.team_A_name,event.team_B_name,event.competitionname];
-    localNotification.alertAction = @"Show me the item";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.soundName = UILocalNotificationDefaultSoundName;
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//            localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:+60]; // for testing..
+
+            
+            localNotification.soundName = UILocalNotificationDefaultSoundName;
+            
+            localNotification.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:_shoppingListModel.shoppingListId,kShoppingListID, nil];
+            
+            NSString *strMessage  = [NSString stringWithFormat:@"Thanks for using the AaramShop reminder service. Order for your shopping list %@ will be placed at %@ as scheduled in next 30 mins.",_shoppingListModel.shoppingListName,_selectedStoreModel.store_name];
+            
+            localNotification.alertBody = strMessage;
+
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+            
+            endLoop++;
+        }
+    }
+
 }
-//*/
+
+
+#pragma mark - Remove Shopping List Reminder
+-(void)removeShoppingListReminder
+{
+    UIApplication *app = [UIApplication sharedApplication];
+    NSArray *eventArray = [app scheduledLocalNotifications];
+    for (int i=0; i<[eventArray count]; i++)
+    {
+        UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
+        NSDictionary *userInfoCurrent = oneEvent.userInfo;
+        NSString *uid=[NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:kShoppingListID]];
+        if ([uid isEqualToString:_shoppingListModel.shoppingListId])
+        {
+            //Cancelling local notification
+            [app cancelLocalNotification:oneEvent];
+            break;
+        }
+    }
+}
+
+
+
+
+
 
 @end

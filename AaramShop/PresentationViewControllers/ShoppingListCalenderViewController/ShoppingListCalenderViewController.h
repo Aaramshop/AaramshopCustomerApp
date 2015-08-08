@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <EventKit/EventKit.h>
 #import "ShoppingListModel.h"
+#import "ShoppingListChooseStoreModel.h"
+
 
 @interface ShoppingListCalenderViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 
@@ -42,8 +44,10 @@
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
-@property(nonatomic,strong) NSString *storeId;
+//@property(nonatomic,strong) NSString *storeId;
 @property(nonatomic,strong) ShoppingListModel *shoppingListModel;
+@property(nonatomic,strong) ShoppingListChooseStoreModel *selectedStoreModel;
+
 
 - (IBAction)toolRepeatCancelACtion:(id)sender;
 

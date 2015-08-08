@@ -1465,7 +1465,9 @@ static NSString *strCollectionItems = @"collectionItems";
 //        
 //    }
     
-    [self openFeedbackScreen];
+    [self performSelector:@selector(openFeedbackScreen) withObject:nil afterDelay:0.5];
+    
+//    [self openFeedbackScreen];
 
 }
 

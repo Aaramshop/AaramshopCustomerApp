@@ -662,7 +662,7 @@
     {
         ShoppingListCalenderViewController *shoppingListCalenderView = (ShoppingListCalenderViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"ShoppingListCalenderView"];
         
-        shoppingListCalenderView.storeId = selectedStoreModel.store_id;
+        shoppingListCalenderView.selectedStoreModel = selectedStoreModel;
         shoppingListCalenderView.shoppingListModel=_shoppingListModel;
         
         [self.navigationController pushViewController:shoppingListCalenderView animated:YES];

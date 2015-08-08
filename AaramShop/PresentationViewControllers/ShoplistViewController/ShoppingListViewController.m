@@ -378,6 +378,11 @@
             {
                 [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
                 
+                
+                ShoppingListModel *shoppingListModel = [arrShoppingList objectAtIndex:deletedShoppingListIndex];
+
+                [self removeShoppingListReminder:shoppingListModel.shoppingListId];
+                
                 [arrShoppingList removeObjectAtIndex:deletedShoppingListIndex];
                 [tblView reloadData];
             }
@@ -550,6 +555,26 @@
     [self callWebServiceToDeleteShoppingList:dic];
 }
 
+
+#pragma mark - Remove Shopping List Reminder
+
+-(void)removeShoppingListReminder:(NSString *)shoppingListId
+{
+    UIApplication *app = [UIApplication sharedApplication];
+    NSArray *eventArray = [app scheduledLocalNotifications];
+    for (int i=0; i<[eventArray count]; i++)
+    {
+        UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
+        NSDictionary *userInfoCurrent = oneEvent.userInfo;
+        NSString *uid=[NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:kShoppingListID]];
+        if ([uid isEqualToString:shoppingListId])
+        {
+            //Cancelling local notification
+            [app cancelLocalNotification:oneEvent];
+            break;
+        }
+    }
+}
 
 
 @end
