@@ -351,22 +351,7 @@ static NSString *strCollectionItems = @"collectionItems";
         {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 			[AppManager removeCartBasedOnStoreId:self.strStore_Id];
-			if([self.tabBarController isEqual:appDel.tabBarControllerRetailer])
-			{
-				if(self.fromCart)
-				{
-					[appDel removeTabBarRetailer];
-				}
-				else
-				{
-					[self.navigationController popToRootViewControllerAnimated:YES];
-				}
-			}
-			else
-			{
-                [self openFeedbackScreen];
-                
-			}
+			[self openFeedbackScreen];
         }
     }
 	else if (aaramShop_ConnectionManager.currentTask == TASK_GET_MINIMUM_ORDER_VALUE)
@@ -1209,6 +1194,8 @@ static NSString *strCollectionItems = @"collectionItems";
     [pickerViewSlots reloadAllComponents];
 }
 - (IBAction)btnPayClick:(UIButton *)sender {
+	[self openFeedbackScreen];
+	return;
     btnPay.enabled = NO;
     if ([strSelectSlot isEqualToString:@"Select Slot"]) {
         btnPay.enabled = YES;
@@ -1413,6 +1400,7 @@ static NSString *strCollectionItems = @"collectionItems";
 
 -(void)openFeedbackScreen
 {
+	[tblView setUserInteractionEnabled:NO];
     FeedbackViewController *feedBack = [[FeedbackViewController alloc]initWithNibName:@"FeedbackViewController" bundle:nil];
     
     feedBack.strStore_Id = strStore_Id;
@@ -1421,15 +1409,29 @@ static NSString *strCollectionItems = @"collectionItems";
     
     CGRect customFeedbackViewRect = self.view.bounds;
     feedBack.view.frame = customFeedbackViewRect;
-    
     feedBack.feedbackCompletion = ^(void)
     {
-        [self.navigationController popViewControllerAnimated:YES];
+		tblView.userInteractionEnabled=YES;
+		if([self.tabBarController isEqual:appDel.tabBarControllerRetailer])
+		{
+			if(self.fromCart)
+			{
+				[appDel removeTabBarRetailer];
+			}
+			else
+			{
+				[self.navigationController popToRootViewControllerAnimated:YES];
+			}
+		}
+		else
+		{
+			[self.navigationController popToRootViewControllerAnimated:YES];
+		}
     };
     
 //    [self.navigationController pushViewController:feedBack animated:YES];
     
-    [[UIApplication sharedApplication].keyWindow addSubview:feedBack.view];
+    [self.view addSubview:feedBack.view];
     
 }
 

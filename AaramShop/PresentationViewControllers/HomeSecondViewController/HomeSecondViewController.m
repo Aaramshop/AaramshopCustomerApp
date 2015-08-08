@@ -99,19 +99,20 @@
 	arrCartProducts						= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:self.strStore_Id]];
 	arrCartProductIds					=	[arrCartProducts valueForKey:kProduct_id];
 	//==============================================
-	[self createDataToGetStoreProductCategories];
 }
-
-
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
 	strTotalPrice = [self getTotalPrice];
 	[arrGetStoreProducts removeAllObjects];
-	if([strSelectedCategoryId integerValue]>0 && self.mainCategoryIndexPicker>=0)
+	if([arrOnlySubCategoryPicker count]>0&&[strSelectedCategoryId integerValue]>0 && self.mainCategoryIndexPicker>=0)
 	{
 		[self createDataToGetStoreProducts];
+	}
+	else
+	{
+		[arrGetStoreProductCategories removeAllObjects];
+		[self createDataToGetStoreProductCategories];
 	}
 	[tblVwCategory reloadData];
     isViewActive = YES;
@@ -293,7 +294,14 @@
 	objProductsModel.offer_id=[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];
 	objProductsModel.offer_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_price]];
 	objProductsModel.offer_type = [NSString stringWithFormat:@"%d",[[dictProducts objectForKey:@"offer_type"] intValue]];
-	objProductsModel.strCount = @"0";
+	if([objProductsModel.offer_type  integerValue]>0)
+	{
+		objProductsModel.strCount = [AppManager getCountOfProduct:objProductsModel.offer_id withOfferType:objProductsModel.offer_type forStore_id:appDeleg.objStoreModel.store_id];
+	}
+	else
+	{
+		objProductsModel.strCount = [AppManager getCountOfProduct:objProductsModel.product_id withOfferType:objProductsModel.offer_type forStore_id:appDeleg.objStoreModel.store_id];
+	}
 
 	return objProductsModel;
 }
@@ -1000,6 +1008,8 @@
     
     if ([strSelectedCategoryId integerValue] == 496) // value for medicine
     {
+		self.mainCategoryIndexPicker = 0;
+		strSelectedCategoryId = @"0";
         PrescriptionViewController *prescriptionView = (PrescriptionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"PrescriptionViewController"];
     
         prescriptionView.strStoreId = strStore_Id;

@@ -34,7 +34,7 @@ typedef void (^FeedbackCompletion)(void);
     AaramShop_ConnectionManager *aaramShop_ConnectionManager;
     
 }
-
+- (IBAction)handleSingleTap:(id)sender;
 @property(nonatomic,strong) NSString *strStore_Id;
 @property(nonatomic,strong) NSString *strStore_name;
 @property(nonatomic,strong) NSString *strStore_image;

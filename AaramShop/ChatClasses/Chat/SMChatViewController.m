@@ -2488,7 +2488,7 @@
     }
 }
 -(void)ChoosePhotoOrVideo{
-    return;
+//    return;
     self.isMediaOpened = YES;
     
     picker=[[UIImagePickerController alloc] init];
@@ -2505,7 +2505,7 @@
     [self presentViewController:picker animated:YES completion:nil];
 }
 -(void)ChooseExistingPhoto{
-    return;
+//    return;
     self.isMediaOpened = YES;
     
     UIImagePickerController *imagePicker=[[UIImagePickerController alloc] init];
@@ -3037,14 +3037,19 @@
         
         
     }
-    NSString *api = [NSString stringWithFormat:@"http://52.74.220.25:80/index.php/merchant/chatMedia"];
+    NSString *api = [NSString stringWithFormat:@"http://52.74.220.25:80/index.php/user/chatMedia"];
     
-    
-    if(isImage == 1)
-    {
-        NSMutableDictionary *aDict=[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:kUserId],@"userId",@"1",@"fileType",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceId]],kDeviceId,kDevice,kDeviceType,mediaData ,@"profileImage",nil];
-        [[NetworkService sharedInstance] sendAsynchronusUploadImageByGetUsingMultiPart:api dataToSend:aDict boundry:@"111000111" header:NO andDelegate:self andChatId:chatId andMediaType:mediaType andfileName:fileNameWihExt];
-    }
+	if(isImage == 1)
+	{
+		NSMutableDictionary *aDict=[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:kUserId],@"userId",@"1",@"fileType",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceId]],kDeviceId,kDevice,kDeviceType,mediaData ,@"profileImage",nil];
+		[[NetworkService sharedInstance] sendAsynchronusUploadImageByGetUsingMultiPart:api dataToSend:aDict boundry:@"111000111" header:NO andDelegate:self andChatId:chatId andMediaType:mediaType andfileName:fileNameWihExt];
+	}
+
+//    if(isImage == 1)
+//    {
+//        NSMutableDictionary *aDict=[NSMutableDictionary dictionaryWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults]objectForKey:kUserId],@"userId",@"1",@"fileType",[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:kDeviceId]],kDeviceId,kDevice,kDeviceType,mediaData ,@"profileImage",nil];
+//        [[NetworkService sharedInstance] sendAsynchronusUploadImageByGetUsingMultiPart:api dataToSend:aDict boundry:@"111000111" header:NO andDelegate:self andChatId:chatId andMediaType:mediaType andfileName:fileNameWihExt];
+//    }
     //    else if (isImage == 2)
     //    {
     //        [[NetworkService sharedInstance] sendImage:self :chatId :mediaData mediaType:2];
