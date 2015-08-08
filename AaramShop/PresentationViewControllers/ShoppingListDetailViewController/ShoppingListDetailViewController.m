@@ -440,9 +440,11 @@
     
     //
     UIButton *btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnDone.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width - 40), 0, 40, 40);
+    btnDone.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width - 70), 0, 70, 40);
     btnDone.backgroundColor = [UIColor colorWithRed:221.0/255.0 green:34.0/255.0 blue:34.0/255.0 alpha:1.0];
-    [btnDone setImage:[UIImage imageNamed:@"shoppingListSideArrow"] forState:UIControlStateNormal];
+	btnDone.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:14.0f];
+	[btnDone setTintColor:[UIColor whiteColor]];
+	[btnDone setTitle:@"Proceed" forState:UIControlStateNormal];
     [btnDone addTarget:self action:@selector(btnDoneClicked) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -452,7 +454,7 @@
     NSString *strAmount = strTotalAvailProductPrice;
     
     //
-    UILabel *lblTotalAmountValue = [[UILabel alloc]initWithFrame:CGRectMake((btnDone.frame.origin.x - 120), 0, 100, view.frame.size.height)];
+    UILabel *lblTotalAmountValue = [[UILabel alloc]initWithFrame:CGRectMake((btnDone.frame.origin.x - 110), 0, 100, view.frame.size.height)];
     lblTotalAmountValue.font = [UIFont fontWithName:kRobotoBold size:16];
     lblTotalAmountValue.textColor = [UIColor colorWithRed:31.0/255.0 green:31.0/255.0 blue:31.0/255.0 alpha:1.0];
     lblTotalAmountValue.textAlignment = NSTextAlignmentRight;

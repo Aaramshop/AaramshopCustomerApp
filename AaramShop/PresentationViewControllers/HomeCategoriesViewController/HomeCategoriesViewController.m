@@ -11,6 +11,7 @@
 #import "CartViewController.h"
 #import "StoreModel.h"
 #import "BroadcastViewController.h"
+#import "LocationEnterViewController.h"
 
 #define kTagForYSLScrollView    1000
 #define kTagForFoodTableView    10
@@ -26,6 +27,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     CGFloat kTabbarHeight;
 	NSString *strHeaderTitle;
     AppDelegate *appDeleg;
+	NSMutableArray *pickerArray;
 
 }
 @end
@@ -37,28 +39,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.navigationController.navigationBarHidden = NO;
-	 arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
-	appDeleg = APP_DELEGATE;
-		if (appDeleg.myCurrentLocation == nil) {
-			if([arrAddress count]>0)
-			{
-				CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[[arrAddress objectAtIndex:0] objectForKey:@"latitude"] doubleValue] longitude:[[[arrAddress objectAtIndex:0] objectForKey:@"longitude"] doubleValue]];
-				appDeleg.myCurrentLocation = newLocation;
-					strHeaderTitle =[[arrAddress objectAtIndex:0] objectForKey:@"user_address_title"];
-			}
-			else
-			{
-				CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:0.00000f longitude:0.00000f];
-				appDeleg.myCurrentLocation = newLocation;
-				strHeaderTitle =@"";
-
-			}
-		}
-
 	
+    self.navigationController.navigationBarHidden = NO;
+//	 arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+	appDeleg = APP_DELEGATE;
+
 	[self designPickerViewSlots];
+	
 	[self toolBarDesignes];
     [self initilizeData];
     
@@ -76,8 +63,28 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-	 [self setUpNavigationBar];
+	if(!pickerArray)
+		pickerArray = [[NSMutableArray alloc] init];
+	[pickerArray removeAllObjects];
 	arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+
+	if (appDeleg.myCurrentLocation == nil) {
+		if([arrAddress count]>0)
+		{
+			CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[[arrAddress objectAtIndex:0] objectForKey:@"latitude"] doubleValue] longitude:[[[arrAddress objectAtIndex:0] objectForKey:@"longitude"] doubleValue]];
+			appDeleg.myCurrentLocation = newLocation;
+			strHeaderTitle =[[arrAddress objectAtIndex:0] objectForKey:@"user_address_title"];
+		}
+		else
+		{
+			CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:0.00000f longitude:0.00000f];
+			appDeleg.myCurrentLocation = newLocation;
+			strHeaderTitle =@"";
+			
+		}
+	}
+
+	 [self setUpNavigationBar];
 
 	if([arrCategories count]==0)
 	{
@@ -128,13 +135,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 -(void)setUpNavigationBar
 {
-    CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 100, 44);
+    CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 97, 44);
     UIView* _headerTitleSubtitleView = [[UIView alloc] initWithFrame:headerTitleSubtitleFrame];
     _headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
     _headerTitleSubtitleView.autoresizesSubviews = NO;
     
 	btnPicker = [UIButton buttonWithType:UIButtonTypeCustom];
-	[btnPicker setFrame:CGRectMake(0, 0, 100, 44)];
+	[btnPicker setFrame:CGRectMake(0, 0, 97, 44)];
 	btnPicker.titleLabel.textAlignment=NSTextAlignmentCenter;
 	btnPicker.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:15];
 	btnPicker.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -160,7 +167,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	[rightContainer setBackgroundColor:[UIColor clearColor]];
 	UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
 	btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnCart.frame = CGRectMake((rightContainer.frame.size.width - 20)/2, (rightContainer.frame.size.height - 20)/2, 20, 20);
+	btnCart.frame = CGRectMake((rightContainer.frame.size.width - 26)/2, (rightContainer.frame.size.height - 26)/2, 26, 26);
 	
 	[btnCart setImage:imgCart forState:UIControlStateNormal];
 	[btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -194,7 +201,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	
 	
 	btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnSearch.bounds = CGRectMake( 0, 0, 24, 24);
+	btnSearch.bounds = CGRectMake( 0, 0, 26, 26);
 	
 	[btnSearch setImage:imgSearch forState:UIControlStateNormal];
 	[btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -206,7 +213,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	UIImage *imgBroadcast = [UIImage imageNamed:@"bellIcon"];
 	
 	btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnBroadcast.bounds = CGRectMake( 0, 0, 24, 24);
+	btnBroadcast.bounds = CGRectMake( 0, 0, 26, 26);
 	
 	[btnBroadcast setImage:imgBroadcast forState:UIControlStateNormal];
 	[btnBroadcast addTarget:self action:@selector(btnBroadcastClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -229,9 +236,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 }
 - (void)btnPicker
 {
+	[pickerArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Add new address",@"user_address_title",@"0",kUser_address_id, nil]];
+	[pickerArray addObjectsFromArray:arrAddress];
+	[pickerViewSlots reloadAllComponents];
 	[self userInteraction:NO];
 	[self showPickerView:YES];
 	[self showOptionPatch:YES];
+	
 }
 -(void)designPickerViewSlots
 {
@@ -279,11 +290,24 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 		[self userInteraction:YES];
 		[self showOptionPatch:NO];
 		[self showPickerView:NO];
-		strHeaderTitle =[dictPickerValue objectForKey:@"user_address_title"];
-		[btnPicker setTitle:[NSString stringWithFormat:@" %@", strHeaderTitle] forState:UIControlStateNormal];
-		CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[dictPickerValue objectForKey:@"latitude"] doubleValue] longitude:[[dictPickerValue objectForKey:@"longitude"] doubleValue]];
-		appDeleg.myCurrentLocation = newLocation;
-		[self createDataToGetStores];
+		if([[dictPickerValue objectForKey:kUser_address_id] integerValue]==0)
+		{
+			LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+			locationScreen.delegate							= self;
+			locationScreen.addAddressCompletion	= ^(void)
+			{
+				self.navigationController.navigationBarHidden = NO;
+			};
+			[self.navigationController pushViewController:locationScreen animated:YES];
+		}
+		else
+		{
+			strHeaderTitle =[dictPickerValue objectForKey:@"user_address_title"];
+			[btnPicker setTitle:[NSString stringWithFormat:@" %@", strHeaderTitle] forState:UIControlStateNormal];
+			CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[dictPickerValue objectForKey:@"latitude"] doubleValue] longitude:[[dictPickerValue objectForKey:@"longitude"] doubleValue]];
+			appDeleg.myCurrentLocation = newLocation;
+			[self createDataToGetStores];
+		}
 		
 	}
 }
@@ -330,7 +354,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 #pragma mark PickerView Methods & Delegates
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
 	
-	return arrAddress.count;
+	return pickerArray.count;
 }
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -341,13 +365,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
 	
-	return [arrAddress [row] objectForKey:@"user_address_title"];
+	return [pickerArray [row] objectForKey:@"user_address_title"];
 	
 }
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
 	
-	dictPickerValue= [arrAddress objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
+	dictPickerValue= [pickerArray objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
 	
 	
 }

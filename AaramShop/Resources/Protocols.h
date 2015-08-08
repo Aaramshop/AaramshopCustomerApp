@@ -34,4 +34,9 @@
 -(void)minusValueByPrice:(NSString*)strPrice atIndexPath:(NSIndexPath *)inIndexPath;
 -(void)updateTableAtIndexPath:(NSIndexPath *)inIndexPath;
 @end
+
+//====================================================
+@protocol InviteUserdelegate <NSObject>
+-(void)btnInviteClicked:(NSIndexPath *)indexPath;
+@end
 #endif

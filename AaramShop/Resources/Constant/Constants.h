@@ -414,7 +414,11 @@
 
 #define kURLUserReview                                      @"userReview"
 
-
+//=============== Invite Friends on Facebook==============
+#define kFBAccessToken                              @"FBAccessToken"
+#define kFBUserImageURL                         @"userImageURL"
+#define kURLGetFBFriends									@"getFBFriends"
+#define kAccessToken										@"accessToken"
 
 
 
