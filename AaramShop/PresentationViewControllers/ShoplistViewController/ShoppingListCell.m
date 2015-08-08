@@ -58,11 +58,16 @@
         [btnTime setImage:[UIImage imageNamed:@"clockIconRed"] forState:UIControlStateNormal];
         [btnTime setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
         
-        strTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[shoppingListModel.reminder_start_date doubleValue]]];
+        strTime = [self convertTimeStampToDate:shoppingListModel.reminder_start_date];
+        
+//        strTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[shoppingListModel.reminder_start_date doubleValue]]];
     }
     else
     {
-        strTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[shoppingListModel.creationDate doubleValue]]];
+//        strTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[shoppingListModel.creationDate doubleValue]]];
+        
+        strTime = [self convertTimeStampToDate:shoppingListModel.creationDate];
+
     }
     
     strTime = [[[strTime stringByReplacingOccurrencesOfString:@"/" withString:@"-"] componentsSeparatedByString:@" "] firstObject];
@@ -77,6 +82,8 @@
     
     
     btnShare.hidden = NO;
+    lblShare.hidden = NO;
+
 
     if ([shoppingListModel.sharedBy count]>0)
     {
@@ -123,8 +130,31 @@
     else
     {
         btnShare.hidden = YES;
+        lblShare.hidden = YES;
+
     }
 }
+
+
+-(NSString *)convertTimeStampToDate:(NSString *)time
+{
+    NSString *strDate = [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[time doubleValue]]];
+    
+    NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
+    [dateFormatter1 setDateFormat:@"dd-MM-yyyy"];
+    NSDate *dateFromString = [dateFormatter1 dateFromString:strDate];
+    
+    
+//    NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+//    dateFormatter2.locale=[NSLocale localeWithLocaleIdentifier:@"en_US"];
+//    [dateFormatter2 setDateFormat:@"MMM dd, yyyy"];
+//    
+//    return [dateFormatter2 stringFromDate:dateFromString];
+    
+    return [dateFormatter1 stringFromDate:dateFromString];
+
+}
+
 
 
 @end
