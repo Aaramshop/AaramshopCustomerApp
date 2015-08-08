@@ -15,6 +15,7 @@
 #import "LocationEnterViewController.h"
 #import "WalletViewController.h"
 #import "AddressModel.h"
+#import "InviteFriendsViewController.h"
 
 #define kDefaultHeaderFrame CGRectMake(0, 0, tblView.frame.size.width, tblView.frame.size.height)
 
@@ -258,7 +259,14 @@
 }
 -(void)shareWithFacebook
 {
-    
+	[self dismiss];
+	storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+	InviteFriendsViewController *inviteFriendsVCon = [storyboard instantiateViewControllerWithIdentifier:@"InviteFriendsView"];
+	
+	if ([self.delegate respondsToSelector:@selector(sideBarDelegatePushMethod:)]) {
+		[self.delegate sideBarDelegatePushMethod:inviteFriendsVCon];
+	}
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

@@ -430,6 +430,12 @@
 		36210B7F1B33F254005B8DFB /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 36210B7C1B33F254005B8DFB /* backBtn.png */; };
 		36210B801B33F254005B8DFB /* backBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36210B7D1B33F254005B8DFB /* backBtn@2x.png */; };
 		36210B811B33F254005B8DFB /* backBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36210B7E1B33F254005B8DFB /* backBtn@3x.png */; };
+		362537EC1B76111500DF34F8 /* InviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362537EB1B76111500DF34F8 /* InviteFriendsViewController.m */; };
+		362537F11B76136600DF34F8 /* homeInviteBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 362537EE1B76136600DF34F8 /* homeInviteBtn.png */; };
+		362537F21B76136600DF34F8 /* homeInviteBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 362537EF1B76136600DF34F8 /* homeInviteBtn@2x.png */; };
+		362537F31B76136600DF34F8 /* homeInviteBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 362537F01B76136600DF34F8 /* homeInviteBtn@3x.png */; };
+		362537F61B761DE900DF34F8 /* InviteFriendsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362537F51B761DE900DF34F8 /* InviteFriendsTableCell.m */; };
+		362537F81B762D1D00DF34F8 /* FacebookView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362537F71B762D1D00DF34F8 /* FacebookView.xib */; };
 		362A8DEA1B567BAD0009844B /* CMOffers.m in Sources */ = {isa = PBXBuildFile; fileRef = 362A8DE91B567BAD0009844B /* CMOffers.m */; };
 		362A8DED1B567BDC0009844B /* CMPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 362A8DEC1B567BDC0009844B /* CMPreferences.m */; };
 		3653955D1B524FA60045AAFE /* CouponsBoxActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 365395511B524FA60045AAFE /* CouponsBoxActive.png */; };
@@ -2141,6 +2147,14 @@
 		36210B7C1B33F254005B8DFB /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		36210B7D1B33F254005B8DFB /* backBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@2x.png"; sourceTree = "<group>"; };
 		36210B7E1B33F254005B8DFB /* backBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@3x.png"; sourceTree = "<group>"; };
+		362537EA1B76111500DF34F8 /* InviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsViewController.h; sourceTree = "<group>"; };
+		362537EB1B76111500DF34F8 /* InviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsViewController.m; sourceTree = "<group>"; };
+		362537EE1B76136600DF34F8 /* homeInviteBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeInviteBtn.png; sourceTree = "<group>"; };
+		362537EF1B76136600DF34F8 /* homeInviteBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeInviteBtn@2x.png"; sourceTree = "<group>"; };
+		362537F01B76136600DF34F8 /* homeInviteBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeInviteBtn@3x.png"; sourceTree = "<group>"; };
+		362537F41B761DE900DF34F8 /* InviteFriendsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsTableCell.h; sourceTree = "<group>"; };
+		362537F51B761DE900DF34F8 /* InviteFriendsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsTableCell.m; sourceTree = "<group>"; };
+		362537F71B762D1D00DF34F8 /* FacebookView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacebookView.xib; sourceTree = "<group>"; };
 		362A8DE81B567BAD0009844B /* CMOffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMOffers.h; sourceTree = "<group>"; };
 		362A8DE91B567BAD0009844B /* CMOffers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMOffers.m; sourceTree = "<group>"; };
 		362A8DEB1B567BDC0009844B /* CMPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPreferences.h; sourceTree = "<group>"; };
@@ -4943,6 +4957,28 @@
 			path = 32_Calendar;
 			sourceTree = "<group>";
 		};
+		362537E91B76110300DF34F8 /* InviteFriendsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				362537F71B762D1D00DF34F8 /* FacebookView.xib */,
+				362537F41B761DE900DF34F8 /* InviteFriendsTableCell.h */,
+				362537F51B761DE900DF34F8 /* InviteFriendsTableCell.m */,
+				362537EA1B76111500DF34F8 /* InviteFriendsViewController.h */,
+				362537EB1B76111500DF34F8 /* InviteFriendsViewController.m */,
+			);
+			path = InviteFriendsViewController;
+			sourceTree = "<group>";
+		};
+		362537ED1B76136600DF34F8 /* InviteFriendImages */ = {
+			isa = PBXGroup;
+			children = (
+				362537EE1B76136600DF34F8 /* homeInviteBtn.png */,
+				362537EF1B76136600DF34F8 /* homeInviteBtn@2x.png */,
+				362537F01B76136600DF34F8 /* homeInviteBtn@3x.png */,
+			);
+			path = InviteFriendImages;
+			sourceTree = "<group>";
+		};
 		362A8DE61B567BAD0009844B /* CMPreferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -5850,6 +5886,7 @@
 		6B12DC871AF22C8100245209 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				362537ED1B76136600DF34F8 /* InviteFriendImages */,
 				6BA2621C1B732E7500F520E4 /* PrescriptionScreenImages */,
 				6B9FF9661B72255E004A32B6 /* RatingScreen */,
 				36CA64541B712A8F00A3BBB1 /* SearchImages */,
@@ -5939,6 +5976,7 @@
 		6B12DC9D1AF2543A00245209 /* PresentationViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				362537E91B76110300DF34F8 /* InviteFriendsViewController */,
 				36CA64461B70EC3D00A3BBB1 /* SearchViewController */,
 				36CA643F1B70DC6200A3BBB1 /* GlobalSearchResultViewC */,
 				6B2CFEA71B70E84800ECB72C /* PrescriptionViewController */,
@@ -7825,6 +7863,7 @@
 				6BE4C9091B034CDE00EF1EDB /* locationIcon@3x.png in Resources */,
 				274A5A4C1B05C075009112B5 /* homeOfferBox@2x.png in Resources */,
 				36BE5AAA1B53C5580079DAE3 /* sepratorBoxThree@3x.png in Resources */,
+				362537F21B76136600DF34F8 /* homeInviteBtn@2x.png in Resources */,
 				2786559F1B0467F400A262A3 /* menuEditIcon@3x.png in Resources */,
 				6BD2D3171B284C8900EC6E54 /* homeLockIconOpen@3x.png in Resources */,
 				3682096F1B1C46FA002AA93F /* germany.png in Resources */,
@@ -7990,6 +8029,7 @@
 				368209671B1C46FA002AA93F /* finland.png in Resources */,
 				6BE4743D1B3B21CE00C09AFD /* left_arrow@2x.png in Resources */,
 				6B8EB31D1B27098F00402CFC /* homeDetailsBannerShade@3x.png in Resources */,
+				362537F31B76136600DF34F8 /* homeInviteBtn@3x.png in Resources */,
 				274A5A4F1B05C075009112B5 /* homeStoreIcon@2x.png in Resources */,
 				368209D91B1C46FA002AA93F /* panama.png in Resources */,
 				6B37EAB61B5CE4E400C7A3D8 /* homeStarRedIcon@2x.png in Resources */,
@@ -8124,6 +8164,7 @@
 				6B8EB3121B27095000402CFC /* addToCartIcon.png in Resources */,
 				6BD2D31F1B284C8900EC6E54 /* homeScreenHomeIconRed@2x.png in Resources */,
 				6BD2D2E91B28408800EC6E54 /* homeRecomondedStoreShopIcon@2x.png in Resources */,
+				362537F11B76136600DF34F8 /* homeInviteBtn.png in Resources */,
 				274A5C7A1B05C4AA009112B5 /* poweredByFoursquare_gray@2x.png in Resources */,
 				368209181B1C46FA002AA93F /* austria.png in Resources */,
 				6B8EB2B21B26B8BE00402CFC /* homeStoreDetailsDeleversIcon.png in Resources */,
@@ -8269,6 +8310,7 @@
 				6B8EB2901B25BED000402CFC /* homeStoreQuestionMarkIcon.png in Resources */,
 				6B83A0EF1B53EB2F00A00520 /* copyIcon.png in Resources */,
 				3682094C1B1C46FA002AA93F /* crimea.png in Resources */,
+				362537F81B762D1D00DF34F8 /* FacebookView.xib in Resources */,
 				274A5DB31B05C88B009112B5 /* chatCameraSmall@2x.png in Resources */,
 				36820A3D1B1C46FA002AA93F /* western sahara.png in Resources */,
 				368209A21B1C46FA002AA93F /* laos.png in Resources */,
@@ -8913,6 +8955,7 @@
 				6B8EB2701B25A7FA00402CFC /* HomeSecondViewController.m in Sources */,
 				274A5CC61B05C4AA009112B5 /* XMPPvCardTempBase.m in Sources */,
 				274A5CF01B05C4AA009112B5 /* NSXMLElement+XEP_0297.m in Sources */,
+				362537F61B761DE900DF34F8 /* InviteFriendsTableCell.m in Sources */,
 				274A5CAD1B05C4AA009112B5 /* XMPPIQ+LastActivity.m in Sources */,
 				6BA8940C1B4F9FAC0014519C /* ShoppingStoreModel.m in Sources */,
 				274A5CA41B05C4AA009112B5 /* XMPPUserCoreDataStorageObject.m in Sources */,
@@ -8936,6 +8979,7 @@
 				274A5D001B05C4AA009112B5 /* DDTTYLogger.m in Sources */,
 				274A5C4A1B05C4AA009112B5 /* AFHTTPRequestOperation.m in Sources */,
 				365E753B1B54DECB0091E229 /* OffersTableCell.m in Sources */,
+				362537EC1B76111500DF34F8 /* InviteFriendsViewController.m in Sources */,
 				274A5CBD1B05C4AA009112B5 /* XMPPRoom.m in Sources */,
 				36D8C4D81B39B4B100C255EE /* CMOrderHist.m in Sources */,
 				274A5CA31B05C4AA009112B5 /* XMPPRosterCoreDataStorage.m in Sources */,

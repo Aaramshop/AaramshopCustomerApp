@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto_Medium.ttf">
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
+        </mutableArray>
+        <mutableArray key="Roboto_Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmA-iE-mWp">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <color key="backgroundColor" red="0.34509804840000002" green="0.46274513010000001" blue="0.73725491759999995" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="DCm-BB-Bmj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.34509804840000002" green="0.46274513010000001" blue="0.73725491759999995" alpha="1" colorSpace="deviceRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YG-pj-jKx">
+                    <rect key="frame" x="8" y="27" width="61" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="27v-FC-fqz"/>
+                        <constraint firstAttribute="width" constant="61" id="WCl-Pc-dxs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vnR-eB-hjy">
+                    <rect key="frame" x="266" y="27" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="IKQ-1f-mE1"/>
+                        <constraint firstAttribute="height" constant="30" id="aJ4-BW-0VG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="102" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PfE-e0-0Yg">
+                    <rect key="frame" x="0.0" y="64" width="320" height="123"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="123" id="VAW-1E-2DJ"/>
+                        <constraint firstAttribute="height" constant="220" id="XeB-U6-JZo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="XeB-U6-JZo"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="ziH-1b-GtP"/>
+                    </connections>
+                </textView>
+                <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xqR-qg-csQ">
+                    <rect key="frame" x="8" y="195" width="85" height="85"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="85" id="PyW-po-4b6"/>
+                        <constraint firstAttribute="height" constant="85" id="koM-JS-hyn"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Also available on App Store" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqb-Cg-yxt">
+                    <rect key="frame" x="101" y="226" width="212" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="4DS-RK-rQZ"/>
+                        <constraint firstAttribute="width" constant="212" id="fBv-8c-BHl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AaramShop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5u-gr-gZo">
+                    <rect key="frame" x="101" y="202" width="91" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="S2N-PE-Muc"/>
+                        <constraint firstAttribute="width" constant="91" id="T0o-YL-wlk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="sqb-Cg-yxt" firstAttribute="top" secondItem="r5u-gr-gZo" secondAttribute="top" constant="24" id="33w-P3-pOA"/>
+                <constraint firstItem="9YG-pj-jKx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="4fc-TE-MSS"/>
+                <constraint firstItem="r5u-gr-gZo" firstAttribute="top" secondItem="PfE-e0-0Yg" secondAttribute="top" constant="138" id="6cb-Ti-hhP"/>
+                <constraint firstItem="r5u-gr-gZo" firstAttribute="leading" secondItem="xqR-qg-csQ" secondAttribute="leading" constant="93" id="Bvf-cc-Rg3"/>
+                <constraint firstItem="xqR-qg-csQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="CLi-7h-Xkv"/>
+                <constraint firstAttribute="trailing" secondItem="vnR-eB-hjy" secondAttribute="trailing" constant="8" id="EF7-Yj-xZL"/>
+                <constraint firstAttribute="trailing" secondItem="PfE-e0-0Yg" secondAttribute="trailing" id="FZc-bl-D8K"/>
+                <constraint firstItem="hmA-iE-mWp" firstAttribute="top" secondItem="PfE-e0-0Yg" secondAttribute="top" constant="-64" id="NDq-WL-fVA"/>
+                <constraint firstItem="vnR-eB-hjy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="PeN-it-qqT"/>
+                <constraint firstItem="PfE-e0-0Yg" firstAttribute="top" secondItem="xqR-qg-csQ" secondAttribute="top" constant="-131" id="QfP-eE-2ms"/>
+                <constraint firstItem="9YG-pj-jKx" firstAttribute="leading" secondItem="hmA-iE-mWp" secondAttribute="leading" constant="8" id="Vvq-VX-RX5"/>
+                <constraint firstItem="hmA-iE-mWp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="aNc-m3-4wg"/>
+                <constraint firstItem="9YG-pj-jKx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="dRa-6Z-8gU"/>
+                <constraint firstItem="PfE-e0-0Yg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="g2i-6m-gfv"/>
+                <constraint firstAttribute="bottom" secondItem="PfE-e0-0Yg" secondAttribute="bottom" constant="216" id="hbk-AV-Xql"/>
+                <constraint firstAttribute="trailing" secondItem="hmA-iE-mWp" secondAttribute="trailing" id="kbp-RF-rX9"/>
+                <constraint firstItem="hmA-iE-mWp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mN9-rz-Jeu"/>
+                <constraint firstItem="9YG-pj-jKx" firstAttribute="top" secondItem="hmA-iE-mWp" secondAttribute="top" constant="27" id="qnT-zO-6VU"/>
+                <constraint firstItem="sqb-Cg-yxt" firstAttribute="leading" secondItem="xqR-qg-csQ" secondAttribute="leading" constant="93" id="wFY-X6-cfL"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Vvq-VX-RX5"/>
+                    <exclude reference="qnT-zO-6VU"/>
+                    <exclude reference="hbk-AV-Xql"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="32" y="123"/>
+        </view>
+    </objects>
+</document>

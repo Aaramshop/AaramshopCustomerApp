@@ -61,7 +61,7 @@
     [searchBarMain becomeFirstResponder];
     
     toolbarbackground = [[UIToolbar alloc] initWithFrame:self.view.frame];
-    toolbarbackground.barStyle = UIBarStyleBlack;
+    toolbarbackground.barStyle = UIBarStyleDefault;
     [toolbarbackground setAlpha:0.0];
     
     
