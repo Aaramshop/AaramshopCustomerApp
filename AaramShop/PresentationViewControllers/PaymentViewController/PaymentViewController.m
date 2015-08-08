@@ -1205,8 +1205,8 @@ static NSString *strCollectionItems = @"collectionItems";
 }
 - (IBAction)btnPayClick:(UIButton *)sender {
     
-    [self openFeedbackScreen];
-    return;
+//    [self openFeedbackScreen];
+//    return;
     
     btnPay.enabled = NO;
     if ([strSelectSlot isEqualToString:@"Select Slot"]) {

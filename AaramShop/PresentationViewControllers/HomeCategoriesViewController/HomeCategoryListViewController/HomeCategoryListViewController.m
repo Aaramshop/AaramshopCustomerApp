@@ -252,6 +252,11 @@
 
 -(void)btnExpandCollapseClicked:(UIButton *)sender
 {
+    if ([arrRecommendedStores count]==1)
+    {
+        return;
+    }
+    
     if (isTableExpanded == YES)
     {
         isTableExpanded = NO;
