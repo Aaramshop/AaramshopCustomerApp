@@ -219,7 +219,14 @@
     
     [dict setObject:reminderSwitch.isOn?@"1":@"0" forKey:@"reminder"];
     
-    [self callWebServiceToSetShoppingListReminder:dict];
+//    [self callWebServiceToSetShoppingListReminder:dict]; // temp
+    
+    
+    
+//    [self setLocalNotification];
+    
+    
+    /*
     
     if (reminderSwitch.isOn && [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] == EKAuthorizationStatusAuthorized) {
         
@@ -242,12 +249,12 @@
         
         EKRecurrenceRule *recurrenceRule = nil;
         
-        if ([lblRepeat.text isEqualToString:@"Every day"])
-        {
-            strRepeatDays=@"1";
-            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 daysOfTheWeek:nil daysOfTheMonth:nil monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
-        }else if ([lblRepeat.text isEqualToString:@"30 days"])
-        {
+//        if ([lblRepeat.text isEqualToString:@"Every day"])
+//        {
+//            strRepeatDays=@"1";
+//            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 daysOfTheWeek:nil daysOfTheMonth:nil monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
+//        }else if ([lblRepeat.text isEqualToString:@"30 days"])
+//        {
             strRepeatDays=@"30";
             
             NSDate *newDate1 = [startDate dateByAddingTimeInterval:60*60*24*strRepeatDays.intValue];
@@ -257,26 +264,26 @@
             recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyMonthly interval:1 daysOfTheWeek:nil daysOfTheMonth:@[[NSString stringWithFormat:@"%ld",(long)components.day]] monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
             
             
-        }else if ([lblRepeat.text isEqualToString:@"15 days"])
-        {
-            strRepeatDays=@"15";
-            NSDate *newDate1 = [startDate dateByAddingTimeInterval:60*60*24*strRepeatDays.intValue];
-            NSCalendar* calendar = [NSCalendar currentCalendar];
-            NSDateComponents* components1 = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:newDate1];
-            NSDateComponents* components2 = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:startDate];
-            
-            
-            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyMonthly interval:1 daysOfTheWeek:nil daysOfTheMonth:@[[NSString stringWithFormat:@"%ld",(long)components1.day],[NSString stringWithFormat:@"%ld",(long)components2.day]] monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
-        }else if ([lblRepeat.text isEqualToString:@"7 days"])
-        {
-            strRepeatDays=@"7";
-            
-            
-             NSCalendar* calendar = [NSCalendar currentCalendar];
-            NSDateComponents *comps = [calendar components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
-
+//        }else if ([lblRepeat.text isEqualToString:@"15 days"])
+//        {
+//            strRepeatDays=@"15";
+//            NSDate *newDate1 = [startDate dateByAddingTimeInterval:60*60*24*strRepeatDays.intValue];
+//            NSCalendar* calendar = [NSCalendar currentCalendar];
+//            NSDateComponents* components1 = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:newDate1];
+//            NSDateComponents* components2 = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:startDate];
+//            
+//            
+//            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyMonthly interval:1 daysOfTheWeek:nil daysOfTheMonth:@[[NSString stringWithFormat:@"%ld",(long)components1.day],[NSString stringWithFormat:@"%ld",(long)components2.day]] monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
+//        }else if ([lblRepeat.text isEqualToString:@"7 days"])
+//        {
+//            strRepeatDays=@"7";
+//            
+//            
+//             NSCalendar* calendar = [NSCalendar currentCalendar];
+//            NSDateComponents *comps = [calendar components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
+//
             recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly interval:1 daysOfTheWeek:@[[NSString stringWithFormat:@"%ld",(long)comps.weekday]] daysOfTheMonth:nil monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
-        }
+//        }
 
         
         
@@ -296,7 +303,8 @@
             NSLog(@"Error saving reminder: %@", [error localizedDescription]);
         }
     }
-    
+     
+     //*/
     
 }
 #pragma mark - Call Webservice
@@ -581,7 +589,38 @@
 }
 
 
-
-
+#pragma mark - Set local notification
+/*
+-(void)setLocalNotification
+{
+    
+    NSString *startTime = [NSString stringWithFormat:@"%@",event.originaltime];
+    
+    pickerDate = [[Database database] getDatefrom:event.originaldate withTime:startTime];
+    
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = pickerDate;
+    localNotification.alertBody = [NSString stringWithFormat:@"%@ Vs %@\n%@\nWill start soon..",event.team_A_name,event.team_B_name,event.competitionname];
+    localNotification.alertAction = @"Show me the item";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    localNotification = nil;
+    
+    pickerDate = [[Database database] getDateforten:event.originaldate withTime:startTime];
+    
+    localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = pickerDate;
+    localNotification.alertBody = [NSString stringWithFormat:@"%@ Vs %@\n%@\nStarts in ten minutes !!",event.team_A_name,event.team_B_name,event.competitionname];
+    localNotification.alertAction = @"Show me the item";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+//*/
 
 @end
