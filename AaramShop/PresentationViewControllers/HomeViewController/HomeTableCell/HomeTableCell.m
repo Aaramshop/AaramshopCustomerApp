@@ -139,7 +139,7 @@
         imgvCategoryIcon.clipsToBounds = YES;
 
     }
-    [imgvCategoryIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreData.store_image]] placeholderImage:[UIImage imageNamed:@"homeDetailsDefaultImgae.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [imgvCategoryIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreData.store_image]] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
         }
     }];

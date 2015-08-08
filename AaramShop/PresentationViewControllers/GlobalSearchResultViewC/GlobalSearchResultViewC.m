@@ -26,13 +26,18 @@
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
 	arrGlobalSearchResult = [[NSMutableArray alloc] init];
-	[self setUpNavigationBar];
+	
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 	
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self setUpNavigationBar];
 }
 #pragma mark Navigation
 -(void)setUpNavigationBar

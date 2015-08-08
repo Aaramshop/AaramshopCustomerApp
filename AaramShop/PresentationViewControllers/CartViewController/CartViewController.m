@@ -168,15 +168,18 @@
     NSString *strRupee = @"\u20B9";
 	
 	NSInteger strAmount = 0;
+	NSInteger intTotalProducts = 0;
 	for(CartProductModel *product in cartModel.arrProductDetails)
 	{
 		if([product.strOffer_type integerValue]>0)
 		{
 			strAmount = strAmount + ([product.strCount integerValue] * [product.offer_price integerValue]);
+			intTotalProducts = intTotalProducts +[product.strCount integerValue];
 		}
 		else
 		{
 			strAmount = strAmount + ([product.strCount integerValue] * [product.product_price integerValue]);
+			intTotalProducts = intTotalProducts +[product.strCount integerValue];
 		}
 	}
 	
@@ -213,13 +216,19 @@
 
     
     
-    UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake((imgStore.frame.origin.x + imgStore.frame.size.width + 8), 14, 162, 40)];
+    UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake((imgStore.frame.origin.x + imgStore.frame.size.width + 8), 7, 162, 40)];
 //	lblStoreName.backgroundColor = [UIColor greenColor];
     lblStoreName.font = [UIFont fontWithName:kRobotoMedium size:15];
     lblStoreName.textColor = [UIColor colorWithRed:49.0/255.0 green:49.0/255.0 blue:49.0/255.0 alpha:1.0];
     lblStoreName.text = cartModel.store_name;
 	lblStoreName.numberOfLines = 0;
 
+	UILabel *lblTotalProducts = [[UILabel alloc]initWithFrame:CGRectMake((imgStore.frame.origin.x + imgStore.frame.size.width + 8), 37, 162, 21)];
+	//	lblStoreName.backgroundColor = [UIColor greenColor];
+	lblTotalProducts.font = [UIFont fontWithName:kRobotoRegular size:10];
+	lblTotalProducts.textColor = [UIColor colorWithRed:49.0/255.0 green:49.0/255.0 blue:49.0/255.0 alpha:1.0];
+	lblTotalProducts.text = [NSString stringWithFormat:@"Total Products %ld",(long) intTotalProducts];
+	
 	UIImage *imgCheckout = [UIImage imageNamed:@"doneBtn"];
 	UIButton *btnCheckout = [UIButton buttonWithType:UIButtonTypeCustom];
 	btnCheckout.frame = CGRectMake( [[UIScreen mainScreen] bounds].size.width-83, 19, 75, 30);
@@ -245,6 +254,7 @@
     
     [viewBottom addSubview:imgStore];
     [viewBottom addSubview:lblStoreName];
+	[viewBottom addSubview:lblTotalProducts];
 	[viewBottom addSubview:btnCheckout];
 //    [viewBottom addSubview:lblDeliveryTime];
 	

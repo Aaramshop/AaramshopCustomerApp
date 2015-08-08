@@ -177,7 +177,7 @@ static NSString *strCollectionCategory = @"collectionCategories";
     
     UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(((([UIScreen mainScreen].bounds.size.width)/3-2)-60)/2,10,60, 60)];
     
-    [imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objCategoryModel.category_image]] placeholderImage:[UIImage imageNamed:@"homeDetailsDefaultImgae.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objCategoryModel.category_image]] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
         }
     }];

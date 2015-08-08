@@ -32,7 +32,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     appDeleg = APP_DELEGATE;
-    [self setNavigationBar];
+	
     totalNoOfPages = 0;
     pageno = 0;
     isLoading = NO;
@@ -52,7 +52,7 @@
     [super viewWillAppear:YES];
     
     _tblView.hidden = YES;
-    
+    [self setNavigationBar];
     [self getRetailerShoppingList];
 }
 - (void)didReceiveMemoryWarning {
@@ -94,28 +94,53 @@
     NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
     //
-    UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
-    UIButton *btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnSearch.bounds = CGRectMake( -10, 0, 30, 30);
-    
-    [btnSearch setImage:imgSearch forState:UIControlStateNormal];
-    [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
 	
-	
-	
+	UIView *rightContainer=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 26, 44)];
+	[rightContainer setBackgroundColor:[UIColor clearColor]];
 	UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
 	UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnCart.bounds = CGRectMake( -10, 0, 30, 30);
+	btnCart.frame = CGRectMake((rightContainer.frame.size.width - 20)/2, (rightContainer.frame.size.height - 20)/2, 20, 20);
 	
 	[btnCart setImage:imgCart forState:UIControlStateNormal];
 	[btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *barBtnCart = [[UIBarButtonItem alloc] initWithCustomView:btnCart];
 	
-
+	[rightContainer addSubview:btnCart];
 	
-    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnSearch, barBtnCart, nil];
-    self.navigationItem.rightBarButtonItems = arrBtnsRight;
+	UIButton *badgeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	badgeBtn.frame = CGRectMake(16, 5, 23, 23);
+	[badgeBtn addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+	[badgeBtn setBackgroundImage:[UIImage imageNamed:@"addToCardNoBox"] forState:UIControlStateNormal];
+	
+	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+1	, 13, 20, 8)];
+	lab.font = [UIFont fontWithName:kRobotoRegular size:9];
+	[lab setTextAlignment:NSTextAlignmentCenter];
+	[lab setTextColor:[UIColor whiteColor]];
+	[lab setBackgroundColor:[UIColor clearColor]];
+	NSInteger count = [AppManager getCountOfProductsInCart];
+	if (count > 0) {
+		gAppManager.intCount = count;
+		if (count>99) {
+			lab.text = @"99+";
+		}
+		else
+			lab.text = [NSString stringWithFormat:@"%ld",(long)count];
+		[rightContainer addSubview:badgeBtn];
+		[rightContainer addSubview:lab];
+	}
+	
+	UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
+	
+	
+	UIButton *btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnSearch.bounds = CGRectMake( 0, 0, 24, 24);
+	
+	[btnSearch setImage:imgSearch forState:UIControlStateNormal];
+	[btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
+	UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
+	NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,
+							 barBtnSearch, nil];
+	self.navigationItem.rightBarButtonItems = arrBtnsRight;
     
 }
 -(void)btnCartClicked
