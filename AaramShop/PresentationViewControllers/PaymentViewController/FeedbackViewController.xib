@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -74,6 +75,18 @@
                             </state>
                             <connections>
                                 <action selector="actionClose:" destination="-1" eventType="touchUpInside" id="aOK-sS-ZVm"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ln6-o2-X6K">
+                            <rect key="frame" x="0.0" y="35" width="299" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" id="3b3-eB-ueU"/>
+                            </constraints>
+                            <state key="normal">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="handleSingleTap:" destination="-1" eventType="touchUpInside" id="JZH-zu-hIZ"/>
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7u-vb-ZX1" userLabel="Image View - Store image">
@@ -295,9 +308,12 @@
                         <constraint firstItem="G7u-vb-ZX1" firstAttribute="top" secondItem="SDK-4L-b8v" secondAttribute="bottom" constant="11" id="aW7-Fk-UBw"/>
                         <constraint firstAttribute="trailing" secondItem="zOq-0M-A5V" secondAttribute="trailing" constant="4" id="b7w-fT-SPW"/>
                         <constraint firstItem="QjQ-y4-3RX" firstAttribute="leading" secondItem="J1h-hU-o81" secondAttribute="leading" constant="97" id="ckH-sc-G5H"/>
+                        <constraint firstAttribute="trailing" secondItem="ln6-o2-X6K" secondAttribute="trailing" id="eaa-DZ-rC8"/>
                         <constraint firstAttribute="centerX" secondItem="yUk-EV-g9i" secondAttribute="centerX" id="gQt-Vy-N8j"/>
                         <constraint firstItem="wTz-If-hVx" firstAttribute="top" secondItem="nWq-81-6Lf" secondAttribute="bottom" constant="21" id="gkR-qL-4CC"/>
                         <constraint firstItem="Bgn-Tm-jA9" firstAttribute="top" secondItem="nWq-81-6Lf" secondAttribute="bottom" constant="21" id="hxV-VQ-Ans"/>
+                        <constraint firstItem="ln6-o2-X6K" firstAttribute="leading" secondItem="J1h-hU-o81" secondAttribute="leading" constant="2" id="jbV-17-fYw"/>
+                        <constraint firstItem="ln6-o2-X6K" firstAttribute="leading" secondItem="J1h-hU-o81" secondAttribute="leading" id="kLf-VM-9OK"/>
                         <constraint firstAttribute="centerX" secondItem="6sR-zB-76u" secondAttribute="centerX" id="pRx-vM-Kxc"/>
                         <constraint firstItem="hhO-y1-Hy8" firstAttribute="top" secondItem="nWq-81-6Lf" secondAttribute="bottom" constant="21" id="r0J-Zx-F9P"/>
                         <constraint firstItem="G7u-vb-ZX1" firstAttribute="top" secondItem="J1h-hU-o81" secondAttribute="top" constant="47" id="rQg-it-Eon"/>
@@ -309,10 +325,16 @@
                         <constraint firstItem="fDi-KM-fIX" firstAttribute="leadingMargin" secondItem="J1h-hU-o81" secondAttribute="leadingMargin" id="xEd-dJ-B6B"/>
                         <constraint firstItem="Hnl-5j-NiK" firstAttribute="top" secondItem="avf-r3-kxg" secondAttribute="bottom" constant="1" id="xJr-FY-Pkw"/>
                         <constraint firstAttribute="bottom" secondItem="yUk-EV-g9i" secondAttribute="bottom" id="xYb-0K-tY0"/>
+                        <constraint firstItem="SDK-4L-b8v" firstAttribute="top" secondItem="ln6-o2-X6K" secondAttribute="top" constant="-35" id="y2h-oB-a14"/>
                         <constraint firstAttribute="centerX" secondItem="jsa-HH-Cip" secondAttribute="centerX" id="y2y-g6-clJ"/>
+                        <constraint firstAttribute="trailing" secondItem="ln6-o2-X6K" secondAttribute="trailing" id="yVq-7H-d5o"/>
+                        <constraint firstItem="SDK-4L-b8v" firstAttribute="top" secondItem="ln6-o2-X6K" secondAttribute="top" constant="-35" id="zxG-at-0lc"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="zxG-at-0lc"/>
+                            <exclude reference="jbV-17-fYw"/>
+                            <exclude reference="yVq-7H-d5o"/>
                             <exclude reference="rQg-it-Eon"/>
                         </mask>
                     </variation>
@@ -329,6 +351,11 @@
                 <constraint firstItem="2iZ-J3-Gdr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="oDf-Ys-hmQ"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="DAS-k5-Gl1"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="180" y="317"/>
         </view>
     </objects>

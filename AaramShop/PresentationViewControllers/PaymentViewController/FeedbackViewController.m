@@ -71,11 +71,15 @@
 
 -(IBAction)actionClose:(id)sender
 {
+	[txtView resignFirstResponder];
+	[self handleSingleTap:nil];
     [self removeFeedBackScreen];
 }
 
 -(IBAction)actionRating:(UIButton*)sender
 {
+	[txtView resignFirstResponder];
+	[self handleSingleTap:nil];
     btnOK.enabled = YES;
     
     [btnRating1 setImage:[UIImage imageNamed:@"popupStarIconGrey"] forState:UIControlStateNormal];
@@ -140,6 +144,8 @@
 
 -(IBAction)actionOK:(id)sender
 {
+	[txtView resignFirstResponder];
+	[self handleSingleTap:nil];
     txtView.text = [txtView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     [self callWebserviceToSendReview];
@@ -147,6 +153,8 @@
 
 -(IBAction)actionCancel:(id)sender
 {
+	[txtView resignFirstResponder];
+	[self handleSingleTap:nil];
     [self removeFeedBackScreen];
 }
 
@@ -210,7 +218,6 @@
 - (IBAction)handleSingleTap:(id)sender
 {
     [self animateViewToDown];
-    
     [self.view endEditing:YES];
 	
 }
