@@ -58,7 +58,7 @@ void MyAddressBookExternalChangeCallback (
 -(void)createDefaultValuesForDictionay;
 +(void)removeDataFromNSUserDefaults;
 +(NSString *)getDistance:(StoreModel *)objStoreModel;
-+(void)AddOrRemoveFromCart:(CartProductModel *)product forStore:(NSDictionary *)store add:(BOOL)isAdd;
++(void)AddOrRemoveFromCart:(CartProductModel *)cartProduct forStore:(NSDictionary *)store add:(BOOL)isAdd fromCart:(BOOL)fromCart;
 +(void)saveCountOfProductsInCart:(NSInteger)productQuantity;
 +(NSInteger)getCountOfProductsInCart;
 + (void)removeCartBasedOnStoreId:(NSString *)store_id;

@@ -364,9 +364,11 @@
     
     //
     UIButton *btnDone = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnDone.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width - 40), 0, 40, 40);
+    btnDone.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width - 90), 0, 90, 40);
     btnDone.backgroundColor = [UIColor colorWithRed:221.0/255.0 green:34.0/255.0 blue:34.0/255.0 alpha:1.0];
-    [btnDone setImage:[UIImage imageNamed:@"shoppingListSideArrow"] forState:UIControlStateNormal];
+	[btnDone setTitle:@"Add To Cart" forState:UIControlStateNormal];
+	btnDone.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:14.0f];
+	[btnDone setTintColor:[UIColor whiteColor]];
     [btnDone addTarget:self action:@selector(btnDoneClicked) forControlEvents:UIControlEventTouchUpInside];
     btnDone.layer.borderColor = [UIColor colorWithRed:101.0/255.0 green:101.0/255.0 blue:103.0/255.0 alpha:1.0].CGColor;
     btnDone.layer.borderWidth = 0.3;
@@ -447,7 +449,7 @@
 				gAppManager.intCount	= gAppManager.intCount - count;
 				gAppManager.intCount += [productModel.strCount integerValue];
 				[AppManager saveCountOfProductsInCart:gAppManager.intCount];
-				[AppManager AddOrRemoveFromCart:[self getCartProductFromProduct:productModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES];
+				[AppManager AddOrRemoveFromCart:[self getCartProductFromProduct:productModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES fromCart:NO];
 			}
 		}
 		CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];

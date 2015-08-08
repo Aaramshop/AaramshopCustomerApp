@@ -27,7 +27,7 @@
 }
 -(void)updateCategoryCellWithCategoryData:(StoreModel *)objStoreModelTemp
 {
-    [imgVCategory sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreModelTemp.store_image]] placeholderImage:[UIImage imageNamed:@"homeDetailsDefaultImgae.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [imgVCategory sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objStoreModelTemp.store_image]] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (image) {
         }
     }];
