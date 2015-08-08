@@ -161,7 +161,7 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [self animateviewUpWithHeight:200];
+    [self animateviewUpWithHeight:100];
     
     return YES;
 }

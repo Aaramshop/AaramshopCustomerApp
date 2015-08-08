@@ -9,7 +9,6 @@
 #import "PaymentViewController.h"
 #import "ProductsModel.h"
 #import "AddressModel.h"
-#import "FeedbackViewController.h"
 
 
 #define kBtnDone   33454
@@ -40,6 +39,8 @@ static NSString *strCollectionItems = @"collectionItems";
 
 @implementation PaymentViewController
 @synthesize strStore_Id,strTotalPrice,arrSelectedProducts,ePickerType;
+@synthesize feedBack;
+
  - (void)initializeObjects
 {
 	coupon_code = @"";
@@ -1405,7 +1406,7 @@ static NSString *strCollectionItems = @"collectionItems";
 -(void)openFeedbackScreen
 {
 	[tblView setUserInteractionEnabled:NO];
-    FeedbackViewController *feedBack = [[FeedbackViewController alloc]initWithNibName:@"FeedbackViewController" bundle:nil];
+    feedBack = [[FeedbackViewController alloc]initWithNibName:@"FeedbackViewController" bundle:nil];
     
     feedBack.strStore_Id = strStore_Id;
     feedBack.strStore_name = _strStore_name;
@@ -1413,27 +1414,33 @@ static NSString *strCollectionItems = @"collectionItems";
     
     CGRect customFeedbackViewRect = self.view.bounds;
     feedBack.view.frame = customFeedbackViewRect;
+    
+    
+    __weak typeof(self) weakSelf = self;
+    __weak UITableView *tempTableView = tblView;
+    __weak AppDelegate *tempAppDel = appDel;
+    
+    
     feedBack.feedbackCompletion = ^(void)
     {
-		tblView.userInteractionEnabled=YES;
-		if([self.tabBarController isEqual:appDel.tabBarControllerRetailer])
+		tempTableView.userInteractionEnabled=YES;
+		if([weakSelf.tabBarController isEqual:tempAppDel.tabBarControllerRetailer])
 		{
-			if(self.fromCart)
+			if(weakSelf.fromCart)
 			{
-				[appDel removeTabBarRetailer];
+				[tempAppDel removeTabBarRetailer];
 			}
 			else
 			{
-				[self.navigationController popToRootViewControllerAnimated:YES];
+				[weakSelf.navigationController popToRootViewControllerAnimated:YES];
 			}
 		}
 		else
 		{
-			[self.navigationController popToRootViewControllerAnimated:YES];
+			[weakSelf.navigationController popToRootViewControllerAnimated:YES];
 		}
     };
     
-//    [self.navigationController pushViewController:feedBack animated:YES];
     
     [self.view addSubview:feedBack.view];
     
