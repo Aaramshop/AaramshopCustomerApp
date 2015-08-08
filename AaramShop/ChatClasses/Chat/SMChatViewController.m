@@ -2136,7 +2136,7 @@
 
 - (IBAction) closeChat
 {
-        [self.navigationController popToRootViewControllerAnimated: YES];
+	[self.navigationController popToRootViewControllerAnimated: YES];
 
     //[NSObject cancelPreviousPerformRequestsWithTarget:self];
 //        NSArray *arr = [self.navigationController viewControllers];

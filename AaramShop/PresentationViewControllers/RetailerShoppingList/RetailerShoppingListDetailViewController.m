@@ -435,6 +435,18 @@
 		for (ProductsModel *productModel in arrProductList) {
 			if([productModel.isAvailable intValue] == 1)
 			{
+				NSInteger count = 0;
+				if([productModel.offer_type integerValue]>0)
+				{
+					count = [[AppManager getCountOfProduct:productModel.offer_id withOfferType:productModel.offer_type forStore_id:appDeleg.objStoreModel.store_id] integerValue];
+				}
+				else
+				{
+					count = [[AppManager getCountOfProduct:productModel.product_id withOfferType:productModel.offer_type forStore_id:appDeleg.objStoreModel.store_id] integerValue];
+				}
+				gAppManager.intCount	= gAppManager.intCount - count;
+				gAppManager.intCount += [productModel.strCount integerValue];
+				[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 				[AppManager AddOrRemoveFromCart:[self getCartProductFromProduct:productModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES];
 			}
 		}

@@ -1317,7 +1317,7 @@ CXMPPController * gCXMPPController = nil;
         }
     }
 #pragma end
-    if([messageDelegate respondsToSelector:@selector(userPresence:)])
+    if(messageDelegate && [messageDelegate respondsToSelector:@selector(userPresence:)])
     {
         [messageDelegate userPresence:[NSDictionary dictionaryWithObject:presence forKey:@"NORMAL"]];
     }
