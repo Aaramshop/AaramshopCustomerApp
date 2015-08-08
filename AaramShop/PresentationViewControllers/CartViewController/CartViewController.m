@@ -216,7 +216,7 @@
 
     
     
-    UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake((imgStore.frame.origin.x + imgStore.frame.size.width + 8), 7, 162, 40)];
+    UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake((imgStore.frame.origin.x + imgStore.frame.size.width + 8), 7, 162, 37)];
 //	lblStoreName.backgroundColor = [UIColor greenColor];
     lblStoreName.font = [UIFont fontWithName:kRobotoMedium size:15];
     lblStoreName.textColor = [UIColor colorWithRed:49.0/255.0 green:49.0/255.0 blue:49.0/255.0 alpha:1.0];
@@ -413,7 +413,7 @@
 	CartModel *cartModel = [self.arrProductList objectAtIndex:indexPath.section];
 	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
 	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]+1];
-	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:YES];
+	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:YES fromCart:YES];
 	gAppManager.intCount++;
 	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
@@ -431,7 +431,7 @@
 	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:indexPath.row];
 	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]-1];
 
-	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:NO];
+	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:NO fromCart:YES];
 	gAppManager.intCount--;
 	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
@@ -482,7 +482,7 @@
 	CartModel *cartModel = [self.arrProductList objectAtIndex:inIndexPath.section];
 	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:inIndexPath.row];
 	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]+1];
-	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:YES];
+	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:YES fromCart:YES];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
 	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];
 	gAppManager.intCount++;
@@ -498,7 +498,7 @@
 	CartProductModel *productModel = [cartModel.arrProductDetails objectAtIndex:inIndexPath.row];
 	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]-1];
 	
-	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:NO];
+	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:NO fromCart:YES];
 	gAppManager.intCount++;
 	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];

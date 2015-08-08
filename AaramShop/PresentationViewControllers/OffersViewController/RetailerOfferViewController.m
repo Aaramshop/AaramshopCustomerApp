@@ -323,7 +323,7 @@
 	offer = [arrOffers objectAtIndex:inIndexPath.row];
 	
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:YES];
+	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:YES fromCart:NO];
 	gAppManager.intCount++;
 	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	[self setNavigationBar];
@@ -333,7 +333,7 @@
 	CMOffers *offer = nil;
 	offer = [arrOffers objectAtIndex:inIndexPath.row];
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:YES];
+	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:YES fromCart:NO];
 	gAppManager.intCount++;
 	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	[self setNavigationBar];

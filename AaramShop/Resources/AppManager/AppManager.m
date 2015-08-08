@@ -596,7 +596,7 @@ void MyAddressBookExternalChangeCallback (
 }
 
 
-+(void)AddOrRemoveFromCart:(CartProductModel *)cartProduct forStore:(NSDictionary *)store add:(BOOL)isAdd
++(void)AddOrRemoveFromCart:(CartProductModel *)cartProduct forStore:(NSDictionary *)store add:(BOOL)isAdd fromCart:(BOOL)fromCart
 {
 	if(![[NSUserDefaults standardUserDefaults] valueForKey:kCartData])
 	{
@@ -624,10 +624,15 @@ void MyAddressBookExternalChangeCallback (
 				CartProductModel *cartProductSaved = [filteredIds objectAtIndex:0];
 				NSInteger index= [cartModel.arrProductDetails indexOfObject:cartProductSaved];
 				[cartModel.arrProductDetails replaceObjectAtIndex:index withObject:cartProduct];
-				[cartArray removeObjectAtIndex:indexCart];
-				[cartArray insertObject:cartModel atIndex:0];
-				//				[cartArray addObject:cartModel];
-//				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
+				if(!fromCart)
+				{
+					[cartArray removeObjectAtIndex:indexCart];
+					[cartArray insertObject:cartModel atIndex:0];
+				}
+				else
+				{
+					[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
+				}
 				if(!isAdd)
 				{
 					if([cartProduct.strCount integerValue]== 0)
@@ -644,10 +649,15 @@ void MyAddressBookExternalChangeCallback (
 			else
 			{
 				[cartModel.arrProductDetails addObject:cartProduct];
-				[cartArray removeObjectAtIndex:indexCart];
-				[cartArray insertObject:cartModel atIndex:0];
-//				[cartArray addObject:cartModel];
-//				[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
+				if (!fromCart) {
+					[cartArray removeObjectAtIndex:indexCart];
+					[cartArray insertObject:cartModel atIndex:0];
+
+				}
+				else
+				{
+					[cartArray replaceObjectAtIndex:indexCart withObject:cartModel];
+				}
 			}
 		}
 		else
@@ -657,8 +667,14 @@ void MyAddressBookExternalChangeCallback (
 			cartModel.store_name		= [store objectForKey:kStore_name];
 			cartModel.store_image		= [store objectForKey:kStore_image];
 			cartModel.arrProductDetails = [[NSMutableArray alloc] initWithObjects:cartProduct, nil];
-			[cartArray insertObject:cartModel atIndex:0];
-//			[cartArray addObject:cartModel];
+			if(!fromCart)
+			{
+				[cartArray insertObject:cartModel atIndex:0];
+			}
+			else
+			{
+				[cartArray addObject:cartModel];
+			}
 		}
 	}
 	else
