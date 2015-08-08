@@ -132,7 +132,7 @@
             {
                 UIImagePickerController * imagePicker = [[UIImagePickerController alloc] init];
                 imagePicker.delegate = self;
-                imagePicker.allowsEditing=YES;
+                imagePicker.allowsEditing=NO;
                 imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 [self presentViewController:imagePicker animated:YES completion:^{}];
             }
@@ -146,7 +146,7 @@
         {
             UIImagePickerController * imagePicker = [[UIImagePickerController alloc] init];
             imagePicker.delegate = self;
-            imagePicker.allowsEditing=YES;
+            imagePicker.allowsEditing=NO;
             imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
             [self presentViewController:imagePicker animated:YES completion:^{}];
         }

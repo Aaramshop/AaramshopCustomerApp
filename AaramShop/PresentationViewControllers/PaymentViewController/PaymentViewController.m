@@ -352,7 +352,6 @@ static NSString *strCollectionItems = @"collectionItems";
         {
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 			[AppManager removeCartBasedOnStoreId:self.strStore_Id];
-			[self openFeedbackScreen];
         }
     }
 	else if (aaramShop_ConnectionManager.currentTask == TASK_GET_MINIMUM_ORDER_VALUE)
@@ -1199,8 +1198,10 @@ static NSString *strCollectionItems = @"collectionItems";
     [pickerViewSlots reloadAllComponents];
 }
 - (IBAction)btnPayClick:(UIButton *)sender {
-	[self openFeedbackScreen];
-	return;
+    
+    [self openFeedbackScreen];
+    return;
+    
     btnPay.enabled = NO;
     if ([strSelectSlot isEqualToString:@"Select Slot"]) {
         btnPay.enabled = YES;
@@ -1412,7 +1413,7 @@ static NSString *strCollectionItems = @"collectionItems";
     feedBack.strStore_name = _strStore_name;
     feedBack.strStore_image = _strStore_image;
     
-    CGRect customFeedbackViewRect = self.view.bounds;
+    CGRect customFeedbackViewRect = [UIScreen mainScreen].bounds;
     feedBack.view.frame = customFeedbackViewRect;
     
     
@@ -1441,11 +1442,21 @@ static NSString *strCollectionItems = @"collectionItems";
 		}
     };
     
-    
-    [self.view addSubview:feedBack.view];
+    [[UIApplication sharedApplication].keyWindow addSubview:feedBack.view];
     
 }
 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+//    if (buttonIndex != [alertView cancelButtonIndex])
+//    {
+//        
+//    }
+    
+    [self openFeedbackScreen];
+
+}
 
 
 @end
