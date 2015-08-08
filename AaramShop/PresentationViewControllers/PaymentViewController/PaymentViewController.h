@@ -11,6 +11,9 @@
 #import "PickLastTableCell.h"
 #import "HomeSecondCustomCell.h"
 #import "LocationEnterViewController.h"
+#import "FeedbackViewController.h"
+
+
 typedef enum
 {
     enPickerSlots,
@@ -33,6 +36,9 @@ typedef enum
     
 	__weak IBOutlet UIView *viewOverallValueStatus;
 	__weak IBOutlet UILabel *lblOverallValueStatus;
+    
+    
+//    FeedbackViewController *feedBack;
 }
 - (IBAction)btnCrossClicked:(id)sender;
 @property(nonatomic,strong) NSString *strStore_Id;
@@ -42,6 +48,10 @@ typedef enum
 @property(nonatomic,strong) NSMutableArray *arrSelectedProducts;
 @property(nonatomic,assign) enPickerType ePickerType;
 @property (nonatomic, assign) BOOL fromCart;
+
+@property(nonatomic,strong) FeedbackViewController *feedBack;
+
+
 - (IBAction)btnPayClick:(UIButton *)sender;
 
 @end

@@ -9,7 +9,6 @@
 #import "PaymentViewController.h"
 #import "ProductsModel.h"
 #import "AddressModel.h"
-#import "FeedbackViewController.h"
 
 
 #define kBtnDone   33454
@@ -40,6 +39,8 @@ static NSString *strCollectionItems = @"collectionItems";
 
 @implementation PaymentViewController
 @synthesize strStore_Id,strTotalPrice,arrSelectedProducts,ePickerType;
+@synthesize feedBack;
+
  - (void)initializeObjects
 {
 	coupon_code = @"";
@@ -1417,7 +1418,7 @@ static NSString *strCollectionItems = @"collectionItems";
 
 -(void)openFeedbackScreen
 {
-    FeedbackViewController *feedBack = [[FeedbackViewController alloc]initWithNibName:@"FeedbackViewController" bundle:nil];
+    feedBack = [[FeedbackViewController alloc]initWithNibName:@"FeedbackViewController" bundle:nil];
     
     feedBack.strStore_Id = strStore_Id;
     feedBack.strStore_name = _strStore_name;
@@ -1426,12 +1427,14 @@ static NSString *strCollectionItems = @"collectionItems";
     CGRect customFeedbackViewRect = self.view.bounds;
     feedBack.view.frame = customFeedbackViewRect;
     
+    
+    __weak typeof(self) weakSelf = self;
+    
     feedBack.feedbackCompletion = ^(void)
     {
-        [self.navigationController popViewControllerAnimated:YES];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     };
     
-//    [self.navigationController pushViewController:feedBack animated:YES];
     
     [[UIApplication sharedApplication].keyWindow addSubview:feedBack.view];
     
