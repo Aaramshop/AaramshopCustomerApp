@@ -44,8 +44,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 //	 arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
 	appDeleg = APP_DELEGATE;
 
-	
 	[self designPickerViewSlots];
+	
 	[self toolBarDesignes];
     [self initilizeData];
     
@@ -85,7 +85,6 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	}
 
 	 [self setUpNavigationBar];
-
 
 	if([arrCategories count]==0)
 	{
@@ -136,13 +135,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 -(void)setUpNavigationBar
 {
-    CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 100, 44);
+    CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 97, 44);
     UIView* _headerTitleSubtitleView = [[UIView alloc] initWithFrame:headerTitleSubtitleFrame];
     _headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
     _headerTitleSubtitleView.autoresizesSubviews = NO;
     
 	btnPicker = [UIButton buttonWithType:UIButtonTypeCustom];
-	[btnPicker setFrame:CGRectMake(0, 0, 100, 44)];
+	[btnPicker setFrame:CGRectMake(0, 0, 97, 44)];
 	btnPicker.titleLabel.textAlignment=NSTextAlignmentCenter;
 	btnPicker.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:15];
 	btnPicker.titleLabel.adjustsFontSizeToFitWidth = YES;
@@ -168,7 +167,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	[rightContainer setBackgroundColor:[UIColor clearColor]];
 	UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
 	btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnCart.frame = CGRectMake((rightContainer.frame.size.width - 20)/2, (rightContainer.frame.size.height - 20)/2, 20, 20);
+	btnCart.frame = CGRectMake((rightContainer.frame.size.width - 26)/2, (rightContainer.frame.size.height - 26)/2, 26, 26);
 	
 	[btnCart setImage:imgCart forState:UIControlStateNormal];
 	[btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -202,7 +201,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	
 	
 	btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnSearch.bounds = CGRectMake( 0, 0, 24, 24);
+	btnSearch.bounds = CGRectMake( 0, 0, 26, 26);
 	
 	[btnSearch setImage:imgSearch forState:UIControlStateNormal];
 	[btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -214,7 +213,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	UIImage *imgBroadcast = [UIImage imageNamed:@"bellIcon"];
 	
 	btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnBroadcast.bounds = CGRectMake( 0, 0, 24, 24);
+	btnBroadcast.bounds = CGRectMake( 0, 0, 26, 26);
 	
 	[btnBroadcast setImage:imgBroadcast forState:UIControlStateNormal];
 	[btnBroadcast addTarget:self action:@selector(btnBroadcastClicked) forControlEvents:UIControlEventTouchUpInside];

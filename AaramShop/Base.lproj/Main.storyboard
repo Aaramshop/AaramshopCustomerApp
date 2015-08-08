@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -59,8 +60,10 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular_0.ttf">
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -843,7 +846,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mig-Zc-ngV" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIh-fd-D0d">
@@ -3989,7 +3992,7 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXW-QZ-DBu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sepratorBoxThree.png" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-ID-M4P">
@@ -7121,6 +7124,95 @@ Your family will be able to add products of their choice and create a master sho
             </objects>
             <point key="canvasLocation" x="-2043" y="4936"/>
         </scene>
+        <!--Invite Friends View Controller-->
+        <scene sceneID="i92-EA-37L">
+            <objects>
+                <viewController storyboardIdentifier="InviteFriendsView" id="8YR-bY-vaE" customClass="InviteFriendsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d9j-om-FoY"/>
+                        <viewControllerLayoutGuide type="bottom" id="oQf-o7-Gwb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WGo-Gu-40C">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1JE-Dw-c8Q">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InviteFriendCell" rowHeight="55" id="mhS-wf-HCg" customClass="InviteFriendsTableCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mhS-wf-HCg" id="ukq-QO-Ttr">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7T2-zx-M5w" userLabel="Image View - user">
+                                                    <rect key="frame" x="13" y="3" width="47" height="47"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="47" id="BZK-FJ-0O4"/>
+                                                        <constraint firstAttribute="width" constant="47" id="jFw-dx-vPv"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1v-VL-0wC" userLabel="Label - name">
+                                                    <rect key="frame" x="78" y="17" width="170" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="aRo-cu-Ffo"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3r-r1-Bi5" userLabel="Button - invite">
+                                                    <rect key="frame" x="256" y="12" width="54" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="54" id="aiU-Er-9rR"/>
+                                                        <constraint firstAttribute="height" constant="30" id="cjk-rf-LFZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
+                                                    <state key="normal" title="Invite" backgroundImage="homeInviteBtn.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" title="Sent" backgroundImage="homeInviteBtnActive"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="7T2-zx-M5w" firstAttribute="top" secondItem="ukq-QO-Ttr" secondAttribute="topMargin" constant="-5" id="6zk-oC-HUC"/>
+                                                <constraint firstItem="t1v-VL-0wC" firstAttribute="leading" secondItem="7T2-zx-M5w" secondAttribute="trailing" constant="18" id="9WV-Tw-Ba7"/>
+                                                <constraint firstItem="t1v-VL-0wC" firstAttribute="top" secondItem="ukq-QO-Ttr" secondAttribute="topMargin" constant="9" id="A2h-Gz-y0e"/>
+                                                <constraint firstItem="Z3r-r1-Bi5" firstAttribute="leading" secondItem="t1v-VL-0wC" secondAttribute="trailing" constant="8" id="Mcn-Lq-m1g"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Z3r-r1-Bi5" secondAttribute="trailing" constant="2" id="Uw0-fU-OWi"/>
+                                                <constraint firstItem="7T2-zx-M5w" firstAttribute="leading" secondItem="ukq-QO-Ttr" secondAttribute="leadingMargin" constant="5" id="bTq-AI-pXl"/>
+                                                <constraint firstItem="Z3r-r1-Bi5" firstAttribute="top" secondItem="ukq-QO-Ttr" secondAttribute="topMargin" constant="4" id="nHg-Uy-j1C"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnInvite" destination="Z3r-r1-Bi5" id="mUH-t1-0cB"/>
+                                            <outlet property="imgUser" destination="7T2-zx-M5w" id="buC-tc-k8e"/>
+                                            <outlet property="lblUsername" destination="t1v-VL-0wC" id="iPX-HP-fsP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8YR-bY-vaE" id="p02-bj-eyf"/>
+                                    <outlet property="delegate" destination="8YR-bY-vaE" id="vWk-Fg-acf"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="1JE-Dw-c8Q" secondAttribute="centerY" id="86A-BF-F4M"/>
+                            <constraint firstAttribute="width" secondItem="1JE-Dw-c8Q" secondAttribute="width" id="PhO-w1-9i8"/>
+                            <constraint firstAttribute="centerX" secondItem="1JE-Dw-c8Q" secondAttribute="centerX" id="Tz9-Rx-RJJ"/>
+                            <constraint firstAttribute="height" secondItem="1JE-Dw-c8Q" secondAttribute="height" id="mJm-BM-D8P"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tblView" destination="1JE-Dw-c8Q" id="gsE-ql-U7q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ifI-qG-Si8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1132" y="5280"/>
+        </scene>
         <!--Home Category List View Controller-->
         <scene sceneID="fG1-Hp-f0E">
             <objects>
@@ -8386,6 +8478,8 @@ Your family will be able to add products of their choice and create a master sho
         <image name="historyScreenOderHistoryIcon.png" width="180" height="180"/>
         <image name="homeCostomerImage.png" width="320" height="568"/>
         <image name="homeDetailStoreBox.png" width="271" height="136"/>
+        <image name="homeInviteBtn.png" width="55" height="30"/>
+        <image name="homeInviteBtnActive" width="25" height="25"/>
         <image name="homeRupeesIcon.png" width="17" height="17"/>
         <image name="homeStoreDetailsDeleversIcon.png" width="17" height="17"/>
         <image name="homeStoreEnterHomeStoreBox.png" width="272" height="47"/>
