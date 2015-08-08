@@ -1422,16 +1422,13 @@ static NSString *strCollectionItems = @"collectionItems";
     feedBack.strStore_name = _strStore_name;
     feedBack.strStore_image = _strStore_image;
     
-
     CGRect customFeedbackViewRect = [[UIScreen mainScreen] bounds];
 
     feedBack.view.frame = customFeedbackViewRect;
-    
-    
+	
     __weak typeof(self) weakSelf = self;
     __weak UITableView *tempTableView = tblView;
     __weak AppDelegate *tempAppDel = appDel;
-    
     
     feedBack.feedbackCompletion = ^(void)
     {
