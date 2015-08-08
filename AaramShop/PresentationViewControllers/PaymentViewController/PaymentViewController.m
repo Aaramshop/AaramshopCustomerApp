@@ -1203,6 +1203,8 @@ static NSString *strCollectionItems = @"collectionItems";
     [pickerViewSlots reloadAllComponents];
 }
 - (IBAction)btnPayClick:(UIButton *)sender {
+	[self openFeedbackScreen];
+	return;
     btnPay.enabled = NO;
     if ([strSelectSlot isEqualToString:@"Select Slot"]) {
         btnPay.enabled = YES;
@@ -1417,7 +1419,7 @@ static NSString *strCollectionItems = @"collectionItems";
     feedBack.strStore_name = _strStore_name;
     feedBack.strStore_image = _strStore_image;
     
-    CGRect customFeedbackViewRect = self.view.bounds;
+    CGRect customFeedbackViewRect = [[UIScreen mainScreen] bounds];
     feedBack.view.frame = customFeedbackViewRect;
     
     
@@ -1447,7 +1449,7 @@ static NSString *strCollectionItems = @"collectionItems";
     };
     
     
-    [self.view addSubview:feedBack.view];
+    [[UIApplication sharedApplication].keyWindow addSubview:feedBack.view];
     
 }
 
