@@ -37,6 +37,7 @@
 #define kAlertPasswordLength							@"Your password should have at least 6 digits"
 #define kLoginSuccessfulNotificationName		@"LoginSuccessful"
 #define kLogoutSuccessfulNotificationName	@"LogoutSuccessful"
+#define kProductsCount									@"productsCount"
 #pragma mark - Common keys
 
 #define APP_DELEGATE (AppDelegate*)[[UIApplication sharedApplication]delegate]

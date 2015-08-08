@@ -11,6 +11,7 @@
 #import "CMOffers.h"
 #import "ComboDetailViewController.h"
 #import "MyCustomOfferTableCell.h"
+#import "CartViewController.h"
 @interface RetailerOfferViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UITableViewDelegate,UITableViewDataSource,OffersTableCellDelegate>
 {
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;

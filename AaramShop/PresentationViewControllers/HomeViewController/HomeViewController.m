@@ -627,12 +627,6 @@
     NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch, nil];
     self.navigationItem.rightBarButtonItems = arrBtnsRight;
     
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        
-        UIImage *image = [UIImage imageNamed:@"navigation.png"];
-        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    }
 }
 -(void)btnMenuClicked
 {

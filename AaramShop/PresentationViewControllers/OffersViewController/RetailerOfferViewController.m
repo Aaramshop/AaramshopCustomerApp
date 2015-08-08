@@ -28,7 +28,7 @@
 	isLoading = NO;
 	appDelegate = APP_DELEGATE;
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
-	[self setNavigationBar];
+	
 	
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
@@ -49,6 +49,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+	[self setNavigationBar];
 	[self createDateToGetOffer];
 }
 #pragma mark -- Navigation bar Methods
@@ -85,7 +86,67 @@
 	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
 	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 	
+	UIView *rightContainer=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 26, 44)];
+	[rightContainer setBackgroundColor:[UIColor clearColor]];
+	UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
+	UIButton *btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnCart.frame = CGRectMake((rightContainer.frame.size.width - 20)/2, (rightContainer.frame.size.height - 20)/2, 20, 20);
+	
+	[btnCart setImage:imgCart forState:UIControlStateNormal];
+	[btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+	
+	[rightContainer addSubview:btnCart];
+	
+	UIButton *badgeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	badgeBtn.frame = CGRectMake(16, 5, 23, 23);
+	[badgeBtn addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+	[badgeBtn setBackgroundImage:[UIImage imageNamed:@"addToCardNoBox"] forState:UIControlStateNormal];
+	
+	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+1	, 13, 20, 8)];
+	lab.font = [UIFont fontWithName:kRobotoRegular size:9];
+	[lab setTextAlignment:NSTextAlignmentCenter];
+	[lab setTextColor:[UIColor whiteColor]];
+	[lab setBackgroundColor:[UIColor clearColor]];
+	NSInteger count = [AppManager getCountOfProductsInCart];
+	if (count > 0) {
+		gAppManager.intCount = count;
+		if (count>99) {
+			lab.text = @"99+";
+		}
+		else
+			lab.text = [NSString stringWithFormat:@"%ld",(long)count];
+		[rightContainer addSubview:badgeBtn];
+		[rightContainer addSubview:lab];
+	}
+	
+	UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
+	
+	
+	UIButton *btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
+	btnSearch.bounds = CGRectMake( 0, 0, 24, 24);
+	
+	[btnSearch setImage:imgSearch forState:UIControlStateNormal];
+	[btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
+	UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
+	NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,
+							 barBtnSearch, nil];
+	self.navigationItem.rightBarButtonItems = arrBtnsRight;
+	
+	
 }
+-(void)btnCartClicked
+{
+	CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+	[self.navigationController pushViewController:cartView animated:YES];
+	
+}
+-(void)btnSearchClicked
+{
+	GlobalSearchResultViewC *globalSearchResultViewC = (GlobalSearchResultViewC *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GlobalSearchResultView" ];
+	[self.navigationController pushViewController:globalSearchResultViewC animated:YES];
+}
+
 - (void)btnBackClicked
 {
 	[appDelegate removeTabBarRetailer];
@@ -263,6 +324,9 @@
 	
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
 	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:YES];
+	gAppManager.intCount++;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+	[self setNavigationBar];
 }
 -(void)minusValueByPriceAtIndexPath:(NSIndexPath *)inIndexPath
 {
@@ -270,6 +334,9 @@
 	offer = [arrOffers objectAtIndex:inIndexPath.row];
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
 	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:YES];
+	gAppManager.intCount++;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+	[self setNavigationBar];
 }
 #pragma mark - ScrollView Delegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{

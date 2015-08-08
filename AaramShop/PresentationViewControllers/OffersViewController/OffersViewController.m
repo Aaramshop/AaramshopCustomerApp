@@ -31,7 +31,7 @@
 	appDelegate = APP_DELEGATE;
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
 	self.sideBar = [Utils createLeftBarWithDelegate:self];
-	[self setNavigationBar];
+	
 	
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
@@ -48,6 +48,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+	[self setNavigationBar];
 	[self createDateToGetOffer];
 }
 #pragma mark -- Navigation bar Methods
@@ -95,22 +96,26 @@
 	[rightContainer addSubview:btnCart];
 	
 	UIButton *badgeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-	badgeBtn.frame = CGRectMake(16, 5, 21, 21);
+	badgeBtn.frame = CGRectMake(16, 5, 23, 23);
 	[badgeBtn addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
 	[badgeBtn setBackgroundImage:[UIImage imageNamed:@"addToCardNoBox"] forState:UIControlStateNormal];
 	
-	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+5 , 10, 10, 8)];
-	[lab setFont:[UIFont boldSystemFontOfSize:8.0f]];
+	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+1	, 13, 20, 8)];
+	lab.font = [UIFont fontWithName:kRobotoRegular size:9];
 	[lab setTextAlignment:NSTextAlignmentCenter];
 	[lab setTextColor:[UIColor whiteColor]];
 	[lab setBackgroundColor:[UIColor clearColor]];
-	
-	//	if([[USER_DEFAULT objectForKey:BADGEINFO]intValue]>0)
-	//	{
-	//		[lab setText:[USER_DEFAULT objectForKey:BADGEINFO]];
-	[rightContainer addSubview:badgeBtn];
-	[rightContainer addSubview:lab];
-	//	}
+	NSInteger count = [AppManager getCountOfProductsInCart];
+	if (count > 0) {
+		gAppManager.intCount = count;
+		if (count>99) {
+			lab.text = @"99+";
+		}
+		else
+			lab.text = [NSString stringWithFormat:@"%ld",(long)count];
+		[rightContainer addSubview:badgeBtn];
+		[rightContainer addSubview:lab];
+	}
 	
 	
 	UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
@@ -374,13 +379,20 @@
 	
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
 	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:YES];
+	gAppManager.intCount++;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+	[self setNavigationBar];
 }
 -(void)minusValueByPriceAtIndexPath:(NSIndexPath *)inIndexPath
 {
 	CMOffers *offer = nil;
 	offer = [arrOffers objectAtIndex:inIndexPath.row];
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+	
 	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:YES];
+	gAppManager.intCount--;
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+	[self setNavigationBar];
 }
 
 #pragma mark - ScrollView Delegate
