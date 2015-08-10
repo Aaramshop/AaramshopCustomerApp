@@ -452,7 +452,7 @@
 	}
 	strTotalPrice = [NSString stringWithFormat:@"%d",priceValue];
 	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:objProductsModel.store_id,kStore_id,objProductsModel.store_name,kStore_name,objProductsModel.store_image,kStore_image, nil] add:NO fromCart:NO];
-	gAppManager.intCount++;
+	gAppManager.intCount--;
 	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	[self setUpNavigationBar];
 	NSRange range = NSMakeRange(inIndexPath.section, 1);
