@@ -499,7 +499,7 @@
 	productModel.strCount = [NSString stringWithFormat:@"%d",[productModel.strCount intValue]-1];
 	
 	[AppManager AddOrRemoveFromCart:productModel forStore:[NSDictionary dictionaryWithObjectsAndKeys:cartModel.store_id,kStore_id,cartModel.store_name,kStore_name,cartModel.store_image,kStore_image, nil] add:NO fromCart:YES];
-	gAppManager.intCount++;
+	gAppManager.intCount--;
 	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	NSData *enrollData = [[NSUserDefaults standardUserDefaults] objectForKey: kCartData];
 	self.arrProductList = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithData: enrollData];

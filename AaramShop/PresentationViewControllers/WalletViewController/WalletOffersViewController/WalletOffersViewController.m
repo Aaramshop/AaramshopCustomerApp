@@ -280,7 +280,7 @@
 	CMOffers *offer = nil;
 	offer = [dataSource objectAtIndex:inIndexPath.row];
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:YES fromCart:NO];
+	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:NO fromCart:NO];
 	gAppManager.intCount--;
 	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 }
