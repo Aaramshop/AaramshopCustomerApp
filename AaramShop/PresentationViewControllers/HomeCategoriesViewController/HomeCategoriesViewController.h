@@ -23,7 +23,7 @@
     NSMutableArray *arrCategories;
 	UIPickerView *pickerViewSlots;
     NSInteger totalNoOfPages;
-	NSArray *arrAddress;
+	NSMutableArray *arrAddress;
 	NSDictionary *dictPickerValue;
 	UIButton *backBtn;
 	UIButton *btnPicker;

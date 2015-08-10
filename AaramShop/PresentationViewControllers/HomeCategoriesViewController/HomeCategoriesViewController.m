@@ -63,9 +63,12 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-	if(!pickerArray)
-		pickerArray = [[NSMutableArray alloc] init];
-	[pickerArray removeAllObjects];
+	if(!arrAddress)
+	{
+		arrAddress = [[NSMutableArray alloc]init];
+	}
+	[arrAddress removeAllObjects];
+	
 	arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
 
 	if (appDeleg.myCurrentLocation == nil) {
@@ -236,6 +239,10 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 }
 - (void)btnPicker
 {
+	if(!pickerArray)
+		pickerArray = [[NSMutableArray alloc] init];
+	[pickerArray removeAllObjects];
+
 	[pickerArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Add new address",@"user_address_title",@"0",kUser_address_id, nil]];
 	[pickerArray addObjectsFromArray:arrAddress];
 	[pickerViewSlots reloadAllComponents];
@@ -246,6 +253,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 }
 -(void)designPickerViewSlots
 {
+	
 	pickerViewSlots=[[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds)+100, 320,216)];
 	pickerViewSlots.delegate =self;
 	pickerViewSlots.dataSource =self;
