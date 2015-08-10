@@ -30,7 +30,7 @@
 	[imgCustomer sd_setImageWithURL:[NSURL URLWithString:_orderHist.store_image] placeholderImage:[UIImage imageNamed:@"defaultProfilePic"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 		
 	}];
-	lblOrder_time.text = [Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[_orderHist.order_time doubleValue]]];
+	lblOrder_time.text = _orderHist.order_time;
 	lblOrderDate.text = _orderHist.order_date;
 	lblTimeSlot.text = _orderHist.delivery_slot;
 	lblPaymentMode.text = _orderHist.payment_mode;
