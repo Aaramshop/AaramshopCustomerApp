@@ -209,6 +209,7 @@
 		}
 		cell.indexPath=indexPath;
 		cell.delegate = self;
+		cell.offers = offers;
 		[cell updateCellWithData: offers];
 		return cell;
 	}
@@ -221,6 +222,7 @@
 		}
 		cell.indexPath=indexPath;
 		cell.delegate = self;
+		cell.offers = offers;
 		[cell updateCellWithData: offers];
 		return cell;
 	}
@@ -333,7 +335,7 @@
 	CMOffers *offer = nil;
 	offer = [arrOffers objectAtIndex:inIndexPath.row];
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:YES fromCart:NO];
+	[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:offer] forStore:[NSDictionary dictionaryWithObjectsAndKeys:offer.store_id,kStore_id,offer.store_name,kStore_name,offer.store_image,kStore_image, nil] add:NO fromCart:NO];
 	gAppManager.intCount++;
 	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 	[self setNavigationBar];

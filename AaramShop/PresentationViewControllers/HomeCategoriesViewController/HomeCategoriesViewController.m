@@ -69,7 +69,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	}
 	[arrAddress removeAllObjects];
 	
-	arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+	arrAddress = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] valueForKey:kUser_address]];
 
 	if (appDeleg.myCurrentLocation == nil) {
 		if([arrAddress count]>0)
