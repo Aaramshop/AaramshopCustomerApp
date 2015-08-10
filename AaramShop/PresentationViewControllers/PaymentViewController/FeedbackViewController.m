@@ -269,7 +269,6 @@
 
 -(void)removeFeedBackScreen
 {
-//    [self.navigationController popViewControllerAnimated:YES];
     
     if (self.feedbackCompletion)
     {

@@ -191,7 +191,7 @@
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:_shoppingListModel.shoppingListId forKey:@"shoppingListId"];
     
-    [dict setObject:_storeId forKey:@"store_id"];
+    [dict setObject:_selectedStoreModel.store_id forKey:@"store_id"];
     
     [dict setObject:[NSString stringWithFormat:@"%.0f",[startDate timeIntervalSince1970]] forKey:@"start_date"];
     [dict setObject:[NSString stringWithFormat:@"%.0f",[endDate timeIntervalSince1970]] forKey:@"end_date"];
@@ -219,92 +219,12 @@
     
     [dict setObject:reminderSwitch.isOn?@"1":@"0" forKey:@"reminder"];
     
-//    [self callWebServiceToSetShoppingListReminder:dict]; // temp
+    [self callWebServiceToSetShoppingListReminder:dict];
     
     
-    
-//    [self setLocalNotification];
-    
-    
-    /*
-    
-    if (reminderSwitch.isOn && [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent] == EKAuthorizationStatusAuthorized) {
-        
-//        EKEvent *event = [EKEvent eventWithEventStore:store];
-//        event.title = !_shoppingListName?_shoppingListName:@"My Shopping List";
-//        event.startDate = startDate; //today
-//        event.endDate = endDate;  
-//        event.calendar = [store defaultCalendarForNewEvents];
-//        NSError *err = nil;
-//        
-//
-//        [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
-//
-        
-        EKReminder *reminder = [EKReminder reminderWithEventStore:store];
-        [reminder setTitle:!_shoppingListModel.shoppingListName?_shoppingListModel.shoppingListName:@"My Shopping List"];
-        EKCalendar *defaultReminderList = [store defaultCalendarForNewReminders];
-        
-        [reminder setCalendar:defaultReminderList];
-        
-        EKRecurrenceRule *recurrenceRule = nil;
-        
-//        if ([lblRepeat.text isEqualToString:@"Every day"])
-//        {
-//            strRepeatDays=@"1";
-//            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 daysOfTheWeek:nil daysOfTheMonth:nil monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
-//        }else if ([lblRepeat.text isEqualToString:@"30 days"])
-//        {
-            strRepeatDays=@"30";
-            
-            NSDate *newDate1 = [startDate dateByAddingTimeInterval:60*60*24*strRepeatDays.intValue];
-            NSCalendar* calendar = [NSCalendar currentCalendar];
-            NSDateComponents* components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:newDate1];
-            
-            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyMonthly interval:1 daysOfTheWeek:nil daysOfTheMonth:@[[NSString stringWithFormat:@"%ld",(long)components.day]] monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
-            
-            
-//        }else if ([lblRepeat.text isEqualToString:@"15 days"])
-//        {
-//            strRepeatDays=@"15";
-//            NSDate *newDate1 = [startDate dateByAddingTimeInterval:60*60*24*strRepeatDays.intValue];
-//            NSCalendar* calendar = [NSCalendar currentCalendar];
-//            NSDateComponents* components1 = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:newDate1];
-//            NSDateComponents* components2 = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:startDate];
-//            
-//            
-//            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyMonthly interval:1 daysOfTheWeek:nil daysOfTheMonth:@[[NSString stringWithFormat:@"%ld",(long)components1.day],[NSString stringWithFormat:@"%ld",(long)components2.day]] monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
-//        }else if ([lblRepeat.text isEqualToString:@"7 days"])
-//        {
-//            strRepeatDays=@"7";
-//            
-//            
-//             NSCalendar* calendar = [NSCalendar currentCalendar];
-//            NSDateComponents *comps = [calendar components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
-//
-            recurrenceRule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly interval:1 daysOfTheWeek:@[[NSString stringWithFormat:@"%ld",(long)comps.weekday]] daysOfTheMonth:nil monthsOfTheYear:nil weeksOfTheYear:nil daysOfTheYear:nil setPositions:nil end:nil];
-//        }
 
-        
-        
-        reminder.recurrenceRules = [NSArray arrayWithObject:recurrenceRule];
-
-        int daysToAdd = strRepeatDays.intValue;
-        NSDate *newDate1 = [startDate dateByAddingTimeInterval:60*60*24*daysToAdd];
-        EKAlarm *alarm = [EKAlarm alarmWithAbsoluteDate: newDate1];
-        [reminder addAlarm:alarm];
-        
-        
-        NSError *error = nil;
-        BOOL success = [store saveReminder:reminder
-                                    commit:YES
-                                     error:&error];
-        if (!success) {
-            NSLog(@"Error saving reminder: %@", [error localizedDescription]);
-        }
-    }
-     
-     //*/
+    
+  
     
 }
 #pragma mark - Call Webservice
@@ -361,6 +281,8 @@
             {
                 [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
                 
+                [self saveLocalNotification];
+                
                 // add reminder data in model
                 
                 _shoppingListModel.frequency = [responseObject valueForKey:@"frequency"];
@@ -384,6 +306,9 @@
             if ([[responseObject objectForKey:kstatus] intValue] == 1)
             {
                 [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+                
+                
+                [self removeShoppingListReminder];
                 
                 // remove reminder data from model
                 
@@ -589,38 +514,92 @@
 }
 
 
-#pragma mark - Set local notification
-/*
--(void)setLocalNotification
+#pragma mark - Save local notification
+
+-(void)saveLocalNotification
 {
     
-    NSString *startTime = [NSString stringWithFormat:@"%@",event.originaltime];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMM dd, yyyy"];
     
-    pickerDate = [[Database database] getDatefrom:event.originaldate withTime:startTime];
+    NSDate *startDate = [dateFormatter dateFromString:lblStartDate.text];
+    NSDate *endDate = [dateFormatter dateFromString:lblEndDate.text];
     
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = pickerDate;
-    localNotification.alertBody = [NSString stringWithFormat:@"%@ Vs %@\n%@\nWill start soon..",event.team_A_name,event.team_B_name,event.competitionname];
-    localNotification.alertAction = @"Show me the item";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.soundName = UILocalNotificationDefaultSoundName;
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    int noOfDaysInterval= 0;
     
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    localNotification = nil;
+
+    if ([lblRepeat.text isEqualToString:@"Every day"])
+    {
+        noOfDaysInterval = 1;
+        
+    }else if ([lblRepeat.text isEqualToString:@"30 days"])
+    {
+        noOfDaysInterval = 30;
+        
+    }else if ([lblRepeat.text isEqualToString:@"15 days"])
+    {
+        noOfDaysInterval = 15;
+        
+    }else if ([lblRepeat.text isEqualToString:@"7 days"])
+    {
+        noOfDaysInterval = 7;
+    }
+    NSDate *NextFireDate = startDate;
+    int endLoop = 0;
+    for(int i = 0 ;i<=endLoop ; i++)
+    {
+        NextFireDate = [NextFireDate dateByAddingTimeInterval:+(noOfDaysInterval*86400)];
+        NSComparisonResult result = [NextFireDate compare:endDate];
+        if(result == NSOrderedDescending)
+        {
+        }
+        else
+        {
+            UILocalNotification *localNotification = [[UILocalNotification alloc]init];
+            localNotification.alertAction = @"Ok";
+            
+            localNotification.fireDate = [NextFireDate dateByAddingTimeInterval:-1800];
     
-    pickerDate = [[Database database] getDateforten:event.originaldate withTime:startTime];
-    
-    localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = pickerDate;
-    localNotification.alertBody = [NSString stringWithFormat:@"%@ Vs %@\n%@\nStarts in ten minutes !!",event.team_A_name,event.team_B_name,event.competitionname];
-    localNotification.alertAction = @"Show me the item";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.soundName = UILocalNotificationDefaultSoundName;
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-    
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+            
+            localNotification.soundName = UILocalNotificationDefaultSoundName;
+            
+            localNotification.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:_shoppingListModel.shoppingListId,kShoppingListID, nil];
+            
+            NSString *strMessage  = [NSString stringWithFormat:@"Thanks for using the AaramShop reminder service. Order for your shopping list %@ will be placed at %@ as scheduled in next 30 mins.",_shoppingListModel.shoppingListName,_selectedStoreModel.store_name];
+            
+            localNotification.alertBody = strMessage;
+
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+            
+            endLoop++;
+        }
+    }
+
 }
-//*/
+
+
+#pragma mark - Remove Shopping List Reminder
+-(void)removeShoppingListReminder
+{
+    UIApplication *app = [UIApplication sharedApplication];
+    NSArray *eventArray = [app scheduledLocalNotifications];
+    for (int i=0; i<[eventArray count]; i++)
+    {
+        UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
+        NSDictionary *userInfoCurrent = oneEvent.userInfo;
+        NSString *uid=[NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:kShoppingListID]];
+        if ([uid isEqualToString:_shoppingListModel.shoppingListId])
+        {
+            //Cancelling local notification
+            [app cancelLocalNotification:oneEvent];
+            break;
+        }
+    }
+}
+
+
+
+
+
 
 @end
