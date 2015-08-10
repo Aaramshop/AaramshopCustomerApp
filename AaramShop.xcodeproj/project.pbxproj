@@ -1319,7 +1319,6 @@
 		6BD2D32A1B28631A00EC6E54 /* homeDetailTabStarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2D3271B28631A00EC6E54 /* homeDetailTabStarIcon.png */; };
 		6BD2D32B1B28631A00EC6E54 /* homeDetailTabStarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2D3281B28631A00EC6E54 /* homeDetailTabStarIcon@2x.png */; };
 		6BD2D32C1B28631A00EC6E54 /* homeDetailTabStarIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2D3291B28631A00EC6E54 /* homeDetailTabStarIcon@3x.png */; };
-		6BD2D3311B28693100EC6E54 /* LeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD2D3301B28693100EC6E54 /* LeftTableViewController.m */; };
 		6BD2D3341B28694500EC6E54 /* RightCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD2D3331B28694500EC6E54 /* RightCollectionViewController.m */; };
 		6BD2D33B1B28A66500EC6E54 /* homeDetailsBeverageIconInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2D3351B28A66500EC6E54 /* homeDetailsBeverageIconInactive.png */; };
 		6BD2D33C1B28A66500EC6E54 /* homeDetailsBeverageIconInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2D3361B28A66500EC6E54 /* homeDetailsBeverageIconInactive@2x.png */; };
@@ -3173,8 +3172,6 @@
 		6BD2D3271B28631A00EC6E54 /* homeDetailTabStarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeDetailTabStarIcon.png; sourceTree = "<group>"; };
 		6BD2D3281B28631A00EC6E54 /* homeDetailTabStarIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDetailTabStarIcon@2x.png"; sourceTree = "<group>"; };
 		6BD2D3291B28631A00EC6E54 /* homeDetailTabStarIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeDetailTabStarIcon@3x.png"; sourceTree = "<group>"; };
-		6BD2D32F1B28693100EC6E54 /* LeftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewController.h; sourceTree = "<group>"; };
-		6BD2D3301B28693100EC6E54 /* LeftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewController.m; sourceTree = "<group>"; };
 		6BD2D3321B28694500EC6E54 /* RightCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightCollectionViewController.h; sourceTree = "<group>"; };
 		6BD2D3331B28694500EC6E54 /* RightCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightCollectionViewController.m; sourceTree = "<group>"; };
 		6BD2D3351B28A66500EC6E54 /* homeDetailsBeverageIconInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeDetailsBeverageIconInactive.png; sourceTree = "<group>"; };
@@ -7067,15 +7064,6 @@
 			path = HomeFirstScreen;
 			sourceTree = "<group>";
 		};
-		6BD2D32D1B28691000EC6E54 /* LeftTableViewController */ = {
-			isa = PBXGroup;
-			children = (
-				6BD2D32F1B28693100EC6E54 /* LeftTableViewController.h */,
-				6BD2D3301B28693100EC6E54 /* LeftTableViewController.m */,
-			);
-			path = LeftTableViewController;
-			sourceTree = "<group>";
-		};
 		6BD2D32E1B28691000EC6E54 /* RightCollectionViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -7392,7 +7380,6 @@
 		6BFFF90C1B02133300BB2B62 /* SideBarViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6BD2D32D1B28691000EC6E54 /* LeftTableViewController */,
 				6BD2D32E1B28691000EC6E54 /* RightCollectionViewController */,
 				274F88BF1B0D1C3100F85743 /* RightSideTableCell.h */,
 				274F88C01B0D1C3100F85743 /* RightSideTableCell.m */,
@@ -8683,7 +8670,6 @@
 				36F95DA11B71DE770055301F /* GlobalSearchResultTableCell.m in Sources */,
 				274A5C811B05C4AA009112B5 /* SHLog+.m in Sources */,
 				6B5CE4551B39758900CD009E /* PickLastTableCell.m in Sources */,
-				6BD2D3311B28693100EC6E54 /* LeftTableViewController.m in Sources */,
 				274A5C531B05C4AA009112B5 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				36CA644D1B70EC3D00A3BBB1 /* SearchViewController.m in Sources */,
 				274A5CB21B05C4AA009112B5 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,

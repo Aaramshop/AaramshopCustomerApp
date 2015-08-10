@@ -1257,7 +1257,7 @@ static NSString *strCollectionItems = @"collectionItems";
         btnCancel.tintColor = [UIColor blueColor];
         btnCancel.tag = kBtnCancel;
 
-        keyBoardToolBar.items = [NSArray arrayWithObjects:btnDone,tempDistance,btnCancel, nil];
+        keyBoardToolBar.items = [NSArray arrayWithObjects:btnCancel,tempDistance,btnDone, nil];
     }
     else
     {

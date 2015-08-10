@@ -26,32 +26,31 @@
     if (self) {
         // Initialization code
         
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        [self setBackgroundColor:[UIColor clearColor]];
-        
-        strRupee = @"\u20B9";
-        imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        imgView.layer.cornerRadius = imgView.bounds.size.width/2;
-        imgView.layer.masksToBounds = YES;
-		imgView.contentMode = UIViewContentModeScaleAspectFit;
-		imgView.backgroundColor	=	[UIColor whiteColor];
-        [self.contentView addSubview:imgView];
-        
-        lblProductName = [[UILabel alloc] initWithFrame:CGRectZero ];
-        
-        [lblProductName setTextColor:[UIColor whiteColor]];
-        lblProductName.font = [UIFont fontWithName:kRobotoRegular size:15.0f];
-        lblProductName.numberOfLines = 2;
-        lblProductName.lineBreakMode = NSLineBreakByWordWrapping;
-        
-        [self.contentView addSubview:lblProductName];
-        
-        lblProductPrice = [[UILabel alloc] initWithFrame:CGRectZero];
-        [lblProductPrice setTextColor:[UIColor whiteColor]];
-        lblProductPrice.textAlignment = NSTextAlignmentRight;
-        [lblProductPrice setFont:[UIFont fontWithName:kRobotoRegular size:10.0]];
-        [self.contentView addSubview:lblProductPrice];
+		self.selectionStyle = UITableViewCellSelectionStyleNone;
+		
+		[self setBackgroundColor:[UIColor whiteColor]];
+		
+		strRupee = @"\u20B9";
+		imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
+		imgView.layer.cornerRadius = imgView.bounds.size.width/2;
+		imgView.layer.masksToBounds = YES;
+		[self.contentView addSubview:imgView];
+		
+		
+		lblProductName = [[UILabel alloc] initWithFrame:CGRectZero ];
+		
+		[lblProductName setTextColor:[UIColor blackColor]];
+		lblProductName.font = [UIFont fontWithName:kRobotoRegular size:15.0f];
+		lblProductName.numberOfLines = 2;
+		lblProductName.lineBreakMode = NSLineBreakByWordWrapping;
+		
+		[self.contentView addSubview:lblProductName];
+		
+		lblProductPrice = [[UILabel alloc] initWithFrame:CGRectZero];
+		[lblProductPrice setTextColor:[UIColor blackColor]];
+		lblProductPrice.textAlignment = NSTextAlignmentRight;
+		[lblProductPrice setFont:[UIFont fontWithName:kRobotoRegular size:10.0]];
+		[self.contentView addSubview:lblProductPrice];
     }
     return self;
 }

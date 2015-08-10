@@ -1407,23 +1407,23 @@ MEDI CARE</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U5h-8v-Xcj" userLabel="Image View - Product Image">
-                                                    <rect key="frame" x="5" y="10" width="60" height="60"/>
+                                                    <rect key="frame" x="3" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="SNg-VY-4pm"/>
                                                         <constraint firstAttribute="width" constant="60" id="mTA-79-lnl"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDT-pc-IwQ" userLabel="Label - Product name">
-                                                    <rect key="frame" x="73" y="10" width="170" height="35"/>
+                                                    <rect key="frame" x="71" y="10" width="176" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="wOi-JF-bvl"/>
+                                                        <constraint firstAttribute="height" constant="35" id="rkE-6w-2pT"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                     <color key="textColor" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebo-vt-veE" userLabel="Label - Total Product">
-                                                    <rect key="frame" x="244" y="22" width="70" height="35"/>
+                                                    <rect key="frame" x="248" y="22" width="70" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="I48-At-bd1"/>
                                                         <constraint firstAttribute="width" constant="70" id="dIU-12-EdM"/>
@@ -1432,8 +1432,8 @@ MEDI CARE</string>
                                                     <color key="textColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tky-n5-vqh" userLabel="Label - Price per unit">
-                                                    <rect key="frame" x="73" y="52" width="70" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tky-n5-vqh" userLabel="Label - Price per unit">
+                                                    <rect key="frame" x="71" y="52" width="72" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="TNz-nV-PeT"/>
                                                     </constraints>
@@ -1441,7 +1441,7 @@ MEDI CARE</string>
                                                     <color key="textColor" red="0.47450980392156861" green="0.47450980392156861" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfY-6I-5t6" userLabel="Label - Offer Price">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfY-6I-5t6" userLabel="Label - Offer Price">
                                                     <rect key="frame" x="145" y="52" width="70" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="e3e-GD-L3M"/>
@@ -1453,17 +1453,18 @@ MEDI CARE</string>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="EfY-6I-5t6" secondAttribute="bottom" constant="1" id="1lO-4c-Fwq"/>
-                                                <constraint firstItem="tky-n5-vqh" firstAttribute="top" secondItem="qDT-pc-IwQ" secondAttribute="bottom" constant="7" id="5cz-af-bXC"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Ebo-vt-veE" secondAttribute="trailing" constant="-2" id="7Pc-ez-TxZ"/>
-                                                <constraint firstItem="U5h-8v-Xcj" firstAttribute="topMargin" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="10" id="7SQ-Q6-IiO"/>
-                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="leading" secondItem="qDT-pc-IwQ" secondAttribute="trailing" constant="1" id="AnP-K1-ji4"/>
-                                                <constraint firstItem="EfY-6I-5t6" firstAttribute="leading" secondItem="tky-n5-vqh" secondAttribute="trailing" constant="2" id="Gh1-Hu-Q1f"/>
-                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="topMargin" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="22" id="XoE-jQ-xLF"/>
-                                                <constraint firstItem="tky-n5-vqh" firstAttribute="leading" secondItem="U5h-8v-Xcj" secondAttribute="trailing" constant="8" id="b45-V7-i3I"/>
-                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="leading" secondItem="U5h-8v-Xcj" secondAttribute="trailing" constant="8" id="eq5-rN-fpn"/>
-                                                <constraint firstItem="U5h-8v-Xcj" firstAttribute="leading" secondItem="BI6-Tw-rPc" secondAttribute="leadingMargin" constant="-3" id="idf-W0-JN8"/>
-                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="topMargin" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="10" id="vmS-Mz-TL0"/>
+                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="2" id="08M-Rt-hF4"/>
+                                                <constraint firstItem="tky-n5-vqh" firstAttribute="leading" secondItem="U5h-8v-Xcj" secondAttribute="leading" constant="68" id="2q6-k3-Tzz"/>
+                                                <constraint firstItem="U5h-8v-Xcj" firstAttribute="leading" secondItem="BI6-Tw-rPc" secondAttribute="leading" constant="3" id="AaJ-XY-vLo"/>
+                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="leading" secondItem="U5h-8v-Xcj" secondAttribute="leading" constant="68" id="GOd-SJ-8p6"/>
+                                                <constraint firstItem="Ebo-vt-veE" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="14" id="OxT-vG-cCI"/>
+                                                <constraint firstItem="tky-n5-vqh" firstAttribute="top" secondItem="qDT-pc-IwQ" secondAttribute="top" constant="42" id="V9f-Ya-rJ0"/>
+                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="top" secondItem="EfY-6I-5t6" secondAttribute="top" constant="-42" id="XdA-jE-Avk"/>
+                                                <constraint firstItem="U5h-8v-Xcj" firstAttribute="top" secondItem="BI6-Tw-rPc" secondAttribute="topMargin" constant="2" id="ZBv-g3-cc0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EfY-6I-5t6" secondAttribute="trailing" constant="97" id="ZIV-B5-bm7"/>
+                                                <constraint firstItem="qDT-pc-IwQ" firstAttribute="trailing" secondItem="Ebo-vt-veE" secondAttribute="trailing" constant="-71" id="hEG-Bn-F2g"/>
+                                                <constraint firstItem="tky-n5-vqh" firstAttribute="trailing" secondItem="EfY-6I-5t6" secondAttribute="trailing" constant="-72" id="tHU-8d-6ZN"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ebo-vt-veE" secondAttribute="trailing" constant="2" id="vsr-V6-WBk"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1481,14 +1482,14 @@ MEDI CARE</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uwH-mP-4jP" userLabel="Image View - Product Image">
-                                                    <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                                    <rect key="frame" x="3" y="5" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="c6n-jl-qaR"/>
                                                         <constraint firstAttribute="width" constant="60" id="ocf-zy-wTR"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yhi-Ug-sxF" userLabel="Label - Product name">
-                                                    <rect key="frame" x="73" y="5" width="157" height="40"/>
+                                                    <rect key="frame" x="71" y="5" width="159" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="2we-rB-s5w"/>
                                                     </constraints>
@@ -1496,8 +1497,8 @@ MEDI CARE</string>
                                                     <color key="textColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNk-cF-QCM" userLabel="Label - Price">
-                                                    <rect key="frame" x="73" y="46" width="70" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNk-cF-QCM" userLabel="Label - Price">
+                                                    <rect key="frame" x="71" y="46" width="72" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="6wW-t2-9P6"/>
                                                     </constraints>
@@ -1541,7 +1542,7 @@ MEDI CARE</string>
                                                         <action selector="actionAddProduct:" destination="fDu-gP-PUu" eventType="touchUpInside" id="a9G-5Z-Lr5"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbT-hr-0eR" userLabel="Label - Offer Price">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbT-hr-0eR" userLabel="Label - Offer Price">
                                                     <rect key="frame" x="145" y="46" width="70" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="YX9-gu-Mlo"/>
@@ -1553,21 +1554,22 @@ MEDI CARE</string>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="TbT-hr-0eR" firstAttribute="leading" secondItem="KNk-cF-QCM" secondAttribute="trailing" constant="2" id="4Oo-Ov-4Vb"/>
-                                                <constraint firstItem="TbT-hr-0eR" firstAttribute="top" secondItem="Yhi-Ug-sxF" secondAttribute="bottom" constant="1" id="7Kb-CP-g9z"/>
-                                                <constraint firstItem="z4t-kF-pq2" firstAttribute="leading" secondItem="8Z4-oR-UHT" secondAttribute="trailing" id="C4l-2P-eAE"/>
-                                                <constraint firstItem="uwH-mP-4jP" firstAttribute="leading" secondItem="EsY-ZC-XCC" secondAttribute="leadingMargin" constant="-3" id="LOJ-Zx-7RF"/>
-                                                <constraint firstItem="KNk-cF-QCM" firstAttribute="leading" secondItem="uwH-mP-4jP" secondAttribute="trailing" constant="8" id="LlF-1u-Go5"/>
-                                                <constraint firstItem="uwH-mP-4jP" firstAttribute="top" secondItem="EsY-ZC-XCC" secondAttribute="topMargin" constant="-3" id="MnH-xu-AYu"/>
-                                                <constraint firstItem="KNk-cF-QCM" firstAttribute="top" secondItem="Yhi-Ug-sxF" secondAttribute="bottom" constant="1" id="PjN-5g-8bE"/>
-                                                <constraint firstItem="Yhi-Ug-sxF" firstAttribute="leading" secondItem="uwH-mP-4jP" secondAttribute="trailing" constant="8" id="Qix-SW-EME"/>
-                                                <constraint firstItem="Yhi-Ug-sxF" firstAttribute="top" secondItem="EsY-ZC-XCC" secondAttribute="topMargin" constant="-3" id="V6b-ds-0ST"/>
-                                                <constraint firstItem="8Z4-oR-UHT" firstAttribute="top" secondItem="EsY-ZC-XCC" secondAttribute="topMargin" constant="12" id="Yzl-Bl-8b8"/>
-                                                <constraint firstItem="daf-7l-zjk" firstAttribute="leading" secondItem="z4t-kF-pq2" secondAttribute="trailing" id="cQl-sb-tzf"/>
-                                                <constraint firstItem="z4t-kF-pq2" firstAttribute="top" secondItem="EsY-ZC-XCC" secondAttribute="topMargin" constant="-3" id="fF8-4T-OWg"/>
-                                                <constraint firstItem="8Z4-oR-UHT" firstAttribute="leading" secondItem="Yhi-Ug-sxF" secondAttribute="trailing" constant="4" id="nwa-zv-WDc"/>
-                                                <constraint firstItem="daf-7l-zjk" firstAttribute="top" secondItem="EsY-ZC-XCC" secondAttribute="topMargin" constant="12" id="sti-r5-dXm"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="daf-7l-zjk" secondAttribute="trailing" constant="-4" id="tLJ-bE-61A"/>
+                                                <constraint firstItem="uwH-mP-4jP" firstAttribute="leading" secondItem="EsY-ZC-XCC" secondAttribute="leading" constant="3" id="4dC-BY-GeW"/>
+                                                <constraint firstItem="KNk-cF-QCM" firstAttribute="top" secondItem="Yhi-Ug-sxF" secondAttribute="top" constant="41" id="5AL-ho-sIw"/>
+                                                <constraint firstItem="Yhi-Ug-sxF" firstAttribute="top" secondItem="EsY-ZC-XCC" secondAttribute="topMargin" constant="-3" id="5qn-UD-1aJ"/>
+                                                <constraint firstItem="Yhi-Ug-sxF" firstAttribute="trailing" secondItem="8Z4-oR-UHT" secondAttribute="trailing" constant="-34" id="7Jf-2L-MpO"/>
+                                                <constraint firstItem="uwH-mP-4jP" firstAttribute="top" secondItem="EsY-ZC-XCC" secondAttribute="topMargin" constant="-3" id="KJ4-1F-Tly"/>
+                                                <constraint firstItem="z4t-kF-pq2" firstAttribute="top" secondItem="EsY-ZC-XCC" secondAttribute="topMargin" constant="-3" id="O9M-9C-exQ"/>
+                                                <constraint firstItem="TbT-hr-0eR" firstAttribute="trailing" secondItem="8Z4-oR-UHT" secondAttribute="trailing" constant="-49" id="Onu-oA-ubS"/>
+                                                <constraint firstItem="daf-7l-zjk" firstAttribute="top" secondItem="EsY-ZC-XCC" secondAttribute="topMargin" constant="12" id="Qzx-C1-B7b"/>
+                                                <constraint firstItem="Yhi-Ug-sxF" firstAttribute="leading" secondItem="uwH-mP-4jP" secondAttribute="leading" constant="68" id="RaC-hZ-L9j"/>
+                                                <constraint firstItem="TbT-hr-0eR" firstAttribute="top" secondItem="Yhi-Ug-sxF" secondAttribute="top" constant="41" id="YiS-Bh-dUQ"/>
+                                                <constraint firstItem="KNk-cF-QCM" firstAttribute="leading" secondItem="uwH-mP-4jP" secondAttribute="leading" constant="68" id="ckb-44-Gio"/>
+                                                <constraint firstItem="z4t-kF-pq2" firstAttribute="trailing" secondItem="8Z4-oR-UHT" secondAttribute="trailing" constant="22" id="ezz-zt-kyk"/>
+                                                <constraint firstItem="TbT-hr-0eR" firstAttribute="trailing" secondItem="KNk-cF-QCM" secondAttribute="trailing" constant="72" id="mEW-Fe-W3A"/>
+                                                <constraint firstItem="z4t-kF-pq2" firstAttribute="trailing" secondItem="daf-7l-zjk" secondAttribute="trailing" constant="-30" id="od0-AL-xXz"/>
+                                                <constraint firstAttribute="trailing" secondItem="daf-7l-zjk" secondAttribute="trailing" constant="4" id="yIo-oB-mCI"/>
+                                                <constraint firstItem="8Z4-oR-UHT" firstAttribute="top" secondItem="EsY-ZC-XCC" secondAttribute="topMargin" constant="12" id="ynE-pF-kRC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1590,7 +1592,7 @@ MEDI CARE</string>
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <color key="backgroundColor" red="0.82352941176470584" green="0.027450980392156862" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="aMk-N1-uSZ"/>
+                                    <constraint firstAttribute="height" constant="44" id="BKn-hs-oOg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
                                 <state key="normal" title="CHOOSE A STORE">
@@ -1603,13 +1605,13 @@ MEDI CARE</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="5Ye-jo-WB8" secondAttribute="width" id="15i-DB-zGx"/>
-                            <constraint firstAttribute="width" secondItem="9J1-DZ-daJ" secondAttribute="width" id="947-iM-Nlo"/>
-                            <constraint firstAttribute="centerX" secondItem="5Ye-jo-WB8" secondAttribute="centerX" id="CTT-y6-88K"/>
-                            <constraint firstItem="9J1-DZ-daJ" firstAttribute="top" secondItem="5Ye-jo-WB8" secondAttribute="bottom" id="VSC-KX-tHt"/>
-                            <constraint firstItem="5Ye-jo-WB8" firstAttribute="top" secondItem="XM2-bc-8sB" secondAttribute="bottom" id="Wxo-BI-NaK"/>
-                            <constraint firstAttribute="centerX" secondItem="9J1-DZ-daJ" secondAttribute="centerX" id="p2e-uC-AMs"/>
-                            <constraint firstItem="ijh-2g-4ww" firstAttribute="top" secondItem="9J1-DZ-daJ" secondAttribute="bottom" id="wdp-Kt-PEn"/>
+                            <constraint firstItem="5Ye-jo-WB8" firstAttribute="top" secondItem="XM2-bc-8sB" secondAttribute="bottom" id="lMR-K7-ks4"/>
+                            <constraint firstItem="ijh-2g-4ww" firstAttribute="top" secondItem="9J1-DZ-daJ" secondAttribute="bottom" id="qec-xD-Fhs"/>
+                            <constraint firstAttribute="trailing" secondItem="9J1-DZ-daJ" secondAttribute="trailing" id="vcI-7K-7gz"/>
+                            <constraint firstItem="9J1-DZ-daJ" firstAttribute="leading" secondItem="lo7-Bg-ZWh" secondAttribute="leading" id="wSU-jn-wDv"/>
+                            <constraint firstItem="5Ye-jo-WB8" firstAttribute="leading" secondItem="lo7-Bg-ZWh" secondAttribute="leading" id="wW3-4c-oXf"/>
+                            <constraint firstItem="9J1-DZ-daJ" firstAttribute="bottom" secondItem="5Ye-jo-WB8" secondAttribute="bottom" constant="44" id="xVG-K3-jof"/>
+                            <constraint firstAttribute="trailing" secondItem="5Ye-jo-WB8" secondAttribute="trailing" id="yIG-T9-Fmg"/>
                         </constraints>
                     </view>
                     <connections>
@@ -3961,11 +3963,11 @@ Your family will be able to add products of their choice and create a master sho
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zix-YC-Ca4" secondAttribute="trailing" constant="-16" id="BzC-xq-76p"/>
+                            <constraint firstAttribute="trailing" secondItem="Zix-YC-Ca4" secondAttribute="trailing" id="BzC-xq-76p"/>
                             <constraint firstAttribute="centerX" secondItem="Kaf-Je-x8c" secondAttribute="centerX" id="EPp-xZ-HpS"/>
                             <constraint firstAttribute="centerX" secondItem="q5i-lz-WcH" secondAttribute="centerX" id="NNw-uA-Zxk"/>
                             <constraint firstItem="Hai-Zc-2Jf" firstAttribute="top" secondItem="Zix-YC-Ca4" secondAttribute="bottom" constant="-49" id="R53-Bz-Yox"/>
-                            <constraint firstItem="Zix-YC-Ca4" firstAttribute="leading" secondItem="uoq-uh-gKD" secondAttribute="leadingMargin" constant="-16" id="RTU-SC-dio"/>
+                            <constraint firstItem="Zix-YC-Ca4" firstAttribute="leading" secondItem="uoq-uh-gKD" secondAttribute="leading" id="RTU-SC-dio"/>
                             <constraint firstItem="Zix-YC-Ca4" firstAttribute="top" secondItem="sCf-TO-PDf" secondAttribute="bottom" id="S35-J7-2Og"/>
                             <constraint firstItem="Kaf-Je-x8c" firstAttribute="top" secondItem="q5i-lz-WcH" secondAttribute="top" constant="188" id="g50-Mn-ljp"/>
                             <constraint firstItem="q5i-lz-WcH" firstAttribute="top" secondItem="sCf-TO-PDf" secondAttribute="bottom" constant="84" id="rav-wc-mVH"/>
@@ -4570,8 +4572,8 @@ Your family will be able to add products of their choice and create a master sho
                             <constraint firstItem="UHj-ca-j9K" firstAttribute="top" secondItem="bqe-wj-H6G" secondAttribute="bottom" id="cnH-CM-XMa"/>
                             <constraint firstItem="VL5-A2-Umm" firstAttribute="trailing" secondItem="A1c-pQ-aH0" secondAttribute="trailingMargin" id="fry-U7-JCG"/>
                             <constraint firstItem="bqe-wj-H6G" firstAttribute="top" secondItem="VL5-A2-Umm" secondAttribute="top" constant="36" id="mVP-9G-SmI"/>
-                            <constraint firstItem="bqe-wj-H6G" firstAttribute="leading" secondItem="A1c-pQ-aH0" secondAttribute="leadingMargin" constant="-16" id="xyZ-xu-8Mu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bqe-wj-H6G" secondAttribute="trailing" constant="-16" id="z7t-Ca-4cp"/>
+                            <constraint firstItem="bqe-wj-H6G" firstAttribute="leading" secondItem="A1c-pQ-aH0" secondAttribute="leading" id="xyZ-xu-8Mu"/>
+                            <constraint firstAttribute="trailing" secondItem="bqe-wj-H6G" secondAttribute="trailing" id="z7t-Ca-4cp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5CG-be-42D"/>
@@ -4710,38 +4712,6 @@ Your family will be able to add products of their choice and create a master sho
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Owx-vG-i0P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2137" y="2622"/>
-        </scene>
-        <!--Left Table View Controller-->
-        <scene sceneID="WMg-CT-cNm">
-            <objects>
-                <viewController id="qDZ-Mv-JTz" customClass="LeftTableViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9Kr-lb-Kjd"/>
-                        <viewControllerLayoutGuide type="bottom" id="n4Y-EU-mjD"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="UhM-kA-7sL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hiU-kh-IgS">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="qDZ-Mv-JTz" id="6EL-0e-hnu"/>
-                                    <outlet property="delegate" destination="qDZ-Mv-JTz" id="cNO-vj-pKD"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZWa-cI-Fs1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3020" y="2516"/>
         </scene>
         <!--Wallet View Controller-->
         <scene sceneID="qLy-pd-VpG">
@@ -6632,8 +6602,8 @@ Your family will be able to add products of their choice and create a master sho
                             <constraint firstItem="t39-Jw-Oc9" firstAttribute="top" secondItem="YhP-de-dhB" secondAttribute="bottom" id="0P5-Hf-LXG"/>
                             <constraint firstItem="MeP-mD-9kh" firstAttribute="top" secondItem="Yz5-Sk-4hn" secondAttribute="bottom" constant="8" id="0Wm-mv-byl"/>
                             <constraint firstItem="MeP-mD-9kh" firstAttribute="trailing" secondItem="FbD-e9-g2P" secondAttribute="trailingMargin" id="IKt-GL-ohb"/>
-                            <constraint firstItem="YhP-de-dhB" firstAttribute="leading" secondItem="FbD-e9-g2P" secondAttribute="leadingMargin" constant="-16" id="ScR-Et-hIS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YhP-de-dhB" secondAttribute="trailing" constant="-16" id="wXd-nI-2Di"/>
+                            <constraint firstItem="YhP-de-dhB" firstAttribute="leading" secondItem="FbD-e9-g2P" secondAttribute="leading" id="ScR-Et-hIS"/>
+                            <constraint firstAttribute="trailing" secondItem="YhP-de-dhB" secondAttribute="trailing" id="wXd-nI-2Di"/>
                             <constraint firstItem="MeP-mD-9kh" firstAttribute="leading" secondItem="FbD-e9-g2P" secondAttribute="leadingMargin" id="xCZ-9C-Rh2"/>
                         </constraints>
                     </view>
@@ -6761,9 +6731,9 @@ Your family will be able to add products of their choice and create a master sho
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="e2f-P3-mew" secondAttribute="trailing" constant="-16" id="AnO-Hl-5s9"/>
+                            <constraint firstAttribute="trailing" secondItem="e2f-P3-mew" secondAttribute="trailing" id="AnO-Hl-5s9"/>
                             <constraint firstItem="HvH-q2-iJn" firstAttribute="top" secondItem="e2f-P3-mew" secondAttribute="bottom" id="BXf-Y3-c6X"/>
-                            <constraint firstItem="e2f-P3-mew" firstAttribute="leading" secondItem="oMC-xE-1L1" secondAttribute="leadingMargin" constant="-16" id="Ofr-It-nsP"/>
+                            <constraint firstItem="e2f-P3-mew" firstAttribute="leading" secondItem="oMC-xE-1L1" secondAttribute="leading" id="Ofr-It-nsP"/>
                             <constraint firstItem="e2f-P3-mew" firstAttribute="top" secondItem="VO4-1M-hXz" secondAttribute="bottom" id="qq6-5j-NFv"/>
                         </constraints>
                     </view>
@@ -6898,7 +6868,7 @@ Your family will be able to add products of their choice and create a master sho
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="fqv-ll-puy">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="406"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shoppingListCell" rowHeight="75" id="Mq8-bq-gnZ">
@@ -6965,9 +6935,9 @@ Your family will be able to add products of their choice and create a master sho
                             </tableView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="fqv-ll-puy" secondAttribute="trailing" constant="-16" id="4Hn-yl-pTZ"/>
-                            <constraint firstItem="EMV-VD-rgE" firstAttribute="top" secondItem="fqv-ll-puy" secondAttribute="bottom" constant="49" id="JCC-iL-BcD"/>
-                            <constraint firstItem="fqv-ll-puy" firstAttribute="leading" secondItem="ppu-Ef-wtN" secondAttribute="leadingMargin" constant="-16" id="PEV-mx-el2"/>
+                            <constraint firstAttribute="trailing" secondItem="fqv-ll-puy" secondAttribute="trailing" id="4Hn-yl-pTZ"/>
+                            <constraint firstItem="EMV-VD-rgE" firstAttribute="top" secondItem="fqv-ll-puy" secondAttribute="bottom" id="B1N-G1-mkQ"/>
+                            <constraint firstItem="fqv-ll-puy" firstAttribute="leading" secondItem="ppu-Ef-wtN" secondAttribute="leading" id="PEV-mx-el2"/>
                             <constraint firstItem="fqv-ll-puy" firstAttribute="top" secondItem="2bV-xv-bTW" secondAttribute="bottom" id="v2D-Jf-EkE"/>
                         </constraints>
                     </view>
@@ -6994,7 +6964,7 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vfx-nv-eeu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vfx-nv-eeu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -7112,6 +7082,12 @@ Your family will be able to add products of their choice and create a master sho
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Vfx-nv-eeu" secondAttribute="centerX" id="8QT-PW-v0Q"/>
+                            <constraint firstAttribute="centerY" secondItem="Vfx-nv-eeu" secondAttribute="centerY" id="EbY-eP-jEL"/>
+                            <constraint firstAttribute="width" secondItem="Vfx-nv-eeu" secondAttribute="width" id="GGj-kc-B4Z"/>
+                            <constraint firstAttribute="height" secondItem="Vfx-nv-eeu" secondAttribute="height" id="ebV-A2-fYJ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pWp-y3-XW1"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -8047,9 +8023,9 @@ Your family will be able to add products of their choice and create a master sho
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="dsZ-qU-yvH" secondAttribute="trailing" constant="-16" id="FDS-os-NwY"/>
+                            <constraint firstAttribute="trailing" secondItem="dsZ-qU-yvH" secondAttribute="trailing" id="FDS-os-NwY"/>
                             <constraint firstItem="dsZ-qU-yvH" firstAttribute="top" secondItem="Dod-2r-N1e" secondAttribute="bottom" id="O9w-Pd-ctX"/>
-                            <constraint firstItem="dsZ-qU-yvH" firstAttribute="leading" secondItem="VmB-qM-9lB" secondAttribute="leadingMargin" constant="-16" id="UQO-xa-jGb"/>
+                            <constraint firstItem="dsZ-qU-yvH" firstAttribute="leading" secondItem="VmB-qM-9lB" secondAttribute="leading" id="UQO-xa-jGb"/>
                             <constraint firstItem="I2q-pz-kxK" firstAttribute="top" secondItem="dsZ-qU-yvH" secondAttribute="bottom" id="XxK-zg-Bqn"/>
                         </constraints>
                     </view>
@@ -8214,12 +8190,12 @@ Your family will be able to add products of their choice and create a master sho
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Gae-hu-qpg" firstAttribute="top" secondItem="dde-r6-z0e" secondAttribute="top" constant="91" id="JHX-iL-6U3"/>
-                            <constraint firstItem="dde-r6-z0e" firstAttribute="leading" secondItem="7vs-AW-UgS" secondAttribute="leadingMargin" constant="-16" id="JbB-op-7Fr"/>
+                            <constraint firstItem="dde-r6-z0e" firstAttribute="leading" secondItem="7vs-AW-UgS" secondAttribute="leading" id="JbB-op-7Fr"/>
                             <constraint firstItem="dde-r6-z0e" firstAttribute="top" secondItem="JoQ-pn-TKU" secondAttribute="bottom" id="Kr0-uq-cNq"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dde-r6-z0e" secondAttribute="trailing" constant="-16" id="Sa6-VK-xRl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Gae-hu-qpg" secondAttribute="trailing" constant="-16" id="cJZ-BP-tXT"/>
+                            <constraint firstAttribute="trailing" secondItem="dde-r6-z0e" secondAttribute="trailing" id="Sa6-VK-xRl"/>
+                            <constraint firstAttribute="trailing" secondItem="Gae-hu-qpg" secondAttribute="trailing" id="cJZ-BP-tXT"/>
                             <constraint firstItem="zDf-wj-AQs" firstAttribute="top" secondItem="Gae-hu-qpg" secondAttribute="bottom" id="zOW-1e-vep"/>
-                            <constraint firstItem="Gae-hu-qpg" firstAttribute="leading" secondItem="7vs-AW-UgS" secondAttribute="leadingMargin" constant="-16" id="zV7-n9-IlV"/>
+                            <constraint firstItem="Gae-hu-qpg" firstAttribute="leading" secondItem="7vs-AW-UgS" secondAttribute="leading" id="zV7-n9-IlV"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
