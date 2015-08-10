@@ -105,6 +105,8 @@
 }
 - (void)btnDoneClicked
 {
+	[Utils stopActivityIndicatorInView:self.view];
+	[Utils startActivityIndicatorInView:self.view withMessage:@""];
 	[self hideKeyboard];
 	if ([self isValid]) {
 		
@@ -125,6 +127,7 @@
 {
 	if (![Utils isInternetAvailable])
 	{
+		[Utils stopActivityIndicatorInView:self.view];
 		[doneBtn setEnabled:YES];
 		[backBtn setEnabled:YES];
 		[AppManager stopStatusbarActivityIndicator];
@@ -136,6 +139,7 @@
 
 - (void)responseReceived:(id)responseObject
 {
+	[Utils stopActivityIndicatorInView:self.view];
 	[doneBtn setEnabled:YES];
 	[backBtn setEnabled:YES];
 	[AppManager stopStatusbarActivityIndicator];
@@ -153,7 +157,7 @@
 			[[NSUserDefaults standardUserDefaults] setObject:[responseObject objectForKey:kImage_url_320] forKey:kImage_url_320];
 			[[NSUserDefaults standardUserDefaults] setObject:[responseObject objectForKey:kImage_url_640] forKey:kImage_url_640];
 			
-			
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 			
 //			[tblView reloadData];
 			

@@ -257,6 +257,7 @@
 #define kTotal_cart_value									@"total_cart_value"
 #define kOrder_id												@"order_id"
 #define kDelivery_slot										@"delivery_slot"
+#define kDeliveryboy_name								@"deliveryboy_name"
 #define kPayment_mode									@"payment_mode"
 #define kStore_chatUserName							@"store_chatUserName"
 #define kDelivered_timing								@"delivered_timing"

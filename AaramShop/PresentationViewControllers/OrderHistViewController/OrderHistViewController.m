@@ -423,6 +423,7 @@
 			cmOrderHist.total_cart_value			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kTotal_cart_value]];
 			cmOrderHist.order_id						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kOrder_id]];
 			cmOrderHist.delivery_slot					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kDelivery_slot]];
+			cmOrderHist.deliveryboy_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kDeliveryboy_name]];
 			cmOrderHist.payment_mode				=	[NSString stringWithFormat:@"%@",[dict objectForKey:kPayment_mode]];
 			cmOrderHist.store_chatUserName		=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_chatUserName]];
 			strPacked =[NSString stringWithFormat:@"%d",[[dict objectForKey:kPacked_timing] intValue]];
