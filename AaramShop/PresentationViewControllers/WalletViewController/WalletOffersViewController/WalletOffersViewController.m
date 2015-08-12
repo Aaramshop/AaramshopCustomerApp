@@ -115,11 +115,9 @@
 {
 	[tblView deselectRowAtIndexPath:indexPath animated:YES];
 	CMOffers *offers  = [dataSource objectAtIndex:indexPath.row];
-	if([offers.offerType isEqualToString:@"4"])
+	if(self.delegate && [self.delegate respondsToSelector:@selector(gotoWalletOfferDetailCellViewWithOffer:)])
 	{
-		ComboDetailViewController *comboDetail = (ComboDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"comboDetailController"];
-		comboDetail.offersModel = offers;
-		[self.navigationController pushViewController:comboDetail animated:YES];
+		[self.delegate gotoWalletOfferDetailCellViewWithOffer:offers];
 	}
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{

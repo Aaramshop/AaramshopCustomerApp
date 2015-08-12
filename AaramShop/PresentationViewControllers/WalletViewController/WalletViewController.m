@@ -7,7 +7,8 @@
 //
 
 #import "WalletViewController.h"
-
+#import "WalletOfferDetailViewController.h"
+#import "ComboDetailViewController.h"
 @interface WalletViewController ()
 {
 	MoneyViewController *moneyVC;
@@ -141,7 +142,7 @@
 {
 	//Calling WalletOffersViewController
 	walletOfferVC =  [self.storyboard instantiateViewControllerWithIdentifier:@"WalletOfferViewScene"];
-//	walletOfferVC.delegate  = self;
+	walletOfferVC.delegate  = self;
 	CGRect walletOfferRect = subView.bounds;
 	walletOfferVC.view.frame = walletOfferRect;
 	[walletOfferVC.view setHidden:YES];
@@ -226,5 +227,19 @@
 			break;
 	}
 }
-
+- (void)gotoWalletOfferDetailCellViewWithOffer:(CMOffers *)offer
+{
+	if([offer.offerType isEqualToString:@"4"])
+	{
+		ComboDetailViewController *comboDetail = (ComboDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"comboDetailController"];
+		comboDetail.offersModel = offer;
+		[self.navigationController pushViewController:comboDetail animated:YES];
+	}
+	else
+	{
+		WalletOfferDetailViewController *offerDetail = (WalletOfferDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"walletOfferDetail"];
+		offerDetail.strProductId = offer.product_id;
+		[self.navigationController pushViewController:offerDetail animated:YES];
+	}
+}
 @end
