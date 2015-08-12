@@ -308,12 +308,33 @@ AppDelegate *appDeleg;
     }
     dispatch_queue_t  backgroundQueue = dispatch_queue_create("bgQueue", NULL);
     dispatch_async(backgroundQueue, ^{
-        for (id person in allPeople)
+        
+        
+        CFArrayRef arrayRef = (__bridge CFArrayRef)allPeople;
+        
+        //CFIndex nPeople = ABAddressBookGetPersonCount(addressBook);
+        CFIndex nPeople = CFArrayGetCount(arrayRef); // bugfix who synced contacts with facebook
+//        NSMutableArray* items = [NSMutableArray arrayWithCapacity:nPeople];
+        
+        if (!allPeople || !nPeople) {
+            NSLog(@"people nil");
+        }
+        
+        for (int i = 0; i < nPeople; i++)
         {
             NSMutableDictionary *dictData = [[NSMutableDictionary alloc] init];
             
-            ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
-            ABMultiValueRef Phone = ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
+            ABRecordRef person = CFArrayGetValueAtIndex(arrayRef, i);
+
+            
+//            ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
+//            ABMultiValueRef Phone = ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
+            
+            
+            ABRecordCopyValue(person, kABPersonPhoneProperty);
+            ABMultiValueRef Phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
+
+            
             
             for (CFIndex i = 0; i < ABMultiValueGetCount(Phone); i++) {
                 NSString *strPhoneNumber = [AppManager removeSpecialCheractersFromPhoneNumber:(__bridge_transfer NSString *) ABMultiValueCopyValueAtIndex(Phone, i)];
@@ -322,24 +343,59 @@ AppDelegate *appDeleg;
                 NSString *firstname = @"";
                 NSString *lastname = @"";
                 
-                firstname = (__bridge NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonFirstNameProperty);
-                lastname = (__bridge_transfer NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonLastNameProperty);
+//                firstname = (__bridge NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonFirstNameProperty);
+//                lastname = (__bridge_transfer NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonLastNameProperty);
+//                
+//                if (!lastname) {
+//                    lastname = @"";
+//                }
+//                
+//                if (!firstname) {
+//                    firstname = @"";
+//                }
                 
-                if (!lastname) {
-                    lastname = @"";
+                
+                //get First Name
+                CFStringRef fName = (CFStringRef)ABRecordCopyValue(person,kABPersonFirstNameProperty);
+                firstname = [(__bridge NSString*)fName copy];
+                
+                if (fName != NULL) {
+                    CFRelease(fName);
                 }
+                
+                
+                //get Last Name
+                CFStringRef lName = (CFStringRef)ABRecordCopyValue(person,kABPersonLastNameProperty);
+                lastname = [(__bridge NSString*)lName copy];
+                
+                if (lName != NULL) {
+                    CFRelease(lName);
+                }
+                
                 
                 if (!firstname) {
                     firstname = @"";
                 }
                 
+                if (!lastname) {
+                    lastname = @"";
+                }
+                
+                
                 [dictData setObject:firstname forKey:@"firstName"];
                 [dictData setObject:lastname forKey:@"lastName"];
                 
-                NSInteger idstring=(NSInteger )ABRecordGetRecordID((__bridge ABRecordRef)(person));
+                
+                NSInteger idstring = ABRecordGetRecordID(person);
                 [dictData setObject:[NSNumber numberWithInteger:idstring] forKey:@"uniqueContactID"];
                 
-                NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue( (__bridge ABRecordRef)(person),  kABPersonModificationDateProperty);
+//                NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue( (__bridge ABRecordRef)(person),  kABPersonModificationDateProperty);
+                
+                
+                NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue(person,  kABPersonModificationDateProperty);
+
+                
+                
                 [dictData setObject:[AppManager stringFromDate:modifiedDate] forKey:@"strModifiedDate"];
                 
                 [dictData setObject:strPhoneNumber forKey:@"phoneNumber"];
@@ -350,6 +406,51 @@ AppDelegate *appDeleg;
             
             CFRelease(Phone);
         }
+
+        
+        
+//        for (id person in allPeople)
+//        {
+//            NSMutableDictionary *dictData = [[NSMutableDictionary alloc] init];
+//            
+//            ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
+//            ABMultiValueRef Phone = ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonPhoneProperty);
+//            
+//            for (CFIndex i = 0; i < ABMultiValueGetCount(Phone); i++) {
+//                NSString *strPhoneNumber = [AppManager removeSpecialCheractersFromPhoneNumber:(__bridge_transfer NSString *) ABMultiValueCopyValueAtIndex(Phone, i)];
+//                strPhoneNumber = [strPhoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+//                
+//                NSString *firstname = @"";
+//                NSString *lastname = @"";
+//                
+//                firstname = (__bridge NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonFirstNameProperty);
+//                lastname = (__bridge_transfer NSString *)ABRecordCopyValue((__bridge ABRecordRef)(person), kABPersonLastNameProperty);
+//                
+//                if (!lastname) {
+//                    lastname = @"";
+//                }
+//                
+//                if (!firstname) {
+//                    firstname = @"";
+//                }
+//                
+//                [dictData setObject:firstname forKey:@"firstName"];
+//                [dictData setObject:lastname forKey:@"lastName"];
+//                
+//                NSInteger idstring=(NSInteger )ABRecordGetRecordID((__bridge ABRecordRef)(person));
+//                [dictData setObject:[NSNumber numberWithInteger:idstring] forKey:@"uniqueContactID"];
+//                
+//                NSDate* modifiedDate = (__bridge NSDate*) ABRecordCopyValue( (__bridge ABRecordRef)(person),  kABPersonModificationDateProperty);
+//                [dictData setObject:[AppManager stringFromDate:modifiedDate] forKey:@"strModifiedDate"];
+//                
+//                [dictData setObject:strPhoneNumber forKey:@"phoneNumber"];
+//                [arrAddressBook addObject:dictData];
+//                [arrPhoneOnly addObject:strPhoneNumber];
+//            }
+//            
+//            
+//            CFRelease(Phone);
+//        }
         [[DataBase database] SaveAddressBookDataBase:arrAddressBook from:NO];
         
         

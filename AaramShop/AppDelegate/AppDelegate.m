@@ -375,6 +375,17 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+	if([Utils isInternetAvailable])
+	{
+		//        [gCXMPPController disconnect];
+		
+		XMPPPresence *presence = [XMPPPresence presence];
+		NSXMLElement *status = [NSXMLElement elementWithName:@"status"];
+		[status setStringValue:@"busy"];
+		[presence addChild:status];
+		[presence addAttributeWithName:@"date" stringValue:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]];
+		[gCXMPPController.xmppStream sendElement:presence];
+	}
     [self saveContext];
 }
 #pragma mark - create TabBar for Retailer

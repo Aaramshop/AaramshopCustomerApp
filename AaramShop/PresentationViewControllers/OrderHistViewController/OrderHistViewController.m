@@ -417,7 +417,7 @@
 			cmOrderHist.customer_longitude			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kCustomer_longitude]];
 			cmOrderHist.store_image					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_image]];
 			cmOrderHist.delivery_time				=	[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kDelivery_time] doubleValue]]];
-			cmOrderHist.order_time					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kOrder_time]];
+			cmOrderHist.order_time					=	[Utils stringFromDateForExactTime:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kOrder_time] doubleValue]]];
 			cmOrderHist.order_date					=	[Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kOrder_time] doubleValue]]];
 			cmOrderHist.quantity						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kQuantity]];
 			cmOrderHist.total_cart_value			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kTotal_cart_value]];
