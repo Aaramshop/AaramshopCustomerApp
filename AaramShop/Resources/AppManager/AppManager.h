@@ -34,6 +34,7 @@ void MyAddressBookExternalChangeCallback (
 @property (nonatomic, assign) BOOL isComingFromChat;
 @property (nonatomic, strong) NSMutableArray *arrImages;
 @property (nonatomic, assign)BOOL isFetchingContacts;
+@property (nonatomic, strong)NSMutableDictionary *notifyDict;
 @property (nonatomic, assign)NSInteger intCount;
 @property (nonatomic, strong) CMCountryList *cmCountryList;
 @property (nonatomic, strong) UIImage *imgProfile;
