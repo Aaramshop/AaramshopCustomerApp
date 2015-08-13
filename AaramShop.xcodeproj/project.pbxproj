@@ -1015,6 +1015,7 @@
 		6B54904B1B68E59100465C82 /* checkBoxInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490451B68E59100465C82 /* checkBoxInactive.png */; };
 		6B54904C1B68E59100465C82 /* checkBoxInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490461B68E59100465C82 /* checkBoxInactive@2x.png */; };
 		6B54904D1B68E59100465C82 /* checkBoxInactive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B5490471B68E59100465C82 /* checkBoxInactive@3x.png */; };
+		6B56F7B41B7B4E1900C2320E /* WalletOfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56F7B31B7B4E1900C2320E /* WalletOfferDetailViewController.m */; };
 		6B570E001B721E7800F27515 /* beepSelect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6B570DFE1B721E7800F27515 /* beepSelect.wav */; };
 		6B570E031B721EA400F27515 /* beepUnselect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6B570E021B721EA400F27515 /* beepUnselect.wav */; };
 		6B5C0FAA1B53B69F003C217C /* ShoppingListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5C0FA91B53B69F003C217C /* ShoppingListDetailViewController.m */; };
@@ -2804,6 +2805,8 @@
 		6B5490451B68E59100465C82 /* checkBoxInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxInactive.png; sourceTree = "<group>"; };
 		6B5490461B68E59100465C82 /* checkBoxInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxInactive@2x.png"; sourceTree = "<group>"; };
 		6B5490471B68E59100465C82 /* checkBoxInactive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxInactive@3x.png"; sourceTree = "<group>"; };
+		6B56F7B21B7B4E1900C2320E /* WalletOfferDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletOfferDetailViewController.h; sourceTree = "<group>"; };
+		6B56F7B31B7B4E1900C2320E /* WalletOfferDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletOfferDetailViewController.m; sourceTree = "<group>"; };
 		6B570DFE1B721E7800F27515 /* beepSelect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beepSelect.wav; sourceTree = "<group>"; };
 		6B570E021B721EA400F27515 /* beepUnselect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beepUnselect.wav; sourceTree = "<group>"; };
 		6B5C0FA81B53B69F003C217C /* ShoppingListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingListDetailViewController.h; sourceTree = "<group>"; };
@@ -5526,6 +5529,8 @@
 			children = (
 				36A69ECA1B57C5480058EB88 /* WalletOffersViewController.h */,
 				36A69ECB1B57C5480058EB88 /* WalletOffersViewController.m */,
+				6B56F7B21B7B4E1900C2320E /* WalletOfferDetailViewController.h */,
+				6B56F7B31B7B4E1900C2320E /* WalletOfferDetailViewController.m */,
 			);
 			path = WalletOffersViewController;
 			sourceTree = "<group>";
@@ -8932,6 +8937,7 @@
 				274A5D061B05C4AA009112B5 /* DDXMLDocument.m in Sources */,
 				274A5C711B05C4AA009112B5 /* CHANGELOG.md in Sources */,
 				274A5CEB1B05C4AA009112B5 /* XMPPTime.m in Sources */,
+				6B56F7B41B7B4E1900C2320E /* WalletOfferDetailViewController.m in Sources */,
 				6BE474571B3B21CE00C09AFD /* MHGalleryImageViewerViewController.m in Sources */,
 				274A5E041B05C88B009112B5 /* NetworkService.m in Sources */,
 				274A5D021B05C4AA009112B5 /* DDDispatchQueueLogFormatter.m in Sources */,

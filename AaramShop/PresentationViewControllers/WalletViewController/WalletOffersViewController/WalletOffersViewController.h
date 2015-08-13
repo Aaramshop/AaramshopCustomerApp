@@ -16,7 +16,7 @@
 @optional
 - (void)callWebService;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView onTableView:(UITableView *)tableView;
-
+- (void)gotoWalletOfferDetailCellViewWithOffer:(CMOffers *)offer;
 @end
 @interface WalletOffersViewController : UIViewController<AaramShop_ConnectionManager_Delegate,OffersTableCellDelegate>
 {

@@ -618,14 +618,15 @@ void MyAddressBookExternalChangeCallback (
 	for (id key in dict) {
 		
 		NSString *strKey = (NSString *)key;
-		if ([strKey isEqualToString:kXMPPmyJID1] || [strKey isEqualToString:kXMPPmyPassword1] || [strKey isEqualToString:@"MessageCounter"] || [strKey isEqualToString:kUserId] || [strKey isEqualToString:kFullname])
+		if ([strKey isEqualToString:kXMPPmyJID1] || [strKey isEqualToString:kXMPPmyPassword1] || [strKey isEqualToString:@"MessageCounter"] || [strKey isEqualToString:kUserId] || [strKey isEqualToString:kFullname] || [strKey isEqualToString:kUser_address])
 		{
 			[defs removeObjectForKey:key];
 		}else{
 			NSLog(@"");
 		}
 	}
-	[defs setValue:NO forKey:kIsLoggedIn];
+	
+	[defs setBool:NO forKey:kIsLoggedIn];
 
 	[defs synchronize];
 }

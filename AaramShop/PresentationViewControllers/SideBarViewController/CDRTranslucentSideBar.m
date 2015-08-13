@@ -473,6 +473,8 @@
 {
 	[gCXMPPController disconnect];
 	[AppManager removeDataFromNSUserDefaults];
+	appDel.myCurrentLocation = nil;
+	appDel.objStoreModel = nil;
 	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessfulNotificationName object:self userInfo:nil];
 //	[Utils showAlertView:kAlertTitle message:@"Logout successfully" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 }

@@ -86,7 +86,6 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 			
 		}
 	}
-
 	 [self setUpNavigationBar];
 
 	if([arrCategories count]==0)

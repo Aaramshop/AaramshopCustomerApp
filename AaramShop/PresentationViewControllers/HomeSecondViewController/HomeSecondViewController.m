@@ -453,7 +453,7 @@
     _headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
     _headerTitleSubtitleView.autoresizesSubviews = NO;
     
-    CGRect titleFrame = CGRectMake(0,0, 150, 44);
+    CGRect titleFrame = CGRectMake(0,0, 120, 44);
     UILabel* titleView = [[UILabel alloc] initWithFrame:titleFrame];
     titleView.backgroundColor = [UIColor clearColor];
     titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
