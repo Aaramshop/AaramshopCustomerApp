@@ -14,14 +14,14 @@
 {
     activityIndicatorView.hidesWhenStopped = YES;
     
-    [activityIndicatorView startAnimating];
+//    [activityIndicatorView startAnimating];
     
     imgCategory.backgroundColor = [UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1.0];
-    [imgCategory sd_setImageWithURL:[NSURL URLWithString:storeModel.store_main_category_banner_1] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+    [imgCategory sd_setImageWithURL:[NSURL URLWithString:storeModel.store_main_category_banner_1] placeholderImage:[UIImage imageNamed:@"homeDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
      {
-         if (image) {
-             [activityIndicatorView stopAnimating];
-         }
+//         if (image) {
+//             [activityIndicatorView stopAnimating];
+//         }
      }];
     
     [imgDiscountOffer sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",storeModel.store_main_category_banner_2]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)

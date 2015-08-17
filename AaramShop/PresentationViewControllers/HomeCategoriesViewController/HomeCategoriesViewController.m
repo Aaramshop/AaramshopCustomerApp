@@ -428,12 +428,37 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
     NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:[arrCategories count]];
 
+//    CGRect rect = [[UIApplication sharedApplication] statusBarFrame]; // Get status bar frame dimensions
+//    float y_Axix = 0.0;
+//    
+//    if (rect.origin.y>0)
+//    {
+//        y_Axix =
+//    }
+    
+    
+    
+    
+//    NSLog(@"Statusbar frame: %1.0f, %1.0f, %1.0f, %1.0f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+
+    
+    
     for (StoreModel *storeModel in arrCategories)
     {
         HomeCategoryListViewController *homeCategoryListView = [sb instantiateViewControllerWithIdentifier:@"HomeCategoryListView"];
         homeCategoryListView.title = storeModel.store_main_category_name;
         homeCategoryListView.storeModel = storeModel;
         homeCategoryListView.totalNoOfPages = totalNoOfPages;
+        
+        CGRect frame = homeCategoryListView.view.frame;
+        frame.origin.y = 0.0;
+        homeCategoryListView.view.frame = frame;
+        
+//        homeCategoryListView.automaticallyAdjustsScrollViewInsets = YES;
+//        [homeCategoryListView.view autoresizingMask];
+        
+        
+        
         [viewControllers addObject:homeCategoryListView];
 
     }
@@ -455,6 +480,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     //
     CGRect containerFrame  = containerVC.view.frame;
+    containerFrame.origin.y = 0.0;
     containerFrame.size.height = kTableProductsHeight;
     containerVC.view.frame = containerFrame;
     

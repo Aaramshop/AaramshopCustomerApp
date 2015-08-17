@@ -81,7 +81,15 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessful:) name:kLoginSuccessfulNotificationName object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout:) name:kLogoutSuccessfulNotificationName object:nil];
-    
+	
+	UILocalNotification *localNotif =[launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
+	if (localNotif) {
+		NSLog(@"*****Remote Notification********%@",localNotif);
+		if([[localNotif valueForKey:@"type"] intValue]==1 || [[localNotif valueForKey:@"type"] intValue]==2)
+		{
+			[AppManager sharedManager].notifyDict= [NSMutableDictionary dictionaryWithDictionary:[localNotif valueForKey:@"aps"]];
+		}
+	}
 	if ([[NSUserDefaults standardUserDefaults] valueForKey:kUserId] && [[[NSUserDefaults standardUserDefaults] valueForKey:kUserId]length]>0 && [[NSUserDefaults standardUserDefaults] boolForKey:kIsLoggedIn]==YES /*&& [[[NSUserDefaults standardUserDefaults] valueForKey:kIs_active] integerValue]==1*/)
 	{
 		[self loginSuccessful:nil];
@@ -157,7 +165,14 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
 	// NSLog(@"%@",[[userInfo valueForKey:@"aps"] valueForKey:@"alert"]);
-	
+	UILocalNotification *localNotif =[userInfo objectForKey: @"aps"];
+	if (localNotif) {
+		NSLog(@"*****Remote Notification********%@",localNotif);
+		if([[localNotif valueForKey:@"type"] intValue]==1 || [[localNotif valueForKey:@"type"] intValue]==2)
+		{
+			[AppManager sharedManager].notifyDict= [NSMutableDictionary dictionaryWithDictionary:[localNotif valueForKey:@"aps"]];
+		}
+	}
 	
 	//When app is active than only home screen counts should be refreshed
 	if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
