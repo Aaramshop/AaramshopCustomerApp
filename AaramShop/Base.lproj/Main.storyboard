@@ -61,8 +61,10 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular_0.ttf">
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -2430,6 +2432,26 @@ Your family will be able to add products of their choice and create a master sho
                                     <action selector="btnEditClick:" destination="Kva-dY-HCj" eventType="touchUpInside" id="WFD-dT-TvG"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000000000000009" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oX3-9p-6pO">
+                                <rect key="frame" x="0.0" y="516" width="320" height="52"/>
+                                <color key="backgroundColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="6V2-t5-79C"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press, hold &amp; drag the marker pin to change the address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X85-Ch-fR9">
+                                <rect key="frame" x="0.0" y="516" width="320" height="52"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="U5L-yI-nab"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2437,8 +2459,11 @@ Your family will be able to add products of their choice and create a master sho
                             <constraint firstItem="yer-4o-KdU" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leadingMargin" constant="44" id="AGw-Ct-Y6P"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yer-4o-KdU" secondAttribute="trailing" constant="44" id="B7Q-Hy-PEI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0BK-lU-vgp" secondAttribute="trailing" constant="-8" id="Br1-U7-QGW"/>
+                            <constraint firstItem="CIi-ha-dfA" firstAttribute="top" secondItem="oX3-9p-6pO" secondAttribute="bottom" id="Dad-Yc-1AU"/>
                             <constraint firstAttribute="trailing" secondItem="c02-wz-VZS" secondAttribute="trailing" id="Dg9-Ql-yKM"/>
+                            <constraint firstAttribute="width" secondItem="oX3-9p-6pO" secondAttribute="width" id="EVl-Mg-T4h"/>
                             <constraint firstAttribute="height" secondItem="ccN-pn-OzU" secondAttribute="height" id="HNu-gS-sWs"/>
+                            <constraint firstItem="oX3-9p-6pO" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leadingMargin" constant="-16" id="Jla-nS-TT1"/>
                             <constraint firstAttribute="trailing" secondItem="1R3-jU-aTN" secondAttribute="trailing" id="KDb-wb-g91"/>
                             <constraint firstAttribute="width" secondItem="ccN-pn-OzU" secondAttribute="width" id="MfR-ZZ-Pu7"/>
                             <constraint firstAttribute="centerY" secondItem="ccN-pn-OzU" secondAttribute="centerY" id="SyH-x3-tyV"/>
@@ -2446,12 +2471,15 @@ Your family will be able to add products of their choice and create a master sho
                             <constraint firstItem="oI3-dS-uae" firstAttribute="trailing" secondItem="1R3-jU-aTN" secondAttribute="trailing" constant="-42" id="XZq-9d-WHf"/>
                             <constraint firstAttribute="centerX" secondItem="ccN-pn-OzU" secondAttribute="centerX" id="bRO-RK-G89"/>
                             <constraint firstItem="1R3-jU-aTN" firstAttribute="top" secondItem="c02-wz-VZS" secondAttribute="top" constant="95" id="d5h-2S-vOi"/>
+                            <constraint firstItem="CIi-ha-dfA" firstAttribute="top" secondItem="X85-Ch-fR9" secondAttribute="bottom" id="dQl-E3-E3S"/>
                             <constraint firstItem="oI3-dS-uae" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leading" id="f7A-6I-tKB"/>
                             <constraint firstItem="oI3-dS-uae" firstAttribute="top" secondItem="c02-wz-VZS" secondAttribute="top" constant="95" id="gTd-eA-B2Y"/>
                             <constraint firstItem="c02-wz-VZS" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leading" id="hE5-tV-zDU"/>
                             <constraint firstItem="yer-4o-KdU" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="29" id="oCl-Ul-usq"/>
+                            <constraint firstItem="X85-Ch-fR9" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leadingMargin" constant="-16" id="wGL-sA-ZWV"/>
                             <constraint firstItem="0BK-lU-vgp" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="8" id="wTW-Lk-HeS"/>
                             <constraint firstItem="yLt-tF-XB7" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leadingMargin" constant="-8" id="wjT-G6-89h"/>
+                            <constraint firstAttribute="width" secondItem="X85-Ch-fR9" secondAttribute="width" id="zHJ-Kh-MZe"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -2467,7 +2495,7 @@ Your family will be able to add products of their choice and create a master sho
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkh-Cn-e7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2137" y="390"/>
+            <point key="canvasLocation" x="2137" y="397"/>
         </scene>
         <!--Location Alert View Controller-->
         <scene sceneID="SDS-jp-fEh">
@@ -7335,22 +7363,35 @@ Your family will be able to add products of their choice and create a master sho
                                     <outlet property="delegate" destination="I9e-qb-Ye4" id="XLc-Xx-mpl"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seems like we do not have a store in your locality yet, Change the locality and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epi-Xi-8jX">
+                                <rect key="frame" x="16" y="9" width="288" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="pgi-7M-t7b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <color key="textColor" red="0.24705882352941178" green="0.24705882352941178" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="FOE-AS-WJr" secondAttribute="width" id="1eY-ga-XpU"/>
                             <constraint firstAttribute="centerY" secondItem="FOE-AS-WJr" secondAttribute="centerY" id="7Gb-18-h1G"/>
+                            <constraint firstItem="epi-Xi-8jX" firstAttribute="trailing" secondItem="q0l-Bx-Hmk" secondAttribute="trailingMargin" id="9JO-s6-e8g"/>
                             <constraint firstAttribute="height" secondItem="FOE-AS-WJr" secondAttribute="height" id="Vqw-RQ-rUH"/>
                             <constraint firstAttribute="centerX" secondItem="FOE-AS-WJr" secondAttribute="centerX" id="fZB-zD-GdN"/>
+                            <constraint firstItem="epi-Xi-8jX" firstAttribute="top" secondItem="YBg-F3-Acy" secondAttribute="bottom" constant="-11" id="kqM-hM-6o6"/>
+                            <constraint firstItem="epi-Xi-8jX" firstAttribute="leading" secondItem="q0l-Bx-Hmk" secondAttribute="leadingMargin" id="xM3-U2-yVM"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lblMessage" destination="epi-Xi-8jX" id="2za-i2-QcS"/>
                         <outlet property="tblStores" destination="FOE-AS-WJr" id="fYP-F2-Huc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAl-Hu-gor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-905" y="4125"/>
+            <point key="canvasLocation" x="-976" y="4125"/>
         </scene>
         <!--Change Password View Controller-->
         <scene sceneID="IxH-nw-aDg">

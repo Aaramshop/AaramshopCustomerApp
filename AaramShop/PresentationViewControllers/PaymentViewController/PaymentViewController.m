@@ -188,6 +188,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	[dict setObject:[getProductListDetails objectForKey:@"product_qtys"] forKey:@"product_qtys"];
 	
 	[dict setObject:[getProductListDetails objectForKey:@"offer_types"] forKey:@"offer_types"];
+	[dict setObject:@"1" forKey:@"payment_mode_id"];
     
 //    UITableViewCell *cell = (UITableViewCell *)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
 
@@ -339,6 +340,11 @@ static NSString *strCollectionItems = @"collectionItems";
 			strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
             [self parsePaymentPageData:[responseObject objectForKey:@"payment_page_info"]];
         }
+		else
+		{
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		}
+
     }
     else if(aaramShop_ConnectionManager.currentTask == TASK_GET_DELIVERY_SLOTS)
     {
@@ -347,6 +353,11 @@ static NSString *strCollectionItems = @"collectionItems";
             NSLog(@"VALUE = %@",responseObject);
             [self parseGetDeliverySlots:responseObject];
         }
+		else
+		{
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		}
+
     }
     else if(aaramShop_ConnectionManager.currentTask == TASK_CHECKOUT)
     {
@@ -360,6 +371,10 @@ static NSString *strCollectionItems = @"collectionItems";
 			[AppManager saveCountOfProductsInCart:gAppManager.intCount];
 
         }
+		else
+		{
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		}
     }
 	else if (aaramShop_ConnectionManager.currentTask == TASK_GET_MINIMUM_ORDER_VALUE)
 	{
@@ -371,6 +386,11 @@ static NSString *strCollectionItems = @"collectionItems";
 				[self showPopupWithMessage:[NSString stringWithFormat:@"Minimum order value for this store is ₹%@. Please add more products.",[responseObject objectForKey:@"minimum_order_value" ]]];
 			}
 		}
+		else
+		{
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		}
+
 	}
 	else if(aaramShop_ConnectionManager.currentTask == TASK_VALIDATE_COUPON)
 	{
@@ -399,6 +419,11 @@ static NSString *strCollectionItems = @"collectionItems";
 			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		}
 	}
+	else
+	{
+		[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+	}
+
 
 }
 -(void)parseGetDeliverySlots:(NSDictionary *)responseObject
@@ -457,6 +482,7 @@ static NSString *strCollectionItems = @"collectionItems";
         objAddressModel.pincode = [NSString stringWithFormat:@"%@",[dictAddress objectForKey:kPincode]];
         objAddressModel.locality = [NSString stringWithFormat:@"%@",[dictAddress objectForKey:kLocality]];
         objAddressModel.address = [NSString stringWithFormat:@"%@",[dictAddress objectForKey:kAddress]];
+		
 
         [arrAddressData addObject:objAddressModel];
     }

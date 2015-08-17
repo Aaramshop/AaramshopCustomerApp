@@ -120,53 +120,30 @@
 {
     [self.view endEditing:YES];
     
-    __block NSString *strProductID = @"";
-    __block NSString *strQuantity = @"";
-    
-    
-    [_arrProductList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
-        ProductsModel *productModel = [_arrProductList objectAtIndex:idx];
-//        if ([productModel.quantity integerValue]>0)
-        if ([productModel.strCount integerValue]>0)
-        {
-            strProductID = [NSString stringWithFormat:@"%@,%@",strProductID,productModel.product_id];
-            
-//            strQuantity = [NSString stringWithFormat:@"%@,%@",strQuantity,productModel.quantity];
-            
-            strQuantity = [NSString stringWithFormat:@"%@,%@",strQuantity,productModel.strCount];
-
-        }
-    }];
-    
-    if ([strProductID hasPrefix:@","])
-    {
-        strProductID = [strProductID substringFromIndex:1];
-    }
-    
-    if ([strQuantity hasPrefix:@","])
-    {
-        strQuantity = [strQuantity substringFromIndex:1];
-    }
-    
-    
-    if ([strProductID length]==0)
-    {
-        [Utils showAlertView:kAlertTitle message:@"Add Product(s)" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-        return;
-    }
-    else
-    {
-        NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-        
-        [dict setObject:_strShoppingListId forKey:@"shoppingListId"];
-        
-        [dict setObject:strProductID forKey:@"productId"];
-        [dict setObject:strQuantity forKey:@"quantity"];
-        
-        [self callWebServiceToUpdateShoppingList:dict];
-    }
-    
+	__block NSString *strProductID				=	@"";
+	__block NSString *strQuantity					=	@"";
+	__block NSString *strIsStoreProducts		=	@"";
+	NSArray *array		=	[_arrProductList valueForKey:@"product_id"];
+	strProductID			=	[array componentsJoinedByString:@","];
+	array						=	[_arrProductList valueForKey:@"strCount"];
+	strQuantity				=	[array componentsJoinedByString:@","];
+	array						=	[_arrProductList valueForKey:@"isStoreProduct"];
+	strIsStoreProducts	=	[array componentsJoinedByString:@","];
+	
+	if([strProductID length]==0)
+	{
+		[Utils showAlertView:kAlertTitle message:@"Add Product(s)" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return;
+	}
+	else
+	{
+		NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+		[dict setObject:strProductID forKey:@"productId"];
+		[dict setObject:strQuantity forKey:@"quantity"];
+		[dict setObject:strIsStoreProducts forKey:@"isStoreProducts"];
+		[dict setObject:_strShoppingListId forKey:@"shoppingListId"];
+		[self callWebServiceToUpdateShoppingList:dict];
+	}
 }
 
 
@@ -260,7 +237,7 @@
 {
     searchViewController = (SearchViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController" ];
     [searchViewController setDelegate:self];
-    
+	searchViewController.store	=	self.store;
     [appDel.window addSubview:searchViewController.view];
     
 }

@@ -121,38 +121,16 @@
 {
     [self.view endEditing:YES];
     
-   __block NSString *strProductID = @"";
-   __block NSString *strQuantity = @"";
-    
-    
-    [arrProductList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
-        ProductsModel *productModel = [arrProductList objectAtIndex:idx];
-//        if ([productModel.quantity integerValue]>0)
-        if ([productModel.strCount integerValue]>0)
-        {
-            strProductID = [NSString stringWithFormat:@"%@,%@",strProductID,productModel.product_id];
-            
-//            strQuantity = [NSString stringWithFormat:@"%@,%@",strQuantity,productModel.quantity];
-            
-            strQuantity = [NSString stringWithFormat:@"%@,%@",strQuantity,productModel.strCount];
-
-        }
-    }];
-    
-    if ([strProductID hasPrefix:@","])
-    {
-        strProductID = [strProductID substringFromIndex:1];
-    }
-    
-    if ([strQuantity hasPrefix:@","])
-    {
-        strQuantity = [strQuantity substringFromIndex:1];
-    }
-    
-    
-    
-    
+	__block NSString *strProductID				=	@"";
+	__block NSString *strQuantity					=	@"";
+	__block NSString *strIsStoreProducts		=	@"";
+	NSArray *array		=	[arrProductList valueForKey:@"product_id"];
+	strProductID			=	[array componentsJoinedByString:@","];
+	array						=	[arrProductList valueForKey:@"strCount"];
+	strQuantity				=	[array componentsJoinedByString:@","];
+	array						=	[arrProductList valueForKey:@"isStoreProduct"];
+	strIsStoreProducts	=	[array componentsJoinedByString:@","];
+	
     if ([txtShoppingListName.text length]==0)
     {
         [Utils showAlertView:kAlertTitle message:@"Enter Shopping List Title" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
@@ -171,7 +149,7 @@
         
         [dict setObject:strProductID forKey:@"productId"];
         [dict setObject:strQuantity forKey:@"quantity"];
-        
+		[dict setObject:strIsStoreProducts forKey:@"isStoreProducts"];
         [self callWebServiceToCreateShoppingList:dict];
     }
     
@@ -341,7 +319,7 @@
 {
     searchViewController = (SearchViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchViewController" ];
     [searchViewController setDelegate:self];
-    
+	searchViewController.store = nil;
     [appDel.window addSubview:searchViewController.view];
     
 }

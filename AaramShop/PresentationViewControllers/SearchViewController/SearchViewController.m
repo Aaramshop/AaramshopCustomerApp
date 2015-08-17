@@ -153,11 +153,13 @@
 	
 }
 -(void)createDataForFirstTimeGet:(NSMutableArray*)array{
-    for(int i = 0 ; i < [array count];i++)
-    {
-        ProductsModel *product = [array objectAtIndex:i];
-        [arrSearchResult addObject:product];
-    }
+	[arrSearchResult removeAllObjects];
+	[arrSearchResult addObjectsFromArray:array];
+//    for(int i = 0 ; i < [array count];i++)
+//    {
+//        ProductsModel *product = [array objectAtIndex:i];
+//        [arrSearchResult addObject:product];
+//    }
 }
 -(void)appendDataForPullDown:(NSMutableArray*)array{
     BOOL wasArrayEmpty = NO;
@@ -193,14 +195,14 @@
             NSDictionary *dict = [data objectAtIndex:i];
             ProductsModel *product = [[ProductsModel alloc] init];
             
-            product.category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:@"category_id"]];
-            product.product_id = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_id"]];
-            product.product_image = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_image"]];
-            product.product_name = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_name"]];
-            
-            product.product_price = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_price"]];
-            product.product_sku_id = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_sku_id"]];
-            product.sub_category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:@"sub_category_id"]];
+            product.category_id			=	[NSString stringWithFormat:@"%@",	[dict objectForKey:@"category_id"]];
+            product.product_id				=	[NSString stringWithFormat:@"%@",	[dict objectForKey:@"product_id"]];
+            product.product_image		=	[NSString stringWithFormat:@"%@",	[dict objectForKey:@"product_image"]];
+            product.product_name		=	[NSString stringWithFormat:@"%@",	[dict objectForKey:@"product_name"]];
+			product.isStoreProduct		=	[NSString stringWithFormat:@"%@",	[dict objectForKey:@"isStoreProduct"]];
+            product.product_price		=	[NSString stringWithFormat:@"%@",	[dict objectForKey:@"product_price"]];
+            product.product_sku_id		=	[NSString stringWithFormat:@"%@",	[dict objectForKey:@"product_sku_id"]];
+            product.sub_category_id	= [NSString stringWithFormat:@"%@",	[dict objectForKey:@"sub_category_id"]];
 //            product.quantity = @"0";
             product.strCount = @"0";
 
@@ -357,8 +359,14 @@
 -(void)callWebServiceFor:(NSString *)serviceType withSearchString:(NSString *)searchString{
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    
-    [dict setObject:@"0" forKey:kStore_id];
+    if(!self.store)
+	{
+		[dict setObject:@"0" forKey:kStore_id];
+	}
+	else
+	{
+		[dict setObject:self.store.store_id forKey:kStore_id];
+	}
     [dict setObject:searchString forKey:kSearch_term];
     [dict setObject:[NSString stringWithFormat:@"%ld",(long)pageNumber] forKey:kPage_no];
     

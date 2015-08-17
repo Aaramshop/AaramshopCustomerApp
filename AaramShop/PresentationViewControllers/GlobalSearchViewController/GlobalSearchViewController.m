@@ -296,9 +296,15 @@ AaramShop_ConnectionManager_Delegate>
 	[tempLabel setFont:[UIFont fontWithName:kRobotoRegular size:14]];
 	
 	tempLabel.textColor = [UIColor blackColor];
+	
 	switch (section) {
 	case 0:
-		 tempLabel.text =@"  STORES";
+			if ([searchType intValue]== 2) {
+				tempLabel.text = @" PRODUCTS";
+			}
+			else
+				tempLabel.text =@"  STORES";
+		 
 			break;
 	case 1:
 		 tempLabel.text =@"  PRODUCTS";
@@ -412,7 +418,10 @@ AaramShop_ConnectionManager_Delegate>
 	}
 	else if([searchType intValue] == 2)
 	{
-		arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
+		if (!arrSearchResult) {
+			arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
+		}
+		
 		globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
 		if (self.delegate && [self.delegate conformsToProtocol:@protocol(GlobalSearchViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(openSearchedUserPrroductFor:)])
 		{
@@ -489,7 +498,6 @@ AaramShop_ConnectionManager_Delegate>
 	
 	
 }
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
 	[arrSearchResult removeAllObjects];
 	if (![searchText isEqualToString:@""]) {

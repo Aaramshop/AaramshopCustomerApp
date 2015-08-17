@@ -29,6 +29,7 @@
 		_offer_id					=	nil;
 		_offer_type				=	nil;
 		_offer_price			=	nil;
+		_isStoreProduct		=	nil;
 	}
 	return  self;
 }
@@ -50,7 +51,7 @@
 	[encoder encodeObject:self.offer_id					forKey: @"offer_id"];
 	[encoder encodeObject:self.offer_type				forKey: @"offer_type"];
 	[encoder encodeObject:self.offer_price				forKey: @"offer_price"];
-
+	[encoder encodeObject:self.isStoreProduct		forKey:@"isStoreProduct"];
 
 }
 
@@ -70,6 +71,7 @@
 	self.offer_id						=	[decoder decodeObjectForKey:@"offer_id"];
 	self.offer_type					=	[decoder decodeObjectForKey:@"offer_type"];
 	self.offer_price				=	[decoder decodeObjectForKey:@"offer_price"];
+	self.isStoreProduct			=	[decoder decodeObjectForKey:@"isStoreProduct"];
 	return self;
 }
 

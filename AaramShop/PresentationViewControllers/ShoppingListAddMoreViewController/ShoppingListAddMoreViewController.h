@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ShoppingListDetailCell.h"
 #import "SearchViewController.h"
+#import "ShoppingListChooseStoreModel.h"
 
 @interface ShoppingListAddMoreViewController : UIViewController<ProductCellDelegate,AaramShop_ConnectionManager_Delegate,SearchViewControllerDelegate>
 {
@@ -22,5 +23,6 @@
 @property (nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 @property (nonatomic,strong) NSMutableArray *arrProductList;
 @property (nonatomic,strong) NSString *strShoppingListId;
+@property (nonatomic, strong) ShoppingListChooseStoreModel *store;
 
 @end

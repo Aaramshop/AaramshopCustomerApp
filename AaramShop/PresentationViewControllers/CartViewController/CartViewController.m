@@ -150,17 +150,20 @@
     UIView *viewBackground = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, kTableHeaderHeight)];
     
     UIView *viewTop = [[UIView alloc]initWithFrame:CGRectMake(0, 0, viewBackground.frame.size.width, 40)];
-    viewTop.backgroundColor = [UIColor colorWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1.0];
+    viewTop.backgroundColor = [UIColor whiteColor];
+	
+	UIImageView *imgView = [[UIImageView alloc]initWithFrame:viewTop.frame];
+	imgView.image = [UIImage imageNamed:@"chooseAStoreBox"];
     
     UILabel *lblTotalAmount = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 100, viewTop.frame.size.height)];
     lblTotalAmount.font = [UIFont fontWithName:kRobotoRegular size:14];
-    lblTotalAmount.textColor = [UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1.0];
+    lblTotalAmount.textColor = [UIColor whiteColor];//[UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1.0];
     lblTotalAmount.text = @"Total Amount";
     
     
     UILabel *lblTotalAmountValue = [[UILabel alloc]initWithFrame:CGRectMake((viewTop.frame.size.width - 110), 0, 100, viewTop.frame.size.height)];
     lblTotalAmountValue.font = [UIFont fontWithName:kRobotoBold size:16];
-    lblTotalAmountValue.textColor = [UIColor colorWithRed:31.0/255.0 green:31.0/255.0 blue:31.0/255.0 alpha:1.0];
+	lblTotalAmountValue.textColor = [UIColor whiteColor];//[UIColor colorWithRed:31.0/255.0 green:31.0/255.0 blue:31.0/255.0 alpha:1.0];
     lblTotalAmountValue.textAlignment = NSTextAlignmentRight;
     
     
@@ -185,19 +188,17 @@
 	
 	
     lblTotalAmountValue.text = [NSString stringWithFormat:@"%@ %ld",strRupee,(long)strAmount];
-
-    
+	[viewTop addSubview:imgView];
     [viewTop addSubview:lblTotalAmount];
     [viewTop addSubview:lblTotalAmountValue];
     
     
     UILabel *lblSeparator1 = [[UILabel alloc]initWithFrame:CGRectMake(0, (viewTop.frame.origin.y + viewTop.frame.size.height), tblView.frame.size.width, 1)];
     lblSeparator1.backgroundColor = [UIColor colorWithRed:99.0/255.0 green:99.0/255.0 blue:99.0/255.0 alpha:1.0];
-    
-    
+	
     
     UIView *viewBottom = [[UIView alloc]initWithFrame:CGRectMake(0, (lblSeparator1.frame.origin.y + lblSeparator1.frame.size.height), viewBackground.frame.size.width, 68)];
-    viewBottom.backgroundColor = [UIColor colorWithRed:249.0/255.0 green:249.0/255.0 blue:249.0/255.0 alpha:1.0];
+    viewBottom.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:212.0/255.0 alpha:1.0];
 	
 	
     UIImageView *imgStore = [[UIImageView alloc]initWithFrame:CGRectMake(5, (viewBottom.frame.size.height - 54)/2, 54, 54)];

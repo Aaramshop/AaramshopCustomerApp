@@ -743,11 +743,11 @@
             imgVBg.hidden = NO;
             if (arrTemp.count == 1) {
                 CategoryModel *objCategoryModel = [arrTemp objectAtIndex:0];
-                UIActivityIndicatorView *activity = (UIActivityIndicatorView *)[secView viewWithTag:998];
-                [activity startAnimating];
+//                UIActivityIndicatorView *activity = (UIActivityIndicatorView *)[secView viewWithTag:998];
+//                [activity startAnimating];
                 [imgVCategoryBanner sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objCategoryModel.category_banner]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                     if (image) {
-                        [activity stopAnimating];
+//                        [activity stopAnimating];
                     }
                 }];
                 

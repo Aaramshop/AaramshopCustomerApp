@@ -301,6 +301,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 		{
 			LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
 			locationScreen.delegate							= self;
+			locationScreen.hidesBottomBarWhenPushed	=	YES;
 			locationScreen.addAddressCompletion	= ^(void)
 			{
 				self.navigationController.navigationBarHidden = NO;

@@ -33,6 +33,7 @@
 		imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
 		imgView.layer.cornerRadius = imgView.bounds.size.width/2;
 		imgView.layer.masksToBounds = YES;
+		imgView.contentMode = UIViewContentModeScaleAspectFit;
 		[self.contentView addSubview:imgView];
 		
 		
