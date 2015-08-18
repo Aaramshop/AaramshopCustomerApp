@@ -29,6 +29,9 @@ AaramShop_ConnectionManager_Delegate>
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super  viewWillAppear:animated];
+    
+    lblMessage.hidden = YES;
+    
 	[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
 	 {
 		 [viewSearchBarContainer setFrame:CGRectMake(0, 0, viewSearchBarContainer.frame.size.width, viewSearchBarContainer.frame.size.height)];
@@ -531,6 +534,8 @@ AaramShop_ConnectionManager_Delegate>
 }
 - (void)callWebservicesToGetSearch:(NSMutableDictionary *)aDict
 {
+    lblMessage.hidden = YES;
+    
 	if (![Utils isInternetAvailable])
 	{
 		//        [Utils stopActivityIndicatorInView:self.view];
@@ -586,6 +591,7 @@ AaramShop_ConnectionManager_Delegate>
 		}
 		else
 		{
+            lblMessage.hidden = NO;
 			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		}
 	}

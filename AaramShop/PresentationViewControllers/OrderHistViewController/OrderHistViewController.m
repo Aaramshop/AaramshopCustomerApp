@@ -45,9 +45,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:YES];
-	 [self setNavigationBar];
+    
+    lblMessage.hidden = YES;
+    [self setNavigationBar];
 	[self callWebServiceToGetOrderHistory];
 }
+
+
 - (void)refreshTable
 {
 	pageno = 0;
@@ -264,6 +268,8 @@
 #pragma mark - call Web Service to get initial pending orders list
 -(void)callWebServiceToGetOrderHistory
 {
+    lblMessage.hidden = YES;
+
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 
@@ -322,6 +328,10 @@
 			}
 			[tblView reloadData];
 		}
+        else
+        {
+            lblMessage.hidden = NO;
+        }
 	}
 
 	
@@ -455,6 +465,18 @@
 			[array addObject:cmOrderHist];
 		}
 	}
+    
+    if (array.count==0 && pageno==0)
+    {
+        lblMessage.hidden = NO;
+    }
+    else
+    {
+        lblMessage.hidden = YES;
+    }
+
+    
+    
 	return array;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

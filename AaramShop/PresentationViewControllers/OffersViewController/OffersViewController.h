@@ -17,6 +17,8 @@
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 
 	__weak IBOutlet UITableView *tblView;
+    __weak IBOutlet UILabel *lblMessage;
+
 	NSMutableArray *arrOffers;
 	NSMutableArray *arrCoupon;
 	

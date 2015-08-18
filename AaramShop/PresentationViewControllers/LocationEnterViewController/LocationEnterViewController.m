@@ -300,7 +300,7 @@
 
         [arrShopsData addObject:objShopData];
     }
-    [[NSUserDefaults standardUserDefaults]setObject:[responseObject objectForKey:kUserId] forKey:kUserId];
+    [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[responseObject objectForKey:kUserId]] forKey:kUserId];
     
     if ([arrShopsData count]>0)
     {
