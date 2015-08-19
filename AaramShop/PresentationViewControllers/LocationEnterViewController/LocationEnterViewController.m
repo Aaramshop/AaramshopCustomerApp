@@ -727,7 +727,7 @@
 	//=================Tempory Code Begins===================
 	AddNewLocationViewController *addNewLocationView = (AddNewLocationViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"AddNewLocationView"];
 	addNewLocationView.delegate = self;
-	[appDeleg.window addSubview:addNewLocationView.view];
+	[[UIApplication sharedApplication].keyWindow addSubview:addNewLocationView.view];
 
 	//=================Tempory Code End===================
 }

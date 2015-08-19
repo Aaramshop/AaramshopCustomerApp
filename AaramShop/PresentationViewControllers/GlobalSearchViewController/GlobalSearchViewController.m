@@ -186,6 +186,8 @@ AaramShop_ConnectionManager_Delegate>
 }
 - (void)parseDataForGlobalSearch:(id)responseObject
 {
+	[tblViewSearch setHidden:NO];
+	[lblMessage setHidden:YES];
 	if (!dicSearchResult) {
 		dicSearchResult = [[NSMutableDictionary alloc] init];
 	}
@@ -239,6 +241,8 @@ AaramShop_ConnectionManager_Delegate>
 	
 	if([data count]>0)
 	{
+		[tblViewSearch setHidden:NO];
+		[lblMessage setHidden:YES];
 		for(int i =0 ; i < [data count] ; i++)
 		{
 			NSDictionary *dict = [data objectAtIndex:i];
@@ -268,6 +272,11 @@ AaramShop_ConnectionManager_Delegate>
 			}
 		}
 		
+	}
+	else
+	{
+		[tblViewSearch setHidden:YES];
+		[lblMessage setHidden:NO];
 	}
 	return array;
 	
