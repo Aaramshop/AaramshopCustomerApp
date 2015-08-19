@@ -116,6 +116,10 @@ static NSString *strCollectionCategory = @"collectionCategories";
 //    searchBarCategory.barStyle = UIBarStyleDefault;
 
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+	[collectionVwCategory reloadData];
+}
 #pragma mark - UICollectionView Delegate & DataSource Methods
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -176,11 +180,20 @@ static NSString *strCollectionCategory = @"collectionCategories";
         objCategoryModel= [arrCategories objectAtIndex:indexPath.row];
     
     UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(((([UIScreen mainScreen].bounds.size.width)/3-2)-60)/2,10,60, 60)];
-    
-    [imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objCategoryModel.category_image]] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (image) {
-        }
-    }];
+    if([self.selectedId integerValue]==[objCategoryModel.category_id integerValue])
+	{
+		[imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objCategoryModel.categroy_image_active]] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+				if (image) {
+				}
+		}];
+	}
+	else
+	{
+		[imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objCategoryModel.categroy_image_inactive]] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+			if (image) {
+			}
+		}];
+	}
 
     [cell.contentView addSubview:imgV];
     
@@ -328,8 +341,8 @@ static NSString *strCollectionCategory = @"collectionCategories";
         CategoryModel *objCategoryModel = [[CategoryModel alloc]init];
         objCategoryModel.category_banner = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_banner]];
         objCategoryModel.category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_id]];
-        objCategoryModel.category_image = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_image]];
-        objCategoryModel.category_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_name]];
+        objCategoryModel.categroy_image_active = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategroy_image_active]];
+        objCategoryModel.categroy_image_inactive = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategroy_image_inactive]];
         
         [arrSearchCategories addObject:objCategoryModel];
     }

@@ -47,6 +47,7 @@
     strSearchTxt = @"";
     strTotalPrice = @"0";
     isSearching=NO;
+	strSelectedCategoryId = @"0";
     appDeleg = APP_DELEGATE;
     self.automaticallyAdjustsScrollViewInsets = NO;
 	self.navigationItem.hidesBackButton = YES;
@@ -260,7 +261,9 @@
         objCategoryModel.category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_id]];
         objCategoryModel.category_image = [NSString stringWithFormat:@"%@",[[dict objectForKey:kCategory_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         objCategoryModel.category_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_name]];
-        
+		objCategoryModel.categroy_image_active = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategroy_image_active]];
+		objCategoryModel.categroy_image_inactive = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategroy_image_inactive]];
+
         [arrGetStoreProductCategories addObject:objCategoryModel];
     }
     if (arrGetStoreProductCategories.count>0) {
@@ -280,6 +283,7 @@
     rightCollectionVwContrllr.delegate=self;
     rightCollectionVwContrllr.strStore_Id= strStore_Id;
      [rightCollectionVwContrllr.arrCategories addObjectsFromArray:arrGetStoreProductCategories];
+	rightCollectionVwContrllr.selectedId = strSelectedCategoryId;
     [self.view addSubview:rightCollectionVwContrllr.view];
 }
 - (ProductsModel *)addProductInArray:(NSDictionary *)dictProducts
@@ -981,6 +985,7 @@
     if (!isSelected) {
 		isSelected = YES;
         if (strSelectedCategoryId.length>0) {
+			rightCollectionVwContrllr.selectedId = strSelectedCategoryId;
             [self.view addSubview:rightCollectionVwContrllr.view];
         }
     }
