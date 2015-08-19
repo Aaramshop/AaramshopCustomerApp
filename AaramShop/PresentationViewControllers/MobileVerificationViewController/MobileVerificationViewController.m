@@ -211,7 +211,7 @@
     
     
     NSDictionary *dict = (NSDictionary*)responseObject;
-    [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kUserId] forKey:kUserId];
+    [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%@",[dict objectForKey:kUserId]] forKey:kUserId];
     
     [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kDeviceId] forKey:kDeviceId];
     [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kImage_url_100] forKey:kImage_url_100];

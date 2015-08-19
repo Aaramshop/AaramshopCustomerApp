@@ -61,6 +61,8 @@
 	[self setNavigationBar];
     self.tabBarController.tabBar.hidden = NO;
 
+    lblMessage.hidden = YES;
+
     deletedShoppingListIndex = -1;
     
     [self getInitialShoppingList];
@@ -309,6 +311,8 @@
 
 -(void)callWebServiceToGetShoppingList:(NSMutableDictionary *)aDict
 {
+    lblMessage.hidden = YES;
+
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     if (![Utils isInternetAvailable])
     {
@@ -367,6 +371,8 @@
             }
             else
             {
+                lblMessage.hidden = NO;
+                
                 [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
             }
         }
@@ -384,6 +390,12 @@
                 [self removeShoppingListReminder:shoppingListModel.shoppingListId];
                 
                 [arrShoppingList removeObjectAtIndex:deletedShoppingListIndex];
+                
+                if (arrShoppingList.count==0)
+                {
+                    lblMessage.hidden = NO;
+                }
+                
                 [tblView reloadData];
             }
             else
@@ -530,6 +542,16 @@
         [arrShoppingList  addObject:shoppingListModel];
         
     }
+    
+    if (arrShoppingList.count==0 && pageno==0)
+    {
+        lblMessage.hidden = NO;
+    }
+    else
+    {
+        lblMessage.hidden = YES;
+    }
+    
     
     [tblView reloadData];
     

@@ -42,6 +42,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+    
+    lblMessage.hidden = YES;
+
 	[self getBroadcastList];
 }
 - (void)didReceiveMemoryWarning {
@@ -230,6 +233,8 @@
 }
 - (void)callWebServiceToGetBroadcast:(NSMutableDictionary *)aDict
 {
+    lblMessage.hidden = YES;
+
 	if (![Utils isInternetAvailable])
 	{
 		[AppManager stopStatusbarActivityIndicator];
@@ -246,6 +251,8 @@
 	switch (aaramShop_ConnectionManager.currentTask) {
 		case TASK_TO_GET_BROADCAST:
 		{
+            if([[responseObject objectForKey:kstatus] intValue] == 1)
+            {
 			if(broadcastPageNo==0)
 			{
 				[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:@"broadcast_data"]]];
@@ -254,7 +261,13 @@
 			{
 				[self appendDataForPullUp:[self parseData:[responseObject objectForKey:@"broadcast_data"]]];
 			}
-			[tblView reloadData];
+                [tblView reloadData];
+
+            }
+            else
+            {
+                lblMessage.hidden = NO;
+            }
 		}
 			break;
 			
@@ -340,6 +353,16 @@
 			[array addObject:offers];
 		}
 	}
+    
+    if (array.count==0 && broadcastPageNo==0)
+    {
+        lblMessage.hidden = NO;
+    }
+    else
+    {
+        lblMessage.hidden = YES;
+    }
+    
 	return array;
 	
 }

@@ -20,6 +20,8 @@
 {
     
     __weak IBOutlet UITableView *tblView;
+    __weak IBOutlet UILabel *lblMessage;
+
     NSMutableArray *arrOrderHist;
     UIRefreshControl *refreshOrderList;
 	int pageno;

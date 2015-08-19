@@ -11,6 +11,7 @@
 #import "AddressModel.h"
 #import "AddLocationViewController.h"
 #import "HomeStoreViewController.h"
+#import "AddNewLocationViewController.h"
 @interface PreferencesViewController : UIViewController<CustomNavigationDelegate,AaramShop_ConnectionManager_Delegate>
 {
 	

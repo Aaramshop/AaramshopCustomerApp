@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Bold_0.ttf">
+            <string>Roboto-Bold</string>
+        </mutableArray>
+        <mutableArray key="Roboto-Regular_0.ttf">
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="194" height="83"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="mapPopup.png" translatesAutoresizingMaskIntoConstraints="NO" id="9Ay-tb-Pxe">
+                    <rect key="frame" x="1" y="0.0" width="193" height="83"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car-blue-icon" translatesAutoresizingMaskIntoConstraints="NO" id="UFj-e0-cyp">
+                    <rect key="frame" x="7" y="7" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="DXb-lt-HX0"/>
+                        <constraint firstAttribute="height" constant="50" id="zZ3-D9-zz7"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAf-az-pMf">
+                    <rect key="frame" x="59" y="6" width="127" height="21"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="w8q-r6-BRa"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="13"/>
+                    <color key="textColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYJ-Ch-Yvl">
+                    <rect key="frame" x="59" y="27" width="127" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="FVR-y3-PbG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="9Ay-tb-Pxe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7dm-ur-hGn"/>
+                <constraint firstItem="bYJ-Ch-Yvl" firstAttribute="top" secondItem="vAf-az-pMf" secondAttribute="top" constant="21" id="9Ja-QM-r7a"/>
+                <constraint firstAttribute="trailing" secondItem="bYJ-Ch-Yvl" secondAttribute="trailing" constant="8" id="Bre-h4-KiA"/>
+                <constraint firstItem="vAf-az-pMf" firstAttribute="leading" secondItem="UFj-e0-cyp" secondAttribute="leading" constant="52" id="KW1-Yc-des"/>
+                <constraint firstItem="bYJ-Ch-Yvl" firstAttribute="leading" secondItem="UFj-e0-cyp" secondAttribute="leading" constant="52" id="Pzl-es-Adj"/>
+                <constraint firstAttribute="trailing" secondItem="vAf-az-pMf" secondAttribute="trailing" constant="8" id="Sek-vm-7jL"/>
+                <constraint firstItem="vAf-az-pMf" firstAttribute="top" secondItem="9Ay-tb-Pxe" secondAttribute="top" constant="6" id="TUc-QE-A4f"/>
+                <constraint firstAttribute="trailing" secondItem="9Ay-tb-Pxe" secondAttribute="trailing" id="UCx-nJ-5Re"/>
+                <constraint firstAttribute="bottom" secondItem="9Ay-tb-Pxe" secondAttribute="bottom" id="ZfW-bd-83h"/>
+                <constraint firstItem="UFj-e0-cyp" firstAttribute="leading" secondItem="9Ay-tb-Pxe" secondAttribute="leading" constant="6" id="gDJ-Ta-TtI"/>
+                <constraint firstItem="9Ay-tb-Pxe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="1" id="nHM-ZP-gX3"/>
+                <constraint firstItem="UFj-e0-cyp" firstAttribute="top" secondItem="9Ay-tb-Pxe" secondAttribute="top" constant="7" id="nX5-Ea-Kfz"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-198" y="108.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="car-blue-icon" width="128" height="128"/>
+        <image name="mapPopup.png" width="193" height="82"/>
+    </resources>
+</document>
