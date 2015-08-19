@@ -24,6 +24,7 @@
 	__weak IBOutlet UITableView *tblView;
 	AppDelegate *appDel;
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+	__weak IBOutlet UILabel *lblMessage;
 	NSMutableArray *dataSource;
 	int pageno;
 	int totalNoOfPages;

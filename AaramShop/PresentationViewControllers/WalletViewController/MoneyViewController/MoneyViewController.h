@@ -15,7 +15,9 @@
 @end
 @interface MoneyViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
+	__weak IBOutlet UILabel *lblMessage;
 	
+	__weak IBOutlet UIView *viewMoney;
 	__weak IBOutlet UILabel *lblMoney;
 	__weak IBOutlet UITableView *tblView;
 	int pageno;

@@ -321,6 +321,8 @@
 	
 	if([data count]>0)
 	{
+		[tblView setHidden:NO];
+		[lblMessage setHidden:YES];
 		for(int i =0 ; i < [data count] ; i++)
 		{
 			NSDictionary *dict = [data objectAtIndex:i];
@@ -352,6 +354,11 @@
 			offers.strCount							= [AppManager getCountOfProduct:offers.offer_id withOfferType:offers.offerType forStore_id:offers.store_id];
 			[array addObject:offers];
 		}
+	}
+	else
+	{
+		[tblView setHidden:YES];
+		[lblMessage setHidden:NO];
 	}
 	return array;
 }

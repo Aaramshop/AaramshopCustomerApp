@@ -66,6 +66,18 @@
 			if([[responseObject objectForKey:kstatus] intValue] == 1)
 			{
 				lblMoney.text = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"total_money"]];
+				if ([lblMoney.text intValue]>0) {
+					[viewMoney setHidden:NO];
+					[tblView setHidden:NO];
+					[lblMessage setHidden:YES];
+				}
+				else
+				{
+					[viewMoney setHidden:YES];
+					[tblView setHidden:YES];
+					[lblMessage setHidden:NO];
+					break;
+				}
 				if(pageno==0)
 				{
 					[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:@"money_data"]]];
