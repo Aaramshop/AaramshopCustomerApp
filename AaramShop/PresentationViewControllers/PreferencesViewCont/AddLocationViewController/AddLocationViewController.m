@@ -190,7 +190,6 @@
 			AddressModel *addressModel	= [[AddressModel alloc] init];
 			addressModel.user_address_id		=	[NSString stringWithFormat:@"%@",[dict objectForKey:kUser_address_id]];
 			addressModel.title						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kUser_address_title]];
-			
 			addressModel.address					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kAddress]];
 			addressModel.state						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kState]];
 			addressModel.city							=	[NSString stringWithFormat:@"%@",[dict objectForKey:kCity]];
