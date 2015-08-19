@@ -23,9 +23,10 @@
     NSMutableArray *arrSearchCategories;
 	UIActivityIndicatorView *activity;
 }
-@property(nonatomic,strong) NSMutableArray *arrCategories;
-@property(nonatomic,strong) NSString *strStore_Id;
-@property(nonatomic,weak) id<RightControllerDelegate> delegate;
-@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+@property	(nonatomic,	strong)	NSMutableArray *arrCategories;
+@property	(nonatomic,	strong)	NSString *selectedId;
+@property	(nonatomic,	strong)	NSString *strStore_Id;
+@property	(nonatomic,	weak)	id<RightControllerDelegate> delegate;
+@property	(nonatomic,	strong)	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 
 @end

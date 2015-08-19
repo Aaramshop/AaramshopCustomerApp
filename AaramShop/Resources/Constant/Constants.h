@@ -168,6 +168,8 @@
 #define kCategory_id											@"category_id"
 #define kCategory_banner									@"category_banner"
 #define kCategory_image									@"category_image"
+#define kCategroy_image_active						@"categroy_image_active"
+#define kCategroy_image_inactive					@"categroy_image_inactive"
 #define kCategory_name									@"category_name"
 
 #define kSub_category_id									@"sub_category_id"

@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface CategoryModel : NSObject
-@property(nonatomic,strong) NSString *category_banner;
-@property(nonatomic,strong) NSString *category_id;
-@property(nonatomic,strong) NSString *category_image;
-@property(nonatomic,strong) NSString *category_name;
-
+@property	(nonatomic,	strong)	NSString *category_banner;
+@property	(nonatomic,	strong)	NSString *category_id;
+@property	(nonatomic,	strong)	NSString *category_image;
+@property	(nonatomic,	strong)	NSString *category_name;
+@property	(nonatomic,	strong)	NSString *categroy_image_active;
+@property	(nonatomic, strong)	NSString *categroy_image_inactive;
 @end
