@@ -268,6 +268,8 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="RocketDinerCondensed_0.otf">
             <string>RocketDiner-CondensedRegular</string>
@@ -2468,7 +2470,7 @@ Your family will be able to add products of their choice and create a master sho
                                     <constraint firstAttribute="height" constant="52" id="6V2-t5-79C"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press, hold &amp; drag the marker pin to change the address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X85-Ch-fR9">
@@ -8618,30 +8620,30 @@ Why not start with placing a new order now!</string>
             </objects>
             <point key="canvasLocation" x="5000" y="2478"/>
         </scene>
-        <!--Add New Location View Controller-->
+        <!--View Controller-->
         <scene sceneID="725-1M-gLl">
             <objects>
-                <viewController storyboardIdentifier="AddNewLocationView" id="Xnf-rN-vsn" customClass="AddNewLocationViewController" sceneMemberID="viewController">
+                <viewController id="Xnf-rN-vsn" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XFa-mh-a6k"/>
                         <viewControllerLayoutGuide type="bottom" id="wEM-r2-L28"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Uxh-tf-mrY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ab2-zC-LGT">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ab2-zC-LGT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tg5-Qc-FfM" customClass="AKKeyboardAvoidingScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DfT-Rr-Erj">
-                                        <rect key="frame" x="8" y="129" width="304" height="242"/>
+                                        <rect key="frame" x="8" y="157" width="304" height="242"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfi-5X-4eR">
                                                 <rect key="frame" x="4" y="186" width="297" height="48"/>
@@ -8651,10 +8653,10 @@ Why not start with placing a new order now!</string>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="btnContinue:" destination="Xnf-rN-vsn" eventType="touchUpInside" id="nu4-4R-qir"/>
+                                                    <action selector="btnContinue:" destination="Xnf-rN-vsn" eventType="touchUpInside" id="bZ2-Gq-hhF"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pin Code" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="jCE-zZ-7VK" customClass="PWTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pin Code" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="jCE-zZ-7VK" customClass="PWTextField">
                                                 <rect key="frame" x="156" y="131" width="146" height="46"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
@@ -8668,7 +8670,7 @@ Why not start with placing a new order now!</string>
                                                     <outlet property="delegate" destination="Xnf-rN-vsn" id="dbF-zm-ifO"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Locality" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rng-wy-fgY" customClass="PWTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Locality" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rng-wy-fgY" customClass="PWTextField">
                                                 <rect key="frame" x="2" y="131" width="146" height="46"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
@@ -8682,7 +8684,7 @@ Why not start with placing a new order now!</string>
                                                     <outlet property="delegate" destination="Xnf-rN-vsn" id="Vtl-vV-w3o"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="6YH-Mw-l36" customClass="PWTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="6YH-Mw-l36" customClass="PWTextField">
                                                 <rect key="frame" x="156" y="80" width="146" height="46"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
@@ -8696,7 +8698,7 @@ Why not start with placing a new order now!</string>
                                                     <outlet property="delegate" destination="Xnf-rN-vsn" id="tHs-uq-CPe"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="f4a-J0-VF5" customClass="PWTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="f4a-J0-VF5" customClass="PWTextField">
                                                 <rect key="frame" x="2" y="80" width="146" height="46"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
@@ -8710,41 +8712,49 @@ Why not start with placing a new order now!</string>
                                                     <outlet property="delegate" destination="Xnf-rN-vsn" id="Ffg-EN-XM5"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="he3-3E-Wxc" customClass="PWTextField">
-                                                <rect key="frame" x="2" y="25" width="300" height="50"/>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="bdn-Nu-Mdn" customClass="PWTextField">
+                                                <rect key="frame" x="2" y="26" width="299" height="46"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                         <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Xnf-rN-vsn" id="ThC-lJ-8zp"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pu9-xZ-0UD">
-                                        <rect key="frame" x="0.0" y="106" width="47" height="47"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pu9-xZ-0UD">
+                                        <rect key="frame" x="265" y="133" width="47" height="47"/>
                                         <state key="normal" image="circleCrossIcon.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="btnBackClicked:" destination="Xnf-rN-vsn" eventType="touchUpInside" id="2oy-aO-4H9"/>
+                                            <action selector="btnBack:" destination="Xnf-rN-vsn" eventType="touchUpInside" id="uql-mz-hdV"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="ab2-zC-LGT" secondAttribute="width" id="AwL-tj-FTD"/>
+                            <constraint firstAttribute="centerY" secondItem="ab2-zC-LGT" secondAttribute="centerY" id="HJL-Jn-hCE"/>
+                            <constraint firstAttribute="centerX" secondItem="ab2-zC-LGT" secondAttribute="centerX" id="TaF-BX-NyA"/>
+                            <constraint firstAttribute="height" secondItem="ab2-zC-LGT" secondAttribute="height" id="kol-Jm-ISA"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="h0Y-0b-Nzk"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="continueBtn" destination="kfi-5X-4eR" id="EBr-n3-SdW"/>
+                        <outlet property="continueBtn" destination="kfi-5X-4eR" id="ow3-pm-QDM"/>
                         <outlet property="scrollView" destination="Tg5-Qc-FfM" id="4D7-0L-hZO"/>
-                        <outlet property="txtAddress" destination="he3-3E-Wxc" id="hT0-J0-TUr"/>
+                        <outlet property="txtAddress" destination="bdn-Nu-Mdn" id="neL-00-fKG"/>
                         <outlet property="txtCity" destination="6YH-Mw-l36" id="wNK-84-hB7"/>
                         <outlet property="txtLocality" destination="Rng-wy-fgY" id="eaH-Ag-Xyk"/>
                         <outlet property="txtPinCode" destination="jCE-zZ-7VK" id="oT4-u9-GMT"/>
@@ -8754,6 +8764,108 @@ Why not start with placing a new order now!</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="03v-21-tXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2798" y="-132"/>
+        </scene>
+        <!--Add New Location View Controller-->
+        <scene sceneID="OI2-cn-Qqs">
+            <objects>
+                <viewController storyboardIdentifier="AddNewLocationView" id="Q3v-on-Lgd" customClass="AddNewLocationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JDg-4S-dly"/>
+                        <viewControllerLayoutGuide type="bottom" id="CLW-06-ErL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ozv-EB-zAR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frh-6U-aKJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4M6-V5-JY4" customClass="AKKeyboardAvoidingScrollView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NYs-mg-A8Y">
+                                        <rect key="frame" x="16" y="170" width="288" height="227"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQb-bN-iWp">
+                                                <rect key="frame" x="0.0" y="0.0" width="288" height="36"/>
+                                                <color key="backgroundColor" red="0.87450980389999999" green="0.1176470588" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                                                <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" minimumFontSize="17" background="locationPopupTxtField.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Mb-of-ZxX" customClass="PWTextField">
+                                                <rect key="frame" x="4" y="44" width="280" height="38"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" minimumFontSize="17" background="locationPopupTxtField.png" translatesAutoresizingMaskIntoConstraints="NO" id="OGi-ln-wxB" customClass="PWTextField">
+                                                <rect key="frame" x="4" y="90" width="136" height="38"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" minimumFontSize="17" background="locationPopupTxtField.png" translatesAutoresizingMaskIntoConstraints="NO" id="dl6-od-2kS" customClass="PWTextField">
+                                                <rect key="frame" x="148" y="90" width="136" height="38"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Locality" minimumFontSize="17" background="locationPopupTxtField.png" translatesAutoresizingMaskIntoConstraints="NO" id="j0x-6W-DlT" customClass="PWTextField">
+                                                <rect key="frame" x="4" y="136" width="136" height="38"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pin Code" minimumFontSize="17" background="locationPopupTxtField.png" translatesAutoresizingMaskIntoConstraints="NO" id="LJu-Xp-hSu" customClass="PWTextField">
+                                                <rect key="frame" x="148" y="136" width="136" height="38"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wk9-CN-2sP">
+                                                <rect key="frame" x="0.0" y="186" width="288" height="41"/>
+                                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                <state key="normal" title="SEARCH">
+                                                    <color key="titleColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" red="0.49803921568627452" green="0.49803921568627452" blue="0.49803921568627452" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnSearch:" destination="Q3v-on-Lgd" eventType="touchUpInside" id="hNN-uc-ojC"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDe-1I-C5i">
+                                                <rect key="frame" x="248" y="0.0" width="40" height="37"/>
+                                                <state key="normal" image="popupCloseIcon.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="backBtnAction:" destination="Q3v-on-Lgd" eventType="touchUpInside" id="PX5-FZ-IFc"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="4M6-V5-JY4" id="w4i-TP-5Ya"/>
+                        <outlet property="searchBtn" destination="wk9-CN-2sP" id="ujI-gW-Xdn"/>
+                        <outlet property="subView" destination="NYs-mg-A8Y" id="ukh-MT-bKE"/>
+                        <outlet property="txtAddress" destination="0Mb-of-ZxX" id="ylB-3n-chy"/>
+                        <outlet property="txtCity" destination="dl6-od-2kS" id="9vx-gp-up2"/>
+                        <outlet property="txtLocality" destination="j0x-6W-DlT" id="lBK-HN-8e4"/>
+                        <outlet property="txtPinCode" destination="LJu-Xp-hSu" id="wqs-1k-eCt"/>
+                        <outlet property="txtState" destination="OGi-ln-wxB" id="duQ-De-VHj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d1v-Kg-6UB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3239" y="-132"/>
         </scene>
     </scenes>
     <resources>

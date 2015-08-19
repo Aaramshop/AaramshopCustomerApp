@@ -727,8 +727,6 @@
 	//=================Tempory Code Begins===================
 	AddNewLocationViewController *addNewLocationView = (AddNewLocationViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"AddNewLocationView"];
 	addNewLocationView.delegate = self;
-	CGRect locationAlertViewRect = [UIScreen mainScreen].bounds;
-	addNewLocationView.view.frame = locationAlertViewRect;
 	[appDeleg.window addSubview:addNewLocationView.view];
 
 	//=================Tempory Code End===================

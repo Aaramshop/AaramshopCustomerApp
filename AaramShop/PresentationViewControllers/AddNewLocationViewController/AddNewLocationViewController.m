@@ -10,9 +10,7 @@
 
 @interface AddNewLocationViewController ()
 {
-	UIView *calloutView;
 	AppDelegate *appDeleg;
-	NSString *strYourCurrentAddress;
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 }
 @end
@@ -22,76 +20,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-	[[self navigationController] setNavigationBarHidden:NO animated:YES];
-	[self setUpNavigationBar];
+	
 	appDeleg = APP_DELEGATE;
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
 	aaramShop_ConnectionManager.delegate = self;
-	[self.scrollView setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 600)];
-	UITapGestureRecognizer *gst = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard)];
-	gst.cancelsTouchesInView = NO;
-	gst.delegate = self;
-	[self.view addGestureRecognizer:gst];
+	subView.layer.cornerRadius = 5.0f;
+	subView.layer.masksToBounds = YES;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)setUpNavigationBar
-{
-	self.navigationItem.hidesBackButton = YES;
-	CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 150, 44);
-	UIView* _headerTitleSubtitleView = [[UILabel alloc] initWithFrame:headerTitleSubtitleFrame];
-	_headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
-	_headerTitleSubtitleView.autoresizesSubviews = NO;
-	
-	CGRect titleFrame = CGRectMake(0,0, 150, 44);
-	UILabel* titleView = [[UILabel alloc] initWithFrame:titleFrame];
-	titleView.backgroundColor = [UIColor clearColor];
-	titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
-	titleView.textAlignment = NSTextAlignmentCenter;
-	titleView.textColor = [UIColor whiteColor];
-	titleView.text = @"Add New Location";
-	titleView.adjustsFontSizeToFitWidth = YES;
-	[_headerTitleSubtitleView addSubview:titleView];
-	self.navigationItem.titleView = _headerTitleSubtitleView;
-	
-	UIImage *imgInfo = [UIImage imageNamed:@"accountDetailsQuestionmarkIcon"];
-	UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-	infoBtn.bounds = CGRectMake( -10, 0, 30, 30);
-	
-	[infoBtn setImage:imgInfo forState:UIControlStateNormal];
-	[infoBtn addTarget:self action:@selector(showAlert) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *barInfoBtn = [[UIBarButtonItem alloc] initWithCustomView:infoBtn];
-	
-	NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barInfoBtn, nil];
-	self.navigationItem.rightBarButtonItems = arrBtnsRight;
-	
-}
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-}
-- (void)viewWillDisappear:(BOOL)animated {
-	
-	[super viewWillDisappear:animated];
-}
--(void)backBtn
-{
-	[self.navigationController popViewControllerAnimated:YES];
-}
+
+
 -(void)hideKeyboard
 {
+	[txtAddress resignFirstResponder];
 	[txtLocality resignFirstResponder];
 	[txtPinCode resignFirstResponder];
 	[txtCity resignFirstResponder];
 	[txtState resignFirstResponder];
 }
 
--(BOOL)prefersStatusBarHidden
-{
-	return YES;
-}
+
 #pragma mark - UITextfield Delegates
 -(BOOL)textFieldShouldReturn:(UITextField*)textField;
 {
@@ -107,7 +59,7 @@
 		// Not found, so remove keyboard.
 		
 		[textField resignFirstResponder];
-		[self btnContinue:continueBtn];
+		[self btnSearch:searchBtn];
 		
 	}
 	return YES; // We do not want UITextField to insert line-breaks.
@@ -115,11 +67,16 @@
 - (void)gotAddress
 {
 }
-- (IBAction)btnBackClicked:(id)sender {
+
+
+
+
+
+- (IBAction)backBtnAction:(id)sender {
 	[self.view removeFromSuperview];
 }
-- (IBAction)btnContinue:(id)sender
-{
+
+- (IBAction)btnSearch:(id)sender {
 	[Utils startActivityIndicatorInView:self.view withMessage:@"Searching..."];
 }
 - (void)searchLocation

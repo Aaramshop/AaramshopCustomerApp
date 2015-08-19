@@ -11,18 +11,21 @@
 -(void)gotAddress:(CLLocationDegrees)lat longitude:(CLLocationDegrees)longitude;
 @end
 
-@interface AddNewLocationViewController : UIViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
+@interface AddNewLocationViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
 {
 	__weak IBOutlet PWTextField *txtAddress;
+	__weak IBOutlet UIView *subView;
 	__weak IBOutlet PWTextField *txtState;
 	__weak IBOutlet PWTextField *txtCity;
 	__weak IBOutlet PWTextField *txtLocality;
 	__weak IBOutlet PWTextField *txtPinCode;
-	UIButton *backBtn;
-	__weak IBOutlet UIButton *continueBtn;
+	__weak IBOutlet UIButton *searchBtn;
 }
 @property(nonatomic,weak) id<AddNewLocationViewDelegate> delegate;
 @property (weak, nonatomic) IBOutlet AKKeyboardAvoidingScrollView *scrollView;
-- (IBAction)btnContinue:(id)sender;
-- (IBAction)btnBackClicked:(id)sender;
+
+- (IBAction)backBtnAction:(id)sender;
+- (IBAction)btnSearch:(id)sender;
+
+
 @end
