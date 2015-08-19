@@ -11,6 +11,8 @@
 @interface ShoppingListViewController : UIViewController<CDRTranslucentSideBarDelegate,AaramShop_ConnectionManager_Delegate,ShoppingListCellDelegate>
 {
     __weak IBOutlet UITableView *tblView;
+    __weak IBOutlet UILabel *lblMessage;
+
     NSMutableArray *arrShoppingList;
     
     UIRefreshControl *refreshShoppingList;

@@ -96,7 +96,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
+	lblMessage.hidden = YES;
+
     NSInteger totalStoreCount = [arrAllStores count] + [arrRecommendedStores count];
     
     pageno = 1;
@@ -588,7 +589,6 @@
 
 -(void)parseStoreListData:(NSMutableDictionary *)responseObject
 {
-    
     if (pageno == 0)
     {
         [arrAllStores removeAllObjects];
@@ -700,10 +700,15 @@
         
         [arrRecommendedStores addObjectsFromArray:tempStoreModel.arrRecommendedStores];
 //    }
-    
-    
-    
-    
+		if([arrAllStores count]==0 && [arrRecommendedStores count]==0)
+		{
+			lblMessage.hidden = NO;
+		}
+		else
+		{
+			lblMessage.hidden = YES;
+		}
+			
     /*
     [arrAllStores addObjectsFromArray:tempStoreModel.arrFavoriteStores];
     [arrAllStores addObjectsFromArray:tempStoreModel.arrHomeStores];

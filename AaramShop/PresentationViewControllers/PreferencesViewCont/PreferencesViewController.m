@@ -290,8 +290,15 @@
 	switch (indexPath.section) {
 		case 1:
 		{
+//=================Tempory Code Begins===================
+			AddNewLocationViewController *addNewLocationView = (AddNewLocationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddNewLocationView"];
+			[self.navigationController pushViewController:addNewLocationView animated:YES];
+			
+//=================Tempory Code End===================
+			/*/
 			AddLocationViewController *addLocationVC = (AddLocationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddLocationView"];
 			[self.navigationController pushViewController:addLocationVC animated:YES];
+			 /*/
 		}
 			break;
 		case 2:

@@ -11,6 +11,8 @@
 @interface BroadcastViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,AaramShop_ConnectionManager_Delegate>
 {
 	__weak IBOutlet UITableView *tblView;
+    __weak IBOutlet UILabel *lblMessage;
+
 	NSMutableArray *arrBroadcast;
 	int broadcastPageNo;
 	int broadcastTotalNoOfPages;

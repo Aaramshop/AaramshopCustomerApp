@@ -27,6 +27,9 @@
 	couponPageNo = 0;
 	couponTotalNoOfPages = 0;
 	segmentIndex = 0;
+
+    lblMessage.text = @"No offers available in your locality right now. Come back later to bag the best of the offers from your neighbourhood stores.";
+
 	isLoading = NO;
 	appDelegate = APP_DELEGATE;
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
@@ -48,6 +51,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+
+    lblMessage.hidden = YES;
+
 	[self setNavigationBar];
 	[self createDateToGetOffer];
 }
@@ -467,6 +473,8 @@
 }
 - (void)callWebServiceToGetCoupons:(NSMutableDictionary *)aDict
 {
+    lblMessage.hidden = YES;
+
 	if (![Utils isInternetAvailable])
 	{
 		[AppManager stopStatusbarActivityIndicator];
@@ -477,6 +485,8 @@
 }
 - (void)callWebServiceToOffer:(NSMutableDictionary *)aDict
 {
+    lblMessage.hidden = YES;
+
 	if (![Utils isInternetAvailable])
 	{
 		[AppManager stopStatusbarActivityIndicator];
@@ -522,10 +532,16 @@
 
 				 [tblView reloadData];
 			}
+            else
+            {
+                lblMessage.hidden = NO;
+            }
 		}
 			break;
 		case TASK_TO_GET_COUPONS:
 		{
+            if([[responseObject objectForKey:kstatus] intValue] == 1)
+            {
 			if(couponPageNo==0)
 			{
 				[self createCouponDataForFirstTimeGet:[self parseCouponData:[responseObject objectForKey:kCoupons]]];
@@ -550,8 +566,14 @@
 			couponTotalNoOfPages	=	[[responseObject objectForKey:kTotal_page] intValue];
 
 			tblView.hidden = NO;
+                [tblView reloadData];
 
-			[tblView reloadData];
+            }
+            else
+            {
+                lblMessage.hidden = NO;
+            }
+            
 		}
 			break;
 			
@@ -652,6 +674,16 @@
 			[array addObject:coupon];
 		}
 	}
+    if (array.count==0 && pageno==0)
+    {
+        lblMessage.hidden = NO;
+    }
+    else
+    {
+        lblMessage.hidden = YES;
+    }
+    
+    
 	return array;
 }
 - (NSMutableArray *)parseData:(id)data
@@ -694,6 +726,16 @@
 			[array addObject:offers];
 		}
 	}
+    
+    if (array.count==0 && pageno==0)
+    {
+        lblMessage.hidden = NO;
+    }
+    else
+    {
+        lblMessage.hidden = YES;
+    }
+    
 	return array;
 
 }
@@ -714,6 +756,8 @@
 	segmentIndex = segCtrl.selectedSegmentIndex;
 	if(segmentIndex ==1)
 	{
+        lblMessage.text = @"No coupons available in your locality right now. Come back later to claim the best of the coupon from your neighbourhood stores.";
+        
 		if([arrCoupon count]==0)
 		{
 			[tblView setHidden:YES];
@@ -727,6 +771,9 @@
 	}
 	else
 	{
+        lblMessage.text = @"No offers available in your locality right now. Come back later to bag the best of the offers from your neighbourhood stores.";
+
+        
 		if([arrOffers count]==0)
 		{
 			[tblView setHidden:YES];

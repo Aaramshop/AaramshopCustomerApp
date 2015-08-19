@@ -29,6 +29,9 @@ AaramShop_ConnectionManager_Delegate>
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super  viewWillAppear:animated];
+    
+    lblMessage.hidden = YES;
+    
 	[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
 	 {
 		 [viewSearchBarContainer setFrame:CGRectMake(0, 0, viewSearchBarContainer.frame.size.width, viewSearchBarContainer.frame.size.height)];
@@ -296,9 +299,15 @@ AaramShop_ConnectionManager_Delegate>
 	[tempLabel setFont:[UIFont fontWithName:kRobotoRegular size:14]];
 	
 	tempLabel.textColor = [UIColor blackColor];
+	
 	switch (section) {
 	case 0:
-		 tempLabel.text =@"  STORES";
+			if ([searchType intValue]== 2) {
+				tempLabel.text = @" PRODUCTS";
+			}
+			else
+				tempLabel.text =@"  STORES";
+		 
 			break;
 	case 1:
 		 tempLabel.text =@"  PRODUCTS";
@@ -412,7 +421,10 @@ AaramShop_ConnectionManager_Delegate>
 	}
 	else if([searchType intValue] == 2)
 	{
-		arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
+		if (!arrSearchResult) {
+			arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
+		}
+		
 		globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
 		if (self.delegate && [self.delegate conformsToProtocol:@protocol(GlobalSearchViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(openSearchedUserPrroductFor:)])
 		{
@@ -489,7 +501,6 @@ AaramShop_ConnectionManager_Delegate>
 	
 	
 }
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
 	[arrSearchResult removeAllObjects];
 	if (![searchText isEqualToString:@""]) {
@@ -523,6 +534,8 @@ AaramShop_ConnectionManager_Delegate>
 }
 - (void)callWebservicesToGetSearch:(NSMutableDictionary *)aDict
 {
+    lblMessage.hidden = YES;
+    
 	if (![Utils isInternetAvailable])
 	{
 		//        [Utils stopActivityIndicatorInView:self.view];
@@ -578,6 +591,7 @@ AaramShop_ConnectionManager_Delegate>
 		}
 		else
 		{
+            lblMessage.hidden = NO;
 			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		}
 	}

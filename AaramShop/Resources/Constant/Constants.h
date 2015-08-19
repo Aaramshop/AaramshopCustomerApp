@@ -42,8 +42,8 @@
 
 #define APP_DELEGATE (AppDelegate*)[[UIApplication sharedApplication]delegate]
 
-
-#define kBaseURL												@"http://52.74.220.25/index.php/user/"
+#define kBaseURL												@"http://52.74.220.25/api/index.php/user/"
+//#define kBaseURL												@"http://52.74.220.25/index.php/user/"
 
 #define kIsLoggedIn											@"isLoggedIn"
 #define kDevice													@"1"
@@ -345,15 +345,6 @@
 
 #define kURLRemoveShoppingListReminder              @"removeShoppingListReminder"
 
-#define KURLSerachStoreProducts					@"serachStoreProducts"
-
-#define kURLCreateShoppingList						@"createShoppingList"
-#define kURLGetShoppingList							@"getShoppingList"
-#define kURLDeleteShoppingList						@"deleteShoppingList"
-
-#define kURLGetShoppingListProducts				@"getShoppingListProducts"
-#define kURLUpdateShoppingListProducts		@"updateShoppingListProducts"
-#define kURLGetStores										@"getStores"
 #define kURLGetStoreforShoppingList				@"getStoreforShoppingList"
 #define KURLGetShoppingListProductByStoreId		@"getShoppingListProductByStoreId"
 #define kURLShareShoppingList						@"shareShoppingList"

@@ -613,8 +613,8 @@
     
     shoppingListAddMore.arrProductList = [[NSMutableArray alloc]init];
     [shoppingListAddMore.arrProductList addObjectsFromArray:arrProductList];
-    
-    shoppingListAddMore.strShoppingListId = _shoppingListModel.shoppingListId;
+	shoppingListAddMore.store = selectedStoreModel;
+	shoppingListAddMore.strShoppingListId = _shoppingListModel.shoppingListId;
     
     
     [self.navigationController pushViewController:shoppingListAddMore animated:YES];

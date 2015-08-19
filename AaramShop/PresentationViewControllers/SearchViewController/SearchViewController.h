@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ProductsModel.h"
 #import "SearchTableCell.h"
-
+#import "ShoppingListChooseStoreModel.h"
 
 @protocol SearchViewControllerDelegate <NSObject>
 @optional
@@ -34,7 +34,7 @@
     BOOL isKeyboardVisible;
     
     BOOL isLoading;
-    
+	
     NSInteger pageNumber;
     int totalNoOfPages;
     
@@ -44,7 +44,7 @@
     ViewStatus viewStatus;
 }
 -(void)updateViewWhenAppears;
-
+@property (nonatomic, retain) ShoppingListChooseStoreModel *store;
 @property (weak, nonatomic) id <SearchViewControllerDelegate> delegate;
 
 @end

@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Bold_0.ttf">
+        <mutableArray key="Roboto_Bold.ttf">
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
@@ -21,7 +21,9 @@
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
         </mutableArray>
-        <mutableArray key="Roboto-Medium_0.ttf">
+        <mutableArray key="Roboto_Medium.ttf">
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
@@ -63,7 +65,17 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
         </mutableArray>
-        <mutableArray key="Roboto-Regular_0.ttf">
+        <mutableArray key="Roboto_Regular.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -1050,9 +1062,23 @@
                                     <outlet property="delegate" destination="ibH-1P-gqa" id="bFF-7q-hu6"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tat-x8-6q6" userLabel="Label - Message">
+                                <rect key="frame" x="20" y="222" width="280" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="DvP-Px-RlP"/>
+                                    <constraint firstAttribute="width" constant="280" id="pA1-1L-ae7"/>
+                                </constraints>
+                                <string key="text">You don’t have any Shopping List yet! 
+Why not start with creating a new shopping list now!</string>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="tat-x8-6q6" secondAttribute="centerX" id="5J7-fd-5ix"/>
+                            <constraint firstAttribute="centerY" secondItem="tat-x8-6q6" secondAttribute="centerY" id="C2m-9R-bZH"/>
                             <constraint firstAttribute="width" secondItem="Y8o-Kh-5gf" secondAttribute="width" id="MKs-m9-vTs"/>
                             <constraint firstItem="bmg-iA-84C" firstAttribute="top" secondItem="Y8o-Kh-5gf" secondAttribute="bottom" id="Ofr-Ng-RHS"/>
                             <constraint firstItem="jUy-ao-3XU" firstAttribute="top" secondItem="aWM-E5-3nU" secondAttribute="bottom" constant="84" id="QLB-UE-8GG"/>
@@ -1065,6 +1091,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="jI8-w9-ASm"/>
                     <connections>
+                        <outlet property="lblMessage" destination="tat-x8-6q6" id="hrd-Yz-XeC"/>
                         <outlet property="tblView" destination="Y8o-Kh-5gf" id="PqI-pw-TU2"/>
                     </connections>
                 </viewController>
@@ -2431,6 +2458,26 @@ Your family will be able to add products of their choice and create a master sho
                                     <action selector="btnEditClick:" destination="Kva-dY-HCj" eventType="touchUpInside" id="WFD-dT-TvG"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000000000000009" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oX3-9p-6pO">
+                                <rect key="frame" x="0.0" y="516" width="320" height="52"/>
+                                <color key="backgroundColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="6V2-t5-79C"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press, hold &amp; drag the marker pin to change the address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X85-Ch-fR9">
+                                <rect key="frame" x="0.0" y="516" width="320" height="52"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="U5L-yI-nab"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2438,8 +2485,11 @@ Your family will be able to add products of their choice and create a master sho
                             <constraint firstItem="yer-4o-KdU" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leadingMargin" constant="44" id="AGw-Ct-Y6P"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yer-4o-KdU" secondAttribute="trailing" constant="44" id="B7Q-Hy-PEI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0BK-lU-vgp" secondAttribute="trailing" constant="-8" id="Br1-U7-QGW"/>
+                            <constraint firstItem="CIi-ha-dfA" firstAttribute="top" secondItem="oX3-9p-6pO" secondAttribute="bottom" id="Dad-Yc-1AU"/>
                             <constraint firstAttribute="trailing" secondItem="c02-wz-VZS" secondAttribute="trailing" id="Dg9-Ql-yKM"/>
+                            <constraint firstAttribute="width" secondItem="oX3-9p-6pO" secondAttribute="width" id="EVl-Mg-T4h"/>
                             <constraint firstAttribute="height" secondItem="ccN-pn-OzU" secondAttribute="height" id="HNu-gS-sWs"/>
+                            <constraint firstItem="oX3-9p-6pO" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leadingMargin" constant="-16" id="Jla-nS-TT1"/>
                             <constraint firstAttribute="trailing" secondItem="1R3-jU-aTN" secondAttribute="trailing" id="KDb-wb-g91"/>
                             <constraint firstAttribute="width" secondItem="ccN-pn-OzU" secondAttribute="width" id="MfR-ZZ-Pu7"/>
                             <constraint firstAttribute="centerY" secondItem="ccN-pn-OzU" secondAttribute="centerY" id="SyH-x3-tyV"/>
@@ -2447,12 +2497,15 @@ Your family will be able to add products of their choice and create a master sho
                             <constraint firstItem="oI3-dS-uae" firstAttribute="trailing" secondItem="1R3-jU-aTN" secondAttribute="trailing" constant="-42" id="XZq-9d-WHf"/>
                             <constraint firstAttribute="centerX" secondItem="ccN-pn-OzU" secondAttribute="centerX" id="bRO-RK-G89"/>
                             <constraint firstItem="1R3-jU-aTN" firstAttribute="top" secondItem="c02-wz-VZS" secondAttribute="top" constant="95" id="d5h-2S-vOi"/>
+                            <constraint firstItem="CIi-ha-dfA" firstAttribute="top" secondItem="X85-Ch-fR9" secondAttribute="bottom" id="dQl-E3-E3S"/>
                             <constraint firstItem="oI3-dS-uae" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leading" id="f7A-6I-tKB"/>
                             <constraint firstItem="oI3-dS-uae" firstAttribute="top" secondItem="c02-wz-VZS" secondAttribute="top" constant="95" id="gTd-eA-B2Y"/>
                             <constraint firstItem="c02-wz-VZS" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leading" id="hE5-tV-zDU"/>
                             <constraint firstItem="yer-4o-KdU" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="29" id="oCl-Ul-usq"/>
+                            <constraint firstItem="X85-Ch-fR9" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leadingMargin" constant="-16" id="wGL-sA-ZWV"/>
                             <constraint firstItem="0BK-lU-vgp" firstAttribute="top" secondItem="mUq-7x-cA1" secondAttribute="bottom" constant="8" id="wTW-Lk-HeS"/>
                             <constraint firstItem="yLt-tF-XB7" firstAttribute="leading" secondItem="5VK-Hk-9C7" secondAttribute="leadingMargin" constant="-8" id="wjT-G6-89h"/>
+                            <constraint firstAttribute="width" secondItem="X85-Ch-fR9" secondAttribute="width" id="zHJ-Kh-MZe"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -2468,7 +2521,7 @@ Your family will be able to add products of their choice and create a master sho
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkh-Cn-e7P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2137" y="390"/>
+            <point key="canvasLocation" x="2137" y="397"/>
         </scene>
         <!--Location Alert View Controller-->
         <scene sceneID="SDS-jp-fEh">
@@ -3960,21 +4013,36 @@ Your family will be able to add products of their choice and create a master sho
                                     <outlet property="delegate" destination="9p8-UL-HFn" id="pXz-XQ-yUK"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qm-cZ-fnZ" userLabel="Label - Message">
+                                <rect key="frame" x="10" y="222" width="300" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="71O-sg-0u3"/>
+                                    <constraint firstAttribute="height" constant="60" id="PYe-vF-Y5R"/>
+                                </constraints>
+                                <string key="text">You don’t have any pending orders! 
+Why not start with placing a new order now!</string>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="2qm-cZ-fnZ" secondAttribute="centerX" id="5cG-ol-d5y"/>
                             <constraint firstAttribute="trailing" secondItem="Zix-YC-Ca4" secondAttribute="trailing" id="BzC-xq-76p"/>
                             <constraint firstAttribute="centerX" secondItem="Kaf-Je-x8c" secondAttribute="centerX" id="EPp-xZ-HpS"/>
                             <constraint firstAttribute="centerX" secondItem="q5i-lz-WcH" secondAttribute="centerX" id="NNw-uA-Zxk"/>
                             <constraint firstItem="Hai-Zc-2Jf" firstAttribute="top" secondItem="Zix-YC-Ca4" secondAttribute="bottom" constant="-49" id="R53-Bz-Yox"/>
                             <constraint firstItem="Zix-YC-Ca4" firstAttribute="leading" secondItem="uoq-uh-gKD" secondAttribute="leading" id="RTU-SC-dio"/>
                             <constraint firstItem="Zix-YC-Ca4" firstAttribute="top" secondItem="sCf-TO-PDf" secondAttribute="bottom" id="S35-J7-2Og"/>
+                            <constraint firstAttribute="centerY" secondItem="2qm-cZ-fnZ" secondAttribute="centerY" id="XXM-hY-Dd4"/>
                             <constraint firstItem="Kaf-Je-x8c" firstAttribute="top" secondItem="q5i-lz-WcH" secondAttribute="top" constant="188" id="g50-Mn-ljp"/>
                             <constraint firstItem="q5i-lz-WcH" firstAttribute="top" secondItem="sCf-TO-PDf" secondAttribute="bottom" constant="84" id="rav-wc-mVH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DL5-iC-GUd"/>
                     <connections>
+                        <outlet property="lblMessage" destination="2qm-cZ-fnZ" id="eht-X6-alr"/>
                         <outlet property="tblView" destination="Zix-YC-Ca4" id="9JP-O1-Sqh"/>
                     </connections>
                 </viewController>
@@ -4564,10 +4632,22 @@ Your family will be able to add products of their choice and create a master sho
                                     <outlet property="delegate" destination="uRT-9M-aW1" id="20E-Au-3Wd"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VkX-YC-tQr" userLabel="Label - Message">
+                                <rect key="frame" x="10" y="219" width="300" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="9DM-L9-fXO"/>
+                                    <constraint firstAttribute="width" constant="300" id="hdE-9e-zA4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="VL5-A2-Umm" firstAttribute="top" secondItem="MKt-Zh-Un3" secondAttribute="bottom" constant="8" id="Mdv-YI-Rz7"/>
+                            <constraint firstAttribute="centerX" secondItem="VkX-YC-tQr" secondAttribute="centerX" id="Xyj-GE-GWX"/>
+                            <constraint firstAttribute="centerY" secondItem="VkX-YC-tQr" secondAttribute="centerY" constant="3" id="bjD-8o-rqn"/>
                             <constraint firstItem="VL5-A2-Umm" firstAttribute="leading" secondItem="A1c-pQ-aH0" secondAttribute="leadingMargin" id="cZU-0W-0gE"/>
                             <constraint firstItem="UHj-ca-j9K" firstAttribute="top" secondItem="bqe-wj-H6G" secondAttribute="bottom" id="cnH-CM-XMa"/>
                             <constraint firstItem="VL5-A2-Umm" firstAttribute="trailing" secondItem="A1c-pQ-aH0" secondAttribute="trailingMargin" id="fry-U7-JCG"/>
@@ -4578,6 +4658,7 @@ Your family will be able to add products of their choice and create a master sho
                     </view>
                     <navigationItem key="navigationItem" id="5CG-be-42D"/>
                     <connections>
+                        <outlet property="lblMessage" destination="VkX-YC-tQr" id="tP5-hF-ch1"/>
                         <outlet property="tblView" destination="bqe-wj-H6G" id="9cA-Qr-Lye"/>
                     </connections>
                 </viewController>
@@ -6655,17 +6736,30 @@ Your family will be able to add products of their choice and create a master sho
                                     <outlet property="delegate" destination="rt0-8L-fk4" id="eXs-aQ-reL"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No new notifications" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwb-UN-LRP" userLabel="Label - Message">
+                                <rect key="frame" x="20" y="222" width="280" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2ah-va-pYa"/>
+                                    <constraint firstAttribute="width" constant="280" id="RI0-xp-sd1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="e2f-P3-mew" secondAttribute="trailing" id="AnO-Hl-5s9"/>
                             <constraint firstItem="HvH-q2-iJn" firstAttribute="top" secondItem="e2f-P3-mew" secondAttribute="bottom" id="BXf-Y3-c6X"/>
+                            <constraint firstAttribute="centerY" secondItem="hwb-UN-LRP" secondAttribute="centerY" id="Lna-Gp-644"/>
                             <constraint firstItem="e2f-P3-mew" firstAttribute="leading" secondItem="oMC-xE-1L1" secondAttribute="leading" id="Ofr-It-nsP"/>
                             <constraint firstItem="e2f-P3-mew" firstAttribute="top" secondItem="VO4-1M-hXz" secondAttribute="bottom" id="qq6-5j-NFv"/>
+                            <constraint firstAttribute="centerX" secondItem="hwb-UN-LRP" secondAttribute="centerX" id="tSi-dR-W8p"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="lblMessage" destination="hwb-UN-LRP" id="Psq-Eq-SaL"/>
                         <outlet property="tblView" destination="e2f-P3-mew" id="EAc-7v-YXk"/>
                     </connections>
                 </viewController>
@@ -6752,7 +6846,7 @@ Your family will be able to add products of their choice and create a master sho
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wH8-HE-bct" userLabel="View - subcategories">
-                                <rect key="frame" x="0.0" y="129" width="320" height="439"/>
+                                <rect key="frame" x="0.0" y="129" width="320" height="390"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -6763,9 +6857,9 @@ Your family will be able to add products of their choice and create a master sho
                             <constraint firstItem="5hy-VR-y15" firstAttribute="top" secondItem="B9a-Wc-Xad" secondAttribute="bottom" constant="109" id="7EU-eL-lyF"/>
                             <constraint firstAttribute="centerX" secondItem="5hy-VR-y15" secondAttribute="centerX" id="AX8-2q-Th8"/>
                             <constraint firstAttribute="centerX" secondItem="UBE-7b-kFc" secondAttribute="centerX" id="LTc-Kh-3ML"/>
+                            <constraint firstItem="h41-w7-Ajt" firstAttribute="top" secondItem="wH8-HE-bct" secondAttribute="bottom" id="Lwb-Zu-ktr"/>
                             <constraint firstItem="wH8-HE-bct" firstAttribute="width" secondItem="lzd-ep-Lg8" secondAttribute="width" id="NYr-Dl-3og"/>
                             <constraint firstAttribute="centerX" secondItem="wH8-HE-bct" secondAttribute="centerX" id="aN7-FN-Nkq"/>
-                            <constraint firstItem="h41-w7-Ajt" firstAttribute="top" secondItem="wH8-HE-bct" secondAttribute="bottom" constant="-49" id="ly1-Fb-vd5"/>
                             <constraint firstItem="UBE-7b-kFc" firstAttribute="width" secondItem="lzd-ep-Lg8" secondAttribute="width" id="mXc-OM-MJg"/>
                             <constraint firstItem="5hy-VR-y15" firstAttribute="width" secondItem="lzd-ep-Lg8" secondAttribute="width" id="tg6-e0-irj"/>
                         </constraints>
@@ -7129,7 +7223,7 @@ Your family will be able to add products of their choice and create a master sho
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="90" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="FOE-AS-WJr">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeCategoryListCell" rowHeight="100" id="G9V-hU-DVF" customClass="HomeCategoryListCell">
@@ -7336,22 +7430,35 @@ Your family will be able to add products of their choice and create a master sho
                                     <outlet property="delegate" destination="I9e-qb-Ye4" id="XLc-Xx-mpl"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seems like we do not have a store in your locality yet, Change the locality and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epi-Xi-8jX">
+                                <rect key="frame" x="16" y="9" width="288" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="pgi-7M-t7b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <color key="textColor" red="0.24705882352941178" green="0.24705882352941178" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="FOE-AS-WJr" secondAttribute="width" id="1eY-ga-XpU"/>
-                            <constraint firstAttribute="centerY" secondItem="FOE-AS-WJr" secondAttribute="centerY" id="7Gb-18-h1G"/>
-                            <constraint firstAttribute="height" secondItem="FOE-AS-WJr" secondAttribute="height" id="Vqw-RQ-rUH"/>
+                            <constraint firstItem="epi-Xi-8jX" firstAttribute="trailing" secondItem="q0l-Bx-Hmk" secondAttribute="trailingMargin" id="9JO-s6-e8g"/>
+                            <constraint firstItem="6hO-wh-5xZ" firstAttribute="top" secondItem="FOE-AS-WJr" secondAttribute="bottom" id="Gg2-3u-2Jp"/>
+                            <constraint firstItem="FOE-AS-WJr" firstAttribute="top" secondItem="YBg-F3-Acy" secondAttribute="bottom" id="VgM-zc-bmo"/>
                             <constraint firstAttribute="centerX" secondItem="FOE-AS-WJr" secondAttribute="centerX" id="fZB-zD-GdN"/>
+                            <constraint firstItem="epi-Xi-8jX" firstAttribute="top" secondItem="YBg-F3-Acy" secondAttribute="bottom" constant="-11" id="kqM-hM-6o6"/>
+                            <constraint firstItem="epi-Xi-8jX" firstAttribute="leading" secondItem="q0l-Bx-Hmk" secondAttribute="leadingMargin" id="xM3-U2-yVM"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lblMessage" destination="epi-Xi-8jX" id="2za-i2-QcS"/>
                         <outlet property="tblStores" destination="FOE-AS-WJr" id="fYP-F2-Huc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAl-Hu-gor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-905" y="4125"/>
+            <point key="canvasLocation" x="-976" y="4125"/>
         </scene>
         <!--Change Password View Controller-->
         <scene sceneID="IxH-nw-aDg">
@@ -8175,16 +8282,29 @@ Your family will be able to add products of their choice and create a master sho
                                     <outlet property="delegate" destination="UbP-hx-x7n" id="INb-2t-XJs"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start typing to search a Product or Stores" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dp-Bi-GI0" userLabel="Label - Message">
+                                <rect key="frame" x="10" y="264" width="300" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="MrK-eG-U4V"/>
+                                    <constraint firstAttribute="height" constant="60" id="bxx-aW-5d8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                <color key="textColor" red="0.2470588235" green="0.2470588235" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="vLc-pP-6zN" firstAttribute="top" secondItem="gaf-uj-bQJ" secondAttribute="bottom" id="3rG-Hd-5O0"/>
                             <constraint firstItem="gaf-uj-bQJ" firstAttribute="top" secondItem="cHJ-Nt-8EF" secondAttribute="bottom" constant="44" id="JgD-vG-c4J"/>
+                            <constraint firstAttribute="centerX" secondItem="6dp-Bi-GI0" secondAttribute="centerX" id="LxA-F9-bX1"/>
                             <constraint firstAttribute="width" secondItem="gaf-uj-bQJ" secondAttribute="width" id="Png-pk-bq1"/>
+                            <constraint firstAttribute="centerY" secondItem="6dp-Bi-GI0" secondAttribute="centerY" constant="-10" id="cBc-9N-dke"/>
                             <constraint firstAttribute="centerX" secondItem="gaf-uj-bQJ" secondAttribute="centerX" id="tdP-6f-uB7"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lblMessage" destination="6dp-Bi-GI0" id="imI-Ke-ghz"/>
                         <outlet property="searchBarMain" destination="Ygb-ih-b0V" id="Wdm-er-ftg"/>
                         <outlet property="tblViewSearch" destination="gaf-uj-bQJ" id="g5V-W6-hPS"/>
                         <outlet property="viewSearchBarContainer" destination="LgH-77-E8C" id="9cj-T8-Jmf"/>
@@ -8467,6 +8587,120 @@ Your family will be able to add products of their choice and create a master sho
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbu-Px-GQu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5000" y="2478"/>
+        </scene>
+        <!--Add New Location View Controller-->
+        <scene sceneID="725-1M-gLl">
+            <objects>
+                <viewController storyboardIdentifier="AddNewLocationView" id="Xnf-rN-vsn" customClass="AddNewLocationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XFa-mh-a6k"/>
+                        <viewControllerLayoutGuide type="bottom" id="wEM-r2-L28"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Uxh-tf-mrY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bgImageNew.png" translatesAutoresizingMaskIntoConstraints="NO" id="5lz-4g-6KT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tg5-Qc-FfM" customClass="AKKeyboardAvoidingScrollView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kST-OS-6NJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="301"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Xnf-rN-vsn" id="9Wy-XT-bz7"/>
+                                        </connections>
+                                    </mapView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGa-N1-bFi">
+                                        <rect key="frame" x="12" y="430" width="296" height="48"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                        <state key="normal" title="CONTINUE" backgroundImage="newUserBox.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnContinue:" destination="Xnf-rN-vsn" eventType="touchUpInside" id="gnP-p9-di5"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pin Code" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="XZl-Ii-qdm" customClass="PWTextField">
+                                        <rect key="frame" x="162" y="368" width="146" height="46"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="Xnf-rN-vsn" id="DAz-bP-qtx"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Locality" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="KVz-eX-t2B" customClass="PWTextField">
+                                        <rect key="frame" x="8" y="368" width="146" height="46"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="Xnf-rN-vsn" id="o77-hh-v1j"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="7Rv-Gq-Csc" customClass="PWTextField">
+                                        <rect key="frame" x="162" y="317" width="146" height="46"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="Xnf-rN-vsn" id="hbf-SQ-UJ5"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" minimumFontSize="17" background="singleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="W2r-cC-awE" customClass="PWTextField">
+                                        <rect key="frame" x="8" y="317" width="146" height="46"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="Xnf-rN-vsn" id="yL6-J4-LEV"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="h0Y-0b-Nzk"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="continueBtn" destination="QGa-N1-bFi" id="Hb2-yP-Hhz"/>
+                        <outlet property="imgBackground" destination="5lz-4g-6KT" id="RsY-Nl-BvG"/>
+                        <outlet property="mapViewLocation" destination="kST-OS-6NJ" id="zE5-yU-djC"/>
+                        <outlet property="scrollView" destination="Tg5-Qc-FfM" id="4D7-0L-hZO"/>
+                        <outlet property="txtCity" destination="7Rv-Gq-Csc" id="lHg-AD-hwu"/>
+                        <outlet property="txtLocality" destination="KVz-eX-t2B" id="9Un-Hf-Ymi"/>
+                        <outlet property="txtPinCode" destination="XZl-Ii-qdm" id="9D3-El-26m"/>
+                        <outlet property="txtState" destination="W2r-cC-awE" id="CXk-id-yDt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="03v-21-tXm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2956" y="80"/>
         </scene>
     </scenes>
     <resources>

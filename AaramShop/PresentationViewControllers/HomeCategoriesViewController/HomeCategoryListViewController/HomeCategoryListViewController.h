@@ -18,6 +18,7 @@
 @interface HomeCategoryListViewController : UIViewController<SWTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate,AaramShop_ConnectionManager_Delegate>
 {
     __weak IBOutlet UITableView *tblStores;
+	__weak IBOutlet UILabel *lblMessage;
     
     NSMutableArray *arrAllStores;
     

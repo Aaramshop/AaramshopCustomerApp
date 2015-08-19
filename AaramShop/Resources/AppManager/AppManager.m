@@ -138,7 +138,7 @@ AppDelegate *appDeleg;
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kQualification] forKey:kQualification];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kState] forKey:kState];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kToddlers] forKey:kToddlers];
-    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kUserId] forKey:kUserId];
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",[dict objectForKey:kUserId]] forKey:kUserId];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 -(NSArray *)getcountryList
