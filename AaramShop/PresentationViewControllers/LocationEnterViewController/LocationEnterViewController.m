@@ -12,6 +12,7 @@
 #import "AaramShop_ConnectionManager.h"
 #import "HomeStoreViewController.h"
 #import "AddressModel.h"
+#import "AddNewLocationViewController.h"
 @interface LocationEnterViewController ()
 {
     AppDelegate *appDeleg;
@@ -713,8 +714,8 @@
 }
 
 - (IBAction)btnEditClick:(UIButton *)sender {
-    txtFLocation.userInteractionEnabled = NO;
-    [txtFLocation resignFirstResponder];
+//    txtFLocation.userInteractionEnabled = NO;
+//    [txtFLocation resignFirstResponder];
 //    AddressModel *addressModelTemp ;
 //    addressModelTemp.address = @"";
 //    addressModelTemp.state = @"";
@@ -722,7 +723,19 @@
 //    addressModelTemp.locality = @"";
 //    addressModelTemp.pincode = @"";
 
-    [self addLocationScreen:addressModel];
+//    [self addLocationScreen:addressModel];
+	//=================Tempory Code Begins===================
+	AddNewLocationViewController *addNewLocationView = (AddNewLocationViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"AddNewLocationView"];
+	addNewLocationView.delegate = self;
+	CGRect locationAlertViewRect = [UIScreen mainScreen].bounds;
+	addNewLocationView.view.frame = locationAlertViewRect;
+	[appDeleg.window addSubview:addNewLocationView.view];
+
+	//=================Tempory Code End===================
+}
+-(void)gotAddress:(double)lat longitude:(double)longitude
+{
+	[self updateMapScreenFromLatitude:lat andLongitude:longitude];
 }
 -(void)addLocationScreen:(AddressModel *)addModel
 {

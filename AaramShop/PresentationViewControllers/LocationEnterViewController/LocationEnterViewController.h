@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "LocationAlertViewController.h"
+#import "AddNewLocationViewController.h"
 @protocol LocationEnterViewControllerDelegate <NSObject>
 
 -(void)saveAddressInLocationEnter;
@@ -18,7 +19,7 @@ typedef void (^AddAddressCompletion)(void);
 
 
 
-@interface LocationEnterViewController : UIViewController<UITextFieldDelegate,MKMapViewDelegate,AaramShop_ConnectionManager_Delegate,LocationAlertViewControllerDelegate,CLLocationManagerDelegate>
+@interface LocationEnterViewController : UIViewController<UITextFieldDelegate,MKMapViewDelegate,AaramShop_ConnectionManager_Delegate,LocationAlertViewControllerDelegate,CLLocationManagerDelegate,AddNewLocationViewDelegate>
 {
    __weak IBOutlet UITextField *txtFLocation;
     __weak IBOutlet MKMapView *mapViewLocation;

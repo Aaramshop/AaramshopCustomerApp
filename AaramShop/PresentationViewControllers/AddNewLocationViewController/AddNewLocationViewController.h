@@ -7,20 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DDAnnotationView.h"
+@protocol AddNewLocationViewDelegate<NSObject>
+-(void)gotAddress:(CLLocationDegrees)lat longitude:(CLLocationDegrees)longitude;
+@end
 
-@interface AddNewLocationViewController : UIViewController<UIGestureRecognizerDelegate,MKMapViewDelegate,AaramShop_ConnectionManager_Delegate>
+@interface AddNewLocationViewController : UIViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
 {
+	__weak IBOutlet PWTextField *txtAddress;
 	__weak IBOutlet PWTextField *txtState;
 	__weak IBOutlet PWTextField *txtCity;
 	__weak IBOutlet PWTextField *txtLocality;
 	__weak IBOutlet PWTextField *txtPinCode;
 	UIButton *backBtn;
 	__weak IBOutlet UIButton *continueBtn;
-	__weak IBOutlet MKMapView *mapViewLocation;
-//	DXAnnotationView *annotationView;
-//	DXAnnotation *annotation1;
 }
+@property(nonatomic,weak) id<AddNewLocationViewDelegate> delegate;
 @property (weak, nonatomic) IBOutlet AKKeyboardAvoidingScrollView *scrollView;
 - (IBAction)btnContinue:(id)sender;
+- (IBAction)btnBackClicked:(id)sender;
 @end
