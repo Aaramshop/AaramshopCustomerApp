@@ -36,7 +36,9 @@
 		btnCancel.hidden=NO;
         self.navigationController.navigationBarHidden = YES;
     }
-    
+	self.addNewLocationView = (AddNewLocationViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"AddNewLocationView"];
+	self.addNewLocationView.delegate = self;
+
     appDeleg = APP_DELEGATE;
     txtFLocation.delegate = self;
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
@@ -725,16 +727,22 @@
 
 //    [self addLocationScreen:addressModel];
 	//=================Tempory Code Begins===================
-	AddNewLocationViewController *addNewLocationView = (AddNewLocationViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"AddNewLocationView"];
-	addNewLocationView.delegate = self;
-	[appDeleg.window addSubview:addNewLocationView.view];
+	self.addNewLocationView.addModel = addressModel;
+	[appDeleg.window addSubview:self.addNewLocationView.view];
 
 	//=================Tempory Code End===================
 }
--(void)gotAddress:(double)lat longitude:(double)longitude
+-(void)gotAddress:(CLLocationCoordinate2D)location withModel:(AddressModel *)addressMdl
 {
-	[self updateMapScreenFromLatitude:lat andLongitude:longitude];
+	cordinatesLocation = location;
+	addressModel = addressMdl;
+	txtFLocation.text = [NSString stringWithFormat:@"%@, %@, %@, %@, %@",addressMdl.address,addressMdl.locality,addressMdl.city,addressMdl.state,addressMdl.pincode];
+	[self updateMapScreenFromLatitude:location.latitude andLongitude:location.longitude];
+
+//	[self getAddressFromLatitude:location.latitude andLongitude:location.longitude];
+//	[self updateMapScreenFromLatitude:location.latitude andLongitude:location.longitude];
 }
+
 -(void)addLocationScreen:(AddressModel *)addModel
 {
     locationAlert =  [self.storyboard instantiateViewControllerWithIdentifier :@"LocationAlertScreen"];

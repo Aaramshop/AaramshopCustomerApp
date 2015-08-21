@@ -32,7 +32,7 @@ typedef void (^AddAddressCompletion)(void);
 @property (nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager ;
 @property (nonatomic, copy) AddAddressCompletion addAddressCompletion;
 @property (nonatomic, strong) CLLocationManager *locationManager;
-
+@property (nonatomic, strong)	AddNewLocationViewController *addNewLocationView;
 
 - (IBAction)btnCancelClicked:(id)sender;
 

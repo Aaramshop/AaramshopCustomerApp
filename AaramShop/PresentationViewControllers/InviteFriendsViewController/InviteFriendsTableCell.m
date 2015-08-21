@@ -45,5 +45,12 @@
 	
 	
 }
+-(IBAction)actionInviteUser:(id)sender
+{
+	if ([self.delegateInvite respondsToSelector:@selector(btnInviteClicked:isFromFacebook:)])
+	{
+		[self.delegateInvite btnInviteClicked:_indexPath isFromFacebook:YES];
+	}
+}
 
 @end

@@ -55,14 +55,19 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.sideBar = [Utils createLeftBarWithDelegate:self];
-
-	
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kBroadcastNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotBroadCastMessage:) name:kBroadcastNotification object:nil];
 	
 }
-
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+	if([AppManager sharedManager].notifyDict && [[[AppManager sharedManager].notifyDict valueForKey:@"pType"]integerValue]==3)
+	{
+		[self btnBroadcastClicked];
+		[AppManager sharedManager].notifyDict = nil;
+		return;
+	}
 	if(!arrAddress)
 	{
 		arrAddress = [[NSMutableArray alloc]init];
@@ -210,9 +215,15 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
 	UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
 
-	
-	
-	UIImage *imgBroadcast = [UIImage imageNamed:@"bellIcon"];
+	UIImage *imgBroadcast = nil;
+	if([[NSUserDefaults standardUserDefaults] boolForKey:kBroadcastNotificationAvailable])
+	{
+		imgBroadcast = [UIImage imageNamed:@"bellIconRed"];
+	}
+	else
+	{
+		imgBroadcast = [UIImage imageNamed:@"bellIcon"];
+	}
 	
 	btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
 	btnBroadcast.bounds = CGRectMake( 0, 0, 26, 26);
@@ -775,7 +786,10 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 {
     [containerVC scrollMenuViewSelectedIndex:pageIndex];
 }
-
+- (void)gotBroadCastMessage:(NSNotification *)notification
+{
+	[self setUpNavigationBar];
+}
 
 /*
 

@@ -36,6 +36,7 @@ void MyAddressBookExternalChangeCallback (
 @property (nonatomic, assign)BOOL isFetchingContacts;
 @property (nonatomic, strong)NSMutableDictionary *notifyDict;
 @property (nonatomic, assign)NSInteger intCount;
+@property (nonatomic, assign) BOOL broadcastNotificationAvailable;
 @property (nonatomic, strong) CMCountryList *cmCountryList;
 @property (nonatomic, strong) UIImage *imgProfile;
 

@@ -100,6 +100,11 @@
 	arrCartProducts						= [NSMutableArray arrayWithArray:[AppManager getCartProductsByStoreId:self.strStore_Id]];
 	arrCartProductIds					=	[arrCartProducts valueForKey:kProduct_id];
 	//==============================================
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kBroadcastNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotBroadCastMessage:) name:kBroadcastNotification object:nil];
+	
+
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -542,8 +547,15 @@
 	UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
 	
 	
-	
-	UIImage *imgBroadcast = [UIImage imageNamed:@"bellIcon"];
+	UIImage *imgBroadcast = nil;
+	if([[NSUserDefaults standardUserDefaults] boolForKey:kBroadcastNotificationAvailable])
+	{
+		imgBroadcast = [UIImage imageNamed:@"bellIconRed"];
+	}
+	else
+	{
+		imgBroadcast = [UIImage imageNamed:@"bellIcon"];
+	}
 	
 	UIButton *btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
 	btnBroadcast.bounds = CGRectMake( 0, 0, 24, 24);
@@ -1235,7 +1247,10 @@
     
 }
 
-
+- (void)gotBroadCastMessage:(NSNotification *)notification
+{
+	[self setUpNavigationBar];
+}
 /*
 
 {

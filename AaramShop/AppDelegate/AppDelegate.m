@@ -84,8 +84,8 @@
 	
 	UILocalNotification *localNotif =[launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
 	if (localNotif) {
-		NSLog(@"*****Remote Notification********%@",localNotif);
-		if([[localNotif valueForKey:@"type"] intValue]==1 || [[localNotif valueForKey:@"type"] intValue]==2)
+		NSLog(@"*****App Launch Remote Notification********%@",localNotif);
+		if([[[localNotif valueForKey:@"aps"] valueForKey:@"pType"] intValue]==1||[[[localNotif valueForKey:@"aps"] valueForKey:@"pType"] intValue]==2 || [[[localNotif valueForKey:@"aps"] valueForKey:@"pType"] intValue]==3)
 		{
 			[AppManager sharedManager].notifyDict= [NSMutableDictionary dictionaryWithDictionary:[localNotif valueForKey:@"aps"]];
 		}
@@ -99,6 +99,16 @@
 
 	
     return YES;
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url  sourceApplication:(NSString *)sourceApplication
+		 annotation:(id)annotation
+{
+	NSString *str=[NSString stringWithFormat:@"%@",url];
+	if ([[str substringToIndex:2] isEqualToString:@"fb"])
+	{
+		return [FBSession.activeSession handleOpenURL:url];
+	}
+	return NO;
 }
 //-(void)findCurrentLocation
 //{
@@ -167,12 +177,27 @@
 	// NSLog(@"%@",[[userInfo valueForKey:@"aps"] valueForKey:@"alert"]);
 	UILocalNotification *localNotif =[userInfo objectForKey: @"aps"];
 	if (localNotif) {
-		NSLog(@"*****Remote Notification********%@",localNotif);
-		if([[localNotif valueForKey:@"type"] intValue]==1 || [[localNotif valueForKey:@"type"] intValue]==2)
+		
+		[Utils playSound:@"CashRegister"];
+		NSLog(@"*****did Receive Remote Notification********%@",localNotif);
+		if([[localNotif valueForKey:@"pType"] intValue]==3)
 		{
-			[AppManager sharedManager].notifyDict= [NSMutableDictionary dictionaryWithDictionary:[localNotif valueForKey:@"aps"]];
+			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:kBroadcastNotificationAvailable];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			[[NSNotificationCenter defaultCenter] postNotificationName:kBroadcastNotification object:nil];
+		}
+		else if([[localNotif valueForKey:@"pType"] intValue]==1)
+		{
+			[AppManager  sharedManager].notifyDict = [NSMutableDictionary dictionaryWithDictionary:[userInfo valueForKey:@"aps"]];
+			[[[self.tabBarController.tabBar items]objectAtIndex:3]setBadgeValue:@"1"];
 		}
 	}
+
+//		if([[localNotif valueForKey:@"type"] intValue]==1 || [[localNotif valueForKey:@"type"] intValue]==2)
+//		{
+//			[AppManager sharedManager].notifyDict= [NSMutableDictionary dictionaryWithDictionary:[userInfo valueForKey:@"aps"]];
+//		}
+//	}
 	
 	//When app is active than only home screen counts should be refreshed
 	if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive){
@@ -754,7 +779,19 @@
 	[gCXMPPController connect];
 	self.tabBarController.delegate = self;
 	[self.window setRootViewController:self.tabBarController];
-	[self.tabBarController setSelectedIndex:0];
+	if([[[AppManager sharedManager].notifyDict objectForKey:@"pType"] integerValue]==1)
+	{
+		[self.tabBarController setSelectedIndex:3];
+	}
+	else if([[[AppManager sharedManager].notifyDict objectForKey:@"pType"] integerValue]==2)
+	{
+		[self.tabBarController setSelectedIndex:2];
+		[AppManager sharedManager].notifyDict = nil;
+	}
+	else
+	{
+		[self.tabBarController setSelectedIndex:0];
+	}
 	self.navController = nil;
 }
 - (void) logout:(NSNotification *) aNotification{

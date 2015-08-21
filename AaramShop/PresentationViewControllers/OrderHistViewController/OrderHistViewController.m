@@ -45,9 +45,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:YES];
-    
-    lblMessage.hidden = YES;
-    [self setNavigationBar];
+	[[[self.tabBarController.tabBar items]objectAtIndex:3]setBadgeValue:nil];
+	lblMessage.hidden = YES;
+	[self setNavigationBar];
 	[self callWebServiceToGetOrderHistory];
 }
 
@@ -327,6 +327,20 @@
 				[self appendDataForPullUp:[self parseData:[responseObject objectForKey:@"order_history"]]];
 			}
 			[tblView reloadData];
+
+			if([AppManager sharedManager].notifyDict && [[[AppManager sharedManager].notifyDict objectForKey:@"pType"] integerValue]==1)
+			{
+				NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.order_id == %@",[[AppManager sharedManager].notifyDict valueForKey:@"order_id"]];
+				NSArray *array = [arrOrderHist filteredArrayUsingPredicate:predicate];
+				if([array count]>0)
+				{
+					OrderHistDetailViewCon *OrderHistDetailVc=[self.storyboard instantiateViewControllerWithIdentifier:@"OrderHistDetailViewScene"];
+					OrderHistDetailVc.orderHist = [array objectAtIndex:0];
+					[self.navigationController pushViewController:OrderHistDetailVc animated:YES];
+				}
+				[AppManager sharedManager].notifyDict = nil;
+			}
+
 		}
         else
         {

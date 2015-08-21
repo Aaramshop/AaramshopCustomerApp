@@ -38,6 +38,8 @@
 #define kLoginSuccessfulNotificationName		@"LoginSuccessful"
 #define kLogoutSuccessfulNotificationName	@"LogoutSuccessful"
 #define kProductsCount									@"productsCount"
+
+
 #pragma mark - Common keys
 
 #define APP_DELEGATE (AppDelegate*)[[UIApplication sharedApplication]delegate]
@@ -199,7 +201,8 @@
 #pragma mark - OTP Validation Keys
 
 #define kOtp														@"otp"
-
+#define kBroadcastNotification							@"broadcastNotification"
+#define kBroadcastNotificationAvailable			@"broadcastNotificationAvailable"
 //==================Sign Up============
 
 #define kFileType												@"fileType"

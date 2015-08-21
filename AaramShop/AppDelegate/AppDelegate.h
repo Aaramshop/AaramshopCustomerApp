@@ -11,7 +11,7 @@
 #import "SMChatViewController.h"
 #import <CoreData/CoreData.h>
 #import "StoreModel.h"
-
+#import <FacebookSDK/FacebookSDK.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate,UINavigationControllerDelegate>
 {
 //	CLGeocoder *geocoder;

@@ -200,12 +200,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	CMOffers *cmOffers = [arrOffers objectAtIndex: indexPath.row];
-	if([cmOffers.offerType isEqualToString:@"6"])
+	if(segmentIndex ==0)
 	{
-		return 110;
+		CMOffers *cmOffers = [arrOffers objectAtIndex: indexPath.row];
+		if([cmOffers.offerType isEqualToString:@"6"])
+		{
+			return 110;
+		}
+		return 90;
 	}
-	return 90;
+	else
+	{
+		return 90;
+	}
 	
 }
 

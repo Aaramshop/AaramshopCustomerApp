@@ -30,7 +30,7 @@
 	[done addTarget:self action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
 	
 	UIImageView *imgView = (UIImageView *)[viewFBMessage viewWithTag:103];
-	[imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_320 ],[[NSUserDefaults standardUserDefaults] valueForKey:kStore_image]]] placeholderImage:[UIImage imageNamed:@"chatDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+	[imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_320 ],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]]] placeholderImage:[UIImage imageNamed:@"chatDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 		//<#code#>
 	}];
 	[self setNavigationBar];
@@ -40,12 +40,16 @@
 	fbPage_no = @"0";
 	isLoading = NO;
 	tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-	[self pushToFacebookApp];
+//	[self pushToFacebookApp];
 	//	[btnFacebook setExclusiveTouch:YES];
 	
 	
 }
-
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:YES];
+	[self pushToFacebookApp];
+}
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
@@ -118,8 +122,8 @@
 		cell = (InviteFriendsTableCell *)[[InviteFriendsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 	}
 	cell.indexPath = indexPath;
-	[cell updateInviteFriendCellWithData:[arrFBUsers objectAtIndex:indexPath.row]];
 	cell.delegateInvite = self;
+	[cell updateInviteFriendCellWithData:[arrFBUsers objectAtIndex:indexPath.row]];
 	
 	return cell;
 	
@@ -174,7 +178,7 @@
 - (void)sendInvite:(NSString *)userId
 {
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-								   tvFBMessage.text,@"message",userId,@"tags",[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_320 ],[[NSUserDefaults standardUserDefaults] valueForKey:kStore_image]],@"picture",@"https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=964132113&mt=8",@"link",
+								   tvFBMessage.text,@"message",userId,@"tags",[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_320 ],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]],@"picture",@"https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=964132113&mt=8",@"link",
 								   [[NSUserDefaults standardUserDefaults] objectForKey:@"facebookLocation"],@"place",
 								   nil];
 	
@@ -197,25 +201,43 @@
 			 //             [tblView reloadData];
 		 }
 	 }];
-	
-	
 }
--(void)btnInviteClicked:(NSIndexPath *)indexPath
+-(void)btnInviteClicked:(NSIndexPath *)indexPath isFromFacebook:(BOOL)userType
 {
-	NSMutableDictionary *dic = [arrFBUsers objectAtIndex:indexPath.row];
-	NSString *userIds = [dic objectForKey:kUserId];
-	if([Utils isInternetAvailable])
+	if (userType==YES)
 	{
-		selectedFBId = userIds;
-		[viewFBMessage setFrame:appDeleg.window.bounds];
-		[appDeleg.window addSubview:viewFBMessage];
-		[tvFBMessage becomeFirstResponder];
-	}
-	else
-	{
-		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		NSMutableDictionary *dic = [arrFBUsers objectAtIndex:indexPath.row];
+		NSString *userIds = [dic objectForKey:kUserId];
+		if([Utils isInternetAvailable])
+		{
+			selectedFBId = userIds;
+			[viewFBMessage setFrame:appDeleg.window.bounds];
+			[appDeleg.window addSubview:viewFBMessage];
+			[tvFBMessage becomeFirstResponder];
+		}
+		else
+		{
+			[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		}
+		
 	}
 }
+//-(void)btnInviteClicked:(NSIndexPath *)indexPath
+//{
+//	NSMutableDictionary *dic = [arrFBUsers objectAtIndex:indexPath.row];
+//	NSString *userIds = [dic objectForKey:kUserId];
+//	if([Utils isInternetAvailable])
+//	{
+//		selectedFBId = userIds;
+//		[viewFBMessage setFrame:appDeleg.window.bounds];
+//		[appDeleg.window addSubview:viewFBMessage];
+//		[tvFBMessage becomeFirstResponder];
+//	}
+//	else
+//	{
+//		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+//	}
+//}
 -(void)pushToFacebookApp
 {
 	if (![Utils isInternetAvailable])

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddressModel.h"
 @protocol AddNewLocationViewDelegate<NSObject>
--(void)gotAddress:(CLLocationDegrees)lat longitude:(CLLocationDegrees)longitude;
+-(void)gotAddress:(CLLocationCoordinate2D)location withModel:(AddressModel*)addressMdl;
 @end
 
 @interface AddNewLocationViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
@@ -23,7 +24,7 @@
 }
 @property(nonatomic,weak) id<AddNewLocationViewDelegate> delegate;
 @property (weak, nonatomic) IBOutlet AKKeyboardAvoidingScrollView *scrollView;
-
+@property (nonatomic, strong)	AddressModel *addModel;
 - (IBAction)backBtnAction:(id)sender;
 - (IBAction)btnSearch:(id)sender;
 

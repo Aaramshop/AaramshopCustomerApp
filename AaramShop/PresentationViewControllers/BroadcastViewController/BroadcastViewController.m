@@ -19,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[[NSUserDefaults standardUserDefaults] setBool:NO forKey:kBroadcastNotificationAvailable];
+	[[NSUserDefaults standardUserDefaults] synchronize];
     // Do any additional setup after loading the view.
 	broadcastPageNo = 0;
 	broadcastTotalNoOfPages = 0;

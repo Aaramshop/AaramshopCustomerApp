@@ -10,7 +10,7 @@
 #import "FacebookLoginClass.h"
 #import "InviteFriendsTableCell.h"
 
-@interface InviteFriendsViewController : UIViewController<AaramShop_ConnectionManager_Delegate,InviteUserdelegate,UITextViewDelegate>
+@interface InviteFriendsViewController : UIViewController<AaramShop_ConnectionManager_Delegate,InviteFriendsTableCelldelegate,UITextViewDelegate>
 {
 	NSMutableArray *arrFBUsers;
 	__weak IBOutlet UITableView *tblView;
