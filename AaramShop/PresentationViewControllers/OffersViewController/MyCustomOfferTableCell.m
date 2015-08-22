@@ -9,7 +9,8 @@
 #import "MyCustomOfferTableCell.h"
 @implementation MyCustomOfferTableCell
 
-
+@synthesize btnRemove;
+@synthesize btnAdd;
 - (void)awakeFromNib {
     // Initialization code
 }

@@ -19,9 +19,10 @@
 	__weak IBOutlet UILabel *lblDescription;
 	__weak IBOutlet UILabel *lblLine;
 	__weak IBOutlet UILabel *lblCounter;
-	__weak IBOutlet UIButton *btnRemove;
-	__weak IBOutlet UIButton *btnAdd;
 }
+@property (nonatomic, strong) IBOutlet UIButton *btnRemove;
+@property (nonatomic, strong) IBOutlet UIButton *btnAdd;
+
 @property (nonatomic, strong) NSIndexPath *indexPath;
 -(void)updateCellWithData:(CMOffers *)offers;
 - (IBAction)btnRemoveClicked:(id)sender;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OffersTableCell.h"
-@interface BroadcastViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,AaramShop_ConnectionManager_Delegate>
+@interface BroadcastViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,AaramShop_ConnectionManager_Delegate,OffersTableCellDelegate>
 {
 	__weak IBOutlet UITableView *tblView;
     __weak IBOutlet UILabel *lblMessage;

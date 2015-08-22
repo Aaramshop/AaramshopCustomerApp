@@ -736,7 +736,8 @@
 {
 	cordinatesLocation = location;
 	addressModel = addressMdl;
-	txtFLocation.text = [NSString stringWithFormat:@"%@, %@, %@, %@, %@",addressMdl.address,addressMdl.locality,addressMdl.city,addressMdl.state,addressMdl.pincode];
+	strYourCurrentAddress = [NSString stringWithFormat:@"%@, %@, %@, %@, %@",addressMdl.address,addressMdl.locality,addressMdl.city,addressMdl.state,addressMdl.pincode];
+	txtFLocation.text = strYourCurrentAddress;
 	[self updateMapScreenFromLatitude:location.latitude andLongitude:location.longitude];
 
 //	[self getAddressFromLatitude:location.latitude andLongitude:location.longitude];
@@ -756,6 +757,9 @@
 }
 -(void)saveAddress
 {
+	CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:cordinatesLocation.latitude longitude:cordinatesLocation.longitude];
+	appDeleg.myCurrentLocation = newLocation;
+
     if (self.addAddressCompletion)
     {
         self.addAddressCompletion();

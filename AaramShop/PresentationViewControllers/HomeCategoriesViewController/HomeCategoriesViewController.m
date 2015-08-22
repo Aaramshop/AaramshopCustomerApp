@@ -91,12 +91,21 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 			
 		}
 	}
+	else
+	{
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.longitude CONTAINS[cd] %@ AND SELF.latitude CONTAINS[cd] %@",[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude],[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude]];
+		NSArray *arrFilter = [arrAddress filteredArrayUsingPredicate:predicate];
+		if([arrFilter count]>0)
+		{
+			strHeaderTitle = [[arrFilter objectAtIndex:0] objectForKey:@"user_address_title"];
+		}
+	}
 	 [self setUpNavigationBar];
 
-	if([arrCategories count]==0)
-	{
-		[self createDataToGetStores];
-	}
+//	if([arrCategories count]==0)
+//	{
+		[self	createDataToGetStores];
+//	}
     NSLog(@"value = %f",appDeleg.myCurrentLocation.coordinate.latitude);
     if(![gCXMPPController isConnected])
     {

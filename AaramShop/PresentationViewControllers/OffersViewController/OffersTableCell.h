@@ -20,10 +20,11 @@
 	__weak IBOutlet UILabel *lblbrandName;
 	__weak IBOutlet UILabel *lblLine;
 	__weak IBOutlet UILabel *lblCounter;
-	__weak IBOutlet UIButton *btnRemove;
-	__weak IBOutlet UIButton *btnAdd;
+
 	__weak IBOutlet UILabel *lblViewDetails;
 }
+@property (nonatomic, strong)	IBOutlet UIButton *btnRemove;
+@property (nonatomic, strong)	IBOutlet UIButton *btnAdd;
 @property (nonatomic, strong) CMOffers *offers;
 @property(nonatomic,strong) id<OffersTableCellDelegate> delegate;
 @property (nonatomic, strong) NSIndexPath *indexPath;

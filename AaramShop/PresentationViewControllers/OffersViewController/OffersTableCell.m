@@ -9,7 +9,8 @@
 #import "OffersTableCell.h"
 
 @implementation OffersTableCell
-
+@synthesize btnAdd;
+@synthesize btnRemove;
 - (void)awakeFromNib {
     // Initialization code
 }

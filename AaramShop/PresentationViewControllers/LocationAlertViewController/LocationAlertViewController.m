@@ -49,31 +49,31 @@
 }
 -(void)saveAddressIntoDataBase
 {
-    NSMutableArray *arrAddress = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults]valueForKey:kAddressForLocation]] ;
-    
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setObject:txtAddress.text forKey:kAddress];
-    [dict setObject:txtState.text forKey:kState];
-    [dict setObject:txtCity.text forKey:kCity];
-    [dict setObject:txtLocality.text forKey:kLocality];
-    [dict setObject:txtPinCode.text forKey:kPincode];
-    
-    if (btnHome.selected) {
-        [dict setObject:@"Home" forKey:kTitle];
-        [arrAddress replaceObjectAtIndex:0 withObject:dict];
-    }
-    else if (btnOffice.selected) {
-        [dict setObject:@"Office" forKey:kTitle];
-        [arrAddress replaceObjectAtIndex:1 withObject:dict];
-    }
-    else if (btnOthers.selected) {
-        [dict setObject:txtTitle.text forKey:kTitle];
-        [arrAddress addObject:dict];
-    }
-    
-    [[NSUserDefaults standardUserDefaults]setObject:arrAddress forKey:kAddressForLocation];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    
+//    NSMutableArray *arrAddress = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults]valueForKey:kAddressForLocation]] ;
+//    
+//    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+//    [dict setObject:txtAddress.text forKey:kAddress];
+//    [dict setObject:txtState.text forKey:kState];
+//    [dict setObject:txtCity.text forKey:kCity];
+//    [dict setObject:txtLocality.text forKey:kLocality];
+//    [dict setObject:txtPinCode.text forKey:kPincode];
+//    
+//    if (btnHome.selected) {
+//        [dict setObject:@"Home" forKey:kTitle];
+//        [arrAddress replaceObjectAtIndex:0 withObject:dict];
+//    }
+//    else if (btnOffice.selected) {
+//        [dict setObject:@"Office" forKey:kTitle];
+//        [arrAddress replaceObjectAtIndex:1 withObject:dict];
+//    }
+//    else if (btnOthers.selected) {
+//        [dict setObject:txtTitle.text forKey:kTitle];
+//        [arrAddress addObject:dict];
+//    }
+//    
+//    [[NSUserDefaults standardUserDefaults]setObject:arrAddress forKey:kAddressForLocation];
+//    [[NSUserDefaults standardUserDefaults]synchronize];
+//    
     [self.view removeFromSuperview];
     
     if (self.delegate && [self.delegate conformsToProtocol:@protocol(LocationAlertViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(saveAddress)])

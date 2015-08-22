@@ -117,18 +117,40 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString *cellIdentifier = @"OffersCell";
-	
-	OffersTableCell *cell = (OffersTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-	if (cell == nil) {
-		cell = [[OffersTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-	}
-	
 	CMOffers *offers = [arrBroadcast objectAtIndex:indexPath.row];
-	cell.indexPath=indexPath;
-	[cell updateCellWithData: offers];
+	static NSString *cellIdentifier = nil;
 	
-	return cell;
+	if([offers.offerType isEqualToString:@"6"])
+	{
+		cellIdentifier = @"CustomOffersCell";
+		MyCustomOfferTableCell *cell = (MyCustomOfferTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+		if (cell == nil) {
+			cell = [[MyCustomOfferTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+		}
+		cell.delegate = self;
+		cell.indexPath=indexPath;
+		cell.offers = offers;
+		[cell.btnAdd setHidden:YES];
+		[cell.btnRemove setHidden:YES];
+		[cell updateCellWithData: offers];
+		return cell;
+	}
+	else
+	{
+		cellIdentifier = @"OffersCell";
+		OffersTableCell *cell = (OffersTableCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+		if (cell == nil) {
+			cell = [[OffersTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+		}
+		cell.delegate = self;
+		cell.indexPath=indexPath;
+		cell.offers = offers;
+		[cell.btnAdd setHidden:YES];
+		[cell.btnRemove setHidden:YES];
+		[cell updateCellWithData: offers];
+		return cell;
+	}
+	return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
