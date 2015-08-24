@@ -813,6 +813,8 @@
 		36907ACB1B5BCC720017A504 /* walletPointsIconInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = 36907AB31B5BCC720017A504 /* walletPointsIconInactive.png */; };
 		36907ACC1B5BCC720017A504 /* walletPointsIconInactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36907AB41B5BCC720017A504 /* walletPointsIconInactive@2x.png */; };
 		36907ACD1B5BCC720017A504 /* walletPointsIconInactive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36907AB51B5BCC720017A504 /* walletPointsIconInactive@3x.png */; };
+		3692F7281B8B355A00721BB8 /* UpdateMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3692F7271B8B355A00721BB8 /* UpdateMobileViewController.m */; };
+		3692F72C1B8B48FD00721BB8 /* CMUpdateUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3692F72B1B8B48FD00721BB8 /* CMUpdateUsers.m */; };
 		36939B151B73705B008E6851 /* dropDownArrowLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 36939B121B73705B008E6851 /* dropDownArrowLocation.png */; };
 		36939B161B73705B008E6851 /* dropDownArrowLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36939B131B73705B008E6851 /* dropDownArrowLocation@2x.png */; };
 		36939B171B73705B008E6851 /* dropDownArrowLocation@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36939B141B73705B008E6851 /* dropDownArrowLocation@3x.png */; };
@@ -2557,6 +2559,10 @@
 		36907AB31B5BCC720017A504 /* walletPointsIconInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walletPointsIconInactive.png; sourceTree = "<group>"; };
 		36907AB41B5BCC720017A504 /* walletPointsIconInactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walletPointsIconInactive@2x.png"; sourceTree = "<group>"; };
 		36907AB51B5BCC720017A504 /* walletPointsIconInactive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walletPointsIconInactive@3x.png"; sourceTree = "<group>"; };
+		3692F7261B8B355A00721BB8 /* UpdateMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateMobileViewController.h; sourceTree = "<group>"; };
+		3692F7271B8B355A00721BB8 /* UpdateMobileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateMobileViewController.m; sourceTree = "<group>"; };
+		3692F72A1B8B48FD00721BB8 /* CMUpdateUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMUpdateUsers.h; sourceTree = "<group>"; };
+		3692F72B1B8B48FD00721BB8 /* CMUpdateUsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMUpdateUsers.m; sourceTree = "<group>"; };
 		36939B121B73705B008E6851 /* dropDownArrowLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropDownArrowLocation.png; sourceTree = "<group>"; };
 		36939B131B73705B008E6851 /* dropDownArrowLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropDownArrowLocation@2x.png"; sourceTree = "<group>"; };
 		36939B141B73705B008E6851 /* dropDownArrowLocation@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropDownArrowLocation@3x.png"; sourceTree = "<group>"; };
@@ -5521,6 +5527,24 @@
 			path = WalletImages;
 			sourceTree = "<group>";
 		};
+		3692F7251B8B34F500721BB8 /* UpdateMobileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3692F7261B8B355A00721BB8 /* UpdateMobileViewController.h */,
+				3692F7271B8B355A00721BB8 /* UpdateMobileViewController.m */,
+			);
+			path = UpdateMobileViewController;
+			sourceTree = "<group>";
+		};
+		3692F7291B8B48ED00721BB8 /* CMUpdateUsers */ = {
+			isa = PBXGroup;
+			children = (
+				3692F72A1B8B48FD00721BB8 /* CMUpdateUsers.h */,
+				3692F72B1B8B48FD00721BB8 /* CMUpdateUsers.m */,
+			);
+			path = CMUpdateUsers;
+			sourceTree = "<group>";
+		};
 		36A69EC31B57C4FA0058EB88 /* WalletViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5806,6 +5830,7 @@
 		6B0676E01B06024B0002259E /* BusinessModel */ = {
 			isa = PBXGroup;
 			children = (
+				3692F7291B8B48ED00721BB8 /* CMUpdateUsers */,
 				36CA643B1B70820300A3BBB1 /* CMGlobalSearch */,
 				36D118F61B6C99CF0013C84B /* CMWalletOffer */,
 				6BEABEE71B67BC5C00398164 /* CouponModel */,
@@ -6071,6 +6096,7 @@
 				27BE657A1B0203CC004FA4B4 /* OrderHistViewController */,
 				27BE657B1B0203CC004FA4B4 /* ShoplistViewController */,
 				6B388E161AFCC2FF00FF3CF3 /* LocationEnterViewController */,
+				3692F7251B8B34F500721BB8 /* UpdateMobileViewController */,
 				6B12DCDC1AF2A45800245209 /* MobileEnterViewController */,
 				6B12DCDD1AF2A45800245209 /* MobileVerificationViewController */,
 				6B12DCD11AF29E6D00245209 /* ForgotPasswordViewController */,
@@ -8808,6 +8834,7 @@
 				274A5CB81B05C4AA009112B5 /* XMPPRoomMemoryStorage.m in Sources */,
 				274A5C931B05C4AA009112B5 /* XMPPElement.m in Sources */,
 				274A5CC71B05C4AA009112B5 /* XMPPvCardTempEmail.m in Sources */,
+				3692F72C1B8B48FD00721BB8 /* CMUpdateUsers.m in Sources */,
 				274A5DF31B05C88B009112B5 /* SHRequestSampleImage.m in Sources */,
 				274A5CA71B05C4AA009112B5 /* XMPPUserMemoryStorageObject.m in Sources */,
 				274A5C691B05C4AA009112B5 /* UITextView+UITextView_sh.m in Sources */,
@@ -8854,6 +8881,7 @@
 				274A5CFA1B05C4AA009112B5 /* XMPPStringPrep.m in Sources */,
 				27BE658A1B020432004FA4B4 /* OrderHistViewController.m in Sources */,
 				6B809DA51B31755D00E91673 /* NSData+ImageContentType.m in Sources */,
+				3692F7281B8B355A00721BB8 /* UpdateMobileViewController.m in Sources */,
 				274A5C8A1B05C4AA009112B5 /* XMPPDigestMD5Authentication.m in Sources */,
 				6B8EB2821B25AFD600402CFC /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				274A5D011B05C4AA009112B5 /* DDContextFilterLogFormatter.m in Sources */,
@@ -9132,7 +9160,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "4ecc529d-f865-4e83-a223-e3997e73088d";
+				PROVISIONING_PROFILE = "87183852-376d-42bd-b74a-f2337426942d";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -9168,7 +9196,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "4ecc529d-f865-4e83-a223-e3997e73088d";
+				PROVISIONING_PROFILE = "87183852-376d-42bd-b74a-f2337426942d";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -9205,7 +9233,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ecc529d-f865-4e83-a223-e3997e73088d";
+				PROVISIONING_PROFILE = "87183852-376d-42bd-b74a-f2337426942d";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -9241,7 +9269,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ecc529d-f865-4e83-a223-e3997e73088d";
+				PROVISIONING_PROFILE = "87183852-376d-42bd-b74a-f2337426942d";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;

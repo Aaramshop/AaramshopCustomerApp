@@ -28,10 +28,19 @@
     gst.cancelsTouchesInView = NO;
     gst.delegate = self;
     [self.view addGestureRecognizer:gst];
-    
+	if (strMobileNum == nil) {
+		strMobileNum = _updateUserModel.mobile;
+	}
     NSInteger mobLength = [strMobileNum length];
     lblMobileNumber.text = [NSString stringWithFormat:@"xxx xxx xx%@",[strMobileNum substringFromIndex:mobLength-2]];
-
+	UIImageView *img = [[UIImageView alloc] init];
+	[img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",_updateUserModel.image_url_320,_updateUserModel.profileImage ]] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+		
+	}];
+	if (gAppManager.imgProfile == nil) {
+		gAppManager.imgProfile = img.image;
+	}
+	
     if (gAppManager.imgProfile) {
         effectImage = [UIImageEffects imageByApplyingDarkEffectToImage:gAppManager.imgProfile];
         imgVBg.image = effectImage;
