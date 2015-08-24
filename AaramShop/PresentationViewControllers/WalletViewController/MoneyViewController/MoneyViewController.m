@@ -66,7 +66,7 @@
 			if([[responseObject objectForKey:kstatus] intValue] == 1)
 			{
 				lblMoney.text = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"total_money"]];
-				if ([lblMoney.text intValue]>0) {
+				if ([lblMoney.text intValue]<0) {
 					[viewMoney setHidden:NO];
 					[tblView setHidden:NO];
 					[lblMessage setHidden:YES];
@@ -80,10 +80,14 @@
 				}
 				if(pageno==0)
 				{
+					totalNoOfPages                                           =      [[responseObject objectForKey:kTotal_page] intValue];
+
 					[self createDataForFirstTimeGet:[self parseData:[responseObject objectForKey:@"money_data"]]];
 				}
 				else
 				{
+					totalNoOfPages                                           =      [[responseObject objectForKey:kTotal_page] intValue];
+
 					[self appendDataForPullUp:[self parseData:[responseObject objectForKey:@"money_data"]]];
 				}
 				
@@ -203,14 +207,12 @@
 			CMWalletMoney *walletMoneyModel			=      [[CMWalletMoney alloc] init];
 			
 			
-			walletMoneyModel.store_id			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kOrder_id]];
-			walletMoneyModel.store_name			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kOrder_code]];
-			walletMoneyModel.due_amount			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_id]];
+			walletMoneyModel.store_id			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_id]];
+			walletMoneyModel.due_amount			=	[NSString stringWithFormat:@"%@",[dict objectForKey:@"due_amount"]];
 			walletMoneyModel.store_name			=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_name]];
 			walletMoneyModel.order_amount			=	[[[NSString stringWithFormat:@"%@",[dict objectForKey:kOrder_amount]] componentsSeparatedByString:@"."]firstObject];
 			walletMoneyModel.order_date			=	[Utils stringFromDateForTimeWithAt:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kOrder_date] doubleValue]]];
 			
-			totalNoOfPages                                           =      [[dict objectForKey:kTotal_page] intValue];
 			
 			[array addObject:walletMoneyModel];
 		}
