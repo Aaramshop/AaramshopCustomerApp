@@ -23,6 +23,6 @@
 {
 	lblBrandName.text = walletMoneyModel.store_name;
 	lblDate.text = walletMoneyModel.order_date;
-	lblAmount.text = [NSString stringWithFormat:@"\u20B9 %@",walletMoneyModel.order_amount];
+	lblAmount.text = [NSString stringWithFormat:@"\u20B9 %@",[walletMoneyModel.due_amount stringByReplacingOccurrencesOfString:@"-" withString:@""] ];
 }
 @end
