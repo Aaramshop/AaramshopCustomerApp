@@ -39,7 +39,13 @@ static NSString *strCollectionCategory = @"collectionCategories";
     flowLayout1.minimumInteritemSpacing = 1.0f;
     [flowLayout1  setScrollDirection:UICollectionViewScrollDirectionVertical];
 
-    collectionVwCategory = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 54, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-54) collectionViewLayout:flowLayout1];
+//    collectionVwCategory = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 54, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-54) collectionViewLayout:flowLayout1];
+    
+    
+    collectionVwCategory = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 54, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(54+93+49)) collectionViewLayout:flowLayout1];
+
+    
+    
 
     collectionVwCategory.allowsSelection=YES;
     collectionVwCategory.alwaysBounceVertical = YES;
