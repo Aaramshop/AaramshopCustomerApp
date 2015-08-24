@@ -521,6 +521,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     viewSubcategories.backgroundColor = [UIColor clearColor];
     
     [viewSubcategories addSubview:containerVC.view];
+    
 }
 
 
