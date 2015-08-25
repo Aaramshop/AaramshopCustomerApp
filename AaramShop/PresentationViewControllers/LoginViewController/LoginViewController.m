@@ -34,11 +34,16 @@
 #ifdef DEBUG
 
     
-    txtUserName.text = @"9711859131";
-    txtPassword.text = @"WKYH";
-	
-    txtUserName.text = @"9999614234";
-    txtPassword.text = @"E98J";
+//    txtUserName.text = @"9711859131";
+//    txtPassword.text = @"WKYH";
+//	
+//    txtUserName.text = @"9999614234";
+//    txtPassword.text = @"E98J";
+    
+    txtUserName.text = @"dineshsolanki.mca@gmail.com";
+    txtPassword.text = @"V6CM";
+    
+    
 
 
 #else
