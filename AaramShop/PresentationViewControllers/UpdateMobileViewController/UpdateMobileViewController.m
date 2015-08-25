@@ -33,8 +33,12 @@
 	btnProfile.backgroundColor = [UIColor clearColor];
 	scrollViewMobileEnter = [[AKKeyboardAvoidingScrollView alloc] initWithFrame:CGRectMake(0, 0, scrollViewMobileEnter.frame.size.width, 0.01f)];
 	scrollViewMobileEnter.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
-	txtFMobileNumber.text = _updateUserModel.mobile;
-	txtFullName.text = _updateUserModel.fullname;
+	NSString *strMobile = [[NSUserDefaults standardUserDefaults] valueForKey:kMobile];
+	if ([strMobile isEqualToString:@"0"]) {
+		strMobile = @"";
+	}
+	txtFMobileNumber.text = strMobile;
+	txtFullName.text = [[NSUserDefaults standardUserDefaults] valueForKey:kFullname];
 	UITapGestureRecognizer *gst = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard)];
 	gst.cancelsTouchesInView = NO;
 	gst.delegate = self;
@@ -50,7 +54,7 @@
 		[imgVUser setFrame:CGRectMake(0, 0, 160, 160)];
 	}
 	UIImageView *img = [[UIImageView alloc] init];
-	[img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",_updateUserModel.image_url_320,_updateUserModel.profileImage ]] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+	[img sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_320],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]]] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 		
 	}];
 	if (gAppManager.imgProfile == nil) {

@@ -178,7 +178,11 @@
 		{
 			if ([[responseObject objectForKey:@"mobile"] integerValue] == 0)
 			{
-				[self parseData:responseObject];
+				
+					UpdateMobileViewController *updateVwController =              (UpdateMobileViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"UpdateMobileScreen" ];
+					[AppManager saveDataToNSUserDefaults:responseObject];
+					[self.navigationController pushViewController:updateVwController animated:YES];
+			
 				
 			}
 		}
@@ -194,7 +198,9 @@
 		}
 		else if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"Registered But not Verified. OTP Sent!"])
 		{
-			[self parseData:responseObject];
+			MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
+			[AppManager saveDataToNSUserDefaults:responseObject];
+			[self.navigationController pushViewController:mobileVerificationVwController animated:YES];
 			
 		}
 		else
@@ -212,17 +218,16 @@
 	updateUserModel.image_url_320 = [responseObject objectForKey:kImage_url_320];
 	updateUserModel.image_url_640 = [responseObject objectForKey:kImage_url_640];
 	updateUserModel.profileImage = [responseObject objectForKey:kProfileImage];
-	updateUserModel.mobile = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"mobile"]];
-	if([updateUserModel.mobile isEqualToString:@"0"])
+	NSString *strMobile = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"mobile"]];
+	if([strMobile isEqualToString:@"0"])
 	{
-		updateUserModel.mobile = @"";
+		strMobile = @"";
 	}
 		
 	
 	if ([[responseObject objectForKey:kMessage] isEqualToString:@"Registered But not Verified. OTP Sent!"]) {
 		MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
-		
-		mobileVerificationVwController.updateUserModel = updateUserModel;
+		[AppManager saveDataToNSUserDefaults:responseObject];
 		[self.navigationController pushViewController:mobileVerificationVwController animated:YES];
 	}
 	else
