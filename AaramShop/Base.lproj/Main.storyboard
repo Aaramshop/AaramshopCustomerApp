@@ -4074,7 +4074,7 @@ Why not start with placing a new order now!</string>
         <!--Order Hist Detail View Con-->
         <scene sceneID="Xj5-xx-QHA">
             <objects>
-                <viewController storyboardIdentifier="OrderHistDetailViewScene" id="xtL-Dr-u0t" customClass="OrderHistDetailViewCon" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderHistDetailViewScene" hidesBottomBarWhenPushed="YES" id="xtL-Dr-u0t" customClass="OrderHistDetailViewCon" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="njl-rh-DRR"/>
                         <viewControllerLayoutGuide type="bottom" id="Wwk-oj-FAD"/>
