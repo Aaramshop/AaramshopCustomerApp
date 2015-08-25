@@ -11,6 +11,7 @@
 @interface PrescriptionViewController ()
 {
 	NSDictionary *dictToSend;
+    BOOL isImageCaptured;
 }
 @end
 
@@ -19,16 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-//    if ([[UIScreen mainScreen]bounds].size.height>480)
-//    {
-//        imgBackground.image = [UIImage imageNamed:@""];
-//    }
-//    else
-//    {
-//        imgBackground.image = [UIImage imageNamed:@""];
-//    }
-    
     
     
     imgPrescription.layer.cornerRadius = imgPrescription.frame.size.height/2;
@@ -50,6 +41,9 @@
 {
     [super viewWillAppear:YES];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+    isImageCaptured = NO;
 
 }
 
@@ -65,6 +59,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
@@ -107,6 +102,12 @@
 
 -(IBAction)actionContinue:(id)sender
 {
+    if (isImageCaptured == NO)
+    {
+        [Utils showAlertView:kAlertTitle message:@"Please upload image" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
 	AppDelegate *deleg = APP_DELEGATE;
 	SMChatViewController *chatView = nil;
 	chatView = [deleg createChatViewByChatUserNameIfNeeded:deleg.objStoreModel.chat_username];
@@ -170,7 +171,10 @@
     
     [pickerVw dismissViewControllerAnimated:YES completion:^{
 		dictToSend= [NSDictionary dictionaryWithDictionary: info];
-        imgPrescription.image = [UIImage scaleDownOriginalImage:[info objectForKey:@"UIImagePickerControllerEditedImage"]];
+        imgPrescription.image = [UIImage scaleDownOriginalImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
+        
+        isImageCaptured = YES;
+        
         lblUploadPicture.text = @"Change Picture";
     }];
     

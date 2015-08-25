@@ -1050,7 +1050,10 @@
 {
     strSelectedCategoryId = [dict objectForKey:kCategory_id];
     
-    if ([strSelectedCategoryId integerValue] == 496) // value for medicine
+    NSString *strCategoryName = [dict objectForKey:kCategory_name];
+    
+//    if ([strSelectedCategoryId integerValue] == 496) // value for medicine
+    if ([strCategoryName isEqualToString:@"Medicine"]) // Change done .. according to Dinesh - (ID can vary but name will never change ..)
     {
 		self.mainCategoryIndexPicker = 0;
 		strSelectedCategoryId = @"0";

@@ -268,19 +268,36 @@
 		[self.delegate sideBarDelegatePushMethod:inviteFriendsVCon];
 	}
 }
+
+-(NSMutableDictionary*)getAddress
+{
+    NSMutableDictionary *dicAddress = [[NSMutableDictionary alloc]init];
+    
+//    for (NSMutableDictionary *dict in arrAddress)
+//    {
+//        if ([[dict objectForKey:@"user_address_title"] isEqualToString:@"Home"]) {
+//            dicAddress = dict;
+//            break;
+//        }
+//    }
+ 
+    
+    NSArray *arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+    [dicAddress addEntriesFromDictionary:[arrAddress objectAtIndex:0]] ;
+
+    
+    return dicAddress;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (self.tag == 0) {
         UIImage* image;
-        NSArray *arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
-        NSMutableDictionary *dictAddress  = nil;
-        for (NSMutableDictionary *dict in arrAddress) {
-            
-            if ([[dict objectForKey:@"user_address_title"] isEqualToString:@"Home"]) {
-                dictAddress = dict;
-                break;
-            }
-        }
+
+        NSMutableDictionary *dictAddress  = [[NSMutableDictionary alloc]init];
+        
+        dictAddress = [self getAddress];
+        
         
         secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 216)];
         UIImageView *imgBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, secView.frame.size.width, 216)];
@@ -309,6 +326,8 @@
         UIImageView *imglocation=[[UIImageView alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 10, 20, 20)];
         imglocation.image=[UIImage imageNamed:@"locationIcon"];
         NSLog(@"%@", [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys]);
+        
+        
         UILabel *lblAddress = [[UILabel alloc]initWithFrame:CGRectMake(32, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-64, 40)];
         lblAddress.numberOfLines = 2;
         lblAddress.lineBreakMode = NSLineBreakByWordWrapping;
@@ -320,7 +339,7 @@
 		}
 		else
 		{
-			lblAddress.text = nil;
+			lblAddress.text = @"";
 		}
 //		}
 //		else
