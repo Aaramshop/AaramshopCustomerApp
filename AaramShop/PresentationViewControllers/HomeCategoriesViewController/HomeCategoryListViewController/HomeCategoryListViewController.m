@@ -61,6 +61,21 @@
     [tblStores setTableHeaderView:[[UIView alloc] initWithFrame:frame]];
     
     
+    tblRecommendedStore = [[UITableView alloc]init];
+    
+    tblRecommendedStore.bounces = NO;
+    tblRecommendedStore.backgroundColor = [UIColor whiteColor];
+    tblRecommendedStore.delegate = self;
+    tblRecommendedStore.dataSource = self;
+
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+	lblMessage.hidden = YES;
+
     ////
     if (!arrAllStores)
     {
@@ -73,43 +88,33 @@
     }
     
     
-    tblRecommendedStore = [[UITableView alloc]init];
     
-    tblRecommendedStore.bounces = NO;
-    tblRecommendedStore.backgroundColor = [UIColor whiteColor];
-    tblRecommendedStore.delegate = self;
-    tblRecommendedStore.dataSource = self;
-    
-    
-//    if (_storeModel)
+//    if (_isFirstPage==YES)
 //    {
-//        [arrAllStores addObjectsFromArray:_storeModel.arrFavoriteStores];
-//        [arrAllStores addObjectsFromArray:_storeModel.arrHomeStores];
-//        [arrAllStores addObjectsFromArray:_storeModel.arrShoppingStores];
+//        //        _totalNoOfPages = 0;
+//        //        [self callWebserviceToGetStoresList];
 //        
-//        [arrRecommendedStores addObjectsFromArray:_storeModel.arrRecommendedStores];
+//        [arrAllStores removeAllObjects];
+//        [arrRecommendedStores removeAllObjects];
+//        
 //    }
-    
-}
-
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-	lblMessage.hidden = YES;
-
-    NSInteger totalStoreCount = [arrAllStores count] + [arrRecommendedStores count];
-    
-    pageno = 1;
-    if (totalStoreCount==0)
-    {
+//    
+//    
+//    NSInteger totalStoreCount = [arrAllStores count] + [arrRecommendedStores count];
+//    
+//    pageno = 1;
+//    if (totalStoreCount==0)
+//    {
         _totalNoOfPages = 0;
         [self callWebserviceToGetStoresList];
-    }
+        
+//    }
+    
+    
     
     [tblStores reloadData];
+    [tblRecommendedStore reloadData];
 }
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -556,6 +561,9 @@
 
 - (void)responseReceived:(id)responseObject
 {
+    
+    NSLog(@"\n\nresponseObject == >> %@",responseObject);
+    
     isLoading = NO;
     [self showFooterLoadMoreActivityIndicator:NO];
     [refreshStoreList endRefreshing];

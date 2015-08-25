@@ -39,4 +39,6 @@
 @property(nonatomic,strong) StoreModel *storeModel;
 @property(nonatomic) NSInteger totalNoOfPages;
 
+//@property(nonatomic) BOOL isFirstPage;
+
 @end
