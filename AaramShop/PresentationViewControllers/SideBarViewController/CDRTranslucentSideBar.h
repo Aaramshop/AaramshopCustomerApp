@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "AaramShop_ConnectionManager.h"
 typedef enum
 {
     eAccountSettings=0,
@@ -37,9 +38,11 @@ typedef enum
 
 @end
 
-@interface CDRTranslucentSideBar : UIViewController <UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface CDRTranslucentSideBar : UIViewController <UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate,AaramShop_ConnectionManager_Delegate>
 {
 	AppDelegate *appDel;
+	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+
 }
 @property (nonatomic, assign) CGFloat sideBarWidth;
 @property (nonatomic, assign) CGFloat animationDuration;

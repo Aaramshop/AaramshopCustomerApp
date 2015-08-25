@@ -38,7 +38,7 @@
 #define kLoginSuccessfulNotificationName		@"LoginSuccessful"
 #define kLogoutSuccessfulNotificationName	@"LogoutSuccessful"
 #define kProductsCount									@"productsCount"
-
+#define kURLLogout											@"logout"
 
 #pragma mark - Common keys
 
