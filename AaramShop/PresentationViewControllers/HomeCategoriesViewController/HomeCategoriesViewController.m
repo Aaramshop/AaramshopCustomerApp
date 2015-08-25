@@ -546,8 +546,14 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void)callWebserviceToGetStores:(NSMutableDictionary *)aDict
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    
+    [Utils stopActivityIndicatorInView:self.view];
+    [Utils startActivityIndicatorInView:self.view withMessage:nil];
+
     if (![Utils isInternetAvailable])
     {
+        [Utils stopActivityIndicatorInView:self.view];
+
         viewOverlay.hidden = YES;
         collectionMaster.hidden = YES;
         [AppManager stopStatusbarActivityIndicator];
@@ -561,6 +567,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 -(void) didFailWithError:(NSError *)error
 {
+    [Utils stopActivityIndicatorInView:self.view];
+
     viewOverlay.hidden = YES;
     collectionMaster.hidden = YES;
     [AppManager stopStatusbarActivityIndicator];
@@ -571,6 +579,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void) responseReceived:(id)responseObject
 {
     [AppManager stopStatusbarActivityIndicator];
+    [Utils stopActivityIndicatorInView:self.view];
+
 
     if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_STORES) {
         
