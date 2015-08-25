@@ -141,8 +141,7 @@
 //            else
 //            {
 			
-                LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
-                [self.navigationController pushViewController:locationScreen animated:YES];
+			
 //            }
 			if (self.responseData) {//Priyanka's code begins(before 25 Aug)
 
@@ -152,7 +151,15 @@
 			{
 				[self saveDataToLocal:responseObject];
 			}
-
+			if ([[[NSUserDefaults standardUserDefaults]valueForKey:kUser_address] count]>0) {
+				[[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessfulNotificationName object:self userInfo:nil];
+				
+			}
+			else
+			{
+				LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+				[self.navigationController pushViewController:locationScreen animated:YES];
+			}
 			
 
         }
@@ -241,6 +248,9 @@
         [[NSUserDefaults standardUserDefaults]setObject:[dict objectForKey:kChatUsername] forKey:kChatUsername];
         [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@@%@",[dict objectForKey:kChatUsername],STRChatServerURL] forKey:kXMPPmyJID1];
     }
+	[[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kUser_address] forKey:kUser_address];
+	[[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kCity] forKey:kCity];
+	[[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kState] forKey:kState];
     [[NSUserDefaults standardUserDefaults]synchronize];
     
 }

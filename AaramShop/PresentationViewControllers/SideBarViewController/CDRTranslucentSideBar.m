@@ -1,3 +1,4 @@
+
 //
 //  CDRTranslucentSideBar.m
 //  AaramShop
@@ -52,6 +53,8 @@
 {
     self = [super init];
     if (self) {
+		aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
+		aaramShop_ConnectionManager.delegate = self;
         [self initCDRTranslucentSideBar];
     }
     return self;
@@ -490,13 +493,50 @@
 }
 -(void)logout
 {
-	[gCXMPPController disconnect];
-	[AppManager removeDataFromNSUserDefaults];
-	appDel.myCurrentLocation = nil;
-	appDel.objStoreModel = nil;
-	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessfulNotificationName object:self userInfo:nil];
-//	[Utils showAlertView:kAlertTitle message:@"Logout successfully" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+	//    [dict setObject:@"7209" forKey:kAaramshopId];
+	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
+	
+	[self performSelector:@selector(callWebServiceToLogout:) withObject:dict afterDelay:0.1];
 }
+
+- (void)callWebServiceToLogout:(NSMutableDictionary *)aDict
+{
+	if (![Utils isInternetAvailable])
+	{
+		//        [Utils stopActivityIndicatorInView:self.view];
+		[AppManager stopStatusbarActivityIndicator];
+		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return;
+	}
+	[aaramShop_ConnectionManager getDataForFunction:kURLLogout withInput:aDict withCurrentTask:TASK_TO_LOGOUT andDelegate:self ];
+}
+- (void)responseReceived:(id)responseObject
+{
+	[AppManager stopStatusbarActivityIndicator];
+	if(aaramShop_ConnectionManager.currentTask == TASK_TO_LOGOUT)
+	{
+		if([[responseObject objectForKey:kstatus] intValue] == 1)
+		{
+			[gCXMPPController disconnect];
+			[AppManager removeDataFromNSUserDefaults];
+			appDel.myCurrentLocation = nil;
+//			appDel.objStoreModel = nil;
+			[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessfulNotificationName object:self userInfo:nil];
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		}
+	}
+}
+- (void)didFailWithError:(NSError *)error
+{
+	//    [Utils stopActivityIndicatorInView:self.view];
+	[AppManager stopStatusbarActivityIndicator];
+	[aaramShop_ConnectionManager failureBlockCalled:error];
+}
+
+//	[Utils showAlertView:kAlertTitle message:@"Logout successfully" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+
 -(void)EditAddress
 {
   /*  LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
