@@ -522,7 +522,9 @@
 			[gCXMPPController disconnect];
 			[AppManager removeDataFromNSUserDefaults];
 			appDel.myCurrentLocation = nil;
-//			appDel.objStoreModel = nil;
+			gAppManager.intCount = 0;
+			[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+
 			[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessfulNotificationName object:self userInfo:nil];
 			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		}

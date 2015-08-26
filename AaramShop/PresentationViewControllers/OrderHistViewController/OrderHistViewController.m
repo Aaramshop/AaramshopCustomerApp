@@ -261,22 +261,29 @@
 
 -(void)doCallToMerchant:(NSIndexPath *)indexPath
 {
-//    CMOrderHist *cmOrderHist = [arrOrderHist objectAtIndex:indexPath.row];
-//    
-//    NSString *mobileNo = @"9910104975"; //pendingOrder.mobile_no;
-//    
-//    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",mobileNo]];
-//    
-//    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
-//        [[UIApplication sharedApplication] openURL:phoneUrl];
-//    } else
-//    {
-//        [Utils showAlertView:kAlertTitle message:kAlertCallFacilityNotAvailable delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-//    }
+	 CMOrderHist *cmOrderHist = [arrOrderHist objectAtIndex:indexPath.row];
+	NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",cmOrderHist.store_mobile]];
+	
+	if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+		[[UIApplication sharedApplication] openURL:phoneUrl];
+	} else
+	{
+		[Utils showAlertView:kAlertTitle message:kAlertCallFacilityNotAvailable delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+	}
+
 }
 -(void)doChatToMerchant:(NSIndexPath *)indexPath
 {
-    
+	CMOrderHist *orderHist = [arrOrderHist objectAtIndex:indexPath.row];
+	AppDelegate *deleg = APP_DELEGATE;
+	SMChatViewController *chatView = nil;
+	chatView = [deleg createChatViewByChatUserNameIfNeeded:orderHist.store_chatUserName];
+	chatView.chatWithUser = [NSString stringWithFormat:@"%@@%@",orderHist.store_chatUserName,STRChatServerURL];
+	chatView.friendNameId = orderHist.store_id;
+	chatView.imageString = orderHist.store_image;
+	chatView.userName = orderHist.store_name;
+	chatView.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:chatView animated:YES];
 }
 #pragma mark - call Web Service to get initial pending orders list
 -(void)callWebServiceToGetOrderHistory

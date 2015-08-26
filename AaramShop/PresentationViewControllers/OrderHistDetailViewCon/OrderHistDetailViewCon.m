@@ -141,7 +141,15 @@
 }
 - (IBAction)btnChatWithMerchant:(id)sender
 {
-	
+	AppDelegate *deleg = APP_DELEGATE;
+	SMChatViewController *chatView = nil;
+	chatView = [deleg createChatViewByChatUserNameIfNeeded:_orderHist.store_chatUserName];
+	chatView.chatWithUser = [NSString stringWithFormat:@"%@@%@",_orderHist.store_chatUserName,STRChatServerURL];
+	chatView.friendNameId = _orderHist.store_id;
+	chatView.imageString = _orderHist.store_image;
+	chatView.userName = _orderHist.store_name;
+	chatView.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:chatView animated:YES];
 }
 
 -(void)sendCurrentTime
