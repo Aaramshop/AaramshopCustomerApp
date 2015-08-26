@@ -83,8 +83,7 @@
 	[self userInteraction:NO];
 	[activityVw startAnimating];
 	txtUserName.text = [txtUserName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	
-	if (txtUserName.text.length>1) {
+	if (txtUserName.text.length>7) {
 		NSString *str = [txtUserName.text substringToIndex:1];
 		NSCharacterSet *numbersOnly = [NSCharacterSet characterSetWithCharactersInString:kTextFieldDigitRange];
 		NSCharacterSet *characterSetFromTextField = [NSCharacterSet characterSetWithCharactersInString:str];
@@ -168,7 +167,7 @@
 	if (aaramShop_ConnectionManager.currentTask == TASK_LOGIN) {
 		[self.loginClickBtn setEnabled:YES];
 		
-		if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"OTP Sent!"]) {
+		if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] rangeOfString:@"OTP Sent!"].length >0) {
 			MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
 			[self.navigationController pushViewController:mobileVerificationVwController animated:YES];
 		}
