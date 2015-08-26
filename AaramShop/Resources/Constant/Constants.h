@@ -44,7 +44,8 @@
 
 #define APP_DELEGATE (AppDelegate*)[[UIApplication sharedApplication]delegate]
 
-#define kBaseURL												@"http://52.74.220.25/api/index.php/user/"
+#define kBaseURL												@"http://www.aaramshop.co.in/api/index.php/user/"
+//#define kBaseURL												@"http://52.74.220.25/api/index.php/user/"
 //#define kBaseURL												@"http://52.74.220.25/index.php/user/"
 
 #define kIsLoggedIn											@"isLoggedIn"

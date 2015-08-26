@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto_Bold.ttf">
+        <mutableArray key="Roboto-Bold_0.ttf">
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
@@ -22,7 +22,7 @@
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
         </mutableArray>
-        <mutableArray key="Roboto_Medium.ttf">
+        <mutableArray key="Roboto-Medium_0.ttf">
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
@@ -70,7 +70,7 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
         </mutableArray>
-        <mutableArray key="Roboto_Regular.ttf">
+        <mutableArray key="Roboto-Regular_0.ttf">
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -8541,10 +8541,10 @@ Why not start with placing a new order now!</string>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="dsZ-qU-yvH" secondAttribute="trailing" id="FDS-os-NwY"/>
-                            <constraint firstItem="dsZ-qU-yvH" firstAttribute="top" secondItem="Dod-2r-N1e" secondAttribute="bottom" id="O9w-Pd-ctX"/>
-                            <constraint firstItem="dsZ-qU-yvH" firstAttribute="leading" secondItem="VmB-qM-9lB" secondAttribute="leading" id="UQO-xa-jGb"/>
-                            <constraint firstItem="I2q-pz-kxK" firstAttribute="top" secondItem="dsZ-qU-yvH" secondAttribute="bottom" id="XxK-zg-Bqn"/>
+                            <constraint firstItem="dsZ-qU-yvH" firstAttribute="height" secondItem="VmB-qM-9lB" secondAttribute="height" id="3FK-w7-ehC"/>
+                            <constraint firstItem="dsZ-qU-yvH" firstAttribute="width" secondItem="VmB-qM-9lB" secondAttribute="width" id="X0L-Ok-uFz"/>
+                            <constraint firstAttribute="centerY" secondItem="dsZ-qU-yvH" secondAttribute="centerY" id="XGz-hd-VND"/>
+                            <constraint firstAttribute="centerX" secondItem="dsZ-qU-yvH" secondAttribute="centerX" id="sT7-3A-DG5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vvy-M7-ZQ2"/>
