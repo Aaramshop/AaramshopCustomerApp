@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UpdateMobileViewController.h"
+#import "CMUpdateUsers.h"
 @interface LoginViewController : UIViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate,CustomNavigationDelegate>
 {
     
@@ -16,6 +17,7 @@
     __weak IBOutlet UITextField *txtPassword;
     __weak IBOutlet UIScrollView *scrollViewLogin;
     __weak IBOutlet UIActivityIndicatorView *activityVw;
+	CMUpdateUsers *updateUserModel;
 }
 @property (weak, nonatomic) IBOutlet UIButton *loginClickBtn;
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

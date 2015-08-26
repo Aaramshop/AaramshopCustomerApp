@@ -32,13 +32,10 @@
 	
 	
 #ifdef DEBUG
-
     
-    txtUserName.text = @"9711859131";
-    txtPassword.text = @"WKYH";
-	
-    txtUserName.text = @"9999614234";
-    txtPassword.text = @"E98J";
+
+//    txtUserName.text = @"dineshsolanki.mca@gmail.com";
+//    txtPassword.text = @"V6CM";
 
 
 #else
@@ -167,9 +164,23 @@
 	if (aaramShop_ConnectionManager.currentTask == TASK_LOGIN) {
 		[self.loginClickBtn setEnabled:YES];
 		
-		if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] rangeOfString:@"OTP Sent!"].length >0) {
-			MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
-			[self.navigationController pushViewController:mobileVerificationVwController animated:YES];
+		if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"OTP Sent!"]) {
+			
+				MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
+				[self.navigationController pushViewController:mobileVerificationVwController animated:YES];
+			
+		}
+		else if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"Mobile No. is not Available!"])
+		{
+			if ([[responseObject objectForKey:@"mobile"] integerValue] == 0)
+			{
+				
+					UpdateMobileViewController *updateVwController =              (UpdateMobileViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"UpdateMobileScreen" ];
+					[AppManager saveDataToNSUserDefaults:responseObject];
+					[self.navigationController pushViewController:updateVwController animated:YES];
+			
+				
+			}
 		}
 		else if ([[responseObject objectForKey:kMobile_verified] intValue] == 1 && [[responseObject objectForKey:kstatus] intValue] == 1)
 		{
@@ -179,8 +190,14 @@
 			[gCXMPPController connect];
 			[AppManager saveUserDatainUserDefault];
 			[[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessfulNotificationName object:self userInfo:nil];
-//			LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
-//			[self.navigationController pushViewController:locationScreen animated:YES];
+
+		}
+		else if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"Registered But not Verified. OTP Sent!"])
+		{
+			MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
+			[AppManager saveDataToNSUserDefaults:responseObject];
+			[self.navigationController pushViewController:mobileVerificationVwController animated:YES];
+			
 		}
 		else
 		{
@@ -188,7 +205,35 @@
 		}
 	}
 }
-
+#pragma mark - parseDate
+- (void)parseData:(id)responseObject
+{
+	updateUserModel = [[CMUpdateUsers alloc] init];
+	updateUserModel.fullname = [responseObject objectForKey:@"fullname"];
+	updateUserModel.image_url_100 = [responseObject objectForKey:kImage_url_100];
+	updateUserModel.image_url_320 = [responseObject objectForKey:kImage_url_320];
+	updateUserModel.image_url_640 = [responseObject objectForKey:kImage_url_640];
+	updateUserModel.profileImage = [responseObject objectForKey:kProfileImage];
+	NSString *strMobile = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"mobile"]];
+	if([strMobile isEqualToString:@"0"])
+	{
+		strMobile = @"";
+	}
+		
+	
+	if ([[responseObject objectForKey:kMessage] isEqualToString:@"Registered But not Verified. OTP Sent!"]) {
+		MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
+		[AppManager saveDataToNSUserDefaults:responseObject];
+		[self.navigationController pushViewController:mobileVerificationVwController animated:YES];
+	}
+	else
+	{
+		UpdateMobileViewController *updateVwController =              (UpdateMobileViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"UpdateMobileScreen" ];
+		updateVwController.updateUserModel = updateUserModel;
+		[self.navigationController pushViewController:updateVwController animated:YES];
+	}
+	
+}
 
 #pragma mark - UITextfield Delegates
 

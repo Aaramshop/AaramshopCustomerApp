@@ -76,6 +76,8 @@
 	NSCalendarUnit unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit;
 	NSCalendar *sysCalendar = [NSCalendar currentCalendar];
 	NSDateComponents *breakdownInfo = [sysCalendar components:unitFlags fromDate:[NSDate date]  toDate:[NSDate dateWithTimeIntervalSince1970:[cmOrderHist.delivery_time doubleValue]]  options:0];
+    
+    
 	NSLog(@"Break down: %li min : %li hours : %li days ", (long)[breakdownInfo minute], (long)[breakdownInfo hour], (long)[breakdownInfo day]);
 	if([breakdownInfo day] >0)
 	{
@@ -96,8 +98,12 @@
 	
 	
 	
-	NSString *strOrderTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[cmOrderHist.order_time doubleValue]]];
-	[btnTime setTitle:[strOrderTime stringByReplacingOccurrencesOfString:@"/" withString:@"-"] forState:UIControlStateNormal];
+//	NSString *strOrderTime = [Utils convertedDate:[NSDate dateWithTimeIntervalSince1970:[cmOrderHist.order_time doubleValue]]];
+//	[btnTime setTitle:[strOrderTime stringByReplacingOccurrencesOfString:@"/" withString:@"-"] forState:UIControlStateNormal];
+    
+    
+    [btnTime setTitle:cmOrderHist.order_time forState:UIControlStateNormal];
+
 }
 
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CMUpdateUsers.h"
 @interface MobileVerificationViewController : UIViewController<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate>
 {
     __weak IBOutlet UIButton *backBtn;
@@ -24,7 +24,7 @@
 @property (nonatomic,strong) NSString *strIsRegistered;
 
 @property (nonatomic,strong) id responseData;
-
+@property (strong, nonatomic)CMUpdateUsers *updateUserModel;
 
 - (IBAction)btnBackClick:(UIButton *)sender;
 - (IBAction)btnContinueVerificationClick:(UIButton *)sender;

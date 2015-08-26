@@ -62,6 +62,14 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    //	if([arrCategories count]==0)
+    //	{
+            [self	createDataToGetStores];
+    //	}
+
+    
+    
 	if([AppManager sharedManager].notifyDict && [[[AppManager sharedManager].notifyDict valueForKey:@"pType"]integerValue]==3)
 	{
 		[self btnBroadcastClicked];
@@ -102,15 +110,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	}
 	 [self setUpNavigationBar];
 
-//	if([arrCategories count]==0)
-//	{
-		[self	createDataToGetStores];
-//	}
     NSLog(@"value = %f",appDeleg.myCurrentLocation.coordinate.latitude);
     if(![gCXMPPController isConnected])
     {
         [gCXMPPController connect];
     }
+
+
 }
 
 
@@ -447,41 +453,33 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 
     NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:[arrCategories count]];
-
-//    CGRect rect = [[UIApplication sharedApplication] statusBarFrame]; // Get status bar frame dimensions
-//    float y_Axix = 0.0;
-//    
-//    if (rect.origin.y>0)
-//    {
-//        y_Axix =
-//    }
     
-    
-    
-    
-//    NSLog(@"Statusbar frame: %1.0f, %1.0f, %1.0f, %1.0f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-
-    
-    
-    for (StoreModel *storeModel in arrCategories)
+    [arrCategories enumerateObjectsUsingBlock:^(StoreModel *storeModel, NSUInteger idx, BOOL *stop)
     {
         HomeCategoryListViewController *homeCategoryListView = [sb instantiateViewControllerWithIdentifier:@"HomeCategoryListView"];
         homeCategoryListView.title = storeModel.store_main_category_name;
         homeCategoryListView.storeModel = storeModel;
         homeCategoryListView.totalNoOfPages = totalNoOfPages;
         
+//        if (idx==0)
+//        {
+//            homeCategoryListView.isFirstPage = YES;
+//        }
+//        else
+//        {
+//            homeCategoryListView.isFirstPage = NO;
+//        }
+        
+        
         CGRect frame = homeCategoryListView.view.frame;
         frame.origin.y = 0.0;
         homeCategoryListView.view.frame = frame;
         
-//        homeCategoryListView.automaticallyAdjustsScrollViewInsets = YES;
-//        [homeCategoryListView.view autoresizingMask];
-        
-        
-        
         [viewControllers addObject:homeCategoryListView];
-
-    }
+    }];
+    
+    
+    
     
     
     // ContainerView
@@ -521,6 +519,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     viewSubcategories.backgroundColor = [UIColor clearColor];
     
     [viewSubcategories addSubview:containerVC.view];
+    
 }
 
 
@@ -547,8 +546,14 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void)callWebserviceToGetStores:(NSMutableDictionary *)aDict
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    
+    [Utils stopActivityIndicatorInView:self.view];
+    [Utils startActivityIndicatorInView:self.view withMessage:nil];
+
     if (![Utils isInternetAvailable])
     {
+        [Utils stopActivityIndicatorInView:self.view];
+
         viewOverlay.hidden = YES;
         collectionMaster.hidden = YES;
         [AppManager stopStatusbarActivityIndicator];
@@ -562,13 +567,21 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 -(void) didFailWithError:(NSError *)error
 {
+    [Utils stopActivityIndicatorInView:self.view];
+
     viewOverlay.hidden = YES;
     collectionMaster.hidden = YES;
+    [AppManager stopStatusbarActivityIndicator];
+
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 
 -(void) responseReceived:(id)responseObject
 {
+    [AppManager stopStatusbarActivityIndicator];
+    [Utils stopActivityIndicatorInView:self.view];
+
+
     if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_STORES) {
         
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
@@ -726,6 +739,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     [collectionMaster reloadData];
 	
     [self setupViewDesign];
+    
 
 }
 

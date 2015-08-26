@@ -1,3 +1,4 @@
+
 //
 //  CDRTranslucentSideBar.m
 //  AaramShop
@@ -52,6 +53,8 @@
 {
     self = [super init];
     if (self) {
+		aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
+		aaramShop_ConnectionManager.delegate = self;
         [self initCDRTranslucentSideBar];
     }
     return self;
@@ -268,19 +271,39 @@
 		[self.delegate sideBarDelegatePushMethod:inviteFriendsVCon];
 	}
 }
+
+-(NSMutableDictionary*)getAddress
+{
+    NSMutableDictionary *dicAddress = [[NSMutableDictionary alloc]init];
+    
+//    for (NSMutableDictionary *dict in arrAddress)
+//    {
+//        if ([[dict objectForKey:@"user_address_title"] isEqualToString:@"Home"]) {
+//            dicAddress = dict;
+//            break;
+//        }
+//    }
+ 
+    
+    NSArray *arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+    
+    if (arrAddress.count>0)
+    {
+        [dicAddress addEntriesFromDictionary:[arrAddress objectAtIndex:0]];
+    }
+    
+    return dicAddress;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (self.tag == 0) {
         UIImage* image;
-        NSArray *arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
-        NSMutableDictionary *dictAddress  = nil;
-        for (NSMutableDictionary *dict in arrAddress) {
-            
-            if ([[dict objectForKey:@"user_address_title"] isEqualToString:@"Home"]) {
-                dictAddress = dict;
-                break;
-            }
-        }
+
+        NSMutableDictionary *dictAddress  = [[NSMutableDictionary alloc]init];
+        
+        dictAddress = [self getAddress];
+        
         
         secView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 216)];
         UIImageView *imgBackground=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, secView.frame.size.width, 216)];
@@ -309,6 +332,8 @@
         UIImageView *imglocation=[[UIImageView alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 10, 20, 20)];
         imglocation.image=[UIImage imageNamed:@"locationIcon"];
         NSLog(@"%@", [[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] allKeys]);
+        
+        
         UILabel *lblAddress = [[UILabel alloc]initWithFrame:CGRectMake(32, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-64, 40)];
         lblAddress.numberOfLines = 2;
         lblAddress.lineBreakMode = NSLineBreakByWordWrapping;
@@ -320,7 +345,7 @@
 		}
 		else
 		{
-			lblAddress.text = nil;
+			lblAddress.text = @"";
 		}
 //		}
 //		else
@@ -471,13 +496,50 @@
 }
 -(void)logout
 {
-	[gCXMPPController disconnect];
-	[AppManager removeDataFromNSUserDefaults];
-	appDel.myCurrentLocation = nil;
-	appDel.objStoreModel = nil;
-	[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessfulNotificationName object:self userInfo:nil];
-//	[Utils showAlertView:kAlertTitle message:@"Logout successfully" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+	//    [dict setObject:@"7209" forKey:kAaramshopId];
+	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
+	
+	[self performSelector:@selector(callWebServiceToLogout:) withObject:dict afterDelay:0.1];
 }
+
+- (void)callWebServiceToLogout:(NSMutableDictionary *)aDict
+{
+	if (![Utils isInternetAvailable])
+	{
+		//        [Utils stopActivityIndicatorInView:self.view];
+		[AppManager stopStatusbarActivityIndicator];
+		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return;
+	}
+	[aaramShop_ConnectionManager getDataForFunction:kURLLogout withInput:aDict withCurrentTask:TASK_TO_LOGOUT andDelegate:self ];
+}
+- (void)responseReceived:(id)responseObject
+{
+	[AppManager stopStatusbarActivityIndicator];
+	if(aaramShop_ConnectionManager.currentTask == TASK_TO_LOGOUT)
+	{
+		if([[responseObject objectForKey:kstatus] intValue] == 1)
+		{
+			[gCXMPPController disconnect];
+			[AppManager removeDataFromNSUserDefaults];
+			appDel.myCurrentLocation = nil;
+//			appDel.objStoreModel = nil;
+			[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessfulNotificationName object:self userInfo:nil];
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		}
+	}
+}
+- (void)didFailWithError:(NSError *)error
+{
+	//    [Utils stopActivityIndicatorInView:self.view];
+	[AppManager stopStatusbarActivityIndicator];
+	[aaramShop_ConnectionManager failureBlockCalled:error];
+}
+
+//	[Utils showAlertView:kAlertTitle message:@"Logout successfully" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+
 -(void)EditAddress
 {
   /*  LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
