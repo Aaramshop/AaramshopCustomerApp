@@ -131,9 +131,9 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     
-    [Utils showAlertView:kAlertTitle message:notification.alertBody delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-    
-    [self.tabBarController setSelectedIndex:1];
+//    [Utils showAlertView:kAlertTitle message:notification.alertBody delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+	
+    [self.tabBarController setSelectedIndex:2];
     
 }
 
