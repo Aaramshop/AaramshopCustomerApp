@@ -80,8 +80,7 @@
 	[self userInteraction:NO];
 	[activityVw startAnimating];
 	txtUserName.text = [txtUserName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	
-	if (txtUserName.text.length>1) {
+	if (txtUserName.text.length>7) {
 		NSString *str = [txtUserName.text substringToIndex:1];
 		NSCharacterSet *numbersOnly = [NSCharacterSet characterSetWithCharactersInString:kTextFieldDigitRange];
 		NSCharacterSet *characterSetFromTextField = [NSCharacterSet characterSetWithCharactersInString:str];

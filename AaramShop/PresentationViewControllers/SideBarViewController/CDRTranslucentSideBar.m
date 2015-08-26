@@ -286,8 +286,11 @@
  
     
     NSArray *arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
-    [dicAddress addEntriesFromDictionary:[arrAddress objectAtIndex:0]] ;
-
+    
+    if (arrAddress.count>0)
+    {
+        [dicAddress addEntriesFromDictionary:[arrAddress objectAtIndex:0]];
+    }
     
     return dicAddress;
 }
