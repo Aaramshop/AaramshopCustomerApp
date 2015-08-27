@@ -244,6 +244,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // CRASH -[SearchStoresViewController tableView:didSelectRowAtIndexPath:]
+    // -[__NSArrayM objectAtIndex:]: index 0 beyond bounds for empty array
+    
+    if (arrSearchResult.count==0)
+    {
+        return;
+    }
+    
+    ////
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     StoreModel *objStoreModel = [arrSearchResult objectAtIndex:indexPath.row];
     
