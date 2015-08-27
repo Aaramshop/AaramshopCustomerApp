@@ -112,7 +112,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 90;
+	CMOffers *offers = [arrBroadcast objectAtIndex:indexPath.row];
+	if([offers.offerType isEqualToString:@"6"])
+	{
+		return 110;
+	}
+	else
+	{
+		return 90;
+	}
+	return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

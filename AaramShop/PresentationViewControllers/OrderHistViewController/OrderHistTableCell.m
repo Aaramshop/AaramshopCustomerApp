@@ -71,30 +71,68 @@
 	
 	
 	lblPrice.attributedText = labelAttributedString;
-	
-	
-	NSCalendarUnit unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit;
-	NSCalendar *sysCalendar = [NSCalendar currentCalendar];
-	NSDateComponents *breakdownInfo = [sysCalendar components:unitFlags fromDate:[NSDate date]  toDate:[NSDate dateWithTimeIntervalSince1970:[cmOrderHist.delivery_time doubleValue]]  options:0];
-    
-    
-	NSLog(@"Break down: %li min : %li hours : %li days ", (long)[breakdownInfo minute], (long)[breakdownInfo hour], (long)[breakdownInfo day]);
-	if([breakdownInfo day] >0)
-	{
-		lblRemainingTime.text = [NSString stringWithFormat:@"%li day(s) remaining",(long)[breakdownInfo day]];
-	}
-	else if([breakdownInfo hour] >0)
-	{
-		lblRemainingTime.text = [NSString stringWithFormat:@"%li hours(s) remaining",(long)[breakdownInfo hour]];
-	}
-	else if([breakdownInfo minute] >0)
-	{
-		lblRemainingTime.text = [NSString stringWithFormat:@"%li minute(s) remaining",(long)[breakdownInfo minute]];
+	if ([cmOrderHist.delivered_timing length]>0) {
+		lblRemainingTime.text =@"Completed";
 	}
 	else
 	{
-		lblRemainingTime.text = @"Order overdue";
+		if ([cmOrderHist.dispached_timing length]>0) {
+			lblRemainingTime.text =@"Dispatched";
+		}
+		else
+		{
+			if ([cmOrderHist.packed_timing length]>0) {
+				lblRemainingTime.text =@"Packed";
+			}
+			else
+			{
+				if ([cmOrderHist.deliveryboy_name length]>0) {
+					lblRemainingTime.text = @"In Process";
+				}
+				else
+				{
+					NSCalendarUnit unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSDayCalendarUnit;
+					NSCalendar *sysCalendar = [NSCalendar currentCalendar];
+					NSDateComponents *breakdownInfo = [sysCalendar components:unitFlags fromDate:[NSDate date]  toDate:[NSDate dateWithTimeIntervalSince1970:[cmOrderHist.delivery_time doubleValue]]  options:0];
+					
+					
+					NSLog(@"Break down: %li min : %li hours : %li days ", (long)[breakdownInfo minute], (long)[breakdownInfo hour], (long)[breakdownInfo day]);
+					if([breakdownInfo day] >0)
+					{
+						lblRemainingTime.text = [NSString stringWithFormat:@"%li day(s) remaining",(long)[breakdownInfo day]];
+					}
+					else if([breakdownInfo hour] >0)
+					{
+						lblRemainingTime.text = [NSString stringWithFormat:@"%li hours(s) remaining",(long)[breakdownInfo hour]];
+					}
+					else if([breakdownInfo minute] >0)
+					{
+						lblRemainingTime.text = [NSString stringWithFormat:@"%li minute(s) remaining",(long)[breakdownInfo minute]];
+					}
+					else
+					{
+						lblRemainingTime.text = @"Order overdue";
+					}
+				}
+
+			}
+		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
