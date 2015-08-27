@@ -34,10 +34,6 @@
 #ifdef DEBUG
     
 
-//    txtUserName.text = @"dineshsolanki.mca@gmail.com";
-//    txtPassword.text = @"V6CM";
-
-
 #else
 	//
 #endif

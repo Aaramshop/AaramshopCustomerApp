@@ -265,8 +265,12 @@
 {
     lblMessage.hidden = YES;
 
+    [Utils stopActivityIndicatorInView:self.view];
+    [Utils startActivityIndicatorInView:self.view withMessage:nil];
+    
 	if (![Utils isInternetAvailable])
 	{
+        [Utils stopActivityIndicatorInView:self.view];
 		[AppManager stopStatusbarActivityIndicator];
 		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		return;
@@ -276,6 +280,7 @@
 
 - (void)responseReceived:(id)responseObject
 {
+    [Utils stopActivityIndicatorInView:self.view];
 	isLoading = NO;
 	[AppManager stopStatusbarActivityIndicator];
 	switch (aaramShop_ConnectionManager.currentTask) {
@@ -308,7 +313,7 @@
 }
 - (void)didFailWithError:(NSError *)error
 {
-	//    [Utils stopActivityIndicatorInView:self.view];
+    [Utils stopActivityIndicatorInView:self.view];
 	[AppManager stopStatusbarActivityIndicator];
 	[aaramShop_ConnectionManager failureBlockCalled:error];
 }
@@ -362,8 +367,10 @@
 			offers.offerType							= [dict objectForKey:kOfferType];
 			offers.product_id						= [dict objectForKey:kProduct_id];
 			offers.product_sku_id					= [dict objectForKey:kProduct_sku_id];
-			offers.product_image					=	[dict objectForKey:kProduct_image];
-			offers.product_actual_price		= [dict objectForKey:kProduct_actual_price];
+			
+            offers.product_image					=	[[dict objectForKey:kProduct_image] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+			
+            offers.product_actual_price		= [dict objectForKey:kProduct_actual_price];
 			offers.offer_price						= [dict objectForKey:kOffer_price];
 			offers.isBroadcast						= [NSString stringWithFormat:@"%@",[dict objectForKey:kIsBroadcast]];
 			offers.product_name					= [dict objectForKey:kProduct_name];
@@ -376,8 +383,10 @@
 			offers.combo_offer_price			= [dict objectForKey:kCombo_offer_price];
 			offers.offerDetail							= [dict objectForKey:kOfferDetail];
 			offers.offerDescription				= [dict objectForKey:kOfferDescription];
-			offers.offerImage							= [dict objectForKey:kOfferImage];
-			offers.start_date							= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kStart_date] doubleValue]]];
+
+            offers.offerImage							= [[dict objectForKey:kOfferImage] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            			
+            offers.start_date							= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kStart_date] doubleValue]]];
 			offers.end_date							= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kEnd_date] doubleValue]]];
 			broadcastPageNo						=	[[dict objectForKey:kTotal_page] intValue];
 			[array addObject:offers];

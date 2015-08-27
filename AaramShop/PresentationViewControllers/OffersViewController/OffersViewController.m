@@ -482,8 +482,12 @@
 {
     lblMessage.hidden = YES;
 
+    [Utils stopActivityIndicatorInView:self.view];
+    [Utils startActivityIndicatorInView:self.view withMessage:nil];
 	if (![Utils isInternetAvailable])
 	{
+        [Utils stopActivityIndicatorInView:self.view];
+
 		[AppManager stopStatusbarActivityIndicator];
 		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		return;
@@ -494,8 +498,14 @@
 {
     lblMessage.hidden = YES;
 
+    
+    [Utils stopActivityIndicatorInView:self.view];
+    [Utils startActivityIndicatorInView:self.view withMessage:nil];
+    
 	if (![Utils isInternetAvailable])
 	{
+        [Utils stopActivityIndicatorInView:self.view];
+
 		[AppManager stopStatusbarActivityIndicator];
 		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		return;
@@ -506,6 +516,8 @@
 
 - (void)responseReceived:(id)responseObject
 {
+    [Utils stopActivityIndicatorInView:self.view];
+
 	isLoading = NO;
 	[AppManager stopStatusbarActivityIndicator];
 	switch (aaramShop_ConnectionManager.currentTask) {
@@ -591,7 +603,7 @@
 }
 - (void)didFailWithError:(NSError *)error
 {
-	//    [Utils stopActivityIndicatorInView:self.view];
+    [Utils stopActivityIndicatorInView:self.view];
 	[AppManager stopStatusbarActivityIndicator];
 	[aaramShop_ConnectionManager failureBlockCalled:error];
 }
@@ -761,6 +773,9 @@
 - (IBAction)selectionChanged:(id)sender {
 	UISegmentedControl *segCtrl = (UISegmentedControl *)sender;
 	segmentIndex = segCtrl.selectedSegmentIndex;
+    
+    lblMessage.hidden = YES;
+    
 	if(segmentIndex ==1)
 	{
         lblMessage.text = @"No coupons available in your locality right now. Come back later to claim the best of the coupon from your neighbourhood stores.";

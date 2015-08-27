@@ -302,8 +302,15 @@
 	{
 		[dict setObject:appDelegate.objStoreModel.store_id forKey:kStore_id];
 	}
+    
+    
+    [Utils stopActivityIndicatorInView:self.view];
+    [Utils startActivityIndicatorInView:self.view withMessage:nil];
+    
 	if (![Utils isInternetAvailable])
 	{
+        [Utils stopActivityIndicatorInView:self.view];
+
 		[AppManager stopStatusbarActivityIndicator];
 		isLoading = NO;
 		[refreshOrderList endRefreshing];
@@ -331,6 +338,8 @@
 - (void)responseReceived:(id)responseObject
 {
 	isLoading = NO;
+    [Utils stopActivityIndicatorInView:self.view];
+
 	[self showFooterLoadMoreActivityIndicator:NO];
 	[refreshOrderList endRefreshing];
 	[AppManager stopStatusbarActivityIndicator];
@@ -374,7 +383,7 @@
 
 - (void)didFailWithError:(NSError *)error
 {
-	
+    [Utils stopActivityIndicatorInView:self.view];
 	isLoading = NO;
 	[self showFooterLoadMoreActivityIndicator:NO];
 	[refreshOrderList endRefreshing];
