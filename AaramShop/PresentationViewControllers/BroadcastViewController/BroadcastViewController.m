@@ -117,11 +117,8 @@
 	{
 		return 110;
 	}
-	else
-	{
-		return 90;
-	}
-	return 0;
+	return 90;
+	
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
