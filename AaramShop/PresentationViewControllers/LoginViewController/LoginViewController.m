@@ -73,8 +73,6 @@
 }
 - (IBAction)btnLoginClick:(UIButton *)sender {
 	
-	[self userInteraction:NO];
-	[activityVw startAnimating];
 	txtUserName.text = [txtUserName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	if (txtUserName.text.length>7) {
 		NSString *str = [txtUserName.text substringToIndex:1];
@@ -134,7 +132,9 @@
 # pragma webService Calling
 -(void)callWebserviceForLogin:(NSMutableDictionary*)aDict
 {
-	
+    [activityVw startAnimating];
+    [self userInteraction:NO];
+    
 	if (![Utils isInternetAvailable])
 	{
 		[activityVw stopAnimating];
@@ -197,6 +197,7 @@
 		}
 		else
 		{
+            [activityVw stopAnimating];
 			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		}
 	}

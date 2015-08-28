@@ -29,7 +29,7 @@
 #define kAlertBtnYES										@"YES"
 #define kAlertBtnNO										@"NO"
 #define kAlertCheckInternetConnection			@"Please make sure that your device is connected to the internet"
-#define kRequestTimeOutMessage					@"We can't establish a connection to Aaram Shop servers. Please make sure that your device is connected to the internet and try again"
+#define kRequestTimeOutMessage					@"We can't establish a connection to AaramShop servers. Please make sure that your device is connected to the internet and try again"
 
 #define kAlertServiceFailed								@"Failed. Try again" //new
 

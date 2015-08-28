@@ -42,18 +42,19 @@
     
     NSString *strTitle = [NSString stringWithFormat:@"%@%@%@%@",strText1,strName,strText2,strText3];
     
-    NSMutableAttributedString *hogan = [[NSMutableAttributedString alloc] initWithString:strTitle];
-    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:15.0],NSFontAttributeName,[UIColor colorWithRed:189.0/255.0 green:189.0/255.0 blue:189.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(0, strText1.length)];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:strTitle];
+    [attrString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:15.0],NSFontAttributeName,[UIColor colorWithRed:189.0/255.0 green:189.0/255.0 blue:189.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(0, strText1.length)];
     
-    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoBold size:18.0],NSFontAttributeName,[UIColor whiteColor],NSForegroundColorAttributeName, nil] range:NSMakeRange(strText1.length, strName.length)];
+    [attrString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoBold size:18.0],NSFontAttributeName,[UIColor whiteColor],NSForegroundColorAttributeName, nil] range:NSMakeRange(strText1.length, strName.length)];
     
-    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:15.0],NSFontAttributeName,[UIColor colorWithRed:189.0/255.0 green:189.0/255.0 blue:189.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(strText1.length+strName.length, strText2.length)];
-    
-    
-    [hogan addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoBold size:18.0],NSFontAttributeName,[UIColor whiteColor],NSForegroundColorAttributeName, nil] range:NSMakeRange(strTitle.length - strText3.length, strText3.length)];
+    [attrString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoRegular size:15.0],NSFontAttributeName,[UIColor colorWithRed:189.0/255.0 green:189.0/255.0 blue:189.0/255.0 alpha:1.0],NSForegroundColorAttributeName, nil] range:NSMakeRange(strText1.length+strName.length, strText2.length)];
     
     
-    lblTitle.attributedText = hogan;
+    [attrString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kRobotoBold size:18.0],NSFontAttributeName,[UIColor whiteColor],NSForegroundColorAttributeName, nil] range:NSMakeRange(strTitle.length - strText3.length, strText3.length)];
+    
+    
+    lblTitle.attributedText = attrString;
+    lblTitle.adjustsFontSizeToFitWidth = YES;
 
     lblStoreCategoryName.text = objStoreModel.store_category_name;
     lblStoreName.adjustsFontSizeToFitWidth = YES;

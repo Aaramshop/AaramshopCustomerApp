@@ -524,6 +524,7 @@
 {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     

@@ -13,6 +13,7 @@
 
 #define kBtnDone   33454
 #define kBtnCancel 33455
+#define kTagForFeedBack 100
 
 
 static NSString *strCollectionItems = @"collectionItems";
@@ -364,7 +365,9 @@ static NSString *strCollectionItems = @"collectionItems";
         btnPay.enabled = YES;
         if([[responseObject objectForKey:kstatus] intValue] == 1)
         {
-            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            [Utils showAlertViewWithTag:kTagForFeedBack title:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            
+            
 			[AppManager removeCartBasedOnStoreId:self.strStore_Id];
 
 			gAppManager.intCount = 0;
@@ -1239,13 +1242,13 @@ static NSString *strCollectionItems = @"collectionItems";
     if ([strSelectSlot isEqualToString:@"Select Slot"]) {
         btnPay.enabled = YES;
 
-        [Utils showAlertView:kAlertTitle message:@"Please select Slot" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        [Utils showAlertView:kAlertTitle message:@"Please select Slot" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
     }
     else if([strSelectAddress isEqualToString:@"Select Address"])
     {
         btnPay.enabled = YES;
 
-        [Utils showAlertView:kAlertTitle message:@"Please select Address For Delivery" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        [Utils showAlertView:kAlertTitle message:@"Please select Address For Delivery" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 
     }
 	else if ([strTotalPrice integerValue]<[min_order_value integerValue])
@@ -1486,15 +1489,11 @@ static NSString *strCollectionItems = @"collectionItems";
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-//    if (buttonIndex != [alertView cancelButtonIndex])
-//    {
-//        
-//    }
-    
-    [self performSelector:@selector(openFeedbackScreen) withObject:nil afterDelay:0.5];
-    
-//    [self openFeedbackScreen];
+    if (alertView.tag == kTagForFeedBack)
+    {
+        [self performSelector:@selector(openFeedbackScreen) withObject:nil afterDelay:0.5];
 
+    }
 }
 
 
