@@ -241,6 +241,8 @@ AaramShop_ConnectionManager_Delegate>
 	
 	if([data count]>0)
 	{
+		[arrSearchResult removeAllObjects];
+		[dicSearchResult removeAllObjects];
 		[tblViewSearch setHidden:NO];
 		[lblMessage setHidden:YES];
 		for(int i =0 ; i < [data count] ; i++)
@@ -442,7 +444,9 @@ AaramShop_ConnectionManager_Delegate>
 	}
 	else
 	{
-		arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
+		if (!arrSearchResult) {
+			arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
+		}
 		globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
 		if (self.delegate && [self.delegate conformsToProtocol:@protocol(GlobalSearchViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(pushToAnotherView:)])
 		{
@@ -512,13 +516,14 @@ AaramShop_ConnectionManager_Delegate>
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
 	[arrSearchResult removeAllObjects];
-	if (![searchText isEqualToString:@""]) {
+	if ([searchText length]>0) {
 		
 		pageNumber = 0;
 		[self callWebServiceForGlobalSearch:searchText];
 		
 		
-	}else{
+	}
+	else{
 		if([dicSearchResult count]>0)
 		{
 			[dicSearchResult removeAllObjects];
@@ -552,6 +557,9 @@ AaramShop_ConnectionManager_Delegate>
 		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		return;
 	}
+	
+
+	
 	[aaramShop_ConnectionManager getDataForFunction:kURLGlobalSearch withInput:aDict withCurrentTask:TASK_TO_GET_GLOBAL_SEARCH_RESULT andDelegate:self ];
 }
 
@@ -592,7 +600,7 @@ AaramShop_ConnectionManager_Delegate>
 				}
 				[tblViewSearch reloadData];
 			}
-			else
+			else if([[responseObject objectForKey:@"search_type"] intValue] == 3)
 			{
 				searchType = @"3";
 				[self parseDataForGlobalSearch:responseObject];

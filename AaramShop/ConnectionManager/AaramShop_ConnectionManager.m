@@ -23,15 +23,23 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];
-    
+	
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
+	if (self.currentTask == TASK_TO_GET_GLOBAL_SEARCH_RESULT) {
+		if (task) {
+			[task cancel];
+			task = nil;
+		}
+	}
+	
+//	}
+//
     [manager.requestSerializer setTimeoutInterval:60];
-    [manager POST:functionName parameters:aDict
+    task = [manager POST:functionName parameters:aDict
           success:^(NSURLSessionDataTask *task, id responseObject)
      {
          [AppManager stopStatusbarActivityIndicator];
-         
+		
          if(self.delegate != nil && [self.delegate respondsToSelector:@selector(responseReceived:)])
          {
              [self.delegate performSelector:@selector(responseReceived:) withObject:responseObject];
@@ -41,11 +49,17 @@
      {
          [AppManager stopStatusbarActivityIndicator];
 //         [loginView.loginClickBtn setEnabled:YES];
-         if(self.delegate != nil && [self.delegate respondsToSelector:@selector(didFailWithError:)])
-         {
-             [self.delegate performSelector:@selector(didFailWithError:) withObject:error];
-         }
-         
+		 if ([Utils isRequestCancelled:error]) {
+   
+		 }
+		 else
+		 {
+			 if(self.delegate != nil && [self.delegate respondsToSelector:@selector(didFailWithError:)])
+			 {
+				 [self.delegate performSelector:@selector(didFailWithError:) withObject:error];
+			 }
+		 }
+		 
      }];
     return YES;
 }

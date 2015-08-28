@@ -83,6 +83,7 @@ typedef enum
 @interface AaramShop_ConnectionManager : NSObject
 {
 	CURRENT_TASK currentTask;
+	  NSURLSessionDataTask* task;
 }
 @property(nonatomic,strong) AFHTTPSessionManager *sessionManager;
 @property(nonatomic,assign) CURRENT_TASK currentTask;

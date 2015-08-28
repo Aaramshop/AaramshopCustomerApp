@@ -104,7 +104,8 @@
 
 #pragma mark - Calculate distance from two coordinates
 +(NSString *)milesFromLatitude:(double)fromLatitude fromLongitude:(double)fromLongitude ToLatitude:(double)toLatitude andToLongitude:(double)toLongitude;
-
+#pragma mark - AFNetworking task cancel
++(BOOL)isRequestCancelled:(NSError *)error;
 @end
 
 
