@@ -19,7 +19,6 @@
 	NSMutableDictionary *dicSearchResult;
 	IBOutlet UITableView *tblViewSearch;
     __weak IBOutlet UILabel *lblMessage;
-
 	
 	NSMutableArray *arrSearchResult;
 	NSMutableArray *allSections;

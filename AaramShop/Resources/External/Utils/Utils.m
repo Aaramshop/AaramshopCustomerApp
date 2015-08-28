@@ -1051,4 +1051,20 @@
 	return distance;
 	
 }
+#pragma mark - AFNetworking cancel task
++(BOOL)isRequestCancelled:(NSError *)error
+{
+	BOOL isCancelled = NO;
+	NSString *str = @"NSLocalizedDescription=cancelled";
+	NSString *str1 = @"NSLocalizedDescription=Abgebrochen";
+	//    if (error.code == -999) {
+	//        isCancelled=YES;
+	//    }
+	
+	if ([error.description rangeOfString:str].location!=NSNotFound || [error.description rangeOfString:str1].location!=NSNotFound)
+	{
+		isCancelled=YES;
+	}
+	return isCancelled;
+}
 @end
