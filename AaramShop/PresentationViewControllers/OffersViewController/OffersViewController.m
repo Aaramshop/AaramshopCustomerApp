@@ -467,6 +467,8 @@
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kUserId] forKey:kUserId];
 	[dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
+	[dict setObject:[NSString stringWithFormat:@"%f",appDelegate.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
+	[dict setObject:[NSString stringWithFormat:@"%f",appDelegate.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
 	[dict setObject:@"0" forKey:kStore_id];
 	[self performSelector:@selector(callWebServiceToOffer:) withObject:dict afterDelay:0.1];
 }

@@ -35,19 +35,25 @@ static NSString *strCollectionItems = @"collectionItems";
 	NSString *min_order_value;
 	UITextField *tfCouponCode;
 	NSInteger isCouponValid;
+	NSString *actual_total_discount;
+	NSString *actual_subTotal;
+	NSString *coupon_value;
+	NSMutableArray *arr_overall_value_offers;
 }
 @end
 
 @implementation PaymentViewController
-@synthesize strStore_Id,strTotalPrice,arrSelectedProducts,ePickerType;
+@synthesize strStore_Id,strActualTotalPrice,strTotalPrice,arrSelectedProducts,ePickerType;
 @synthesize feedBack;
 
  - (void)initializeObjects
 {
+	arr_overall_value_offers = [[NSMutableArray alloc]init];
 	coupon_code = @"";
 	isCouponValid = -1;
 	total_discount = @"0";
 	delivery_charges = @"0";
+	coupon_value = @"0";
 	appDel = APP_DELEGATE;
 	isPickerOpen = NO;
 	ePickerType = enPickerSlots;
@@ -62,6 +68,10 @@ static NSString *strCollectionItems = @"collectionItems";
 	arrSelectedLastMinPick = [[NSMutableArray alloc]init];
 	tblView.sectionFooterHeight= 0.0;
 	tblView.sectionHeaderHeight = 0.0;
+	actual_subTotal			= @"0";
+	actual_total_discount	= @"0";
+	strActualTotalPrice		= @"0";
+	
 	self.automaticallyAdjustsScrollViewInsets = NO;
 	NSInteger discount = 0;
 	NSInteger sub_total = 0;
@@ -78,12 +88,35 @@ static NSString *strCollectionItems = @"collectionItems";
 
 	}
 	subTotal = [NSString stringWithFormat:@"%ld",(long)sub_total];
-	total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
-	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([subTotal integerValue]-[total_discount integerValue])];
+	actual_total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
+	actual_subTotal		=	subTotal;
+	[self getTotalAmount];
+//	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([subTotal integerValue]-[total_discount integerValue])];
+
 }
 - (void)getTotalAmount
 {
-	
+	total_discount = [NSString stringWithFormat:@"%ld",(long) ([actual_total_discount integerValue]+[coupon_value integerValue])];
+	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([actual_subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
+	BOOL isDiscountAvailable= NO;
+	NSInteger getValue = 0;
+	if([arr_overall_value_offers count]>0)
+	{
+		for(NSDictionary *dict in arr_overall_value_offers)
+		{
+			if([strTotalPrice integerValue]>=[[dict objectForKey:@"discountOnAmount"] integerValue])
+			{
+				isDiscountAvailable = YES;
+				float discount = [[dict objectForKey:@"discountPercent"] floatValue];
+				getValue = [strTotalPrice integerValue]* (discount/100);
+			}
+		}
+	}
+	if(isDiscountAvailable)
+	{
+		total_discount =[NSString stringWithFormat:@"%ld",(long)([total_discount integerValue]+ getValue)];
+		strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([strTotalPrice integerValue] - getValue)];
+	}
 }
 - (void)getTotalDiscount
 {
@@ -337,8 +370,18 @@ static NSString *strCollectionItems = @"collectionItems";
     {
         if([[responseObject objectForKey:kstatus] intValue] == 1)
         {
+			NSArray *array = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"overall_value_offers"]];
+
+			NSSortDescriptor *sortDescriptor;
+			sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"discountOnAmount"
+														 ascending:YES];
+			NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+			NSArray *sortedArray;
+			sortedArray = [array sortedArrayUsingDescriptors:sortDescriptors];
+			arr_overall_value_offers = [NSMutableArray arrayWithArray:sortedArray];
 			delivery_charges =[NSString stringWithFormat:@"%d", [[responseObject objectForKey:kDelivery_charges]intValue]];
-			strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
+			[self getTotalAmount];
+//			strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
             [self parsePaymentPageData:[responseObject objectForKey:@"payment_page_info"]];
         }
 		else
@@ -402,17 +445,20 @@ static NSString *strCollectionItems = @"collectionItems";
 			isCouponValid = [[responseObject objectForKey:@"isValid"] integerValue];
 			if(isCouponValid==0)
 			{
+				coupon_value = @"0";
 				coupon_code = @"";
 				tfCouponCode.text = @"";
 				isCouponValid = -1;
+				[self getTotalAmount];
 				[tblView reloadData];
 			}
 			else
 			{
-				NSString *coupon_value = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"coupon_value"] ];
-				total_discount = [NSString stringWithFormat:@"%ld",(long)([total_discount integerValue]+[coupon_value integerValue])];
-				strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
+				coupon_value = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"coupon_value"] ];
+//				total_discount = [NSString stringWithFormat:@"%ld",(long)([total_discount integerValue]+[coupon_value integerValue])];
+//				strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
 
+				[self getTotalAmount];
 				NSRange range = NSMakeRange(0, 1);
 				NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 				[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
@@ -701,14 +747,13 @@ static NSString *strCollectionItems = @"collectionItems";
             
             TotalPriceTableCell *cell = [self createCellTotalPrice:cellIdentifier];
             cell.indexPath = indexPath;
-            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:strTotalPrice,kTotalPrice,subTotal,kSubTotalPrice,delivery_charges,kDeliveryCharges,total_discount,kDiscount, nil];
+            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:strTotalPrice,kTotalPrice,actual_subTotal,kSubTotalPrice,delivery_charges,kDeliveryCharges,total_discount,kDiscount, nil];
             tableCell = cell;
             [cell updateCellWithData:dict];
         }
             break;
         case 1:
         {
-            
             static NSString *cellIdentifier = @"ApplyBtnCell";
             
             tableCell = [self createCell:cellIdentifier];
@@ -910,8 +955,8 @@ static NSString *strCollectionItems = @"collectionItems";
 	ProductsModel *objProductsModel = nil;
 	objProductsModel = [arrLastMinPick objectAtIndex:inIndexPath.row];
 	
-	NSInteger discount = [total_discount integerValue];
-	NSInteger sub_total = [subTotal integerValue];
+	NSInteger discount = [actual_total_discount integerValue];
+	NSInteger sub_total = [actual_subTotal integerValue];
 	if([objProductsModel.offer_type intValue]>0)
 	{
 		discount += ([objProductsModel.product_price integerValue]-[objProductsModel.offer_price integerValue]);
@@ -922,10 +967,10 @@ static NSString *strCollectionItems = @"collectionItems";
 	}
 	sub_total+=[objProductsModel.product_price intValue];
 	
-	subTotal = [NSString stringWithFormat:@"%ld",(long)sub_total];
-	total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
-	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
-
+	actual_subTotal = [NSString stringWithFormat:@"%ld",(long)sub_total];
+	actual_total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
+//	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
+	[self getTotalAmount];
 	if(self.fromCart)
 	{
 		[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:YES fromCart:NO];
@@ -945,7 +990,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	range = NSMakeRange(0, 1);
 	sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
 	[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
-
+	
 	//    [tblVwCategory reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 	[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:inIndexPath] withRowAnimation:UITableViewRowAnimationNone];
 	
@@ -955,8 +1000,8 @@ static NSString *strCollectionItems = @"collectionItems";
 	ProductsModel *objProductsModel = nil;
 	objProductsModel = [arrLastMinPick objectAtIndex:inIndexPath.row];
 	
-	NSInteger discount = [total_discount integerValue];
-	NSInteger sub_total = [subTotal integerValue];
+	NSInteger discount = [actual_total_discount integerValue];
+	NSInteger sub_total = [actual_subTotal integerValue];
 	if([objProductsModel.offer_type intValue]>0)
 	{
 		discount -= ([objProductsModel.product_price integerValue]-[objProductsModel.offer_price integerValue]);
@@ -967,10 +1012,10 @@ static NSString *strCollectionItems = @"collectionItems";
 	}
 	sub_total-=[objProductsModel.product_price intValue];
 	
-	subTotal = [NSString stringWithFormat:@"%ld",(long)sub_total];
-	total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
-	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
-
+	actual_subTotal = [NSString stringWithFormat:@"%ld",(long)sub_total];
+	actual_total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
+//	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
+	[self getTotalAmount];
 	if(self.fromCart)
 	{
 		[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:NO fromCart:NO];

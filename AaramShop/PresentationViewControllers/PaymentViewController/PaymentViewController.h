@@ -45,6 +45,7 @@ typedef enum
 @property(nonatomic,strong) NSString *strStore_name;
 @property(nonatomic,strong) NSString *strStore_image;
 @property(nonatomic,strong) NSString *strTotalPrice;
+@property(nonatomic,strong) NSString *strActualTotalPrice;
 @property(nonatomic,strong) NSMutableArray *arrSelectedProducts;
 @property(nonatomic,assign) enPickerType ePickerType;
 @property (nonatomic, assign) BOOL fromCart;
