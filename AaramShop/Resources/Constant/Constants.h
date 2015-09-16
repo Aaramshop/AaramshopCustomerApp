@@ -1,4 +1,5 @@
 
+#define GAITrackingID @"UA-67676419-1"
 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
