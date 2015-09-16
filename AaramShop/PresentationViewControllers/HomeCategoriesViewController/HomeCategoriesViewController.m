@@ -65,7 +65,6 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     //	if([arrCategories count]==0)
     //	{
-            [self	createDataToGetStores];
     //	}
 
     
@@ -109,6 +108,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 		}
 	}
 	 [self setUpNavigationBar];
+	[self	createDataToGetStores];
 
     NSLog(@"value = %f",appDeleg.myCurrentLocation.coordinate.latitude);
     if(![gCXMPPController isConnected])

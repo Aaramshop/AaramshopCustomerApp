@@ -340,7 +340,7 @@
 
 //================= SHOPPING LIST MODULE =============
 
-#define KURLSerachStoreProducts					@"serachStoreProducts"
+#define KURLSerachStoreProducts					@" "
 #define kURLCreateShoppingList						@"createShoppingList"
 #define kURLGetShoppingList                         @"getShoppingList"
 #define kURLDeleteShoppingList						@"deleteShoppingList"
