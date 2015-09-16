@@ -208,6 +208,10 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ChatDetail"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     //    [self callRequest];
 //    self.inputToolbar.keyBoardStatus = eKeyBoardNone;
 //    dictSettings = [[NSMutableDictionary alloc] init];
