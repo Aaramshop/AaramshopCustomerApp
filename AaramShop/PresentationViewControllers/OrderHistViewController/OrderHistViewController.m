@@ -41,6 +41,10 @@
 	refreshOrderList = [[UIRefreshControl alloc] init];
 	[refreshOrderList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
 	tableViewController.refreshControl = refreshOrderList;
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"OrderHistory"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 - (void)viewWillAppear:(BOOL)animated
 {

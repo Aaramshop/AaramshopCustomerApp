@@ -41,6 +41,10 @@
          [tblViewSearch setAlpha:1.0];
      }completion:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarHit) name:ssNotificationStatusBarTouched object:nil];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ShoppingListSearch"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {

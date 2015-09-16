@@ -25,6 +25,10 @@
 	tblView.tableHeaderView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, tblView.frame.size.width, 0.01f)];
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"Multiple Saved Address"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {

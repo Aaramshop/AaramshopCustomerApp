@@ -46,6 +46,10 @@
 
 	self.arrProducts = [[NSMutableArray alloc] init];
 	[self getComboDetails];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ComboOfferDetail"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)setNavigationBar
 {

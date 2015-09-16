@@ -98,6 +98,9 @@
         activityIndicatorView.center = CGPointMake(self.view.center.x, 150);
         [self.view addSubview:activityIndicatorView];
     }
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"HomeStoreSearch"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 

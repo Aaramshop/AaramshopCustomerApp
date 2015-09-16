@@ -27,6 +27,10 @@
 	aaramShop_ConnectionManager.delegate = self;
 	walletVC = [[WalletViewController alloc] init];
 	[self createDataToGetMoney];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"WalletMoney"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {

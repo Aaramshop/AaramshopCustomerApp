@@ -43,6 +43,10 @@
     
     
     [self.searchDisplayController.searchResultsTableView registerClass:[AddContactsToShareCell class] forCellReuseIdentifier:@"AddContactsToShareCell"];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ShareShoppingListContacts"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 

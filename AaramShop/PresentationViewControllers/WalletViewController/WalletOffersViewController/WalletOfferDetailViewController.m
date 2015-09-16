@@ -29,6 +29,10 @@
 	[self setUpNavigationBar];
 	[Utils startActivityIndicatorInView:self.view withMessage:nil];
 	[self performSelector:@selector(createDataToGetSearchResult) withObject:nil afterDelay:0.1];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"WalletOffersDetail"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 #pragma mark Navigation
 -(void)setUpNavigationBar

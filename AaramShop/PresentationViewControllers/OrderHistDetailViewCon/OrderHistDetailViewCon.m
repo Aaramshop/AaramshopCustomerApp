@@ -71,6 +71,10 @@
 		lblReceived.text = [NSString stringWithFormat:@"%@",_orderHist.delivered_timing];
 		
 	}
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"OrderHistoryDetail"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {

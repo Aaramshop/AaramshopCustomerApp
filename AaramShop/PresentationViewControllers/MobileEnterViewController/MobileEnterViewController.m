@@ -77,6 +77,10 @@
         NSString *fullName = [NSString stringWithFormat:@"%@", firstName];
         txtFullName.text = fullName;
     }
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"MobileEnter"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)viewWillAppear:(BOOL)animated
 {

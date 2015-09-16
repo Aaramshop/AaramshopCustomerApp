@@ -56,6 +56,10 @@
         [gAppManager performSelector:@selector(fetchAddressBookWithContactModel) withObject:nil];
     
         [gAppManager performSelector:@selector(createDefaultValuesForDictionay) withObject:nil];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"AddAddress"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 
 }
 -(void)findCurrentLocation

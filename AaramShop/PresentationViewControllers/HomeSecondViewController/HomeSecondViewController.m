@@ -104,7 +104,9 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:kBroadcastNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotBroadCastMessage:) name:kBroadcastNotification object:nil];
 	
-
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ChooseStoreCategory"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)viewWillAppear:(BOOL)animated
 {

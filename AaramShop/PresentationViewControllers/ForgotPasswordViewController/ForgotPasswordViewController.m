@@ -28,6 +28,10 @@
     gst.cancelsTouchesInView = NO;
     gst.delegate = self;
     [self.view addGestureRecognizer:gst];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ForgetPassword"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 -(BOOL)validateEmail:(NSString*)email

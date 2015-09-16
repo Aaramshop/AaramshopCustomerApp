@@ -20,6 +20,10 @@
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
 	[self setUpNavigationBar];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ChangePassword"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)setUpNavigationBar
 {

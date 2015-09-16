@@ -37,7 +37,9 @@
     [txtTitle setHidden:YES];
     [self bindData];
 
-    
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"SaveLocation"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)bindData
 {
