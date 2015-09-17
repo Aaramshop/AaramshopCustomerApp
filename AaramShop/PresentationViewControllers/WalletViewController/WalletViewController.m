@@ -27,7 +27,6 @@
 	[pointsBtn setSelected:![pointsBtn isSelected]];
 	[self setSideBtnState: eSelectedPoints];
 	selectedWallet = eSelectedPoints;
-	
 }
 - (void)viewWillAppear:(BOOL)animated
 {

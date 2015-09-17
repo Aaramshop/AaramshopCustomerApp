@@ -31,6 +31,9 @@
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate=self;
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"Feedback"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     
 }
 

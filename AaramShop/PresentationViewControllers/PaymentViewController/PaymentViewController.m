@@ -92,7 +92,9 @@ static NSString *strCollectionItems = @"collectionItems";
 	actual_subTotal		=	subTotal;
 	[self getTotalAmount];
 //	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([subTotal integerValue]-[total_discount integerValue])];
-
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"Payment"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 - (void)getTotalAmount
 {

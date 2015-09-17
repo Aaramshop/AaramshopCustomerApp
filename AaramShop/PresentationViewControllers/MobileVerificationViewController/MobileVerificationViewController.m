@@ -48,6 +48,10 @@
     }
     else
         imgVBg.image = [UIImage imageNamed:@"bg4.jpg"];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"MobileVerification"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 -(void)createDataForOtpSend

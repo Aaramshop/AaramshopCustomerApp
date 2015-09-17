@@ -27,6 +27,9 @@
 	aaramShop_ConnectionManager.delegate = self;
 	arrGlobalSearchResult = [[NSMutableArray alloc] init];
 	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"GlobalSearchResult"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {

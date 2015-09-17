@@ -1,4 +1,5 @@
 
+#define GAITrackingID @"UA-67676419-2"
 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -340,7 +341,7 @@
 
 //================= SHOPPING LIST MODULE =============
 
-#define KURLSerachStoreProducts					@" "
+#define KURLSerachStoreProducts					@"serachStoreProducts"
 #define kURLCreateShoppingList						@"createShoppingList"
 #define kURLGetShoppingList                         @"getShoppingList"
 #define kURLDeleteShoppingList						@"deleteShoppingList"

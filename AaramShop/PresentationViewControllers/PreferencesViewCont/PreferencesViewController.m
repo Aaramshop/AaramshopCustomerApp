@@ -28,6 +28,10 @@
 	strAddressCount = @"";
 	
 	[self setUpNavigationBar];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"Preferences"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)viewWillAppear:(BOOL)animated
 {

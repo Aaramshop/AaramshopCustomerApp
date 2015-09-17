@@ -22,13 +22,6 @@
     [super viewDidLoad];
 	
     // Do any additional setup after loading the view.
-//	address;
-//	state;
-//	city;
-//	locality;
-//	pincode;
-//	title;
-//	user_address_id;
 	if([self.addModel.address length]>0)
 	{
 		txtAddress.text	=	self.addModel.address;
@@ -51,6 +44,10 @@
 	aaramShop_ConnectionManager.delegate = self;
 	subView.layer.cornerRadius = 5.0f;
 	subView.layer.masksToBounds = YES;
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"SearchAddress"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {

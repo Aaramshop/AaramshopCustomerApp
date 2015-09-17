@@ -43,6 +43,10 @@
         }
     }
     [self setUpNavigationBar];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"Select Country"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 #pragma mark - setUpNavigationBar

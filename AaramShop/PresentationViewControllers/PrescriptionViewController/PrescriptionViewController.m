@@ -35,6 +35,11 @@
     [attrString addAttribute:NSFontAttributeName value:[UIFont fontWithName:kRobotoBold size:14] range:NSMakeRange(strText.length, _strStoreName.length)];
     
     lblDescription.attributedText = attrString;
+	
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"Prescription"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 -(void)viewWillAppear:(BOOL)animated

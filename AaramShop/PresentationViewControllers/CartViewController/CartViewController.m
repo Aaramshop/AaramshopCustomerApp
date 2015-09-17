@@ -29,6 +29,9 @@
     tblView.backgroundColor = [UIColor whiteColor];
     tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self setNavigationBar];
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"Cart"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
  }
 - (void)viewWillAppear:(BOOL)animated
 {

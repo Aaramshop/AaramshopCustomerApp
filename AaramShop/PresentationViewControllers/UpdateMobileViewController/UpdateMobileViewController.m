@@ -74,7 +74,9 @@
 	}
 	[imgBackground setClipsToBounds:YES];
 	
-	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"UpdateMobileExistingUser"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 	
 
 }

@@ -50,7 +50,10 @@
     refreshShoppingList = [[UIRefreshControl alloc] init];
     [refreshShoppingList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     tableViewController.refreshControl = refreshShoppingList;
-    
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ShoppingList"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 //    [self getInitialShoppingList];
     
 }

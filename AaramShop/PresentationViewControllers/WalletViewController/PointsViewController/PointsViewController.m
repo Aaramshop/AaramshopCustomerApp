@@ -32,6 +32,10 @@
 	
 	[self getPoints];
 	selectedPointsType = eSelectedPointsTypeNone;
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"WalletPoints"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 - (void)viewWillAppear:(BOOL)animated
 {

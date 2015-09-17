@@ -32,6 +32,9 @@
                                                            forKey:NSFontAttributeName];
     [self.segChatSelection setTitleTextAttributes:attributes
                                     forState:UIControlStateNormal];
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ChatList"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 - (void)viewWillAppear:(BOOL)animated
 {

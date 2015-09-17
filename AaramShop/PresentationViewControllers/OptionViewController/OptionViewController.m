@@ -51,7 +51,10 @@
     [theMoviPlayer.view setFrame:CGRectMake(0, -20, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height)];
     [subView addSubview:theMoviPlayer.view];
     [subView addSubview:blurView];
-    
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"LoginOption"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)viewWillAppear:(BOOL)animated
 {

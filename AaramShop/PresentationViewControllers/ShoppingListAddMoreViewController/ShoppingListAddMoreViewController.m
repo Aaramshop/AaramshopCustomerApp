@@ -40,7 +40,9 @@
     
     tblView.backgroundColor = [UIColor whiteColor];
     
-    
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"AddedShoppingListProducts"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 

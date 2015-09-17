@@ -30,7 +30,10 @@
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate = self;
     [self bindData];
-
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"HomeStoreDetail"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)bindData
 {

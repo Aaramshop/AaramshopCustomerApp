@@ -90,8 +90,10 @@
      
      //*/
     
-    
-    
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ShoppingListCalender"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+	
 }
 
 - (void)didReceiveMemoryWarning {

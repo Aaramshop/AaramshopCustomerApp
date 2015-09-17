@@ -29,6 +29,10 @@
 	dataSource = [[NSMutableArray alloc] init];
 	[self createDataToGetOffers];
 	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"WalletOffers"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+	
 }
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];

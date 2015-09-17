@@ -83,9 +83,15 @@
 		lblReceived.text = [NSString stringWithFormat:@"%@",_orderHist.delivered_timing];
 		
 	}
+
     
 //    lblTotalUdhaar.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_udhaar];
 
+
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"OrderHistoryDetail"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -23,6 +23,10 @@
     aaramShop_ConnectionManager.delegate = self;
     [self setUpNavigationBar];
     [tblView reloadData];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"PaymentMode"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
