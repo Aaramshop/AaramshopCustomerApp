@@ -13,6 +13,7 @@
 	AppDelegate *appDelegate;
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 }
+
 @end
 
 @implementation BroadcastViewController
@@ -171,6 +172,18 @@
 		//		comboDetail.cmMyOffers = offers;
 		//		[self.navigationController pushViewController:comboDetail animated:YES];
 	}
+    
+    
+    StoreModel *objStoreModel = [[StoreModel alloc] init];
+    objStoreModel.store_id	=	offers.store_id;
+    objStoreModel.store_name	=	offers.store_name;
+    objStoreModel.store_image	=	offers.store_image;
+    appDelegate.objStoreModel = objStoreModel;
+    UITabBarController *tabBar = [appDelegate createTabBarRetailer];
+    tabBar.hidesBottomBarWhenPushed = YES;
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController pushViewController:tabBar animated:YES];
+
 	
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -366,6 +379,15 @@
 			NSDictionary *dict = [data objectAtIndex:i];
 			CMOffers *offers  = [[CMOffers alloc] init];
 			
+            
+
+            // added on 17 Sep 2015 ... begins
+            offers.store_id = [dict objectForKey:@"store_id"];
+            offers.store_name = [dict objectForKey:@"store_name"];
+            offers.store_image = [dict objectForKey:@"store_image"];
+            // added on 17 Sep 2015 ... ends
+            
+            
 			offers.offerType							= [dict objectForKey:kOfferType];
 			offers.product_id						= [dict objectForKey:kProduct_id];
 			offers.product_sku_id					= [dict objectForKey:kProduct_sku_id];
@@ -392,6 +414,8 @@
 			offers.end_date							= [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:kEnd_date] doubleValue]]];
 			broadcastPageNo						=	[[dict objectForKey:kTotal_page] intValue];
 			[array addObject:offers];
+            
+            
 		}
 	}
     

@@ -25,7 +25,7 @@
 //	[lblLine setHidden:YES];
 	
     // check first if store name exists or not ..
-    lblStoreName.text = @"Store Name ABC"; // added on 17 Sep 2015 ..
+    lblStoreName.text = offers.store_name; // added on 17 Sep 2015 ..
     
     
     
