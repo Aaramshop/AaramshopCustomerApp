@@ -139,6 +139,7 @@ AppDelegate *appDeleg;
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kState] forKey:kState];
     [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kToddlers] forKey:kToddlers];
     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",[dict objectForKey:kUserId]] forKey:kUserId];
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 -(NSArray *)getcountryList
@@ -712,7 +713,7 @@ void MyAddressBookExternalChangeCallback (
 	for (id key in dict) {
 		
 		NSString *strKey = (NSString *)key;
-		if ([strKey isEqualToString:kXMPPmyJID1] || [strKey isEqualToString:kXMPPmyPassword1] || [strKey isEqualToString:@"MessageCounter"] || [strKey isEqualToString:kUserId] || [strKey isEqualToString:kFullname] || [strKey isEqualToString:kUser_address] || [strKey isEqualToString:kProfileImage] || [strKey isEqualToString:kCartData] || [strKey isEqualToString:kEmail])
+		if ([strKey isEqualToString:kXMPPmyJID1] || [strKey isEqualToString:kXMPPmyPassword1] || [strKey isEqualToString:@"MessageCounter"] || [strKey isEqualToString:kUserId] || [strKey isEqualToString:kFullname] || [strKey isEqualToString:kUser_address] || [strKey isEqualToString:kProfileImage] || [strKey isEqualToString:kCartData] || [strKey isEqualToString:kEmail] || [strKey isEqualToString:kMobile])
 		{
 			[defs removeObjectForKey:key];
 		}else{

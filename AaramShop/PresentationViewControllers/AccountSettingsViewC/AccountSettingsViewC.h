@@ -13,6 +13,7 @@ typedef enum
 {
 	
     eUserInfo = 0,
+    eUserPhoneNo,
     eUserContact
 }eSectionType;
 

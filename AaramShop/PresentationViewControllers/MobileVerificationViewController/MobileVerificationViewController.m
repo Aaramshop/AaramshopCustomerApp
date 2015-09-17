@@ -251,6 +251,10 @@
 	[[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kUser_address] forKey:kUser_address];
 	[[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kCity] forKey:kCity];
 	[[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kState] forKey:kState];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:strMobileNum forKey:kMobile];
+    
+    
     [[NSUserDefaults standardUserDefaults]synchronize];
     
 }

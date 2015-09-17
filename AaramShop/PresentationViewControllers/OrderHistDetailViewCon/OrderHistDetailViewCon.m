@@ -20,6 +20,18 @@
 	[self setUpNavigationBar];
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
 	aaramShop_ConnectionManager.delegate = self;
+    
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    if([[UIScreen mainScreen] bounds].size.height==480)
+    {
+        scrollview.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
+        [scrollview setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 500)];
+        
+    }
+
+    
 	
 	strRupee = @"\u20B9";
 	
@@ -71,6 +83,9 @@
 		lblReceived.text = [NSString stringWithFormat:@"%@",_orderHist.delivered_timing];
 		
 	}
+    
+//    lblTotalUdhaar.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_udhaar];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -199,5 +214,17 @@
 {
 	return [NSString stringWithFormat:@"%.f",[[NSDate date] timeIntervalSince1970] ];
 }
+
+
+
+
+- (IBAction)btnSeeMoreDetails:(id)sender {
+    
+//    CustOrderDetailViewCon *custOrderDetailVc=[self.storyboard instantiateViewControllerWithIdentifier:@"CustOrderDetailView"];
+//    custOrderDetailVc.orderHist =self.orderHist;
+//    [self.navigationController pushViewController:custOrderDetailVc animated:YES];
+    
+}
+
 
 @end

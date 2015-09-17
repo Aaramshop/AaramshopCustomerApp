@@ -8,6 +8,8 @@
 
 #import "ChatViewController.h"
 
+#define kCustomerSupportId                  @"1400721"
+
 @interface ChatViewController ()
 {
     NSMutableArray *arrCustomerSupport;
@@ -82,8 +84,10 @@
 			[self.arrCustomers addObject:[arr objectAtIndex:0]];
 		}
 	}
-
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.bareJidStr contains[cd] %@",@"14007215046706"];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.bareJidStr contains[cd] %@",kCustomerSupportId];
+    
+    
     NSArray *arr = [self.arrCustomers filteredArrayUsingPredicate:pred];
     
     if([arr count]>0)
@@ -538,8 +542,10 @@
     SMChatViewController *chatView = nil;
     if(self.segChatSelection.selectedSegmentIndex == 0)
     {
-        chatView = [deleg createChatViewByChatUserNameIfNeeded:@"14007215046706"];
-        chatView.chatWithUser = [NSString stringWithFormat:@"14007215046706@%@",STRChatServerURL];
+        chatView = [deleg createChatViewByChatUserNameIfNeeded:kCustomerSupportId];
+
+        chatView.chatWithUser = [NSString stringWithFormat:@"%@@%@",kCustomerSupportId,STRChatServerURL];
+
         chatView.friendNameId = @"1";
         chatView.imageString = @"";
         chatView.userName = @"Customer Support";
@@ -584,7 +590,10 @@
 {
     NSMutableArray *arr = [[NSUserDefaults standardUserDefaults] valueForKey:MESSAGE_COUNTER];
     NSCountedSet *countedSet = [[NSCountedSet alloc] initWithArray:[[NSUserDefaults standardUserDefaults] valueForKey:MESSAGE_COUNTER]];
-    NSInteger supportChatCount = [countedSet countForObject:[NSString stringWithFormat:@"14007215046706@%@",STRChatServerURL]];
+    
+    NSInteger supportChatCount = [countedSet countForObject:[NSString stringWithFormat:@"%@@%@",kCustomerSupportId,STRChatServerURL]];
+
+    
     NSInteger customerChatCount = [arr count]-supportChatCount;
     [self.segChatSelection clearBadges];
     if(supportChatCount >0)

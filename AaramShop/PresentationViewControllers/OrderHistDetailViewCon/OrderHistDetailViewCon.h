@@ -46,6 +46,11 @@ typedef enum
 	AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 	NSString *strRupee;
 	__weak IBOutlet UILabel *lblPaymentMode;
+    
+    
+    __weak IBOutlet UIScrollView *scrollview;
+    __weak IBOutlet UILabel *lblTotalUdhaar;
+
 }
 
 @property (nonatomic, strong) CMOrderHist *orderHist;
