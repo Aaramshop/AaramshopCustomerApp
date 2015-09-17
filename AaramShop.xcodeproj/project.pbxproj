@@ -1120,6 +1120,10 @@
 		6B87C7661B342B29002BC68C /* homeStoreIdBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B87C7631B342B29002BC68C /* homeStoreIdBox.png */; };
 		6B87C7671B342B29002BC68C /* homeStoreIdBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B87C7641B342B29002BC68C /* homeStoreIdBox@2x.png */; };
 		6B87C7681B342B29002BC68C /* homeStoreIdBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B87C7651B342B29002BC68C /* homeStoreIdBox@3x.png */; };
+		6B8B00CE1BAA9C93006F7D2C /* OrderedProductsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8B00CD1BAA9C93006F7D2C /* OrderedProductsDetailViewController.m */; };
+		6B8B00D31BAAB804006F7D2C /* OrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8B00D21BAAB804006F7D2C /* OrderDetailModel.m */; };
+		6B8B00DA1BAAB89D006F7D2C /* UserOrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8B00D61BAAB89D006F7D2C /* UserOrderDetailCell.m */; };
+		6B8B00DB1BAAB89D006F7D2C /* UserOrderDetailOfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8B00D91BAAB89D006F7D2C /* UserOrderDetailOfferCell.m */; };
 		6B8D4EF21B872E030048E1DD /* CashRegister.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6B8D4EF11B872E020048E1DD /* CashRegister.wav */; };
 		6B8D4EF61B8734260048E1DD /* bellIconRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8D4EF31B8734250048E1DD /* bellIconRed.png */; };
 		6B8D4EF71B8734260048E1DD /* bellIconRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B8D4EF41B8734250048E1DD /* bellIconRed@2x.png */; };
@@ -2974,6 +2978,14 @@
 		6B87C7631B342B29002BC68C /* homeStoreIdBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeStoreIdBox.png; sourceTree = "<group>"; };
 		6B87C7641B342B29002BC68C /* homeStoreIdBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeStoreIdBox@2x.png"; sourceTree = "<group>"; };
 		6B87C7651B342B29002BC68C /* homeStoreIdBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeStoreIdBox@3x.png"; sourceTree = "<group>"; };
+		6B8B00CC1BAA9C93006F7D2C /* OrderedProductsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedProductsDetailViewController.h; sourceTree = "<group>"; };
+		6B8B00CD1BAA9C93006F7D2C /* OrderedProductsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedProductsDetailViewController.m; sourceTree = "<group>"; };
+		6B8B00D11BAAB804006F7D2C /* OrderDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailModel.h; sourceTree = "<group>"; };
+		6B8B00D21BAAB804006F7D2C /* OrderDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailModel.m; sourceTree = "<group>"; };
+		6B8B00D51BAAB89D006F7D2C /* UserOrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOrderDetailCell.h; sourceTree = "<group>"; };
+		6B8B00D61BAAB89D006F7D2C /* UserOrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOrderDetailCell.m; sourceTree = "<group>"; };
+		6B8B00D81BAAB89D006F7D2C /* UserOrderDetailOfferCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOrderDetailOfferCell.h; sourceTree = "<group>"; };
+		6B8B00D91BAAB89D006F7D2C /* UserOrderDetailOfferCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOrderDetailOfferCell.m; sourceTree = "<group>"; };
 		6B8D4EF11B872E020048E1DD /* CashRegister.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CashRegister.wav; sourceTree = "<group>"; };
 		6B8D4EF31B8734250048E1DD /* bellIconRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bellIconRed.png; sourceTree = "<group>"; };
 		6B8D4EF41B8734250048E1DD /* bellIconRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bellIconRed@2x.png"; sourceTree = "<group>"; };
@@ -6095,6 +6107,7 @@
 		6B12DC9D1AF2543A00245209 /* PresentationViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6B8B00CB1BAA9BDD006F7D2C /* OrderedProductsDetailViewController */,
 				36BDE7E11B8365C1004F366B /* AddNewLocationViewController */,
 				362537E91B76110300DF34F8 /* InviteFriendsViewController */,
 				36CA64461B70EC3D00A3BBB1 /* SearchViewController */,
@@ -6673,6 +6686,53 @@
 				6B87C75B1B34206F002BC68C /* StoreModel.m */,
 			);
 			path = StoreModel;
+			sourceTree = "<group>";
+		};
+		6B8B00CB1BAA9BDD006F7D2C /* OrderedProductsDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6B8B00D41BAAB89D006F7D2C /* UserOrderDetailCell */,
+				6B8B00D71BAAB89D006F7D2C /* UserOrderDetailOfferCell */,
+				6B8B00D01BAAB804006F7D2C /* OrderDetailModel */,
+				6B8B00CF1BAA9CF0006F7D2C /* OrderedProductsDetailCell */,
+				6B8B00CC1BAA9C93006F7D2C /* OrderedProductsDetailViewController.h */,
+				6B8B00CD1BAA9C93006F7D2C /* OrderedProductsDetailViewController.m */,
+			);
+			path = OrderedProductsDetailViewController;
+			sourceTree = "<group>";
+		};
+		6B8B00CF1BAA9CF0006F7D2C /* OrderedProductsDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OrderedProductsDetailCell;
+			sourceTree = "<group>";
+		};
+		6B8B00D01BAAB804006F7D2C /* OrderDetailModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B8B00D11BAAB804006F7D2C /* OrderDetailModel.h */,
+				6B8B00D21BAAB804006F7D2C /* OrderDetailModel.m */,
+			);
+			path = OrderDetailModel;
+			sourceTree = "<group>";
+		};
+		6B8B00D41BAAB89D006F7D2C /* UserOrderDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				6B8B00D51BAAB89D006F7D2C /* UserOrderDetailCell.h */,
+				6B8B00D61BAAB89D006F7D2C /* UserOrderDetailCell.m */,
+			);
+			path = UserOrderDetailCell;
+			sourceTree = "<group>";
+		};
+		6B8B00D71BAAB89D006F7D2C /* UserOrderDetailOfferCell */ = {
+			isa = PBXGroup;
+			children = (
+				6B8B00D81BAAB89D006F7D2C /* UserOrderDetailOfferCell.h */,
+				6B8B00D91BAAB89D006F7D2C /* UserOrderDetailOfferCell.m */,
+			);
+			path = UserOrderDetailOfferCell;
 			sourceTree = "<group>";
 		};
 		6B8EB2421B23087400402CFC /* ShoppingListScreenImages */ = {
@@ -8820,6 +8880,7 @@
 				36CA644D1B70EC3D00A3BBB1 /* SearchViewController.m in Sources */,
 				274A5CB21B05C4AA009112B5 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				274A5C6E1B05C4AA009112B5 /* FacebookLoginClass.m in Sources */,
+				6B8B00CE1BAA9C93006F7D2C /* OrderedProductsDetailViewController.m in Sources */,
 				6B35B8C71B56706000807F25 /* ShoppingListCalenderViewController.m in Sources */,
 				274A5C9B1B05C4AA009112B5 /* XMPPBandwidthMonitor.m in Sources */,
 				274A5CFC1B05C4AA009112B5 /* DDAbstractDatabaseLogger.m in Sources */,
@@ -8952,6 +9013,7 @@
 				6B1A9A581B03658C0005917B /* CustomMapAnnotationView.m in Sources */,
 				274A5CC41B05C4AA009112B5 /* XMPPvCardTempAdr.m in Sources */,
 				274A5CBC1B05C4AA009112B5 /* XMPPMUC.m in Sources */,
+				6B8B00DA1BAAB89D006F7D2C /* UserOrderDetailCell.m in Sources */,
 				6BD9CB611B627C0A00D8D012 /* RetailerShoppingListDetailViewController.m in Sources */,
 				6BA894101B4FC0350014519C /* HomeCategoriesCollectionCell.m in Sources */,
 				274A5CBF1B05C4AA009112B5 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
@@ -9063,8 +9125,10 @@
 				6B809DA91B31755D00E91673 /* SDWebImageDownloader.m in Sources */,
 				274A5DF51B05C88B009112B5 /* CAnnotation.m in Sources */,
 				274A5CFD1B05C4AA009112B5 /* DDASLLogger.m in Sources */,
+				6B8B00DB1BAAB89D006F7D2C /* UserOrderDetailOfferCell.m in Sources */,
 				6BF82D771B5A1B72003828BD /* ShoppingListDetailNewCell.m in Sources */,
 				6B12DC611AF2294D00245209 /* main.m in Sources */,
+				6B8B00D31BAAB804006F7D2C /* OrderDetailModel.m in Sources */,
 				6B1DFC1E1B30495800E5CAE8 /* CustomSearchDisplayController.m in Sources */,
 				6B83A0F41B53EBED00A00520 /* ShoppingListCell.m in Sources */,
 				274A5C831B05C4AA009112B5 /* NSData+Base64.m in Sources */,

@@ -71,8 +71,20 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular_0.ttf">
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -4271,6 +4283,15 @@ Why not start with placing a new order now!</string>
                                                 <color key="textColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jX-Mk-NRi" userLabel="Button - Call">
+                                                <rect key="frame" x="277" y="13" width="35" height="35"/>
+                                                <state key="normal" image="callIconGreenCircle.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnCallDeliveryBoy:" destination="xtL-Dr-u0t" eventType="touchUpInside" id="d6L-kO-iaV"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -4367,6 +4388,7 @@ Why not start with placing a new order now!</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnCallDeliveryBoy" destination="2jX-Mk-NRi" id="TVE-dK-r2c"/>
                         <outlet property="btnCompleted" destination="iNJ-MB-RTy" id="G8F-sW-7iH"/>
                         <outlet property="dispatchedBtn" destination="3S7-WE-jXR" id="tgP-GO-LZ1"/>
                         <outlet property="imgCustomer" destination="dS5-k3-j8b" id="Nur-EY-whg"/>
@@ -4382,6 +4404,7 @@ Why not start with placing a new order now!</string>
                         <outlet property="lblReceived" destination="cUB-G6-dNo" id="LsL-XI-n8Q"/>
                         <outlet property="lblTimeSlot" destination="q5P-Fn-NXM" id="A8t-JI-HAL"/>
                         <outlet property="lblTotalUdhaar" destination="W2Q-g7-aRE" id="0Vs-yF-1eB"/>
+                        <outlet property="lblUdhaar_value" destination="txW-ZF-FGb" id="LGl-FL-tid"/>
                         <outlet property="packedBtn" destination="gYh-Ru-LJi" id="8SB-aI-ivD"/>
                         <outlet property="receivedBtn" destination="LEY-kj-KVA" id="0r8-nt-Mf5"/>
                         <outlet property="scrollview" destination="SXW-QZ-DBu" id="Rh6-Ir-jpt"/>
@@ -4389,7 +4412,270 @@ Why not start with placing a new order now!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qxo-sW-FL2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1585" y="4113"/>
+            <point key="canvasLocation" x="1503" y="4114"/>
+        </scene>
+        <!--Ordered Products Detail View Controller-->
+        <scene sceneID="S2R-p4-u6x">
+            <objects>
+                <viewController storyboardIdentifier="OrderedProductsDetail" id="J79-oi-kJt" customClass="OrderedProductsDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jk1-qR-kVq"/>
+                        <viewControllerLayoutGuide type="bottom" id="v1X-x7-1XO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yxU-uj-ltb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="2em-gc-ihE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserOrderDetailCell" rowHeight="70" id="Upl-lx-Xpn" customClass="UserOrderDetailCell">
+                                        <rect key="frame" x="10" y="10" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Upl-lx-Xpn" id="e5r-Jh-E6e">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fG6-19-HCJ" userLabel="Image View - Order Image">
+                                                    <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="HYs-xh-g6o"/>
+                                                        <constraint firstAttribute="width" constant="60" id="QST-I3-ENI"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rM7-26-DKR" userLabel="Label - Name">
+                                                    <rect key="frame" x="72" y="8" width="163" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="HDj-q1-YAG"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfp-hl-TKz" userLabel="Label - Total Price">
+                                                    <rect key="frame" x="240" y="16" width="70" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="4mO-tz-vyW"/>
+                                                        <constraint firstAttribute="width" constant="70" id="hoC-pk-jYr"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.27058823529999998" green="0.57254901960000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbD-m7-LTV" userLabel="Label - Quantity">
+                                                    <rect key="frame" x="72" y="46" width="60" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="7Fq-4n-2ij"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pme-VI-FCp" userLabel="Label - Unit Price">
+                                                    <rect key="frame" x="134" y="46" width="70" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="lOk-9g-K9A"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QE8-0B-vPj" userLabel="Label - Offer Price">
+                                                    <rect key="frame" x="206" y="46" width="70" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="uoP-Xa-VEy"/>
+                                                        <constraint firstAttribute="height" constant="18" id="wZF-8W-kiT"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.92156862750000001" green="0.078431372550000003" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="StQ-0A-1rN" userLabel="Button - Report">
+                                                    <rect key="frame" x="280" y="40" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="59x-aP-dia"/>
+                                                        <constraint firstAttribute="width" constant="30" id="Fuz-VS-TXy"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="8" minY="4" maxX="0.0" maxY="4"/>
+                                                    <state key="normal" image="homeDetailMinusCircleInactive.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="homeDetailMinusCircleActive.png"/>
+                                                    <connections>
+                                                        <action selector="actionReportOrders:" destination="Upl-lx-Xpn" eventType="touchUpInside" id="Uh9-ne-dKx"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Pme-VI-FCp" firstAttribute="top" secondItem="rM7-26-DKR" secondAttribute="bottom" constant="4" id="2n6-wI-t6O"/>
+                                                <constraint firstItem="FbD-m7-LTV" firstAttribute="top" secondItem="e5r-Jh-E6e" secondAttribute="topMargin" constant="38" id="417-8Y-xMe"/>
+                                                <constraint firstItem="Nfp-hl-TKz" firstAttribute="leading" secondItem="rM7-26-DKR" secondAttribute="trailing" constant="5" id="58W-RN-vab"/>
+                                                <constraint firstItem="fG6-19-HCJ" firstAttribute="leadingMargin" secondItem="e5r-Jh-E6e" secondAttribute="leadingMargin" constant="5" id="79G-WM-ow6"/>
+                                                <constraint firstItem="QE8-0B-vPj" firstAttribute="leading" secondItem="Pme-VI-FCp" secondAttribute="trailing" constant="2" id="Kma-xH-t2i"/>
+                                                <constraint firstItem="StQ-0A-1rN" firstAttribute="top" secondItem="Nfp-hl-TKz" secondAttribute="bottom" constant="6" id="Nfd-59-kpd"/>
+                                                <constraint firstItem="Pme-VI-FCp" firstAttribute="leading" secondItem="FbD-m7-LTV" secondAttribute="trailing" constant="2" id="UJp-GR-hVg"/>
+                                                <constraint firstItem="QE8-0B-vPj" firstAttribute="top" secondItem="rM7-26-DKR" secondAttribute="bottom" constant="4" id="cch-Tj-E6u"/>
+                                                <constraint firstItem="Nfp-hl-TKz" firstAttribute="top" secondItem="e5r-Jh-E6e" secondAttribute="topMargin" constant="8" id="eAh-9t-Q4G"/>
+                                                <constraint firstItem="rM7-26-DKR" firstAttribute="top" secondItem="e5r-Jh-E6e" secondAttribute="topMargin" id="gq9-Vi-V9G"/>
+                                                <constraint firstItem="rM7-26-DKR" firstAttribute="leading" secondItem="fG6-19-HCJ" secondAttribute="trailing" constant="7" id="iv8-Y8-mu6"/>
+                                                <constraint firstItem="fG6-19-HCJ" firstAttribute="topMargin" secondItem="e5r-Jh-E6e" secondAttribute="topMargin" constant="5" id="kbu-UF-ddl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="StQ-0A-1rN" secondAttribute="trailing" constant="2" id="mmk-Vx-eyV"/>
+                                                <constraint firstItem="FbD-m7-LTV" firstAttribute="leading" secondItem="fG6-19-HCJ" secondAttribute="trailing" constant="7" id="wBP-3E-Byn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Nfp-hl-TKz" secondAttribute="trailing" constant="2" id="xzC-Ba-Nz8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnReport" destination="StQ-0A-1rN" id="b8c-q8-BbM"/>
+                                            <outlet property="imgOrder" destination="fG6-19-HCJ" id="Mjs-oi-7iq"/>
+                                            <outlet property="lblName" destination="rM7-26-DKR" id="AAa-WT-dZS"/>
+                                            <outlet property="lblOfferPrice" destination="QE8-0B-vPj" id="WXe-3C-GhJ"/>
+                                            <outlet property="lblQuantity" destination="FbD-m7-LTV" id="9PI-yE-Dha"/>
+                                            <outlet property="lblTotalPrice" destination="Nfp-hl-TKz" id="DgC-2m-dJu"/>
+                                            <outlet property="lblUnitPrice" destination="Pme-VI-FCp" id="VLG-fy-8Vb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserOrderDetailOfferCell" rowHeight="100" id="hjf-ge-rVA" customClass="UserOrderDetailOfferCell">
+                                        <rect key="frame" x="10" y="80" width="320" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hjf-ge-rVA" id="vdl-bf-T27">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AvC-bT-f3H" userLabel="Image View - Order Image">
+                                                    <rect key="frame" x="5" y="20" width="60" height="60"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="M5i-CS-ae3"/>
+                                                        <constraint firstAttribute="height" constant="60" id="ZqV-zF-RJn"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctp-9A-mxF" userLabel="Label - Name">
+                                                    <rect key="frame" x="72" y="3" width="163" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="Ppd-03-mOZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abh-86-qFL" userLabel="Label - Total Price">
+                                                    <rect key="frame" x="240" y="11" width="70" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="FS4-oh-ATT"/>
+                                                        <constraint firstAttribute="height" constant="18" id="JSn-lZ-EoO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.27058823529999998" green="0.57254901960000004" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Hz-ge-gft" userLabel="Label - Description">
+                                                    <rect key="frame" x="72" y="38" width="163" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="34" id="zCc-qM-VVR"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieC-y1-OCy" userLabel="Label - Quantity">
+                                                    <rect key="frame" x="72" y="73" width="60" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="KyE-kF-PG1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqf-bh-xDL" userLabel="Label - Unit Price">
+                                                    <rect key="frame" x="134" y="73" width="70" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="OCX-Bq-IRU"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adz-98-YO3" userLabel="Label - Offer Price">
+                                                    <rect key="frame" x="206" y="73" width="70" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="AyF-oQ-RiR"/>
+                                                        <constraint firstAttribute="height" constant="18" id="Fo8-oV-LbF"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                                                    <color key="textColor" red="0.92156862750000001" green="0.078431372550000003" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MQ-ui-4Wx" userLabel="Button - Report">
+                                                    <rect key="frame" x="280" y="67" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="jxA-LA-Rsw"/>
+                                                        <constraint firstAttribute="height" constant="30" id="su4-EH-buT"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="8" minY="4" maxX="0.0" maxY="4"/>
+                                                    <state key="normal" image="homeDetailMinusCircleInactive.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="homeDetailMinusCircleActive.png"/>
+                                                    <connections>
+                                                        <action selector="actionReportOrders:" destination="hjf-ge-rVA" eventType="touchUpInside" id="EZe-U1-3Ef"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="AvC-bT-f3H" firstAttribute="leadingMargin" secondItem="vdl-bf-T27" secondAttribute="leadingMargin" constant="5" id="2ks-dp-UeG"/>
+                                                <constraint firstItem="8MQ-ui-4Wx" firstAttribute="top" secondItem="6Hz-ge-gft" secondAttribute="bottom" constant="-5" id="4LP-nI-LX5"/>
+                                                <constraint firstItem="adz-98-YO3" firstAttribute="leading" secondItem="Hqf-bh-xDL" secondAttribute="trailing" constant="2" id="5mu-Ys-Fm0"/>
+                                                <constraint firstItem="Hqf-bh-xDL" firstAttribute="leading" secondItem="ieC-y1-OCy" secondAttribute="trailing" constant="2" id="6yP-fH-mtU"/>
+                                                <constraint firstItem="ctp-9A-mxF" firstAttribute="leading" secondItem="AvC-bT-f3H" secondAttribute="trailing" constant="7" id="9n8-7U-TDN"/>
+                                                <constraint firstItem="AvC-bT-f3H" firstAttribute="topMargin" secondItem="vdl-bf-T27" secondAttribute="topMargin" constant="20" id="C8F-9C-aY8"/>
+                                                <constraint firstItem="6Hz-ge-gft" firstAttribute="leading" secondItem="AvC-bT-f3H" secondAttribute="trailing" constant="7" id="EQy-AB-eKf"/>
+                                                <constraint firstItem="Hqf-bh-xDL" firstAttribute="top" secondItem="6Hz-ge-gft" secondAttribute="bottom" constant="1" id="Mz6-D4-DmI"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8MQ-ui-4Wx" secondAttribute="trailing" constant="2" id="QVt-4X-hR5"/>
+                                                <constraint firstItem="ieC-y1-OCy" firstAttribute="leading" secondItem="AvC-bT-f3H" secondAttribute="trailing" constant="7" id="U1z-i4-isS"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6Hz-ge-gft" secondAttribute="trailing" constant="77" id="Z8B-eu-Fdr"/>
+                                                <constraint firstItem="ieC-y1-OCy" firstAttribute="top" secondItem="6Hz-ge-gft" secondAttribute="bottom" constant="1" id="bey-IX-YYe"/>
+                                                <constraint firstItem="ieC-y1-OCy" firstAttribute="bottom" secondItem="vdl-bf-T27" secondAttribute="bottomMargin" id="eEh-rS-moM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Abh-86-qFL" secondAttribute="trailing" constant="2" id="fDb-dD-UTK"/>
+                                                <constraint firstItem="ctp-9A-mxF" firstAttribute="top" secondItem="vdl-bf-T27" secondAttribute="topMargin" constant="-5" id="gpW-q9-Waz"/>
+                                                <constraint firstItem="Abh-86-qFL" firstAttribute="top" secondItem="vdl-bf-T27" secondAttribute="topMargin" constant="3" id="h62-to-uLn"/>
+                                                <constraint firstItem="6Hz-ge-gft" firstAttribute="top" secondItem="ctp-9A-mxF" secondAttribute="bottom" constant="1" id="jV6-rk-L7h"/>
+                                                <constraint firstItem="Abh-86-qFL" firstAttribute="leading" secondItem="ctp-9A-mxF" secondAttribute="trailing" constant="5" id="wRr-RC-Vmz"/>
+                                                <constraint firstItem="adz-98-YO3" firstAttribute="top" secondItem="6Hz-ge-gft" secondAttribute="bottom" constant="1" id="yjO-Jz-Lr9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="btnReport" destination="8MQ-ui-4Wx" id="46h-1p-9g7"/>
+                                            <outlet property="imgOrder" destination="AvC-bT-f3H" id="kw0-0y-cA3"/>
+                                            <outlet property="lblDescription" destination="6Hz-ge-gft" id="dZo-cL-a8O"/>
+                                            <outlet property="lblName" destination="ctp-9A-mxF" id="NkK-No-c90"/>
+                                            <outlet property="lblOfferPrice" destination="adz-98-YO3" id="bsH-2c-7Vu"/>
+                                            <outlet property="lblQuantity" destination="ieC-y1-OCy" id="CZm-qe-Tn4"/>
+                                            <outlet property="lblTotalPrice" destination="Abh-86-qFL" id="sb2-Io-sMJ"/>
+                                            <outlet property="lblUnitPrice" destination="Hqf-bh-xDL" id="8QF-1l-E1w"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="J79-oi-kJt" id="hxW-EV-YdC"/>
+                                    <outlet property="delegate" destination="J79-oi-kJt" id="gkk-mj-jdE"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="2em-gc-ihE" secondAttribute="centerX" id="EW1-kj-dmB"/>
+                            <constraint firstAttribute="centerY" secondItem="2em-gc-ihE" secondAttribute="centerY" id="Z4C-ho-0qg"/>
+                            <constraint firstAttribute="width" secondItem="2em-gc-ihE" secondAttribute="width" id="vaU-Wj-wIN"/>
+                            <constraint firstAttribute="height" secondItem="2em-gc-ihE" secondAttribute="height" id="xhq-xT-n0c"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tblView" destination="2em-gc-ihE" id="0rG-NQ-Nn8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jnj-b8-KFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1873" y="4114"/>
         </scene>
         <!--Offers View Controller-->
         <scene sceneID="c0l-Fs-SHx">
@@ -4733,7 +5019,7 @@ Why not start with placing a new order now!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFb-eR-QRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2195" y="4166"/>
+            <point key="canvasLocation" x="2234" y="4113"/>
         </scene>
         <!--Item-->
         <scene sceneID="HJN-Ww-XI7">
@@ -6960,8 +7246,17 @@ Why not start with placing a new order now!</string>
                                                         <constraint firstAttribute="width" constant="75" id="w9a-od-fYJ"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jds-KS-pLV" userLabel="Label - Store name">
+                                                    <rect key="frame" x="91" y="5" width="221" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="k4j-M3-FjY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                                                    <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oot-CA-uen">
-                                                    <rect key="frame" x="91" y="13" width="221" height="21"/>
+                                                    <rect key="frame" x="91" y="29" width="221" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="sUe-Tt-PDF"/>
                                                     </constraints>
@@ -6970,7 +7265,7 @@ Why not start with placing a new order now!</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹10000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clg-4S-YT8">
-                                                    <rect key="frame" x="91" y="37" width="58" height="21"/>
+                                                    <rect key="frame" x="91" y="51" width="58" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="58" id="Dq7-gI-bFG"/>
                                                         <constraint firstAttribute="height" constant="21" id="HWh-Nx-tqF"/>
@@ -6980,14 +7275,14 @@ Why not start with placing a new order now!</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3e-bx-2Di">
-                                                    <rect key="frame" x="95" y="47" width="49" height="1"/>
+                                                    <rect key="frame" x="95" y="61" width="49" height="1"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSd-eb-rNj">
-                                                    <rect key="frame" x="153" y="37" width="65" height="21"/>
+                                                    <rect key="frame" x="153" y="51" width="65" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="JnK-Zb-Mx6"/>
                                                     </constraints>
@@ -6996,7 +7291,7 @@ Why not start with placing a new order now!</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="valid till 15may 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yb3-zj-g1p">
-                                                    <rect key="frame" x="91" y="55" width="149" height="21"/>
+                                                    <rect key="frame" x="91" y="69" width="149" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="BcX-6M-Hfc"/>
                                                     </constraints>
@@ -7005,7 +7300,7 @@ Why not start with placing a new order now!</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4x-W0-Wz2" userLabel="Button - Remove">
-                                                    <rect key="frame" x="225" y="31" width="30" height="30"/>
+                                                    <rect key="frame" x="225" y="46" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="HbC-Ld-VMx"/>
                                                         <constraint firstAttribute="width" constant="30" id="dCw-5D-SSl"/>
@@ -7018,7 +7313,7 @@ Why not start with placing a new order now!</string>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTL-Ik-jHl" userLabel="Label - Counter">
-                                                    <rect key="frame" x="255" y="31" width="30" height="30"/>
+                                                    <rect key="frame" x="255" y="45" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="NWk-8d-w34"/>
                                                         <constraint firstAttribute="width" constant="30" id="TPp-14-gmp"/>
@@ -7028,7 +7323,7 @@ Why not start with placing a new order now!</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0e-6N-Xyy" userLabel="Button - Add">
-                                                    <rect key="frame" x="285" y="31" width="30" height="30"/>
+                                                    <rect key="frame" x="285" y="46" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="luG-N9-6X0"/>
                                                         <constraint firstAttribute="width" constant="30" id="tbu-9M-KdL"/>
@@ -7041,7 +7336,7 @@ Why not start with placing a new order now!</string>
                                                     </connections>
                                                 </button>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="View Details" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdG-gy-kY8">
-                                                    <rect key="frame" x="233" y="64" width="79" height="17"/>
+                                                    <rect key="frame" x="233" y="73" width="79" height="17"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
                                                     <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -7050,20 +7345,23 @@ Why not start with placing a new order now!</string>
                                             <constraints>
                                                 <constraint firstItem="yTL-Ik-jHl" firstAttribute="trailing" secondItem="r4x-W0-Wz2" secondAttribute="trailing" constant="30" id="2hX-5Z-vYo"/>
                                                 <constraint firstItem="yTL-Ik-jHl" firstAttribute="trailing" secondItem="U0e-6N-Xyy" secondAttribute="trailing" constant="-30" id="4Ta-HF-AMO"/>
-                                                <constraint firstItem="clg-4S-YT8" firstAttribute="top" secondItem="oot-CA-uen" secondAttribute="top" constant="24" id="4bj-Ds-xUM"/>
+                                                <constraint firstItem="clg-4S-YT8" firstAttribute="top" secondItem="oot-CA-uen" secondAttribute="top" constant="22" id="4bj-Ds-xUM"/>
                                                 <constraint firstItem="oot-CA-uen" firstAttribute="trailing" secondItem="rBc-qe-s7w" secondAttribute="trailingMargin" id="7OF-vk-fpB"/>
-                                                <constraint firstItem="yTL-Ik-jHl" firstAttribute="top" secondItem="rBc-qe-s7w" secondAttribute="topMargin" constant="23" id="9IP-As-sGA"/>
-                                                <constraint firstItem="oot-CA-uen" firstAttribute="top" secondItem="cSd-eb-rNj" secondAttribute="top" constant="-24" id="9pm-Kk-0YR"/>
+                                                <constraint firstItem="yTL-Ik-jHl" firstAttribute="top" secondItem="rBc-qe-s7w" secondAttribute="topMargin" constant="37" id="9IP-As-sGA"/>
+                                                <constraint firstItem="oot-CA-uen" firstAttribute="top" secondItem="cSd-eb-rNj" secondAttribute="top" constant="-22" id="9pm-Kk-0YR"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Yb3-zj-g1p" secondAttribute="trailing" constant="72" id="Bp1-2b-NVz"/>
+                                                <constraint firstItem="jds-KS-pLV" firstAttribute="leading" secondItem="z1x-JQ-C69" secondAttribute="trailing" constant="8" id="Dk7-DZ-lND"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="U0e-6N-Xyy" secondAttribute="trailing" constant="-3" id="GVg-Gi-E6U"/>
                                                 <constraint firstItem="clg-4S-YT8" firstAttribute="leading" secondItem="z1x-JQ-C69" secondAttribute="leading" constant="83" id="H8X-EF-K4O"/>
-                                                <constraint firstItem="r4x-W0-Wz2" firstAttribute="top" secondItem="rBc-qe-s7w" secondAttribute="topMargin" constant="23" id="Mgi-qY-m1W"/>
+                                                <constraint firstItem="r4x-W0-Wz2" firstAttribute="top" secondItem="rBc-qe-s7w" secondAttribute="topMargin" constant="38" id="Mgi-qY-m1W"/>
                                                 <constraint firstItem="Yb3-zj-g1p" firstAttribute="top" secondItem="clg-4S-YT8" secondAttribute="top" constant="18" id="ND4-cO-fhj"/>
+                                                <constraint firstItem="jds-KS-pLV" firstAttribute="trailing" secondItem="rBc-qe-s7w" secondAttribute="trailingMargin" id="PhJ-lv-xBz"/>
                                                 <constraint firstItem="z1x-JQ-C69" firstAttribute="leading" secondItem="oot-CA-uen" secondAttribute="leading" constant="-83" id="Ppy-U4-GaN"/>
                                                 <constraint firstItem="Yb3-zj-g1p" firstAttribute="leading" secondItem="z1x-JQ-C69" secondAttribute="leading" constant="83" id="UmV-3k-I0Z"/>
                                                 <constraint firstItem="z1x-JQ-C69" firstAttribute="top" secondItem="rBc-qe-s7w" secondAttribute="topMargin" constant="-1" id="VFP-UE-dpZ"/>
-                                                <constraint firstItem="oot-CA-uen" firstAttribute="top" secondItem="rBc-qe-s7w" secondAttribute="topMargin" constant="5" id="ckr-qv-gVV"/>
-                                                <constraint firstItem="U0e-6N-Xyy" firstAttribute="top" secondItem="rBc-qe-s7w" secondAttribute="topMargin" constant="23" id="i5n-bX-QNC"/>
+                                                <constraint firstItem="jds-KS-pLV" firstAttribute="top" secondItem="rBc-qe-s7w" secondAttribute="topMargin" constant="-3" id="Z2i-5y-2kp"/>
+                                                <constraint firstItem="oot-CA-uen" firstAttribute="top" secondItem="jds-KS-pLV" secondAttribute="bottom" constant="3" id="ch0-wb-pBb"/>
+                                                <constraint firstItem="U0e-6N-Xyy" firstAttribute="top" secondItem="rBc-qe-s7w" secondAttribute="topMargin" constant="38" id="i5n-bX-QNC"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="cSd-eb-rNj" secondAttribute="trailing" constant="94" id="kKh-zx-gEp"/>
                                                 <constraint firstItem="clg-4S-YT8" firstAttribute="leading" secondItem="cSd-eb-rNj" secondAttribute="leading" constant="-62" id="mnI-m2-NPB"/>
                                                 <constraint firstItem="z1x-JQ-C69" firstAttribute="leading" secondItem="rBc-qe-s7w" secondAttribute="leading" constant="8" id="y5J-7h-fAO"/>
@@ -7077,6 +7375,7 @@ Why not start with placing a new order now!</string>
                                             <outlet property="lblLine" destination="v3e-bx-2Di" id="uFX-cz-zEb"/>
                                             <outlet property="lblOfferPrice" destination="cSd-eb-rNj" id="FMH-qT-5Ww"/>
                                             <outlet property="lblPrice" destination="clg-4S-YT8" id="zy7-Fj-vSm"/>
+                                            <outlet property="lblStoreName" destination="jds-KS-pLV" id="Qlk-Bv-ATu"/>
                                             <outlet property="lblValidTill" destination="Yb3-zj-g1p" id="ISL-6P-Hzm"/>
                                             <outlet property="lblViewDetails" destination="WdG-gy-kY8" id="OFt-ch-Vqn"/>
                                             <outlet property="lblbrandName" destination="oot-CA-uen" id="JVO-0W-kfw"/>
@@ -7096,6 +7395,7 @@ Why not start with placing a new order now!</string>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erK-Im-UUb" userLabel="Label - Product name">
                                                     <rect key="frame" x="91" y="6" width="221" height="28"/>
+                                                    <color key="backgroundColor" red="0.36269278519999998" green="1" blue="0.31238269169999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="mUy-5l-Njq"/>
                                                     </constraints>
@@ -7187,6 +7487,7 @@ Why not start with placing a new order now!</string>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rakhi offer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssv-Dc-dob">
                                                     <rect key="frame" x="91" y="9" width="221" height="21"/>
+                                                    <color key="backgroundColor" red="0.80784313730000001" green="0.1176470588" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                                                     <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -9408,6 +9709,8 @@ Why not start with placing a new order now!</string>
         <image name="existingUserBox.png" width="297" height="48"/>
         <image name="historyScreenOderHistoryIcon.png" width="180" height="180"/>
         <image name="homeCostomerImage.png" width="320" height="568"/>
+        <image name="homeDetailMinusCircleActive.png" width="292" height="292"/>
+        <image name="homeDetailMinusCircleInactive.png" width="292" height="292"/>
         <image name="homeDetailStoreBox.png" width="271" height="136"/>
         <image name="homeInviteBtn.png" width="55" height="30"/>
         <image name="homeInviteBtnActive" width="25" height="25"/>

@@ -50,7 +50,10 @@ typedef enum
     
     __weak IBOutlet UIScrollView *scrollview;
     __weak IBOutlet UILabel *lblTotalUdhaar;
+    __weak IBOutlet UILabel *lblUdhaar_value;
+    __weak IBOutlet UIButton *btnCallDeliveryBoy;
 
+    
 }
 
 @property (nonatomic, strong) CMOrderHist *orderHist;

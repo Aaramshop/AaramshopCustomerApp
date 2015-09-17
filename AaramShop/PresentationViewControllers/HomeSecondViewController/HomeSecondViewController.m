@@ -107,6 +107,18 @@
 	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 	[tracker set:kGAIScreenName value:@"ChooseStoreCategory"];
 	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+    
+    
+    
+    
+    // added on 17 Sep 2015 .. begins ... by chetan
+
+    pageNumberForSearch = 0;
+    totalNoOfPagesForSearch = 0;
+    isLoadingForSearch = NO;
+    // added on 17 Sep 2015 .. ends ...
+
+    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -256,6 +268,21 @@
 			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		}
 	}
+//    else if (aaramShop_ConnectionManager.currentTask == TASK_TO_SEARCH_HOME_STORE) {
+//        
+//        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
+//            
+//            totalNoOfPages = [[responseObject valueForKey:@"total_page"] intValue];
+//            
+//            [self parseSearchResponseData:responseObject];
+//        }
+//        else
+//        {
+//            
+//        }
+//    }
+    
+    
 }
 -(void)parseStoresCategoryData:(id)responseObject
 {
@@ -979,7 +1006,7 @@
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSIndexPath *indexPath;
+//    NSIndexPath *indexPath;
 //    for (UICollectionViewCell *cell in [collectionViewCategory visibleCells])
 //    {
 //        indexPath = [collectionViewCategory indexPathForCell:cell];
@@ -1136,29 +1163,50 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    if ([searchText length]==0)
-    {
-        strSearchTxt = searchText;
-        isSearching =NO;
-        [arrSearchGetStoreProducts removeAllObjects];
-        [tblVwCategory reloadData];
-        return;
-    }
-    
-//    strSearchTxt = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    strSearchTxt = searchText;
-    isSearching=YES;
-    if ([searchText length]>0)
-    {
-        [arrSearchGetStoreProducts removeAllObjects];
-//        [tblVwCategory reloadData];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.product_name contains[cd] %@",strSearchTxt];
-        [arrSearchGetStoreProducts addObjectsFromArray:[arrGetStoreProducts filteredArrayUsingPredicate:predicate]];
-
-		[tblVwCategory reloadData];
+    [arrSearchGetStoreProducts removeAllObjects];
+    if ([searchText length] >=3 ) {
+        
+        isSearching = YES;
+        pageNumberForSearch = 0;
+        [self callWebserviceToSearchText:searchText];
         
     }
+    else if ([searchText length] ==0 )
+    {
+        isSearching = NO;
+        pageNumberForSearch = 0;
+//        [self createDataToGetStoresList];
+    }
+    else{
+        boolActivityIndicator = NO;
+        [tblVwCategory reloadData];
+    }
+    
 }
+//{
+//    if ([searchText length]==0)
+//    {
+//        strSearchTxt = searchText;
+//        isSearching =NO;
+//        [arrSearchGetStoreProducts removeAllObjects];
+//        [tblVwCategory reloadData];
+//        return;
+//    }
+//    
+////    strSearchTxt = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    strSearchTxt = searchText;
+//    isSearching=YES;
+//    if ([searchText length]>0)
+//    {
+//        [arrSearchGetStoreProducts removeAllObjects];
+////        [tblVwCategory reloadData];
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.product_name contains[cd] %@",strSearchTxt];
+//        [arrSearchGetStoreProducts addObjectsFromArray:[arrGetStoreProducts filteredArrayUsingPredicate:predicate]];
+//
+//		[tblVwCategory reloadData];
+//        
+//    }
+//}
 
 
 
@@ -1256,116 +1304,58 @@
 {
 	[self setUpNavigationBar];
 }
-/*
 
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
+// added on 17 Sep 2015 .. begins ... by chetan
+
+
+-(void)callWebserviceToSearchText:(NSString *)searchText
 {
+    
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    
+//    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
+//    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
+    
+    [dict setObject:[NSString stringWithFormat:@"%ld",(long)pageNumberForSearch] forKey:kPage_no];
+    
+    [dict setObject:searchText forKey:@"search_term"];
+    
+    
+    
+    //    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
+    //    [dict setObject:@"77.3769436" forKey:kLongitude]; //temp
+    
+    
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    
+    [aaramShop_ConnectionManager getDataForFunction:kURLSearchStores withInput:dict withCurrentTask:TASK_TO_SEARCH_HOME_STORE andDelegate:self ];
+    
+}
 
-    "sub_categories" =     (
-                            {
-                                "category_id" = 1;
-                                "page_no" = 0;
-                                products =             (
-                                                        {
-                                                            "category_id" = 1;
-                                                            "offer_id" = 0;
-                                                            "offer_price" = "0.00";
-                                                            "offer_type" = 0;
-                                                            "product_id" = 292;
-                                                            "product_image" = "https://www.aaramshop.com/uploaded_files/product/100x100/17-17-53876631435.jpg";
-                                                            "product_name" = "Center Fresh 3.7gms";
-                                                            "product_price" = "1.00";
-                                                            "product_sku_id" = 360;
-                                                            "sub_category_id" = 187;
-                                                        },
-                                                        {
-                                                            "category_id" = 1;
-                                                            "offer_id" = 0;
-                                                            "offer_price" = "0.00";
-                                                            "offer_type" = 0;
-                                                            "product_id" = 308;
-                                                            "product_image" = "https://www.aaramshop.com/uploaded_files/product/100x100/07-59-412036627924.jpg";
-                                                            "product_name" = "Happydent White 21gms";
-                                                            "product_price" = "10.00";
-                                                            "product_sku_id" = 382;
-                                                            "sub_category_id" = 187;
-                                                        },
-                                                        {
-                                                            "category_id" = 1;
-                                                            "offer_id" = 0;
-                                                            "offer_price" = "0.00";
-                                                            "offer_type" = 0;
-                                                            "product_id" = 310;
-                                                            "product_image" = "https://www.aaramshop.com/uploaded_files/product/100x100/08-09-011742970428.jpg";
-                                                            "product_name" = "Happydent with Xylitol-Protex 27.5gms";
-                                                            "product_price" = "50.00";
-                                                            "product_sku_id" = 385;
-                                                            "sub_category_id" = 187;
-                                                        },
-                                                        {
-                                                            "category_id" = 1;
-                                                            "offer_id" = 0;
-                                                            "offer_price" = "0.00";
-                                                            "offer_type" = 0;
-                                                            "product_id" = 2943;
-                                                            "product_image" = "https://www.aaramshop.com/uploaded_files/product/100x100/17-52-25213682124.jpg";
-                                                            "product_name" = "Happydent Wave 2.5gms";
-                                                            "product_price" = "1.00";
-                                                            "product_sku_id" = 4508;
-                                                            "sub_category_id" = 187;
-                                                        },
-                                                        {
-                                                            "category_id" = 1;
-                                                            "offer_id" = 0;
-                                                            "offer_price" = "0.00";
-                                                            "offer_type" = 0;
-                                                            "product_id" = 310;
-                                                            "product_image" = "https://www.aaramshop.com/uploaded_files/product/100x100/08-09-011742970428.jpg";
-                                                            "product_name" = "Happydent with Xylitol-Protex 27.5gms";
-                                                            "product_price" = "50.00";
-                                                            "product_sku_id" = 385;
-                                                            "sub_category_id" = 187;
-                                                        },
-                                                        {
-                                                            "category_id" = 1;
-                                                            "offer_id" = 0;
-                                                            "offer_price" = "0.00";
-                                                            "offer_type" = 0;
-                                                            "product_id" = 310;
-                                                            "product_image" = "https://www.aaramshop.com/uploaded_files/product/100x100/08-09-011742970428.jpg";
-                                                            "product_name" = "Happydent with Xylitol-Protex 27.5gms";
-                                                            "product_price" = "50.00";
-                                                            "product_sku_id" = 385;
-                                                            "sub_category_id" = 187;
-                                                        },
-                                                        {
-                                                            "category_id" = 1;
-                                                            "offer_id" = 0;
-                                                            "offer_price" = "0.00";
-                                                            "offer_type" = 0;
-                                                            "product_id" = 286;
-                                                            "product_image" = "https://www.aaramshop.com/uploaded_files/product/100x100/06-44-361276461536.jpg";
-                                                            "product_name" = "Big Babol 1nos.";
-                                                            "product_price" = "10.00";
-                                                            "product_sku_id" = 347;
-                                                            "sub_category_id" = 187;
-                                                        }
-                                                        );
-                                "sub_category_id" = 187;
-                                "sub_category_name" = "Chewing Gums";
-                                "total_pages" = 7;
-                            },
-                            {
-                                "category_id" = 1;
-                                "sub_category_id" = 189;
-                                "sub_category_name" = "Toffees & Candies";
-                            },
-                            
-                            );
+
+-(void)parseSearchResponseData:(id)responseObject
+{
+    
 }
 
 
 
-//*/
+// added on 17 Sep 2015 .. ends ...
 
 
 @end

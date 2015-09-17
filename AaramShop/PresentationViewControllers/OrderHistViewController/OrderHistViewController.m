@@ -464,6 +464,36 @@
 			NSDictionary *dict = [data objectAtIndex:i];
 			CMOrderHist *cmOrderHist				=	[[CMOrderHist alloc] init];
 			
+            
+            
+            /// new key added .. begins .... 17 Sep 2015.... by chetan
+            
+            cmOrderHist.customer_addresss = [NSString stringWithFormat:@"%@",[dict objectForKey:@"customer_addresss"]];
+            
+            cmOrderHist.customer_city = [NSString stringWithFormat:@"%@",[dict objectForKey:@"customer_city"]];
+            cmOrderHist.customer_id = [NSString stringWithFormat:@"%@",[dict objectForKey:@"customer_id"]];
+            cmOrderHist.customer_image = [NSString stringWithFormat:@"%@",[dict objectForKey:@"customer_image"]];
+            cmOrderHist.customer_locality = [NSString stringWithFormat:@"%@",[dict objectForKey:@"customer_locality"]];
+            cmOrderHist.customer_name = [NSString stringWithFormat:@"%@",[dict objectForKey:@"customer_name"]];
+            cmOrderHist.customer_pincode = [NSString stringWithFormat:@"%@",[dict objectForKey:@"customer_pincode"]];
+            cmOrderHist.customer_state = [NSString stringWithFormat:@"%@",[dict objectForKey:@"customer_state"]];
+            cmOrderHist.delivery_status = [NSString stringWithFormat:@"%@",[dict objectForKey:@"delivery_status"]];
+            cmOrderHist.deliveryboy_mobile = [NSString stringWithFormat:@"%@",[dict objectForKey:@"deliveryboy_mobile"]];
+            cmOrderHist.isDispached = [NSString stringWithFormat:@"%@",[dict objectForKey:@"isDispached"]];
+            cmOrderHist.isPacked = [NSString stringWithFormat:@"%@",[dict objectForKey:@"isPacked"]];
+            cmOrderHist.product_pending = [NSString stringWithFormat:@"%@",[dict objectForKey:@"product_pending"]];
+            cmOrderHist.store_address = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_address"]];
+            cmOrderHist.store_email = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_email"]];
+            cmOrderHist.store_locality = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_locality"]];
+            cmOrderHist.store_pincode = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_pincode"]];
+            cmOrderHist.store_state = [NSString stringWithFormat:@"%@",[dict objectForKey:@"store_state"]];
+            cmOrderHist.total_udhaar = [NSString stringWithFormat:@"%@",[dict objectForKey:@"total_udhaar"]];
+            cmOrderHist.udhaar_value = [NSString stringWithFormat:@"%@",[dict objectForKey:@"udhaar_value"]];
+            
+            /// new key added .. end
+            
+            
+            
 			cmOrderHist.store_id						=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_id]];
 			cmOrderHist.store_name					=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_name]];
 			cmOrderHist.store_mobile				=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_mobile]];
@@ -483,6 +513,10 @@
 			cmOrderHist.deliveryboy_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kDeliveryboy_name]];
 			cmOrderHist.payment_mode				=	[NSString stringWithFormat:@"%@",[dict objectForKey:kPayment_mode]];
 			cmOrderHist.store_chatUserName		=	[NSString stringWithFormat:@"%@",[dict objectForKey:kStore_chatUserName]];
+            
+            
+            
+            
 			strPacked =[NSString stringWithFormat:@"%d",[[dict objectForKey:kPacked_timing] intValue]];
 			if ([strPacked isEqualToString:@"0"]) {
 				cmOrderHist.packed_timing = @"";

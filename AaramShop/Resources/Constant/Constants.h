@@ -420,6 +420,10 @@
 #define kAccessToken										@"accessToken"
 
 
+//=============== Ordered Product Details ==============
+
+#define kURLOrderDetail                                     @"orderDetail"
+
 
 
 

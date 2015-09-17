@@ -27,7 +27,20 @@
     BOOL isLoading;
     
     UISearchBar *searchBarProducts;
+    
+    
+    
+// added on 17 Sep 2015 .. begins ... by chetan
+    NSInteger pageNumberForSearch;
+    int totalNoOfPagesForSearch;
+    
+    UIActivityIndicatorView *activityIndicatorView;
+    BOOL boolActivityIndicator;
+    BOOL isLoadingForSearch;
 
+    // added on 17 Sep 2015 .. ends ...
+    
+    
     
 }
 @property (nonatomic) NSInteger mainCategoryIndexPicker;

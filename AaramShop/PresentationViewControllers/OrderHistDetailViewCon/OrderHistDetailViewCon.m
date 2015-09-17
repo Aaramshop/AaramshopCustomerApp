@@ -7,6 +7,7 @@
 //
 
 #import "OrderHistDetailViewCon.h"
+#import "OrderedProductsDetailViewController.h"
 
 @interface OrderHistDetailViewCon ()
 
@@ -46,7 +47,6 @@
 	lblOrderDate.text = _orderHist.order_date;
 	lblTimeSlot.text = _orderHist.delivery_slot;
 	lblPaymentMode.text = _orderHist.payment_mode;
-	lblDeliveryBoyName.text = _orderHist.deliveryboy_name;
 	lblOrderAmt.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_cart_value];
 	if ([_orderHist.packed_timing isEqualToString:@""]) {
 		[packedBtn setSelected:NO];
@@ -85,7 +85,21 @@
 	}
 
     
-//    lblTotalUdhaar.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_udhaar];
+    if ([_orderHist.deliveryboy_name length]>0)
+    {
+        lblDeliveryBoyName.text = _orderHist.deliveryboy_name;
+        btnCallDeliveryBoy.hidden = NO;
+    }
+    else
+    {
+        lblDeliveryBoyName.text = @"Pending";
+        btnCallDeliveryBoy.hidden = YES;
+    }
+    
+
+    
+    lblUdhaar_value.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.udhaar_value];
+    lblTotalUdhaar.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_udhaar];
 
 
 	
@@ -225,12 +239,28 @@
 
 
 - (IBAction)btnSeeMoreDetails:(id)sender {
-    
-//    CustOrderDetailViewCon *custOrderDetailVc=[self.storyboard instantiateViewControllerWithIdentifier:@"CustOrderDetailView"];
-//    custOrderDetailVc.orderHist =self.orderHist;
-//    [self.navigationController pushViewController:custOrderDetailVc animated:YES];
+
+    OrderedProductsDetailViewController *orderedProducts =[self.storyboard instantiateViewControllerWithIdentifier:@"OrderedProductsDetail"];
+    orderedProducts.orderHist =self.orderHist;
+    [self.navigationController pushViewController:orderedProducts animated:YES];
     
 }
+
+
+
+- (IBAction)btnCallDeliveryBoy:(id)sender
+{
+    strDeliveryboy_mobile = _orderHist.deliveryboy_mobile;
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",strDeliveryboy_mobile]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+        [[UIApplication sharedApplication] openURL:phoneUrl];
+    } else
+    {
+        [Utils showAlertView:kAlertTitle message:kAlertCallFacilityNotAvailable delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
+}
+
 
 
 @end
