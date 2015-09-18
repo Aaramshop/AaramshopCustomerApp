@@ -107,16 +107,6 @@
 	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 	[tracker set:kGAIScreenName value:@"ChooseStoreCategory"];
 	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
-    
-    
-    
-    
-    // added on 17 Sep 2015 .. begins ... by chetan
-
-    pageNumberForSearch = 0;
-    totalNoOfPagesForSearch = 0;
-    isLoadingForSearch = NO;
-    // added on 17 Sep 2015 .. ends ...
 
     
 }
@@ -247,6 +237,7 @@
         
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
             
+            strSearchTxt = @"";
             [self parseStoresProductsData:responseObject];
         }
         else
@@ -268,19 +259,18 @@
 			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		}
 	}
-//    else if (aaramShop_ConnectionManager.currentTask == TASK_TO_SEARCH_HOME_STORE) {
-//        
-//        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
-//            
-//            totalNoOfPages = [[responseObject valueForKey:@"total_page"] intValue];
-//            
-//            [self parseSearchResponseData:responseObject];
-//        }
-//        else
-//        {
-//            
-//        }
-//    }
+    else if (aaramShop_ConnectionManager.currentTask == TASK_TO_SEARCH_HOME_STORE_PRODUCTS) {
+        
+        if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
+            
+            [self parseStoresProductsData:responseObject];
+        }
+        else
+        {
+            [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+
+        }
+    }
     
     
 }
@@ -334,6 +324,11 @@
 	objProductsModel.offer_id=[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];
 	objProductsModel.offer_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_price]];
 	objProductsModel.offer_type = [NSString stringWithFormat:@"%d",[[dictProducts objectForKey:@"offer_type"] intValue]];
+    
+    
+    objProductsModel.isStoreProduct = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:@"isStoreProduct"]];
+
+    
 	if([objProductsModel.offer_type  integerValue]>0)
 	{
 		objProductsModel.strCount = [AppManager getCountOfProduct:objProductsModel.offer_id withOfferType:objProductsModel.offer_type forStore_id:appDeleg.objStoreModel.store_id];
@@ -447,7 +442,7 @@
 -(void)parseStoresProductsData:(NSDictionary *)responseObject
 {
     totalNoOfPages = [[responseObject valueForKey:@"total_page"] intValue];
-
+    
     if (pageno == 0)
     {
         [arrSearchGetStoreProducts removeAllObjects];
@@ -606,6 +601,8 @@
 {
     isViewActive = NO;
 	[arrGetStoreProducts removeAllObjects];
+    [arrSearchGetStoreProducts removeAllObjects];
+    
     [rightCollectionVwContrllr.view removeFromSuperview];
 //    [self.navigationController popViewControllerAnimated:YES];
 
@@ -653,7 +650,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSInteger secNum = 0;
-    if (arrGetStoreProducts.count >0) {
+    if (arrGetStoreProducts.count >0 || arrSearchGetStoreProducts.count>0) {
         secNum = 2;
     }
     else
@@ -1153,7 +1150,10 @@
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     // called only once
+    
+    [Utils stopActivityIndicatorInView:self.view];
 }
+
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
@@ -1164,50 +1164,24 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [arrSearchGetStoreProducts removeAllObjects];
-    if ([searchText length] >=3 ) {
-        
-        isSearching = YES;
-        pageNumberForSearch = 0;
-        [self callWebserviceToSearchText:searchText];
-        
-    }
-    else if ([searchText length] ==0 )
+    
+    strSearchTxt = searchText;
+
+    if ([searchText length] ==0 )
     {
         isSearching = NO;
-        pageNumberForSearch = 0;
-//        [self createDataToGetStoresList];
+        pageno = 0;
+
+        [self createDataToGetStoreProducts];
     }
-    else{
-        boolActivityIndicator = NO;
-        [tblVwCategory reloadData];
+    else if ([[searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length] >=3 ) {
+        
+        isSearching = YES;
+        pageno = 0;
+        [self callWebserviceToSearchText:searchText];
     }
     
 }
-//{
-//    if ([searchText length]==0)
-//    {
-//        strSearchTxt = searchText;
-//        isSearching =NO;
-//        [arrSearchGetStoreProducts removeAllObjects];
-//        [tblVwCategory reloadData];
-//        return;
-//    }
-//    
-////    strSearchTxt = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//    strSearchTxt = searchText;
-//    isSearching=YES;
-//    if ([searchText length]>0)
-//    {
-//        [arrSearchGetStoreProducts removeAllObjects];
-////        [tblVwCategory reloadData];
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.product_name contains[cd] %@",strSearchTxt];
-//        [arrSearchGetStoreProducts addObjectsFromArray:[arrGetStoreProducts filteredArrayUsingPredicate:predicate]];
-//
-//		[tblVwCategory reloadData];
-//        
-//    }
-//}
-
 
 
 #pragma mark -
@@ -1224,28 +1198,29 @@
 {
     pageno = 0;
     
-//    if (isSearching)
-//    {
-//        isLoading = NO;
-//        [self showFooterLoadMoreActivityIndicator:NO];
-//        [refreshShoppingList endRefreshing];
-//    }
-//    else
-//    {
-    
-    // crash occured without using this code
-        ///// begin
-        isSearching = NO;
-        strSearchTxt = @"";
-        searchBarProducts.text = strSearchTxt;
-    
-    ///// end
-    
+    if (isSearching)
+    {
+        [self performSelector:@selector(callWebserviceToSearchText:) withObject:strSearchTxt afterDelay:0.4];
+        
+    }
+    else
+    {
         [self performSelector:@selector(createDataToGetStoreProducts) withObject:nil afterDelay:0.4];
-//    }
+
+    }
+    
+    //    if (isSearching)
+    //    {
+    //        isLoading = NO;
+    //        [self showFooterLoadMoreActivityIndicator:NO];
+    //        [refreshShoppingList endRefreshing];
+    //    }
+    //    else
+    //    {
+    
+    //    }
     
 }
-
 
 -(void)calledPullUp
 {
@@ -1253,6 +1228,11 @@
     {
         pageno++;
         [self createDataToGetStoreProducts];
+    }
+    else if( isSearching && totalNoOfPages>pageno + 1)
+    {
+        pageno++;
+        [self callWebserviceToSearchText:strSearchTxt];
     }
     else
     {
@@ -1317,20 +1297,12 @@
 
 -(void)callWebserviceToSearchText:(NSString *)searchText
 {
-    
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     
-//    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.latitude] forKey:kLatitude];
-//    [dict setObject:[NSString stringWithFormat:@"%f",appDel.myCurrentLocation.coordinate.longitude] forKey:kLongitude];
-    
-    [dict setObject:[NSString stringWithFormat:@"%ld",(long)pageNumberForSearch] forKey:kPage_no];
+    [dict setObject:strStore_Id forKey:kStore_id];
     
     [dict setObject:searchText forKey:@"search_term"];
-    
-    
-    
-    //    [dict setObject:@"28.5136781" forKey:kLatitude]; //temp
-    //    [dict setObject:@"77.3769436" forKey:kLongitude]; //temp
+    [dict setObject:[NSString stringWithFormat:@"%ld",(long)pageno] forKey:kPage_no];
     
     
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
@@ -1343,16 +1315,9 @@
     }
     
     
-    [aaramShop_ConnectionManager getDataForFunction:kURLSearchStores withInput:dict withCurrentTask:TASK_TO_SEARCH_HOME_STORE andDelegate:self ];
+    [aaramShop_ConnectionManager getDataForFunction:KURLSerachStoreProducts withInput:dict withCurrentTask:TASK_TO_SEARCH_HOME_STORE_PRODUCTS andDelegate:self ];
     
 }
-
-
--(void)parseSearchResponseData:(id)responseObject
-{
-    
-}
-
 
 
 // added on 17 Sep 2015 .. ends ...
