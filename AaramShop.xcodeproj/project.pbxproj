@@ -1258,6 +1258,9 @@
 		6BADA6301B0C748200BF7639 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BADA62F1B0C748100BF7639 /* CoreData.framework */; };
 		6BADA6751B0C9F5200BF7639 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BADA6741B0C9F5200BF7639 /* DataBase.m */; };
 		6BADA6791B0CA18900BF7639 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BADA6781B0CA18900BF7639 /* Contact.m */; };
+		6BAE4E241BAC06C000DCF04E /* PostAutoSuggestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAE4E201BAC06C000DCF04E /* PostAutoSuggestionCell.m */; };
+		6BAE4E251BAC06C000DCF04E /* PostAutoSuggestionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BAE4E221BAC06C000DCF04E /* PostAutoSuggestionTableViewController.m */; };
+		6BAE4E261BAC06C000DCF04E /* PostAutoSuggestionTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BAE4E231BAC06C000DCF04E /* PostAutoSuggestionTableViewController.xib */; };
 		6BB50DC61B32AAB300990161 /* locationPopupOp1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BB50DBD1B32AAB300990161 /* locationPopupOp1.png */; };
 		6BB50DC71B32AAB300990161 /* locationPopupOp1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BB50DBE1B32AAB300990161 /* locationPopupOp1@2x.png */; };
 		6BB50DC81B32AAB300990161 /* locationPopupOp1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BB50DBF1B32AAB300990161 /* locationPopupOp1@3x.png */; };
@@ -3148,6 +3151,11 @@
 		6BADA6741B0C9F5200BF7639 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
 		6BADA6771B0CA18900BF7639 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		6BADA6781B0CA18900BF7639 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		6BAE4E1F1BAC06C000DCF04E /* PostAutoSuggestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostAutoSuggestionCell.h; sourceTree = "<group>"; };
+		6BAE4E201BAC06C000DCF04E /* PostAutoSuggestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostAutoSuggestionCell.m; sourceTree = "<group>"; };
+		6BAE4E211BAC06C000DCF04E /* PostAutoSuggestionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostAutoSuggestionTableViewController.h; sourceTree = "<group>"; };
+		6BAE4E221BAC06C000DCF04E /* PostAutoSuggestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostAutoSuggestionTableViewController.m; sourceTree = "<group>"; };
+		6BAE4E231BAC06C000DCF04E /* PostAutoSuggestionTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostAutoSuggestionTableViewController.xib; sourceTree = "<group>"; };
 		6BB50DBD1B32AAB300990161 /* locationPopupOp1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationPopupOp1.png; sourceTree = "<group>"; };
 		6BB50DBE1B32AAB300990161 /* locationPopupOp1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupOp1@2x.png"; sourceTree = "<group>"; };
 		6BB50DBF1B32AAB300990161 /* locationPopupOp1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationPopupOp1@3x.png"; sourceTree = "<group>"; };
@@ -3547,6 +3555,7 @@
 		274A5A661B05C4A9009112B5 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				6BAE4E1E1BAC06C000DCF04E /* PostAutoSuggestionTableViewController */,
 				6BCB09401B4E76FC00F1A502 /* YSLContainerViewController */,
 				6B809D821B31755D00E91673 /* SDWebImage */,
 				36820A421B1C4709002AA93F /* SVProgressHUD */,
@@ -7145,6 +7154,18 @@
 			path = Contact;
 			sourceTree = "<group>";
 		};
+		6BAE4E1E1BAC06C000DCF04E /* PostAutoSuggestionTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6BAE4E1F1BAC06C000DCF04E /* PostAutoSuggestionCell.h */,
+				6BAE4E201BAC06C000DCF04E /* PostAutoSuggestionCell.m */,
+				6BAE4E211BAC06C000DCF04E /* PostAutoSuggestionTableViewController.h */,
+				6BAE4E221BAC06C000DCF04E /* PostAutoSuggestionTableViewController.m */,
+				6BAE4E231BAC06C000DCF04E /* PostAutoSuggestionTableViewController.xib */,
+			);
+			path = PostAutoSuggestionTableViewController;
+			sourceTree = "<group>";
+		};
 		6BB50DE71B32B0BA00990161 /* AddressModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -8503,6 +8524,7 @@
 				6B83A0EF1B53EB2F00A00520 /* copyIcon.png in Resources */,
 				3682094C1B1C46FA002AA93F /* crimea.png in Resources */,
 				362537F81B762D1D00DF34F8 /* FacebookView.xib in Resources */,
+				6BAE4E261BAC06C000DCF04E /* PostAutoSuggestionTableViewController.xib in Resources */,
 				274A5DB31B05C88B009112B5 /* chatCameraSmall@2x.png in Resources */,
 				36820A3D1B1C46FA002AA93F /* western sahara.png in Resources */,
 				368209A21B1C46FA002AA93F /* laos.png in Resources */,
@@ -8815,6 +8837,7 @@
 				274A5C751B05C4AA009112B5 /* FSWebLogin.m in Sources */,
 				274A5DED1B05C88B009112B5 /* PhotoLargeViewController.m in Sources */,
 				36A69ED21B57C56E0058EB88 /* MoneyViewController.m in Sources */,
+				6BAE4E241BAC06C000DCF04E /* PostAutoSuggestionCell.m in Sources */,
 				274A5DA71B05C88B009112B5 /* ChatCustomCell.m in Sources */,
 				274A5C701B05C4AA009112B5 /* FSVenue.m in Sources */,
 				36A69ECC1B57C5480058EB88 /* WalletOffersViewController.m in Sources */,
@@ -8955,6 +8978,7 @@
 				274A5CDA1B05C4AA009112B5 /* XMPPCapsCoreDataStorageObject.m in Sources */,
 				274A5D071B05C4AA009112B5 /* DDXMLElement.m in Sources */,
 				6B809DB31B31755D00E91673 /* UIView+WebCacheOperation.m in Sources */,
+				6BAE4E251BAC06C000DCF04E /* PostAutoSuggestionTableViewController.m in Sources */,
 				36A69EDE1B57DE320058EB88 /* MoneyTableCell.m in Sources */,
 				274A5CEE1B05C4AA009112B5 /* XMPPAttentionModule.m in Sources */,
 				6B809DAC1B31755D00E91673 /* SDWebImagePrefetcher.m in Sources */,

@@ -17,6 +17,12 @@
 
 @implementation LocationAlertViewController
 @synthesize delegate,scrollView,objAddressModel,aaramShop_ConnectionManager,cordinatesLocation;
+@synthesize searchedNearbyVenues,isSearching,currentLocation,locationManager;
+
+
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -40,7 +46,51 @@
 	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 	[tracker set:kGAIScreenName value:@"SaveLocation"];
 	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+    
+    
+    // added on 18 Sep 2015 ..... begins
+    self.searchedNearbyVenues = [[NSMutableArray alloc] init];
+    self.isSearching = NO;
+//    searchNotFoundVenue = [[FSVenue alloc]init];
+//    searchNotFoundVenue.name  = @"Location not found";
+    // added on 18 Sep 2015 ..... ends
+    
 }
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+
+}
+
+
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation {
+    [self.locationManager stopUpdatingLocation];
+    currentLocation=newLocation;
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error{
+    
+    [Utils showAlertView:kAlertTitle message:@"Turn On Location Services to Allow \"AaramShop\" to Determine Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+}
+
+
+
 -(void)bindData
 {
     txtAddress.text = objAddressModel.address;
@@ -51,31 +101,6 @@
 }
 -(void)saveAddressIntoDataBase
 {
-//    NSMutableArray *arrAddress = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults]valueForKey:kAddressForLocation]] ;
-//    
-//    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-//    [dict setObject:txtAddress.text forKey:kAddress];
-//    [dict setObject:txtState.text forKey:kState];
-//    [dict setObject:txtCity.text forKey:kCity];
-//    [dict setObject:txtLocality.text forKey:kLocality];
-//    [dict setObject:txtPinCode.text forKey:kPincode];
-//    
-//    if (btnHome.selected) {
-//        [dict setObject:@"Home" forKey:kTitle];
-//        [arrAddress replaceObjectAtIndex:0 withObject:dict];
-//    }
-//    else if (btnOffice.selected) {
-//        [dict setObject:@"Office" forKey:kTitle];
-//        [arrAddress replaceObjectAtIndex:1 withObject:dict];
-//    }
-//    else if (btnOthers.selected) {
-//        [dict setObject:txtTitle.text forKey:kTitle];
-//        [arrAddress addObject:dict];
-//    }
-//    
-//    [[NSUserDefaults standardUserDefaults]setObject:arrAddress forKey:kAddressForLocation];
-//    [[NSUserDefaults standardUserDefaults]synchronize];
-//    
     [self.view removeFromSuperview];
     
     if (self.delegate && [self.delegate conformsToProtocol:@protocol(LocationAlertViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(saveAddress)])
@@ -288,7 +313,26 @@
     }
 }
 
-#pragma mark - UITextField Delegate
+
+
+
+#pragma mark -
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark - Auto Suggestion - 
+
+#pragma mark - UITextField delegate
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     
@@ -319,154 +363,196 @@
 }
 
 
-//#pragma mark OptionPatch
-//
-//-(void)showOptionPatch:(BOOL)isShow
-//{
-//    if(isShow)
-//    {
-//        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
-//         {
-//             keyBoardToolBar.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) -(196 + 20) , [[UIScreen mainScreen]bounds].size.width, 40 );
-//         }completion:nil];
-//
-//    }
-//    else
-//    {
-//        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
-//         {
-//             keyBoardToolBar.frame = CGRectMake(0, [[UIScreen mainScreen]bounds].size.height + 40, [[UIScreen mainScreen]bounds].size.width, 40);
-//         }
-//                         completion:nil];
-//    }
-//}
-//
-//-(void)ToolBarDesignes
-//{
-//    if (keyBoardToolBar==nil)
-//    {
-//        keyBoardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 610 , [[UIScreen mainScreen]bounds].size.width, 40)];
-//        UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
-//
-//        keyBoardToolBar.backgroundColor=[UIColor blackColor];
-//        UIBarButtonItem *tempDistance = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-//        UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
-//
-//        keyBoardToolBar.items = [NSArray arrayWithObjects:btnCancel,tempDistance,btnDone, nil];
-//    }
-//    else
-//    {
-//        [keyBoardToolBar removeFromSuperview];
-//    }
-//
-//    [self.view addSubview:keyBoardToolBar];
-//    [self.view bringSubviewToFront:keyBoardToolBar];
-//}
-//-(void)toolBarBtnClicked:(UIBarButtonItem *)sender
-//{
-//    NSInteger indexValue = [picker selectedRowInComponent:0];
-//
-//    if ([picker selectedRowInComponent:0] >=0) {
-//        [dropDownBtn setTitle:[dataSource objectAtIndex:indexValue] forState:UIControlStateNormal];
-//        [self checkForCustomLabelForIndex:indexValue];
-//
-//    }
-//    else
-//    {
-//        [Utils showAlertView:kAlertTitle message:@"Please Select Address Type" delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-//
-//    }
-//    [self showOptionPatch:NO];
-//    [self showPickerView:NO];
-//}
-//-(void)PickerView
-//{
-//    picker=[[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds)+100, [[UIScreen mainScreen]bounds].size.width,196)];
-//    picker.delegate =self;
-//    picker.dataSource =self;
-//    picker.backgroundColor=[UIColor whiteColor];
-//    picker.showsSelectionIndicator = YES;
-//    [self.view addSubview:picker];
-//}
-//
-//#pragma mark Show and Hide Picker View
-//
-//-(void)showPickerView:(BOOL)isShow
-//{
-//    if(isShow)
-//    {
-//        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-//            picker.frame = CGRectMake(0,CGRectGetHeight(self.view.bounds)-(196-20), [[UIScreen mainScreen]bounds].size.width, 196);
-//
-//        }
-//                         completion:nil];
-//
-//    }
-//    else
-//    {
-//        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
-//                         animations:^{
-//                             picker.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds)+100, [[UIScreen mainScreen]bounds].size.width,196);
-//                         }
-//                         completion:nil];
-//
-//    }
-//}
-//
-
-//- (IBAction)btnDropDown:(id)sender
-//{
-//    [picker selectRow:0 inComponent:0 animated:YES];
-//    [dropDownBtn setTitle:[dataSource objectAtIndex:0] forState:UIControlStateNormal];
-//    [self showPickerView:YES];
-//    [self showOptionPatch:YES];
-//}
-//#pragma mark PickerView Methods & Delegates
-//
-//- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-//{
-//    return 1;
-//}
-//
-//- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-//{
-//    return 50;
-//}
-//- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
-//{
-//    return dataSource.count;
-//    
-//}
-//-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
-//{
-//    
-//    return [dataSource objectAtIndex:row];
-//    
-//    
-//}
-//- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
-//{
-//    [self checkForCustomLabelForIndex:row];
-//}
-//-(void)checkForCustomLabelForIndex:(NSInteger)indexValue
-//{
-//    NSString *strValue = [dataSource objectAtIndex:[picker selectedRowInComponent:0]];
-//    if ([strValue isEqualToString:[NSString stringWithFormat:@"%@",@"Custom Address"] ])
-//    {
-//        [txtTitle setHidden:NO];
-//        [dropDownBtn setTitle:[dataSource objectAtIndex:indexValue] forState:UIControlStateNormal];
-//    }
-//    else
-//    {
-//        [txtTitle setHidden:YES];
-//        [dropDownBtn setTitle:[dataSource objectAtIndex:indexValue] forState:UIControlStateNormal];
-//    }
-//
-//}
-#pragma mark -
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    
+    if (textField == txtLocality)
+    {
+        NSString *newStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        NSLog(@"New String = %@",newStr);
+     
+        
+        newStr = [newStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        if ([newStr length]>0)
+        {
+            [self searchManuallyAsychroByQueryText:textField.text];
+        }
+        else
+        {
+            [postAutoSuggestionView.tableView removeFromSuperview];
+        }
+    }
+    
+    
+    return YES;
 }
+
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == txtLocality)
+    {
+        textField.text = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        if (!postAutoSuggestionView) {
+            postAutoSuggestionView=[[PostAutoSuggestionTableViewController alloc]initWithNibName:@"PostAutoSuggestionTableViewController" bundle:nil];
+            postAutoSuggestionView.delegate=self;
+            [postAutoSuggestionView.tableView setFrame:CGRectMake(15, 80, 290, 120)];
+            
+            [postAutoSuggestionView.tableView setHidden:YES];
+            [self.view addSubview:postAutoSuggestionView.tableView];
+        }
+
+    }
+    
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    
+    if (textField == txtLocality)
+    {
+        textField.text = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        [postAutoSuggestionView.tableView removeFromSuperview];
+
+    }
+    
+}
+
+
+
+
+
+
+#pragma Auto Suggested Delegate
+-(void)userSelectedInfo:(NSDictionary*)aDictInfo ForSearchString:(NSString*)searchString forDictionaryKey:(NSString *)strKey{
+    
+    [postAutoSuggestionView.tableView removeFromSuperview];
+    
+    
+    if ([txtLocality.text length]==0)
+    {
+        txtLocality.text = [NSString stringWithFormat:@"%@, ",[aDictInfo valueForKey:strKey]];
+    }
+    else
+    {
+        NSRange rangeOfString = [txtLocality.text rangeOfString:searchString options:NSBackwardsSearch|NSCaseInsensitiveSearch];
+        
+        if (rangeOfString.location == NSNotFound)
+            return;
+        else
+            txtLocality.text =[txtLocality.text stringByReplacingCharactersInRange:NSMakeRange(rangeOfString.location, [txtLocality.text length] - rangeOfString.location ) withString:[NSString stringWithFormat:@"%@, ",[aDictInfo valueForKey:strKey]]];
+    }
+    
+}
+
+
+
+/*
+ if ([[responseObject objectForKey:kStatus] intValue]==1)
+ {
+ if ([[responseObject valueForKey:@"result"] count]>0) {
+ [self.view addSubview:postAutoSuggestionView.tableView];
+ [postAutoSuggestionView.tableView setHidden:NO];
+ 
+ [postAutoSuggestionView reloadTableViewWithData:[responseObject valueForKey:@"result"] forSearchString:searchText forDictionaryKey:kSkillName];
+ 
+ }else{
+ [postAutoSuggestionView.tableView removeFromSuperview];
+ }
+ 
+ 
+ }
+ 
+ */
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+#pragma mark - Four Square API
+
+-(void)searchManuallyAsychroByQueryText:(NSString *)inQuery
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        NSDictionary *result=[self searchForPlaceOnFourSquareByqueryText:inQuery];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            NSArray *venues = [result valueForKeyPath:@"response.venues"];
+            FSConverter *converter = [[FSConverter alloc]init];
+            NSArray *fsConverter =[converter convertToObjects:venues];
+            [self.searchedNearbyVenues removeAllObjects];
+            
+            if (fsConverter && fsConverter.count > 0 && self.isSearching)
+            {
+                [self.searchedNearbyVenues addObjectsFromArray: fsConverter];
+                
+            }
+            else if ((!fsConverter || fsConverter.count == 0 ) && self.isSearching)
+            {
+                //                [self.searchedNearbyVenues addObject:searchNotFoundVenue];
+            }
+            
+            [self updateDataSource: self.searchedNearbyVenues];
+            //            [self.ActivityIncator stopAnimating];
+            
+        });
+    });
+    // Do any additional setup after loading the view from its nib.
+}
+
+
+-(NSDictionary*)searchForPlaceOnFourSquareByqueryText:(NSString *)inQuery
+{
+    
+    NSDate *date=[NSDate date];
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyyMMdd"];
+    NSString *dateInString=[formatter stringFromDate:date];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&query=%@&client_id=%@&client_secret=%@&v=%@",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude,[inQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],kFourSquareClientId,kFourSquareSecretId,dateInString]];
+    
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    
+    NSURLResponse *response;
+    NSError *err;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    
+    //    NSString* s = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    //    NSDictionary *result = [s JSONValue];
+    if(responseData==nil)
+        return nil;
+    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+    
+    
+    if (![result isKindOfClass:[NSDictionary class]])
+        result = nil;
+    
+    return result;
+}
+
+
+-(void)updateDataSource:(NSMutableArray *)inDataSource
+{
+    [postAutoSuggestionView.tableView setHidden:NO];
+
+    
+    //removed previous searched items
+    //    [self.currentlyContainVenues removeAllObjects];
+    //    if (inDataSource && inDataSource.count > 0)
+    //    {
+    //        [self.currentlyContainVenues addObjectsFromArray: inDataSource];
+    //    }
+    //    [tblLocation reloadData];
+    
+}
+
+
 
 @end

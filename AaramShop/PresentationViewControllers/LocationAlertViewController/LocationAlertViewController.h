@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AKKeyboardAvoidingScrollView.h"
 #import "AddressModel.h"
+#import "PostAutoSuggestionTableViewController.h"
+#import "FSVenue.h"
+#import "FSConverter.h"
+#import <CoreLocation/CoreLocation.h>
+
+
 @protocol LocationAlertViewControllerDelegate <NSObject>
 
 -(void)saveAddress;
@@ -16,7 +22,7 @@
 
 
 
-@interface LocationAlertViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
+@interface LocationAlertViewController : UIViewController<AaramShop_ConnectionManager_Delegate, AutoSuggestionDelegate,CLLocationManagerDelegate>
 {
     __weak IBOutlet UIView *subView;
         __weak IBOutlet PWTextField *txtAddress;
@@ -29,25 +35,31 @@
     __weak IBOutlet UIButton *btnOffice;
     __weak IBOutlet UIButton *btnOthers;
     __weak IBOutlet UIButton *btnSave;
-    //    __weak IBOutlet UIButton *dropDownBtn;
-    //    UIPickerView *picker;
-    //    __weak IBOutlet PWTextField *txtTitle;
-    //    __weak IBOutlet UITextView *txtVAddress;
-    //    UIToolbar* keyBoardToolBar;
+    
+    PostAutoSuggestionTableViewController *postAutoSuggestionView;
+    
 
-//    NSMutableArray *dataSource;
+
+    
 }
 @property (nonatomic, retain) IBOutlet AKKeyboardAvoidingScrollView *scrollView;
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
-//@property(nonatomic,strong) NSString *strAddress;
+
 @property(nonatomic,assign) CLLocationCoordinate2D cordinatesLocation;
 @property(nonatomic,strong) AddressModel *objAddressModel;
 @property(nonatomic,weak) id<LocationAlertViewControllerDelegate> delegate;
 - (IBAction)btnCancel:(id)sender;
 - (IBAction)btnSave:(id)sender;
-//- (IBAction)btnDropDown:(id)sender;
 
 - (IBAction)btnActionClicked:(UIButton *)sender;
+
+
+
+@property (strong, nonatomic) NSMutableArray *searchedNearbyVenues;
+@property (assign, nonatomic) BOOL isSearching;
+@property (nonatomic, strong) CLLocation * currentLocation;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
 
 
 @end
