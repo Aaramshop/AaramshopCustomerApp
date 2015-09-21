@@ -92,7 +92,7 @@
     [searchBarMain becomeFirstResponder];
     
     
-    arrSearchResult = [NSMutableArray array];
+    arrSearchResult = [[NSMutableArray alloc]init];
     
     [viewSearchBarContainer setFrame:CGRectMake(0, -64, 320, 64)];
     
@@ -251,8 +251,10 @@
         
     }
 
-    [searchCell updateDetailsFor:[arrSearchResult objectAtIndex:indexPath.row]];
-    
+    if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
+    {
+        [searchCell updateDetailsFor:[arrSearchResult objectAtIndex:indexPath.row]];        
+    }
     
     return searchCell;
 }

@@ -37,7 +37,7 @@ static const CGFloat kTabbarDefaultHeight = 49;
         _childControllers = [[NSMutableArray alloc] init];
         _childControllers = [controllers mutableCopy];
         
-        NSMutableArray *titles = [NSMutableArray array];
+        NSMutableArray *titles = [[NSMutableArray alloc]init];
         for (UIViewController *vc in _childControllers) {
             [titles addObject:[vc valueForKey:@"title"]];
         }

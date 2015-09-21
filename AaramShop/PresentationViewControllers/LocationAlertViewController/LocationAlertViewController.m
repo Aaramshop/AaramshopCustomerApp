@@ -51,8 +51,6 @@
     // added on 18 Sep 2015 ..... begins
     self.searchedNearbyVenues = [[NSMutableArray alloc] init];
     self.isSearching = NO;
-//    searchNotFoundVenue = [[FSVenue alloc]init];
-//    searchNotFoundVenue.name  = @"Location not found";
     // added on 18 Sep 2015 ..... ends
     
 }
@@ -451,25 +449,6 @@
 
 
 
-/*
- if ([[responseObject objectForKey:kStatus] intValue]==1)
- {
- if ([[responseObject valueForKey:@"result"] count]>0) {
- [self.view addSubview:postAutoSuggestionView.tableView];
- [postAutoSuggestionView.tableView setHidden:NO];
- 
- [postAutoSuggestionView reloadTableViewWithData:[responseObject valueForKey:@"result"] forSearchString:searchText forDictionaryKey:kSkillName];
- 
- }else{
- [postAutoSuggestionView.tableView removeFromSuperview];
- }
- 
- 
- }
- 
- */
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -487,12 +466,12 @@
             NSArray *fsConverter =[converter convertToObjects:venues];
             [self.searchedNearbyVenues removeAllObjects];
             
-            if (fsConverter && fsConverter.count > 0 && self.isSearching)
+            if (fsConverter && fsConverter.count > 0 /* && self.isSearching */)
             {
                 [self.searchedNearbyVenues addObjectsFromArray: fsConverter];
                 
             }
-            else if ((!fsConverter || fsConverter.count == 0 ) && self.isSearching)
+            else if ((!fsConverter || fsConverter.count == 0 ) /* && self.isSearching */)
             {
                 //                [self.searchedNearbyVenues addObject:searchNotFoundVenue];
             }
@@ -514,9 +493,10 @@
     [formatter setDateFormat:@"yyyyMMdd"];
     NSString *dateInString=[formatter stringFromDate:date];
     
+    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&query=%@&client_id=%@&client_secret=%@&v=%@",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude,[inQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],kFourSquareClientId,kFourSquareSecretId,dateInString]];
     
-    
+
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     
@@ -542,14 +522,19 @@
 {
     [postAutoSuggestionView.tableView setHidden:NO];
 
-    
-    //removed previous searched items
-    //    [self.currentlyContainVenues removeAllObjects];
-    //    if (inDataSource && inDataSource.count > 0)
-    //    {
-    //        [self.currentlyContainVenues addObjectsFromArray: inDataSource];
-    //    }
-    //    [tblLocation reloadData];
+    if (inDataSource && inDataSource.count > 0)
+    {
+        
+        [self.view addSubview:postAutoSuggestionView.tableView];
+        [postAutoSuggestionView.tableView setHidden:NO];
+        
+        [postAutoSuggestionView reloadTableViewWithData:inDataSource forSearchString:txtLocality.text forDictionaryKey:@"name"];
+        
+    }
+    else
+    {
+        [postAutoSuggestionView.tableView removeFromSuperview];
+    }
     
 }
 

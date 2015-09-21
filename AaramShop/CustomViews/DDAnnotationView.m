@@ -161,7 +161,7 @@
 	
 	CAKeyframeAnimation *pinBounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
 	
-	NSMutableArray *values = [NSMutableArray array];
+	NSMutableArray *values = [[NSMutableArray alloc]init];
 //	[values addObject:(id)[UIImage imageNamed:@"mapPinGreen.png"].CGImage];
 //	[values addObject:(id)[UIImage imageNamed:@"mapPinGreen.png"].CGImage];
 //	[values addObject:(id)[UIImage imageNamed:@"mapPinGreen.png"].CGImage];

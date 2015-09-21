@@ -1130,7 +1130,7 @@ static NSMutableDictionary *attributes;
 }
 
 + (NSString *)broadcastTypeToString:(FoursquareBroadcastType)broadcast {
-    NSMutableArray *result = [NSMutableArray array];
+    NSMutableArray *result = [[NSMutableArray alloc]init];
     if (broadcast & broadcastPublic) {
         [result addObject:@"public"];
     }

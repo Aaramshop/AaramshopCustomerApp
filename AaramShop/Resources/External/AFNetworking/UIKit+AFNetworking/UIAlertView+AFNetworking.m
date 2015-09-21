@@ -61,7 +61,7 @@ static void AFGetAlertViewTitleAndMessageFromError(NSError *error, NSString * __
                                 cancelButtonTitle:(NSString *)cancelButtonTitle
                                 otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION
 {
-    NSMutableArray *mutableOtherTitles = [NSMutableArray array];
+    NSMutableArray *mutableOtherTitles = [[NSMutableArray alloc]init];
     va_list otherButtonTitleList;
     va_start(otherButtonTitleList, otherButtonTitles);
     {
@@ -104,7 +104,7 @@ static void AFGetAlertViewTitleAndMessageFromError(NSError *error, NSString * __
                                             cancelButtonTitle:(NSString *)cancelButtonTitle
                                             otherButtonTitles:(NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION
 {
-    NSMutableArray *mutableOtherTitles = [NSMutableArray array];
+    NSMutableArray *mutableOtherTitles = [[NSMutableArray alloc]init];
     va_list otherButtonTitleList;
     va_start(otherButtonTitleList, otherButtonTitles);
     {

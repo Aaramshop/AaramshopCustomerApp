@@ -244,7 +244,7 @@ NSString *const XMPPGoogleSharedStatusShowIdle = @"away";
 		
 		for(XMPPElement *element in sharedStatus.children) {
 			if([element.name isEqualToString:@"status-list"]) {
-				NSMutableArray *array = [NSMutableArray array];
+				NSMutableArray *array = [[NSMutableArray alloc]init];
 				for(XMPPElement *status in element.children)
 					[array addObject:[status stringValue]];
 				[dict setObject:array forKey:[[element attributeForName:XMPPGoogleSharedStatusShow] stringValue]];

@@ -2105,7 +2105,7 @@
 
 -(void)sortAllKeysOfDatesInDescOrder
 {
-    NSMutableArray *aTempArr = [NSMutableArray array];
+    NSMutableArray *aTempArr = [[NSMutableArray alloc]init];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES];
     
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];

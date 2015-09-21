@@ -26,7 +26,7 @@
         animatedImage = [[UIImage alloc] initWithData:data];
     }
     else {
-        NSMutableArray *images = [NSMutableArray array];
+        NSMutableArray *images = [[NSMutableArray alloc]init];
 
         NSTimeInterval duration = 0.0f;
 
@@ -139,7 +139,7 @@
         thumbnailPoint.x = (size.width - scaledSize.width) * 0.5;
     }
 
-    NSMutableArray *scaledImages = [NSMutableArray array];
+    NSMutableArray *scaledImages = [[NSMutableArray alloc]init];
 
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
 

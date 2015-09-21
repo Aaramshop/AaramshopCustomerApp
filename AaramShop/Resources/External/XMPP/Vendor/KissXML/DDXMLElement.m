@@ -136,7 +136,7 @@
 	
 	xmlNodePtr node = (xmlNodePtr)genericPtr;
 	
-	NSMutableArray *result = [NSMutableArray array];
+	NSMutableArray *result = [[NSMutableArray alloc]init];
 	
 	BOOL hasPrefix = [prefix length] > 0;
 	
@@ -341,7 +341,7 @@
 	DDXMLNotZombieAssert();
 #endif
 	
-	NSMutableArray *result = [NSMutableArray array];
+	NSMutableArray *result = [[NSMutableArray alloc]init];
 	
 	xmlAttrPtr attr = ((xmlNodePtr)genericPtr)->properties;
 	while (attr != NULL)
@@ -515,7 +515,7 @@
 	DDXMLNotZombieAssert();
 #endif
 	
-	NSMutableArray *result = [NSMutableArray array];
+	NSMutableArray *result = [[NSMutableArray alloc]init];
 	
 	xmlNsPtr ns = ((xmlNodePtr)genericPtr)->nsDef;
 	while (ns != NULL)

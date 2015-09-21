@@ -84,7 +84,7 @@ AaramShop_ConnectionManager_Delegate>
 	[searchBarMain becomeFirstResponder];
 	
 
-	arrSearchResult = [NSMutableArray array];
+	arrSearchResult = [[NSMutableArray alloc] init];
 	
 	[viewSearchBarContainer setFrame:CGRectMake(0, -64, 320, 64)];
 	
@@ -386,8 +386,14 @@ AaramShop_ConnectionManager_Delegate>
 				CMGlobalSearch *globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
 				[searchCell updateCellWithData:globalSearchModel];
 			}
-			else
-				[searchCell updateCellWithData:[arrSearchResult objectAtIndex:indexPath.row]];
+            else{
+                
+                if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
+                {
+                    [searchCell updateCellWithData:[arrSearchResult objectAtIndex:indexPath.row]];
+                }
+            }
+				
 		}
 			break;
 		case 1:

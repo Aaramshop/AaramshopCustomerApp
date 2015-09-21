@@ -386,7 +386,7 @@
     [searchbar setShowsCancelButton:YES animated:YES];
     
     if (!arrFilteredContactsData) {
-        arrContactsData = [NSMutableArray array];
+        arrContactsData = [[NSMutableArray alloc]init];
     }
     return YES;
 }

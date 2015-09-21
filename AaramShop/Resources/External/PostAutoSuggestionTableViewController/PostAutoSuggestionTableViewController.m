@@ -81,6 +81,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+    
     if ([self.delegate respondsToSelector:@selector(userSelectedInfo:ForSearchString:forDictionaryKey:)]) {
         [self.delegate userSelectedInfo:[arrSearchInfo objectAtIndex:indexPath.row] ForSearchString:_searchString forDictionaryKey:strDictionaryKey];
     }
@@ -175,7 +177,7 @@
         }
     }
     
-    NSMutableArray *subpredicates = [NSMutableArray array];
+    NSMutableArray *subpredicates = [[NSMutableArray alloc]init];
     for(NSString *term in searchWordsArr)
     {
         NSPredicate *p = [NSPredicate predicateWithFormat:@"userName contains[cd] %@", term];
