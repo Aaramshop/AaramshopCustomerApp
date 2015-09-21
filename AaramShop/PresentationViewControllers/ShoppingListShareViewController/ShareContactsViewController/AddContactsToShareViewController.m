@@ -274,11 +274,17 @@
         
         if ([obj.isSelected integerValue]==1)
         {
-            NSString *strNumer = [obj.numbers objectAtIndex:0];
             
-            NSString * strippedNumber = [strNumer stringByReplacingOccurrencesOfString:@"[^0-9]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [strNumer length])];
-
-            [arrTempMobile addObject:strippedNumber];
+            if (obj.numbers && [obj.numbers count]>0)
+            {
+                NSString *strNumer = [obj.numbers objectAtIndex:0];
+                
+                NSString * strippedNumber = [strNumer stringByReplacingOccurrencesOfString:@"[^0-9]" withString:@"" options:NSRegularExpressionSearch range:NSMakeRange(0, [strNumer length])];
+                
+                [arrTempMobile addObject:strippedNumber];
+            }
+            
+            
         }
     }];
     
@@ -386,7 +392,7 @@
     [searchbar setShowsCancelButton:YES animated:YES];
     
     if (!arrFilteredContactsData) {
-        arrContactsData = [[NSMutableArray alloc]init];
+        arrFilteredContactsData = [[NSMutableArray alloc]init];
     }
     return YES;
 }

@@ -383,8 +383,14 @@ AaramShop_ConnectionManager_Delegate>
 		{
 			if ([searchType intValue] == 3) {
 				arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
-				CMGlobalSearch *globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
-				[searchCell updateCellWithData:globalSearchModel];
+                
+                
+                if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
+                {
+                    CMGlobalSearch *globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
+                    [searchCell updateCellWithData:globalSearchModel];
+                }
+                
 			}
             else{
                 
@@ -400,11 +406,21 @@ AaramShop_ConnectionManager_Delegate>
 		{
 			if ([searchType intValue] == 3) {
 				arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
-				CMGlobalSearch *globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
-				[searchCell updateCellWithData:globalSearchModel];
+                
+                if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
+                {
+                    CMGlobalSearch *globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
+                    [searchCell updateCellWithData:globalSearchModel];
+                }
 			}
 			else
-				[searchCell updateCellWithData:[arrSearchResult objectAtIndex:indexPath.row]];
+            {
+                if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
+                {
+                    [searchCell updateCellWithData:[arrSearchResult objectAtIndex:indexPath.row]];
+                }
+            }
+				
 		}
 			break;
 	default:
