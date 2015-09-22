@@ -1070,6 +1070,9 @@
         [self createDataToGetStoreProducts];
     }
     
+    //    [dict setObject:strCategoryId forKey:kCategory_id];
+
+    
 }
 
 -(void)selectCategory:(NSDictionary *)dict
