@@ -181,6 +181,7 @@
     appDelegate.objStoreModel = objStoreModel;
     UITabBarController *tabBar = [appDelegate createTabBarRetailer];
     tabBar.hidesBottomBarWhenPushed = YES;
+    [tabBar setSelectedIndex:4];
     self.navigationController.navigationBarHidden = YES;
     [self.navigationController pushViewController:tabBar animated:YES];
 
