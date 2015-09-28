@@ -49,6 +49,12 @@
 //#define kBaseURL												@"http://52.74.220.25/api/index.php/user/"
 //#define kBaseURL												@"http://52.74.220.25/index.php/user/"
 
+
+//#define kGOOGLE_API_KEY                                     @"AIzaSyAzMfO-tlOmsM47CG35YF-yHmleevA0LpM" // this key is for ios, & it is not working
+
+#define kGOOGLE_API_KEY                                       @"AIzaSyC1rKSg6IVmDlntN1LFMVnkvK5Lpj5lFIY" // this key is also for web
+
+
 #define kIsLoggedIn											@"isLoggedIn"
 #define kDevice													@"1"
 #define kDeviceType											@"deviceType"

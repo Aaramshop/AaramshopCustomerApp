@@ -8,6 +8,10 @@
 
 #import "LocationAlertViewController.h"
 #import "LocationEnterViewController.h"
+
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
+
 @interface LocationAlertViewController ()
 {
     LocationEnterViewController *locationEnter;
@@ -374,7 +378,8 @@
         
         if ([newStr length]>0)
         {
-            [self searchManuallyAsychroByQueryText:textField.text];
+//            [self searchManuallyAsychroByQueryText:textField.text];
+            [self queryGooglePlaces:newStr];
         }
         else
         {
@@ -518,7 +523,7 @@
 }
 
 
--(void)updateDataSource:(NSMutableArray *)inDataSource
+-(void)updateDataSource:(NSArray *)inDataSource
 {
     [postAutoSuggestionView.tableView setHidden:NO];
 
@@ -537,6 +542,64 @@
     }
     
 }
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////// GOOGLE PLACES API //////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+-(void) queryGooglePlaces: (NSString *) googleType {
+
+    
+//    googleType = @"Naraina";
+    
+    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=establishment&radius=2000&key=%@",googleType,kGOOGLE_API_KEY];
+
+
+    //https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Naraina&types=establishment&radius=2000&key=AIzaSyAzMfO-tlOmsM47CG35YF-yHmleevA0LpM
+    
+    
+    // AIzaSyAzMfO-tlOmsM47CG35YF-yHmleevA0LpM
+    
+    NSURL *googleRequestURL=[NSURL URLWithString:url];
+    
+
+    dispatch_async(kBgQueue, ^{
+        NSData* data = [NSData dataWithContentsOfURL: googleRequestURL];
+        [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
+    });
+}
+
+
+
+
+-(void)fetchedData:(NSData *)responseData {
+    //parse out the json data
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:responseData
+                          options:kNilOptions
+                          error:&error];
+
+//    NSArray* places = [json objectForKey:@"results"];
+    
+    if (json)
+    {
+        NSArray* places = [json valueForKeyPath:@"predictions.description"];
+        [self updateDataSource: places];
+        NSLog(@"Google Data: %@", places);
+
+    }
+
+    
+    
+    
+
+}
+
+
 
 
 
