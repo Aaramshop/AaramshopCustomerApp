@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "AddressModel.h"
+#import "PostAutoSuggestionTableViewController.h"
+
+
 @protocol AddNewLocationViewDelegate<NSObject>
 -(void)gotAddress:(CLLocationCoordinate2D)location withModel:(AddressModel*)addressMdl;
 @end
 
-@interface AddNewLocationViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
+@interface AddNewLocationViewController : UIViewController<AaramShop_ConnectionManager_Delegate,AutoSuggestionDelegate>
 {
 	__weak IBOutlet PWTextField *txtAddress;
 	__weak IBOutlet UIView *subView;
@@ -21,6 +24,10 @@
 	__weak IBOutlet PWTextField *txtLocality;
 	__weak IBOutlet PWTextField *txtPinCode;
 	__weak IBOutlet UIButton *searchBtn;
+    
+    
+    PostAutoSuggestionTableViewController *postAutoSuggestionView;
+
 }
 @property(nonatomic,weak) id<AddNewLocationViewDelegate> delegate;
 @property (weak, nonatomic) IBOutlet AKKeyboardAvoidingScrollView *scrollView;

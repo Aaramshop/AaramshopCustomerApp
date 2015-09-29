@@ -21,7 +21,7 @@
 
 @implementation LocationAlertViewController
 @synthesize delegate,scrollView,objAddressModel,aaramShop_ConnectionManager,cordinatesLocation;
-@synthesize searchedNearbyVenues,isSearching,currentLocation,locationManager;
+//@synthesize searchedNearbyVenues,isSearching,currentLocation,locationManager;
 
 
 
@@ -53,8 +53,8 @@
     
     
     // added on 18 Sep 2015 ..... begins
-    self.searchedNearbyVenues = [[NSMutableArray alloc] init];
-    self.isSearching = NO;
+//    self.searchedNearbyVenues = [[NSMutableArray alloc] init];
+//    self.isSearching = NO;
     // added on 18 Sep 2015 ..... ends
     
 }
@@ -64,32 +64,32 @@
 {
     [super viewWillAppear:YES];
     
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.delegate = self;
-    
-    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-        [self.locationManager requestAlwaysAuthorization];
-    }
-    [self.locationManager startUpdatingLocation];
+//    self.locationManager = [[CLLocationManager alloc]init];
+//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//    self.locationManager.delegate = self;
+//    
+//    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+//        [self.locationManager requestAlwaysAuthorization];
+//    }
+//    [self.locationManager startUpdatingLocation];
 
 }
 
 
 
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation {
-    [self.locationManager stopUpdatingLocation];
-    currentLocation=newLocation;
-}
+//- (void)locationManager:(CLLocationManager *)manager
+//    didUpdateToLocation:(CLLocation *)newLocation
+//           fromLocation:(CLLocation *)oldLocation {
+//    [self.locationManager stopUpdatingLocation];
+//    currentLocation=newLocation;
+//}
 
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error{
-    
-    [Utils showAlertView:kAlertTitle message:@"Turn On Location Services to Allow \"AaramShop\" to Determine Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    
-}
+//- (void)locationManager:(CLLocationManager *)manager
+//       didFailWithError:(NSError *)error{
+//    
+//    [Utils showAlertView:kAlertTitle message:@"Turn On Location Services to Allow \"AaramShop\" to Determine Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    
+//}
 
 
 
@@ -378,7 +378,7 @@
         
         if ([newStr length]>0)
         {
-//            [self searchManuallyAsychroByQueryText:textField.text];
+//            [self searchManuallyAsychroByQueryText:newStr];
             [self queryGooglePlaces:newStr];
         }
         else
@@ -431,14 +431,15 @@
 
 
 #pragma Auto Suggested Delegate
--(void)userSelectedInfo:(NSDictionary*)aDictInfo ForSearchString:(NSString*)searchString forDictionaryKey:(NSString *)strKey{
+
+-(void)userSelectedInfo:(NSString*)aStringInfo ForSearchString:(NSString*)searchString{
     
     [postAutoSuggestionView.tableView removeFromSuperview];
     
     
     if ([txtLocality.text length]==0)
     {
-        txtLocality.text = [NSString stringWithFormat:@"%@, ",[aDictInfo valueForKey:strKey]];
+        txtLocality.text = aStringInfo;
     }
     else
     {
@@ -447,11 +448,32 @@
         if (rangeOfString.location == NSNotFound)
             return;
         else
-            txtLocality.text =[txtLocality.text stringByReplacingCharactersInRange:NSMakeRange(rangeOfString.location, [txtLocality.text length] - rangeOfString.location ) withString:[NSString stringWithFormat:@"%@, ",[aDictInfo valueForKey:strKey]]];
+            txtLocality.text =[txtLocality.text stringByReplacingCharactersInRange:NSMakeRange(rangeOfString.location, [txtLocality.text length] - rangeOfString.location ) withString:[NSString stringWithFormat:@"%@, ",aStringInfo]];
     }
     
 }
 
+//-(void)userSelectedInfo:(NSDictionary*)aDictInfo ForSearchString:(NSString*)searchString forDictionaryKey:(NSString *)strKey{
+//    
+//    [postAutoSuggestionView.tableView removeFromSuperview];
+//    
+//    
+//    if ([txtLocality.text length]==0)
+//    {
+//        txtLocality.text = [NSString stringWithFormat:@"%@, ",[aDictInfo valueForKey:strKey]];
+//    }
+//    else
+//    {
+//        NSRange rangeOfString = [txtLocality.text rangeOfString:searchString options:NSBackwardsSearch|NSCaseInsensitiveSearch];
+//        
+//        if (rangeOfString.location == NSNotFound)
+//            return;
+//        else
+//            txtLocality.text =[txtLocality.text stringByReplacingCharactersInRange:NSMakeRange(rangeOfString.location, [txtLocality.text length] - rangeOfString.location ) withString:[NSString stringWithFormat:@"%@, ",[aDictInfo valueForKey:strKey]]];
+//    }
+//    
+//}
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -459,68 +481,73 @@
 
 
 
-#pragma mark - Four Square API
+//#pragma mark - Four Square API
+//
+//-(void)searchManuallyAsychroByQueryText:(NSString *)inQuery
+//{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//        NSDictionary *result=[self searchForPlaceOnFourSquareByqueryText:inQuery];
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            NSArray *venues = [result valueForKeyPath:@"response.venues"];
+//            FSConverter *converter = [[FSConverter alloc]init];
+//            NSArray *fsConverter =[converter convertToObjects:venues];
+//            [self.searchedNearbyVenues removeAllObjects];
+//            
+//            if (fsConverter && fsConverter.count > 0 /* && self.isSearching */)
+//            {
+//                [self.searchedNearbyVenues addObjectsFromArray: fsConverter];
+//                
+//            }
+//            else if ((!fsConverter || fsConverter.count == 0 ) /* && self.isSearching */)
+//            {
+//                //                [self.searchedNearbyVenues addObject:searchNotFoundVenue];
+//            }
+//            
+//            [self updateDataSource: self.searchedNearbyVenues];
+//            //            [self.ActivityIncator stopAnimating];
+//            
+//        });
+//    });
+//    // Do any additional setup after loading the view from its nib.
+//}
 
--(void)searchManuallyAsychroByQueryText:(NSString *)inQuery
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        NSDictionary *result=[self searchForPlaceOnFourSquareByqueryText:inQuery];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            NSArray *venues = [result valueForKeyPath:@"response.venues"];
-            FSConverter *converter = [[FSConverter alloc]init];
-            NSArray *fsConverter =[converter convertToObjects:venues];
-            [self.searchedNearbyVenues removeAllObjects];
-            
-            if (fsConverter && fsConverter.count > 0 /* && self.isSearching */)
-            {
-                [self.searchedNearbyVenues addObjectsFromArray: fsConverter];
-                
-            }
-            else if ((!fsConverter || fsConverter.count == 0 ) /* && self.isSearching */)
-            {
-                //                [self.searchedNearbyVenues addObject:searchNotFoundVenue];
-            }
-            
-            [self updateDataSource: self.searchedNearbyVenues];
-            //            [self.ActivityIncator stopAnimating];
-            
-        });
-    });
-    // Do any additional setup after loading the view from its nib.
-}
 
-
--(NSDictionary*)searchForPlaceOnFourSquareByqueryText:(NSString *)inQuery
-{
-    
-    NSDate *date=[NSDate date];
-    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyyMMdd"];
-    NSString *dateInString=[formatter stringFromDate:date];
-    
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&query=%@&client_id=%@&client_secret=%@&v=%@",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude,[inQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],kFourSquareClientId,kFourSquareSecretId,dateInString]];
-    
-
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"GET"];
-    
-    NSURLResponse *response;
-    NSError *err;
-    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    
-    //    NSString* s = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    //    NSDictionary *result = [s JSONValue];
-    if(responseData==nil)
-        return nil;
-    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-    
-    
-    if (![result isKindOfClass:[NSDictionary class]])
-        result = nil;
-    
-    return result;
-}
+//-(NSDictionary*)searchForPlaceOnFourSquareByqueryText:(NSString *)inQuery
+//{
+//    
+//    NSDate *date=[NSDate date];
+//    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+//    [formatter setDateFormat:@"yyyyMMdd"];
+//    NSString *dateInString=[formatter stringFromDate:date];
+//    
+//    
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&query=%@&client_id=%@&client_secret=%@&v=%@",currentLocation.coordinate.latitude,currentLocation.coordinate.longitude,[inQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],kFourSquareClientId,kFourSquareSecretId,dateInString]];
+//    
+//    
+//    
+////    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&query=%@&client_id=%@&client_secret=%@&v=%@",28.53159939018553,77.38593645393848,[inQuery stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],kFourSquareClientId,kFourSquareSecretId,dateInString]];
+//
+//    
+//
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+//    [request setHTTPMethod:@"GET"];
+//    
+//    NSURLResponse *response;
+//    NSError *err;
+//    NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+//    
+//    //    NSString* s = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+//    //    NSDictionary *result = [s JSONValue];
+//    if(responseData==nil)
+//        return nil;
+//    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+//    
+//    
+//    if (![result isKindOfClass:[NSDictionary class]])
+//        result = nil;
+//    
+//    return result;
+//}
 
 
 -(void)updateDataSource:(NSArray *)inDataSource
@@ -533,7 +560,9 @@
         [self.view addSubview:postAutoSuggestionView.tableView];
         [postAutoSuggestionView.tableView setHidden:NO];
         
-        [postAutoSuggestionView reloadTableViewWithData:inDataSource forSearchString:txtLocality.text forDictionaryKey:@"name"];
+//        [postAutoSuggestionView reloadTableViewWithData:inDataSource forSearchString:txtLocality.text forDictionaryKey:@"name"];
+        
+        [postAutoSuggestionView reloadTableViewWithData:inDataSource forSearchString:txtLocality.text];
         
     }
     else
@@ -563,12 +592,15 @@
     
     // AIzaSyAzMfO-tlOmsM47CG35YF-yHmleevA0LpM
     
-    NSURL *googleRequestURL=[NSURL URLWithString:url];
+    NSURL *googleRequestURL=[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
 
     dispatch_async(kBgQueue, ^{
         NSData* data = [NSData dataWithContentsOfURL: googleRequestURL];
-        [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
+        if (data)
+        {
+            [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
+        }
     });
 }
 
@@ -592,10 +624,6 @@
         NSLog(@"Google Data: %@", places);
 
     }
-
-    
-    
-    
 
 }
 

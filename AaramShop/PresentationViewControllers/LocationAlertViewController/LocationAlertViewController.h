@@ -55,10 +55,10 @@
 
 
 
-@property (strong, nonatomic) NSMutableArray *searchedNearbyVenues;
-@property (assign, nonatomic) BOOL isSearching;
-@property (nonatomic, strong) CLLocation * currentLocation;
-@property (strong, nonatomic) CLLocationManager *locationManager;
+//@property (strong, nonatomic) NSMutableArray *searchedNearbyVenues;
+//@property (assign, nonatomic) BOOL isSearching;
+//@property (nonatomic, strong) CLLocation * currentLocation;
+//@property (strong, nonatomic) CLLocationManager *locationManager;
 
 
 

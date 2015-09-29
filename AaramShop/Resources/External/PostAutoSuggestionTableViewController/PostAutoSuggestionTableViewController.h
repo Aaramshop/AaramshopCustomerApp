@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "SearchUserDetailModal.h"
-//#import "ChallengeNameListModal.h"
+
 
 typedef enum {
     SearchTypeAdd,
@@ -16,9 +15,11 @@ typedef enum {
 }SearchType;
 
 @protocol AutoSuggestionDelegate <NSObject>
-//-(void)autosuggestionSelected:(SearchUserDetailModal *)searchUserDetailModal;
-//-(void)autosuggestionChallangeSelected:(ChallengeNameListModal *)challengeNameListModal;
+
 -(void)userSelectedInfo:(NSDictionary*)aDictInfo ForSearchString:(NSString*)searchString forDictionaryKey:(NSString *)strKey;
+
+-(void)userSelectedInfo:(NSString*)aStringInfo ForSearchString:(NSString*)searchString;
+
 @end
 
 
@@ -39,5 +40,8 @@ typedef enum {
 
 @property (nonatomic, strong) NSString *searchString;
 -(void)reloadTableViewWithData:(NSArray*)arrInfo forSearchString:(NSString*)searchString forDictionaryKey:(NSString *)strKey;
+
+
+-(void)reloadTableViewWithData:(NSArray*)arrInfo forSearchString:(NSString*)searchString;
 
 @end

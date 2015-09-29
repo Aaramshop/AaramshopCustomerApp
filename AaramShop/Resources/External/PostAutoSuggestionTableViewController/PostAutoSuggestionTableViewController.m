@@ -60,11 +60,11 @@
         cell.backgroundColor=[UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
     }
     
-    NSDictionary *searchInfo = [arrSearchInfo objectAtIndex:indexPath.row];
-    
-    cell.lblFullName.text=[searchInfo valueForKey:strDictionaryKey];
+//    NSDictionary *searchInfo = [arrSearchInfo objectAtIndex:indexPath.row];
+//    cell.lblFullName.text=[searchInfo valueForKey:strDictionaryKey];
 
-    
+
+    cell.lblFullName.text=[arrSearchInfo objectAtIndex:indexPath.row];
     
     
     
@@ -83,8 +83,12 @@
     
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
     
-    if ([self.delegate respondsToSelector:@selector(userSelectedInfo:ForSearchString:forDictionaryKey:)]) {
-        [self.delegate userSelectedInfo:[arrSearchInfo objectAtIndex:indexPath.row] ForSearchString:_searchString forDictionaryKey:strDictionaryKey];
+//    if ([self.delegate respondsToSelector:@selector(userSelectedInfo:ForSearchString:forDictionaryKey:)]) {
+//        [self.delegate userSelectedInfo:[arrSearchInfo objectAtIndex:indexPath.row] ForSearchString:_searchString forDictionaryKey:strDictionaryKey];
+//    }
+    
+    if ([self.delegate respondsToSelector:@selector(userSelectedInfo:ForSearchString:)]) {
+        [self.delegate userSelectedInfo:[arrSearchInfo objectAtIndex:indexPath.row] ForSearchString:_searchString];
     }
     
 }
@@ -96,6 +100,17 @@
     strDictionaryKey = strKey;
     [self.tableView reloadData];
 }
+
+
+-(void)reloadTableViewWithData:(NSArray*)arrInfo forSearchString:(NSString*)searchString
+{
+    arrSearchInfo = [NSMutableArray arrayWithArray:arrInfo];
+    _searchString=searchString;
+    [self.tableView reloadData];
+}
+
+
+
 //-(NSInteger)makeAutoSuggestionForName1:(NSString*)name{
 //
 //    if ([name length]==0) {
