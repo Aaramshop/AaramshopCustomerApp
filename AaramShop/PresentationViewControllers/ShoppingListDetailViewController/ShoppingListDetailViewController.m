@@ -768,7 +768,6 @@
     [aaramShop_ConnectionManager getDataForFunction:kURLGetShoppingListProducts withInput:aDict withCurrentTask:TASK_TO_GET_SHOPPING_LIST_PRODUCTS andDelegate:self ];
 }
 
-
 -(void) didFailWithError:(NSError *)error
 {
     isLoading = NO;

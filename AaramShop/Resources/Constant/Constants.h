@@ -35,8 +35,8 @@
 
 #define kAlertValidEmail									@"Please enter a valid email address"
 #define kAlertPasswordLength							@"Your password should have at least 6 digits"
-#define kLoginSuccessfulNotificationName		@"LoginSuccessful"
 #define kLogoutSuccessfulNotificationName	@"LogoutSuccessful"
+#define kLoginSuccessfulNotificationName		@"LoginSuccessful"
 #define kProductsCount									@"productsCount"
 #define kURLLogout											@"logout"
 
