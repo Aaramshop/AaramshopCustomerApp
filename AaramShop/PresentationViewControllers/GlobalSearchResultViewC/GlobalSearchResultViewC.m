@@ -313,6 +313,7 @@
 	objStoreModel.store_id	=	globalSearchModel.store_id;
 	objStoreModel.store_name	=	globalSearchModel.store_name;
 	objStoreModel.store_image	=	globalSearchModel.store_image;
+    objStoreModel.chat_username =   globalSearchModel.chat_username;
 	appDeleg.objStoreModel = objStoreModel;
 	UITabBarController *tabBar = [appDeleg createTabBarRetailer];
 	tabBar.hidesBottomBarWhenPushed = YES;
