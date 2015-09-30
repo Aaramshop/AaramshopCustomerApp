@@ -555,14 +555,14 @@
         else
         {
             
-            MKPinAnnotationView *annotationPinView =
-            (MKPinAnnotationView *) [mapViewLocation dequeueReusableAnnotationViewWithIdentifier:kPinAnnotationIdentifier];
+            MKAnnotationView *annotationPinView =
+            (MKAnnotationView *) [mapViewLocation dequeueReusableAnnotationViewWithIdentifier:kPinAnnotationIdentifier];
             
 
             
             if(!annotationPinView)
             {
-                annotationPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kPinAnnotationIdentifier];
+                annotationPinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kPinAnnotationIdentifier];
 
             }
             annotationPinView.image = [UIImage imageNamed:@"mapPin"];
@@ -605,12 +605,17 @@
                 viewOfCustomAnnotation = (CustomMapAnnotationView *)[[[NSBundle mainBundle] loadNibNamed:@"CustomMapAnnotationView" owner:self options:nil]objectAtIndex:0];
                 viewOfCustomAnnotation.backgroundColor = [UIColor clearColor];
                 CGRect calloutViewFrame = viewOfCustomAnnotation.frame;
-                calloutViewFrame.origin = CGPointMake(-calloutViewFrame.size.width/2 + 90, -calloutViewFrame.size.height-4);
-                
-//                calloutViewFrame.origin = CGPointMake(self.view.frame.size.width-calloutViewFrame.size.width/2 + 7, -calloutViewFrame.size.height);
-
                 
                 
+                if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0"))
+                {
+                    calloutViewFrame.origin = CGPointMake(-calloutViewFrame.size.width/2 + 10, -calloutViewFrame.size.height-22);
+                    
+                }
+                else
+                {
+                    calloutViewFrame.origin = CGPointMake(-calloutViewFrame.size.width/2 + 90, -calloutViewFrame.size.height-4);
+                }
                 
                 
                 
@@ -629,14 +634,14 @@
                 [viewOfCustomAnnotation.lblName setText:[NSString stringWithFormat:@"%@",strFullname]];
                 viewOfCustomAnnotation.imgProfile.layer.cornerRadius =  viewOfCustomAnnotation.imgProfile.frame.size.width / 2;
                 viewOfCustomAnnotation.imgProfile.clipsToBounds = YES;
-
+                
                 if ([[[NSUserDefaults standardUserDefaults]valueForKey:kProfileImage] length]>0)
                 {
                     [viewOfCustomAnnotation.activityIndicatorVw startAnimating];
                     
                     if ([UIScreen mainScreen].bounds.size.height == 480) {
                         NSString *strImageUrl = [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_100],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]];
-
+                        
                         [viewOfCustomAnnotation.imgProfile sd_setImageWithURL:[NSURL URLWithString:strImageUrl] placeholderImage:[UIImage imageNamed:@"defaultProfilePic.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                             if (image) {
                             }
@@ -653,20 +658,20 @@
                     }
                     else if ([UIScreen mainScreen].bounds.size.height == 667) {
                         NSString *strImageUrl = [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kImage_url_640],[[NSUserDefaults standardUserDefaults] valueForKey:kProfileImage]];
-
+                        
                         [viewOfCustomAnnotation.imgProfile sd_setImageWithURL:[NSURL URLWithString:strImageUrl] placeholderImage:[UIImage imageNamed:@"defaultProfilePic.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                             if (image) {
                             }
                             [viewOfCustomAnnotation.activityIndicatorVw stopAnimating];
                         }];
                     }
-
+                    
                 }
                 else
                 {
                     viewOfCustomAnnotation.imgProfile.image = gAppManager.imgProfile !=nil?gAppManager.imgProfile : [UIImage imageNamed:@"defaultProfilePic.png"] ;
                 }
-
+                
                 [viewOfCustomAnnotation.lblAddress setText:[(Annotation*)[view annotation] Address]];
                 [viewOfCustomAnnotation.lblAddress setNumberOfLines:2];
                 
