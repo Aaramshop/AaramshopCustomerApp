@@ -485,7 +485,10 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)annotationView didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
     
-    if (oldState == MKAnnotationViewDragStateDragging) {
+    
+//    if (oldState == MKAnnotationViewDragStateDragging) {
+    if (newState == MKAnnotationViewDragStateEnding) {
+
          for (Annotation *annotation in mapViewLocation.annotations)
          {
              if ([annotation isKindOfClass:[Annotation class]]) {
