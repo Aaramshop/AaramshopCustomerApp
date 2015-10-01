@@ -476,6 +476,8 @@
     }
 
     [tblVwCategory reloadData];
+    
+//    [tblVwCategory reloadSectionIndexTitles];
 }
 #pragma mark Navigation
 
