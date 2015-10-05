@@ -259,8 +259,7 @@ AaramShop_ConnectionManager_Delegate>
 				globalSearchModel.store_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_id]];
 				globalSearchModel.store_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_name]];
 				globalSearchModel.store_image = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_image]];
-//                globalSearchModel.chat_username = [NSString stringWithFormat:@"%@",[dict objectForKey:kChat_username]];
-                globalSearchModel.chat_username = @"144024246223654";// temp;
+                globalSearchModel.chat_username = [NSString stringWithFormat:@"%@",[dict objectForKey:kChat_username]];
 
 
 				totalNoOfPages = [[dict objectForKey:kTotal_pages] intValue];
