@@ -270,6 +270,10 @@
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 
         }
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[tblVwCategory reloadData];
+		});
+//		[tblVwCategory reloadData];
     }
     
     
@@ -475,9 +479,7 @@
         }
     }
 
-    [tblVwCategory reloadData];
-    
-//    [tblVwCategory reloadSectionIndexTitles];
+
 }
 #pragma mark Navigation
 
