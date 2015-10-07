@@ -30,4 +30,11 @@
 @property (nonatomic,strong) NSString * offer_type;
 @property (nonatomic,strong) NSString * order_detail_id;
 
+// added on Oct 07th, 2015
+@property (nonatomic,strong) NSString * offer_id;
+@property (nonatomic,strong) NSString * end_date;
+
 @end
+
+
+

@@ -20,4 +20,6 @@
 @property (nonatomic, retain) NSString		*	offerTitle;
 @property (nonatomic, retain) NSString		*	strCount;
 @property (nonatomic, retain) NSString		*   strOffer_type;
+@property (nonatomic, retain) NSString		*   end_date;
+
 @end

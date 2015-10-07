@@ -339,7 +339,8 @@
 		offers.offerType		= productModel.strOffer_type;
 		offers.offer_price	= productModel.offer_price;
 		offers.strCount		=	productModel.strCount;
-		offers.end_date		=	@"";
+		offers.end_date		=	productModel.end_date;
+        
 		if([productModel.strOffer_type intValue]==1)
 		{
 			offers.product_name				= productModel.product_name;

@@ -11,7 +11,7 @@
 #import "UserOrderDetailCell.h"
 #import "UserOrderDetailOfferCell.h"
 
-@interface OrderedProductsDetailViewController : UIViewController<AaramShop_ConnectionManager_Delegate,orderDetailDelegate,orderDetailOfferDelegate>
+@interface OrderedProductsDetailViewController : UIViewController<AaramShop_ConnectionManager_Delegate,orderDetailDelegate,orderDetailOfferDelegate,UIActionSheetDelegate>
 {
     AaramShop_ConnectionManager *aaramShop_ConnectionManager;
     

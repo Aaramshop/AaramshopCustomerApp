@@ -8,6 +8,8 @@
 
 #import "OrderedProductsDetailViewController.h"
 #import "OrderDetailModel.h"
+#import "CartProductModel.h"
+#import "CartViewController.h"
 
 #define kSection1Height 42
 
@@ -114,6 +116,24 @@
     
     NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
+    
+    
+    /////
+    
+    UIImage *imgReOrder = [UIImage imageNamed:@"optionIcon"];
+    UIButton *btnReOrder = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnReOrder.bounds = CGRectMake( 0, 0, 26, 26);
+    
+    [btnReOrder setImage:imgReOrder forState:UIControlStateNormal];
+    [btnReOrder addTarget:self action:@selector(btnReOrderClicked) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barBtnReOrder = [[UIBarButtonItem alloc] initWithCustomView:btnReOrder];
+    
+    
+    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnReOrder, nil];
+    self.navigationItem.rightBarButtonItems = arrBtnsRight;
+    
+    /////
+
     
 }
 
@@ -311,10 +331,6 @@
         orderDetail.isAvailable = [NSString stringWithFormat:@"%@",[obj valueForKey:@"isAvailable"]];
         orderDetail.image = [obj valueForKey:@"image"];
         
-        // following two key has been removed from backend
-        //        orderDetail.product_id = [obj valueForKey:@"product_id"];
-        //        orderDetail.product_sku_id = [obj valueForKey:@"product_sku_id"];
-        
         orderDetail.isReported = @"0"; // for local use
         
         
@@ -330,6 +346,17 @@
         orderDetail.offer_type = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_type"]];
         orderDetail.order_detail_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"order_detail_id"]];
         
+        
+        // added on Oct 07th, 2015...begin
+        orderDetail.product_id = [obj valueForKey:@"product_id"];
+        orderDetail.product_sku_id = @"0"; // take product_sku_id 0 here, as it is not necessary for further use..
+        orderDetail.offer_id = [obj valueForKey:@"offer_id"];
+        
+        orderDetail.end_date = [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[obj valueForKey:kEnd_date] doubleValue]]];
+
+        
+        //// end ....
+
         [arrTemp addObject:orderDetail];
         
     }];
@@ -419,6 +446,135 @@
     pageno = 0;
     [self callWebServiceToGetInitialOrderDetails];
     
+}
+
+
+
+#pragma mark - btnReOrderClicked
+
+-(void)btnReOrderClicked
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Re Order",@"Save As Shopping List", nil];
+    
+    [actionSheet showInView:self.view];
+}
+
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==0)
+    {
+        // Re-Order
+        [self reOrderProducts];
+    }
+    else if (buttonIndex==1)
+    {
+        // Save As Shopping list
+        [self saveAsShoppingList];
+    }
+}
+
+
+#pragma mark - Re-Order Products
+-(void)reOrderProducts
+{
+    [arrOrderDetail enumerateObjectsUsingBlock:^(OrderDetailModel *orderDetail, NSUInteger idx, BOOL *stop) {
+        
+        
+        if ([orderDetail.offer_type intValue]>0)
+        {
+            // code for offers ...
+            
+            [AppManager AddOrRemoveFromCart:[self getCartFromOffers:orderDetail] forStore:[NSDictionary dictionaryWithObjectsAndKeys:_orderHist.store_id,kStore_id,_orderHist.store_name,kStore_name,_orderHist.store_image,kStore_image, nil] add:YES fromCart:NO];
+        }
+        else
+        {
+            // code for product ...
+            
+            [AppManager AddOrRemoveFromCart:[self getCartFromProducts:orderDetail] forStore:[NSDictionary dictionaryWithObjectsAndKeys:_orderHist.store_id,kStore_id,_orderHist.store_name,kStore_name,_orderHist.store_image,kStore_image, nil] add:YES fromCart:NO];
+            
+        }
+        
+        
+    }];
+    
+    
+    CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+    [self.navigationController pushViewController:cartView animated:YES];
+
+    
+}
+
+
+-(CartProductModel *)getCartFromProducts:(OrderDetailModel *)orderDetailModel
+{
+    CartProductModel *cart = [[CartProductModel alloc]init];
+    cart.strOffer_type              = [NSString stringWithFormat:@"%d",[orderDetailModel.offer_type intValue]];
+    
+    cart.offer_price				=	orderDetailModel.offer_price;
+    cart.offerTitle					=	orderDetailModel.name;
+    cart.offer_id					=	orderDetailModel.offer_id;
+    cart.cartProductId              =	orderDetailModel.product_id;
+    cart.strCount					=	orderDetailModel.quantity;
+    cart.product_id                 =	orderDetailModel.product_id;
+    cart.product_sku_id             =	orderDetailModel.product_sku_id;
+    cart.cartProductImage           =   orderDetailModel.image;
+    cart.product_name               =	orderDetailModel.name;
+    cart.product_price              =	orderDetailModel.price;
+    cart.end_date                   =   orderDetailModel.end_date;
+    
+    
+    return cart;
+}
+
+-(CartProductModel *)getCartFromOffers:(OrderDetailModel *)orderDetailModel
+{
+    CartProductModel *cart = [[CartProductModel alloc]init];
+    
+    cart.strOffer_type              = [NSString stringWithFormat:@"%d",[orderDetailModel.offer_type  intValue]];
+    
+    cart.offer_price                =	orderDetailModel.offer_price;
+    cart.offerTitle                 =	orderDetailModel.offerTitle;
+    cart.offer_id                   =	orderDetailModel.offer_id;
+    cart.cartProductId              =	orderDetailModel.offer_id;
+    cart.strCount                   =	orderDetailModel.quantity;
+    cart.end_date                   =   orderDetailModel.end_date;
+
+    
+    if([orderDetailModel.offer_type intValue]== 1)// discount
+    {
+        cart.product_id				=	orderDetailModel.product_id;
+        cart.product_sku_id         =	orderDetailModel.product_sku_id;
+        cart.cartProductImage       =   orderDetailModel.image;
+        cart.product_name			=	orderDetailModel.offerTitle;
+        cart.product_price			=	orderDetailModel.price;
+    }
+    else if([orderDetailModel.offer_type intValue] == 4)//combo
+    {
+        cart.product_id				=	@"0";
+        cart.product_sku_id         =	@"0";
+        cart.cartProductImage       =   orderDetailModel.offerImage;
+        cart.product_price			=	orderDetailModel.combo_mrp;
+        cart.offer_price			=	orderDetailModel.combo_offer_price;
+    }
+    else//custom
+    {
+        cart.product_id				=	orderDetailModel.product_id;
+        cart.product_sku_id         =	orderDetailModel.product_sku_id;
+        cart.cartProductImage       =   orderDetailModel.offerImage;
+        cart.product_price			=	@"0";
+    }
+    
+    return cart;
+}
+
+
+#pragma mark - Save As Shopping List
+-(void)saveAsShoppingList
+{
+    [Utils showAlertView:@"" message:@"Waiting for approval.." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 }
 
 

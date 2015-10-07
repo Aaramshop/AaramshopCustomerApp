@@ -132,6 +132,8 @@
 	lblPrice.text						= [NSString stringWithFormat:@"₹%@", product.product_price ];
 	
 	
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
 	return cell;
 }
 #pragma mark - Calling Web Service Methods
