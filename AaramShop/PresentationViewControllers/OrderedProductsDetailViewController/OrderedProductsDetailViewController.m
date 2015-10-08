@@ -454,7 +454,10 @@
 
 -(void)btnReOrderClicked
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Re Order",@"Save As Shopping List", nil];
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Re Order",@"Save As Shopping List", nil];
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Re Order", nil];
+
     
     [actionSheet showInView:self.view];
 }
@@ -472,7 +475,7 @@
     else if (buttonIndex==1)
     {
         // Save As Shopping list
-        [self saveAsShoppingList];
+//        [self saveAsShoppingList];
     }
 }
 
