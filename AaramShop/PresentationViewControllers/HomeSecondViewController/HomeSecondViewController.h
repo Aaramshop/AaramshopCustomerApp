@@ -13,13 +13,17 @@
 
 @interface HomeSecondViewController : UIViewController<V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,UISearchBarDelegate,AaramShop_ConnectionManager_Delegate,RightControllerDelegate,UITableViewDataSource,UITableViewDelegate,HomeSecondCustomCellDelegate,GlobalSearchViewControllerDelegate>
 {    
-    UITableView *tblVwCategory;
+    
     RightCollectionViewController *rightCollectionVwContrllr;
     NSMutableArray *arrGetStoreProductCategories;
     NSMutableArray *arrGetStoreProducts;
     NSMutableArray *arrSearchGetStoreProducts;
     NSMutableArray *arrGetStoreProductSubCategory;
+	__weak IBOutlet UISearchBar *searchBarr;
 	
+	__weak IBOutlet UIView *subView;
+	__weak IBOutlet UIScrollView *scrollViewMain;
+	__weak IBOutlet UITableView *tblVwCategory;
     BOOL isViewActive;
 
     

@@ -51,19 +51,19 @@
     appDeleg = APP_DELEGATE;
     self.automaticallyAdjustsScrollViewInsets = NO;
 	self.navigationItem.hidesBackButton = YES;
-    tblVwCategory = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49-64) style:UITableViewStyleGrouped];
-    tblVwCategory.delegate = self;
-    tblVwCategory.dataSource = self;
-    tblVwCategory.backgroundView = nil;
-    tblVwCategory.backgroundColor = [UIColor clearColor];
-    tblVwCategory.sectionHeaderHeight = 0.0;
-    tblVwCategory.sectionFooterHeight = 0.0;
-    tblVwCategory.alwaysBounceVertical = NO;
-    tblVwCategory.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-
-    
-    [self.view addSubview:tblVwCategory];
-    
+//    tblVwCategory = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49-64) style:UITableViewStyleGrouped];
+//    tblVwCategory.delegate = self;
+//    tblVwCategory.dataSource = self;
+//    tblVwCategory.backgroundView = nil;
+//    tblVwCategory.backgroundColor = [UIColor clearColor];
+//    tblVwCategory.sectionHeaderHeight = 0.0;
+//    tblVwCategory.sectionFooterHeight = 0.0;
+//    tblVwCategory.alwaysBounceVertical = NO;
+//    tblVwCategory.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+//
+//    
+//    [self.view addSubview:tblVwCategory];
+	
     
     ////
     
@@ -73,12 +73,12 @@
     
     tblVwCategory.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    UITableViewController *tableViewController = [[UITableViewController alloc] init];
-    tableViewController.tableView = tblVwCategory;
-    refreshShoppingList = [[UIRefreshControl alloc] init];
-    [refreshShoppingList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-    tableViewController.refreshControl = refreshShoppingList;
-    
+//    UITableViewController *tableViewController = [[UITableViewController alloc] init];
+//    tableViewController.tableView = tblVwCategory;
+//    refreshShoppingList = [[UIRefreshControl alloc] init];
+//    [refreshShoppingList addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+//    tableViewController.refreshControl = refreshShoppingList;
+	
     ////
     
 
@@ -101,14 +101,119 @@
 	arrCartProductIds					=	[arrCartProducts valueForKey:kProduct_id];
 	//==============================================
 	
+	[[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor colorWithRed:207/255.0f green:207/255.0f blue:207/255.0f alpha:1.0f]];
+	searchBarr.placeholder = @"Search";
+	searchBarr.text = strSearchTxt;
+	
+	if (strSearchTxt.length>0) {
+		[searchBarr becomeFirstResponder];
+	}
+
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:kBroadcastNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotBroadCastMessage:) name:kBroadcastNotification object:nil];
-	
+	[self callCategoryView];
+	[self callRightCollection];
 	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 	[tracker set:kGAIScreenName value:@"ChooseStoreCategory"];
 	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
-
-    
+	
+	
+}
+-(void)callRightCollection
+{
+	if(rightCollectionVwContrllr)
+	{
+		[rightCollectionVwContrllr.view removeFromSuperview];
+		rightCollectionVwContrllr = nil;
+	}
+	
+		rightCollectionVwContrllr = (RightCollectionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"rightCollectionView"];
+		rightCollectionVwContrllr.arrCategories = [[NSMutableArray alloc]init];
+		self.automaticallyAdjustsScrollViewInsets = NO;
+		
+		rightCollectionVwContrllr.view.frame = CGRectMake(0, 93, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-93);
+		rightCollectionVwContrllr.delegate=self;
+		[self.view addSubview:rightCollectionVwContrllr.view];
+	
+	if ([arrGetStoreProductCategories count]>0) {
+		rightCollectionVwContrllr.strStore_Id= strStore_Id;
+		[rightCollectionVwContrllr.arrCategories addObjectsFromArray:arrGetStoreProductCategories];
+		rightCollectionVwContrllr.selectedId = strSelectedCategoryId;
+		
+	}
+	
+}
+- (void)callCategoryView
+{
+	UIView *tempView = nil;
+	
+	tempView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 170)];
+	
+	NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CategoryView" owner:self options:nil];
+	UIView * secView = (UIView *)[objects objectAtIndex:0];
+	UIView *arrowView = (UIView *)[secView viewWithTag:100];
+	UIButton *btnCategory = (UIButton *)[arrowView viewWithTag:1000];
+	
+	[btnCategory addTarget:self action:@selector(btnCategoryClick) forControlEvents:UIControlEventTouchUpInside];
+	
+	UILabel *lblCategory = (UILabel *)[arrowView viewWithTag:1001];
+	
+	lblCategory.text = strSelectedCategoryName;
+	if (isSelected)
+		[btnCategory setImage:[UIImage imageNamed:@"homeDeatilsGreyArrowBack.png"] forState:UIControlStateNormal];
+	else
+		[btnCategory setImage:[UIImage imageNamed:@"homeDeatilsGreyArrow.png"] forState:UIControlStateNormal];
+	
+	UIImageView *imgVCategoryBanner = (UIImageView *)[secView viewWithTag:999];
+	
+	UIImageView *imgVPerson = (UIImageView *)[secView viewWithTag:1002];
+	
+	imgVPerson.layer.cornerRadius =  imgVPerson.frame.size.width / 2;
+	imgVPerson.clipsToBounds = YES;
+	
+	UIImageView *imgVBg = (UIImageView *)[secView viewWithTag:1110];
+	imgVBg.hidden = YES;
+	if (arrOnlySubCategoryPicker.count>0) {
+		
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@",strSelectedCategoryId];
+		NSArray *arrTemp = [arrGetStoreProductCategories filteredArrayUsingPredicate:predicate];
+		
+		imgVBg.hidden = NO;
+		if (arrTemp.count == 1) {
+			CategoryModel *objCategoryModel = [arrTemp objectAtIndex:0];
+			//                UIActivityIndicatorView *activity = (UIActivityIndicatorView *)[secView viewWithTag:998];
+			//                [activity startAnimating];
+			[imgVCategoryBanner sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objCategoryModel.category_banner]] placeholderImage:[UIImage imageNamed:@"homeDetailDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+				if (image) {
+					//                        [activity stopAnimating];
+				}
+			}];
+			
+			[imgVPerson sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",strStoreImage]] placeholderImage:[UIImage imageNamed:@"defaultProfilePic.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+				if (image) {
+				}
+			}];
+			
+		}
+		
+	}
+	
+	if (arrOnlySubCategoryPicker.count>0) {
+		
+		V8HorizontalPickerView *pickerViewOfCategory = (V8HorizontalPickerView *)[secView viewWithTag:23210];
+		pickerViewOfCategory.currentSelectedIndex = self.mainCategoryIndexPicker;
+		pickerViewOfCategory.delegate =self;
+		pickerViewOfCategory.dataSource = self;
+		pickerViewOfCategory.selectedTextColor = [UIColor whiteColor];
+		pickerViewOfCategory.textColor   = [[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0] colorWithAlphaComponent:0.75];
+		pickerViewOfCategory.elementFont = [UIFont fontWithName:kRobotoMedium size:14.0];
+		
+		pickerViewOfCategory.selectionPoint = CGPointMake([UIScreen mainScreen].bounds.size.width/3, 0);
+		[pickerViewOfCategory scrollToElement:self.mainCategoryIndexPicker animated:YES];
+  
+	}
+	[tempView addSubview:secView];
+	[subView addSubview:tempView];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -270,9 +375,6 @@
             [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 
         }
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[tblVwCategory reloadData];
-		});
 //		[tblVwCategory reloadData];
     }
     
@@ -298,21 +400,7 @@
         CategoryModel *objCategoryModel = [arrGetStoreProductCategories objectAtIndex:0];
         strSelectedCategoryId = objCategoryModel.category_id;
     }
-		if(rightCollectionVwContrllr)
-		{
-			[rightCollectionVwContrllr.view removeFromSuperview];
-			rightCollectionVwContrllr = nil;
-		}
-        rightCollectionVwContrllr = (RightCollectionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"rightCollectionView"];
-        rightCollectionVwContrllr.arrCategories = [[NSMutableArray alloc]init];
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    
-        rightCollectionVwContrllr.view.frame = CGRectMake(0, 93, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-93);
-    rightCollectionVwContrllr.delegate=self;
-    rightCollectionVwContrllr.strStore_Id= strStore_Id;
-     [rightCollectionVwContrllr.arrCategories addObjectsFromArray:arrGetStoreProductCategories];
-	rightCollectionVwContrllr.selectedId = strSelectedCategoryId;
-    [self.view addSubview:rightCollectionVwContrllr.view];
+	[self callRightCollection];
 }
 - (ProductsModel *)addProductInArray:(NSDictionary *)dictProducts
 {
@@ -441,6 +529,7 @@
 
     [arrOnlySubCategoryPicker addObjectsFromArray:[arrGetStoreProductSubCategory filteredArrayUsingPredicate:predicateCategory]];
     tblVwCategory.hidden = NO;
+	[self callCategoryView];
     [tblVwCategory reloadData];
 }
 -(void)parseStoresProductsData:(NSDictionary *)responseObject
@@ -457,18 +546,18 @@
         NSArray *arrProductsTemp = [responseObject objectForKey:@"products"];
 		for (NSDictionary *dictProducts in arrProductsTemp) {
         
-        SubCategoryModel *objSubCategory = [arrOnlySubCategoryPicker objectAtIndex:self.mainCategoryIndexPicker];
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@ AND SELF.product_id MATCHES %@",strSelectedCategoryId,objSubCategory.sub_category_id,[dictProducts objectForKey:kProduct_id]];
-        NSArray *arrTemp ;
-        if (isSearching) {
-            arrTemp =[arrSearchGetStoreProducts filteredArrayUsingPredicate:predicate];
-        }
-        else
-        {
-            arrTemp =[arrGetStoreProducts filteredArrayUsingPredicate:predicate];
-        }
-        if (arrTemp.count == 0) {
+//        SubCategoryModel *objSubCategory = [arrOnlySubCategoryPicker objectAtIndex:self.mainCategoryIndexPicker];
+			
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@ AND SELF.product_id MATCHES %@",strSelectedCategoryId,objSubCategory.sub_category_id,[dictProducts objectForKey:kProduct_id]];
+//        NSArray *arrTemp ;
+//        if (isSearching) {
+//            arrTemp =[arrSearchGetStoreProducts filteredArrayUsingPredicate:predicate];
+//        }
+//        else
+//        {
+//            arrTemp =[arrGetStoreProducts filteredArrayUsingPredicate:predicate];
+//        }
+//        if (arrTemp.count == 0) {
 			if (isSearching) {
                 [arrSearchGetStoreProducts addObject:[self addProductInArray:dictProducts]];
             }
@@ -476,9 +565,9 @@
             {
                 [arrGetStoreProducts addObject:[self addProductInArray:dictProducts]];
             }
-        }
+//        }
     }
-
+	[tblVwCategory reloadData];
 
 }
 #pragma mark Navigation
@@ -667,16 +756,20 @@
     
     if (isSearching) {
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,strSelectedSubCategoryId];
-        NSArray *arrTemp = [arrSearchGetStoreProducts filteredArrayUsingPredicate:predicate];
-        objProductsModel = [arrTemp objectAtIndex: IndexPath.row];
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,strSelectedSubCategoryId];
+//        NSArray *arrTemp = [arrSearchGetStoreProducts filteredArrayUsingPredicate:predicate];
+//        objProductsModel = [arrTemp objectAtIndex: IndexPath.row];
+		
+		objProductsModel = [arrSearchGetStoreProducts objectAtIndex:IndexPath.row];
 
     }
     else
     {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,strSelectedSubCategoryId];
-        NSArray *arrTemp = [arrGetStoreProducts filteredArrayUsingPredicate:predicate];
-        objProductsModel = [arrTemp objectAtIndex: IndexPath.row];
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,strSelectedSubCategoryId];
+//        NSArray *arrTemp = [arrGetStoreProducts filteredArrayUsingPredicate:predicate];
+//        objProductsModel = [arrTemp objectAtIndex: IndexPath.row];
+		
+		objProductsModel = [arrGetStoreProducts objectAtIndex:IndexPath.row];
 
     }
 
@@ -703,9 +796,10 @@
     {
         if (arrGetStoreProductSubCategory.count>0 && arrSearchGetStoreProducts.count>0 && arrGetStoreProductCategories.count>0) {
             
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,strSelectedSubCategoryId];
-            NSArray *arrTemp = [arrSearchGetStoreProducts filteredArrayUsingPredicate:predicate];
-            rowsNum = arrTemp.count;
+//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,strSelectedSubCategoryId];
+//            NSArray *arrTemp = [arrSearchGetStoreProducts filteredArrayUsingPredicate:predicate];
+//            rowsNum = arrTemp.count;
+			rowsNum = [arrSearchGetStoreProducts count];
         }
         else
             rowsNum = 0;
@@ -715,9 +809,10 @@
     {
         if (arrGetStoreProductSubCategory.count>0 && arrGetStoreProducts.count>0 && arrGetStoreProductCategories.count>0) {
             
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,strSelectedSubCategoryId];
-            NSArray *arrTemp = [arrGetStoreProducts filteredArrayUsingPredicate:predicate];
-            rowsNum = arrTemp.count;
+//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@ AND SELF.sub_category_id MATCHES %@",strSelectedCategoryId,strSelectedSubCategoryId];
+//            NSArray *arrTemp = [arrGetStoreProducts filteredArrayUsingPredicate:predicate];
+//            rowsNum = arrTemp.count;
+			rowsNum = [arrGetStoreProducts count];
         }
         else
             rowsNum = 0;
@@ -729,120 +824,24 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     CGFloat headerHeight = 0.0;
-    if (section == 0) {
-        headerHeight = 170;
-    }
-    else if (section == 1)
+    if (section == 1)
     {
-        headerHeight = 82;
+        headerHeight = 41;
     }
     return headerHeight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        
-        UIView *tempView = nil;
-        
-        tempView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 170)];
-        
-        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CategoryView"
-                                                         owner:self options:nil];
-        UIView * secView = (UIView *)[objects objectAtIndex:0];
-//        UIView *smallview = (UIView*)[secView.subviews objectAtIndex:0];
-//        UIView *smallview1 = (UIView*)[smallview.subviews objectAtIndex:1];
-		UIView *arrowView = (UIView *)[secView viewWithTag:100];
-		UIButton *btnCategory = (UIButton *)[arrowView viewWithTag:1000];
-
-//        if (!btnCategory) {
-//            for (UIButton *btn in smallview1.subviews) {
-//                if ([btn isKindOfClass:[UIButton class]]) {
-//                    btnCategory = (UIButton *)btn;
-//                }
-//            }
-
-//        }
-        [btnCategory addTarget:self action:@selector(btnCategoryClick) forControlEvents:UIControlEventTouchUpInside];
-        
-        UILabel *lblCategory = (UILabel *)[arrowView viewWithTag:1001];
-
-        lblCategory.text = strSelectedCategoryName;
-        if (isSelected)
-            [btnCategory setImage:[UIImage imageNamed:@"homeDeatilsGreyArrowBack.png"] forState:UIControlStateNormal];
-        else
-        [btnCategory setImage:[UIImage imageNamed:@"homeDeatilsGreyArrow.png"] forState:UIControlStateNormal];
-        
-        UIImageView *imgVCategoryBanner = (UIImageView *)[secView viewWithTag:999];
-
-        UIImageView *imgVPerson = (UIImageView *)[secView viewWithTag:1002];
-
-        imgVPerson.layer.cornerRadius =  imgVPerson.frame.size.width / 2;
-        imgVPerson.clipsToBounds = YES;
-
-        UIImageView *imgVBg = (UIImageView *)[secView viewWithTag:1110];
-        imgVBg.hidden = YES;
-        if (arrOnlySubCategoryPicker.count>0) {
-
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.category_id MATCHES %@",strSelectedCategoryId];
-            NSArray *arrTemp = [arrGetStoreProductCategories filteredArrayUsingPredicate:predicate];
-
-            imgVBg.hidden = NO;
-            if (arrTemp.count == 1) {
-                CategoryModel *objCategoryModel = [arrTemp objectAtIndex:0];
-//                UIActivityIndicatorView *activity = (UIActivityIndicatorView *)[secView viewWithTag:998];
-//                [activity startAnimating];
-                [imgVCategoryBanner sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objCategoryModel.category_banner]] placeholderImage:[UIImage imageNamed:@"homeDetailDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                    if (image) {
-//                        [activity stopAnimating];
-                    }
-                }];
-                
-                   [imgVPerson sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",strStoreImage]] placeholderImage:[UIImage imageNamed:@"defaultProfilePic.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                 if (image) {
-                 }
-                 }];
-                
-            }
-
-        }
-        
-        if (arrOnlySubCategoryPicker.count>0) {
-
-            V8HorizontalPickerView *pickerViewOfCategory = (V8HorizontalPickerView *)[secView viewWithTag:23210];
-            pickerViewOfCategory.currentSelectedIndex = self.mainCategoryIndexPicker;
-            pickerViewOfCategory.delegate =self;
-            pickerViewOfCategory.dataSource = self;
-            pickerViewOfCategory.selectedTextColor = [UIColor whiteColor];
-            pickerViewOfCategory.textColor   = [[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0] colorWithAlphaComponent:0.75];
-            pickerViewOfCategory.elementFont = [UIFont fontWithName:kRobotoMedium size:14.0];
-            
-            pickerViewOfCategory.selectionPoint = CGPointMake([UIScreen mainScreen].bounds.size.width/3, 0);
-            [pickerViewOfCategory scrollToElement:self.mainCategoryIndexPicker animated:YES];
-  
-        }
-        [tempView addSubview:secView];
-        return tempView;
-    }
-    else
-    {
+	
         NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"SubCategoryView"
                                                          owner:self options:nil];
         UIView * secView = (UIView *)[objects objectAtIndex:0];
-        UIView *secSubView1 = (UIView *)[secView viewWithTag:23237];
-        
+//        UIView *secSubView1 = (UIView *)[secView viewWithTag:23237];
+	
 //        UISearchBar *searchBarProducts = (UISearchBar *)[secSubView1 viewWithTag:102];
-        searchBarProducts = (UISearchBar *)[secSubView1 viewWithTag:102];
+//        searchBarProducts = (UISearchBar *)[secSubView1 viewWithTag:102];
 
-        searchBarProducts.delegate = self;
-        
-   [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor colorWithRed:207/255.0f green:207/255.0f blue:207/255.0f alpha:1.0f]];
-        searchBarProducts.placeholder = @"Search";
-        searchBarProducts.text = strSearchTxt;
-        
-        if (strSearchTxt.length>0) {
-            [searchBarProducts becomeFirstResponder];
-        }
-        
+	
         UIView *secSubView2 = (UIView *)[secView viewWithTag:23235];
         
         UIButton *btn = (UIButton *)[secSubView2 viewWithTag:101];
@@ -851,7 +850,7 @@
         [btn addTarget:self action:@selector(btnGoToCheckOutScreen) forControlEvents:UIControlEventTouchUpInside];
         
         return secView;
-    }
+	
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -1141,9 +1140,20 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
+	searchBar.showsCancelButton = YES;
+//	scrollViewMain setContentOffset:<#(CGPoint)#>
     return YES;
 }
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+	searchBar.text=@"";
+	searchBar.showsCancelButton = NO;
+	isSearching = NO;
+	[searchBar resignFirstResponder];
+	[self.view endEditing:YES];
+	
+		[self createDataToGetStoreProducts];
+}
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
@@ -1159,6 +1169,8 @@
     // called only once
     
     [Utils stopActivityIndicatorInView:self.view];
+	
+	
 }
 
 
@@ -1178,7 +1190,8 @@
     {
         isSearching = NO;
         pageno = 0;
-
+		[searchBar resignFirstResponder];
+		[self.view endEditing:YES];
         [self createDataToGetStoreProducts];
     }
     else if ([[searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length] >=3 ) {
