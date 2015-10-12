@@ -38,6 +38,9 @@
 	
 	tblView.backgroundColor = [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:244.0/255.0 alpha:1.0];
 
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"RetailerOffers"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -287,11 +290,14 @@
 	CartProductModel *cart = [[CartProductModel alloc]init];
 	
 	cart.strOffer_type	= [NSString stringWithFormat:@"%d",[offer.offerType intValue]];
+    
 	cart.offer_price		=	offer.offer_price;
 	cart.offerTitle			=	offer.offerTitle;
 	cart.offer_id			=	offer.offer_id;
-	cart.cartProductId	=	offer.offer_id;
+	cart.cartProductId      =	offer.offer_id;
 	cart.strCount			=	offer.strCount;
+    cart.end_date           =   offer.end_date;
+    
 	if([offer.offerType intValue]== 1)// discount
 	{
 		cart.product_id				=	offer.product_id;

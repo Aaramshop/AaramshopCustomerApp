@@ -25,6 +25,8 @@
 		_offerTitle				=	nil;
 		_strCount				=	nil;
 		_strOffer_type		=	nil;
+        _end_date		=	nil;
+
 	}
 	return  self;
 }
@@ -43,6 +45,8 @@
 	[encoder encodeObject:self.cartProductImage		forKey: @"cartProductImage"];
 	[encoder encodeObject:self.strCount						forKey: @"strCount"];
 	[encoder encodeObject:self.strOffer_type				forKey: @"strOffer_type"];
+    [encoder encodeObject:self.end_date				forKey: @"end_date"];
+
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -58,6 +62,8 @@
 	self.cartProductImage		=	[decoder decodeObjectForKey:@"cartProductImage"];
 	self.strCount					=	[decoder decodeObjectForKey:@"strCount"];
 	self.strOffer_type			=	[decoder decodeObjectForKey:@"strOffer_type"];
+    self.end_date			=	[decoder decodeObjectForKey:@"end_date"];
+
 	return self;
 }
 

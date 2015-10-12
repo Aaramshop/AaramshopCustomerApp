@@ -57,7 +57,7 @@
 }
 
 - (void)initSetup {
-	self.elementWidths = [NSMutableArray array];
+	self.elementWidths = [[NSMutableArray alloc]init];
 
 	[self addScrollView];
 

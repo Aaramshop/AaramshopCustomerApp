@@ -29,6 +29,9 @@
     tblView.backgroundColor = [UIColor whiteColor];
     tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self setNavigationBar];
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"Cart"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
  }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -336,7 +339,8 @@
 		offers.offerType		= productModel.strOffer_type;
 		offers.offer_price	= productModel.offer_price;
 		offers.strCount		=	productModel.strCount;
-		offers.end_date		=	@"";
+		offers.end_date		=	productModel.end_date;
+        
 		if([productModel.strOffer_type intValue]==1)
 		{
 			offers.product_name				= productModel.product_name;

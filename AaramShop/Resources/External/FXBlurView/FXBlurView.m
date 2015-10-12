@@ -542,7 +542,7 @@
     {
         blurlayer = blurlayer.superlayer;
     }
-    NSMutableArray *layers = [NSMutableArray array];
+    NSMutableArray *layers = [[NSMutableArray alloc]init];
     NSUInteger index = [underlyingLayer.sublayers indexOfObject:blurlayer];
     if (index != NSNotFound)
     {

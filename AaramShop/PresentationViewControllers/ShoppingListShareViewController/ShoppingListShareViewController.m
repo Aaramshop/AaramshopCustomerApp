@@ -60,7 +60,9 @@
     frame.size.height = CGFLOAT_MIN;
     [tblView setTableHeaderView:[[UIView alloc] initWithFrame:frame]];
     
-    
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ShareShoppingList"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 //    [self callWebserviceToGetSharedList];
 
 }

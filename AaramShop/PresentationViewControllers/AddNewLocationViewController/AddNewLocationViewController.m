@@ -8,6 +8,9 @@
 
 #import "AddNewLocationViewController.h"
 
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
+
 @interface AddNewLocationViewController ()
 {
 	AppDelegate *appDeleg;
@@ -22,13 +25,6 @@
     [super viewDidLoad];
 	
     // Do any additional setup after loading the view.
-//	address;
-//	state;
-//	city;
-//	locality;
-//	pincode;
-//	title;
-//	user_address_id;
 	if([self.addModel.address length]>0)
 	{
 		txtAddress.text	=	self.addModel.address;
@@ -51,6 +47,10 @@
 	aaramShop_ConnectionManager.delegate = self;
 	subView.layer.cornerRadius = 5.0f;
 	subView.layer.masksToBounds = YES;
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"SearchAddress"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,26 +69,7 @@
 }
 
 
-#pragma mark - UITextfield Delegates
--(BOOL)textFieldShouldReturn:(UITextField*)textField;
-{
-	NSInteger nextTag = textField.tag + 1;
-	// Try to find next responder
-	UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
-	if (nextResponder) {
-		// Found next responder, so set it.
-		[nextResponder becomeFirstResponder];
-		
-		
-	} else {
-		// Not found, so remove keyboard.
-		
-		[textField resignFirstResponder];
-		[self btnSearch:searchBtn];
-		
-	}
-	return YES; // We do not want UITextField to insert line-breaks.
-}
+
 - (IBAction)backBtnAction:(id)sender {
 	[self.view removeFromSuperview];
 }
@@ -164,4 +145,216 @@
 							   
 						   }];
 }
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Auto Suggestion -
+
+#pragma mark - UITextfield Delegates
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+        
+        
+    } else {
+        // Not found, so remove keyboard.
+        
+        [textField resignFirstResponder];
+        [self btnSearch:searchBtn];
+        
+    }
+    return YES; // We do not want UITextField to insert line-breaks.
+}
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    
+    if (textField == txtLocality)
+    {
+        NSString *newStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        NSLog(@"New String = %@",newStr);
+        
+        
+        newStr = [newStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        if ([newStr length]>0)
+        {
+            //            [self searchManuallyAsychroByQueryText:newStr];
+            [self queryGooglePlaces:newStr];
+        }
+        else
+        {
+            [postAutoSuggestionView.tableView removeFromSuperview];
+        }
+    }
+    
+    
+    return YES;
+}
+
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == txtLocality)
+    {
+        textField.text = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        if (!postAutoSuggestionView) {
+            postAutoSuggestionView=[[PostAutoSuggestionTableViewController alloc]initWithNibName:@"PostAutoSuggestionTableViewController" bundle:nil];
+            postAutoSuggestionView.delegate=self;
+            [postAutoSuggestionView.tableView setFrame:CGRectMake(15, 80, 290, 120)];
+            
+            [postAutoSuggestionView.tableView setHidden:YES];
+            [self.view addSubview:postAutoSuggestionView.tableView];
+        }
+        
+    }
+    
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    
+    if (textField == txtLocality)
+    {
+        textField.text = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        [postAutoSuggestionView.tableView removeFromSuperview];
+        
+    }
+    
+}
+
+
+
+
+
+
+#pragma Auto Suggested Delegate
+
+-(void)userSelectedInfo:(NSString*)aStringInfo ForSearchString:(NSString*)searchString{
+    
+    [postAutoSuggestionView.tableView removeFromSuperview];
+    
+    
+    if ([txtLocality.text length]==0)
+    {
+        txtLocality.text = aStringInfo;
+    }
+    else
+    {
+        NSRange rangeOfString = [txtLocality.text rangeOfString:searchString options:NSBackwardsSearch|NSCaseInsensitiveSearch];
+        
+        if (rangeOfString.location == NSNotFound)
+            return;
+        else
+            txtLocality.text =[txtLocality.text stringByReplacingCharactersInRange:NSMakeRange(rangeOfString.location, [txtLocality.text length] - rangeOfString.location ) withString:[NSString stringWithFormat:@"%@, ",aStringInfo]];
+    }
+    
+}
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////// GOOGLE PLACES API //////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+-(void)updateDataSource:(NSArray *)inDataSource
+{
+    [postAutoSuggestionView.tableView setHidden:NO];
+    
+    if (inDataSource && inDataSource.count > 0)
+    {
+        
+        [self.view addSubview:postAutoSuggestionView.tableView];
+        [postAutoSuggestionView.tableView setHidden:NO];
+        
+        //        [postAutoSuggestionView reloadTableViewWithData:inDataSource forSearchString:txtLocality.text forDictionaryKey:@"name"];
+        
+        [postAutoSuggestionView reloadTableViewWithData:inDataSource forSearchString:txtLocality.text];
+        
+    }
+    else
+    {
+        [postAutoSuggestionView.tableView removeFromSuperview];
+    }
+    
+}
+
+
+-(void) queryGooglePlaces: (NSString *) googleType {
+    
+    
+    //    googleType = @"Naraina";
+    
+    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=establishment&radius=2000&key=%@",googleType,kGOOGLE_API_KEY];
+    
+    
+    //https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Naraina&types=establishment&radius=2000&key=AIzaSyAzMfO-tlOmsM47CG35YF-yHmleevA0LpM
+    
+    
+    // AIzaSyAzMfO-tlOmsM47CG35YF-yHmleevA0LpM
+    
+    NSURL *googleRequestURL=[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    dispatch_async(kBgQueue, ^{
+        NSData* data = [NSData dataWithContentsOfURL: googleRequestURL];
+        if (data)
+        {
+            [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
+        }
+    });
+}
+
+
+
+
+-(void)fetchedData:(NSData *)responseData {
+    //parse out the json data
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:responseData
+                          options:kNilOptions
+                          error:&error];
+    
+    //    NSArray* places = [json objectForKey:@"results"];
+    
+    if (json)
+    {
+        NSArray* places = [json valueForKeyPath:@"predictions.description"];
+        [self updateDataSource: places];
+        NSLog(@"Google Data: %@", places);
+        
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 @end

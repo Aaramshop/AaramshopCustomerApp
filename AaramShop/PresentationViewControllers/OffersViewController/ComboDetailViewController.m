@@ -46,6 +46,10 @@
 
 	self.arrProducts = [[NSMutableArray alloc] init];
 	[self getComboDetails];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ComboOfferDetail"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)setNavigationBar
 {
@@ -128,6 +132,8 @@
 	lblPrice.text						= [NSString stringWithFormat:@"₹%@", product.product_price ];
 	
 	
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
 	return cell;
 }
 #pragma mark - Calling Web Service Methods

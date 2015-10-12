@@ -27,7 +27,6 @@
     BOOL isLoading;
     
     UISearchBar *searchBarProducts;
-
     
 }
 @property (nonatomic) NSInteger mainCategoryIndexPicker;

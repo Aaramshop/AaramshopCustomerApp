@@ -24,6 +24,11 @@
 {
 //	[lblLine setHidden:YES];
 	
+    // check first if store name exists or not ..
+    lblStoreName.text = offers.store_name; // added on 17 Sep 2015 ..
+    
+    
+    
 	
 	if ([offers.offerType isEqualToString:@"1"])//Discount Offer
 	{

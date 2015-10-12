@@ -9,7 +9,10 @@
 #import "ShoppingListCalenderViewController.h"
 
 @interface ShoppingListCalenderViewController ()
-
+{
+    NSDate *startDate;
+    NSDate *endDate;
+}
 @end
 
 @implementation ShoppingListCalenderViewController
@@ -40,13 +43,16 @@
      {
          btnRemoveReminder.hidden = NO;
          
+         startDate  =   [NSDate dateWithTimeIntervalSince1970:[_shoppingListModel.reminder_start_date integerValue]];
+         endDate    =   [NSDate dateWithTimeIntervalSince1970:[_shoppingListModel.reminder_end_date integerValue]];
+         
          lblStartDate.text = [self convertTimeStampToDate:_shoppingListModel.reminder_start_date];
          
          lblEndDate.text = [self convertTimeStampToDate:_shoppingListModel.reminder_end_date];
          
          switch ([_shoppingListModel.frequency integerValue])
          {
-             case 1:
+             case 0:
              {
                  lblRepeat.text = @"Every day";
              }
@@ -90,8 +96,10 @@
      
      //*/
     
-    
-    
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ShoppingListCalender"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -182,11 +190,11 @@
     }
     
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMM dd, yyyy"];
-    
-    NSDate *startDate = [dateFormatter dateFromString:lblStartDate.text];
-    NSDate *endDate = [dateFormatter dateFromString:lblEndDate.text];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"MMM dd, yyyy"];
+//    
+//    NSDate *startDateNew = [dateFormatter dateFromString:lblStartDate.text];
+//    NSDate *endDateNew = [dateFormatter dateFromString:lblEndDate.text];
     
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
     [dict setObject:_shoppingListModel.shoppingListId forKey:@"shoppingListId"];
@@ -197,22 +205,22 @@
     [dict setObject:[NSString stringWithFormat:@"%.0f",[endDate timeIntervalSince1970]] forKey:@"end_date"];
     
     
-    NSString *strRepeatDays=@"";
+//    NSString *strRepeatDays=@"";
     if ([lblRepeat.text isEqualToString:@"Every day"])
     {
-        strRepeatDays=@"1";
+//        strRepeatDays=@"1";
         [dict setObject:@"0" forKey:@"frequency"];
     }else if ([lblRepeat.text isEqualToString:@"30 days"])
     {
-        strRepeatDays=@"30";
+//        strRepeatDays=@"30";
         [dict setObject:@"30" forKey:@"frequency"];
     }else if ([lblRepeat.text isEqualToString:@"15 days"])
     {
-        strRepeatDays=@"15";
+//        strRepeatDays=@"15";
         [dict setObject:@"15" forKey:@"frequency"];
     }else if ([lblRepeat.text isEqualToString:@"7 days"])
     {
-        strRepeatDays=@"7";
+//        strRepeatDays=@"7";
         [dict setObject:@"7" forKey:@"frequency"];
     }
     
@@ -435,8 +443,11 @@
   
     
     if (btnReference == btnStartDate) {
+        startDate = datePicker_.date;
+
         [lblStartDate setText:selectionString];
     }else if (btnReference==btnEndDate){
+        endDate = datePicker_.date;
         [lblEndDate setText:selectionString];
     }
     
@@ -453,8 +464,10 @@
     
     
     if (btnReference == btnStartDate) {
+        startDate = datePicker_.date;
         [lblStartDate setText:selectionString];
     }else if (btnReference==btnEndDate){
+        endDate = datePicker_.date;
         [lblEndDate setText:selectionString];
     }
       [self closeDatePicker];
@@ -519,11 +532,12 @@
 -(void)saveLocalNotification
 {
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMM dd, yyyy"];
-    
-    NSDate *startDate = [dateFormatter dateFromString:lblStartDate.text];
-    NSDate *endDate = [dateFormatter dateFromString:lblEndDate.text];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"MMM dd, yyyy"];
+//    
+//    NSDate *startDate = [dateFormatter dateFromString:lblStartDate.text];
+//
+//    NSDate *endDate = [dateFormatter dateFromString:lblEndDate.text];
     
     int noOfDaysInterval= 0;
     

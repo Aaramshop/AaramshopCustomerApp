@@ -61,6 +61,10 @@
     tableViewController.refreshControl = refreshShoppingList;
     
     strTotalAvailProductPrice = @"";
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ShoppingListDetail"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     
 }
 

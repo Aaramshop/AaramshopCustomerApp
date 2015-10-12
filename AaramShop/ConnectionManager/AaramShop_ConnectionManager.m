@@ -25,12 +25,13 @@
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];
 	
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-	if (self.currentTask == TASK_TO_GET_GLOBAL_SEARCH_RESULT) {
+	if (self.currentTask == TASK_TO_GET_GLOBAL_SEARCH_RESULT || self.currentTask ==TASK_TO_SEARCH_HOME_STORE_PRODUCTS) {
 		if (task) {
 			[task cancel];
 			task = nil;
 		}
 	}
+    
 	
 //	}
 //

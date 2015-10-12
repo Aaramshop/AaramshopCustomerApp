@@ -62,6 +62,9 @@
 //	}
 //	else if([cmMyOffers.offerType isEqualToString:@"6"])//Custom Offer
 //	{
+    
+        lblStoreName.text = offers.store_name; // added on 17 Sep 2015 ...
+    
 		lblbrandName.text = offers.offerTitle;
 		lblPrice.text = [NSString stringWithFormat:@"₹%@",offers.offer_price];
 		lblOfferPrice.text = @"";

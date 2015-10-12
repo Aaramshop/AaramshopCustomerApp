@@ -7,6 +7,7 @@
 //
 
 #import "OrderHistDetailViewCon.h"
+#import "OrderedProductsDetailViewController.h"
 
 @interface OrderHistDetailViewCon ()
 
@@ -20,6 +21,18 @@
 	[self setUpNavigationBar];
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
 	aaramShop_ConnectionManager.delegate = self;
+    
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    if([[UIScreen mainScreen] bounds].size.height==480)
+    {
+        scrollview.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
+        [scrollview setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 500)];
+        
+    }
+
+    
 	
 	strRupee = @"\u20B9";
 	
@@ -34,7 +47,6 @@
 	lblOrderDate.text = _orderHist.order_date;
 	lblTimeSlot.text = _orderHist.delivery_slot;
 	lblPaymentMode.text = _orderHist.payment_mode;
-	lblDeliveryBoyName.text = _orderHist.deliveryboy_name;
 	lblOrderAmt.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_cart_value];
 	if ([_orderHist.packed_timing isEqualToString:@""]) {
 		[packedBtn setSelected:NO];
@@ -71,6 +83,29 @@
 		lblReceived.text = [NSString stringWithFormat:@"%@",_orderHist.delivered_timing];
 		
 	}
+
+    
+    if ([_orderHist.deliveryboy_name length]>0)
+    {
+        lblDeliveryBoyName.text = _orderHist.deliveryboy_name;
+        btnCallDeliveryBoy.hidden = NO;
+    }
+    else
+    {
+        lblDeliveryBoyName.text = @"Pending";
+        btnCallDeliveryBoy.hidden = YES;
+    }
+    
+
+    
+    lblUdhaar_value.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.udhaar_value];
+    lblTotalUdhaar.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_udhaar];
+
+
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"OrderHistoryDetail"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -199,5 +234,33 @@
 {
 	return [NSString stringWithFormat:@"%.f",[[NSDate date] timeIntervalSince1970] ];
 }
+
+
+
+
+- (IBAction)btnSeeMoreDetails:(id)sender {
+
+    OrderedProductsDetailViewController *orderedProducts =[self.storyboard instantiateViewControllerWithIdentifier:@"OrderedProductsDetail"];
+    orderedProducts.orderHist =self.orderHist;
+    [self.navigationController pushViewController:orderedProducts animated:YES];
+    
+}
+
+
+
+- (IBAction)btnCallDeliveryBoy:(id)sender
+{
+    strDeliveryboy_mobile = _orderHist.deliveryboy_mobile;
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",strDeliveryboy_mobile]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+        [[UIApplication sharedApplication] openURL:phoneUrl];
+    } else
+    {
+        [Utils showAlertView:kAlertTitle message:kAlertCallFacilityNotAvailable delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+    }
+}
+
+
 
 @end

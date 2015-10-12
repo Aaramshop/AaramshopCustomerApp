@@ -489,7 +489,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
     
     XMPPLogTrace();
     
-    __block NSMutableArray *results = [NSMutableArray array];
+    __block NSMutableArray *results = [[NSMutableArray alloc]init];
 	
 	[self executeBlock:^{
 		

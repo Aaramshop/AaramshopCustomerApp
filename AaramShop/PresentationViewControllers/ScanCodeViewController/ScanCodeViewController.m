@@ -82,6 +82,10 @@
 	[self.view addSubview:button];
 	
 	[self.view bringSubviewToFront:_highlightView];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"QRCodeScaner"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 - (void)hideSuperView
 {

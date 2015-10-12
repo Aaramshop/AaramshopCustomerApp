@@ -74,7 +74,9 @@
 	}
 	[imgBackground setClipsToBounds:YES];
 	
-	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"UpdateMobileExistingUser"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 	
 
 }
@@ -171,6 +173,11 @@
 			mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
 			mobileVerificationVwController.strIsRegistered = [responseObject objectForKey:@"isRegistered"];
 			
+            
+            [[NSUserDefaults standardUserDefaults] setObject:txtFMobileNumber.text forKey:kMobile];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            
 			mobileVerificationVwController.responseData = responseObject;
 			
 			[self.navigationController pushViewController:mobileVerificationVwController animated:YES];

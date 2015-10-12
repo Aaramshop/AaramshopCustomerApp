@@ -41,6 +41,10 @@
          [tblViewSearch setAlpha:1.0];
      }completion:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarHit) name:ssNotificationStatusBarTouched object:nil];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"ShoppingListSearch"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -88,7 +92,7 @@
     [searchBarMain becomeFirstResponder];
     
     
-    arrSearchResult = [NSMutableArray array];
+    arrSearchResult = [[NSMutableArray alloc]init];
     
     [viewSearchBarContainer setFrame:CGRectMake(0, -64, 320, 64)];
     
@@ -247,8 +251,10 @@
         
     }
 
-    [searchCell updateDetailsFor:[arrSearchResult objectAtIndex:indexPath.row]];
-    
+    if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
+    {
+        [searchCell updateDetailsFor:[arrSearchResult objectAtIndex:indexPath.row]];        
+    }
     
     return searchCell;
 }

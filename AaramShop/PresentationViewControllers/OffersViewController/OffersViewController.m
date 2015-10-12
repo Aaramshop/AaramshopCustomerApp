@@ -41,6 +41,9 @@
 	
 	arrOffers = [[NSMutableArray alloc] init];
 	arrCoupon = [[NSMutableArray alloc]init];
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"Offers"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 	
 }
 

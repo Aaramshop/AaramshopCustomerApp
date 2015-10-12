@@ -633,7 +633,7 @@ static void MarkDeath(void *xmlPtr, DDXMLNode *wrapper);
 		return nil;
 	}
 	
-	NSMutableArray *result = [NSMutableArray array];
+	NSMutableArray *result = [[NSMutableArray alloc]init];
 	
 	xmlNodePtr child = ((xmlStdPtr)genericPtr)->children;
 	while (child != NULL)

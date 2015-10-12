@@ -42,7 +42,9 @@
     txtShoppingListName.textAlignment = NSTextAlignmentCenter;
     txtShoppingListName.returnKeyType = UIReturnKeyDone;
 
-
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"CreateShoppingList"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {

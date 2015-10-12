@@ -86,7 +86,7 @@ static const CGFloat kYSLIndicatorHeight = 3;
 {
     if (_itemTitleArray != itemTitleArray) {
         _itemTitleArray = itemTitleArray;
-        NSMutableArray *views = [NSMutableArray array];
+        NSMutableArray *views = [[NSMutableArray alloc]init];
         
         for (int i = 0; i < itemTitleArray.count; i++) {
             CGRect frame = CGRectMake(0, 0, kYSLScrollMenuViewWidth, CGRectGetHeight(self.frame));

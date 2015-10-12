@@ -42,7 +42,9 @@
 	tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 //	[self pushToFacebookApp];
 	//	[btnFacebook setExclusiveTouch:YES];
-	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"InviteFriends"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 	
 }
 - (void)viewDidAppear:(BOOL)animated

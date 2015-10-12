@@ -8,6 +8,8 @@
 
 #import "AccountSettingsViewC.h"
 
+#define kTableCellHeight    55
+
 @interface AccountSettingsViewC ()
 {
 	UITapGestureRecognizer *gestureRecognizer;
@@ -28,6 +30,9 @@
 	gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
 	[tblView addGestureRecognizer:gestureRecognizer];
 	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"AccountSettings"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)hideKeyboard
@@ -182,7 +187,7 @@
 #pragma mark - UITableView Delegates & Data Source Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
-	return 2;
+	return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -191,9 +196,13 @@
 			return 1;
 			break;
 		case 1:
-			return 2;
+			return 1;
 			break;
 			
+        case 2:
+            return 2;
+            break;
+
 			
 		default:
 			return 0;
@@ -203,7 +212,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	
-	return 55;
+	return kTableCellHeight;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -303,6 +312,39 @@
 			}
 		}
 			break;
+        case eUserPhoneNo:
+        {
+            switch (indexPath.row) {
+                case 0:
+                {
+                    static NSString *CellIdentifier = @"PhoneNumberCell";
+                    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                    
+                    if (cell == nil) {
+                        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+                    }
+                    
+
+                    UILabel *lblPhone = [[UILabel alloc]initWithFrame:CGRectMake(18,(kTableCellHeight-30)/2 , (tblView.frame.size.width-36), 30)];
+                    lblPhone.font = [UIFont fontWithName:kRobotoMedium size:14.0f];
+                    lblPhone.textColor = [UIColor colorWithRed:92/255.0f green:92/255.0f blue:92/255.0f alpha:1.0f];
+                    
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    
+                    lblPhone.text = [[NSUserDefaults standardUserDefaults] valueForKey:kMobile];
+                    
+                    [cell.contentView addSubview:lblPhone];
+                    
+                    tableCell = cell;
+
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+            break;
 		case eUserContact:
 		{
 			switch (indexPath.row) {
@@ -379,7 +421,7 @@
 			}
 		}
 			break;
-		case 1:
+		case 2:
 			switch (indexPath.row) {
 				case 1:
 				{

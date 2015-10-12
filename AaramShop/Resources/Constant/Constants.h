@@ -1,4 +1,17 @@
 
+#define GAITrackingID @"UA-67676419-2"
+
+
+
+
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+
+
 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -47,6 +60,12 @@
 #define kBaseURL												@"http://www.aaramshop.co.in/api/index.php/user/"
 //#define kBaseURL												@"http://52.74.220.25/api/index.php/user/"
 //#define kBaseURL												@"http://52.74.220.25/index.php/user/"
+
+
+//#define kGOOGLE_API_KEY                                     @"AIzaSyAzMfO-tlOmsM47CG35YF-yHmleevA0LpM" // this key is for ios, & it is not working
+
+#define kGOOGLE_API_KEY                                       @"AIzaSyC1rKSg6IVmDlntN1LFMVnkvK5Lpj5lFIY" // this key is also for web
+
 
 #define kIsLoggedIn											@"isLoggedIn"
 #define kDevice													@"1"
@@ -340,7 +359,7 @@
 
 //================= SHOPPING LIST MODULE =============
 
-#define KURLSerachStoreProducts					@" "
+#define KURLSerachStoreProducts					@"serachStoreProducts"
 #define kURLCreateShoppingList						@"createShoppingList"
 #define kURLGetShoppingList                         @"getShoppingList"
 #define kURLDeleteShoppingList						@"deleteShoppingList"
@@ -418,6 +437,10 @@
 #define kURLGetFBFriends									@"getFBFriends"
 #define kAccessToken										@"accessToken"
 
+
+//=============== Ordered Product Details ==============
+
+#define kURLOrderDetail                                     @"orderDetail"
 
 
 

@@ -120,7 +120,7 @@
     [self.layer addSublayer:_animatingLayer];
     
     // path array
-    _paths = [NSMutableArray array];
+    _paths = [[NSMutableArray alloc]init];
     
     // animation duration
     _animationDuration = 0.5;

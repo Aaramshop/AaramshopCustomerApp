@@ -84,7 +84,7 @@ AaramShop_ConnectionManager_Delegate>
 	[searchBarMain becomeFirstResponder];
 	
 
-	arrSearchResult = [NSMutableArray array];
+	arrSearchResult = [[NSMutableArray alloc] init];
 	
 	[viewSearchBarContainer setFrame:CGRectMake(0, -64, 320, 64)];
 	
@@ -123,6 +123,10 @@ AaramShop_ConnectionManager_Delegate>
 		activityIndicatorView.center = CGPointMake(self.view.center.x, 150);
 		[self.view addSubview:activityIndicatorView];
 	}
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"GlobalSearch"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -255,6 +259,9 @@ AaramShop_ConnectionManager_Delegate>
 				globalSearchModel.store_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_id]];
 				globalSearchModel.store_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_name]];
 				globalSearchModel.store_image = [NSString stringWithFormat:@"%@",[dict objectForKey:kStore_image]];
+                globalSearchModel.chat_username = [NSString stringWithFormat:@"%@",[dict objectForKey:kChat_username]];
+
+
 				totalNoOfPages = [[dict objectForKey:kTotal_pages] intValue];
 				
 				[array addObject:globalSearchModel];
@@ -379,22 +386,44 @@ AaramShop_ConnectionManager_Delegate>
 		{
 			if ([searchType intValue] == 3) {
 				arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
-				CMGlobalSearch *globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
-				[searchCell updateCellWithData:globalSearchModel];
+                
+                
+                if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
+                {
+                    CMGlobalSearch *globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
+                    [searchCell updateCellWithData:globalSearchModel];
+                }
+                
 			}
-			else
-				[searchCell updateCellWithData:[arrSearchResult objectAtIndex:indexPath.row]];
+            else{
+                
+                if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
+                {
+                    [searchCell updateCellWithData:[arrSearchResult objectAtIndex:indexPath.row]];
+                }
+            }
+				
 		}
 			break;
 		case 1:
 		{
 			if ([searchType intValue] == 3) {
 				arrSearchResult =[dicSearchResult objectForKey:[allSections objectAtIndex: indexPath.section]];
-				CMGlobalSearch *globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
-				[searchCell updateCellWithData:globalSearchModel];
+                
+                if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
+                {
+                    CMGlobalSearch *globalSearchModel = [arrSearchResult objectAtIndex:indexPath.row];
+                    [searchCell updateCellWithData:globalSearchModel];
+                }
 			}
 			else
-				[searchCell updateCellWithData:[arrSearchResult objectAtIndex:indexPath.row]];
+            {
+                if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
+                {
+                    [searchCell updateCellWithData:[arrSearchResult objectAtIndex:indexPath.row]];
+                }
+            }
+				
 		}
 			break;
 	default:

@@ -72,7 +72,7 @@
     [searchBarMain becomeFirstResponder];
     
     
-    arrSearchResult = [NSMutableArray array];
+    arrSearchResult = [[NSMutableArray alloc]init];
     
     [viewSearchBarContainer setFrame:CGRectMake(0, -64, 320, 64)];
     
@@ -98,6 +98,9 @@
         activityIndicatorView.center = CGPointMake(self.view.center.x, 150);
         [self.view addSubview:activityIndicatorView];
     }
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"HomeStoreSearch"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 
@@ -230,12 +233,19 @@
     }
     
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:nil];
-    StoreModel *objStoreModel = [arrSearchResult objectAtIndex:indexPath.row];
-    UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-56, 45)];
-    lblStoreName.font = [UIFont fontWithName:kRobotoRegular size:16.0];
-    lblStoreName.textColor = [UIColor colorWithRed:45.0/255.0 green:45.0/255.0 blue:45.0/255.0 alpha:1.0];
-    lblStoreName.text = objStoreModel.store_code;
-    [cell.contentView addSubview:lblStoreName];
+    
+    
+    
+    if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
+    {
+        StoreModel *objStoreModel = [arrSearchResult objectAtIndex:indexPath.row];
+        UILabel *lblStoreName = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, [UIScreen mainScreen].bounds.size.width-56, 45)];
+        lblStoreName.font = [UIFont fontWithName:kRobotoRegular size:16.0];
+        lblStoreName.textColor = [UIColor colorWithRed:45.0/255.0 green:45.0/255.0 blue:45.0/255.0 alpha:1.0];
+        lblStoreName.text = objStoreModel.store_code;
+        [cell.contentView addSubview:lblStoreName];
+    }
+    
     return cell;
     
 }
@@ -247,23 +257,23 @@
     // CRASH -[SearchStoresViewController tableView:didSelectRowAtIndexPath:]
     // -[__NSArrayM objectAtIndex:]: index 0 beyond bounds for empty array
     
-    if (arrSearchResult.count==0)
-    {
-        return;
-    }
-    
-    ////
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    StoreModel *objStoreModel = [arrSearchResult objectAtIndex:indexPath.row];
     
-    if (self.delegate && [self.delegate conformsToProtocol:@protocol(SearchStoresViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(openSearchedStores:)])
+    if (arrSearchResult.count > 0 && arrSearchResult.count >= indexPath.row)
     {
-        [self.delegate openSearchedStores:objStoreModel];
+        StoreModel *objStoreModel = [arrSearchResult objectAtIndex:indexPath.row];
+        
+        if (self.delegate && [self.delegate conformsToProtocol:@protocol(SearchStoresViewControllerDelegate)] && [self.delegate respondsToSelector:@selector(openSearchedStores:)])
+        {
+            [self.delegate openSearchedStores:objStoreModel];
+        }
+        
+        
+        [self.view removeFromSuperview];
     }
     
-    
-    [self.view removeFromSuperview];
+    /////
     
 }
 

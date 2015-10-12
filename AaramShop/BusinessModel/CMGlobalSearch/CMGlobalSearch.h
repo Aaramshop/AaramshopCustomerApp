@@ -21,5 +21,6 @@
 @property (strong, nonatomic) NSString *product_name;
 @property (strong, nonatomic) NSString *product_image;
 @property (strong, nonatomic) NSString *product_price;
+@property (strong, nonatomic) NSString *chat_username;
 
 @end

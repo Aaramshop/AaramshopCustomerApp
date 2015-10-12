@@ -48,6 +48,10 @@
     }
     else
         imgVBg.image = [UIImage imageNamed:@"bg4.jpg"];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"MobileVerification"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 -(void)createDataForOtpSend
@@ -251,6 +255,10 @@
 	[[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kUser_address] forKey:kUser_address];
 	[[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kCity] forKey:kCity];
 	[[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kState] forKey:kState];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:strMobileNum forKey:kMobile];
+    
+    
     [[NSUserDefaults standardUserDefaults]synchronize];
     
 }

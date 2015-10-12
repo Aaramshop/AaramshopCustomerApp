@@ -57,6 +57,10 @@
 	tblSuggestedStores.layer.cornerRadius = 1.0;
 	
 	[self createDataToGetAddress];
+	
+	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+	[tracker set:kGAIScreenName value:@"HomeStore"];
+	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 - (void)highlightLetter:(UITapGestureRecognizer*)sender {

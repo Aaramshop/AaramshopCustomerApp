@@ -231,7 +231,20 @@ static NSString *strCollectionCategory = @"collectionCategories";
     else
         objCategoryModel= [arrCategories objectAtIndex:indexPath.row];
 
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:objCategoryModel.category_name,kCategory_name,objCategoryModel.category_id,kCategory_id, nil];
+    
+    
+//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:objCategoryModel.category_name,kCategory_name,objCategoryModel.category_id,kCategory_id, nil];
+    
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    
+    if (objCategoryModel.category_name != nil)
+    {
+        [dict setObject:objCategoryModel.category_name forKey:kCategory_name];
+    }
+    [dict setObject:objCategoryModel.category_id forKey:kCategory_id];
+    
+    
     if (self.delegate && [self.delegate conformsToProtocol:@protocol(RightControllerDelegate)] && [self.delegate respondsToSelector:@selector(selectCategory:)])
     {
         [self.delegate selectCategory:dict];
