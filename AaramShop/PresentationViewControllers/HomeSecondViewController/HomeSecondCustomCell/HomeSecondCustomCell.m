@@ -129,11 +129,11 @@
     lblCount.frame = CGRectMake(btnPlus.frame.origin.x-30, 24, 30, 20);
     btnMinus.frame = CGRectMake(lblCount.frame.origin.x-30, 14, 30, 40);
     lblName.frame = CGRectMake(xPos, 10, [UIScreen mainScreen].bounds.size.width-175, size.height);
-    lblPrice.frame = CGRectMake(xPos, size.height+10, 58, 20);
+    lblPrice.frame = CGRectMake(xPos, size.height+10, 64, 20);
 	
 	//////////////////////////////////////////////////////////////////for offer kind of products//////////////////////////////////////////////////////////////////
 	lblLine.frame		=	CGRectMake(lblPrice.frame.origin.x, lblPrice.frame.origin.y+9, 58, 2);
-	lblOfferPrice.frame		=	CGRectMake(lblPrice.frame.origin.x+lblPrice.frame.size.width+8, lblPrice.frame.origin.y, 58, 20);
+	lblOfferPrice.frame		=	CGRectMake(lblPrice.frame.origin.x+lblPrice.frame.size.width+8, lblPrice.frame.origin.y, 64, 20);
 	lblLine.hidden = YES;
 	lblOfferPrice.hidden = YES;
 	NSString *strCount = @"0";

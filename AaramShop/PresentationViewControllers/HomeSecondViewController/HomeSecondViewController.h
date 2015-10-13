@@ -11,7 +11,8 @@
 #import "RightCollectionViewController.h"
 #import "HomeSecondCustomCell.h"
 
-@interface HomeSecondViewController : UIViewController<V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,UISearchBarDelegate,AaramShop_ConnectionManager_Delegate,RightControllerDelegate,UITableViewDataSource,UITableViewDelegate,HomeSecondCustomCellDelegate,GlobalSearchViewControllerDelegate>
+
+@interface HomeSecondViewController : UIViewController<V8HorizontalPickerViewDelegate,V8HorizontalPickerViewDataSource,CDRTranslucentSideBarDelegate,CustomNavigationDelegate,UIScrollViewDelegate,UISearchBarDelegate,AaramShop_ConnectionManager_Delegate,RightControllerDelegate,UITableViewDataSource,UITableViewDelegate,HomeSecondCustomCellDelegate>
 {    
     
     RightCollectionViewController *rightCollectionVwContrllr;
@@ -26,7 +27,6 @@
 	__weak IBOutlet UITableView *tblVwCategory;
     BOOL isViewActive;
 
-    
     UIRefreshControl *refreshShoppingList;
     BOOL isLoading;
     

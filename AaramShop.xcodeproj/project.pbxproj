@@ -1015,9 +1015,9 @@
 		6B37EAC51B5D248E00C7A3D8 /* RecommendedStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B37EAC31B5D248E00C7A3D8 /* RecommendedStoreCell.m */; };
 		6B37EAC61B5D248E00C7A3D8 /* RecommendedStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B37EAC41B5D248E00C7A3D8 /* RecommendedStoreCell.xib */; };
 		6B388E191AFCC31800FF3CF3 /* LocationEnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B388E181AFCC31800FF3CF3 /* LocationEnterViewController.m */; };
-		6B45F90C1BC6413700DAD1BE /* optionIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B45F9091BC6413700DAD1BE /* optionIcon.png */; settings = {ASSET_TAGS = (); }; };
-		6B45F90D1BC6413700DAD1BE /* optionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B45F90A1BC6413700DAD1BE /* optionIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
-		6B45F90E1BC6413700DAD1BE /* optionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B45F90B1BC6413700DAD1BE /* optionIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
+		6B45F90C1BC6413700DAD1BE /* optionIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B45F9091BC6413700DAD1BE /* optionIcon.png */; };
+		6B45F90D1BC6413700DAD1BE /* optionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B45F90A1BC6413700DAD1BE /* optionIcon@2x.png */; };
+		6B45F90E1BC6413700DAD1BE /* optionIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B45F90B1BC6413700DAD1BE /* optionIcon@3x.png */; };
 		6B54903A1B68C46700465C82 /* AddContactsToShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5490391B68C46700465C82 /* AddContactsToShareViewController.m */; };
 		6B54903D1B68C48200465C82 /* AddContactsToShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B54903C1B68C48200465C82 /* AddContactsToShareCell.m */; };
 		6B5490411B68D79D00465C82 /* ContactsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5490401B68D79D00465C82 /* ContactsData.m */; };
@@ -9355,8 +9355,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9382,8 +9382,9 @@
 					"-lxml2",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.user;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "620b20c5-7e88-4fec-b0c7-9c196c13d937";
+				PROVISIONING_PROFILE = "4ecc529d-f865-4e83-a223-e3997e73088d";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -9393,8 +9394,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9420,8 +9421,9 @@
 					"-lxml2",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.user;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "620b20c5-7e88-4fec-b0c7-9c196c13d937";
+				PROVISIONING_PROFILE = "4ecc529d-f865-4e83-a223-e3997e73088d";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;

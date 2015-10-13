@@ -14,6 +14,8 @@
 #import "GlobalSearchResultTableCell.h"
 #import "SubCategoryModel.h"
 #import "CartViewController.h"
+#import "HomeSecondViewController.h"
+
 @interface GlobalSearchResultViewC : UIViewController<HomeSecondCustomCellDelegate,AaramShop_ConnectionManager_Delegate,GlobalSearchViewControllerDelegate>
 {
 	NSMutableArray *arrGlobalSearchResult;
