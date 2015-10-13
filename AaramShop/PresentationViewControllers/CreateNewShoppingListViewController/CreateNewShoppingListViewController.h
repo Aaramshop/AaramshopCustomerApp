@@ -16,14 +16,15 @@
     IBOutlet UITextField *txtShoppingListName;
 	IBOutlet UITableView *tblView;
     
-    NSMutableArray *arrProductList;
-    
     SearchViewController *searchViewController;
     AppDelegate *appDel;
 
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+
+@property(nonatomic,strong) NSMutableArray *arrProductList;
+
 
 
 

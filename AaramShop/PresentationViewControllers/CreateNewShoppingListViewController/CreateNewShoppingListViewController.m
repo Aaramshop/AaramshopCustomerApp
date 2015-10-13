@@ -16,7 +16,7 @@
 @end
 
 @implementation CreateNewShoppingListViewController
-@synthesize aaramShop_ConnectionManager;
+@synthesize aaramShop_ConnectionManager,arrProductList;
 
 
 - (void)viewDidLoad {
@@ -26,7 +26,16 @@
     appDel = APP_DELEGATE;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    arrProductList = [[NSMutableArray alloc]init];
+    
+    if (!arrProductList)
+    {
+        arrProductList = [[NSMutableArray alloc]init];
+    }
+    else
+    {
+        [tblView reloadData];
+    }
+    
     [self setNavigationBar];
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
@@ -333,7 +342,7 @@
 
 -(void)openSearchedUserPrroductFor:(ProductsModel *)product
 {
-    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",product.product_sku_id];
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_id like[cd]  %@",product.product_id];
     
     NSArray *aFilteredObjects = [arrProductList filteredArrayUsingPredicate: aPredicate];
     
@@ -360,7 +369,7 @@
 -(void)addProductIfNeeded:(NSDictionary *)inDic{
     
     
-    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_sku_id like[cd]  %@",[inDic objectForKey: @"product_sku_id"]];
+    NSPredicate *aPredicate = [NSPredicate predicateWithFormat:@"product_id like[cd]  %@",[inDic objectForKey: @"product_id"]];
     
     NSArray *aFilteredObjects = [arrProductList filteredArrayUsingPredicate: aPredicate];
     

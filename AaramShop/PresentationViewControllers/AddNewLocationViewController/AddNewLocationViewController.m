@@ -248,20 +248,26 @@
     
     [postAutoSuggestionView.tableView removeFromSuperview];
     
+    NSArray *arrInfo = [aStringInfo componentsSeparatedByString:@","];
     
-    if ([txtLocality.text length]==0)
-    {
-        txtLocality.text = aStringInfo;
-    }
-    else
-    {
-        NSRange rangeOfString = [txtLocality.text rangeOfString:searchString options:NSBackwardsSearch|NSCaseInsensitiveSearch];
-        
-        if (rangeOfString.location == NSNotFound)
-            return;
-        else
-            txtLocality.text =[txtLocality.text stringByReplacingCharactersInRange:NSMakeRange(rangeOfString.location, [txtLocality.text length] - rangeOfString.location ) withString:[NSString stringWithFormat:@"%@, ",aStringInfo]];
-    }
+    NSString *strLocality = [[arrInfo objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    
+    
+    
+//    if ([txtLocality.text length]==0)
+//    {
+        txtLocality.text = strLocality;
+//    }
+//    else
+//    {
+//        NSRange rangeOfString = [txtLocality.text rangeOfString:searchString options:NSBackwardsSearch|NSCaseInsensitiveSearch];
+//        
+//        if (rangeOfString.location == NSNotFound)
+//            return;
+//        else
+//            txtLocality.text =[txtLocality.text stringByReplacingCharactersInRange:NSMakeRange(rangeOfString.location, [txtLocality.text length] - rangeOfString.location ) withString:[NSString stringWithFormat:@"%@, ",strLocality]];
+//    }
     
 }
 
@@ -304,11 +310,16 @@
     
     //    googleType = @"Naraina";
     
-    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=establishment&radius=2000&key=%@",googleType,kGOOGLE_API_KEY];
+//    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=establishment&radius=2000&key=%@",googleType,kGOOGLE_API_KEY];
+    
+    // updated on 13 Oct 2015 ... begin
+    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&types=geocode&key=%@",googleType,kGOOGLE_API_KEY];
+    // ...end
+    
+
     
     
     //https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Naraina&types=establishment&radius=2000&key=AIzaSyAzMfO-tlOmsM47CG35YF-yHmleevA0LpM
-    
     
     // AIzaSyAzMfO-tlOmsM47CG35YF-yHmleevA0LpM
     
