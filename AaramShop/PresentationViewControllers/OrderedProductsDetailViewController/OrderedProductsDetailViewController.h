@@ -18,6 +18,8 @@
     NSMutableArray *arrOrderDetail;
     __weak IBOutlet UITableView *tblView;
     
+    NSMutableArray *arrProductsUpdatedPrice;
+    
 }
 @property (nonatomic, strong) CMOrderHist *orderHist;
 

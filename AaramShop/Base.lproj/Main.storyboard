@@ -1520,7 +1520,7 @@ MEDI CARE</string>
                                                         <action selector="actionRemoveProduct:" destination="tXD-YF-FWr" eventType="touchUpInside" id="jsc-NQ-iVY"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7A-Va-rEQ" userLabel="Label - Counter">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7A-Va-rEQ" userLabel="Label - Counter">
                                                     <rect key="frame" x="264" y="5" width="22" height="60"/>
                                                     <animations/>
                                                     <constraints>

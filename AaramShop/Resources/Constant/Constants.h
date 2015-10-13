@@ -441,7 +441,7 @@
 //=============== Ordered Product Details ==============
 
 #define kURLOrderDetail                                     @"orderDetail"
-
+#define kURLUpdateProductfromOrderId                        @"updateProductfromOrderId"
 
 
 

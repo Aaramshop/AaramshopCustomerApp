@@ -288,6 +288,7 @@
     [refreshFoodList endRefreshing];
     
     [AppManager stopStatusbarActivityIndicator];
+    [Utils stopActivityIndicatorInView:self.view];
     
     
     if (aaramShop_ConnectionManager.currentTask==TASK_GET_ORDER_DETAIL)
@@ -296,6 +297,13 @@
         {
             totalNoOfPages = [[responseObject objectForKey:kTotal_page] intValue];
             [self parseOrderDetailData:[responseObject objectForKey:@"product_details"]];
+        }
+    }
+    if (aaramShop_ConnectionManager.currentTask == TASK_TO_UPDATE_PRODUCT_FROM_ORDER_ID)
+    {
+        if([[responseObject objectForKey:kstatus] intValue] == 1)
+        {
+            [self parseUpdatedProductsData:[responseObject objectForKey:@"products"]];
         }
     }
     
@@ -309,6 +317,8 @@
     
     [AppManager stopStatusbarActivityIndicator];
     [aaramShop_ConnectionManager failureBlockCalled:error];
+    [Utils stopActivityIndicatorInView:self.view];
+    
 }
 
 
@@ -375,6 +385,47 @@
     [tblView reloadData];
 }
 
+
+
+-(void)parseUpdatedProductsData:(id)responseData
+{
+    if (![responseData isKindOfClass:[NSArray class]])
+    {
+        return;
+    }
+    
+    if (!arrProductsUpdatedPrice) {
+        arrProductsUpdatedPrice = [[NSMutableArray alloc] init];
+    }
+    
+    
+    [responseData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        ProductsModel *productsModel = [[ProductsModel alloc]init];
+        productsModel.product_id = [obj valueForKey:@"product_id"];
+        productsModel.product_image = [obj valueForKey:@"product_image"];
+        productsModel.product_name = [obj valueForKey:@"product_name"];
+        productsModel.product_price = [obj valueForKey:@"product_price"];
+        productsModel.product_sku_id = [obj valueForKey:@"product_sku_id"];
+        productsModel.strCount = @"1";
+        productsModel.isStoreProduct = @"0";
+        
+        [arrProductsUpdatedPrice addObject:productsModel];
+        
+    }];
+    
+    if (arrProductsUpdatedPrice.count)
+    {
+        CreateNewShoppingListViewController *createNewShoppingList = (CreateNewShoppingListViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CreateNewShoppingList"];
+        
+            createNewShoppingList.arrProductList = [[NSMutableArray alloc]initWithArray:arrProductsUpdatedPrice];
+        
+        [self.navigationController pushViewController:createNewShoppingList animated:YES];
+
+    }
+    
+    
+}
 
 
 
@@ -461,10 +512,7 @@
     if (arrOrderDetail.count>0)
     {
         UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Re Order",@"Save As Shopping List", nil];
-        
-        //    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Re Order", nil];
-        
-        
+
         [actionSheet showInView:self.view];
 
     }
@@ -586,231 +634,31 @@
 #pragma mark - Save As Shopping List
 -(void)saveAsShoppingList
 {
-    NSArray *arrProducts = [self createProductsModel];
-    
-    CreateNewShoppingListViewController *createNewShoppingList = (CreateNewShoppingListViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CreateNewShoppingList"];
-    
-    createNewShoppingList.arrProductList = [[NSMutableArray alloc]initWithArray:arrProducts];
-        
-    [self.navigationController pushViewController:createNewShoppingList animated:YES];
-
+    [self callWebServiceToGetProductsMasterPrice];
 }
 
 
--(NSMutableArray *)createProductsModel
+#pragma mark - Call WebService To Get Product's Master Price
+
+-(void)callWebServiceToGetProductsMasterPrice
 {
-    
-    NSMutableArray *arrProductsArray;
-    
-    if (!arrProductsArray)
+    if (![Utils isInternetAvailable])
     {
-        arrProductsArray = [[NSMutableArray alloc]init];
+        [AppManager stopStatusbarActivityIndicator];
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
     }
     
-    for (OrderDetailModel *order in arrOrderDetail)
-    {
-        ProductsModel *productModel = [[ProductsModel alloc]init];
-        
-//        productModel.offer_type = order.offer_type;
-        productModel.product_id = order.product_id;
-        productModel.isStoreProduct = @"0";
-        ///////////////////////////////////////////////////////
-//        productModel.product_image = order.offerImage;
-//        productModel.product_name = order.offerTitle;
-//        productModel.product_price = order.price;
-//        productModel.strCount = order.quantity;
-        ///////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////
-        
-        switch ([order.offer_type intValue])
-        {
-            case 0:
-            {
-                productModel.product_image = order.image;
-                productModel.product_name = order.name;
-                productModel.product_price = order.price;
-                productModel.strCount = order.quantity;
-            }
-
-                break;
-            case 1:
-            {
-                productModel.product_image = order.offerImage;
-                productModel.product_name = order.offerTitle;
-                productModel.product_price = order.price;
-                productModel.strCount = order.quantity;
-            }
-
-                break;
-            case 2:
-            {
-                
-            }
-                break;
-            case 3:
-            {
-                
-            }
-                break;
-            case 4: // Combo
-            {
-                productModel.product_image = order.offerImage;
-                productModel.product_name = order.offerTitle;
-                productModel.product_price = order.combo_mrp;
-                productModel.strCount = order.quantity;
-            }
-                break;
-            case 5:
-            {
-                
-            }
-                break;
-            case 6:
-            {
-                
-            }
-                break;
-                
-            default:
-                break;
-        }
-        
-        [arrProductsArray addObject:productModel];
-        
-        
-        ///////////////////////////////////////////////////////
-
-        
-    }
-//    {
-//        ProductsModel *productModel = [[ProductsModel alloc]init];
-//
-//        productModel.offer_type = order.offer_type;
-//        productModel.product_id = order.product_id;
-//        productModel.isStoreProduct = @"0";
-//
-//        switch ([order.offer_type intValue])
-//        {
-//            case 0:
-//            {
-//                productModel.product_name = order.name;
-//                productModel.offer_price = order.offer_price;
-//                productModel.product_price = order.price;
-//                productModel.product_image = order.image;
-//                productModel.strCount = order.quantity;
-//            }
-//                break;
-//            case 1:
-//            {
-//                productModel.product_name = order.offerTitle;
-//                productModel.offer_price = order.offer_price;
-//                productModel.product_price = order.price;
-//                productModel.product_image = order.offerImage;
-//                productModel.strCount = order.quantity;
-//            }
-//                break;
-//            case 2:
-//            {
-//                
-//            }
-//                break;
-//            case 3:
-//            {
-//                
-//            }
-//                break;
-//            case 4: // combo
-//            {
-//                productModel.product_name = order.offerTitle;
-//                productModel.offer_price = order.combo_offer_price;
-//                productModel.product_price = order.combo_mrp;
-//
-//                productModel.product_image = order.offerImage;
-//                productModel.strCount = order.quantity;
-//
-//            }
-//                break;
-//            case 5:
-//            {
-//                
-//            }
-//                break;
-//            case 6:
-//            {
-//                
-//            }
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//        
-//        
-//
-//        if ([order.offer_type integerValue]==6) //Custom Offer (description)
-//        {
-//            productModel.product_image = order.offerImage;
-//            
-//            NSString *strQuantity = [[order.name componentsSeparatedByString:@" "] lastObject];
-//            productModel.strCount = strQuantity;
-//        }
-//        else
-//        {
-//            productModel.product_image = order.image;
-//            productModel.strCount = order.quantity;
-//        }
-//        
-//        [arrProductsArray addObject:productModel];
-//    }
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    [Utils startActivityIndicatorInView:self.view withMessage:nil];
     
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    [dict setObject:_orderHist.order_id forKey:kOrder_id];
+
     
-    return arrProductsArray;
+    [aaramShop_ConnectionManager getDataForFunction:kURLUpdateProductfromOrderId withInput:dict withCurrentTask:TASK_TO_UPDATE_PRODUCT_FROM_ORDER_ID andDelegate:self ];
 }
 
-
-
-
-/*
- {
- 
- OrderDetailModel *orderDetail = [[OrderDetailModel alloc]init];
- orderDetail.quantity = [NSString stringWithFormat:@"%@",[obj valueForKey:@"quantity"]];
- orderDetail.name = [obj valueForKey:@"name"];
- orderDetail.price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"price"]];
- orderDetail.isAvailable = [NSString stringWithFormat:@"%@",[obj valueForKey:@"isAvailable"]];
- orderDetail.image = [obj valueForKey:@"image"];
- 
- orderDetail.isReported = @"0"; // for local use
- 
- 
- // new keys has been added ..
- 
- orderDetail.combo_mrp = [NSString stringWithFormat:@"%@",[obj valueForKey:@"combo_mrp"]];
- orderDetail.combo_offer_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"combo_offer_price"]];
- orderDetail.free_product = [NSString stringWithFormat:@"%@",[obj valueForKey:@"free_product"]];
- orderDetail.offerDescription = [obj valueForKey:@"offerDescription"];
- orderDetail.offerImage = [obj valueForKey:@"offerImage"];
- orderDetail.offerTitle = [obj valueForKey:@"offerTitle"];
- orderDetail.offer_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_price"]];
- orderDetail.offer_type = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_type"]];
- orderDetail.order_detail_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"order_detail_id"]];
- 
- 
- // added on Oct 07th, 2015...begin
- orderDetail.product_id = [obj valueForKey:@"product_id"];
- orderDetail.product_sku_id = @"0"; // take product_sku_id 0 here, as it is not necessary for further use..
- orderDetail.offer_id = [obj valueForKey:@"offer_id"];
- 
- orderDetail.end_date = [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[obj valueForKey:kEnd_date] doubleValue]]];
- 
- 
- //// end ....
- 
- [arrTemp addObject:orderDetail];
- 
- }
- 
- */
 
 
 @end
