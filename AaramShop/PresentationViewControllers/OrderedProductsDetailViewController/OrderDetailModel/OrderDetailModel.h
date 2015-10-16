@@ -34,6 +34,12 @@
 @property (nonatomic,strong) NSString * offer_id;
 @property (nonatomic,strong) NSString * end_date;
 
+
+// added on Oct 16th, 2015
+@property (nonatomic,strong) NSString * category_id;
+@property (nonatomic,strong) NSString * offerDetail;
+@property (nonatomic,strong) NSString * sub_category_id;
+
 @end
 
 

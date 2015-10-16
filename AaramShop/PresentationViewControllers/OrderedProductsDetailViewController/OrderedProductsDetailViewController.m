@@ -62,13 +62,21 @@
     [tracker set:kGAIScreenName value:@"OrderedProductDetails"];
     [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     
+    [self callWebServiceToGetInitialOrderDetails];
+
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     
-    [self callWebServiceToGetInitialOrderDetails];
+//    if (arrOrderDetail.count>0)
+//    {
+//        pageno = 0;
+//        [arrOrderDetail removeAllObjects];
+//    }
+//    [self callWebServiceToGetInitialOrderDetails];
     
 }
 
@@ -306,6 +314,13 @@
             [self parseUpdatedProductsData:[responseObject objectForKey:@"products"]];
         }
     }
+    if (aaramShop_ConnectionManager.currentTask == TASK_TO_REORDER_PRODUCTS)
+    {
+        if([[responseObject objectForKey:kstatus] intValue] == 1)
+        {
+            [self parseReOrderedProductsData:[responseObject objectForKey:@"products"]];
+        }
+    }
     
 }
 
@@ -402,11 +417,11 @@
     [responseData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
         ProductsModel *productsModel = [[ProductsModel alloc]init];
-        productsModel.product_id = [obj valueForKey:@"product_id"];
-        productsModel.product_image = [obj valueForKey:@"product_image"];
-        productsModel.product_name = [obj valueForKey:@"product_name"];
-        productsModel.product_price = [obj valueForKey:@"product_price"];
-        productsModel.product_sku_id = [obj valueForKey:@"product_sku_id"];
+        productsModel.product_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_id"]];
+        productsModel.product_image = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_image"]];
+        productsModel.product_name = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_name"]];
+        productsModel.product_price = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_price"]];
+        productsModel.product_sku_id = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_sku_id"]];
         productsModel.strCount = @"1";
         productsModel.isStoreProduct = @"0";
         
@@ -425,6 +440,71 @@
     }
     
     
+}
+
+
+-(void)parseReOrderedProductsData:(id)responseData
+{
+    if (![responseData isKindOfClass:[NSArray class]])
+    {
+        return;
+    }
+    
+    NSMutableArray *arrProducts;
+    
+    if (!arrProducts)
+    {
+        arrProducts = [[NSMutableArray alloc]init];
+    }
+    else
+    {
+        [arrProducts removeAllObjects];
+    }
+    
+    
+    [responseData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        OrderDetailModel *orderDetail = [[OrderDetailModel alloc]init];
+
+        orderDetail.category_id         = [NSString stringWithFormat:@"%@",[obj valueForKey:@"category_id"]];
+        orderDetail.combo_mrp           = [NSString stringWithFormat:@"%@",[obj valueForKey:@"combo_mrp"]];
+        orderDetail.combo_offer_price   = [NSString stringWithFormat:@"%@",[obj valueForKey:@"combo_offer_price"]];
+        orderDetail.end_date            = [NSString stringWithFormat:@"%@",[obj valueForKey:@"end_date"]];
+        orderDetail.offerDescription    = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerDescription"]];
+        orderDetail.offerDetail         = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerDetail"]];
+        
+        orderDetail.offerImage          = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerImage"]];
+        orderDetail.offerTitle          = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerTitle"]];
+        orderDetail.offer_id            = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_id"]];
+        orderDetail.offer_price         = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_price"]];
+        orderDetail.offer_type          = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offer_type"]];
+        orderDetail.product_id          = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_id"]];
+        
+        orderDetail.image               = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_image"]];
+        orderDetail.name                = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_name"]];
+        orderDetail.price               = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_price"]];
+        orderDetail.product_sku_id      = [NSString stringWithFormat:@"%@",[obj valueForKey:@"product_sku_id"]];
+        orderDetail.quantity            = [NSString stringWithFormat:@"%@",[obj valueForKey:@"quantity"]];
+        orderDetail.sub_category_id     = [NSString stringWithFormat:@"%@",[obj valueForKey:@"sub_category_id"]];
+
+        
+        /*
+         @property (nonatomic,strong) NSString *isReported; // for local use.
+         @property (nonatomic,strong) NSString *isAvailable;
+         
+         // new keys ..
+         @property (nonatomic,strong) NSString * free_product;
+         @property (nonatomic,strong) NSString * order_detail_id;
+         //*/
+         
+         [arrProducts addObject:orderDetail];
+        
+    }];
+
+    if (arrProducts.count>0)
+    {
+        [self reOrderProducts:arrProducts];
+    }
 }
 
 
@@ -527,7 +607,7 @@
     if (buttonIndex==0)
     {
         // Re-Order
-        [self reOrderProducts];
+        [self callWebServiceToReOrderProducts];
     }
     else if (buttonIndex==1)
     {
@@ -536,36 +616,6 @@
     }
 }
 
-
-#pragma mark - Re-Order Products
--(void)reOrderProducts
-{
-    [arrOrderDetail enumerateObjectsUsingBlock:^(OrderDetailModel *orderDetail, NSUInteger idx, BOOL *stop) {
-        
-        
-        if ([orderDetail.offer_type intValue]>0)
-        {
-            // code for offers ...
-            
-            [AppManager AddOrRemoveFromCart:[self getCartFromOffers:orderDetail] forStore:[NSDictionary dictionaryWithObjectsAndKeys:_orderHist.store_id,kStore_id,_orderHist.store_name,kStore_name,_orderHist.store_image,kStore_image, nil] add:YES fromCart:NO];
-        }
-        else
-        {
-            // code for product ...
-            
-            [AppManager AddOrRemoveFromCart:[self getCartFromProducts:orderDetail] forStore:[NSDictionary dictionaryWithObjectsAndKeys:_orderHist.store_id,kStore_id,_orderHist.store_name,kStore_name,_orderHist.store_image,kStore_image, nil] add:YES fromCart:NO];
-            
-        }
-        
-        
-    }];
-    
-    
-    CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
-    [self.navigationController pushViewController:cartView animated:YES];
-
-    
-}
 
 
 -(CartProductModel *)getCartFromProducts:(OrderDetailModel *)orderDetailModel
@@ -657,6 +707,59 @@
 
     
     [aaramShop_ConnectionManager getDataForFunction:kURLUpdateProductfromOrderId withInput:dict withCurrentTask:TASK_TO_UPDATE_PRODUCT_FROM_ORDER_ID andDelegate:self ];
+}
+
+
+#pragma mark - Call Web Service To Re-Order Products
+
+-(void)callWebServiceToReOrderProducts
+{
+    if (![Utils isInternetAvailable])
+    {
+        [AppManager stopStatusbarActivityIndicator];
+        [Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+        return;
+    }
+    
+    [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+    [Utils startActivityIndicatorInView:self.view withMessage:nil];
+    
+    NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
+    [dict setObject:_orderHist.order_id forKey:kOrder_id];
+    
+    
+    [aaramShop_ConnectionManager getDataForFunction:kURLReOrder withInput:dict withCurrentTask:TASK_TO_REORDER_PRODUCTS andDelegate:self ];
+}
+
+
+#pragma mark - Re-Order Products
+-(void)reOrderProducts:(NSMutableArray *)arrReOrderProducts
+{
+    [arrReOrderProducts enumerateObjectsUsingBlock:^(OrderDetailModel *orderDetail, NSUInteger idx, BOOL *stop) {
+        
+        
+        if ([orderDetail.offer_type intValue]>0)
+        {
+            // code for offers ...
+            
+            [AppManager AddOrRemoveFromCart:[self getCartFromOffers:orderDetail] forStore:[NSDictionary dictionaryWithObjectsAndKeys:_orderHist.store_id,kStore_id,_orderHist.store_name,kStore_name,_orderHist.store_image,kStore_image, nil] add:YES fromCart:NO];
+        }
+        else
+        {
+            // code for product ...
+            
+            [AppManager AddOrRemoveFromCart:[self getCartFromProducts:orderDetail] forStore:[NSDictionary dictionaryWithObjectsAndKeys:_orderHist.store_id,kStore_id,_orderHist.store_name,kStore_name,_orderHist.store_image,kStore_image, nil] add:YES fromCart:NO];
+            
+        }
+        
+        
+    }];
+    
+    
+    CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+    [self.navigationController pushViewController:cartView animated:YES];
+    
+    
 }
 
 
