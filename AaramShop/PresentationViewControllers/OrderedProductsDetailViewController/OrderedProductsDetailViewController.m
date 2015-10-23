@@ -658,7 +658,9 @@
         cart.product_id				=	orderDetailModel.product_id;
         cart.product_sku_id         =	orderDetailModel.product_sku_id;
         cart.cartProductImage       =   orderDetailModel.image;
-        cart.product_name			=	orderDetailModel.offerTitle;
+//        cart.product_name			=	orderDetailModel.offerTitle; // commented on 23 Oct 2015.. offer title is empty.
+        cart.product_name			=	orderDetailModel.name; // added on 23 Oct 2015...
+
         cart.product_price			=	orderDetailModel.price;
     }
     else if([orderDetailModel.offer_type intValue] == 4)//combo

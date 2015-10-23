@@ -363,6 +363,8 @@
 	cart.offer_id			=	offer.offer_id;
 	cart.cartProductId	=	offer.offer_id;
 	cart.strCount			=	offer.strCount;
+    cart.end_date           = offer.end_date;
+    
 	if([offer.offerType intValue]== 1)// discount
 	{
 		cart.product_id				=	offer.product_id;
@@ -385,6 +387,7 @@
 		cart.product_sku_id		=	offer.product_sku_id;
 		cart.cartProductImage	= offer.offerImage;
 		cart.product_price			=	@"0";
+        cart.offerTitle = offer.offerDetail;
 	}
 	return cart;
 }

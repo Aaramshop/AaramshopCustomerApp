@@ -164,11 +164,11 @@
                             addressModel.state = [[arr1 objectAtIndex:i] objectForKey:@"long_name"];
                             shortAdministrativearea1 =[[arr1 objectAtIndex:i] objectForKey:@"short_name"];
                         }
-                        if([[[[arr1 objectAtIndex:i] objectForKey:@"types"]objectAtIndex:0]isEqualToString:@"administrative_area_level_2"])
+                        if([[[[arr1 objectAtIndex:i] objectForKey:@"types"]objectAtIndex:0]isEqualToString:@"locality"])
                         {
                             addressModel.city = [[arr1 objectAtIndex:i] objectForKey:@"long_name"];
                         }
-                        if([[[[arr1 objectAtIndex:i] objectForKey:@"types"]objectAtIndex:0]isEqualToString:@"locality"])
+                        if([[[[arr1 objectAtIndex:i] objectForKey:@"types"]objectAtIndex:0]isEqualToString:@"sublocality_level_1"])
                         {
                             addressModel.locality = [[arr1 objectAtIndex:i] objectForKey:@"long_name"];
                         }

@@ -92,7 +92,13 @@
 	{
 		btnAdd.enabled = YES;
 	}
-	lblValidTill.text	= [NSString stringWithFormat:@"Valid till %@",offers.end_date];
+    
+    
+//	lblValidTill.text	= [NSString stringWithFormat:@"Valid till %@",offers.end_date]; // commented on 23 Oct 2015
+    
+    NSString *strEndDate = [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[offers.end_date doubleValue]]]; // added on 23 Oct 2015
+    lblValidTill.text	= [NSString stringWithFormat:@"Valid till %@",strEndDate]; // added on 23 Oct 2015
+
 	lblCounter.text = offers.strCount;
 }
 
