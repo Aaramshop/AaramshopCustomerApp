@@ -412,6 +412,10 @@
     if (!arrProductsUpdatedPrice) {
         arrProductsUpdatedPrice = [[NSMutableArray alloc] init];
     }
+    else
+    {
+        [arrProductsUpdatedPrice removeAllObjects];
+    }
     
     
     [responseData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
