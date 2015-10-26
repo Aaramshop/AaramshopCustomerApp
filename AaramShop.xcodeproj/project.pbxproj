@@ -9308,7 +9308,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "4ecc529d-f865-4e83-a223-e3997e73088d";
+				PROVISIONING_PROFILE = "1262cbfc-53f8-494c-9bfd-4e5ed5171c70";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -9344,7 +9344,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "4ecc529d-f865-4e83-a223-e3997e73088d";
+				PROVISIONING_PROFILE = "1262cbfc-53f8-494c-9bfd-4e5ed5171c70";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -9382,9 +9382,9 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.user;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ecc529d-f865-4e83-a223-e3997e73088d";
+				PROVISIONING_PROFILE = "1262cbfc-53f8-494c-9bfd-4e5ed5171c70";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -9421,9 +9421,9 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.user;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ecc529d-f865-4e83-a223-e3997e73088d";
+				PROVISIONING_PROFILE = "1262cbfc-53f8-494c-9bfd-4e5ed5171c70";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;
