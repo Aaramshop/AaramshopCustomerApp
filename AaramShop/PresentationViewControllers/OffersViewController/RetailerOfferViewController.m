@@ -413,6 +413,10 @@
 				totalNoOfPages						=	[[responseObject objectForKey:kTotal_page] intValue];
 				[tblView reloadData];
 			}
+            else
+            {
+                [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+            }
 		}
 			break;
 		default:

@@ -87,7 +87,24 @@
 	{
 		btnAdd.enabled = YES;
 	}
-	lblValidTill.text	= [NSString stringWithFormat:@"Valid till %@",offers.end_date];
+    
+    
+    //// updated on 05 Nov 2015 ... begins // due to data inconsistency in model
+    if ([offers.end_date containsString:@"-"])
+    {
+        lblValidTill.text	= [NSString stringWithFormat:@"Valid till %@",offers.end_date];
+    }
+    else
+    {
+        NSString *strEndDate = [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[offers.end_date doubleValue]]]; // added on 23 Oct 2015
+        lblValidTill.text	= [NSString stringWithFormat:@"Valid till %@",strEndDate];
+    }
+    //// updated on 05 Nov 2015 ... ends ....
+
+    
+//	lblValidTill.text	= [NSString stringWithFormat:@"Valid till %@",offers.end_date]; // commented on 05 Nov 2015
+    
+    
 	lblCounter.text = offers.strCount;
 }
 - (IBAction)btnRemoveClicked:(id)sender {
