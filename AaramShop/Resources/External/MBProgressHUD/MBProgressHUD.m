@@ -232,7 +232,7 @@
 		[NSException raise:@"MBProgressHUDViewIsNillException" 
 					format:@"The view used in the MBProgressHUD initializer is nil."];
 	}
-	id me = [self initWithFrame:CGRectMake(0, 0, 320, 568)];
+	id me = [self initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 568)];
 	// We need to take care of rotation ourselfs if we're adding the HUD to a window
 	if ([view isKindOfClass:[UIWindow class]]) {
 		[self setTransformForCurrentOrientation:NO];

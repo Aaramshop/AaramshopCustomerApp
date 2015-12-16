@@ -38,10 +38,11 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  
+    
 	
     self.navigationController.navigationBarHidden = NO;
-//	 arrAddress = [[NSUserDefaults standardUserDefaults] valueForKey:kUser_address];
+
 	appDeleg = APP_DELEGATE;
 
 	[self designPickerViewSlots];
@@ -283,7 +284,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void)designPickerViewSlots
 {
 	
-	pickerViewSlots=[[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds)+100, 320,216)];
+	pickerViewSlots=[[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds)+100,[UIScreen mainScreen].bounds.size.width ,216)];
 	pickerViewSlots.delegate =self;
 	pickerViewSlots.dataSource =self;
 	pickerViewSlots.backgroundColor=[UIColor whiteColor];
@@ -294,7 +295,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 {
 	if (keyBoardToolBar==nil)
 	{
-		keyBoardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 610 , [[UIScreen mainScreen]bounds].size.width, 40)];
+		keyBoardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 620 , [[UIScreen mainScreen]bounds].size.width, 40)];
 		UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
 		btnCancel.tag = kBtnCancel;
 		

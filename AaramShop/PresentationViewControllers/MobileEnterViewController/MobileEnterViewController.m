@@ -191,7 +191,7 @@
         if ([[responseObject objectForKey:kstatus]intValue] == 1 &&[[responseObject objectForKey:kIsValid]intValue] == 1 ) {
             
 //            [self saveDataToLocal:responseObject];
-            
+            NSLog(@"...........----->>%@",responseObject);
             MobileVerificationViewController *mobileVerificationVwController = (MobileVerificationViewController*)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen"];
             mobileVerificationVwController.strMobileNum = txtFMobileNumber.text;
             mobileVerificationVwController.strIsRegistered = [responseObject objectForKey:@"isRegistered"];
