@@ -125,10 +125,16 @@
 			lblPointsName.textAlignment = NSTextAlignmentLeft;
 			lblPointsName.text = @"Aaram Points";
 			UIImage *imgPlus = [UIImage imageNamed:@"addBtnCircleGrey"];
+            
+            UIImageView* imgVPlus=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-30 , (secView.frame.size.height - 25)/2,25,25)];
+          
+            
+            
+            
 			UIImage *imgMinus = [UIImage imageNamed:@"minusBtnCircleRed"];
 			
 			UIButton *plusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-			plusBtn.frame = CGRectMake(12, (secView.frame.size.height - 25)/2, [[UIScreen mainScreen] bounds].size.width - 24, 25);
+			plusBtn.frame = CGRectMake(12, (secView.frame.size.height - 25)/2, [[UIScreen mainScreen] bounds].size.width - 10, 25);
 			plusBtn.tag = 101;
 			if(selectedPointsType == eAaramPoints)
 			{
@@ -137,10 +143,11 @@
 			}
 			else
 			{
-				[plusBtn setImage:imgPlus forState:UIControlStateNormal];
+                imgVPlus.image=imgPlus;
+				//[plusBtn setImage:imgPlus forState:UIControlStateNormal];
 				secView.backgroundColor = [UIColor whiteColor];
 			}
-			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -280)];
+			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -([UIScreen mainScreen].bounds.size.width-50))];
 			[plusBtn addTarget:self action:@selector(expandTable:) forControlEvents:UIControlEventTouchUpInside];
 			
 			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 38, (secView.frame.size.height - 21)/2, 100, 21)];
@@ -157,6 +164,8 @@
 			[secView addSubview:lblAmount];
 			[secView addSubview:lblSeprator2];
 			
+            [secView addSubview:imgVPlus];
+            
 			return secView;
 		}
 			break;
@@ -172,10 +181,12 @@
 			lblPointsName.textAlignment = NSTextAlignmentLeft;
 			lblPointsName.text = @"Bonus Points";
 			UIImage *imgPlus = [UIImage imageNamed:@"addBtnCircleGrey"];
+            UIImageView* imgVPlus=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-30 , (secView.frame.size.height - 25)/2,25,25)];
+            
 			UIImage *imgMinus = [UIImage imageNamed:@"minusBtnCircleRed"];
 			
 			UIButton *plusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-			plusBtn.frame = CGRectMake(12, (secView.frame.size.height - 25)/2, [[UIScreen mainScreen] bounds].size.width - 24, 25);
+			plusBtn.frame = CGRectMake(12, (secView.frame.size.height - 25)/2, [[UIScreen mainScreen] bounds].size.width - 10, 25);
 			plusBtn.tag = 102;
 			if(selectedPointsType == eBonusPoints)
 			{
@@ -184,10 +195,11 @@
 			}
 			else
 			{
-				[plusBtn setImage:imgPlus forState:UIControlStateNormal];
+                 imgVPlus.image=imgPlus;
+				//[plusBtn setImage:imgPlus forState:UIControlStateNormal];
 				secView.backgroundColor = [UIColor whiteColor];
 			}
-			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -280)];
+			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -([UIScreen mainScreen].bounds.size.width-50))];
 			[plusBtn addTarget:self action:@selector(expandTable:) forControlEvents:UIControlEventTouchUpInside];
 			
 			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 38, (secView.frame.size.height - 21)/2, 100, 21)];
@@ -204,6 +216,7 @@
 			[secView addSubview:lblAmount];
 			[secView addSubview:lblSeprator2];
 			
+             [secView addSubview:imgVPlus];
 			return secView;
 		}
 			break;
@@ -219,10 +232,12 @@
 			lblPointsName.textAlignment = NSTextAlignmentLeft;
 			lblPointsName.text = @"Brand Points";
 			UIImage *imgPlus = [UIImage imageNamed:@"addBtnCircleGrey"];
+            UIImageView* imgVPlus=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-30 , (secView.frame.size.height - 25)/2,25,25)];
+            
 			UIImage *imgMinus = [UIImage imageNamed:@"minusBtnCircleRed"];
 			
 			UIButton *plusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-			plusBtn.frame = CGRectMake(12, (secView.frame.size.height - 25)/2, [[UIScreen mainScreen] bounds].size.width - 24, 25);
+			plusBtn.frame = CGRectMake(12, (secView.frame.size.height - 25)/2, [[UIScreen mainScreen] bounds].size.width - 10, 25);
 			plusBtn.tag = 103;
 			if(selectedPointsType == eBrandPoints)
 			{
@@ -231,10 +246,11 @@
 			}
 			else
 			{
-				[plusBtn setImage:imgPlus forState:UIControlStateNormal];
+                 imgVPlus.image=imgPlus;
+				//[plusBtn setImage:imgPlus forState:UIControlStateNormal];
 				secView.backgroundColor = [UIColor whiteColor];
 			}
-			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -280)];
+			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -([UIScreen mainScreen].bounds.size.width-50))];
 			[plusBtn addTarget:self action:@selector(expandTable:) forControlEvents:UIControlEventTouchUpInside];
 			
 			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 38, (secView.frame.size.height - 21)/2, 100, 21)];
@@ -251,6 +267,7 @@
 			[secView addSubview:lblAmount];
 			[secView addSubview:lblSeprator2];
 			
+             [secView addSubview:imgVPlus];
 			return secView;
 		}
 			break;

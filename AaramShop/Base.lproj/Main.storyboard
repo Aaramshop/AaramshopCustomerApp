@@ -5700,7 +5700,7 @@ Why not start with placing a new order now!</string>
                                 <rect key="frame" x="0.0" y="0.0" width="107" height="95"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="GLf-Ud-F13"/>
+                                    <constraint firstAttribute="height" constant="95" id="b1k-XQ-1TF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -5716,11 +5716,11 @@ Why not start with placing a new order now!</string>
                                     <action selector="btnPoints:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="1g9-rL-ct7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrK-K4-9VO">
-                                <rect key="frame" x="107" y="0.0" width="110" height="95"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrK-K4-9VO">
+                                <rect key="frame" x="107" y="0.0" width="107" height="95"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="YOz-XS-euT"/>
+                                    <constraint firstAttribute="height" constant="95" id="Nfy-0n-GAn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -5736,12 +5736,11 @@ Why not start with placing a new order now!</string>
                                     <action selector="btnMoney:" destination="E49-Tz-xPQ" eventType="touchUpInside" id="Yw6-UX-FuM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaC-6E-IIo">
-                                <rect key="frame" x="217" y="0.0" width="103" height="95"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaC-6E-IIo">
+                                <rect key="frame" x="214" y="0.0" width="107" height="95"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="103" id="ePG-kt-f0V"/>
-                                    <constraint firstAttribute="height" constant="95" id="zZ5-Vj-7rP"/>
+                                    <constraint firstAttribute="height" constant="95" id="TwN-83-LRc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -5766,19 +5765,19 @@ Why not start with placing a new order now!</string>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leading" id="4dp-8n-FcN"/>
-                            <constraint firstItem="DMe-lw-3Us" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="4tO-MZ-WyW"/>
-                            <constraint firstItem="NSp-xJ-3I1" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leading" id="6lv-Z7-6Rv"/>
-                            <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="VrK-K4-9VO" secondAttribute="leading" constant="-107" id="JiZ-SV-lM6"/>
-                            <constraint firstItem="jen-bh-d3e" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="bottom" id="K4t-9b-pv9"/>
-                            <constraint firstAttribute="trailing" secondItem="uaC-6E-IIo" secondAttribute="trailing" id="Okv-Zm-4LM"/>
-                            <constraint firstItem="DMe-lw-3Us" firstAttribute="trailing" secondItem="VrK-K4-9VO" secondAttribute="trailing" constant="-110" id="Wma-Wb-wph"/>
-                            <constraint firstItem="uaC-6E-IIo" firstAttribute="leading" secondItem="VrK-K4-9VO" secondAttribute="leading" constant="110" id="ax9-yd-vB5"/>
-                            <constraint firstAttribute="trailing" secondItem="NSp-xJ-3I1" secondAttribute="trailing" id="g2o-jY-Ytq"/>
-                            <constraint firstItem="VrK-K4-9VO" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="sA1-CN-yMX"/>
-                            <constraint firstItem="NSp-xJ-3I1" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" constant="96" id="ttS-9G-PTC"/>
-                            <constraint firstItem="uaC-6E-IIo" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="vSO-uV-7dg"/>
-                            <constraint firstItem="VrK-K4-9VO" firstAttribute="trailing" secondItem="uaC-6E-IIo" secondAttribute="trailing" constant="-103" id="zD1-T6-UIe"/>
+                            <constraint firstItem="VrK-K4-9VO" firstAttribute="width" secondItem="DMe-lw-3Us" secondAttribute="width" id="1A1-BA-cpV"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="65P-Q2-63S"/>
+                            <constraint firstItem="uaC-6E-IIo" firstAttribute="leading" secondItem="VrK-K4-9VO" secondAttribute="trailing" id="6jC-rQ-tle"/>
+                            <constraint firstItem="jen-bh-d3e" firstAttribute="top" secondItem="NSp-xJ-3I1" secondAttribute="bottom" id="78u-ka-hWm"/>
+                            <constraint firstItem="NSp-xJ-3I1" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" constant="96" id="88R-zw-25S"/>
+                            <constraint firstAttribute="trailing" secondItem="NSp-xJ-3I1" secondAttribute="trailing" id="DJJ-6I-UQ3"/>
+                            <constraint firstItem="uaC-6E-IIo" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="EjG-Vy-EId"/>
+                            <constraint firstAttribute="trailing" secondItem="uaC-6E-IIo" secondAttribute="trailing" id="R0k-I7-bxW"/>
+                            <constraint firstItem="uaC-6E-IIo" firstAttribute="width" secondItem="VrK-K4-9VO" secondAttribute="width" id="l7X-lO-GH5"/>
+                            <constraint firstItem="NSp-xJ-3I1" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leading" id="neO-fT-GHL"/>
+                            <constraint firstItem="VrK-K4-9VO" firstAttribute="leading" secondItem="DMe-lw-3Us" secondAttribute="trailing" id="rkx-lZ-PnV"/>
+                            <constraint firstItem="DMe-lw-3Us" firstAttribute="leading" secondItem="Sv9-Il-sVV" secondAttribute="leading" id="vCk-Li-0h7"/>
+                            <constraint firstItem="VrK-K4-9VO" firstAttribute="top" secondItem="eIh-GE-MjR" secondAttribute="bottom" id="ymA-ae-7q6"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -9153,82 +9152,140 @@ Why not start with placing a new order now!</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pon-yz-5Y3" customClass="AKKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pon-yz-5Y3" customClass="AKKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  Current Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCX-yV-pds">
-                                        <rect key="frame" x="16" y="30" width="288" height="21"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i6l-Er-iqG">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Current Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pO-il-CZM">
+                                                <rect key="frame" x="16" y="35" width="288" height="21"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="K0J-fY-dtF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Password" minimumFontSize="17" background="WhiteSingleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="r87-hW-Efl" customClass="PWTextField">
+                                                <rect key="frame" x="16" y="64" width="288" height="44"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="3cw-q9-FFG"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" returnKeyType="next" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Kco-SR-VhT" id="bRB-Kx-ibY"/>
+                                                </connections>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  New Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ls0-X3-9qu">
+                                                <rect key="frame" x="16" y="116" width="288" height="21"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="tkY-su-42o"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" minimumFontSize="17" background="WhiteSingleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="2et-Sd-f8g" customClass="PWTextField">
+                                                <rect key="frame" x="16" y="145" width="288" height="44"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="75T-4j-M79"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" returnKeyType="next" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Kco-SR-VhT" id="zTH-8b-rgW"/>
+                                                </connections>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Confirm Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVV-7A-a30">
+                                                <rect key="frame" x="16" y="197" width="288" height="21"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="9Pa-uo-w3Q"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" minimumFontSize="17" background="WhiteSingleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="AVq-qf-94W" customClass="PWTextField">
+                                                <rect key="frame" x="16" y="226" width="288" height="44"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="W6p-hU-vTq"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" returnKeyType="done" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Kco-SR-VhT" id="pGf-3q-b9a"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjz-qi-4wb">
+                                                <rect key="frame" x="16" y="286" width="288" height="44"/>
+                                                <animations/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="288" id="EJC-BZ-7Pt"/>
+                                                    <constraint firstAttribute="height" constant="44" id="mRK-FK-S6x"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <state key="normal" title="SUBMIT" backgroundImage="newUserBox.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnSubmit:" destination="Kco-SR-VhT" eventType="touchUpInside" id="Q22-pz-9Mz"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <animations/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                        <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Password" minimumFontSize="17" background="WhiteSingleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="auY-Mk-b7x" customClass="PWTextField">
-                                        <rect key="frame" x="16" y="59" width="288" height="44"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" returnKeyType="next" secureTextEntry="YES"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="Kco-SR-VhT" id="lMV-il-j1Z"/>
-                                        </connections>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  New Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWT-m1-5ef">
-                                        <rect key="frame" x="16" y="111" width="288" height="21"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                        <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" minimumFontSize="17" background="WhiteSingleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="hrR-Yk-qCQ" customClass="PWTextField">
-                                        <rect key="frame" x="16" y="140" width="288" height="44"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" returnKeyType="next" secureTextEntry="YES"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="Kco-SR-VhT" id="9Zc-es-0RO"/>
-                                        </connections>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  Confirm Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCp-tB-ySO">
-                                        <rect key="frame" x="16" y="192" width="288" height="21"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                        <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" minimumFontSize="17" background="WhiteSingleBox.png" translatesAutoresizingMaskIntoConstraints="NO" id="VtN-Wh-ayL" customClass="PWTextField">
-                                        <rect key="frame" x="16" y="221" width="288" height="44"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" returnKeyType="done" secureTextEntry="YES"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="Kco-SR-VhT" id="Eb5-6p-N4x"/>
-                                        </connections>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ou-3R-X3y">
-                                        <rect key="frame" x="16" y="281" width="288" height="44"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                        <state key="normal" title="SUBMIT" backgroundImage="newUserBox.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="btnSubmit:" destination="Kco-SR-VhT" eventType="touchUpInside" id="3nM-Su-JMW"/>
-                                        </connections>
-                                    </button>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="FVV-7A-a30" firstAttribute="top" secondItem="2et-Sd-f8g" secondAttribute="bottom" constant="8" id="MpZ-4M-vSk"/>
+                                            <constraint firstItem="r87-hW-Efl" firstAttribute="top" secondItem="1pO-il-CZM" secondAttribute="bottom" constant="8" id="VLe-Wm-j6R"/>
+                                            <constraint firstItem="ls0-X3-9qu" firstAttribute="top" secondItem="r87-hW-Efl" secondAttribute="bottom" constant="8" id="Y3b-ms-FaK"/>
+                                            <constraint firstItem="2et-Sd-f8g" firstAttribute="top" secondItem="ls0-X3-9qu" secondAttribute="bottom" constant="8" id="feo-Hv-8JX"/>
+                                            <constraint firstItem="rjz-qi-4wb" firstAttribute="top" secondItem="AVq-qf-94W" secondAttribute="bottom" constant="16" id="hlz-w8-iGE"/>
+                                            <constraint firstItem="AVq-qf-94W" firstAttribute="top" secondItem="FVV-7A-a30" secondAttribute="bottom" constant="8" id="jsJ-ov-aWh"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="i6l-Er-iqG" secondAttribute="trailing" id="MDo-oc-YoV"/>
+                                    <constraint firstItem="i6l-Er-iqG" firstAttribute="top" secondItem="Pon-yz-5Y3" secondAttribute="top" id="d99-u2-8PO"/>
+                                    <constraint firstAttribute="bottom" secondItem="i6l-Er-iqG" secondAttribute="bottom" id="p6x-pM-Zby"/>
+                                    <constraint firstItem="i6l-Er-iqG" firstAttribute="leading" secondItem="Pon-yz-5Y3" secondAttribute="leading" id="v6L-uN-Wc7"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pon-yz-5Y3" firstAttribute="leading" secondItem="CJJ-ri-3jo" secondAttribute="leading" id="20d-iB-7mz"/>
+                            <constraint firstAttribute="trailing" secondItem="FVV-7A-a30" secondAttribute="trailing" constant="16" id="4rs-x3-A62"/>
+                            <constraint firstItem="rjz-qi-4wb" firstAttribute="centerX" secondItem="CJJ-ri-3jo" secondAttribute="centerX" id="84e-qF-SYQ"/>
+                            <constraint firstItem="i6l-Er-iqG" firstAttribute="width" secondItem="CJJ-ri-3jo" secondAttribute="width" id="F6o-dG-cQc"/>
+                            <constraint firstAttribute="trailing" secondItem="r87-hW-Efl" secondAttribute="trailing" constant="16" id="IxT-y6-vLf"/>
+                            <constraint firstAttribute="trailing" secondItem="1pO-il-CZM" secondAttribute="trailing" constant="16" id="JI0-qz-JgJ"/>
+                            <constraint firstItem="2et-Sd-f8g" firstAttribute="leading" secondItem="CJJ-ri-3jo" secondAttribute="leading" constant="16" id="QVE-s3-uhL"/>
+                            <constraint firstItem="1pO-il-CZM" firstAttribute="top" secondItem="mu4-wN-BcN" secondAttribute="bottom" constant="15" id="SCZ-hf-c5X"/>
+                            <constraint firstItem="1pO-il-CZM" firstAttribute="leading" secondItem="CJJ-ri-3jo" secondAttribute="leading" constant="16" id="SkQ-HD-EXb"/>
+                            <constraint firstItem="AVq-qf-94W" firstAttribute="leading" secondItem="CJJ-ri-3jo" secondAttribute="leading" constant="16" id="a2G-pB-5SE"/>
+                            <constraint firstItem="5Pu-JZ-TAZ" firstAttribute="top" secondItem="Pon-yz-5Y3" secondAttribute="bottom" id="aZ0-vg-pCg"/>
+                            <constraint firstAttribute="trailing" secondItem="Pon-yz-5Y3" secondAttribute="trailing" id="eGm-V3-REa"/>
+                            <constraint firstAttribute="trailing" secondItem="2et-Sd-f8g" secondAttribute="trailing" constant="16" id="fYg-gp-NXO"/>
+                            <constraint firstItem="Pon-yz-5Y3" firstAttribute="top" secondItem="CJJ-ri-3jo" secondAttribute="top" id="fZD-z9-trB"/>
+                            <constraint firstItem="FVV-7A-a30" firstAttribute="leading" secondItem="CJJ-ri-3jo" secondAttribute="leading" constant="16" id="qRe-nT-3dO"/>
+                            <constraint firstItem="r87-hW-Efl" firstAttribute="leading" secondItem="CJJ-ri-3jo" secondAttribute="leading" constant="16" id="riG-mG-j5h"/>
+                            <constraint firstItem="ls0-X3-9qu" firstAttribute="leading" secondItem="CJJ-ri-3jo" secondAttribute="leading" constant="16" id="sMo-na-fXs"/>
+                            <constraint firstAttribute="trailing" secondItem="ls0-X3-9qu" secondAttribute="trailing" constant="16" id="tyR-2H-lZe"/>
+                            <constraint firstAttribute="trailing" secondItem="AVq-qf-94W" secondAttribute="trailing" constant="16" id="uI6-Ze-kPW"/>
+                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="submitBtn" destination="4ou-3R-X3y" id="XFh-84-A9L"/>
-                        <outlet property="txtConfirmPass" destination="VtN-Wh-ayL" id="Mrj-qq-zi1"/>
-                        <outlet property="txtCurPassword" destination="auY-Mk-b7x" id="iHf-sr-AnY"/>
-                        <outlet property="txtNewPassword" destination="hrR-Yk-qCQ" id="CoZ-AY-guq"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGw-DO-BHu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
