@@ -295,7 +295,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 {
 	if (keyBoardToolBar==nil)
 	{
-		keyBoardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 620 , [[UIScreen mainScreen]bounds].size.width, 40)];
+		keyBoardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 630 , [[UIScreen mainScreen]bounds].size.width, 40)];
 		UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
 		btnCancel.tag = kBtnCancel;
 		

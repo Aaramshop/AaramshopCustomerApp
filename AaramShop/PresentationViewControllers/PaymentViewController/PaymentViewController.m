@@ -1320,7 +1320,7 @@ static NSString *strCollectionItems = @"collectionItems";
 {
     if (keyBoardToolBar==nil)
     {
-        keyBoardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 630 , [UIScreen mainScreen].bounds.size.width, 44)];
+        keyBoardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 630+44 , [UIScreen mainScreen].bounds.size.width, 44)];
         keyBoardToolBar.backgroundColor = [UIColor clearColor];
         
         UIBarButtonItem *tempDistance = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];

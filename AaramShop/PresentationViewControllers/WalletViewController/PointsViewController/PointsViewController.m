@@ -127,6 +127,7 @@
 			UIImage *imgPlus = [UIImage imageNamed:@"addBtnCircleGrey"];
             
             UIImageView* imgVPlus=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-30 , (secView.frame.size.height - 25)/2,25,25)];
+            UIImageView* imgVMinus=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-30 , (secView.frame.size.height - 25)/2,25,25)];
           
             
             
@@ -138,7 +139,8 @@
 			plusBtn.tag = 101;
 			if(selectedPointsType == eAaramPoints)
 			{
-				[plusBtn setImage:imgMinus forState:UIControlStateNormal];
+                imgVMinus.image=imgMinus;
+				//[plusBtn setImage:imgMinus forState:UIControlStateNormal];
 				secView.backgroundColor = [UIColor colorWithRed:244/255.0f green:244/255.0f blue:244/255.0f alpha:1.0f];
 			}
 			else
@@ -165,6 +167,7 @@
 			[secView addSubview:lblSeprator2];
 			
             [secView addSubview:imgVPlus];
+            [secView addSubview:imgVMinus];
             
 			return secView;
 		}
@@ -182,6 +185,7 @@
 			lblPointsName.text = @"Bonus Points";
 			UIImage *imgPlus = [UIImage imageNamed:@"addBtnCircleGrey"];
             UIImageView* imgVPlus=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-30 , (secView.frame.size.height - 25)/2,25,25)];
+            UIImageView* imgVMinus=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-30 , (secView.frame.size.height - 25)/2,25,25)];
             
 			UIImage *imgMinus = [UIImage imageNamed:@"minusBtnCircleRed"];
 			
@@ -190,7 +194,8 @@
 			plusBtn.tag = 102;
 			if(selectedPointsType == eBonusPoints)
 			{
-				[plusBtn setImage:imgMinus forState:UIControlStateNormal];
+				imgVMinus.image=imgMinus;
+                //[plusBtn setImage:imgMinus forState:UIControlStateNormal];
 				secView.backgroundColor = [UIColor colorWithRed:244/255.0f green:244/255.0f blue:244/255.0f alpha:1.0f];
 			}
 			else
@@ -217,6 +222,8 @@
 			[secView addSubview:lblSeprator2];
 			
              [secView addSubview:imgVPlus];
+             [secView addSubview:imgVMinus];
+            
 			return secView;
 		}
 			break;
@@ -233,6 +240,7 @@
 			lblPointsName.text = @"Brand Points";
 			UIImage *imgPlus = [UIImage imageNamed:@"addBtnCircleGrey"];
             UIImageView* imgVPlus=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-30 , (secView.frame.size.height - 25)/2,25,25)];
+            UIImageView* imgVMinus=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-30 , (secView.frame.size.height - 25)/2,25,25)];
             
 			UIImage *imgMinus = [UIImage imageNamed:@"minusBtnCircleRed"];
 			
@@ -241,7 +249,8 @@
 			plusBtn.tag = 103;
 			if(selectedPointsType == eBrandPoints)
 			{
-				[plusBtn setImage:imgMinus forState:UIControlStateNormal];
+                imgVMinus.image=imgMinus;
+				//[plusBtn setImage:imgMinus forState:UIControlStateNormal];
 				secView.backgroundColor = [UIColor colorWithRed:244/255.0f green:244/255.0f blue:244/255.0f alpha:1.0f];
 			}
 			else
@@ -268,6 +277,8 @@
 			[secView addSubview:lblSeprator2];
 			
              [secView addSubview:imgVPlus];
+             [secView addSubview:imgVMinus];
+            
 			return secView;
 		}
 			break;

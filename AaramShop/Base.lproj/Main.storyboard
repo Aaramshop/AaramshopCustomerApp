@@ -385,6 +385,14 @@
                                         <color key="textColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="preferencesLocationAddCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="MNe-L2-RH9">
+                                        <rect key="frame" x="287" y="7" width="25" height="25"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="DSx-7D-RsC"/>
+                                            <constraint firstAttribute="height" constant="25" id="H6M-2d-Qgd"/>
+                                        </constraints>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISS-Jp-gR4">
                                         <rect key="frame" x="8" y="9" width="244" height="22"/>
                                         <animations/>
@@ -402,7 +410,7 @@
                                             <constraint firstAttribute="height" constant="25" id="NSO-ti-rQr"/>
                                             <constraint firstAttribute="width" constant="304" id="R7c-UG-00J"/>
                                         </constraints>
-                                        <state key="normal" image="preferencesLocationAddCircle.png">
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -422,7 +430,9 @@
                                     <constraint firstAttribute="trailing" secondItem="iMk-iP-RxU" secondAttribute="trailing" constant="8" id="Nrb-Qm-Yq3"/>
                                     <constraint firstAttribute="trailing" secondItem="Ph0-Ep-vQ2" secondAttribute="trailing" id="QC6-2M-6MF"/>
                                     <constraint firstItem="Ph0-Ep-vQ2" firstAttribute="top" secondItem="ISS-Jp-gR4" secondAttribute="top" constant="-9" id="Wz7-xj-vb3"/>
+                                    <constraint firstAttribute="trailing" secondItem="MNe-L2-RH9" secondAttribute="trailing" constant="8" id="b7n-Rm-3Sg"/>
                                     <constraint firstItem="Ph0-Ep-vQ2" firstAttribute="top" secondItem="Mon-Yu-gva" secondAttribute="top" id="eWR-zW-Hct"/>
+                                    <constraint firstItem="MNe-L2-RH9" firstAttribute="centerY" secondItem="Mon-Yu-gva" secondAttribute="centerY" id="gOv-GT-lE8"/>
                                     <constraint firstItem="ISS-Jp-gR4" firstAttribute="leading" secondItem="Mon-Yu-gva" secondAttribute="leading" constant="8" id="wOM-mI-aWt"/>
                                     <constraint firstAttribute="trailing" secondItem="ISS-Jp-gR4" secondAttribute="trailing" constant="68" id="wsd-Yv-PvO"/>
                                     <constraint firstItem="fJ8-b9-KNL" firstAttribute="leading" secondItem="Mon-Yu-gva" secondAttribute="leading" id="zYq-oq-miW"/>
@@ -701,7 +711,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="72Q-c4-LjA" secondAttribute="bottom" constant="98" id="9Wq-Of-sOG"/>
-                                            <constraint firstAttribute="width" constant="320" id="DDE-He-EMu"/>
                                             <constraint firstItem="72Q-c4-LjA" firstAttribute="top" secondItem="3fQ-vB-gVx" secondAttribute="top" constant="170" id="HTQ-pn-pfa"/>
                                             <constraint firstAttribute="height" constant="732" id="Nda-Xm-qkS"/>
                                             <constraint firstItem="72Q-c4-LjA" firstAttribute="leading" secondItem="3fQ-vB-gVx" secondAttribute="leading" id="mGb-Xx-xv3"/>
@@ -713,6 +722,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="3fQ-vB-gVx" secondAttribute="trailing" id="RHa-Us-3LI"/>
                                     <constraint firstItem="3fQ-vB-gVx" firstAttribute="top" secondItem="reW-U3-grL" secondAttribute="top" id="jx4-au-1ar"/>
+                                    <constraint firstItem="3fQ-vB-gVx" firstAttribute="width" secondItem="reW-U3-grL" secondAttribute="width" id="s9f-Sb-eIg"/>
                                     <constraint firstAttribute="bottom" secondItem="3fQ-vB-gVx" secondAttribute="bottom" constant="-106" id="tEg-t4-c8y"/>
                                     <constraint firstItem="3fQ-vB-gVx" firstAttribute="leading" secondItem="reW-U3-grL" secondAttribute="leading" id="u8k-W8-6Ri"/>
                                 </constraints>
@@ -5288,12 +5298,12 @@ Why not start with placing a new order now!</string>
                                                     <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAY-JG-M1v" userLabel="Button - Add">
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAY-JG-M1v" userLabel="Button - Add">
                                                     <rect key="frame" x="285" y="31" width="30" height="30"/>
                                                     <animations/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="KQ3-0w-SkD"/>
-                                                        <constraint firstAttribute="width" constant="30" id="MWA-dN-Puv"/>
+                                                        <constraint firstAttribute="height" constant="30" id="BWa-6g-oT0"/>
+                                                        <constraint firstAttribute="width" constant="30" id="YZj-W4-3JG"/>
                                                     </constraints>
                                                     <state key="normal" image="addIconCircle.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -5314,26 +5324,31 @@ Why not start with placing a new order now!</string>
                                             <constraints>
                                                 <constraint firstItem="pqD-Im-oSv" firstAttribute="leading" secondItem="Hy6-HT-xYi" secondAttribute="leading" constant="83" id="52W-RC-mCr"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="9fl-JU-uH2" secondAttribute="trailing" constant="94" id="5bh-fv-mEr"/>
+                                                <constraint firstItem="lSa-G9-RYF" firstAttribute="leading" secondItem="84H-pk-wzH" secondAttribute="trailing" id="94O-LK-1xU"/>
                                                 <constraint firstItem="miO-r5-CSy" firstAttribute="top" secondItem="9fl-JU-uH2" secondAttribute="top" constant="-24" id="Alb-y5-QdR"/>
-                                                <constraint firstItem="JAY-JG-M1v" firstAttribute="top" secondItem="UyZ-Jj-jke" secondAttribute="topMargin" constant="23" id="Ddk-3c-lcZ"/>
                                                 <constraint firstItem="Hy6-HT-xYi" firstAttribute="top" secondItem="UyZ-Jj-jke" secondAttribute="topMargin" constant="-1" id="EIq-eA-JHk"/>
                                                 <constraint firstItem="miO-r5-CSy" firstAttribute="top" secondItem="UyZ-Jj-jke" secondAttribute="topMargin" constant="5" id="ENk-Bb-5fo"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="JAY-JG-M1v" secondAttribute="trailing" constant="-3" id="IfY-jw-ja6"/>
                                                 <constraint firstItem="flO-W9-s90" firstAttribute="leading" secondItem="Hy6-HT-xYi" secondAttribute="leading" constant="83" id="JTZ-he-VR0"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="pqD-Im-oSv" secondAttribute="trailing" constant="72" id="MKM-gK-adJ"/>
-                                                <constraint firstItem="lSa-G9-RYF" firstAttribute="trailing" secondItem="84H-pk-wzH" secondAttribute="trailing" constant="30" id="NtP-CB-hu2"/>
                                                 <constraint firstItem="Hy6-HT-xYi" firstAttribute="leading" secondItem="miO-r5-CSy" secondAttribute="leading" constant="-83" id="Pda-aw-VoX"/>
                                                 <constraint firstItem="lSa-G9-RYF" firstAttribute="top" secondItem="UyZ-Jj-jke" secondAttribute="topMargin" constant="23" id="RAb-ZN-hG1"/>
                                                 <constraint firstItem="84H-pk-wzH" firstAttribute="top" secondItem="UyZ-Jj-jke" secondAttribute="topMargin" constant="23" id="Tak-JV-e5e"/>
                                                 <constraint firstItem="flO-W9-s90" firstAttribute="leading" secondItem="9fl-JU-uH2" secondAttribute="leading" constant="-62" id="aWc-LA-lhr"/>
-                                                <constraint firstItem="lSa-G9-RYF" firstAttribute="trailing" secondItem="JAY-JG-M1v" secondAttribute="trailing" constant="-30" id="bEQ-Gk-JfT"/>
                                                 <constraint firstItem="flO-W9-s90" firstAttribute="top" secondItem="miO-r5-CSy" secondAttribute="top" constant="24" id="ens-mY-ZrL"/>
                                                 <constraint firstItem="pqD-Im-oSv" firstAttribute="top" secondItem="flO-W9-s90" secondAttribute="top" constant="18" id="ipE-uk-Sgk"/>
                                                 <constraint firstItem="miO-r5-CSy" firstAttribute="trailing" secondItem="UyZ-Jj-jke" secondAttribute="trailingMargin" id="nxK-WA-gcY"/>
+                                                <constraint firstItem="lSa-G9-RYF" firstAttribute="leading" secondItem="84H-pk-wzH" secondAttribute="trailing" id="oaQ-15-mh0"/>
                                                 <constraint firstItem="Hy6-HT-xYi" firstAttribute="leading" secondItem="UyZ-Jj-jke" secondAttribute="leading" constant="8" id="osh-JV-RiN"/>
+                                                <constraint firstItem="JAY-JG-M1v" firstAttribute="leading" secondItem="lSa-G9-RYF" secondAttribute="trailing" id="zuc-RX-oVq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstItem="lSa-G9-RYF" firstAttribute="centerY" secondItem="M5C-Lb-29c" secondAttribute="centerY" id="75F-0u-0c9"/>
+                                            <constraint firstItem="84H-pk-wzH" firstAttribute="centerY" secondItem="M5C-Lb-29c" secondAttribute="centerY" id="S7a-Xa-wij"/>
+                                            <constraint firstItem="JAY-JG-M1v" firstAttribute="top" secondItem="M5C-Lb-29c" secondAttribute="top" constant="31" id="r2F-sh-JiP"/>
+                                            <constraint firstAttribute="trailing" secondItem="JAY-JG-M1v" secondAttribute="trailing" constant="5" id="wvV-aD-RDr"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="btnAdd" destination="JAY-JG-M1v" id="h8V-UJ-HLM"/>
                                             <outlet property="btnRemove" destination="84H-pk-wzH" id="Y7T-dD-OyL"/>
@@ -5402,9 +5417,13 @@ Why not start with placing a new order now!</string>
                                                     <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAb-mp-7Mj" userLabel="Button - Remove">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAb-mp-7Mj" userLabel="Button - Remove">
                                                     <rect key="frame" x="225" y="40" width="30" height="30"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="7N3-7V-Z3l"/>
+                                                        <constraint firstAttribute="height" constant="30" id="tRG-Nl-OxB"/>
+                                                    </constraints>
                                                     <state key="normal" image="minusIconCircle.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -5412,9 +5431,24 @@ Why not start with placing a new order now!</string>
                                                         <action selector="btnRemoveClicked:" destination="tOA-D3-7ky" eventType="touchUpInside" id="kk0-Vp-JF3"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLe-fb-i86" userLabel="Button - Add">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fW-ZY-lZh" userLabel="Label - Counter">
+                                                    <rect key="frame" x="255" y="40" width="30" height="30"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="dky-o2-YMR"/>
+                                                        <constraint firstAttribute="height" constant="30" id="lnz-G8-u7l"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                    <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLe-fb-i86" userLabel="Button - Add">
                                                     <rect key="frame" x="285" y="40" width="30" height="30"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="rk1-6P-TWn"/>
+                                                        <constraint firstAttribute="height" constant="30" id="vUa-rc-gBD"/>
+                                                    </constraints>
                                                     <state key="normal" image="addIconCircle.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -5422,17 +5456,20 @@ Why not start with placing a new order now!</string>
                                                         <action selector="btnAddClicked:" destination="tOA-D3-7ky" eventType="touchUpInside" id="oRV-DD-J4k"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fW-ZY-lZh" userLabel="Label - Counter">
-                                                    <rect key="frame" x="255" y="40" width="30" height="30"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
-                                                    <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstItem="7fW-ZY-lZh" firstAttribute="leading" secondItem="xAb-mp-7Mj" secondAttribute="trailing" id="CSS-aJ-ymR"/>
+                                                <constraint firstItem="PLe-fb-i86" firstAttribute="leading" secondItem="7fW-ZY-lZh" secondAttribute="trailing" id="jOj-bd-qvS"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="PLe-fb-i86" secondAttribute="trailing" constant="5" id="44G-M4-9Sw"/>
+                                            <constraint firstItem="xAb-mp-7Mj" firstAttribute="centerY" secondItem="tOA-D3-7ky" secondAttribute="centerY" id="4H2-GI-ybv"/>
+                                            <constraint firstItem="PLe-fb-i86" firstAttribute="centerY" secondItem="tOA-D3-7ky" secondAttribute="centerY" id="4vE-aa-Qgu"/>
+                                            <constraint firstItem="7fW-ZY-lZh" firstAttribute="centerY" secondItem="tOA-D3-7ky" secondAttribute="centerY" id="izv-7T-zoO"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="btnAdd" destination="PLe-fb-i86" id="Utv-MF-O5h"/>
                                             <outlet property="btnRemove" destination="xAb-mp-7Mj" id="LUN-rH-uap"/>
@@ -5548,7 +5585,7 @@ Why not start with placing a new order now!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFb-eR-QRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2234" y="4113"/>
+            <point key="canvasLocation" x="2211" y="4024"/>
         </scene>
         <!--Item-->
         <scene sceneID="HJN-Ww-XI7">
@@ -5859,15 +5896,23 @@ Why not start with placing a new order now!</string>
                                                     <color key="textColor" red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1W-Oq-r5c">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y1W-Oq-r5c">
                                                     <rect key="frame" x="261" y="11" width="42" height="21"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="42" id="1s0-DH-enx"/>
+                                                        <constraint firstAttribute="height" constant="21" id="8XF-vg-Z9a"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                     <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="y1W-Oq-r5c" secondAttribute="trailing" constant="9" id="g7T-h5-Xaz"/>
+                                                <constraint firstItem="y1W-Oq-r5c" firstAttribute="centerY" secondItem="l5H-ou-G8g" secondAttribute="centerY" id="vsD-3b-0qT"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
@@ -7296,8 +7341,8 @@ Why not start with placing a new order now!</string>
                                                     <color key="textColor" red="0.83529411764705885" green="0.83529411764705885" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" tag="301" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="26r-1s-syN">
-                                                    <rect key="frame" x="0.0" y="33" width="160" height="44"/>
+                                                <button opaque="NO" tag="301" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="26r-1s-syN">
+                                                    <rect key="frame" x="0.0" y="33" width="149" height="44"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="zuo-4t-J6S"/>
@@ -7341,10 +7386,10 @@ Why not start with placing a new order now!</string>
                                                 <constraint firstItem="08M-Ki-TNw" firstAttribute="top" secondItem="093-QX-z75" secondAttribute="top" constant="25" id="5Y3-za-Lbk"/>
                                                 <constraint firstItem="08M-Ki-TNw" firstAttribute="leading" secondItem="xkM-u5-ujG" secondAttribute="leading" id="8pP-SR-AQW"/>
                                                 <constraint firstAttribute="trailing" secondItem="08M-Ki-TNw" secondAttribute="trailing" id="Kgc-5b-h45"/>
+                                                <constraint firstItem="fA7-Hz-ySb" firstAttribute="leading" secondItem="26r-1s-syN" secondAttribute="trailing" id="LYf-TO-ebK"/>
                                                 <constraint firstItem="093-QX-z75" firstAttribute="leading" secondItem="xkM-u5-ujG" secondAttribute="leadingMargin" constant="2" id="NZp-nX-Sq0"/>
                                                 <constraint firstItem="km2-et-lYh" firstAttribute="top" secondItem="08M-Ki-TNw" secondAttribute="top" id="Tu7-j4-fGH"/>
                                                 <constraint firstItem="km2-et-lYh" firstAttribute="leading" secondItem="26r-1s-syN" secondAttribute="leading" constant="161" id="c5h-EZ-yv9"/>
-                                                <constraint firstItem="26r-1s-syN" firstAttribute="trailing" secondItem="km2-et-lYh" secondAttribute="trailing" constant="-160" id="epx-dU-plb"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="093-QX-z75" secondAttribute="trailing" constant="2" id="fkx-4K-3hH"/>
                                                 <constraint firstItem="fA7-Hz-ySb" firstAttribute="leading" secondItem="26r-1s-syN" secondAttribute="leading" constant="160" id="pBb-oo-HfW"/>
                                                 <constraint firstItem="093-QX-z75" firstAttribute="top" secondItem="xkM-u5-ujG" secondAttribute="topMargin" id="qnJ-Fp-nIK"/>
@@ -7381,7 +7426,7 @@ Why not start with placing a new order now!</string>
                                                     <color key="textColor" red="0.83529411760000005" green="0.83529411760000005" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" tag="401" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFn-eG-BCg">
+                                                <button opaque="NO" tag="401" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFn-eG-BCg">
                                                     <rect key="frame" x="10" y="39" width="281" height="42"/>
                                                     <animations/>
                                                     <constraints>
@@ -7393,28 +7438,20 @@ Why not start with placing a new order now!</string>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sideArrowGrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="mFk-1Q-c1W">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sideArrowGrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="mFk-1Q-c1W">
                                                     <rect key="frame" x="299" y="53" width="13" height="13"/>
                                                     <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="13" id="47R-rL-ZUs"/>
-                                                        <constraint firstAttribute="height" constant="13" id="4F0-j7-bZz"/>
-                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstItem="gLv-LT-VvA" firstAttribute="top" secondItem="IjI-gb-BpK" secondAttribute="topMargin" constant="-2" id="33O-nn-Lsq"/>
                                                 <constraint firstAttribute="trailing" secondItem="6kP-TV-0yy" secondAttribute="trailing" id="9OK-hr-qrX"/>
-                                                <constraint firstItem="mFk-1Q-c1W" firstAttribute="trailing" secondItem="IjI-gb-BpK" secondAttribute="trailingMargin" id="Dd1-kB-ykR"/>
-                                                <constraint firstItem="6kP-TV-0yy" firstAttribute="top" secondItem="mFk-1Q-c1W" secondAttribute="top" constant="-20" id="Dwt-oN-Hzl"/>
-                                                <constraint firstItem="iFn-eG-BCg" firstAttribute="leading" secondItem="mFk-1Q-c1W" secondAttribute="leading" constant="-289" id="LR5-f6-Lqe"/>
                                                 <constraint firstItem="iFn-eG-BCg" firstAttribute="leading" secondItem="IjI-gb-BpK" secondAttribute="leadingMargin" constant="2" id="P9x-SH-AQz"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="gLv-LT-VvA" secondAttribute="trailing" constant="2" id="Tkj-Pj-m2N"/>
                                                 <constraint firstItem="6kP-TV-0yy" firstAttribute="leading" secondItem="IjI-gb-BpK" secondAttribute="leading" id="VWC-qc-jML"/>
                                                 <constraint firstItem="gLv-LT-VvA" firstAttribute="leading" secondItem="IjI-gb-BpK" secondAttribute="leadingMargin" constant="2" id="g9f-t6-fpU"/>
                                                 <constraint firstItem="gLv-LT-VvA" firstAttribute="top" secondItem="6kP-TV-0yy" secondAttribute="top" constant="-27" id="nbi-i4-CmM"/>
-                                                <constraint firstItem="iFn-eG-BCg" firstAttribute="trailing" secondItem="mFk-1Q-c1W" secondAttribute="trailing" constant="-21" id="qLJ-AM-91z"/>
                                                 <constraint firstItem="iFn-eG-BCg" firstAttribute="top" secondItem="6kP-TV-0yy" secondAttribute="top" constant="6" id="xZp-rW-w4L"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -9473,13 +9510,16 @@ Why not start with placing a new order now!</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-6l-spl">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mw4-6l-spl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Nk-6H-B7O">
+                                    <searchBar contentMode="redraw" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Nk-6H-B7O">
                                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="8Dl-YY-cZF"/>
+                                        </constraints>
                                         <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -9489,6 +9529,12 @@ Why not start with placing a new order now!</string>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="0Nk-6H-B7O" secondAttribute="trailing" id="CFU-ns-y5u"/>
+                                    <constraint firstItem="0Nk-6H-B7O" firstAttribute="leading" secondItem="mw4-6l-spl" secondAttribute="leading" id="QSC-zb-LZS"/>
+                                    <constraint firstItem="0Nk-6H-B7O" firstAttribute="top" secondItem="mw4-6l-spl" secondAttribute="top" constant="20" id="hQG-QY-23t"/>
+                                    <constraint firstAttribute="height" constant="64" id="lZg-Ih-HaG"/>
+                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Fdg-Ir-DIv">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
@@ -9504,8 +9550,11 @@ Why not start with placing a new order now!</string>
                         <animations/>
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="mw4-6l-spl" firstAttribute="top" secondItem="Ubi-hp-oq6" secondAttribute="bottom" constant="-20" id="6nb-dy-tHo"/>
                             <constraint firstAttribute="centerX" secondItem="Fdg-Ir-DIv" secondAttribute="centerX" id="7NF-6S-g8C"/>
                             <constraint firstItem="JqZ-NA-9Ag" firstAttribute="top" secondItem="Fdg-Ir-DIv" secondAttribute="bottom" id="7UF-FO-WZ2"/>
+                            <constraint firstItem="mw4-6l-spl" firstAttribute="leading" secondItem="e7z-fc-EFV" secondAttribute="leading" id="GDY-Vs-0pL"/>
+                            <constraint firstAttribute="trailing" secondItem="mw4-6l-spl" secondAttribute="trailing" id="Igp-pZ-ncD"/>
                             <constraint firstAttribute="width" secondItem="Fdg-Ir-DIv" secondAttribute="width" id="M9h-Bo-1gE"/>
                             <constraint firstItem="Fdg-Ir-DIv" firstAttribute="top" secondItem="Ubi-hp-oq6" secondAttribute="bottom" constant="44" id="kUe-Mu-2Y2"/>
                         </constraints>
@@ -9532,13 +9581,16 @@ Why not start with placing a new order now!</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FZD-xx-AEw">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZD-xx-AEw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zak-4P-GW3">
+                                    <searchBar contentMode="redraw" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zak-4P-GW3">
                                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="H6z-9y-Hu7"/>
+                                        </constraints>
                                         <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -9548,6 +9600,12 @@ Why not start with placing a new order now!</string>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Zak-4P-GW3" firstAttribute="leading" secondItem="FZD-xx-AEw" secondAttribute="leading" id="7t1-80-Zzp"/>
+                                    <constraint firstItem="Zak-4P-GW3" firstAttribute="top" secondItem="FZD-xx-AEw" secondAttribute="top" constant="20" id="Cyw-IS-q0s"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zak-4P-GW3" secondAttribute="trailing" id="ECe-PY-VHa"/>
+                                    <constraint firstAttribute="height" constant="64" id="MJF-zY-kOQ"/>
+                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Oaz-2o-wyL">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
@@ -9563,8 +9621,11 @@ Why not start with placing a new order now!</string>
                         <animations/>
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="FZD-xx-AEw" firstAttribute="top" secondItem="wJB-ID-dFz" secondAttribute="bottom" constant="-20" id="CwS-OC-73a"/>
                             <constraint firstItem="G5K-np-bgs" firstAttribute="top" secondItem="Oaz-2o-wyL" secondAttribute="bottom" id="FCa-vk-Trm"/>
                             <constraint firstItem="Oaz-2o-wyL" firstAttribute="width" secondItem="rId-bD-Ecw" secondAttribute="width" id="GSa-K2-Fbu"/>
+                            <constraint firstAttribute="trailing" secondItem="FZD-xx-AEw" secondAttribute="trailing" id="IR1-i1-YGV"/>
+                            <constraint firstItem="FZD-xx-AEw" firstAttribute="leading" secondItem="rId-bD-Ecw" secondAttribute="leading" id="Oi6-pT-ELP"/>
                             <constraint firstItem="Oaz-2o-wyL" firstAttribute="top" secondItem="wJB-ID-dFz" secondAttribute="bottom" constant="44" id="VFn-xT-QeD"/>
                             <constraint firstAttribute="centerX" secondItem="Oaz-2o-wyL" secondAttribute="centerX" id="eZR-aH-3h0"/>
                         </constraints>
@@ -10070,13 +10131,16 @@ Why not start with placing a new order now!</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LgH-77-E8C">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LgH-77-E8C">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Start typing to search a Product or Stores" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ygb-ih-b0V">
+                                    <searchBar contentMode="redraw" placeholder="Start typing to search a Product or Stores" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ygb-ih-b0V">
                                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="vaD-Mb-enM"/>
+                                        </constraints>
                                         <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -10086,6 +10150,12 @@ Why not start with placing a new order now!</string>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="5cc-cb-DCa"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ygb-ih-b0V" secondAttribute="trailing" id="MuC-Lm-dgg"/>
+                                    <constraint firstItem="Ygb-ih-b0V" firstAttribute="top" secondItem="LgH-77-E8C" secondAttribute="top" constant="20" id="fFL-iX-mab"/>
+                                    <constraint firstItem="Ygb-ih-b0V" firstAttribute="leading" secondItem="LgH-77-E8C" secondAttribute="leading" id="mo2-3X-7tN"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start typing to search a Product or Stores" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dp-Bi-GI0" userLabel="Label - Message">
                                 <rect key="frame" x="10" y="264" width="300" height="60"/>
@@ -10113,11 +10183,14 @@ Why not start with placing a new order now!</string>
                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="vLc-pP-6zN" firstAttribute="top" secondItem="gaf-uj-bQJ" secondAttribute="bottom" id="3rG-Hd-5O0"/>
+                            <constraint firstItem="LgH-77-E8C" firstAttribute="leading" secondItem="Nla-qT-X2e" secondAttribute="leading" id="Iqr-pX-C7J"/>
                             <constraint firstItem="gaf-uj-bQJ" firstAttribute="top" secondItem="cHJ-Nt-8EF" secondAttribute="bottom" constant="44" id="JgD-vG-c4J"/>
                             <constraint firstAttribute="centerX" secondItem="6dp-Bi-GI0" secondAttribute="centerX" id="LxA-F9-bX1"/>
+                            <constraint firstItem="LgH-77-E8C" firstAttribute="top" secondItem="cHJ-Nt-8EF" secondAttribute="bottom" constant="-20" id="M9I-6d-zFV"/>
                             <constraint firstAttribute="width" secondItem="gaf-uj-bQJ" secondAttribute="width" id="Png-pk-bq1"/>
                             <constraint firstAttribute="centerY" secondItem="6dp-Bi-GI0" secondAttribute="centerY" constant="-10" id="cBc-9N-dke"/>
                             <constraint firstAttribute="centerX" secondItem="gaf-uj-bQJ" secondAttribute="centerX" id="tdP-6f-uB7"/>
+                            <constraint firstAttribute="trailing" secondItem="LgH-77-E8C" secondAttribute="trailing" id="xAN-Pj-fts"/>
                         </constraints>
                     </view>
                     <connections>
@@ -10170,39 +10243,60 @@ Why not start with placing a new order now!</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vvI-S3-kuw">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vvI-S3-kuw">
                                                     <rect key="frame" x="16" y="7" width="25" height="25"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="d5f-qq-j1M"/>
+                                                        <constraint firstAttribute="width" constant="25" id="hEu-dX-Sk2"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKM-ba-bzp">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKM-ba-bzp">
                                                     <rect key="frame" x="49" y="9" width="263" height="21"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="xdI-h8-VBz"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                     <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-nO-px1">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-nO-px1">
                                                     <rect key="frame" x="4" y="36" width="312" height="1"/>
                                                     <animations/>
                                                     <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="IVV-4K-sXW"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5j5-i9-y41">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5j5-i9-y41">
                                                     <rect key="frame" x="4" y="41" width="60" height="60"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="ImE-7L-Jn7"/>
+                                                        <constraint firstAttribute="height" constant="60" id="Zwj-r0-Ifd"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="sasasasasasa asdas ascs dsads " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJ2-fm-6SA">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sasasasasasa asdas ascs dsads " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJ2-fm-6SA">
                                                     <rect key="frame" x="72" y="41" width="154" height="33"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="33" id="c3l-mo-IWZ"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
                                                     <color key="textColor" red="0.17254901959999999" green="0.17254901959999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0w-Km-zZ9" userLabel="Button - Remove">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0w-Km-zZ9" userLabel="Button - Remove">
                                                     <rect key="frame" x="226" y="56" width="30" height="30"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="JPO-n5-fyg"/>
+                                                        <constraint firstAttribute="width" constant="30" id="XfQ-AO-DWi"/>
+                                                    </constraints>
                                                     <state key="normal" image="minusIconCircle.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -10210,16 +10304,24 @@ Why not start with placing a new order now!</string>
                                                         <action selector="btnMinus:" destination="F7F-m5-f5A" eventType="touchUpInside" id="LHQ-rX-9xZ"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ryo-aS-5VJ" userLabel="Label - Counter">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ryo-aS-5VJ" userLabel="Label - Counter">
                                                     <rect key="frame" x="256" y="56" width="30" height="30"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="63b-ri-q0G"/>
+                                                        <constraint firstAttribute="height" constant="30" id="aUd-2t-JfG"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
                                                     <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMw-xV-PW7" userLabel="Button - Add">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMw-xV-PW7" userLabel="Button - Add">
                                                     <rect key="frame" x="286" y="56" width="30" height="30"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="2xO-5z-LYi"/>
+                                                        <constraint firstAttribute="width" constant="30" id="LDK-Po-YQe"/>
+                                                    </constraints>
                                                     <state key="normal" image="addIconCircle.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -10227,15 +10329,19 @@ Why not start with placing a new order now!</string>
                                                         <action selector="btnPlus:" destination="F7F-m5-f5A" eventType="touchUpInside" id="A5I-l6-ygx"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="₹10000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEW-zV-Uqq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="₹10000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEW-zV-Uqq">
                                                     <rect key="frame" x="72" y="80" width="58" height="21"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="58" id="ANX-mC-LpM"/>
+                                                        <constraint firstAttribute="height" constant="21" id="dYt-9g-4Q2"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                     <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szw-IX-f65">
-                                                    <rect key="frame" x="84" y="90" width="39" height="1"/>
+                                                    <rect key="frame" x="57" y="90" width="39" height="1"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -10251,8 +10357,34 @@ Why not start with placing a new order now!</string>
                                                 </label>
                                             </subviews>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstItem="cKM-ba-bzp" firstAttribute="leading" secondItem="vvI-S3-kuw" secondAttribute="trailing" constant="8" id="9tV-MO-fzC"/>
+                                                <constraint firstItem="sJ2-fm-6SA" firstAttribute="leading" secondItem="5j5-i9-y41" secondAttribute="trailing" constant="8" id="J7j-Nm-RqN"/>
+                                                <constraint firstItem="5j5-i9-y41" firstAttribute="top" secondItem="cIg-nO-px1" secondAttribute="bottom" constant="4" id="ULo-WV-OEw"/>
+                                                <constraint firstItem="sJ2-fm-6SA" firstAttribute="top" secondItem="cIg-nO-px1" secondAttribute="bottom" constant="4" id="VUz-QM-Mtf"/>
+                                                <constraint firstItem="JEW-zV-Uqq" firstAttribute="leading" secondItem="5j5-i9-y41" secondAttribute="trailing" constant="8" id="Xjd-Fv-uh6"/>
+                                                <constraint firstItem="ZMw-xV-PW7" firstAttribute="leading" secondItem="Ryo-aS-5VJ" secondAttribute="trailing" id="fY4-Rt-xCU"/>
+                                                <constraint firstItem="f0w-Km-zZ9" firstAttribute="leading" secondItem="sJ2-fm-6SA" secondAttribute="trailing" id="iH5-48-hqY"/>
+                                                <constraint firstItem="Ryo-aS-5VJ" firstAttribute="leading" secondItem="f0w-Km-zZ9" secondAttribute="trailing" id="j1o-LT-bjx"/>
+                                                <constraint firstItem="cKM-ba-bzp" firstAttribute="top" secondItem="vvI-S3-kuw" secondAttribute="bottom" constant="-23" id="nAH-a1-XiZ"/>
+                                                <constraint firstItem="cIg-nO-px1" firstAttribute="top" secondItem="cKM-ba-bzp" secondAttribute="bottom" constant="6" id="o0Y-92-6NO"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="cKM-ba-bzp" secondAttribute="trailing" constant="8" id="7mP-AN-qMV"/>
+                                            <constraint firstItem="cIg-nO-px1" firstAttribute="leading" secondItem="F7F-m5-f5A" secondAttribute="leading" constant="4" id="94H-dr-vB4"/>
+                                            <constraint firstItem="f0w-Km-zZ9" firstAttribute="centerY" secondItem="F7F-m5-f5A" secondAttribute="centerY" constant="17" id="B2k-Gh-Hje"/>
+                                            <constraint firstItem="vvI-S3-kuw" firstAttribute="leading" secondItem="F7F-m5-f5A" secondAttribute="leading" constant="16" id="Gq9-Hw-jNX"/>
+                                            <constraint firstItem="vvI-S3-kuw" firstAttribute="top" secondItem="F7F-m5-f5A" secondAttribute="top" constant="7" id="HMJ-qb-Pge"/>
+                                            <constraint firstItem="ZMw-xV-PW7" firstAttribute="centerY" secondItem="F7F-m5-f5A" secondAttribute="centerY" constant="17" id="aQi-vC-k6i"/>
+                                            <constraint firstItem="Ryo-aS-5VJ" firstAttribute="centerY" secondItem="F7F-m5-f5A" secondAttribute="centerY" constant="17" id="fg6-Yy-ulA"/>
+                                            <constraint firstAttribute="trailing" secondItem="cIg-nO-px1" secondAttribute="trailing" constant="4" id="gxP-dy-8Gv"/>
+                                            <constraint firstAttribute="trailing" secondItem="5j5-i9-y41" secondAttribute="trailing" constant="256" id="kdY-ax-Twi"/>
+                                            <constraint firstItem="5j5-i9-y41" firstAttribute="leading" secondItem="F7F-m5-f5A" secondAttribute="leading" constant="4" id="l15-90-deV"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZMw-xV-PW7" secondAttribute="trailing" constant="4" id="qMc-J3-MLc"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="btnMinus" destination="f0w-Km-zZ9" id="LQH-CZ-7A7"/>
                                             <outlet property="btnPlus" destination="ZMw-xV-PW7" id="rm8-3C-PeG"/>

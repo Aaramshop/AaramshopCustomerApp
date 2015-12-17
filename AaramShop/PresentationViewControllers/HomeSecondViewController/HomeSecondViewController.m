@@ -134,6 +134,7 @@
 	
 	NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"CategoryView" owner:self options:nil];
 	UIView * secView = (UIView *)[objects objectAtIndex:0];
+    secView.frame=CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 170);
 	UIView *arrowView = (UIView *)[secView viewWithTag:100];
 	UIButton *btnCategory = (UIButton *)[arrowView viewWithTag:1000];
 	
