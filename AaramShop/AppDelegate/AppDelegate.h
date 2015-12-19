@@ -19,7 +19,7 @@
 	__weak NSObject <SMMessageDelegate> *_messageDelegate;
 
 }
-
+@property (nonatomic,strong) NSString* currentPhone;
 
 // Core Data
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

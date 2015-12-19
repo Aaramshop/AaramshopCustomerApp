@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26434BA71C2593400065D38D /* CountryCodeList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26434BA61C2593400065D38D /* CountryCodeList.plist */; };
 		274929AB1B03CE3E008ACEFD /* CustomNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 274929AA1B03CE3E008ACEFD /* CustomNavigationView.m */; };
 		274929B51B03DC10008ACEFD /* indianFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = 274929B21B03DC10008ACEFD /* indianFlag.png */; };
 		274929B61B03DC10008ACEFD /* indianFlag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 274929B31B03DC10008ACEFD /* indianFlag@2x.png */; };
@@ -1511,6 +1512,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26434BA61C2593400065D38D /* CountryCodeList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CountryCodeList.plist; sourceTree = "<group>"; };
 		274929A91B03CE3E008ACEFD /* CustomNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationView.h; sourceTree = "<group>"; };
 		274929AA1B03CE3E008ACEFD /* CustomNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationView.m; sourceTree = "<group>"; };
 		274929B21B03DC10008ACEFD /* indianFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indianFlag.png; sourceTree = "<group>"; };
@@ -6009,6 +6011,7 @@
 		6B12DC861AF22C8100245209 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				26434BA61C2593400065D38D /* CountryCodeList.plist */,
 				36AEB7761B83BAD10048C2B1 /* MapClasses */,
 				6B570DFD1B721E7800F27515 /* Audio */,
 				36CA64371B6F6CC700A3BBB1 /* Protocols.h */,
@@ -8069,6 +8072,7 @@
 				368209D51B1C46FA002AA93F /* Osterreich.png in Resources */,
 				274A5DDC1B05C88B009112B5 /* Read.png in Resources */,
 				368AFEDF1B383AEB00417836 /* shopingProductOne@2x.png in Resources */,
+				26434BA71C2593400065D38D /* CountryCodeList.plist in Resources */,
 				274A5DAD1B05C88B009112B5 /* btnArrow@2x.png in Resources */,
 				6B0A00E51B949AD400A2577A /* checkAvialibilityBox@3x.png in Resources */,
 				274A5DC11B05C88B009112B5 /* chatPauseIconWhite@2x.png in Resources */,

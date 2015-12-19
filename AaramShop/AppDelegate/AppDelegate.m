@@ -29,13 +29,13 @@
 @synthesize objStoreModel = _objStoreModel;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    NSLocale *theLocale = [NSLocale currentLocale];
-    NSString *currencySymbol = [theLocale objectForKey:NSLocaleCurrencySymbol];
-    NSString *currencyCode = [theLocale objectForKey:NSLocaleCurrencyCode];
+    // fetching country code based on the number..............
     
-    [[NSUserDefaults standardUserDefaults] setObject:currencySymbol forKey:kCurrencySymbol];
-    [[NSUserDefaults standardUserDefaults] setObject:currencyCode forKey:kCurrencyCode];
-
+    
+    
+//    NSLocale *theLocale = [NSLocale currentLocale];
+//    NSString *currencySymbol = [theLocale objectForKey:NSLocaleCurrencySymbol];
+//    NSString *currencyCode = [theLocale objectForKey:NSLocaleCurrencyCode];
     
     
      [Fabric with:@[CrashlyticsKit]];
