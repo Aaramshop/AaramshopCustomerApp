@@ -73,7 +73,7 @@
     
     //// offer - begin ///    
     
-    NSString *strRupee = @"\u20B9";
+    NSString *strRupee = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
     NSString *strActualPrice = [NSString stringWithFormat:@"%@ %@",strRupee,tempProductModel.product_price];
 
     

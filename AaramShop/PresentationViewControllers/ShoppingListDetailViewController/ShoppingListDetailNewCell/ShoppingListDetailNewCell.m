@@ -44,7 +44,7 @@
     }
     
 
-    NSString *strRupee = @"\u20B9";
+    NSString *strRupee =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
     NSString *strAmount = productsModel.product_price;
 
     lblProductPerUnitPrice.text = [NSString stringWithFormat:@"%@ %@",strRupee,strAmount];

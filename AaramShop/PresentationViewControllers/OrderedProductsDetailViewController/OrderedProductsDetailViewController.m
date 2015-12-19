@@ -196,7 +196,7 @@
     lblAmount.font = [UIFont fontWithName:kRobotoBold size:16];
     lblAmount.textColor = [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0];
     
-    NSString *strRupee = @"\u20B9";
+    NSString *strRupee = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
     lblAmount.text = [NSString stringWithFormat:@"%@ %@",strRupee,_orderHist.total_cart_value];
     
     

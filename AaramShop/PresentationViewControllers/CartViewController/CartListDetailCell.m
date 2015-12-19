@@ -105,7 +105,7 @@
     
     
     lblCounter.text		= tempProductModel.strCount;
-    lblPrice.text			=	[NSString stringWithFormat:@"₹%@",tempProductModel.product_price];
+    lblPrice.text			=	[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol],tempProductModel.product_price];
 
     
     

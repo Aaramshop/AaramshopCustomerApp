@@ -308,7 +308,7 @@
     lblTotalPrice.textColor = [UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0];
     lblTotalPrice.textAlignment = NSTextAlignmentRight;
     
-    NSString *strRupee  = @"\u20B9";
+    NSString *strRupee  = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
     
     lblTotalPrice.text = [NSString stringWithFormat:@"%@ %ld",strRupee,countTotalProductPrice];
     
@@ -379,7 +379,7 @@
     
     
     
-    NSString *strRupee  = @"\u20B9";
+    NSString *strRupee  = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
     
     //
     UILabel *lblTotalAmountValue = [[UILabel alloc]initWithFrame:CGRectMake((btnDone.frame.origin.x - (100 + 10)), 0, 100, view.frame.size.height)];

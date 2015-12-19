@@ -29,7 +29,7 @@
 		
 		[self setBackgroundColor:[UIColor whiteColor]];
 		
-		strRupee = @"\u20B9";
+		strRupee =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
 		imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
 		imgView.layer.cornerRadius = imgView.bounds.size.width/2;
 		imgView.layer.masksToBounds = YES;

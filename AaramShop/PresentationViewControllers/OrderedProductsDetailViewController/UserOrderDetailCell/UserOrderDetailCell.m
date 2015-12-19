@@ -63,7 +63,7 @@
         //
         
         //
-        NSString *strRupee = @"\u20B9";
+        NSString *strRupee =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
         
         NSInteger totalPrice = [orderDetailModel.price integerValue]*[orderDetailModel.quantity integerValue];
         lblTotalPrice.text = [NSString stringWithFormat:@"%@ %ld",strRupee,(long)totalPrice];
@@ -107,7 +107,7 @@
         //
         
         //
-        NSString *strRupee = @"\u20B9";
+        NSString *strRupee =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
         
         NSInteger totalPrice = [orderDetailModel.offer_price integerValue]*[orderDetailModel.quantity integerValue];
         lblTotalPrice.text = [NSString stringWithFormat:@"%@ %ld",strRupee,(long)totalPrice];
@@ -164,7 +164,7 @@
         //
         
         //
-        NSString *strRupee = @"\u20B9";
+        NSString *strRupee =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
         
         NSInteger totalPrice = [orderDetailModel.combo_offer_price integerValue]*[orderDetailModel.quantity integerValue];
         lblTotalPrice.text = [NSString stringWithFormat:@"%@ %ld",strRupee,totalPrice];

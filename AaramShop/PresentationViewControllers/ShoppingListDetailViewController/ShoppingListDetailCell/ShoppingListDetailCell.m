@@ -73,8 +73,8 @@
 
     //// offer - begin ///
     
-    NSString *strRupee = @"\u20B9";
-    NSString *strActualPrice = [NSString stringWithFormat:@"%@ %@",strRupee,tempProductModel.product_price];
+    NSString *strRupee =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
+    NSString *strActualPrice = [NSString stringWithFormat:@"%@ %@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol ],tempProductModel.product_price];
     
     
     
@@ -91,7 +91,7 @@
         
         
         lblPrice.attributedText = actPriceAttrString;
-        lblOfferPrice.text = [NSString stringWithFormat:@"%@ %@",strRupee,tempProductModel.offer_price];
+        lblOfferPrice.text = [NSString stringWithFormat:@"%@ %@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol],tempProductModel.offer_price];
         
     }
     else

@@ -66,7 +66,7 @@
 
     
     ////
-    NSString *strRupee = @"\u20B9";
+    NSString *strRupee = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
     lblTotalAmount.text = [NSString stringWithFormat:@"%@ %@",strRupee, objStoreData.total_product_price];
     
     

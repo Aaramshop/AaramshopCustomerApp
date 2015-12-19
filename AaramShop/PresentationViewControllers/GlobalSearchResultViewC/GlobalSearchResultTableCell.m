@@ -60,7 +60,7 @@
 	{
 		lblLine.hidden = NO;
 		lblOfferPrice.hidden = NO;
-		lblOfferPrice.text = [NSString stringWithFormat:@"₹%@",objProductsModel.offer_price];
+		lblOfferPrice.text = [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol],objProductsModel.offer_price];
 		strCount = [AppManager getCountOfProduct:objProductsModel.offer_id withOfferType:objProductsModel.offer_type forStore_id:objProductsModel.store_id];
 	}
 	else
@@ -87,7 +87,8 @@
 		}
 	}];
 	lblProductName.text= objProductsModel.product_name;
-	lblPrice.text = [NSString stringWithFormat:@"₹%@",objProductsModel.product_price];
+    
+	lblPrice.text = [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults] valueForKey:kCurrencySymbol],objProductsModel.product_price];
 	lblCount.text = strCount;
 	lblStoreName.text = objProductsModel.store_name;
 	[imgStore sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objProductsModel.store_image]] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {

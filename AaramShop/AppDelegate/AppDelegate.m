@@ -15,6 +15,7 @@
 #import "RetailerOfferViewController.h"
 #import "OrderHistViewController.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "Constants.h"
 
 @interface AppDelegate ()
 {
@@ -27,6 +28,16 @@
 @synthesize tabBarControllerRetailer = _tabBarControllerRetailer;
 @synthesize objStoreModel = _objStoreModel;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    NSLocale *theLocale = [NSLocale currentLocale];
+    NSString *currencySymbol = [theLocale objectForKey:NSLocaleCurrencySymbol];
+    NSString *currencyCode = [theLocale objectForKey:NSLocaleCurrencyCode];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:currencySymbol forKey:kCurrencySymbol];
+    [[NSUserDefaults standardUserDefaults] setObject:currencyCode forKey:kCurrencyCode];
+
+    
+    
      [Fabric with:@[CrashlyticsKit]];
     [self initializeAllSingletonObjects];
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];

@@ -30,7 +30,7 @@
 		
 		[self setBackgroundColor:[UIColor whiteColor]];
 		
-		strRupee = @"\u20B9";
+		strRupee =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
 		imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
 		imgView.layer.cornerRadius = imgView.bounds.size.width/2;
 		imgView.layer.masksToBounds = YES;
@@ -103,6 +103,6 @@
     
     [imgView sd_setImageWithURL:[NSURL URLWithString:product.product_image] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {}];
     lblProductName.text = product.product_name;
-    lblProductPrice.text = [NSString stringWithFormat:@"%@ %@",strRupee,product.product_price];
+    lblProductPrice.text = [NSString stringWithFormat:@"%@ %@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol],product.product_price];
 }
 @end

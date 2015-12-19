@@ -31,7 +31,8 @@
 #define kRobotoBold											@"Roboto-Bold"
 #define kRobotoRegular									@"Roboto-Regular"
 #define kRobotoMedium									@"Roboto-Medium"
-
+#define kCurrencySymbol                                 @"CurrencySymbol"
+#define kCurrencyCode                                   @"CurrencyCode"
 #define kFontHandSean										@"Sean"
 
 

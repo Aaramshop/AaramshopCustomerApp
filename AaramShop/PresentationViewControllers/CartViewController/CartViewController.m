@@ -171,7 +171,7 @@
     
     
     
-    NSString *strRupee = @"\u20B9";
+    NSString *strRupee =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
 	
 	NSInteger strAmount = 0;
 	NSInteger intTotalProducts = 0;

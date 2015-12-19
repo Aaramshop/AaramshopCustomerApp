@@ -66,7 +66,7 @@
         lblStoreName.text = offers.store_name; // added on 17 Sep 2015 ...
     
 		lblbrandName.text = offers.offerTitle;
-		lblPrice.text = [NSString stringWithFormat:@"₹%@",offers.offer_price];
+		lblPrice.text = [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol],offers.offer_price];
 		lblOfferPrice.text = @"";
 		lblDescription.text = offers.offerDescription;
 		[lblLine setHidden:YES];

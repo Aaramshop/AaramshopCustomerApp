@@ -21,8 +21,8 @@
 	// Do any additional setup after loading the view.
 	[self setNavigationBar];
 	if (self.offersModel.combo_mrp == nil ) {
-		lblActualPrice.text		= [NSString stringWithFormat:@"₹%@", self.cartProductModel.product_price];
-		lblOfferPrice.text		=	[NSString stringWithFormat:@"₹%@", self.cartProductModel.offer_price];
+		lblActualPrice.text		= [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol], self.cartProductModel.product_price];
+		lblOfferPrice.text		=	[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol], self.cartProductModel.offer_price];
 		lblOfferName.text		=	self.cartProductModel.offerTitle;
 		lblValidTill.text			=	[NSString stringWithFormat:@"Valid till %@",self.offersModel.end_date];
 		[imgViewOffer sd_setImageWithURL:[NSURL URLWithString:self.cartProductModel.cartProductImage] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -32,8 +32,8 @@
 	}
 	else
 	{
-	lblActualPrice.text		= [NSString stringWithFormat:@"₹%@", self.offersModel.combo_mrp];
-	lblOfferPrice.text		=	[NSString stringWithFormat:@"₹%@", self.offersModel.combo_offer_price];
+	lblActualPrice.text		= [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol], self.offersModel.combo_mrp];
+	lblOfferPrice.text		=	[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol], self.offersModel.combo_offer_price];
 	lblOfferName.text		=	self.offersModel.offerTitle;
 	
 	[imgViewOffer sd_setImageWithURL:[NSURL URLWithString:self.offersModel.offerImage] placeholderImage:[UIImage imageNamed:@"chooseCategoryDefaultImage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -129,7 +129,7 @@
 		//
 	}];
 	lblName.text						= product.product_name;
-	lblPrice.text						= [NSString stringWithFormat:@"₹%@", product.product_price ];
+	lblPrice.text						= [NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol], product.product_price ];
 	
 	
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

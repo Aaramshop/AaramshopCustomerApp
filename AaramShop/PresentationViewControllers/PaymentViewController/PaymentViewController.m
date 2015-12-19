@@ -431,7 +431,7 @@ static NSString *strCollectionItems = @"collectionItems";
 			min_order_value =[responseObject objectForKey:@"minimum_order_value" ];
 			if([strTotalPrice integerValue] < [[responseObject objectForKey:@"minimum_order_value" ] integerValue])
 			{
-				[self showPopupWithMessage:[NSString stringWithFormat:@"Minimum order value for this store is ₹%@. Please add more products.",[responseObject objectForKey:@"minimum_order_value" ]]];
+				[self showPopupWithMessage:[NSString stringWithFormat:@"Minimum order value for this store is %@%@. Please add more products.",[[NSUserDefaults standardUserDefaults] valueForKey:kCurrencySymbol],[responseObject objectForKey:@"minimum_order_value" ]]];
 			}
 		}
 		else
@@ -1190,7 +1190,7 @@ static NSString *strCollectionItems = @"collectionItems";
     lblPrice.textColor				=	[UIColor colorWithRed:44.0/255.0 green:44.0/255.0 blue:44.0/255.0 alpha:1.0];
     lblPrice.textAlignment		=	NSTextAlignmentCenter;
     lblPrice.font						=	[UIFont fontWithName:kRobotoRegular size:11.0];
-    lblPrice.text						=	[NSString stringWithFormat:@"₹%@",objProductModel.product_price];
+    lblPrice.text						=	[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol],objProductModel.product_price];
 	
 	UILabel *lblLine					=	[[UILabel alloc]initWithFrame:CGRectMake(5, 67.5, 42, 1)];
 	lblLine.backgroundColor	=	[UIColor blackColor];
@@ -1201,7 +1201,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	lblOfferPrice.textColor			=	[UIColor redColor];
 	lblOfferPrice.textAlignment	=	NSTextAlignmentCenter;
 	lblOfferPrice.font					=	[UIFont fontWithName:kRobotoRegular size:11.0];
-	lblOfferPrice.text					=	[NSString stringWithFormat:@"₹%@",objProductModel.offer_price];
+	lblOfferPrice.text					=	[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol],objProductModel.offer_price];
 
 	
     [imgProfilePic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",objProductModel.product_image]] placeholderImage:[UIImage imageNamed:@""] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {

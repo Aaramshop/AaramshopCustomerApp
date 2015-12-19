@@ -34,7 +34,7 @@
 
     
 	
-	strRupee = @"\u20B9";
+	strRupee =[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol]];
 	
 	lblCustomerName.text = _orderHist.store_name;
 	imgCustomer.layer.cornerRadius = imgCustomer.frame.size.width/2;
