@@ -225,6 +225,7 @@
 //    {
 //        self.imgViewBackground.image = [UIImage imageNamed:@"chatBg.png"];
 //    }
+    
     [_btnBack setExclusiveTouch:YES];
     [_btnUserImage setExclusiveTouch:YES];
     
@@ -4623,7 +4624,8 @@ didFinishSavingWithError:(NSError *)error
 //    [self.inputToolbar.textView setSelectedRange: aRange];
 }
 
--(void)customEmoticonsClicked:(NSString *)emoticonName{
+-(void)customEmoticonsClicked:(NSString *)emoticonName
+{
     
     
     

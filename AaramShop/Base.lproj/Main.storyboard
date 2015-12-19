@@ -4824,16 +4824,24 @@ Why not start with placing a new order now!</string>
                                                             <action selector="btnReceived:" destination="xtL-Dr-u0t" eventType="touchUpInside" id="Lmz-93-L4m"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkD-Fa-y50">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkD-Fa-y50">
                                                         <rect key="frame" x="21" y="80" width="60" height="21"/>
                                                         <animations/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="60" id="7U9-3N-O01"/>
+                                                            <constraint firstAttribute="height" constant="21" id="JNo-NI-Df7"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                         <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xs2-bw-DaS">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xs2-bw-DaS">
                                                         <rect key="frame" x="130" y="80" width="60" height="21"/>
                                                         <animations/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="VO3-Do-FOZ"/>
+                                                            <constraint firstAttribute="width" constant="60" id="f9A-8y-gey"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                         <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -4849,9 +4857,13 @@ Why not start with placing a new order now!</string>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                     </button>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="6:40 AM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUB-G6-dNo">
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6:40 AM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUB-G6-dNo">
                                                         <rect key="frame" x="237" y="80" width="60" height="21"/>
                                                         <animations/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="60" id="Dfu-nk-ZOM"/>
+                                                            <constraint firstAttribute="height" constant="21" id="qF7-lJ-Dqs"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                                         <color key="textColor" red="0.47450980390000003" green="0.47450980390000003" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -4862,17 +4874,23 @@ Why not start with placing a new order now!</string>
                                                 <constraints>
                                                     <constraint firstItem="LEY-kj-KVA" firstAttribute="top" secondItem="4SR-OC-jjY" secondAttribute="top" id="0E9-yu-3sb"/>
                                                     <constraint firstItem="3S7-WE-jXR" firstAttribute="leading" secondItem="gYh-Ru-LJi" secondAttribute="trailing" constant="1" id="82M-Cm-PFa"/>
+                                                    <constraint firstItem="fkD-Fa-y50" firstAttribute="top" secondItem="gYh-Ru-LJi" secondAttribute="top" constant="80" id="8Yr-JS-Yfh"/>
                                                     <constraint firstItem="LEY-kj-KVA" firstAttribute="leading" secondItem="3S7-WE-jXR" secondAttribute="trailing" constant="1" id="AQS-m4-HP4"/>
                                                     <constraint firstItem="3S7-WE-jXR" firstAttribute="top" secondItem="4SR-OC-jjY" secondAttribute="top" id="CBG-mS-8zR"/>
                                                     <constraint firstItem="gYh-Ru-LJi" firstAttribute="top" secondItem="4SR-OC-jjY" secondAttribute="top" id="CdJ-6b-Ljp"/>
+                                                    <constraint firstItem="cUB-G6-dNo" firstAttribute="top" secondItem="LEY-kj-KVA" secondAttribute="bottom" constant="-26" id="F4e-sY-wxO"/>
                                                     <constraint firstItem="L7s-ID-M4P" firstAttribute="leading" secondItem="4SR-OC-jjY" secondAttribute="leading" id="T4S-if-Bzf"/>
                                                     <constraint firstItem="3S7-WE-jXR" firstAttribute="width" secondItem="LEY-kj-KVA" secondAttribute="width" id="YO1-7L-vKt"/>
+                                                    <constraint firstItem="fkD-Fa-y50" firstAttribute="centerX" secondItem="gYh-Ru-LJi" secondAttribute="centerX" constant="-3" id="cDl-mS-ppc"/>
                                                     <constraint firstAttribute="height" constant="112" id="f3a-DU-iYV"/>
                                                     <constraint firstItem="L7s-ID-M4P" firstAttribute="top" secondItem="4SR-OC-jjY" secondAttribute="top" constant="2" id="fNm-Av-Tge"/>
+                                                    <constraint firstItem="Xs2-bw-DaS" firstAttribute="top" secondItem="3S7-WE-jXR" secondAttribute="bottom" constant="-26" id="hdT-GM-zyZ"/>
                                                     <constraint firstItem="gYh-Ru-LJi" firstAttribute="leading" secondItem="4SR-OC-jjY" secondAttribute="leading" constant="1" id="lcT-Kf-s9F"/>
                                                     <constraint firstAttribute="trailing" secondItem="LEY-kj-KVA" secondAttribute="trailing" constant="-1" id="n6N-6l-THW"/>
                                                     <constraint firstItem="gYh-Ru-LJi" firstAttribute="width" secondItem="3S7-WE-jXR" secondAttribute="width" id="p1R-3z-3cf"/>
+                                                    <constraint firstItem="cUB-G6-dNo" firstAttribute="centerX" secondItem="LEY-kj-KVA" secondAttribute="centerX" constant="-1" id="plu-fh-6Bq"/>
                                                     <constraint firstAttribute="trailing" secondItem="L7s-ID-M4P" secondAttribute="trailing" id="sgo-92-4pa"/>
+                                                    <constraint firstItem="Xs2-bw-DaS" firstAttribute="centerX" secondItem="3S7-WE-jXR" secondAttribute="centerX" constant="-1" id="uI6-5V-UcQ"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhE-Tz-wq1">
@@ -9894,6 +9912,11 @@ Why not start with placing a new order now!</string>
                             <constraint firstAttribute="trailing" secondItem="AVq-qf-94W" secondAttribute="trailing" constant="16" id="uI6-Ze-kPW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="txtConfirmPass" destination="AVq-qf-94W" id="T6U-MD-dVw"/>
+                        <outlet property="txtCurPassword" destination="r87-hW-Efl" id="nYa-MH-kkX"/>
+                        <outlet property="txtNewPassword" destination="2et-Sd-f8g" id="nLQ-xZ-TTF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGw-DO-BHu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
