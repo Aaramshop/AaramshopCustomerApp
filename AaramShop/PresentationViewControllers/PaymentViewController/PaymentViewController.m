@@ -1302,7 +1302,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	{
 		btnPay.enabled = YES;
 
-		[Utils showAlertView:kAlertTitle message:[NSString stringWithFormat:@"Minimum order value for this store is ₹%@. Please add more products.",min_order_value] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		[Utils showAlertView:kAlertTitle message:[NSString stringWithFormat:@"Minimum order value for this store is %@%@. Please add more products.",[[NSUserDefaults standardUserDefaults]valueForKey:kCurrencySymbol],min_order_value] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 	}
 	else if([coupon_code length]>0 && isCouponValid == -1)
 	{
