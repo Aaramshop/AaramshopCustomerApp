@@ -192,28 +192,7 @@
 			[gCXMPPController connect];
 			[AppManager saveUserDatainUserDefault];
 			[[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessfulNotificationName object:self userInfo:nil];
-
-            // Follwing code  used for the internationalization.........................
-            NSNumber* tStr;
-            for (NSString* str in [responseObject allKeys])
-            {
-                if([str isEqualToString:@"countryCode"])
-                {
-                    tStr=[responseObject objectForKey:@"countryCode"];
-                }
-            }
-            NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"CountryCodeList" ofType:@"plist"];
-            NSArray *plistData = [[NSArray alloc] initWithContentsOfFile:plistPath];
-            for (NSDictionary* tDic in plistData)
-            {
-               
-                    if([tDic objectForKey:@"Country Code"]==tStr)
-                    {
-                        [[NSUserDefaults standardUserDefaults] setObject:[tDic objectForKey:@"Country Symbol"] forKey:kCurrencySymbol];
-                     
-                    }
-            }
-         
+            [self updateCurrencySymbol:responseObject];
 		}
 		else if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"Registered But not Verified. OTP Sent!"])
 		{
@@ -228,6 +207,31 @@
 			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		}
 	}
+}
+-(void)updateCurrencySymbol:(id)responseObject
+{
+    // Follwing code  used for the internationalization.......by Shahul
+    NSNumber* tStr;
+    for (NSString* str in [responseObject allKeys])
+    {
+        if([str isEqualToString:@"countryCode"])
+        {
+            tStr=[responseObject objectForKey:@"countryCode"];
+        }
+    }
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"CountryCodeList" ofType:@"plist"];
+    NSArray *plistData = [[NSArray alloc] initWithContentsOfFile:plistPath];
+    for (NSDictionary* tDic in plistData)
+    {
+        
+        if([tDic objectForKey:@"Country Code"]==tStr)
+        {
+            [[NSUserDefaults standardUserDefaults] setObject:[tDic objectForKey:@"Country Symbol"] forKey:kCurrencySymbol];
+            
+        }
+    }
+
+    
 }
 #pragma mark - parseDate
 - (void)parseData:(id)responseObject
