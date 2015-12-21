@@ -22,7 +22,7 @@
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
 	aaramShop_ConnectionManager.delegate = self;
     
-    
+    [self updateBtnFrames];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     if([[UIScreen mainScreen] bounds].size.height==480)
@@ -261,6 +261,56 @@
     }
 }
 
-
+- (void)updateBtnFrames
+{
+    CGFloat spacing = 6.0;
+    
+    // lower the text and push it left so it appears centered
+    //  below the image
+    CGSize imageSize = packedBtn.imageView.image.size;
+    packedBtn.titleEdgeInsets = UIEdgeInsetsMake(
+                                                    0.0, - imageSize.width, - (imageSize.height + spacing), 0.0);
+    
+    // raise the image and push it right so it appears centered
+    //  above the text
+    CGSize titleSize = [packedBtn.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: packedBtn.titleLabel.font}];
+    packedBtn.imageEdgeInsets = UIEdgeInsetsMake(
+                                                    - (titleSize.height + spacing), 0.0, 0.0, - titleSize.width);
+//    [packedBtn setFrame: CGRectMake( 25 ,0 , (screenWitdth-60)/2, 80)];
+    
+    
+    
+    
+    
+    CGSize imageSizeDist = dispatchedBtn.imageView.image.size;
+    dispatchedBtn.titleEdgeInsets = UIEdgeInsetsMake(
+                                                 0.0, - imageSizeDist.width, - (imageSizeDist.height + spacing), 0.0);
+    
+    // raise the image and push it right so it appears centered
+    //  above the text
+    CGSize titleSizeDist = [dispatchedBtn.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: dispatchedBtn.titleLabel.font}];
+    dispatchedBtn.imageEdgeInsets = UIEdgeInsetsMake(
+                                                 - (titleSizeDist.height + spacing), 0.0, 0.0, - titleSizeDist.width);
+    
+    
+    
+    
+    
+    
+    
+    
+    CGSize imageSizeRec = receivedBtn.imageView.image.size;
+    receivedBtn.titleEdgeInsets = UIEdgeInsetsMake(
+                                                 0.0, - imageSizeRec.width, - (imageSizeRec.height + spacing), 0.0);
+    
+    // raise the image and push it right so it appears centered
+    //  above the text
+    CGSize titleSizeRec = [receivedBtn.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: receivedBtn.titleLabel.font}];
+    receivedBtn.imageEdgeInsets = UIEdgeInsetsMake(
+                                                 - (titleSizeRec.height + spacing), 0.0, 0.0, - titleSizeRec.width);
+    
+    
+    
+}
 
 @end

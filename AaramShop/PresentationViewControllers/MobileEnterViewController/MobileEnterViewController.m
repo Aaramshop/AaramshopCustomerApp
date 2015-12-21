@@ -212,6 +212,7 @@
 }
 -(void)updateCurrencySymbol:(id)responseObject
 {
+    
     // Follwing code  used for the internationalization.......by Shahul
     NSNumber* tStr;
     for (NSString* str in [responseObject allKeys])
