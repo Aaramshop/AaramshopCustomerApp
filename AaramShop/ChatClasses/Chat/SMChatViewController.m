@@ -3126,7 +3126,7 @@
     }
     
     NSData * mediaData = [SHFileUtil readFileFromCache:fileNameWihExt];
-    NSString *api =[NSString stringWithFormat:@"%@chat",kBaseURL];
+    NSString *api =[NSString stringWithFormat:@"%@chat",gURLManager.baseUrl];
     
     UIView *aChatView = [inMsgDic objectForKey:@"view"];
     CustomUplaodingView *

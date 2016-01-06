@@ -32,6 +32,7 @@
 #define kRobotoRegular									@"Roboto-Regular"
 #define kRobotoMedium									@"Roboto-Medium"
 #define kCurrencySymbol                                 @"CurrencySymbol"
+#define kCountryCode									@"countryCode"
 #define kCurrencyCode                                   @"CurrencyCode"
 #define kFontHandSean										@"Sean"
 
@@ -57,8 +58,8 @@
 #pragma mark - Common keys
 
 #define APP_DELEGATE (AppDelegate*)[[UIApplication sharedApplication]delegate]
-
-#define kBaseURL												@"http://www.aaramshop.co.in/api/index.php/user/"
+#define kBaseURL													@"baseUrl"
+//#define kBaseURL												@"http://www.aaramshop.co.in/api/index.php/user/"
 //#define kBaseURL												@"http://52.74.220.25/api/index.php/user/"
 //#define kBaseURL												@"http://52.74.220.25/index.php/user/"
 

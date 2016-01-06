@@ -109,7 +109,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 {
     BOOL responseIsValid = YES;
     NSError *validationError = nil;
-
+	NSString *strResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if (response && [response isKindOfClass:[NSHTTPURLResponse class]]) {
         if (self.acceptableContentTypes && ![self.acceptableContentTypes containsObject:[response MIMEType]]) {
             if ([data length] > 0 && [response URL]) {

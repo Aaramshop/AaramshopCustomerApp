@@ -168,6 +168,7 @@
 		if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"OTP Sent!"]) {
 			
 				MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
+				[self saveDataForInternationalisation:responseObject];
 				[self.navigationController pushViewController:mobileVerificationVwController animated:YES];
 			
 		}
@@ -178,6 +179,7 @@
 				
 					UpdateMobileViewController *updateVwController =              (UpdateMobileViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"UpdateMobileScreen" ];
 					[AppManager saveDataToNSUserDefaults:responseObject];
+				[self saveDataForInternationalisation:responseObject];
 					[self.navigationController pushViewController:updateVwController animated:YES];
 			
 				
@@ -192,12 +194,13 @@
 			[gCXMPPController connect];
 			[AppManager saveUserDatainUserDefault];
 			[[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccessfulNotificationName object:self userInfo:nil];
-            [self updateCurrencySymbol:responseObject];
+            [self saveDataForInternationalisation:responseObject];
 		}
 		else if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kMessage] isEqualToString:@"Registered But not Verified. OTP Sent!"])
 		{
 			MobileVerificationViewController *mobileVerificationVwController =              (MobileVerificationViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MobileVerificationScreen" ];
 			[AppManager saveDataToNSUserDefaults:responseObject];
+			[self saveDataForInternationalisation:responseObject];
 			[self.navigationController pushViewController:mobileVerificationVwController animated:YES];
 			
 		}
@@ -232,6 +235,22 @@
     }
 
     
+}
+- (void)saveDataForInternationalisation:(id)responseObject
+{
+	NSString *countryCode = [NSString stringWithFormat:@"%@", [responseObject objectForKey:@"countryCode"]];
+	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"CountryCodeList" ofType:@"plist"];
+	NSArray *plistData = [[NSArray alloc] initWithContentsOfFile:plistPath];
+	for (NSDictionary* aDic in plistData)
+	{
+		NSString *curCountryCode =[NSString stringWithFormat:@"%@", [aDic objectForKey:@"Country Code"]];
+		if([curCountryCode isEqualToString:countryCode])
+		{
+			[[NSUserDefaults standardUserDefaults] setObject:curCountryCode forKey:kCountryCode];
+			NSString *curCountrySymbol =[NSString stringWithFormat:@"%@", [aDic objectForKey:@"Country Symbol"]];
+			[[NSUserDefaults standardUserDefaults] setObject:curCountrySymbol forKey:kCurrencySymbol];
+		}
+	}
 }
 #pragma mark - parseDate
 - (void)parseData:(id)responseObject

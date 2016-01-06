@@ -16,6 +16,7 @@
 #import "OrderHistViewController.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "Constants.h"
+#import "URLManager.h"
 
 @interface AppDelegate ()
 {
@@ -40,6 +41,15 @@
     
      [Fabric with:@[CrashlyticsKit]];
     [self initializeAllSingletonObjects];
+	NSString* currentVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+	NSString* versionOfLastRun = [[NSUserDefaults standardUserDefaults] objectForKey:@"versionOfLastRun"];
+	if (versionOfLastRun == nil)
+		[URLManager locateDeviceRegion:NO];
+	else
+		[URLManager locateDeviceRegion:YES];
+	[[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:@"versionOfLastRun"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 	isLoggedIn = NO;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -560,6 +570,7 @@
 {
 	[CXMPPController sharedXMPPController];
 	[AppManager sharedManager];
+	[URLManager sharedManager];
 }
 
 -(SMChatViewController *)createChatViewByChatUserNameIfNeeded:(NSString *)inChatUser

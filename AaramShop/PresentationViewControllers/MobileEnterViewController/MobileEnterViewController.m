@@ -26,7 +26,7 @@
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
     aaramShop_ConnectionManager.delegate = self;
-    
+    [self setCountryCode];
     imgVUser.layer.cornerRadius = imgVUser.frame.size.height/2;
     imgVUser.clipsToBounds = YES;
     
@@ -87,7 +87,18 @@
     [super viewWillAppear:YES];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
-
+- (void)setCountryCode
+{
+	NSArray *arrCountryCode=[NSArray arrayWithArray:[gAppManager getcountryList]];
+	for (id obj in arrCountryCode) {
+		NSString *curCountryCode = [obj valueForKey:@"CountryName"];
+		if ([curCountryCode isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:kCountryName]]) {
+			imgFlagName.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",[obj valueForKey:@"CountryFlag"]]];
+			[btnCountryName setTitle:[NSString stringWithFormat:@"%@ *",[obj valueForKey:@"CountryName"]] forState:UIControlStateNormal];
+			[lblPhoneCode setText:[NSString stringWithFormat:@"%@",[obj valueForKey:@"CountryCode"]]];
+		}
+	}
+}
 -(void)parseCountryListData
 {
     [gAppManager countryCodeData];
@@ -198,7 +209,7 @@
                         
             mobileVerificationVwController.responseData = responseObject;
             
-            [self updateCurrencySymbol:responseObject];
+            [self saveDataForInternationalisation:responseObject];
             
             [self.navigationController pushViewController:mobileVerificationVwController animated:YES];
         
@@ -379,5 +390,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)saveDataForInternationalisation:(id)responseObject
+{
+	NSString *countryCode = [NSString stringWithFormat:@"%@", [responseObject objectForKey:@"countryCode"]];
+	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"CountryCodeList" ofType:@"plist"];
+	NSArray *plistData = [[NSArray alloc] initWithContentsOfFile:plistPath];
+	for (NSDictionary* aDic in plistData)
+	{
+		NSString *curCountryCode =[NSString stringWithFormat:@"%@", [aDic objectForKey:@"Country Code"]];
+		if([curCountryCode isEqualToString:countryCode])
+		{
+			[[NSUserDefaults standardUserDefaults] setObject:curCountryCode forKey:kCountryCode];
+			NSString *curCountrySymbol =[NSString stringWithFormat:@"%@", [aDic objectForKey:@"Country Symbol"]];
+			[[NSUserDefaults standardUserDefaults] setObject:curCountrySymbol forKey:kCurrencySymbol];
+		}
+	}
+}
 @end

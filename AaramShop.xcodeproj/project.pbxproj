@@ -442,6 +442,7 @@
 		362537F81B762D1D00DF34F8 /* FacebookView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362537F71B762D1D00DF34F8 /* FacebookView.xib */; };
 		362A8DEA1B567BAD0009844B /* CMOffers.m in Sources */ = {isa = PBXBuildFile; fileRef = 362A8DE91B567BAD0009844B /* CMOffers.m */; };
 		362A8DED1B567BDC0009844B /* CMPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 362A8DEC1B567BDC0009844B /* CMPreferences.m */; };
+		363AE4C21C3D33E700838504 /* URLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 363AE4C11C3D33E700838504 /* URLManager.m */; };
 		3653955D1B524FA60045AAFE /* CouponsBoxActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 365395511B524FA60045AAFE /* CouponsBoxActive.png */; };
 		3653955E1B524FA60045AAFE /* CouponsBoxActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 365395521B524FA60045AAFE /* CouponsBoxActive@2x.png */; };
 		3653955F1B524FA60045AAFE /* CouponsBoxActive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 365395531B524FA60045AAFE /* CouponsBoxActive@3x.png */; };
@@ -2203,6 +2204,8 @@
 		362A8DE91B567BAD0009844B /* CMOffers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMOffers.m; sourceTree = "<group>"; };
 		362A8DEB1B567BDC0009844B /* CMPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPreferences.h; sourceTree = "<group>"; };
 		362A8DEC1B567BDC0009844B /* CMPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPreferences.m; sourceTree = "<group>"; };
+		363AE4C01C3D33E700838504 /* URLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLManager.h; sourceTree = "<group>"; };
+		363AE4C11C3D33E700838504 /* URLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLManager.m; sourceTree = "<group>"; };
 		365395511B524FA60045AAFE /* CouponsBoxActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CouponsBoxActive.png; sourceTree = "<group>"; };
 		365395521B524FA60045AAFE /* CouponsBoxActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CouponsBoxActive@2x.png"; sourceTree = "<group>"; };
 		365395531B524FA60045AAFE /* CouponsBoxActive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CouponsBoxActive@3x.png"; sourceTree = "<group>"; };
@@ -5101,6 +5104,15 @@
 			path = CMOffers;
 			sourceTree = "<group>";
 		};
+		363AE4BF1C3D33E700838504 /* URLManager */ = {
+			isa = PBXGroup;
+			children = (
+				363AE4C01C3D33E700838504 /* URLManager.h */,
+				363AE4C11C3D33E700838504 /* URLManager.m */,
+			);
+			path = URLManager;
+			sourceTree = "<group>";
+		};
 		365395501B524FA60045AAFE /* OfferImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -5982,6 +5994,7 @@
 		6B12DC5D1AF2294D00245209 /* AaramShop */ = {
 			isa = PBXGroup;
 			children = (
+				363AE4BF1C3D33E700838504 /* URLManager */,
 				2C4FC9E81BA96EFD00C74106 /* GoogleAnalytics */,
 				6BADA6131B0B717700BF7639 /* DataBaseClasses */,
 				6BA8F8FC1B08FCBD00EAA6A8 /* ConnectionManager */,
@@ -9158,6 +9171,7 @@
 				36A73CE91B612D0300EA710D /* CMWalletMoney.m in Sources */,
 				274A5C911B05C4AA009112B5 /* NSXMLElement+XMPP.m in Sources */,
 				274A5C571B05C4AA009112B5 /* UIImageView+AFNetworking.m in Sources */,
+				363AE4C21C3D33E700838504 /* URLManager.m in Sources */,
 				274A5CAE1B05C4AA009112B5 /* XMPPLastActivity.m in Sources */,
 				274A5C551B05C4AA009112B5 /* UIAlertView+AFNetworking.m in Sources */,
 				368209031B1C46FA002AA93F /* CMCountryList.m in Sources */,
@@ -9312,7 +9326,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "7974791f-2aa6-44b9-bc8a-3940af9507fb";
+				PROVISIONING_PROFILE = "7cfccba3-be3f-4a0f-99f3-f54d644bbe0a";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -9348,7 +9362,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "7974791f-2aa6-44b9-bc8a-3940af9507fb";
+				PROVISIONING_PROFILE = "7cfccba3-be3f-4a0f-99f3-f54d644bbe0a";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -9359,8 +9373,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9388,7 +9402,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7974791f-2aa6-44b9-bc8a-3940af9507fb";
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -9398,8 +9412,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9427,7 +9441,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7974791f-2aa6-44b9-bc8a-3940af9507fb";
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;

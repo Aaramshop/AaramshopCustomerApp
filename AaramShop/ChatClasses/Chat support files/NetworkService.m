@@ -91,7 +91,7 @@ static NetworkService *sharedInstance = nil;
             
             inApi = [NSString stringWithFormat:@"%@",inApi];
             inApi = [inApi stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aRequest=[SHBaseRequest requestWithURL:[NSURL URLWithString:aRequestURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:timeOutSpan];
             aRequest.IsReqStarted = YES;
@@ -115,7 +115,7 @@ static NetworkService *sharedInstance = nil;
             
         case eJson:
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             aRequestURL = [aRequestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             //            NSLog(@"%@",aRequestURL);
             
@@ -157,7 +157,7 @@ static NetworkService *sharedInstance = nil;
             
             inApi = [NSString stringWithFormat:@"%@",inApi];
             inApi = [inApi stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -185,7 +185,7 @@ static NetworkService *sharedInstance = nil;
         case eJsonAndParameter:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -226,7 +226,7 @@ static NetworkService *sharedInstance = nil;
         case eStrInHeader:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kBodyStr];
             
@@ -297,7 +297,7 @@ static NetworkService *sharedInstance = nil;
     {
         case eJson:
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             aRequestURL = [aRequestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             //            NSLog(@"%@",aRequestURL);
             
@@ -334,7 +334,7 @@ static NetworkService *sharedInstance = nil;
             
             inApi = [NSString stringWithFormat:@"%@",inApi];
             inApi = [inApi stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -361,7 +361,7 @@ static NetworkService *sharedInstance = nil;
         case eJsonAndParameter:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -402,7 +402,7 @@ static NetworkService *sharedInstance = nil;
         case eStrInHeader:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kBodyStr];
             
@@ -504,7 +504,7 @@ static NetworkService *sharedInstance = nil;
             
             inApi = [NSString stringWithFormat:@"%@",inApi];
             inApi = [inApi stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aRequest=[SHBaseRequest requestWithURL:[NSURL URLWithString:aRequestURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:timeOutSpan];
             
@@ -529,7 +529,7 @@ static NetworkService *sharedInstance = nil;
             
         case eJson:
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             aRequestURL = [aRequestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             //            NSLog(@"%@",aRequestURL);
             
@@ -565,7 +565,7 @@ static NetworkService *sharedInstance = nil;
             
             inApi = [NSString stringWithFormat:@"%@",inApi];
             inApi = [inApi stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -594,7 +594,7 @@ static NetworkService *sharedInstance = nil;
         case eJsonAndParameter:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -636,7 +636,7 @@ static NetworkService *sharedInstance = nil;
         case eStrInHeader:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kBodyStr];
             
@@ -713,7 +713,7 @@ static NetworkService *sharedInstance = nil;
             
             inApi = [NSString stringWithFormat:@"%@",inApi];
             inApi = [inApi stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aRequest=[SHBaseRequest requestWithURL:[NSURL URLWithString:aRequestURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:timeOutSpan];
             aRequest.IsReqStarted = YES;
@@ -737,7 +737,7 @@ static NetworkService *sharedInstance = nil;
             
         case eJson:
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             aRequestURL = [aRequestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             //            NSLog(@"%@",aRequestURL);
             
@@ -771,7 +771,7 @@ static NetworkService *sharedInstance = nil;
             
             inApi = [NSString stringWithFormat:@"%@",inApi];
             inApi = [inApi stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -800,7 +800,7 @@ static NetworkService *sharedInstance = nil;
         case eJsonAndParameter:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -841,7 +841,7 @@ static NetworkService *sharedInstance = nil;
         case eStrInHeader:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kBodyStr];
             
@@ -941,7 +941,7 @@ static NetworkService *sharedInstance = nil;
     {
         case eJson:
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             aRequestURL = [inApi stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             //            NSLog(@"%@",aRequestURL);
             
@@ -976,7 +976,7 @@ static NetworkService *sharedInstance = nil;
             
             inApi = [NSString stringWithFormat:@"%@",inApi];
             inApi = [inApi stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -1004,7 +1004,7 @@ static NetworkService *sharedInstance = nil;
         case eJsonAndParameter:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -1045,7 +1045,7 @@ static NetworkService *sharedInstance = nil;
         case eStrInHeader:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kBodyStr];
             
@@ -1121,7 +1121,7 @@ static NetworkService *sharedInstance = nil;
             
             inApi = [NSString stringWithFormat:@"%@",inApi];
             inApi = [inApi stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aRequest=[SHBaseRequest requestWithURL:[NSURL URLWithString:aRequestURL] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:timeOutSpan];
             aRequest.IsReqStarted = YES;
@@ -1146,7 +1146,7 @@ static NetworkService *sharedInstance = nil;
             
         case eJson:
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             aRequestURL = [aRequestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             //            NSLog(@"%@",aRequestURL);
             
@@ -1182,7 +1182,7 @@ static NetworkService *sharedInstance = nil;
             
             inApi = [NSString stringWithFormat:@"%@",inApi];
             inApi = [inApi stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -1209,7 +1209,7 @@ static NetworkService *sharedInstance = nil;
         case eJsonAndParameter:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kParameter];
             
@@ -1249,7 +1249,7 @@ static NetworkService *sharedInstance = nil;
         case eStrInHeader:
             
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aReqPara = [inData objectForKey: kBodyStr];
             
@@ -1278,7 +1278,7 @@ static NetworkService *sharedInstance = nil;
             
         case eNSData:
             
-            aRequestURL = [kBaseURL stringByAppendingString:inApi];
+            aRequestURL = [gURLManager.baseUrl stringByAppendingString:inApi];
             
             aRequestURL = [aRequestURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             //            NSLog(@"%@",aRequestURL);
@@ -1457,7 +1457,7 @@ static NetworkService *sharedInstance = nil;
     SHBaseRequest *aRequest = nil;
     NSString *aRequestURL;
     
-    NSString *urlString =[kBaseURL stringByAppendingString:inApi];
+    NSString *urlString =[gURLManager.baseUrl stringByAppendingString:inApi];
 	
 //	NSURL *url = [NSURL URLWithString:urlString];
 	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",inBoundry];

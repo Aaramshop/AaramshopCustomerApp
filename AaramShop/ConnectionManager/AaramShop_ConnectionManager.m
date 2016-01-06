@@ -19,7 +19,7 @@
     self.delegate = inputDelegate;
     self.currentTask = inputTask;
     
-    NSURL *baseURL = [NSURL URLWithString:kBaseURL];
+    NSURL *baseURL = [NSURL URLWithString:gURLManager.baseUrl];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];
@@ -70,7 +70,7 @@
     self.delegate = inputDelegate;
     self.currentTask = inputTask;
     
-    NSURL *baseURL = [NSURL URLWithString:kBaseURL];
+    NSURL *baseURL = [NSURL URLWithString:gURLManager.baseUrl];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];

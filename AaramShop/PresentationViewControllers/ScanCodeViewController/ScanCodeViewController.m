@@ -74,7 +74,7 @@
 	
 	UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 	[button addTarget:self
-			   action:@selector(hideSuperView)
+			   action:@selector(cancelBtn)
 	 forControlEvents:UIControlEventTouchUpInside];
 //	[button setTitle:@"Show View" forState:UIControlStateNormal];
 	[button setImage:[UIImage imageNamed:@"cancelIconCircle"] forState:UIControlStateNormal];
@@ -86,6 +86,10 @@
 	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 	[tracker set:kGAIScreenName value:@"QRCodeScaner"];
 	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+}
+- (void)cancelBtn
+{
+	[self.view removeFromSuperview];
 }
 - (void)hideSuperView
 {
