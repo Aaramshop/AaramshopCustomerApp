@@ -95,7 +95,7 @@
     
     
     //// updated on 05 Nov 2015 ... begins // due to data inconsistency in model
-    if ([offers.end_date containsString:@"-"])
+    if ([offers.end_date rangeOfString:@"-"].location == NSNotFound)
     {
         lblValidTill.text	= [NSString stringWithFormat:@"Valid till %@",offers.end_date];
     }

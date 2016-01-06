@@ -749,12 +749,16 @@
             // code for offers ...
             
             [AppManager AddOrRemoveFromCart:[self getCartFromOffers:orderDetail] forStore:[NSDictionary dictionaryWithObjectsAndKeys:_orderHist.store_id,kStore_id,_orderHist.store_name,kStore_name,_orderHist.store_image,kStore_image, nil] add:YES fromCart:NO];
+			gAppManager.intCount++;
+			[AppManager saveCountOfProductsInCart:gAppManager.intCount];
         }
         else
         {
             // code for product ...
             
             [AppManager AddOrRemoveFromCart:[self getCartFromProducts:orderDetail] forStore:[NSDictionary dictionaryWithObjectsAndKeys:_orderHist.store_id,kStore_id,_orderHist.store_name,kStore_name,_orderHist.store_image,kStore_image, nil] add:YES fromCart:NO];
+			gAppManager.intCount++;
+			[AppManager saveCountOfProductsInCart:gAppManager.intCount];
             
         }
         
