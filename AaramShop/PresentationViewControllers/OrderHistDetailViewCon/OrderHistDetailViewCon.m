@@ -22,15 +22,10 @@
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
 	aaramShop_ConnectionManager.delegate = self;
     
-    [self updateBtnFrames];
+//    [self updateBtnFrames];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    if([[UIScreen mainScreen] bounds].size.height==480)
-    {
-        scrollview.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
-        [scrollview setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 500)];
-        
-    }
+	
+
 
     
 	
@@ -111,6 +106,17 @@
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+}
+- (void)viewDidLayoutSubviews
+{
+	[super viewDidLayoutSubviews];
+	if([[UIScreen mainScreen] bounds].size.height==480)
+	{
+		//		scrollview.translatesAutoresizingMaskIntoConstraints = YES;
+		//		scrollview.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
+		[scrollview setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 500)];
+		
+	}
 }
 -(void)setUpNavigationBar
 {
