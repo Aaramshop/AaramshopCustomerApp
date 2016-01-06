@@ -214,19 +214,34 @@
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 70)];
     view.backgroundColor = [UIColor clearColor];
-    
-    UIButton *btnCreateShoppingList = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 70)];
+	UIButton *btnCreateShoppingList = [[UIButton alloc]init];
+	
+	[btnCreateShoppingList setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 70)];
+	
     [btnCreateShoppingList setTitle:@"Create New Shopping List" forState:UIControlStateNormal];
     [btnCreateShoppingList setBackgroundImage:[UIImage imageNamed:@"shoppingListCoverImage.png"] forState:UIControlStateNormal];
-	[btnCreateShoppingList setBackgroundImage:[UIImage imageNamed:@"shoppingListCoverImage.png"] forState:UIControlStateHighlighted];
+//	[btnCreateShoppingList setBackgroundImage:[UIImage imageNamed:@"shoppingListCoverImage.png"] forState:UIControlStateHighlighted];
 
     [btnCreateShoppingList setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btnCreateShoppingList.titleLabel setFont:[UIFont fontWithName:kRobotoRegular size:14.0]];
     [btnCreateShoppingList setImage:[UIImage imageNamed:@"shoppingListAddCircle.png"] forState:UIControlStateNormal];
-	[btnCreateShoppingList setImage:[UIImage imageNamed:@"shoppingListAddCircle.png"] forState:UIControlStateHighlighted];
+	CGFloat spacing = 6.0;
+	
+	// lower the text and push it left so it appears centered
+	//  below the image
+	CGSize imageSize = btnCreateShoppingList.imageView.image.size;
+	btnCreateShoppingList.titleEdgeInsets = UIEdgeInsetsMake(
+															 0.0, - imageSize.width, - (imageSize.height + spacing), 0.0);
+	
+	// raise the image and push it right so it appears centered
+	//  above the text
+	CGSize titleSize = [btnCreateShoppingList.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: btnCreateShoppingList.titleLabel.font}];
+	btnCreateShoppingList.imageEdgeInsets = UIEdgeInsetsMake(
+															 - (titleSize.height + spacing), 0.0, 0.0, - titleSize.width);
+//	[btnCreateShoppingList setImage:[UIImage imageNamed:@"shoppingListAddCircle.png"] forState:UIControlStateHighlighted];
 
-    [btnCreateShoppingList setTitleEdgeInsets:UIEdgeInsetsMake(50, -30, 0, 0)];
-    [btnCreateShoppingList setImageEdgeInsets:UIEdgeInsetsMake(0, 135, 15, 0)];
+//    [btnCreateShoppingList setTitleEdgeInsets:UIEdgeInsetsMake(50, -30, 0, 0)];
+//    [btnCreateShoppingList setImageEdgeInsets:UIEdgeInsetsMake(0, 135, 15, 0)];
     [btnCreateShoppingList addTarget:self action:@selector(btnCreateShoppingListClick) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:btnCreateShoppingList];
     
