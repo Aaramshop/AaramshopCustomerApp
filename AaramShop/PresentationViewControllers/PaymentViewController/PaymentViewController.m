@@ -258,7 +258,7 @@ static NSString *strCollectionItems = @"collectionItems";
 		return;
 	}
 	NSMutableDictionary *aDict = [Utils setPredefindValueForWebservice];
-	[aDict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_id] forKey:kStore_id];
+	[aDict setObject:strStore_Id forKey:kStore_id];
 	[aDict setObject:coupon_code forKey:@"coupon_code"];
 	[aDict setObject:strTotalPrice forKey:@"total_amount"];
 	NSString *productIds = @"";

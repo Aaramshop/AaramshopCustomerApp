@@ -215,8 +215,8 @@
             
             
             ////
-            [btnExpandCollapse setImage:[UIImage imageNamed:@"homeScreenArrowBox.png"] forState:UIControlStateNormal];
-            [btnExpandCollapse setImage:[UIImage imageNamed:@"upArrow.png"] forState:UIControlStateSelected];
+            [btnExpandCollapse setImage:[UIImage imageNamed:@"homeScreenArrowBox"] forState:UIControlStateNormal];
+            [btnExpandCollapse setImage:[UIImage imageNamed:@"upArrow"] forState:UIControlStateSelected];
             ////
             
             [btnExpandCollapse addTarget:self action:@selector(btnExpandCollapseClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -295,9 +295,10 @@
             
             cell = [tableView dequeueReusableCellWithIdentifier:@"RecommendedStoreCell"];
         }
-        
-        [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
-        
+//		int width = [UIScreen mainScreen].bounds.size.width - 95;
+		[cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:92];
+//        [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
+		
         cell.backgroundColor = [UIColor whiteColor];
         cell.isRecommendedStore = NO;
         
@@ -320,8 +321,8 @@
         if (cell == nil) {
             cell = [[HomeCategoryListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        
-        [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:225];
+//		int width = [UIScreen mainScreen].bounds.size.width - 95;
+        [cell setRightUtilityButtons:[self leftButtons] WithButtonWidth:92];
         
         
         cell.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:243.0/255.0 blue:243.0/255.0 alpha:1.0];
@@ -384,10 +385,10 @@
     NSMutableAttributedString * chat = [[NSMutableAttributedString alloc] initWithString:@"Chat"];
     NSMutableAttributedString * shop = [[NSMutableAttributedString alloc] initWithString:@"Shop"];
     
-    [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreCallIcon"] attributedTitle: call ];
+    [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreCallIcon.png"] attributedTitle: call ];
     
-    [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreChatIcon"] attributedTitle: chat ];
-    [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreShopIcon"] attributedTitle: shop ];
+    [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreChatIcon.png"] attributedTitle: chat ];
+    [leftUtilityButtons sw_addUtilityButtonWithBackgroundImage:[UIImage imageNamed:@"homeRecomondedStoreShopIcon.png"] attributedTitle: shop ];
     
     
     return leftUtilityButtons;

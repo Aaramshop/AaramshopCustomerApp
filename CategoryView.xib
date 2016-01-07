@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Regular_0.ttf">
@@ -18,11 +18,9 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" tag="999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4zf-w9-lUb">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
-                    <animations/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" tag="1002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ArA-aL-pqL">
                     <rect key="frame" x="121" y="48" width="60" height="60"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="U49-bf-AYd"/>
                         <constraint firstAttribute="height" constant="60" id="hKJ-J8-Usc"/>
@@ -30,14 +28,12 @@
                 </imageView>
                 <activityIndicatorView hidden="YES" opaque="NO" tag="998" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="uaB-eo-Dfm">
                     <rect key="frame" x="141" y="68" width="20" height="20"/>
-                    <animations/>
                 </activityIndicatorView>
                 <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFd-oy-oRc">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
                     <subviews>
                         <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4t-Hh-gjk">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="29"/>
-                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="9r5-1M-e2F"/>
@@ -49,7 +45,6 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.49999999999999961" tag="200" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mg9-Pu-aQc">
                             <rect key="frame" x="40" y="0.0" width="280" height="29"/>
-                            <animations/>
                             <color key="backgroundColor" red="0.08235294371843338" green="0.066666670143604279" blue="0.019607843831181526" alpha="1" colorSpace="deviceRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="29" id="SLC-ik-Ma7"/>
@@ -60,7 +55,6 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beverages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQb-ca-W7i">
                             <rect key="frame" x="45" y="0.0" width="275" height="29"/>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="29" id="qAB-nx-w8d"/>
@@ -70,7 +64,6 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="OQb-ca-W7i" firstAttribute="top" secondItem="KFd-oy-oRc" secondAttribute="top" id="3al-Vp-iTI"/>
@@ -86,21 +79,18 @@
                 </view>
                 <imageView userInteractionEnabled="NO" tag="1110" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="homeDetailsBannerShade.png" translatesAutoresizingMaskIntoConstraints="NO" id="g6x-SQ-F0b">
                     <rect key="frame" x="0.0" y="130" width="320" height="40"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="KYt-zo-U3T"/>
                     </constraints>
                 </imageView>
                 <view tag="23210" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5P-jJ-lKp" customClass="V8HorizontalPickerView">
                     <rect key="frame" x="0.0" y="130" width="320" height="40"/>
-                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="tvd-oS-l4M"/>
                     </constraints>
                 </view>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="uaB-eo-Dfm" secondAttribute="centerY" constant="7" id="2JF-rq-z75"/>

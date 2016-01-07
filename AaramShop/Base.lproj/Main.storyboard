@@ -7871,13 +7871,13 @@ Why not start with placing a new order now!</string>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="9Ih-aa-jrs" firstAttribute="leading" secondItem="4XY-RE-baV" secondAttribute="leadingMargin" constant="-8" id="1Eq-YE-WQF"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="kO5-d6-qsb" secondAttribute="trailingMargin" id="B3b-Ht-qiV"/>
+                                            <constraint firstAttribute="trailing" secondItem="kO5-d6-qsb" secondAttribute="trailing" id="B3b-Ht-qiV"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="D02-AK-iIE" secondAttribute="bottom" constant="66" id="dVQ-7m-a8h"/>
                                             <constraint firstItem="kO5-d6-qsb" firstAttribute="topMargin" secondItem="4XY-RE-baV" secondAttribute="topMargin" id="gbR-Ac-u5A"/>
-                                            <constraint firstItem="kO5-d6-qsb" firstAttribute="leadingMargin" secondItem="4XY-RE-baV" secondAttribute="leadingMargin" id="myP-jh-6U8"/>
+                                            <constraint firstItem="kO5-d6-qsb" firstAttribute="leading" secondItem="4XY-RE-baV" secondAttribute="leading" id="myP-jh-6U8"/>
                                             <constraint firstItem="9Ih-aa-jrs" firstAttribute="top" secondItem="4XY-RE-baV" secondAttribute="topMargin" constant="82" id="nrn-31-L4G"/>
                                             <constraint firstAttribute="centerX" secondItem="D02-AK-iIE" secondAttribute="centerX" id="ogF-us-TcE"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="kO5-d6-qsb" secondAttribute="bottomMargin" id="tWr-aN-Glc"/>
+                                            <constraint firstAttribute="bottom" secondItem="kO5-d6-qsb" secondAttribute="bottom" id="tWr-aN-Glc"/>
                                         </constraints>
                                         <size key="customSize" width="320" height="235"/>
                                         <connections>

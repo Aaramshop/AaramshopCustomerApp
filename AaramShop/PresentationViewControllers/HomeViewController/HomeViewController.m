@@ -74,7 +74,7 @@
     [mainScrollView addSubview:viewTable];
     
     imgVBg = [[UIImageView alloc]initWithFrame:CGRectMake(0,viewTable.frame.size.height-78, [UIScreen mainScreen].bounds.size.width, 85)];
-    imgVBg.image = [UIImage imageNamed:@"homeScreenArrowBox.png"];
+    imgVBg.image = [UIImage imageNamed:@"homeScreenArrowBox"];
     [viewTable addSubview:imgVBg];
     
     [viewTable addSubview:tblVwCategory];
@@ -84,7 +84,7 @@
     btnArrow.frame = CGRectMake(20, viewTable.frame.size.height-40, [UIScreen mainScreen].bounds.size.width-40, 50);
 
     btnArrow.backgroundColor = [UIColor clearColor];
-    [btnArrow setImage:[UIImage imageNamed:@"homeDownArrow.png"] forState:UIControlStateNormal];
+    [btnArrow setImage:[UIImage imageNamed:@"homeDownArrow"] forState:UIControlStateNormal];
     
     btnArrow.imageEdgeInsets = UIEdgeInsetsMake(35, 0, 0, 0);
     

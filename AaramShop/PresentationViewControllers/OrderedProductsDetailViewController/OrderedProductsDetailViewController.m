@@ -638,8 +638,9 @@
     cart.product_name               =	orderDetailModel.name;
     cart.product_price              =	orderDetailModel.price;
     cart.end_date                   =   orderDetailModel.end_date;
-    
-    
+	gAppManager.intCount = gAppManager.intCount +  [orderDetailModel.quantity integerValue];
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+	
     return cart;
 }
 
@@ -655,7 +656,8 @@
     cart.cartProductId              =	orderDetailModel.offer_id;
     cart.strCount                   =	orderDetailModel.quantity;
     cart.end_date                   =   orderDetailModel.end_date;
-
+	gAppManager.intCount = gAppManager.intCount +  [orderDetailModel.quantity integerValue];
+	[AppManager saveCountOfProductsInCart:gAppManager.intCount];
     
     if([orderDetailModel.offer_type intValue]== 1)// discount
     {
@@ -749,17 +751,12 @@
             // code for offers ...
             
             [AppManager AddOrRemoveFromCart:[self getCartFromOffers:orderDetail] forStore:[NSDictionary dictionaryWithObjectsAndKeys:_orderHist.store_id,kStore_id,_orderHist.store_name,kStore_name,_orderHist.store_image,kStore_image, nil] add:YES fromCart:NO];
-			gAppManager.intCount++;
-			[AppManager saveCountOfProductsInCart:gAppManager.intCount];
         }
         else
         {
             // code for product ...
             
             [AppManager AddOrRemoveFromCart:[self getCartFromProducts:orderDetail] forStore:[NSDictionary dictionaryWithObjectsAndKeys:_orderHist.store_id,kStore_id,_orderHist.store_name,kStore_name,_orderHist.store_image,kStore_image, nil] add:YES fromCart:NO];
-			gAppManager.intCount++;
-			[AppManager saveCountOfProductsInCart:gAppManager.intCount];
-            
         }
         
         

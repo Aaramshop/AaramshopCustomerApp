@@ -8,7 +8,8 @@
 
 #import "ChatViewController.h"
 
-#define kCustomerSupportId                  @"1400721"
+#define kCustomerSupportIdIN                  @"1400721"
+#define kCustomerSupportIdPK				@"9988776655"
 
 @interface ChatViewController ()
 {
@@ -88,8 +89,19 @@
 		}
 	}
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF.bareJidStr contains[cd] %@",kCustomerSupportId];
-    
+	NSPredicate *pred;
+	if ([[[NSUserDefaults standardUserDefaults] valueForKey:kCountryName] isEqualToString:@"India"]) {
+		pred= [NSPredicate predicateWithFormat:@"SELF.bareJidStr contains[cd] %@",kCustomerSupportIdIN];
+	}
+	else if ([[[NSUserDefaults standardUserDefaults] valueForKey:kCountryName] isEqualToString:@"Pakistan"])
+	{
+		pred= [NSPredicate predicateWithFormat:@"SELF.bareJidStr contains[cd] %@",kCustomerSupportIdPK];
+	}
+	else
+	{
+		pred= [NSPredicate predicateWithFormat:@"SELF.bareJidStr contains[cd] %@",kCustomerSupportIdIN];
+	}
+		
     
     NSArray *arr = [self.arrCustomers filteredArrayUsingPredicate:pred];
     
@@ -545,9 +557,24 @@
     SMChatViewController *chatView = nil;
     if(self.segChatSelection.selectedSegmentIndex == 0)
     {
-        chatView = [deleg createChatViewByChatUserNameIfNeeded:kCustomerSupportId];
-
-        chatView.chatWithUser = [NSString stringWithFormat:@"%@@%@",kCustomerSupportId,STRChatServerURL];
+		if ([[[NSUserDefaults standardUserDefaults] valueForKey:kCountryName] isEqualToString:@"India"]) {
+			chatView = [deleg createChatViewByChatUserNameIfNeeded:kCustomerSupportIdIN];
+			
+			chatView.chatWithUser = [NSString stringWithFormat:@"%@@%@",kCustomerSupportIdIN,STRChatServerURL];
+		}
+		else if ([[[NSUserDefaults standardUserDefaults] valueForKey:kCountryName] isEqualToString:@"Pakistan"])
+		{
+			chatView = [deleg createChatViewByChatUserNameIfNeeded:kCustomerSupportIdPK];
+			
+			chatView.chatWithUser = [NSString stringWithFormat:@"%@@%@",kCustomerSupportIdPK,STRChatServerURL];
+		}
+		else
+		{
+			chatView = [deleg createChatViewByChatUserNameIfNeeded:kCustomerSupportIdIN];
+			
+			chatView.chatWithUser = [NSString stringWithFormat:@"%@@%@",kCustomerSupportIdIN,STRChatServerURL];
+		}
+		
 
         chatView.friendNameId = @"1";
         chatView.imageString = @"";
@@ -593,8 +620,23 @@
 {
     NSMutableArray *arr = [[NSUserDefaults standardUserDefaults] valueForKey:MESSAGE_COUNTER];
     NSCountedSet *countedSet = [[NSCountedSet alloc] initWithArray:[[NSUserDefaults standardUserDefaults] valueForKey:MESSAGE_COUNTER]];
-    
-    NSInteger supportChatCount = [countedSet countForObject:[NSString stringWithFormat:@"%@@%@",kCustomerSupportId,STRChatServerURL]];
+	
+	NSInteger supportChatCount = 0;
+	
+	
+	if ([[[NSUserDefaults standardUserDefaults] valueForKey:kCountryName] isEqualToString:@"India"]) {
+		supportChatCount = [countedSet countForObject:[NSString stringWithFormat:@"%@@%@",kCustomerSupportIdIN,STRChatServerURL]];
+	}
+	else if ([[[NSUserDefaults standardUserDefaults] valueForKey:kCountryName] isEqualToString:@"Pakistan"])
+	{
+		supportChatCount = [countedSet countForObject:[NSString stringWithFormat:@"%@@%@",kCustomerSupportIdPK,STRChatServerURL]];
+	}
+	else
+	{
+		supportChatCount = [countedSet countForObject:[NSString stringWithFormat:@"%@@%@",kCustomerSupportIdIN,STRChatServerURL]];
+	}
+	
+	
 
     
     NSInteger customerChatCount = [arr count]-supportChatCount;
