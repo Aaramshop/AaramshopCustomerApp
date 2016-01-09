@@ -9,7 +9,7 @@
 #import "PaymentViewController.h"
 #import "ProductsModel.h"
 #import "AddressModel.h"
-
+#import "MoEngage.h"
 
 #define kBtnDone   33454
 #define kBtnCancel 33455
@@ -160,9 +160,14 @@ static NSString *strCollectionItems = @"collectionItems";
 	NSString *productqtys			= @"";
 	NSString *product_prices		=	@"";
 
-	
+//
 	NSPredicate *predicate =[NSPredicate predicateWithFormat:@"NOT (SELF.strOffer_type CONTAINS %@)",@"0"] ;
 	NSArray *array = [arrSelectedProducts filteredArrayUsingPredicate:predicate];
+	for (CartProductModel *cartProduct in arrSelectedProducts) {
+		NSMutableDictionary *purchaseDict = [NSMutableDictionary dictionaryWithDictionary:@{@"productName":cartProduct.product_name,@"productId":cartProduct.product_id, @"productSkuId": cartProduct.product_sku_id,@"productPrice":cartProduct.product_price,@"store_id":strStore_Id}];
+	
+			[[MoEngage sharedInstance]trackEvent:@"Made Purchase" andPayload:purchaseDict];
+	}
 	if([array count]>0)
 	{
 		NSArray *arrIDs = [array valueForKey:@"offer_id"];

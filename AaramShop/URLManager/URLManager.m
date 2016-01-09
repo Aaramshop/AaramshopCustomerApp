@@ -69,6 +69,7 @@ URLManager * gURLManager = nil;
 	NSLocale *theLocale = [NSLocale currentLocale];
 	NSString *countryCode = [theLocale objectForKey:NSLocaleCountryCode];
 	NSString *countryName = [theLocale displayNameForKey: NSLocaleCountryCode value: countryCode];
+	NSString *currencyCode = [theLocale objectForKey:NSLocaleCurrencyCode];
 //	[URLManager sharedManager].baseUrl = @"http://www.aaramshop.co.in/api/index.php/user/";
 	if (!isLastVersion) {
 		if ([countryCode isEqualToString:@"PK"]) {
@@ -84,11 +85,13 @@ URLManager * gURLManager = nil;
 		}
 		[[NSUserDefaults standardUserDefaults] setObject:[URLManager sharedManager].baseUrl forKey:kBaseURL];
 		[[NSUserDefaults standardUserDefaults] setObject:countryName forKey:kCountryName];
+		[[NSUserDefaults standardUserDefaults] setObject:currencyCode forKey:kCurrencyCode];
 	}
 	else
 	{
 		[URLManager sharedManager].baseUrl = [[NSUserDefaults standardUserDefaults] valueForKey:kBaseURL];
 	}
+	
 }
 + (void)locateDeviceRegion:(CLLocation*)newLocation withGeoCoder:(CLGeocoder*)geoCoder
 {

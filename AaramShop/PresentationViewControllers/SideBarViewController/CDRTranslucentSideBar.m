@@ -17,6 +17,7 @@
 #import "WalletViewController.h"
 #import "AddressModel.h"
 #import "InviteFriendsViewController.h"
+#import "MoEngage.h"
 
 #define kDefaultHeaderFrame CGRectMake(0, 0, tblView.frame.size.width, tblView.frame.size.height)
 
@@ -527,7 +528,7 @@
 			appDel.myCurrentLocation = nil;
 			gAppManager.intCount = 0;
 			[AppManager saveCountOfProductsInCart:gAppManager.intCount];
-
+			[[MoEngage sharedInstance] resetUser];
 			[[NSNotificationCenter defaultCenter] postNotificationName:kLogoutSuccessfulNotificationName object:self userInfo:nil];
 			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		}

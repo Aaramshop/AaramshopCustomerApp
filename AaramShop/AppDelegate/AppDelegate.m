@@ -17,8 +17,11 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "Constants.h"
 #import "URLManager.h"
-
-@interface AppDelegate ()
+#import "AppsFlyerTracker.h"
+#import "MoEngage.h"
+#import "MOGeofenceHandler.h"
+#import "MOPayloadBuilder.h"
+@interface AppDelegate ()<AppsFlyerTrackerDelegate>
 {
     Reachability *aReachability;
 }
@@ -31,9 +34,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // fetching country code based on the number..............
-    
-    
-    
+	[AppsFlyerTracker sharedTracker].appleAppID = @"964132113"; // The Apple app ID. Example 34567899
+    [AppsFlyerTracker sharedTracker].appsFlyerDevKey = @"Et9PeRUx2ptr9mzrKncKT6"; // You can get this key at the coniguration page of your app on AppsFlyer's dashboard.
+	
+	
+	
+	[[MoEngage sharedInstance] initializeWithApiKey:@"D4GVQ20TTL2FITJHIKUWC0P5" inApplication:application withLaunchOptions:launchOptions];
+	[self sendAppStatusToMoEngage];
+	[self saveAppVersionToDefaults];
 //    NSLocale *theLocale = [NSLocale currentLocale];
 //    NSString *currencySymbol = [theLocale objectForKey:NSLocaleCurrencySymbol];
 //    NSString *currencyCode = [theLocale objectForKey:NSLocaleCurrencyCode];
@@ -134,6 +142,28 @@
 	
     return YES;
 }
+
+-(NSString *)getAppVersion{
+	return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+}
+
+-(void)saveAppVersionToDefaults{
+	[[NSUserDefaults standardUserDefaults]setObject:[self getAppVersion] forKey:@"app_version"];
+}
+
+-(void)sendAppStatusToMoEngage{
+	
+	// check install. if app version does not exist in defaults, it means it is an install for sure.
+	if(![[NSUserDefaults standardUserDefaults]objectForKey:@"app_version"]){
+		[[MoEngage sharedInstance]appStatus:INSTALL];
+		return;
+	}
+	
+	// It is an update. Check if the latest app version is greater than that saved in the user defaults
+	if([[self getAppVersion]floatValue] > [[[NSUserDefaults standardUserDefaults]objectForKey:@"app_version"]floatValue]){
+		[[MoEngage sharedInstance]appStatus:UPDATE];
+	}
+}
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url  sourceApplication:(NSString *)sourceApplication
 		 annotation:(id)annotation
 {
@@ -142,7 +172,9 @@
 	{
 		return [FBSession.activeSession handleOpenURL:url];
 	}
-	return NO;
+	[[AppsFlyerTracker sharedTracker] handleOpenURL:url sourceApplication:sourceApplication];
+
+	return YES;
 }
 //-(void)findCurrentLocation
 //{
@@ -182,6 +214,9 @@
 {
 	//register to receive notifications
 	[application registerForRemoteNotifications];
+	
+	
+	 [[MoEngage sharedInstance]didRegisterForUserNotificationSettings:notificationSettings];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -191,7 +226,7 @@
 	[[NSUserDefaults standardUserDefaults] setValue:deviceTokenStr forKey:kDeviceId];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	// NSLog(@"Registered");
-	
+	 [[MoEngage sharedInstance]registerForPush:deviceToken];
 	NSLog(@"Device Token: %@ ", deviceTokenStr);
 }
 
@@ -203,6 +238,9 @@
 	[[NSUserDefaults standardUserDefaults] setValue:@"3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0" forKey:kDeviceId];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	NSLog(@"%@ Fail to get register",err);
+	
+	
+	[[MoEngage sharedInstance]didFailToRegisterForPush];
 }
 
 
@@ -242,6 +280,8 @@
 		NSInteger badgeCount = [UIApplication sharedApplication].applicationIconBadgeNumber;
 		[[UIApplication sharedApplication] setApplicationIconBadgeNumber:badgeCount];
 	}
+	
+	[[MoEngage sharedInstance]didReceieveNotificationinApplication:application withInfo:userInfo];
 	
 }
 
@@ -385,6 +425,11 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+	
+	
+//	[[MoEngage sharedInstance] syncNow];
+	[[MoEngage sharedInstance] stop:application];
+	
 	if([Utils isInternetAvailable])
 	{
 		[self sendPresence:@"away"];
@@ -444,7 +489,13 @@
 	{
 		[self sendPresence:@"online"];
 	}
-
+	// track launch - It's VERY important that this code will be located in the applicationDidBecomeActive of your app delegate!
+	[[AppsFlyerTracker sharedTracker] trackAppLaunch]; //***** THIS LINE IS MANDATORY *****
+	
+	// (Optional) to get AppsFlyer's attribution data you can use AppsFlyerTrackerDelegate as follow . Note that the callback will fail as long as the appleAppID and developer key are not set properly.
+	[AppsFlyerTracker sharedTracker].delegate = self; //Delegate methods below
+	
+	 [[MoEngage sharedInstance]applicationBecameActiveinApplication:application];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -461,6 +512,9 @@
 		[gCXMPPController.xmppStream sendElement:presence];
 	}
     [self saveContext];
+	
+	[[MoEngage sharedInstance] syncNow];
+	[[MoEngage sharedInstance]applicationTerminated:application];
 }
 #pragma mark - create TabBar for Retailer
 - (UITabBarController *)createTabBarRetailer
@@ -894,5 +948,32 @@
 		[tabBarItem imageInsets];
 	}
 }
+#pragma AppsFlyerTrackerDelegate methods
+- (void) onConversionDataReceived:(NSDictionary*) installData{
+	id status = [installData objectForKey:@"af_status"];
+	if([status isEqualToString:@"Non-organic"]) {
+		id sourceID = [installData objectForKey:@"media_source"];
+		id campaign = [installData objectForKey:@"campaign"];
+		NSLog(@"This is a none organic install.");
+		NSLog(@"Media source: %@",sourceID);
+		NSLog(@"Campaign: %@",campaign);
+	} else if([status isEqualToString:@"Organic"]) {
+		NSLog(@"This is an organic install.");
+	}
+}
 
+- (void) onConversionDataRequestFailure:(NSError *)error{
+	NSLog(@"Failed to get data from AppsFlyer's server: %@",[error localizedDescription]);
+}
+
+// Reports app open from a Universal Link for iOS 9
+- (BOOL) application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray *_Nullable))restorationHandler
+{
+	[[AppsFlyerTracker sharedTracker] continueUserActivity:userActivity restorationHandler:restorationHandler];
+	return YES; }
+// Reports app open from deeplink for iOS 8 or below
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation {
+//
+//	return YES;
+//}
 @end

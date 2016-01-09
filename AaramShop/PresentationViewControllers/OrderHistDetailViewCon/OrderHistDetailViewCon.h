@@ -60,7 +60,7 @@ typedef enum
 
 - (IBAction)btnReceived:(id)sender;
 
-
+- (IBAction)btnSeeMoreDetails:(id)sender;
 - (IBAction)btnCallMerchant:(id)sender;
 - (IBAction)btnChatWithMerchant:(id)sender;
 

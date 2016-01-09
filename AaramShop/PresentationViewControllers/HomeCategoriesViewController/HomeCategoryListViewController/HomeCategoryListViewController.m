@@ -7,6 +7,8 @@
 //
 
 #import "HomeCategoryListViewController.h"
+#import "MOGeofenceHandler.h"
+#import "MoEngage.h"
 
 #define kTableRecommendedHeaderTitleHeight          23
 #define kTableParentHeaderDefaultHeight             123//115

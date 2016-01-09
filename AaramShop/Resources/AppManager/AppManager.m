@@ -11,7 +11,8 @@
 #import "CMCountryList.h"
 #import "CartModel.h"
 #define kMax_No_Of_contacts 300
-
+#import "MoEngage.h"
+#import "AppsFlyerTracker.h"
 
 AppManager * gAppManager = nil;
 UIAlertView *alert = nil;
@@ -795,6 +796,13 @@ void MyAddressBookExternalChangeCallback (
 
 +(void)AddOrRemoveFromCart:(CartProductModel *)cartProduct forStore:(NSDictionary *)store add:(BOOL)isAdd fromCart:(BOOL)fromCart
 {
+//	if (isAdd) {
+//		[[AppsFlyerTracker sharedTracker] trackEvent:AFEventAddToCart withValues:@{ AFEventParamPrice: @9.99,
+//								AFEventParamContentType : @"category_a",
+//								AFEventParamContentId: @"234234",
+//								AFEventParamCurrency : @"USD",
+//								AFEventParamQuantity : @1 }];
+//	}
 	if(![[NSUserDefaults standardUserDefaults] valueForKey:kCartData])
 	{
 		NSData *data		= [[NSData alloc]init];

@@ -11,6 +11,9 @@
 #import "MobileEnterViewController.h"
 #import "MobileVerificationViewController.h"
 #import "LocationEnterViewController.h"
+#import "AppsFlyerTracker.h"
+#import "MoEngage.h"
+#import "MOEHelperConstants.h"
 @interface LoginViewController ()
 {
 	AppDelegate *appDeleg;
@@ -162,6 +165,7 @@
 {
 	[activityVw stopAnimating];
 	[self userInteraction:YES];
+	
 	if (aaramShop_ConnectionManager.currentTask == TASK_LOGIN) {
 		[self.loginClickBtn setEnabled:YES];
 		
@@ -187,7 +191,8 @@
 		}
 		else if ([[responseObject objectForKey:kMobile_verified] intValue] == 1 && [[responseObject objectForKey:kstatus] intValue] == 1)
 		{
-            
+            [[MoEngage sharedInstance]setUserAttribute:[responseObject objectForKey:@"userId"] forKey:USER_ATTRIBUTE_UNIQUE_ID];
+			[AppsFlyerTracker sharedTracker].customerUserID = [responseObject objectForKey:@"userId"];
 			[AppManager saveDataToNSUserDefaults:responseObject];
 			[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@@%@",[responseObject objectForKey:kchatUserName],STRChatServerURL] forKey:kXMPPmyJID1];
 			[[NSUserDefaults standardUserDefaults ]synchronize];
@@ -240,6 +245,7 @@
 {
 	NSString *countryCode = [NSString stringWithFormat:@"%@", [responseObject objectForKey:@"countryCode"]];
 	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"CountryCodeList" ofType:@"plist"];
+	[AppsFlyerTracker sharedTracker].currencyCode = [[NSUserDefaults standardUserDefaults] valueForKey:kCurrencyCode];
 	NSArray *plistData = [[NSArray alloc] initWithContentsOfFile:plistPath];
 	for (NSDictionary* aDic in plistData)
 	{
@@ -247,6 +253,8 @@
 		if([curCountryCode isEqualToString:countryCode])
 		{
 			[[NSUserDefaults standardUserDefaults] setObject:curCountryCode forKey:kCountryCode];
+			// Set the currency code
+//
 			NSString *curCountrySymbol =[NSString stringWithFormat:@"%@", [aDic objectForKey:@"Country Symbol"]];
 			[[NSUserDefaults standardUserDefaults] setObject:curCountrySymbol forKey:kCurrencySymbol];
 		}

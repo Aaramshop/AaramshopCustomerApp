@@ -22,8 +22,8 @@
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
 	aaramShop_ConnectionManager.delegate = self;
     
-//    [self updateBtnFrames];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self updateBtnFrames];
+//    self.automaticallyAdjustsScrollViewInsets = NO;
 	
 
 
@@ -110,12 +110,13 @@
 - (void)viewDidLayoutSubviews
 {
 	[super viewDidLayoutSubviews];
+//	[self updateBtnFrames];
 	if([[UIScreen mainScreen] bounds].size.height==480)
 	{
-		//		scrollview.translatesAutoresizingMaskIntoConstraints = YES;
-		//		scrollview.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
-		[scrollview setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 500)];
-		
+//		//		scrollview.translatesAutoresizingMaskIntoConstraints = YES;
+//		//		scrollview.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
+		[scrollview setContentSize:CGSizeMake([[UIScreen mainScreen] bounds].size.width, 600)];
+//
 	}
 }
 -(void)setUpNavigationBar
@@ -256,6 +257,7 @@
 
 - (IBAction)btnCallDeliveryBoy:(id)sender
 {
+//	[self btnSeeMoreDetails:sender];
     strDeliveryboy_mobile = _orderHist.deliveryboy_mobile;
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",strDeliveryboy_mobile]];
     

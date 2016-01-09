@@ -8,6 +8,7 @@
 
 #import "MobileEnterViewController.h"
 #import "MobileVerificationViewController.h"
+#import "AppsFlyerTracker.h"
 
 @interface MobileEnterViewController ()
 {
@@ -394,6 +395,7 @@
 {
 	NSString *countryCode = [NSString stringWithFormat:@"%@", [responseObject objectForKey:@"countryCode"]];
 	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"CountryCodeList" ofType:@"plist"];
+	[AppsFlyerTracker sharedTracker].currencyCode = [[NSUserDefaults standardUserDefaults] valueForKey:kCurrencyCode];
 	NSArray *plistData = [[NSArray alloc] initWithContentsOfFile:plistPath];
 	for (NSDictionary* aDic in plistData)
 	{

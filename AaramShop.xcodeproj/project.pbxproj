@@ -838,7 +838,15 @@
 		36AEB77C1B83BAD10048C2B1 /* DXAnnotationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AEB7781B83BAD10048C2B1 /* DXAnnotationSettings.m */; };
 		36AEB77D1B83BAD10048C2B1 /* DXAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AEB77A1B83BAD10048C2B1 /* DXAnnotationView.m */; };
 		36AEB77E1B83BAD10048C2B1 /* myView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AEB77B1B83BAD10048C2B1 /* myView.xib */; };
+		36B2E67F1C3FC384007C3900 /* libMoEngageSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B2E67D1C3FC384007C3900 /* libMoEngageSDK.a */; };
+		36B2E6801C3FC384007C3900 /* MoEngage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36B2E67E1C3FC384007C3900 /* MoEngage.bundle */; };
+		36B2E6921C3FC3C5007C3900 /* MOInbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36B2E68A1C3FC3C5007C3900 /* MOInbox.storyboard */; };
+		36B2E6931C3FC3C5007C3900 /* MOInboxExposedConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B2E68C1C3FC3C5007C3900 /* MOInboxExposedConstants.m */; };
+		36B2E6941C3FC3C5007C3900 /* MOInboxTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B2E68F1C3FC3C5007C3900 /* MOInboxTableViewCell.m */; };
+		36B2E6951C3FC3C5007C3900 /* MOInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B2E6911C3FC3C5007C3900 /* MOInboxViewController.m */; };
+		36B2E6971C3FC436007C3900 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B2E6961C3FC436007C3900 /* AdSupport.framework */; };
 		36BDE7E41B8365D1004F366B /* AddNewLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BDE7E31B8365D1004F366B /* AddNewLocationViewController.m */; };
+		36BDFCDD1C3E6FD80045AAA6 /* libAppsFlyerLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36BDFCDC1C3E6FD80045AAA6 /* libAppsFlyerLib.a */; };
 		36BE5A801B53C0680079DAE3 /* OrderHistDetailViewCon.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BE5A7F1B53C0680079DAE3 /* OrderHistDetailViewCon.m */; };
 		36BE5A931B53C52A0079DAE3 /* dispatchedIconActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BE5A811B53C5290079DAE3 /* dispatchedIconActive.png */; };
 		36BE5A941B53C52A0079DAE3 /* dispatchedIconActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BE5A821B53C5290079DAE3 /* dispatchedIconActive@2x.png */; };
@@ -2623,8 +2631,26 @@
 		36AEB7791B83BAD10048C2B1 /* DXAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXAnnotationView.h; sourceTree = "<group>"; };
 		36AEB77A1B83BAD10048C2B1 /* DXAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXAnnotationView.m; sourceTree = "<group>"; };
 		36AEB77B1B83BAD10048C2B1 /* myView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myView.xib; sourceTree = "<group>"; };
+		36B2E67D1C3FC384007C3900 /* libMoEngageSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMoEngageSDK.a; sourceTree = "<group>"; };
+		36B2E67E1C3FC384007C3900 /* MoEngage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MoEngage.bundle; sourceTree = "<group>"; };
+		36B2E6831C3FC3C5007C3900 /* MOGeofenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOGeofenceHandler.h; sourceTree = "<group>"; };
+		36B2E6851C3FC3C5007C3900 /* MOEHelperConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOEHelperConstants.h; sourceTree = "<group>"; };
+		36B2E6861C3FC3C5007C3900 /* MoEngage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoEngage.h; sourceTree = "<group>"; };
+		36B2E6871C3FC3C5007C3900 /* MOPayloadBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOPayloadBuilder.h; sourceTree = "<group>"; };
+		36B2E6891C3FC3C5007C3900 /* MOInbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOInbox.h; sourceTree = "<group>"; };
+		36B2E68A1C3FC3C5007C3900 /* MOInbox.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MOInbox.storyboard; sourceTree = "<group>"; };
+		36B2E68B1C3FC3C5007C3900 /* MOInboxExposedConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOInboxExposedConstants.h; sourceTree = "<group>"; };
+		36B2E68C1C3FC3C5007C3900 /* MOInboxExposedConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOInboxExposedConstants.m; sourceTree = "<group>"; };
+		36B2E68D1C3FC3C5007C3900 /* MOInboxPushDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOInboxPushDataModel.h; sourceTree = "<group>"; };
+		36B2E68E1C3FC3C5007C3900 /* MOInboxTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOInboxTableViewCell.h; sourceTree = "<group>"; };
+		36B2E68F1C3FC3C5007C3900 /* MOInboxTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOInboxTableViewCell.m; sourceTree = "<group>"; };
+		36B2E6901C3FC3C5007C3900 /* MOInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOInboxViewController.h; sourceTree = "<group>"; };
+		36B2E6911C3FC3C5007C3900 /* MOInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOInboxViewController.m; sourceTree = "<group>"; };
+		36B2E6961C3FC436007C3900 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		36BDE7E21B8365D1004F366B /* AddNewLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewLocationViewController.h; sourceTree = "<group>"; };
 		36BDE7E31B8365D1004F366B /* AddNewLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewLocationViewController.m; sourceTree = "<group>"; };
+		36BDFCDB1C3E6FD80045AAA6 /* AppsFlyerTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppsFlyerTracker.h; sourceTree = "<group>"; };
+		36BDFCDC1C3E6FD80045AAA6 /* libAppsFlyerLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsFlyerLib.a; sourceTree = "<group>"; };
 		36BE5A7E1B53C0680079DAE3 /* OrderHistDetailViewCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderHistDetailViewCon.h; sourceTree = "<group>"; };
 		36BE5A7F1B53C0680079DAE3 /* OrderHistDetailViewCon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderHistDetailViewCon.m; sourceTree = "<group>"; };
 		36BE5A811B53C5290079DAE3 /* dispatchedIconActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dispatchedIconActive.png; sourceTree = "<group>"; };
@@ -3463,6 +3489,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36B2E6971C3FC436007C3900 /* AdSupport.framework in Frameworks */,
 				2C4FC9F81BA9782A00C74106 /* libsqlite3.dylib in Frameworks */,
 				274A5D101B05C624009112B5 /* libz.dylib in Frameworks */,
 				2C4FC9F41BA96F4600C74106 /* libGoogleAnalyticsServices.a in Frameworks */,
@@ -3470,6 +3497,7 @@
 				6BADA6301B0C748200BF7639 /* CoreData.framework in Frameworks */,
 				6BA8F92D1B0A226D00EAA6A8 /* AddressBookUI.framework in Frameworks */,
 				6BA8F92B1B0A226000EAA6A8 /* AddressBook.framework in Frameworks */,
+				36BDFCDD1C3E6FD80045AAA6 /* libAppsFlyerLib.a in Frameworks */,
 				274A5E161B05D3D5009112B5 /* CFNetwork.framework in Frameworks */,
 				274A5E141B05D3C5009112B5 /* MessageUI.framework in Frameworks */,
 				274A5E121B05D3BA009112B5 /* CoreImage.framework in Frameworks */,
@@ -3479,6 +3507,7 @@
 				274A5D121B05C637009112B5 /* libresolv.dylib in Frameworks */,
 				6B87424D1B2ECAB200BED8A6 /* Crashlytics.framework in Frameworks */,
 				274A5D0E1B05C50B009112B5 /* libxml2.dylib in Frameworks */,
+				36B2E67F1C3FC384007C3900 /* libMoEngageSDK.a in Frameworks */,
 				274A5A611B05C48A009112B5 /* UIKit.framework in Frameworks */,
 				274A5A5D1B05C476009112B5 /* Foundation.framework in Frameworks */,
 				6B87424C1B2ECAB200BED8A6 /* Fabric.framework in Frameworks */,
@@ -3527,6 +3556,11 @@
 		274A5A511B05C443009112B5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36B2E6961C3FC436007C3900 /* AdSupport.framework */,
+				36B2E67D1C3FC384007C3900 /* libMoEngageSDK.a */,
+				36B2E67E1C3FC384007C3900 /* MoEngage.bundle */,
+				36BDFCDB1C3E6FD80045AAA6 /* AppsFlyerTracker.h */,
+				36BDFCDC1C3E6FD80045AAA6 /* libAppsFlyerLib.a */,
 				2C4FC9F71BA9782A00C74106 /* libsqlite3.dylib */,
 				2C4FC9F31BA96F4600C74106 /* libGoogleAnalyticsServices.a */,
 				2C36F01A1B6B592700AEFA6D /* EventKit.framework */,
@@ -5690,6 +5724,50 @@
 			path = MapClasses;
 			sourceTree = "<group>";
 		};
+		36B2E6811C3FC3C5007C3900 /* Moengage */ = {
+			isa = PBXGroup;
+			children = (
+				36B2E6821C3FC3C5007C3900 /* MOGeofence */,
+				36B2E6841C3FC3C5007C3900 /* MOHeaders */,
+				36B2E6881C3FC3C5007C3900 /* MOInbox */,
+			);
+			path = Moengage;
+			sourceTree = "<group>";
+		};
+		36B2E6821C3FC3C5007C3900 /* MOGeofence */ = {
+			isa = PBXGroup;
+			children = (
+				36B2E6831C3FC3C5007C3900 /* MOGeofenceHandler.h */,
+			);
+			path = MOGeofence;
+			sourceTree = "<group>";
+		};
+		36B2E6841C3FC3C5007C3900 /* MOHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				36B2E6851C3FC3C5007C3900 /* MOEHelperConstants.h */,
+				36B2E6861C3FC3C5007C3900 /* MoEngage.h */,
+				36B2E6871C3FC3C5007C3900 /* MOPayloadBuilder.h */,
+			);
+			path = MOHeaders;
+			sourceTree = "<group>";
+		};
+		36B2E6881C3FC3C5007C3900 /* MOInbox */ = {
+			isa = PBXGroup;
+			children = (
+				36B2E6891C3FC3C5007C3900 /* MOInbox.h */,
+				36B2E68A1C3FC3C5007C3900 /* MOInbox.storyboard */,
+				36B2E68B1C3FC3C5007C3900 /* MOInboxExposedConstants.h */,
+				36B2E68C1C3FC3C5007C3900 /* MOInboxExposedConstants.m */,
+				36B2E68D1C3FC3C5007C3900 /* MOInboxPushDataModel.h */,
+				36B2E68E1C3FC3C5007C3900 /* MOInboxTableViewCell.h */,
+				36B2E68F1C3FC3C5007C3900 /* MOInboxTableViewCell.m */,
+				36B2E6901C3FC3C5007C3900 /* MOInboxViewController.h */,
+				36B2E6911C3FC3C5007C3900 /* MOInboxViewController.m */,
+			);
+			path = MOInbox;
+			sourceTree = "<group>";
+		};
 		36BDE7E11B8365C1004F366B /* AddNewLocationViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -5974,6 +6052,7 @@
 		6B12DC521AF2294D00245209 = {
 			isa = PBXGroup;
 			children = (
+				36B2E6811C3FC3C5007C3900 /* Moengage */,
 				274A5A511B05C443009112B5 /* Frameworks */,
 				6B12DC681AF2294D00245209 /* Main.storyboard */,
 				6B8EB3201B27157800402CFC /* SubCategoryView.xib */,
@@ -8781,6 +8860,7 @@
 				6B8EB2501B23087400402CFC /* shoppingListAddCircle@2x.png in Resources */,
 				368209591B1C46FA002AA93F /* easter-island.png in Resources */,
 				3682093F1B1C46FA002AA93F /* chechen republic of ichkeria.png in Resources */,
+				36B2E6921C3FC3C5007C3900 /* MOInbox.storyboard in Resources */,
 				6BA76BAB1B67551F00C53B67 /* emptyCartIcon@3x.png in Resources */,
 				6BFFF9561B0236B800BB2B62 /* tabBarMyListIconActive@3x.png in Resources */,
 				3682097F1B1C46FA002AA93F /* honduras.png in Resources */,
@@ -8823,6 +8903,7 @@
 				368209DC1B1C46FA002AA93F /* peru.png in Resources */,
 				36820A3A1B1C46FA002AA93F /* wake Island, USA.png in Resources */,
 				2CF41C861B60F9C200F02527 /* backArrowCircle@2x.png in Resources */,
+				36B2E6801C3FC384007C3900 /* MoEngage.bundle in Resources */,
 				6BE4744F1B3B21CE00C09AFD /* unplay.png in Resources */,
 				6BE9A94B1B29B31900B960C0 /* homeDeatilsGreyArrowBack@3x.png in Resources */,
 				368209B81B1C46FA002AA93F /* Mexico.png in Resources */,
@@ -8979,6 +9060,7 @@
 				274A5C9C1B05C4AA009112B5 /* XMPPCoreDataStorage.m in Sources */,
 				274A5CA01B05C4AA009112B5 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				6BA894001B4F9EFB0014519C /* HomeCategoriesModel.m in Sources */,
+				36B2E6931C3FC3C5007C3900 /* MOInboxExposedConstants.m in Sources */,
 				6B06770D1B070C3C0002259E /* LocationAlertViewController.m in Sources */,
 				27BE658D1B020446004FA4B4 /* ShoppingListViewController.m in Sources */,
 				274A5CC81B05C4AA009112B5 /* XMPPvCardTempLabel.m in Sources */,
@@ -9153,6 +9235,7 @@
 				6B87C75C1B34206F002BC68C /* StoreModel.m in Sources */,
 				274A5C5B1B05C4AA009112B5 /* AKKeyboardAvoidingScrollView.m in Sources */,
 				274A5D031B05C4AA009112B5 /* DDMultiFormatter.m in Sources */,
+				36B2E6941C3FC3C5007C3900 /* MOInboxTableViewCell.m in Sources */,
 				6BA894061B4F9F850014519C /* HomeStoreModel.m in Sources */,
 				274A5C6D1B05C4AA009112B5 /* CXMPPController.m in Sources */,
 				274A5CE01B05C4AA009112B5 /* XMPPMessageArchivingCoreDataStorage.m in Sources */,
@@ -9263,6 +9346,7 @@
 				36CA643E1B70821800A3BBB1 /* CMGlobalSearch.m in Sources */,
 				274A5CA51B05C4AA009112B5 /* XMPPResourceMemoryStorageObject.m in Sources */,
 				274A5CF11B05C4AA009112B5 /* XMPPMessage+XEP_0308.m in Sources */,
+				36B2E6951C3FC3C5007C3900 /* MOInboxViewController.m in Sources */,
 				6BE4745F1B3B21CE00C09AFD /* MHTransitionDismissMHGallery.m in Sources */,
 				36D8C4D41B39B1DF00C255EE /* OrderHistTableCell.m in Sources */,
 				6BCB093F1B4E67AD00F1A502 /* HomeCategoriesViewController.m in Sources */,
@@ -9305,8 +9389,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -9326,7 +9410,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "8b42d4ef-767f-4c60-ab85-a4535099d45c";
+				PROVISIONING_PROFILE = "0a6973db-db06-459a-9485-c3d97941b34d";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -9348,8 +9432,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -9362,7 +9446,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "8b42d4ef-767f-4c60-ab85-a4535099d45c";
+				PROVISIONING_PROFILE = "0a6973db-db06-459a-9485-c3d97941b34d";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -9400,7 +9484,7 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTestDist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
@@ -9439,7 +9523,7 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTestDist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
