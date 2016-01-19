@@ -73,7 +73,7 @@ URLManager * gURLManager = nil;
 //	[URLManager sharedManager].baseUrl = @"http://www.aaramshop.co.in/api/index.php/user/";
 	if (!isLastVersion) {
 		if ([countryCode isEqualToString:@"PK"]) {
-			[URLManager sharedManager].baseUrl = @"https://www.aaramshop.pk/api/index.php/user/";
+			[URLManager sharedManager].baseUrl = @"http://www.aaramshop.pk/api/index.php/user";
 		}
 		else if ([countryCode isEqualToString:@"IN"])
 		{

@@ -434,6 +434,7 @@
 		36210B7F1B33F254005B8DFB /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 36210B7C1B33F254005B8DFB /* backBtn.png */; };
 		36210B801B33F254005B8DFB /* backBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36210B7D1B33F254005B8DFB /* backBtn@2x.png */; };
 		36210B811B33F254005B8DFB /* backBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36210B7E1B33F254005B8DFB /* backBtn@3x.png */; };
+		3624FACC1C4676680080FA36 /* gpx (1).gpx in Resources */ = {isa = PBXBuildFile; fileRef = 3624FACB1C4676680080FA36 /* gpx (1).gpx */; };
 		362537EC1B76111500DF34F8 /* InviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362537EB1B76111500DF34F8 /* InviteFriendsViewController.m */; };
 		362537F11B76136600DF34F8 /* homeInviteBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 362537EE1B76136600DF34F8 /* homeInviteBtn.png */; };
 		362537F21B76136600DF34F8 /* homeInviteBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 362537EF1B76136600DF34F8 /* homeInviteBtn@2x.png */; };
@@ -2200,6 +2201,7 @@
 		36210B7C1B33F254005B8DFB /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		36210B7D1B33F254005B8DFB /* backBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@2x.png"; sourceTree = "<group>"; };
 		36210B7E1B33F254005B8DFB /* backBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@3x.png"; sourceTree = "<group>"; };
+		3624FACB1C4676680080FA36 /* gpx (1).gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "gpx (1).gpx"; sourceTree = "<group>"; };
 		362537EA1B76111500DF34F8 /* InviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteFriendsViewController.h; sourceTree = "<group>"; };
 		362537EB1B76111500DF34F8 /* InviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteFriendsViewController.m; sourceTree = "<group>"; };
 		362537EE1B76136600DF34F8 /* homeInviteBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeInviteBtn.png; sourceTree = "<group>"; };
@@ -6052,6 +6054,7 @@
 		6B12DC521AF2294D00245209 = {
 			isa = PBXGroup;
 			children = (
+				3624FACB1C4676680080FA36 /* gpx (1).gpx */,
 				36B2E6811C3FC3C5007C3900 /* Moengage */,
 				274A5A511B05C443009112B5 /* Frameworks */,
 				6B12DC681AF2294D00245209 /* Main.storyboard */,
@@ -8429,6 +8432,7 @@
 				365395781B52A1700045AAFE /* WhiteSingleBox@2x.png in Resources */,
 				27EC67591B032E90007D126E /* enterMobileNoBox@3x.png in Resources */,
 				3682091C1B1C46FA002AA93F /* bahrain.png in Resources */,
+				3624FACC1C4676680080FA36 /* gpx (1).gpx in Resources */,
 				6B87C7661B342B29002BC68C /* homeStoreIdBox.png in Resources */,
 				6B12DCCE1AF2720400245209 /* upperBox.png in Resources */,
 				36D8C4CC1B3996DE00C255EE /* callIconGreenCircle@3x.png in Resources */,
@@ -9389,8 +9393,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -9410,7 +9414,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "0a6973db-db06-459a-9485-c3d97941b34d";
+				PROVISIONING_PROFILE = "8b42d4ef-767f-4c60-ab85-a4535099d45c";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -9432,8 +9436,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -9446,7 +9450,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "0a6973db-db06-459a-9485-c3d97941b34d";
+				PROVISIONING_PROFILE = "8b42d4ef-767f-4c60-ab85-a4535099d45c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -9457,8 +9461,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9484,9 +9488,9 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTestDist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8b42d4ef-767f-4c60-ab85-a4535099d45c";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -9496,8 +9500,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ritesh Gupta (QL75684UF6)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9523,9 +9527,9 @@
 					"-lxml2",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTestDist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8b42d4ef-767f-4c60-ab85-a4535099d45c";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;
