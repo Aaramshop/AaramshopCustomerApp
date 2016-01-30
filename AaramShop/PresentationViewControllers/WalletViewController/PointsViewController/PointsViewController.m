@@ -135,7 +135,7 @@
 			UIImage *imgMinus = [UIImage imageNamed:@"minusBtnCircleRed"];
 			
 			UIButton *plusBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-			plusBtn.frame = CGRectMake(12, (secView.frame.size.height - 25)/2, [[UIScreen mainScreen] bounds].size.width - 10, 25);
+			plusBtn.frame = CGRectMake(12, (secView.frame.size.height - 25)/2, [[UIScreen mainScreen] bounds].size.width - 12, 25);
 			plusBtn.tag = 101;
 			if(selectedPointsType == eAaramPoints)
 			{
@@ -152,12 +152,13 @@
 			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -([UIScreen mainScreen].bounds.size.width-50))];
 			[plusBtn addTarget:self action:@selector(expandTable:) forControlEvents:UIControlEventTouchUpInside];
 			
-			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 38, (secView.frame.size.height - 21)/2, 100, 21)];
+			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 25 - 100, (secView.frame.size.height - 21)/2, 100, 21)];
 			
 			lblAmount.textColor = [UIColor colorWithRed:101/255.0f green:101/255.0f blue:101/255.0f alpha:1.0f];
 			lblAmount.text = [NSString stringWithFormat:@"%@",strAaramPoints];
 			lblAmount.font = [UIFont fontWithName:kRobotoRegular size:14.0f];
 			UILabel *lblSeprator2 = [[ UILabel alloc] initWithFrame:CGRectMake(0, secView.frame.size.height - 1, [[UIScreen mainScreen] bounds].size.width, 1)];
+			lblAmount.textAlignment = NSTextAlignmentRight;
 			lblSeprator2.backgroundColor = [UIColor colorWithRed:232/255.0f green:232/255.0f  blue:232/255.0f  alpha:1.0f];
 			[secView addSubview:lblSeprator];
 			
@@ -207,9 +208,10 @@
 			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -([UIScreen mainScreen].bounds.size.width-50))];
 			[plusBtn addTarget:self action:@selector(expandTable:) forControlEvents:UIControlEventTouchUpInside];
 			
-			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 38, (secView.frame.size.height - 21)/2, 100, 21)];
+			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 25 - 100, (secView.frame.size.height - 21)/2, 100, 21)];
 			
 			lblAmount.textColor = [UIColor colorWithRed:101/255.0f green:101/255.0f blue:101/255.0f alpha:1.0f];
+			lblAmount.textAlignment = NSTextAlignmentRight;
 			lblAmount.text = [NSString stringWithFormat:@"%@",strBonusPoints];
 			lblAmount.font = [UIFont fontWithName:kRobotoRegular size:14.0f];
 			UILabel *lblSeprator2 = [[ UILabel alloc] initWithFrame:CGRectMake(0, secView.frame.size.height - 1, [[UIScreen mainScreen] bounds].size.width, 1)];
@@ -262,9 +264,10 @@
 			[plusBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -([UIScreen mainScreen].bounds.size.width-50))];
 			[plusBtn addTarget:self action:@selector(expandTable:) forControlEvents:UIControlEventTouchUpInside];
 			
-			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 38, (secView.frame.size.height - 21)/2, 100, 21)];
+			UILabel *lblAmount = [[UILabel alloc] initWithFrame:CGRectMake(plusBtn.frame.size.width - 25 -100, (secView.frame.size.height - 21)/2, 100, 21)];
 			
 			lblAmount.textColor = [UIColor colorWithRed:101/255.0f green:101/255.0f blue:101/255.0f alpha:1.0f];
+			lblAmount.textAlignment = NSTextAlignmentRight;
 			lblAmount.text = [NSString stringWithFormat:@"%@",strBrandPoints];
 			lblAmount.font = [UIFont fontWithName:kRobotoRegular size:14.0f];
 			UILabel *lblSeprator2 = [[ UILabel alloc] initWithFrame:CGRectMake(0, secView.frame.size.height - 1, [[UIScreen mainScreen] bounds].size.width, 1)];

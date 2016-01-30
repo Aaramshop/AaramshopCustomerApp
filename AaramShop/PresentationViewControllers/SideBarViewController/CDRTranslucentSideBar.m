@@ -341,18 +341,36 @@
         lblAddress.font=[UIFont fontWithName:kRobotoRegular size:15];
 		if(dictAddress!=nil)
 		{
-			NSString *strFullAddress = [NSString stringWithFormat:@"%@, %@, %@",[dictAddress objectForKey:kAddress],[dictAddress objectForKey:@"city"],[dictAddress objectForKey:@"state"]];
+			NSString *strFullAddress;
+			if ([[dictAddress objectForKey:@"city"] isEqualToString:@""]) {
+			
+					strFullAddress = [NSString stringWithFormat:@"%@, %@",[dictAddress objectForKey:kAddress],[dictAddress objectForKey:@"state"]];
+				if ([[dictAddress objectForKey:@"state"] isEqualToString:@""]) {
+					strFullAddress = [dictAddress objectForKey:kAddress];
+				}
+				else
+				{
+					strFullAddress = [NSString stringWithFormat:@"%@, %@",[dictAddress objectForKey:kAddress],[dictAddress objectForKey:@"state"]];
+				}
+			}
+			else
+			{
+				
+				if ([[dictAddress objectForKey:@"state"] isEqualToString:@""]) {
+					strFullAddress = [NSString stringWithFormat:@"%@, %@",[dictAddress objectForKey:kAddress],[dictAddress objectForKey:@"city"]];
+				}
+				else
+				{
+					strFullAddress = [NSString stringWithFormat:@"%@, %@, %@",[dictAddress objectForKey:kAddress],[dictAddress objectForKey:@"city"],[dictAddress objectForKey:@"state"]];
+				}
+			}
+			
 			lblAddress.text = strFullAddress;
 		}
 		else
 		{
 			lblAddress.text = @"";
 		}
-//		}
-//		else
-//		{
-//			lblAddress.text = [dictAddress objectForKey:kAddress];
-//		}
 		
         lblAddress.textColor=[UIColor whiteColor];
         UIButton *btnEdit=[[UIButton alloc]initWithFrame:CGRectMake(8, lblSeperator.frame.origin.y + 5, tblView.frame.size.width-16, 34)];

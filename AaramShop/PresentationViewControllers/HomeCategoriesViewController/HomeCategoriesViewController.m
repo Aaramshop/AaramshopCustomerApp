@@ -171,7 +171,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	[btnPicker setFrame:CGRectMake(0, 0, 97, 44)];
 	btnPicker.titleLabel.textAlignment=NSTextAlignmentCenter;
 	btnPicker.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:15];
-	btnPicker.titleLabel.adjustsFontSizeToFitWidth = YES;
+	btnPicker.titleLabel.adjustsFontSizeToFitWidth = NO;
 	[btnPicker setImage:[UIImage imageNamed:@"dropDownArrowLocation"] forState:UIControlStateNormal];
 	[btnPicker setTitle:[NSString stringWithFormat:@" %@", strHeaderTitle] forState:UIControlStateNormal];
 	

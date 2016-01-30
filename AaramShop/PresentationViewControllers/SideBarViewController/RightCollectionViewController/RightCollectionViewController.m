@@ -360,6 +360,7 @@ static NSString *strCollectionCategory = @"collectionCategories";
         CategoryModel *objCategoryModel = [[CategoryModel alloc]init];
         objCategoryModel.category_banner = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_banner]];
         objCategoryModel.category_id = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_id]];
+		objCategoryModel.category_name = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategory_name]];
         objCategoryModel.categroy_image_active = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategroy_image_active]];
         objCategoryModel.categroy_image_inactive = [NSString stringWithFormat:@"%@",[dict objectForKey:kCategroy_image_inactive]];
         

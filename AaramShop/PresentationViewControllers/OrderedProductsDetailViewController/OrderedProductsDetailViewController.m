@@ -473,7 +473,8 @@
         orderDetail.category_id         = [NSString stringWithFormat:@"%@",[obj valueForKey:@"category_id"]];
         orderDetail.combo_mrp           = [NSString stringWithFormat:@"%@",[obj valueForKey:@"combo_mrp"]];
         orderDetail.combo_offer_price   = [NSString stringWithFormat:@"%@",[obj valueForKey:@"combo_offer_price"]];
-        orderDetail.end_date            = [NSString stringWithFormat:@"%@",[obj valueForKey:@"end_date"]];
+		orderDetail.end_date				=	[Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[obj objectForKey:kEnd_date] doubleValue]]];
+//        orderDetail.end_date            = [NSString stringWithFormat:@"%@",[obj valueForKey:@"end_date"]];
         orderDetail.offerDescription    = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerDescription"]];
         orderDetail.offerDetail         = [NSString stringWithFormat:@"%@",[obj valueForKey:@"offerDetail"]];
         

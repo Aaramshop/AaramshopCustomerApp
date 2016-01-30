@@ -17,7 +17,7 @@
     
     SearchViewController *searchViewController;
     AppDelegate *appDel;
-
+	NSIndexPath *inIndexPath;
 }
 
 @property (nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;

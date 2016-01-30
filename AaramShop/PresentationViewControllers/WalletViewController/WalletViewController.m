@@ -139,6 +139,26 @@
 }
 -(void)setupAllViews
 {
+	
+	
+	
+	if (!pointsVC) {
+		//Calling PointsViewController
+		pointsVC =  [self.storyboard instantiateViewControllerWithIdentifier:@"PointsViewScene"];
+		//	pointsVC.delegate = self;
+		CGRect pointsViewRect = subView.bounds;
+		pointsVC.view.frame = pointsViewRect;
+		[subView addSubview:pointsVC.view];
+	}
+	
+	
+	
+	
+	
+	
+}
+
+- (IBAction)btnOffers:(id)sender {
 	//Calling WalletOffersViewController
 	walletOfferVC =  [self.storyboard instantiateViewControllerWithIdentifier:@"WalletOfferViewScene"];
 	walletOfferVC.delegate  = self;
@@ -146,28 +166,6 @@
 	walletOfferVC.view.frame = walletOfferRect;
 	[walletOfferVC.view setHidden:YES];
 	[subView addSubview:walletOfferVC.view];
-	
-	
-	//Calling MoneyViewController
-	moneyVC =  [self.storyboard instantiateViewControllerWithIdentifier:@"MoneyViewScene"];
-//	moneyVC.delegate = self;
-	CGRect moneyViewRect = subView.bounds;
-	moneyVC.view.frame = moneyViewRect;
-	[moneyVC.view setHidden:YES];
-	[subView addSubview:moneyVC.view];
-	
-	
-	//Calling PointsViewController
-	pointsVC =  [self.storyboard instantiateViewControllerWithIdentifier:@"PointsViewScene"];
-//	pointsVC.delegate = self;
-	CGRect pointsViewRect = subView.bounds;
-	pointsVC.view.frame = pointsViewRect;
-	[subView addSubview:pointsVC.view];
-	
-	
-}
-
-- (IBAction)btnOffers:(id)sender {
 	[offersBtn setSelected:![offersBtn isSelected]];
 	[self setSideBtnState: eSelectedWalletOffer];
 	selectedWallet = eSelectedWalletOffer;
@@ -175,12 +173,22 @@
 }
 
 - (IBAction)btnMoney:(id)sender {
+	//Calling MoneyViewController
+	if (!moneyVC) {
+		moneyVC =  [self.storyboard instantiateViewControllerWithIdentifier:@"MoneyViewScene"];
+		//	moneyVC.delegate = self;
+		CGRect moneyViewRect = subView.bounds;
+		moneyVC.view.frame = moneyViewRect;
+		[moneyVC.view setHidden:YES];
+		[subView addSubview:moneyVC.view];
+	}
 	[moneyBtn setSelected:![moneyBtn isSelected]];
 	[self setSideBtnState: eSelectedAaramMoney];
 	selectedWallet = eSelectedAaramMoney;
 }
 
 - (IBAction)btnPoints:(id)sender {
+	
 	[pointsBtn setSelected:![pointsBtn isSelected]];
 	[self setSideBtnState: eSelectedPoints];
 	selectedWallet = eSelectedPoints;

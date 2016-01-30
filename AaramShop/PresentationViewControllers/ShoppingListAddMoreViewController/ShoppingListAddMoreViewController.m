@@ -11,7 +11,7 @@
 #define kTableCellHeight    70
 
 
-@interface ShoppingListAddMoreViewController ()
+@interface ShoppingListAddMoreViewController ()<UIAlertViewDelegate>
 
 @end
 
@@ -219,17 +219,26 @@
 -(void)removeProduct:(NSIndexPath *)indexPath
 {
     ProductsModel *productModel = [_arrProductList objectAtIndex:indexPath.row];
-    
-//    int counter = [productModel.quantity intValue];
     int counter = [productModel.strCount intValue];
-
     counter--;
-    
-//    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
     productModel.strCount = [NSString stringWithFormat:@"%d",counter];
-
-    
-    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+	if (counter == 0) {
+		if ([_arrProductList count] == 1) {
+			[Utils showAlertView:kAlertTitle message:@"This product cant be removed. Please add a new product 1st or delete the list from main menu." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			counter++;
+			productModel.strCount = [NSString stringWithFormat:@"%d",counter];
+			[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+		}
+		else
+		{
+			[_arrProductList removeObjectAtIndex:indexPath.row];
+			[tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+		}
+	}
+	else
+	{
+		 [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+	}
 }
 
 
@@ -359,7 +368,17 @@
 }
 
 
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex) {
+		
+	}
+	else
+	{
+		[_arrProductList removeObjectAtIndex:inIndexPath.row];
+		[self btnDoneClicked];
+	}
+}
 
 
 @end

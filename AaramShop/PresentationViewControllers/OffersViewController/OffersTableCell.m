@@ -101,8 +101,8 @@
     }
     else
     {
-        NSString *strEndDate = [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[offers.end_date doubleValue]]]; // added on 23 Oct 2015
-        lblValidTill.text	= [NSString stringWithFormat:@"Valid till %@",strEndDate];
+//        NSString *strEndDate = [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[offers.end_date doubleValue]]]; // added on 23 Oct 2015
+        lblValidTill.text	= [NSString stringWithFormat:@"Valid till %@",offers.end_date];
     }
     //// updated on 05 Nov 2015 ... ends ....
     
