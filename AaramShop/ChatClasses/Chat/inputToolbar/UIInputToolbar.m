@@ -218,9 +218,9 @@ UIPanGestureRecognizer *pan;
     /* Create UIExpandingTextView input */
     
     CGRect textRect;
-    textRect.origin.x  = self.btnFileUpload.frame.origin.x +self.btnFileUpload.frame.size.width +3;
+    textRect.origin.x  = self.btnFileUpload.frame.origin.x + self.btnFileUpload.frame.size.width +3;
     textRect.origin.y = btnUploadRect.origin.y;
-    textRect.size.width = 225;
+    textRect.size.width = [UIScreen mainScreen].bounds.size.width -95;
     textRect.size.height = 30;
     //    	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:26 topCapHeight:18]];
     UIImage *image = [UIImage imageNamed:@"chatMsgBox"];

@@ -280,7 +280,23 @@
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(internetConnectionListener:) name: kReachabilityChangedNotification object: nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowEditMenu:) name:UIMenuControllerWillShowMenuNotification object:nil];
  
-    
+	[self setupview];
+}
+-(void)setupview
+{
+	self.imgViewBackground.frame		= CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height);
+	self.imgView.frame							=	CGRectMake([[UIScreen mainScreen]bounds].size.width-48, 22, 40, 40);
+	self.btnUserImage.frame					=	self.imgView.frame;
+	CGFloat width									=	[[UIScreen mainScreen]bounds].size.width;
+	self.blurView.frame							=	CGRectMake(0, 0, width, self.blurView.frame.size.height);
+	CGFloat lblUsernameWidth = width-148;
+	self.lblUsername.frame					=	CGRectMake((width - lblUsernameWidth)/2, self.lblUsername.frame.origin.y, lblUsernameWidth, self.lblUsername.frame.size.height);
+	self.lblTyping.frame							=	CGRectMake((width - self.lblUsername.frame.size.width)/2, self.lblTyping.frame.origin.y, self.lblUsername.frame.size.width, self.lblTyping.frame.size.height);
+	self.btnContactInfo.frame				=CGRectMake((width - self.lblUsername.frame.size.width)/2, self.btnContactInfo.frame.origin.y, self.lblUsername.frame.size.width, self.btnContactInfo.frame.size.height);
+	self.activity.frame							= CGRectMake((width - self.activity.frame.size.width)/2, lblUsername.frame.origin.y+10, self.activity.frame.size.width, self.activity.frame.size.width);
+//	self.lblUnderline.frame						=	CGRectMake(0, 64, width, 1);
+	//	self.activity.frame							=CGRectMake((self.lblUsername.frame.size.width - self.activity.frame.size.width)/2, self.activity.frame.origin.y, self.activity.frame.size.width, self.activity.frame.size.height);
+	
 }
 // Priyanka
 
@@ -647,7 +663,7 @@
         
         NSInteger y=[[UIApplication sharedApplication] statusBarFrame].size.height>20?20:0;
         
-        [self.inputToolbar setFrame:CGRectMake(0, kKeyBoardFrame.origin.y-self.inputToolbar.frame.size.height-y, 320, self.inputToolbar.frame.size.height)];
+        [self.inputToolbar setFrame:CGRectMake(0, kKeyBoardFrame.origin.y-self.inputToolbar.frame.size.height-y, [UIScreen mainScreen].bounds.size.width, self.inputToolbar.frame.size.height)];
         
         //    [self.inputToolbar setFrame:CGRectMake(0,(self.view.frame.size.height-kKeyboardHeightPortrait)-self.inputToolbar.frame.size.height, 320, self.inputToolbar.frame.size.height)];
         
@@ -678,8 +694,8 @@
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
         
-        [self.inputToolbar setFrame:CGRectMake(0, kKeyBoardFrame.origin.y-self.inputToolbar.frame.size.height-y, 320, self.inputToolbar.frame.size.height)];
-        [tView setFrame:CGRectMake(0,64, 320, [UIScreen mainScreen].bounds.size.height-(kKeyBoardFrame.size.height+self.inputToolbar.frame.size.height+64))];
+        [self.inputToolbar setFrame:CGRectMake(0, kKeyBoardFrame.origin.y-self.inputToolbar.frame.size.height-y, [UIScreen mainScreen].bounds.size.width, self.inputToolbar.frame.size.height)];
+        [tView setFrame:CGRectMake(0,64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(kKeyBoardFrame.size.height+self.inputToolbar.frame.size.height+64))];
         //  self.tView.frame=rect;
         [UIView commitAnimations];
         
@@ -725,8 +741,8 @@
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.25];
         
-        [self.inputToolbar setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-(kKeyboardHeightPortrait+self.inputToolbar.frame.size.height), 320, self.inputToolbar.frame.size.height)];
-        [tView setFrame:CGRectMake(0,64, 320, [UIScreen mainScreen].bounds.size.height-(kKeyboardHeightPortrait+self.inputToolbar.frame.size.height+64))];
+        [self.inputToolbar setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-(kKeyboardHeightPortrait+self.inputToolbar.frame.size.height), [UIScreen mainScreen].bounds.size.width, self.inputToolbar.frame.size.height)];
+        [tView setFrame:CGRectMake(0,64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(kKeyboardHeightPortrait+self.inputToolbar.frame.size.height+64))];
         //  self.tView.frame=rect;
         [UIView commitAnimations];
     }
@@ -750,8 +766,8 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.2];
     
-    [self.inputToolbar setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-(kKeyboardHeightPortrait+self.inputToolbar.frame.size.height), 320, self.inputToolbar.frame.size.height)];
-    [tView setFrame:CGRectMake(0,64, 320, [UIScreen mainScreen].bounds.size.height-(kKeyboardHeightPortrait+self.inputToolbar.frame.size.height))];
+    [self.inputToolbar setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-(kKeyboardHeightPortrait+self.inputToolbar.frame.size.height), [UIScreen mainScreen].bounds.size.width, self.inputToolbar.frame.size.height)];
+    [tView setFrame:CGRectMake(0,64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-(kKeyboardHeightPortrait+self.inputToolbar.frame.size.height))];
     //  self.tView.frame=rect;
     [UIView commitAnimations];
     if ([messages count]>0) {
@@ -3589,7 +3605,7 @@ didFinishSavingWithError:(NSError *)error
             NSString *mediaType= [chatInfo objectForKey:@"media"];
             if (mediaType && mediaType.length > 0)
             {
-                lblTimeStamp.frame = CGRectMake(305-(lblTimeStamp.frame.size.width +15), lblTimeStamp.frame.origin.y, lblTimeStamp.frame.size.width, lblTimeStamp.frame.size.height);
+                lblTimeStamp.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width-15)-(lblTimeStamp.frame.size.width +15), lblTimeStamp.frame.origin.y, lblTimeStamp.frame.size.width, lblTimeStamp.frame.size.height);
                 aPendingImgView.frame = CGRectMake((lblTimeStamp.frame.origin.x+lblTimeStamp.frame.size.width)+5, aPendingImgView.frame.origin.y, aPendingImgView.frame.size.width, aPendingImgView.frame.size.height);
                 lblTimeStamp.textColor = [UIColor whiteColor];
                 
@@ -3602,7 +3618,7 @@ didFinishSavingWithError:(NSError *)error
                         CGRect locationRect;
                         locationRect.size.width = aTempView.frame.size.width - 10;
                         locationRect.size.height = 21;
-                        locationRect.origin.x = 320-aTempView.frame.size.width -15;
+                        locationRect.origin.x = [UIScreen mainScreen].bounds.size.width-aTempView.frame.size.width -15;
                         locationRect.origin.y =  aTempView.frame.size.height +aTempView.frame.origin.y-30;
                         lblLocation.frame = locationRect;
                         [cell.contentView addSubview: lblLocation];
@@ -3636,7 +3652,7 @@ didFinishSavingWithError:(NSError *)error
             
             pendingRect.origin.y = chatView.frame.size.height - pendingRect.size.height - 15;
             
-            pendingRect.origin.x = 320.0 - pendingRect.size.width -20;
+            pendingRect.origin.x = [UIScreen mainScreen].bounds.size.width - pendingRect.size.width -20;
 
             aPendingImgView.frame = pendingRect;
             
@@ -3817,7 +3833,7 @@ didFinishSavingWithError:(NSError *)error
     if (section  == 0 && self.tableLoadMoreView.isShownLoadMore == YES)
     {
         //end
-        CGRect rectHeader = CGRectMake(0, 0, 320, 30);
+        CGRect rectHeader = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 30);
         
         UIView *headerView = [[[UIView alloc] init] initWithFrame: rectHeader];
         
@@ -3866,7 +3882,7 @@ didFinishSavingWithError:(NSError *)error
         //22-12-13
         if (section  == 0 && self.tableLoadMoreView.isShownLoadMore == NO)
         {
-            CGRect rectHeader = CGRectMake(0, 0, 320, 26);
+            CGRect rectHeader = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 26);
             
             UIView *headerView = [[[UIView alloc] init] initWithFrame: rectHeader];
             [headerView setBackgroundColor:[UIColor clearColor]];
@@ -3880,7 +3896,7 @@ didFinishSavingWithError:(NSError *)error
         }
          else
         {
-            CGRect rectHeader = CGRectMake(0, 0, 320, 26);
+            CGRect rectHeader = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 26);
             
             UIView *headerView = [[[UIView alloc] init] initWithFrame: rectHeader];
             [headerView setBackgroundColor:[UIColor clearColor]];
@@ -4349,11 +4365,11 @@ didFinishSavingWithError:(NSError *)error
     
     if([UIScreen mainScreen].bounds.size.height>480)
     {
-        [tView setFrame:CGRectMake(0,64, 320, 464)];
+        [tView setFrame:CGRectMake(0,64, [UIScreen mainScreen].bounds.size.width, 464)];
     }
     else
     {
-        [tView setFrame:CGRectMake(0,64, 320, 376)];
+        [tView setFrame:CGRectMake(0,64, [UIScreen mainScreen].bounds.size.width, 376)];
     }
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -4361,15 +4377,15 @@ didFinishSavingWithError:(NSError *)error
     [super viewDidAppear:animated];
     
     NSLog(@"viewdidappear");
-    if([UIScreen mainScreen].bounds.size.height>480)
-    {
-        [tView setFrame:CGRectMake(0,64, 320, 464)];
-    }
-    else
-    {
-        [tView setFrame:CGRectMake(0,64, 320, 376)];
-    }
-
+//    if([UIScreen mainScreen].bounds.size.height>480)
+//    {
+//        [tView setFrame:CGRectMake(0,64, [UIScreen mainScreen].bounds.size.width, 464)];
+//    }
+//    else
+//    {
+//        [tView setFrame:CGRectMake(0,64, [UIScreen mainScreen].bounds.size.width, 376)];
+//    }
+[tView setFrame:CGRectMake(0,64, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height-(64+self.inputToolbar.frame.size.height))];
     
     [self.loadingMsgIndicator setHidden:YES];
     if (self.isMediaOpened == YES)
@@ -5494,7 +5510,7 @@ didFinishSavingWithError:(NSError *)error
     {
         if (isHasSticker)
         {
-            cellView.frame = CGRectMake(320.0f - RightPaddingForSticker - KStickerSizeWidth, 0, KStickerSizeWidth, KStickerSizeHeight + VericalPaddingForTime);
+            cellView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - RightPaddingForSticker - KStickerSizeWidth, 0, KStickerSizeWidth, KStickerSizeHeight + VericalPaddingForTime);
         }
         else if(isMediaType)
         {
@@ -5505,7 +5521,7 @@ didFinishSavingWithError:(NSError *)error
                                                    returnView.frame.origin.y-4,
                                                    cst.frame.size.width+14,
                                                    cst.frame.size.height+8);
-                cellView.frame = CGRectMake(0, 0 , 320, bubbleImageView.frame.size.height+10);
+                cellView.frame = CGRectMake(0, 0 , [UIScreen mainScreen].bounds.size.width, bubbleImageView.frame.size.height+10);
                 
                 UIImageView *imgView = [returnView.subviews objectAtIndex:2];
                 
@@ -5517,14 +5533,14 @@ didFinishSavingWithError:(NSError *)error
             else
             {
                 UIView *cst = [returnView.subviews objectAtIndex:0];
-                bubbleImageView.frame = CGRectMake(320-(cst.frame.size.width+14),
+                bubbleImageView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width-(cst.frame.size.width+14),
                                                    returnView.frame.origin.y-4,
                                                    cst.frame.size.width+14,
                                                    cst.frame.size.height+8);
                 CGRect rect = returnView.frame;
                 rect.origin.x = bubbleImageView.frame.origin.x+4;
                 returnView.frame = rect;
-                cellView.frame = CGRectMake(0, 0 , 320, bubbleImageView.frame.size.height+10);
+                cellView.frame = CGRectMake(0, 0 , [UIScreen mainScreen].bounds.size.width, bubbleImageView.frame.size.height+10);
                 
             }
             
@@ -5538,7 +5554,7 @@ didFinishSavingWithError:(NSError *)error
                                                returnView.frame.size.width+(BubblePadding*2),
                                                returnView.frame.size.height+(BubblePadding*1.2));
             
-            cellView.frame = CGRectMake(320.0f- RightPaddingForChatV - bubbleImageView.frame.size.width, 0.0f,bubbleImageView.frame.size.width, bubbleImageView.frame.size.height+6.0f);
+            cellView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width- RightPaddingForChatV - bubbleImageView.frame.size.width, 0.0f,bubbleImageView.frame.size.width, bubbleImageView.frame.size.height+6.0f);
         }
     }
     else
@@ -5566,7 +5582,7 @@ didFinishSavingWithError:(NSError *)error
                                                    cst.frame.size.height+8);
                 animatedVRect.origin.x =LeftPaddingForChatV;
                 returnView.frame = animatedVRect;
-                cellView.frame = CGRectMake(0.0f, 0.0f,320,bubbleImageView.frame.size.height+10 );
+                cellView.frame = CGRectMake(0.0f, 0.0f,[UIScreen mainScreen].bounds.size.width,bubbleImageView.frame.size.height+10 );
                 UIImageView *imgView = [returnView.subviews objectAtIndex:2];
                 [imgView sd_setImageWithURL:[NSURL URLWithString:self.imageString] placeholderImage:[UIImage imageNamed:@"chatDefault"]];
                 
@@ -5583,7 +5599,7 @@ didFinishSavingWithError:(NSError *)error
                                                    cst.frame.size.height+8);
                 animatedVRect.origin.x =LeftPaddingForChatV;
                 returnView.frame = animatedVRect;
-                cellView.frame = CGRectMake(0.0f, 0.0f,320,bubbleImageView.frame.size.height+10 );
+                cellView.frame = CGRectMake(0.0f, 0.0f,[UIScreen mainScreen].bounds.size.width,bubbleImageView.frame.size.height+10 );
                 
             }
         }

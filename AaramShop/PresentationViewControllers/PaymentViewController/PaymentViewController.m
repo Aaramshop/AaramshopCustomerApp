@@ -374,111 +374,116 @@ static NSString *strCollectionItems = @"collectionItems";
 	[Utils stopActivityIndicatorInView:self.view];
 
     [AppManager stopStatusbarActivityIndicator];
-    if(aaramShop_ConnectionManager.currentTask == TASK_GET_PAYMENT_PAGE_DATA)
-    {
-        if([[responseObject objectForKey:kstatus] intValue] == 1)
-        {
-			NSArray *array = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"overall_value_offers"]];
-
-			NSSortDescriptor *sortDescriptor;
-			sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"discountOnAmount"
-														 ascending:YES];
-			NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-			NSArray *sortedArray;
-			sortedArray = [array sortedArrayUsingDescriptors:sortDescriptors];
-			arr_overall_value_offers = [NSMutableArray arrayWithArray:sortedArray];
-			delivery_charges =[NSString stringWithFormat:@"%d", [[responseObject objectForKey:kDelivery_charges]intValue]];
-			[self getTotalAmount];
-//			strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
-            [self parsePaymentPageData:[responseObject objectForKey:@"payment_page_info"]];
-        }
-		else
+	switch (aaramShop_ConnectionManager.currentTask) {
+  case TASK_GET_PAYMENT_PAGE_DATA:
 		{
-			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-		}
-
-    }
-    else if(aaramShop_ConnectionManager.currentTask == TASK_GET_DELIVERY_SLOTS)
-    {
-        if([[responseObject objectForKey:kstatus] intValue] == 1)
-        {
-            NSLog(@"VALUE = %@",responseObject);
-            [self parseGetDeliverySlots:responseObject];
-        }
-		else
-		{
-			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-		}
-
-    }
-    else if(aaramShop_ConnectionManager.currentTask == TASK_CHECKOUT)
-    {
-        btnPay.enabled = YES;
-        if([[responseObject objectForKey:kstatus] intValue] == 1)
-        {
-            [Utils showAlertViewWithTag:kTagForFeedBack title:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-            
-            
-			[AppManager removeCartBasedOnStoreId:self.strStore_Id];
-
-			gAppManager.intCount = 0;
-			[AppManager saveCountOfProductsInCart:gAppManager.intCount];
-
-        }
-		else
-		{
-			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-		}
-    }
-	else if (aaramShop_ConnectionManager.currentTask == TASK_GET_MINIMUM_ORDER_VALUE)
-	{
-		if([[responseObject objectForKey:kstatus]intValue]==1)
-		{
-			min_order_value =[responseObject objectForKey:@"minimum_order_value" ];
-			if([strTotalPrice integerValue] < [[responseObject objectForKey:@"minimum_order_value" ] integerValue])
+			if([[responseObject objectForKey:kstatus] intValue] == 1)
 			{
-				[self showPopupWithMessage:[NSString stringWithFormat:@"Minimum order value for this store is %@%@. Please add more products.",[[NSUserDefaults standardUserDefaults] valueForKey:kCurrencySymbol],[responseObject objectForKey:@"minimum_order_value" ]]];
-			}
-		}
-		else
-		{
-			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-		}
-
-	}
-	else if(aaramShop_ConnectionManager.currentTask == TASK_VALIDATE_COUPON)
-	{
-		if([[responseObject objectForKey:kstatus]intValue]==1)
-		{
-			isCouponValid = [[responseObject objectForKey:@"isValid"] integerValue];
-			if(isCouponValid==0)
-			{
-				coupon_value = @"0";
-				coupon_code = @"";
-				tfCouponCode.text = @"";
-				isCouponValid = -1;
+				NSArray *array = [NSMutableArray arrayWithArray:[responseObject objectForKey:@"overall_value_offers"]];
+				
+				NSSortDescriptor *sortDescriptor;
+				sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"discountOnAmount"
+															 ascending:YES];
+				NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+				NSArray *sortedArray;
+				sortedArray = [array sortedArrayUsingDescriptors:sortDescriptors];
+				arr_overall_value_offers = [NSMutableArray arrayWithArray:sortedArray];
+				delivery_charges =[NSString stringWithFormat:@"%d", [[responseObject objectForKey:kDelivery_charges]intValue]];
 				[self getTotalAmount];
-				[tblView reloadData];
+				//			strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
+				[self parsePaymentPageData:[responseObject objectForKey:@"payment_page_info"]];
 			}
 			else
 			{
-				coupon_value = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"coupon_value"] ];
-//				total_discount = [NSString stringWithFormat:@"%ld",(long)([total_discount integerValue]+[coupon_value integerValue])];
-//				strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
-
-				[self getTotalAmount];
-				NSRange range = NSMakeRange(0, 1);
-				NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
-				[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
-
-				NSLog(@"%@",responseObject);
+				[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 			}
-			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 		}
-	}
-	else
-	{
-		[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			break;
+			case TASK_GET_DELIVERY_SLOTS:
+		{
+			if([[responseObject objectForKey:kstatus] intValue] == 1)
+			{
+				NSLog(@"VALUE = %@",responseObject);
+				[self parseGetDeliverySlots:responseObject];
+			}
+			else
+			{
+				[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			}
+		}
+			break;
+			case TASK_CHECKOUT:
+		{
+			btnPay.enabled = YES;
+			if([[responseObject objectForKey:kstatus] intValue] == 1)
+			{
+				[Utils showAlertViewWithTag:kTagForFeedBack title:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+				
+				
+				[AppManager removeCartBasedOnStoreId:self.strStore_Id];
+				
+				gAppManager.intCount = 0;
+				[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+				
+			}
+			else
+			{
+				[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			}
+
+		}
+			break;
+			case TASK_GET_MINIMUM_ORDER_VALUE:
+		{
+			if([[responseObject objectForKey:kstatus]intValue]==1)
+			{
+				min_order_value =[responseObject objectForKey:@"minimum_order_value" ];
+				if([strTotalPrice integerValue] < [[responseObject objectForKey:@"minimum_order_value" ] integerValue])
+				{
+					[self showPopupWithMessage:[NSString stringWithFormat:@"Minimum order value for this store is %@%@. Please add more products.",[[NSUserDefaults standardUserDefaults] valueForKey:kCurrencySymbol],[responseObject objectForKey:@"minimum_order_value" ]]];
+				}
+			}
+			else
+			{
+				[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			}
+		}
+			break;
+			case TASK_VALIDATE_COUPON:
+		{
+			if([[responseObject objectForKey:kstatus]intValue]==1)
+			{
+				isCouponValid = [[responseObject objectForKey:@"isValid"] integerValue];
+				if(isCouponValid==0)
+				{
+					coupon_value = @"0";
+					coupon_code = @"";
+					tfCouponCode.text = @"";
+					isCouponValid = -1;
+					[self getTotalAmount];
+					[tblView reloadData];
+				}
+				else
+				{
+					coupon_value = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"coupon_value"] ];
+					//				total_discount = [NSString stringWithFormat:@"%ld",(long)([total_discount integerValue]+[coupon_value integerValue])];
+					//				strTotalPrice = [NSString stringWithFormat:@"%ld",(long)(([subTotal integerValue]-[total_discount integerValue])+[delivery_charges integerValue])];
+					
+					[self getTotalAmount];
+					NSRange range = NSMakeRange(0, 1);
+					NSIndexSet *sectionToReload = [NSIndexSet indexSetWithIndexesInRange:range];
+					[tblView reloadSections:sectionToReload withRowAnimation:UITableViewRowAnimationNone];
+					
+					NSLog(@"%@",responseObject);
+				}
+				[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			}
+
+		}
+			break;
+  default:
+			[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			break;
 	}
 
 
@@ -1491,9 +1496,31 @@ static NSString *strCollectionItems = @"collectionItems";
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
 	coupon_code = textField.text;
+//	coupon_value = @"0";
+//	coupon_code = @"";
+//	tfCouponCode.text = @"";
+//	isCouponValid = -1;
+//	[self getTotalAmount];
+//	[tblView reloadData];
+
 	return YES;
 }
-
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+	if(textField == tfCouponCode)
+	{
+		if([textField.text length]==1 && [string isEqualToString:@""])
+		{
+				coupon_value = @"0";
+				coupon_code = @"";
+				tfCouponCode.text = @"";
+				isCouponValid = -1;
+				[self getTotalAmount];
+				[tblView reloadData];
+		}
+	}
+	return YES;
+}
 
 
 #pragma mark - Feedback screen
