@@ -839,6 +839,9 @@
 		36AEB77C1B83BAD10048C2B1 /* DXAnnotationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AEB7781B83BAD10048C2B1 /* DXAnnotationSettings.m */; };
 		36AEB77D1B83BAD10048C2B1 /* DXAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AEB77A1B83BAD10048C2B1 /* DXAnnotationView.m */; };
 		36AEB77E1B83BAD10048C2B1 /* myView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AEB77B1B83BAD10048C2B1 /* myView.xib */; };
+		36AF34681C5E0074003DE489 /* homeScreenAaramShopLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AF34651C5E0074003DE489 /* homeScreenAaramShopLogo.png */; };
+		36AF34691C5E0074003DE489 /* homeScreenAaramShopLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AF34661C5E0074003DE489 /* homeScreenAaramShopLogo@2x.png */; };
+		36AF346A1C5E0074003DE489 /* homeScreenAaramShopLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AF34671C5E0074003DE489 /* homeScreenAaramShopLogo@3x.png */; };
 		36B2E67F1C3FC384007C3900 /* libMoEngageSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B2E67D1C3FC384007C3900 /* libMoEngageSDK.a */; };
 		36B2E6801C3FC384007C3900 /* MoEngage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 36B2E67E1C3FC384007C3900 /* MoEngage.bundle */; };
 		36B2E6921C3FC3C5007C3900 /* MOInbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36B2E68A1C3FC3C5007C3900 /* MOInbox.storyboard */; };
@@ -2633,6 +2636,9 @@
 		36AEB7791B83BAD10048C2B1 /* DXAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXAnnotationView.h; sourceTree = "<group>"; };
 		36AEB77A1B83BAD10048C2B1 /* DXAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXAnnotationView.m; sourceTree = "<group>"; };
 		36AEB77B1B83BAD10048C2B1 /* myView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = myView.xib; sourceTree = "<group>"; };
+		36AF34651C5E0074003DE489 /* homeScreenAaramShopLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeScreenAaramShopLogo.png; sourceTree = "<group>"; };
+		36AF34661C5E0074003DE489 /* homeScreenAaramShopLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeScreenAaramShopLogo@2x.png"; sourceTree = "<group>"; };
+		36AF34671C5E0074003DE489 /* homeScreenAaramShopLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeScreenAaramShopLogo@3x.png"; sourceTree = "<group>"; };
 		36B2E67D1C3FC384007C3900 /* libMoEngageSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMoEngageSDK.a; sourceTree = "<group>"; };
 		36B2E67E1C3FC384007C3900 /* MoEngage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MoEngage.bundle; sourceTree = "<group>"; };
 		36B2E6831C3FC3C5007C3900 /* MOGeofenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOGeofenceHandler.h; sourceTree = "<group>"; };
@@ -3536,6 +3542,9 @@
 		274A5A381B05C075009112B5 /* HomeImages */ = {
 			isa = PBXGroup;
 			children = (
+				36AF34651C5E0074003DE489 /* homeScreenAaramShopLogo.png */,
+				36AF34661C5E0074003DE489 /* homeScreenAaramShopLogo@2x.png */,
+				36AF34671C5E0074003DE489 /* homeScreenAaramShopLogo@3x.png */,
 				36939B121B73705B008E6851 /* dropDownArrowLocation.png */,
 				36939B131B73705B008E6851 /* dropDownArrowLocation@2x.png */,
 				36939B141B73705B008E6851 /* dropDownArrowLocation@3x.png */,
@@ -7972,6 +7981,7 @@
 				274A5DC01B05C88B009112B5 /* chatPauseIconWhite.png in Resources */,
 				368209621B1C46FA002AA93F /* ethiopia.png in Resources */,
 				368209641B1C46FA002AA93F /* Falkland Islands.png in Resources */,
+				36AF346A1C5E0074003DE489 /* homeScreenAaramShopLogo@3x.png in Resources */,
 				274A5DB91B05C88B009112B5 /* chatKeyboardIcon@2x.png in Resources */,
 				368209161B1C46FA002AA93F /* aruba.png in Resources */,
 				6BE474391B3B21CE00C09AFD /* facebookMH@2x.png in Resources */,
@@ -8394,6 +8404,7 @@
 				368209341B1C46FA002AA93F /* burundi.png in Resources */,
 				274A5DF61B05C88B009112B5 /* CellPostLocation.xib in Resources */,
 				368209231B1C46FA002AA93F /* belize.png in Resources */,
+				36AF34681C5E0074003DE489 /* homeScreenAaramShopLogo.png in Resources */,
 				3682090B1B1C46FA002AA93F /* albania.png in Resources */,
 				6BEB72D31B2B070F006BFB55 /* searchBox@3x.png in Resources */,
 				368209E41B1C46FA002AA93F /* República Dominicana.png in Resources */,
@@ -8639,6 +8650,7 @@
 				3682097B1B1C46FA002AA93F /* Guiné-Bissau.png in Resources */,
 				6BB50DC91B32AAB300990161 /* locationPopupOp2.png in Resources */,
 				6B1374281B60F2A40015E9EA /* ShoppingListChooseStoreRecommendedCell.xib in Resources */,
+				36AF34691C5E0074003DE489 /* homeScreenAaramShopLogo@2x.png in Resources */,
 				368209741B1C46FA002AA93F /* greenland.png in Resources */,
 				6B8EB2901B25BED000402CFC /* homeStoreQuestionMarkIcon.png in Resources */,
 				6B83A0EF1B53EB2F00A00520 /* copyIcon.png in Resources */,
