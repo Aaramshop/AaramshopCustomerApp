@@ -37,6 +37,7 @@ void MyAddressBookExternalChangeCallback (
 @property (nonatomic, strong)NSMutableDictionary *notifyDict;
 @property (nonatomic, assign)NSInteger intCount;
 @property (nonatomic, assign) BOOL broadcastNotificationAvailable;
+@property (nonatomic, assign)NSInteger addressSelected;
 @property (nonatomic, strong) CMCountryList *cmCountryList;
 @property (nonatomic, strong) UIImage *imgProfile;
 
@@ -60,7 +61,7 @@ void MyAddressBookExternalChangeCallback (
 -(void)createDefaultValuesForDictionay;
 +(void)removeDataFromNSUserDefaults;
 +(NSString *)getDistance:(StoreModel *)objStoreModel;
-+(void)AddOrRemoveFromCart:(CartProductModel *)cartProduct forStore:(NSDictionary *)store add:(BOOL)isAdd fromCart:(BOOL)fromCart;
++(void)AddOrRemoveFromCart:(CartProductModel *)cartProduct forStore:(NSDictionary *)store add:(BOOL)isAdd fromCart:(BOOL)fromCart fromReorder:(BOOL)isReorder;
 +(void)saveCountOfProductsInCart:(NSInteger)productQuantity;
 +(NSInteger)getCountOfProductsInCart;
 + (void)removeCartBasedOnStoreId:(NSString *)store_id;

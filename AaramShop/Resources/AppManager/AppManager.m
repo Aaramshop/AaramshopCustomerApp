@@ -84,6 +84,7 @@ AppDelegate *appDeleg;
 -(void)initializeObjects
 {
     cmCountryList = [[CMCountryList alloc] init];
+	_addressSelected = 0;
     appDeleg = APP_DELEGATE;
 }
 +(CLocation *)getLocationByLocationStr:(NSString *)inLocationStr
@@ -794,7 +795,7 @@ void MyAddressBookExternalChangeCallback (
 }
 
 
-+(void)AddOrRemoveFromCart:(CartProductModel *)cartProduct forStore:(NSDictionary *)store add:(BOOL)isAdd fromCart:(BOOL)fromCart
++(void)AddOrRemoveFromCart:(CartProductModel *)cartProduct forStore:(NSDictionary *)store add:(BOOL)isAdd fromCart:(BOOL)fromCart fromReorder:(BOOL)isReorder
 {
 //	if (isAdd) {
 //		[[AppsFlyerTracker sharedTracker] trackEvent:AFEventAddToCart withValues:@{ AFEventParamPrice: @9.99,
@@ -826,9 +827,21 @@ void MyAddressBookExternalChangeCallback (
 			NSArray *filteredIds = [cartModel.arrProductDetails filteredArrayUsingPredicate:predicate];
 			if([filteredIds count]>0)
 			{
-				CartProductModel *cartProductSaved = [filteredIds objectAtIndex:0];
-				NSInteger index= [cartModel.arrProductDetails indexOfObject:cartProductSaved];
-				[cartModel.arrProductDetails replaceObjectAtIndex:index withObject:cartProduct];
+				NSInteger index=0;
+				if (isReorder) {
+					CartProductModel *cartProductSaved = [filteredIds objectAtIndex:0];
+					index= [cartModel.arrProductDetails indexOfObject:cartProductSaved];
+					NSInteger count = [cartProductSaved.strCount integerValue] + [cartProduct.strCount integerValue];
+					cartProduct.strCount = [NSString stringWithFormat:@"%ld",(long)count];
+					[cartModel.arrProductDetails replaceObjectAtIndex:index withObject:cartProduct];
+				}
+				else
+				{
+					CartProductModel *cartProductSaved = [filteredIds objectAtIndex:0];
+					index= [cartModel.arrProductDetails indexOfObject:cartProductSaved];
+					[cartModel.arrProductDetails replaceObjectAtIndex:index withObject:cartProduct];
+				}
+				
 				if(!fromCart)
 				{
 					[cartArray removeObjectAtIndex:indexCart];

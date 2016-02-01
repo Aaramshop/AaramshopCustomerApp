@@ -247,9 +247,16 @@
 //    productModel.quantity = [NSString stringWithFormat:@"%d",counter];
     
     productModel.strCount = [NSString stringWithFormat:@"%d",counter];
-
-    
-    [tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+	if (counter==0) {
+		[arrProductList removeObjectAtIndex:indexPath.row];
+		[tblView reloadData];
+	}
+	else
+	{
+		[tblView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+	}
+		
+	
 }
 
 

@@ -71,7 +71,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	actual_subTotal			= @"0";
 	actual_total_discount	= @"0";
 	strActualTotalPrice		= @"0";
-	
+//	[viewOverallValueStatus setHidden:YES];
 	self.automaticallyAdjustsScrollViewInsets = NO;
 	NSInteger discount = 0;
 	NSInteger sub_total = 0;
@@ -91,7 +91,6 @@ static NSString *strCollectionItems = @"collectionItems";
 	actual_total_discount = [NSString stringWithFormat:@"%ld",(long)discount];
 	actual_subTotal		=	subTotal;
 	[self getTotalAmount];
-//	strTotalPrice = [NSString stringWithFormat:@"%ld",(long)([subTotal integerValue]-[total_discount integerValue])];
 	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 	[tracker set:kGAIScreenName value:@"Payment"];
 	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
@@ -986,7 +985,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	[self getTotalAmount];
 	if(self.fromCart)
 	{
-		[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:YES fromCart:NO];
+		[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:YES fromCart:NO fromReorder:NO];
 		
 		arrSelectedProducts		=	(NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
 		gAppManager.intCount++;
@@ -1031,7 +1030,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	[self getTotalAmount];
 	if(self.fromCart)
 	{
-		[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:NO fromCart:NO];
+		[AppManager AddOrRemoveFromCart:[self getCartProductFromOffer:objProductsModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:strStore_Id,kStore_id,self.strStore_name,kStore_name,self.strStore_image,kStore_image, nil] add:NO fromCart:NO fromReorder:NO];
 		
 		arrSelectedProducts = (NSMutableArray *)[AppManager getCartProductsByStoreId:strStore_Id];
 		gAppManager.intCount--;
@@ -1116,7 +1115,7 @@ static NSString *strCollectionItems = @"collectionItems";
 {
 //    [self setSlot];
 }
--(void)setSlot
+- (void)setSlot
 {
     if (ePickerType == enPickerAddress) {
         AddressModel *objaddressModel = [arrAddressData objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
@@ -1261,7 +1260,7 @@ static NSString *strCollectionItems = @"collectionItems";
 
 #pragma mark - Button Actions
 
--(void)applyCouponClick
+- (void)applyCouponClick
 {
 	[tfCouponCode resignFirstResponder];
     if([coupon_code length]>0)
@@ -1275,18 +1274,13 @@ static NSString *strCollectionItems = @"collectionItems";
 		[Utils showAlertView:kAlertTitle message:@"Please enter coupon code" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
 	}
 }
--(void)btnImmdediateClick
+- (void)btnImmdediateClick
 {
     [self showOptionPatch:YES];
     [self showDatePickerView:YES];
 }
--(void)btnSlotClick
+- (void)btnSlotClick
 {
-//    if ([arrAddressData count]==0)
-//    {
-//        [Utils showAlertView:kAlertTitle message:@"No address available." delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-//        return;
-//    }
     
     isPickerOpen = YES;
     ePickerType = enPickerSlots;
@@ -1471,12 +1465,13 @@ static NSString *strCollectionItems = @"collectionItems";
 - (void)showPopupWithMessage:(NSString *)message
 {
 	tblView.userInteractionEnabled = NO;
-	viewOverallValueStatus.hidden = NO;
+	[viewOverallValueStatus setHidden:NO];
 	lblOverallValueStatus.text = message;
 }
 - (IBAction)btnCrossClicked:(id)sender {
+	[viewOverallValueStatus setHidden:YES];
 	tblView.userInteractionEnabled = YES;
-	viewOverallValueStatus.hidden = YES;
+	
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {

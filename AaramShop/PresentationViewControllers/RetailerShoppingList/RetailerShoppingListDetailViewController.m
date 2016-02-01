@@ -453,7 +453,7 @@
 				gAppManager.intCount	= gAppManager.intCount - count;
 				gAppManager.intCount += [productModel.strCount integerValue];
 				[AppManager saveCountOfProductsInCart:gAppManager.intCount];
-				[AppManager AddOrRemoveFromCart:[self getCartProductFromProduct:productModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES fromCart:NO];
+				[AppManager AddOrRemoveFromCart:[self getCartProductFromProduct:productModel] forStore:[NSDictionary dictionaryWithObjectsAndKeys:appDeleg.objStoreModel.store_id,kStore_id,appDeleg.objStoreModel.store_name,kStore_name,appDeleg.objStoreModel.store_image,kStore_image, nil] add:YES fromCart:NO fromReorder:NO];
 			}
 		}
 		CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];

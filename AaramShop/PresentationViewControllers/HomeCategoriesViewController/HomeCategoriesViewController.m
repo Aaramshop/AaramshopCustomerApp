@@ -411,7 +411,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 {
 	
 	dictPickerValue= [pickerArray objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
-	
+	gAppManager.addressSelected = row-1;
 	
 }
 
