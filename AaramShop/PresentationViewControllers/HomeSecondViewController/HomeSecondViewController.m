@@ -402,6 +402,13 @@
 	objProductsModel.offer_id=[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];
 	objProductsModel.offer_price = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_price]];
 	objProductsModel.offer_type = [NSString stringWithFormat:@"%d",[[dictProducts objectForKey:@"offer_type"] intValue]];
+	if ([[dictProducts objectForKey:kEnd_date] intValue]!=0) {
+		objProductsModel.end_date = [Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dictProducts objectForKey:kEnd_date] doubleValue]]];
+	}
+	else
+	{
+		objProductsModel.end_date = @"";
+	}
 	
 	
 	objProductsModel.isStoreProduct = [NSString stringWithFormat:@"%@",[dictProducts objectForKey:@"isStoreProduct"]];
@@ -975,6 +982,7 @@
 	cart.cartProductImage	= product.product_image;
 	cart.product_name			=	product.product_name;
 	cart.product_price			=	product.product_price;
+	cart.end_date				=	product.end_date;
 	return cart;
 }
 -(void)addedValueByPrice:(NSString *)strPrice atIndexPath:(NSIndexPath *)inIndexPath

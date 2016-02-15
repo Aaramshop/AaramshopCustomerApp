@@ -434,7 +434,7 @@
 			if([[responseObject objectForKey:kstatus] intValue] == 1)
 			{
 				[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
-				
+				[self.navigationController popViewControllerAnimated:YES];
 				
 			}
 			else

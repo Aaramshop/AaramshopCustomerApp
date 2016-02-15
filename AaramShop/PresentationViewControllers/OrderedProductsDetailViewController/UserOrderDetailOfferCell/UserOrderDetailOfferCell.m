@@ -89,14 +89,20 @@
                                          NSForegroundColorAttributeName : [UIColor colorWithRed:121.0/255.0 green:121.0/255.0 blue:121.0/255.0 alpha:1.0]
                                          };
     
-    
-    NSString *strPrice = [NSString stringWithFormat:@"%@%@",strRupee,orderDetailModel.price];
-    
-    NSAttributedString* actPriceAttrString = [[NSAttributedString alloc] initWithString:strPrice attributes:actPriceAttributes];
-    
-    
-    lblUnitPrice.attributedText = actPriceAttrString;
-    lblOfferPrice.text = [NSString stringWithFormat:@"%@ %@",strRupee,orderDetailModel.offer_price];
+	if ([orderDetailModel.offer_type intValue]==6) {
+		lblUnitPrice.text = [NSString stringWithFormat:@"%@ %@",strRupee,orderDetailModel.offer_price];
+	}
+	else
+	{
+		NSString *strPrice = [NSString stringWithFormat:@"%@%@",strRupee,orderDetailModel.price];
+		
+		NSAttributedString* actPriceAttrString = [[NSAttributedString alloc] initWithString:strPrice attributes:actPriceAttributes];
+		
+		
+		lblUnitPrice.attributedText = actPriceAttrString;
+		lblOfferPrice.text = [NSString stringWithFormat:@"%@ %@",strRupee,orderDetailModel.offer_price];
+	}
+	
     //
     
     

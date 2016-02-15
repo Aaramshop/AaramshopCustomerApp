@@ -30,6 +30,7 @@
 		txtEmail.font = [UIFont fontWithName:kRobotoMedium size:14.0f];
 		txtEmail.textColor = [UIColor colorWithRed:92/255.0f green:92/255.0f blue:92/255.0f alpha:1.0f];
 		txtEmail.delegate = self;
+		
 		lblDetail = [[UILabel alloc]initWithFrame:CGRectZero];
 		lblDetail.font = [UIFont fontWithName:kRobotoMedium size:14.0f];
 		lblDetail.textColor = [UIColor colorWithRed:92/255.0f green:92/255.0f blue:92/255.0f alpha:1.0f];
@@ -65,7 +66,7 @@
 	
 	lblDetailRect.size.width     =   selfRect.size.width - padding*2;
 	lblDetailRect.size.height    =   lblHeight;
-	lblDetailRect.origin.x           =   padding;
+	lblDetailRect.origin.x           =   padding*2;
 	lblDetailRect.origin.y           =   (selfRect.size.height - lblDetailRect.size.height)/2;
 	lblDetail.frame                  =   lblDetailRect;
 	

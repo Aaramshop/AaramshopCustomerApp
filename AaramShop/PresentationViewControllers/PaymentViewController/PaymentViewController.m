@@ -163,7 +163,14 @@ static NSString *strCollectionItems = @"collectionItems";
 	NSPredicate *predicate =[NSPredicate predicateWithFormat:@"NOT (SELF.strOffer_type CONTAINS %@)",@"0"] ;
 	NSArray *array = [arrSelectedProducts filteredArrayUsingPredicate:predicate];
 	for (CartProductModel *cartProduct in arrSelectedProducts) {
-		NSMutableDictionary *purchaseDict = [NSMutableDictionary dictionaryWithDictionary:@{@"productName":cartProduct.product_name,@"productId":cartProduct.product_id, @"productSkuId": cartProduct.product_sku_id,@"productPrice":cartProduct.product_price,@"store_id":strStore_Id}];
+		NSMutableDictionary *purchaseDict = nil;
+		if ([cartProduct.strOffer_type intValue] == 0) {
+			 purchaseDict = [NSMutableDictionary dictionaryWithDictionary:@{@"productName":cartProduct.product_name,@"productId":cartProduct.product_id, @"productSkuId": cartProduct.product_sku_id,@"productPrice":cartProduct.product_price,@"store_id":strStore_Id}];
+		}
+		else
+		{
+			purchaseDict = [NSMutableDictionary dictionaryWithDictionary:@{@"offerTitle":cartProduct.offerTitle,@"offerId":cartProduct.offer_id, @"offerType": cartProduct.strOffer_type}];
+		}
 	
 			[[MoEngage sharedInstance]trackEvent:@"Made Purchase" andPayload:purchaseDict];
 	}

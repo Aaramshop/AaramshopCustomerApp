@@ -29,7 +29,7 @@
 @property(nonatomic,strong) NSString *isAvailable;
 @property(nonatomic, strong) NSString *offer_id;
 @property(nonatomic,strong) NSString *offer_price;
-
+@property(nonatomic,strong) NSString *end_date;
 
 @property(nonatomic,strong) NSString *strCount;
 
