@@ -367,6 +367,7 @@
 {
     self.navigationController.navigationBarHidden = YES;
     [super viewWillAppear:animated];
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.btnBack setExclusiveTouch:YES];
     [self.btnUserImage setExclusiveTouch:YES];
     [self.btnContactInfo setExclusiveTouch:YES];
@@ -3064,7 +3065,7 @@
         
         
     }
-    NSString *api = [NSString stringWithFormat:@"http://52.74.220.25:80/index.php/user/chatMedia"];
+    NSString *api = [NSString stringWithFormat:@"%@chatMedia",gURLManager.baseUrl];
     
 	if(isImage == 1)
 	{
@@ -3315,7 +3316,9 @@
         }
         
         
-    }else{
+    }
+	else
+	{
         if(![[info allKeys]containsObject:@"UIImagePickerControllerReferenceURL"])
         {
             UIImage *image = (UIImage *)[info objectForKey:@"UIImagePickerControllerOriginalImage"];
