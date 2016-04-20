@@ -181,7 +181,8 @@
 	{
 		titleView.text = appDelegate.objStoreModel.store_name;
 	}
-    titleView.adjustsFontSizeToFitWidth = YES;
+	titleView.numberOfLines = 2;
+//    titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
     self.navigationItem.titleView = _headerTitleSubtitleView;
 	
@@ -415,6 +416,7 @@
 			{
 				lblTime.text = [Utils convertedDate:cont.mostRecentMessageTimestamp];
 				lblMessage.text = cont.mostRecentMessageBody;
+
 			}
 
 			NSMutableArray *arrMsg = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:MESSAGE_COUNTER]];

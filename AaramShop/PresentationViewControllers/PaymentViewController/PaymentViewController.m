@@ -573,6 +573,7 @@ static NSString *strCollectionItems = @"collectionItems";
         objProducts.product_price		= [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_price]];
         objProducts.product_sku_id	= [NSString stringWithFormat:@"%@",[dictProducts objectForKey:kProduct_sku_id]];
 		objProducts.offer_price			=	[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_price]];
+		objProducts.end_date			=	[Utils stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[dictProducts objectForKey:kEnd_date] doubleValue]]];
 		objProducts.offer_type			=	[NSString stringWithFormat:@"%d",[[dictProducts objectForKey:@"offer_type"] intValue]];
 		objProducts.offer_id				=	[NSString stringWithFormat:@"%@",[dictProducts objectForKey:kOffer_id]];
 		NSString *strId = @"0";
@@ -935,6 +936,7 @@ static NSString *strCollectionItems = @"collectionItems";
 	}
 	cart.strCount					=	product.strCount;
 	cart.product_id				=	product.product_id;
+	cart.end_date				=	product.end_date;
 	cart.product_sku_id		=	product.product_sku_id;
 	cart.cartProductImage	= product.product_image;
 	cart.product_name			=	product.product_name;

@@ -71,7 +71,8 @@
 	titleView.textAlignment = NSTextAlignmentCenter;
 	titleView.textColor = [UIColor whiteColor];
 	titleView.text = appDelegate.objStoreModel.store_name;
-	titleView.adjustsFontSizeToFitWidth = YES;
+	titleView.numberOfLines = 2;
+//	titleView.adjustsFontSizeToFitWidth = YES;
 	[_headerTitleSubtitleView addSubview:titleView];
 	self.navigationItem.titleView = _headerTitleSubtitleView;
 	

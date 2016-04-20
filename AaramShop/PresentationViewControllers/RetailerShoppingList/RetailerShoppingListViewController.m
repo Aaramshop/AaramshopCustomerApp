@@ -81,8 +81,9 @@
     titleView.font = [UIFont fontWithName:kRobotoRegular size:15];
     titleView.textAlignment = NSTextAlignmentCenter;
     titleView.textColor = [UIColor whiteColor];
+	titleView.numberOfLines = 2;
     titleView.text = appDeleg.objStoreModel.store_name;
-    titleView.adjustsFontSizeToFitWidth = YES;
+//    titleView.adjustsFontSizeToFitWidth = YES;
     [_headerTitleSubtitleView addSubview:titleView];
     self.navigationItem.titleView = _headerTitleSubtitleView;
     
