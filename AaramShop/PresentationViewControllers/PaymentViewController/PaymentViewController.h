@@ -12,6 +12,7 @@
 #import "HomeSecondCustomCell.h"
 #import "LocationEnterViewController.h"
 #import "FeedbackViewController.h"
+#import "CMPayment.h"
 
 
 typedef enum
@@ -37,7 +38,7 @@ typedef enum
 	__weak IBOutlet UIView *viewOverallValueStatus;
 	__weak IBOutlet UILabel *lblOverallValueStatus;
     
-    
+
 //    FeedbackViewController *feedBack;
 }
 - (IBAction)btnCrossClicked:(id)sender;
@@ -49,9 +50,9 @@ typedef enum
 @property(nonatomic,strong) NSMutableArray *arrSelectedProducts;
 @property(nonatomic,assign) enPickerType ePickerType;
 @property (nonatomic, assign) BOOL fromCart;
-
 @property(nonatomic,strong) FeedbackViewController *feedBack;
 
+//+(CMPayment*)dataDictionary:(NSMutableDictionary*)dic;
 
 - (IBAction)btnPayClick:(UIButton *)sender;
 

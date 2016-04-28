@@ -21,6 +21,7 @@
 }
 -(void)updatePaymentModeCell:(CMPaymentMode *)PaymentMode
 {
+   
     lblName.text = PaymentMode.name;
 }
 

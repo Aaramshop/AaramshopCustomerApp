@@ -21,8 +21,11 @@
 }
 -(void)updateCellWithData:(NSDictionary *)inDataDic
 {
-    NSString *strRupeSymbol =@"";
+    float totalAmt =[ [inDataDic objectForKey:@"total_amount"]floatValue];
+    NSString *total = [NSString stringWithFormat:@"%.2f",totalAmt];
+   // NSString *strRupeSymbol =@"";
     lblTotalAmt.text = @"Total Amount";
-    lblPrice.text =[NSString stringWithFormat:@"%@ 8989",strRupeSymbol ];
+    lblPrice.text=[NSString stringWithFormat:@"₹ %@", total];
+ //    lblPrice.text = [inDataDic objectForKey:kTotalHuddleAccepted];
 }
 @end

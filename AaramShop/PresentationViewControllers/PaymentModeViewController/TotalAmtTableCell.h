@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CMPayment.h"
 @interface TotalAmtTableCell : UITableViewCell
 {
     

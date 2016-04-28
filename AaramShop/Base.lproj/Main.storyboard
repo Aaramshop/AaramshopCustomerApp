@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -25,7 +25,6 @@
             <string>Roboto-Bold</string>
         </mutableArray>
         <mutableArray key="Roboto-Medium_0.ttf">
-            <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
@@ -3898,17 +3897,17 @@ Your family will be able to add products of their choice and create a master sho
         <!--Payment Mode View Controller-->
         <scene sceneID="amL-XD-qn5">
             <objects>
-                <viewController storyboardIdentifier="PaymentModeView" id="PKh-pA-wpt" customClass="PaymentModeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PaymentModeView" automaticallyAdjustsScrollViewInsets="NO" id="PKh-pA-wpt" customClass="PaymentModeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="a6j-2Y-Dna"/>
                         <viewControllerLayoutGuide type="bottom" id="Pcz-tD-hmS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wND-LD-ttk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-ns-dK0">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-ns-dK0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AmountCell" id="5jP-U4-h1R" customClass="TotalAmtTableCell">
@@ -3938,7 +3937,7 @@ Your family will be able to add products of their choice and create a master sho
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcf-lk-8Au">
-                                                    <rect key="frame" x="239" y="11" width="71" height="21"/>
+                                                    <rect key="frame" x="235" y="11" width="76" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="7WC-f8-NtY"/>
                                                     </constraints>
@@ -3949,14 +3948,14 @@ Your family will be able to add products of their choice and create a master sho
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="yoT-Ar-6G2" firstAttribute="leading" secondItem="iK0-Ns-41v" secondAttribute="leading" constant="212" id="LYK-Vv-fiC"/>
-                                                <constraint firstItem="Bcf-lk-8Au" firstAttribute="leading" secondItem="yoT-Ar-6G2" secondAttribute="leading" constant="11" id="M9a-ZV-pme"/>
+                                                <constraint firstItem="Bcf-lk-8Au" firstAttribute="leading" secondItem="yoT-Ar-6G2" secondAttribute="leading" constant="7" id="M9a-ZV-pme"/>
                                                 <constraint firstAttribute="trailing" secondItem="yoT-Ar-6G2" secondAttribute="trailing" id="NNp-7w-gb7"/>
                                                 <constraint firstItem="iK0-Ns-41v" firstAttribute="top" secondItem="CHA-tO-gG7" secondAttribute="topMargin" constant="3" id="V4D-g7-LDH"/>
                                                 <constraint firstItem="yoT-Ar-6G2" firstAttribute="top" secondItem="CHA-tO-gG7" secondAttribute="topMargin" constant="-8" id="haR-eF-VuO"/>
                                                 <constraint firstItem="iK0-Ns-41v" firstAttribute="leading" secondItem="CHA-tO-gG7" secondAttribute="leading" constant="16" id="tTX-9b-s6k"/>
                                                 <constraint firstItem="Bcf-lk-8Au" firstAttribute="top" secondItem="yoT-Ar-6G2" secondAttribute="top" constant="11" id="uEq-Hc-Lth"/>
                                                 <constraint firstItem="iK0-Ns-41v" firstAttribute="trailing" secondItem="yoT-Ar-6G2" secondAttribute="trailing" constant="-100" id="wTl-eU-ePw"/>
-                                                <constraint firstItem="Bcf-lk-8Au" firstAttribute="trailing" secondItem="yoT-Ar-6G2" secondAttribute="trailing" constant="-10" id="wWu-KQ-UQS"/>
+                                                <constraint firstItem="Bcf-lk-8Au" firstAttribute="trailing" secondItem="yoT-Ar-6G2" secondAttribute="trailing" constant="-9" id="wWu-KQ-UQS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -4011,35 +4010,29 @@ Your family will be able to add products of their choice and create a master sho
                                     <outlet property="delegate" destination="PKh-pA-wpt" id="poT-7G-z3W"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5EB-k4-1vy">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <color key="backgroundColor" red="0.80392156859999997" green="0.043137254899999998" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="CRK-wU-qp0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
-                                <state key="normal" title="PAY">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxf-yb-rsd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                                 <connections>
-                                    <action selector="btnPayClick:" destination="7Fv-Uz-q9I" eventType="touchUpInside" id="EEb-ec-o9U"/>
+                                    <outlet property="delegate" destination="PKh-pA-wpt" id="v1a-yM-jyj"/>
                                 </connections>
-                            </button>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fxf-yb-rsd" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="CfK-mE-WEw"/>
                             <constraint firstAttribute="trailing" secondItem="NJa-ns-dK0" secondAttribute="trailing" id="EeP-Bx-5v5"/>
-                            <constraint firstItem="5EB-k4-1vy" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="S9V-n8-EBJ"/>
-                            <constraint firstItem="NJa-ns-dK0" firstAttribute="top" secondItem="a6j-2Y-Dna" secondAttribute="bottom" constant="-20" id="UMX-vC-DYp"/>
-                            <constraint firstItem="Pcz-tD-hmS" firstAttribute="top" secondItem="5EB-k4-1vy" secondAttribute="bottom" id="Wef-kZ-4ms"/>
+                            <constraint firstItem="NJa-ns-dK0" firstAttribute="top" secondItem="a6j-2Y-Dna" secondAttribute="bottom" id="UMX-vC-DYp"/>
                             <constraint firstItem="NJa-ns-dK0" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="cz0-ST-tMW"/>
-                            <constraint firstAttribute="trailing" secondItem="5EB-k4-1vy" secondAttribute="trailing" id="mAd-Ah-f8I"/>
-                            <constraint firstItem="NJa-ns-dK0" firstAttribute="bottom" secondItem="5EB-k4-1vy" secondAttribute="bottom" constant="-44" id="ojj-Wz-8MY"/>
+                            <constraint firstItem="fxf-yb-rsd" firstAttribute="top" secondItem="a6j-2Y-Dna" secondAttribute="bottom" id="dWw-Oh-qxd"/>
+                            <constraint firstAttribute="trailing" secondItem="fxf-yb-rsd" secondAttribute="trailing" id="kph-Ka-jRo"/>
+                            <constraint firstItem="Pcz-tD-hmS" firstAttribute="top" secondItem="fxf-yb-rsd" secondAttribute="bottom" id="nxX-Xy-w4D"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="kCs-Pg-rVc"/>
                     <connections>
                         <outlet property="tblView" destination="NJa-ns-dK0" id="0qN-nt-rCA"/>
+                        <outlet property="webView" destination="fxf-yb-rsd" id="MOx-7m-osW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pM9-T2-Vhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -6594,7 +6587,7 @@ Why not start with placing a new order now!</string>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnPayClick:" destination="7Fv-Uz-q9I" eventType="touchUpInside" id="5DR-of-z4T"/>
+                                    <action selector="btnPayClick:" destination="7Fv-Uz-q9I" eventType="touchUpInside" id="DEz-Bt-p6S"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="owd-6E-OdS">
@@ -6984,6 +6977,7 @@ Why not start with placing a new order now!</string>
                         <outlet property="lblOverallValueStatus" destination="vwv-9y-Ii0" id="nHu-BB-Hla"/>
                         <outlet property="tblView" destination="owd-6E-OdS" id="CZH-Yw-zms"/>
                         <outlet property="viewOverallValueStatus" destination="d9L-aZ-cwB" id="S8A-2v-Uwa"/>
+                        <segue destination="PKh-pA-wpt" kind="push" identifier="PAYMENTMODE" id="9fv-hU-OOW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f56-7B-nEM" userLabel="First Responder" sceneMemberID="firstResponder"/>

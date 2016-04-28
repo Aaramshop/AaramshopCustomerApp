@@ -13,7 +13,7 @@
 @implementation AaramShop_ConnectionManager
 @synthesize delegate,sessionManager,currentTask;
 
--(BOOL) getDataForFunction:(NSString *)functionName withInput:(NSMutableDictionary *)aDict withCurrentTask:(CURRENT_TASK)inputTask andDelegate:(id)inputDelegate 
+-(BOOL) getDataForFunction:(NSString *)functionName withInput:(NSMutableDictionary *)aDict withCurrentTask:(CURRENT_TASK)inputTask andDelegate:(id)inputDelegate
 {
     
     self.delegate = inputDelegate;

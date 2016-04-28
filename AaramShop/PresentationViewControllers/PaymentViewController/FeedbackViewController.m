@@ -230,7 +230,6 @@
 -(void)callWebserviceToSendReview
 {
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-    
     [dict setObject:_strStore_Id forKey:kStore_id];
     [dict setObject:[NSString stringWithFormat:@"%d",rating] forKey:@"rating"];
     [dict setObject:txtView.text forKey:@"comment"];
