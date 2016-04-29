@@ -3989,9 +3989,18 @@ Your family will be able to add products of their choice and create a master sho
                                                     <color key="textColor" red="0.80392156859999997" green="0.043137254899999998" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sideArrowGrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="PTd-yP-ReU">
+                                                    <rect key="frame" x="294" y="12" width="13" height="13"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="13" id="lPh-zU-B61"/>
+                                                        <constraint firstAttribute="width" constant="13" id="vhe-wo-DJ1"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="fJF-zQ-QXg" firstAttribute="leading" secondItem="Tdt-7C-fiG" secondAttribute="trailing" constant="8" id="Opk-19-j4L"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="PTd-yP-ReU" secondAttribute="trailing" constant="5" id="e7s-Ws-Yb4"/>
+                                                <constraint firstItem="PTd-yP-ReU" firstAttribute="top" secondItem="wkb-5X-WPP" secondAttribute="topMargin" constant="4" id="jar-Wf-eUe"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
@@ -4001,6 +4010,7 @@ Your family will be able to add products of their choice and create a master sho
                                             <constraint firstItem="Tdt-7C-fiG" firstAttribute="leading" secondItem="zFo-va-qHw" secondAttribute="leading" constant="16" id="JIg-Jy-L6i"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="imgArrow" destination="PTd-yP-ReU" id="JFo-w7-Pgc"/>
                                             <outlet property="lblName" destination="Tdt-7C-fiG" id="DkO-Kd-u0s"/>
                                         </connections>
                                     </tableViewCell>

@@ -13,6 +13,7 @@
     
     __weak IBOutlet UILabel *lblName;
 }
+@property (weak, nonatomic) IBOutlet UIImageView *imgArrow;
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 

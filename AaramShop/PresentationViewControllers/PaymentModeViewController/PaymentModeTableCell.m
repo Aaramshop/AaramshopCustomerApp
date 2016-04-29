@@ -21,8 +21,11 @@
 }
 -(void)updatePaymentModeCell:(CMPaymentMode *)PaymentMode
 {
-   
+    if (_indexPath.row==0 && _indexPath.row==1 && _indexPath.row==3) {
+        _imgArrow.hidden=YES;
+    }
     lblName.text = PaymentMode.name;
+    
 }
 
 @end

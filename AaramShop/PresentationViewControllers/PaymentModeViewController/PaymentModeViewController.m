@@ -115,7 +115,7 @@
         return 1;
     }
     else
-        return arrPaymentMode.count;
+        return arrPaymentMode.count-1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -166,7 +166,7 @@
 
             cell.indexPath = indexPath;
            
-                [cell updatePaymentModeCell:cmPayment];
+            [cell updatePaymentModeCell:cmPayment];
         
              tableCell = cell;
   
