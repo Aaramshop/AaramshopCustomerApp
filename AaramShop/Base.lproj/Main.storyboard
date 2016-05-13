@@ -4708,7 +4708,7 @@ Why not start with placing a new order now!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jnj-b8-KFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1936" y="4062"/>
+            <point key="canvasLocation" x="1875" y="4024"/>
         </scene>
         <!--Offers View Controller-->
         <scene sceneID="c0l-Fs-SHx">
@@ -6941,8 +6941,8 @@ Why not start with placing a new order now!</string>
                                             <action selector="btnCrossClicked:" destination="7Fv-Uz-q9I" eventType="touchUpInside" id="eFk-8Y-y5L"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-9y-Ii0">
-                                        <rect key="frame" x="9" y="29" width="290" height="55"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-9y-Ii0">
+                                        <rect key="frame" x="32" y="29" width="248" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="XAz-oE-czb"/>
                                         </constraints>
@@ -6954,11 +6954,11 @@ Why not start with placing a new order now!</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="112" id="62Y-jw-eNF"/>
-                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" constant="9" id="Aiw-zd-1C3"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" constant="37" id="Aiw-zd-1C3"/>
                                     <constraint firstItem="ikw-cZ-Yma" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" id="B0y-n6-Gvy"/>
                                     <constraint firstItem="bOS-7K-vEm" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="3" id="E3D-eI-lLw"/>
                                     <constraint firstItem="vwv-9y-Ii0" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="29" id="IgK-Yd-UBu"/>
-                                    <constraint firstAttribute="trailing" secondItem="vwv-9y-Ii0" secondAttribute="trailing" constant="9" id="KYq-BU-J3H"/>
+                                    <constraint firstAttribute="trailing" secondItem="vwv-9y-Ii0" secondAttribute="trailing" constant="28" id="KYq-BU-J3H"/>
                                     <constraint firstAttribute="trailing" secondItem="ikw-cZ-Yma" secondAttribute="trailing" id="XTd-Yr-oXr"/>
                                     <constraint firstItem="ikw-cZ-Yma" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" id="bU8-jF-UaY"/>
                                     <constraint firstAttribute="bottom" secondItem="ikw-cZ-Yma" secondAttribute="bottom" constant="2" id="be0-SO-ywn"/>

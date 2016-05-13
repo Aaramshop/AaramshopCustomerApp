@@ -53,6 +53,9 @@
 }
 - (void)viewWillAppear:(BOOL)animated
 {
+	//[self viewDidLoad];
+	
+	
 	[super viewWillAppear:animated];
 
     lblMessage.hidden = YES;
@@ -802,19 +805,21 @@
 	else
 	{
         lblMessage.text = @"No offers available in your locality right now. Come back later to bag the best of the offers from your neighbourhood stores.";
-
-        
+	 
 		if([arrOffers count]==0)
 		{
-			[tblView setHidden:YES];
 			[self createDateToGetOffer];
-		}
+		     [tblView reloadData];
+
+			}
 		else
 		{
 			[tblView setHidden:NO];
 			[tblView reloadData];
 		}
 	}
+	
 }
+
 
 @end

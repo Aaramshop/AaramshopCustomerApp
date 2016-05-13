@@ -787,13 +787,16 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
-    
+	
     [collectionMaster scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     
     [controller viewWillAppear:YES];
 
 }
-
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionView *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+	return 0; // This is the minimum inter item spacing, can be more
+}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
