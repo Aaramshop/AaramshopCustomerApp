@@ -28,7 +28,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 	NSString *strHeaderTitle;
     AppDelegate *appDeleg;
 	NSMutableArray *pickerArray;
-
+	CGFloat* value;
 }
 @end
 
@@ -44,7 +44,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     self.navigationController.navigationBarHidden = NO;
 
 	appDeleg = APP_DELEGATE;
-
+	//value= [screenBoundsFixedToPortraitOrientation];
 	[self designPickerViewSlots];
 	
 	[self toolBarDesignes];
@@ -136,7 +136,10 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
     viewOverlay.hidden = YES;
     collectionMaster.hidden = YES;
-    
+
+//	[collectionMaster setFrame:[UIScreen mainScreen].bounds.size.width];
+	//collectionMaster=
+//	[collectionMaster setFrame:];
     arrCategories = [[NSMutableArray alloc]init];
     
     totalNoOfPages = 0;
@@ -146,7 +149,6 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
 
@@ -474,7 +476,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 //        {
 //            homeCategoryListView.isFirstPage = NO;
 //        }
-        
+	
         
         CGRect frame = homeCategoryListView.view.frame;
         frame.origin.y = 0.0;
@@ -778,7 +780,11 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
 }
 
-
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	//You may want to create a divider to scale the size by the way..
+	return CGSizeMake([UIScreen mainScreen].bounds.size.width,235);
+}
 #pragma mark -- YSLContainerViewControllerDelegate
 - (void)containerViewItemIndex:(NSInteger)index currentController:(UIViewController *)controller
 {
