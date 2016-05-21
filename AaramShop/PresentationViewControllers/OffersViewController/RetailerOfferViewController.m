@@ -398,7 +398,7 @@
 	switch (aaramShop_ConnectionManager.currentTask) {
 		case TASK_TO_GET_OFFERS:
 		{
-			if([[responseObject objectForKey:kstatus] intValue] == 1)
+			if([[responseObject objectForKey:kstatus] intValue] == 0 || [[responseObject objectForKey:kstatus] intValue] == 1)
 			{
 				if(pageno==0)
 				{

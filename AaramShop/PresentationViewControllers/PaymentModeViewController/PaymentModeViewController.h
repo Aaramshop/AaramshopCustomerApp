@@ -19,7 +19,7 @@
 #import "CMPayment.h"
 
 
-@interface PaymentModeViewController : UIViewController<AaramShop_ConnectionManager_Delegate>
+@interface PaymentModeViewController : UIViewController<AaramShop_ConnectionManager_Delegate,UIWebViewDelegate>
 {
     
     __weak IBOutlet UITableView *tblView;
@@ -32,6 +32,9 @@
 }
 
 @property(nonatomic,retain)CMPayment* cmPayment;
+- (IBAction)btnFinalPay:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *btnBack;
+- (IBAction)btnBack:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnFinalPay;
 @property(nonatomic,strong) NSString *strStore_Id;
@@ -41,6 +44,8 @@
 @property(nonatomic,strong) NSString *strActualTotalPrice;
 @property(nonatomic,strong) NSMutableArray *arrSelectedProducts;
 
+
+@property(nonatomic,strong) NSIndexPath* indexPath;
 @property (nonatomic, assign) BOOL fromCart;
 @property(nonatomic,strong) FeedbackViewController *feedBack;
 

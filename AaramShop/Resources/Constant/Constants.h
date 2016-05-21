@@ -446,4 +446,5 @@
 #define kURLUpdateProductfromOrderId                        @"updateProductfromOrderId"
 #define kURLReOrder                                         @"reOrder"
 
-
+//==================Jio Order Status============
+#define kURLJioOrderStatus                                  @"JioOrderStatus"

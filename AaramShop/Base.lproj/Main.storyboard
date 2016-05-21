@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Bold_0.ttf">
+        <mutableArray key="Roboto-Bold.ttf">
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
@@ -24,7 +24,9 @@
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
         </mutableArray>
-        <mutableArray key="Roboto-Medium_0.ttf">
+        <mutableArray key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+            <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
@@ -73,7 +75,7 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
         </mutableArray>
-        <mutableArray key="Roboto-Regular_0.ttf">
+        <mutableArray key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -3906,8 +3908,23 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-ns-dK0">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijq-0X-2K0">
+                                <rect key="frame" x="0.0" y="458" width="320" height="46"/>
+                                <color key="backgroundColor" red="0.80392156859999997" green="0.043137254899999998" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="RTi-up-OKz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <state key="normal" title="PAY">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnFinalPay:" destination="PKh-pA-wpt" eventType="touchUpInside" id="twy-3t-YUs"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-ns-dK0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AmountCell" id="5jP-U4-h1R" customClass="TotalAmtTableCell">
@@ -3989,18 +4006,9 @@ Your family will be able to add products of their choice and create a master sho
                                                     <color key="textColor" red="0.80392156859999997" green="0.043137254899999998" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sideArrowGrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="PTd-yP-ReU">
-                                                    <rect key="frame" x="294" y="12" width="13" height="13"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="13" id="lPh-zU-B61"/>
-                                                        <constraint firstAttribute="width" constant="13" id="vhe-wo-DJ1"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="fJF-zQ-QXg" firstAttribute="leading" secondItem="Tdt-7C-fiG" secondAttribute="trailing" constant="8" id="Opk-19-j4L"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="PTd-yP-ReU" secondAttribute="trailing" constant="5" id="e7s-Ws-Yb4"/>
-                                                <constraint firstItem="PTd-yP-ReU" firstAttribute="top" secondItem="wkb-5X-WPP" secondAttribute="topMargin" constant="4" id="jar-Wf-eUe"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
@@ -4010,7 +4018,6 @@ Your family will be able to add products of their choice and create a master sho
                                             <constraint firstItem="Tdt-7C-fiG" firstAttribute="leading" secondItem="zFo-va-qHw" secondAttribute="leading" constant="16" id="JIg-Jy-L6i"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="imgArrow" destination="PTd-yP-ReU" id="JFo-w7-Pgc"/>
                                             <outlet property="lblName" destination="Tdt-7C-fiG" id="DkO-Kd-u0s"/>
                                         </connections>
                                     </tableViewCell>
@@ -4027,20 +4034,44 @@ Your family will be able to add products of their choice and create a master sho
                                     <outlet property="delegate" destination="PKh-pA-wpt" id="v1a-yM-jyj"/>
                                 </connections>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ak-ji-HnW">
+                                <rect key="frame" x="-1" y="458" width="320" height="46"/>
+                                <color key="backgroundColor" red="0.80392156859999997" green="0.043137254899999998" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="21z-XM-VgA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <state key="normal" title="BACK">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnBack:" destination="PKh-pA-wpt" eventType="touchUpInside" id="TN2-nU-6ty"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9Ak-ji-HnW" secondAttribute="trailing" id="2z5-mH-nsD"/>
                             <constraint firstItem="fxf-yb-rsd" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="CfK-mE-WEw"/>
+                            <constraint firstAttribute="trailing" secondItem="Ijq-0X-2K0" secondAttribute="trailing" id="D2r-Vn-Rsm"/>
                             <constraint firstAttribute="trailing" secondItem="NJa-ns-dK0" secondAttribute="trailing" id="EeP-Bx-5v5"/>
+                            <constraint firstItem="Pcz-tD-hmS" firstAttribute="top" secondItem="9Ak-ji-HnW" secondAttribute="bottom" id="RV1-Oh-IpV"/>
                             <constraint firstItem="NJa-ns-dK0" firstAttribute="top" secondItem="a6j-2Y-Dna" secondAttribute="bottom" id="UMX-vC-DYp"/>
+                            <constraint firstItem="9Ak-ji-HnW" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="Zb5-IW-Zpc"/>
                             <constraint firstItem="NJa-ns-dK0" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="cz0-ST-tMW"/>
                             <constraint firstItem="fxf-yb-rsd" firstAttribute="top" secondItem="a6j-2Y-Dna" secondAttribute="bottom" id="dWw-Oh-qxd"/>
+                            <constraint firstItem="Ijq-0X-2K0" firstAttribute="bottom" secondItem="NJa-ns-dK0" secondAttribute="bottom" constant="44" id="faR-lS-CzD"/>
+                            <constraint firstItem="Ijq-0X-2K0" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="hkZ-h6-rM9"/>
                             <constraint firstAttribute="trailing" secondItem="fxf-yb-rsd" secondAttribute="trailing" id="kph-Ka-jRo"/>
                             <constraint firstItem="Pcz-tD-hmS" firstAttribute="top" secondItem="fxf-yb-rsd" secondAttribute="bottom" id="nxX-Xy-w4D"/>
+                            <constraint firstItem="Pcz-tD-hmS" firstAttribute="top" secondItem="Ijq-0X-2K0" secondAttribute="bottom" id="p3h-DU-ulb"/>
+                            <constraint firstItem="9Ak-ji-HnW" firstAttribute="bottom" secondItem="NJa-ns-dK0" secondAttribute="bottom" constant="44" id="sWD-4v-70O"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kCs-Pg-rVc"/>
                     <connections>
+                        <outlet property="btnBack" destination="9Ak-ji-HnW" id="NPq-cH-zZq"/>
                         <outlet property="tblView" destination="NJa-ns-dK0" id="0qN-nt-rCA"/>
                         <outlet property="webView" destination="fxf-yb-rsd" id="MOx-7m-osW"/>
                     </connections>
@@ -6942,7 +6973,7 @@ Why not start with placing a new order now!</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-9y-Ii0">
-                                        <rect key="frame" x="32" y="29" width="248" height="55"/>
+                                        <rect key="frame" x="41" y="29" width="239" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="XAz-oE-czb"/>
                                         </constraints>
@@ -6954,7 +6985,7 @@ Why not start with placing a new order now!</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="112" id="62Y-jw-eNF"/>
-                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" constant="37" id="Aiw-zd-1C3"/>
+                                    <constraint firstItem="vwv-9y-Ii0" firstAttribute="leading" secondItem="d9L-aZ-cwB" secondAttribute="leading" constant="32" id="Aiw-zd-1C3"/>
                                     <constraint firstItem="ikw-cZ-Yma" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" id="B0y-n6-Gvy"/>
                                     <constraint firstItem="bOS-7K-vEm" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="3" id="E3D-eI-lLw"/>
                                     <constraint firstItem="vwv-9y-Ii0" firstAttribute="top" secondItem="d9L-aZ-cwB" secondAttribute="top" constant="29" id="IgK-Yd-UBu"/>

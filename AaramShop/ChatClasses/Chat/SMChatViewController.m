@@ -284,7 +284,9 @@
 }
 -(void)setupview
 {
-	self.imgViewBackground.frame		= CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height);
+	self.imgViewBackground.contentMode = UIViewContentModeScaleAspectFit;
+	self.imgViewBackground.clipsToBounds = YES;
+//	self.imgViewBackground.frame		= CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height);
 	self.imgView.frame							=	CGRectMake([[UIScreen mainScreen]bounds].size.width-48, 22, 40, 40);
 	self.btnUserImage.frame					=	self.imgView.frame;
 	CGFloat width									=	[[UIScreen mainScreen]bounds].size.width;

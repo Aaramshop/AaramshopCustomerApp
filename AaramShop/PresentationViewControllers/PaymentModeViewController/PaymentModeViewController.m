@@ -12,10 +12,12 @@
 #import "MoEngage.h"
 
 #define kTagForFeedBack 100
+#define TimeStamp [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000]
+
 
 @interface PaymentModeViewController ()
 {
-    
+	CMPaymentMode *cmPayment;
     AaramShop_ConnectionManager *aaramShop_ConnectionManager;
     AppDelegate *appDel;
     BOOL isPickerOpen;
@@ -35,13 +37,14 @@
     NSString *actual_subTotal;
     NSString *coupon_value;
     NSMutableArray *arr_overall_value_offers;
+	NSString *timeStampString;
 }
 @end
 
 @implementation PaymentModeViewController
 @synthesize feedBack;
 @synthesize strStore_Id;
-
+@synthesize btnBack;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -58,13 +61,23 @@
 	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 	[tracker set:kGAIScreenName value:@"PaymentMode"];
 	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
-
+     webView.delegate = self;
+	btnBack.hidden=YES;
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     
     [super viewWillAppear:YES];
     [self getPaymentModes];
+
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+  [Utils stopActivityIndicatorInView:self.view];
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error;
+{
+	[Utils stopActivityIndicatorInView:self.view];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -161,14 +174,21 @@
             
             if (cell == nil) {
                 cell = [[PaymentModeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-            }
-            CMPaymentMode *cmPayment = [arrPaymentMode objectAtIndex:indexPath.row];
-
-            cell.indexPath = indexPath;
-           
-            [cell updatePaymentModeCell:cmPayment];
-        
-             tableCell = cell;
+		  }
+	    cell.indexPath = indexPath;
+	    
+	 cmPayment = [arrPaymentMode objectAtIndex:indexPath.row];
+	    if (!cmPayment.isChecked) {
+		    cell.accessoryType=UITableViewCellAccessoryNone;
+	    }
+	    else
+		   {
+		    cmPayment.isChecked=false;
+		    cell.accessoryType=UITableViewCellAccessoryCheckmark;
+		   }
+	    [cell updatePaymentModeCell:cmPayment];
+	    
+	    tableCell = cell;
   
 
         }
@@ -180,49 +200,16 @@
     return tableCell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+	
+	cmPayment=[arrPaymentMode objectAtIndex:indexPath.row];
+	cmPayment.isChecked=!cmPayment.isChecked;
+	
+	
+	
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+	_indexPath=indexPath;
 
-    if (indexPath.row==1 || indexPath.row==0|| indexPath.row==3) {
-  
-        [Utils startActivityIndicatorInView:self.view withMessage:nil];
-            [self dataDictionary];
-
-    }else{
-        webView.hidden=NO;
-        [Utils startActivityIndicatorInView:self.view withMessage:nil];
-      //  [self dataDictionary];
-        float totalAmt =[ [_dict objectForKey:@"total_amount"]floatValue];
-        NSString *total = [NSString stringWithFormat:@"%.2f",totalAmt];
-        NSString *deviceType=[_dict objectForKey:@"deviceType"];
-        NSString *deviceId = [_dict objectForKey:@"deviceId"];
-        NSString *userId = [_dict objectForKey:@"userId"];
-        NSString *userAddId = [_dict objectForKey:@"user_address_id"];
-        NSString *storeId = [_dict objectForKey:@"store_id"];
-        NSString *productId = [_dict objectForKey:@"product_ids"];
-        NSString *offerType = [_dict objectForKey:@"offer_types"];
-        NSString *productprice = [_dict objectForKey:@"product_prices"];
-        NSString *productQty = [_dict objectForKey:@"product_qtys"];
-        NSString *delDate = [_dict objectForKey:@"delivery_date"];
-        NSString *delSlot = [_dict objectForKey:@"delivery_slot"];
-        NSString *totalDisc = [_dict objectForKey:@"total_discount"];
-        NSString *couponCode = [_dict objectForKey:@"coupon_code"];
-        NSString *paymentModeId = [_dict objectForKey:@"payment_mode_id"];
-        
-        NSString* delSlotReplaceSpace=[delSlot stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-        if (couponCode == nil ) {
-            couponCode=@"";
-        }
-        NSString *urlString =[NSString stringWithFormat:@"https://www.aaramshop.com/jio/jio_payment?unique=abcd123456&deviceId=%@&deviceType=%@&userId=%@&user_address_id=%@&store_id=%@&product_ids=%@&offer_types=%@&product_prices=%@&product_qtys=%@&delivery_date=%@&delivery_slot=%@&total_amount=%@&total_discount=%@&coupon_code=%@&payment_mode_id=%@",deviceId,deviceType,userId,userAddId,storeId,productId,offerType,productprice,productQty,delDate,delSlotReplaceSpace,total,totalDisc,couponCode,paymentModeId];
- 
-        
-        NSURL* url=[NSURL URLWithString:urlString];
-        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-        [webView loadRequest:urlRequest];
-    }
-//    }
-        //[self performSelector:@selector(callWebServiceForCheckout:) withObject:nil afterDelay:0.1 ];
+	[tblView reloadData];
     }
 
 
@@ -231,7 +218,8 @@
 {
     [AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
     NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
-//    [dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_id] forKey:kStore_id];
+
+  //  [dict setObject:[[NSUserDefaults standardUserDefaults] valueForKey:kStore_id] forKey:kStore_id];
     //    [dict setObject:@"3" forKey:kStore_id];
     
     [self performSelector:@selector(callWebServiceToGetPaymentMode:) withObject:dict afterDelay:0.1];
@@ -296,7 +284,29 @@ case TASK_CHECKOUT:
                 }
     }
     break;
- 
+ case TASK_JIOMONEY_ORDERCOMPLETE:
+    {
+	if([[responseObject objectForKey:kstatus] intValue] == 1|| [[responseObject objectForKey:kstatus] intValue] ==0)
+	    {
+		if ([[responseObject objectForKey:@"order_payment_status"] isEqual:@"1"]) {
+			[AppManager removeCartBasedOnStoreId:self.strStore_Id];
+        [Utils showAlertViewWithTag:kTagForFeedBack title:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:self cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+			gAppManager.intCount = 0;
+			[AppManager saveCountOfProductsInCart:gAppManager.intCount];
+		}else{
+			webView.hidden=YES;
+			btnBack.hidden=YES;
+			btnBack.userInteractionEnabled=NO;
+			[[self navigationController] setNavigationBarHidden:NO animated:NO];
+
+		}
+		
+
+		
+	
+		[Utils stopActivityIndicatorInView:self.view];
+	    }
+    }
 default:
     [Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
     break;
@@ -352,11 +362,67 @@ default:
     return _cmPayment;
 }
 
+- (IBAction)btnFinalPay:(id)sender {
+	strStore_Id=[_dict objectForKey:@"store_id"];
+
+	if (_indexPath==nil) {
+		[Utils showAlertView:kAlertTitle message:@"Please select Anyone Payment Mode" delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+	 return;
+	 
+ }
+else	if (_indexPath.row==1 || _indexPath.row==0|| _indexPath.row==3) {
+  
+		  [Utils startActivityIndicatorInView:self.view withMessage:nil];
+	
+		   [self dataDictionary];
+	
+	}else{
+		 webView.hidden=NO;
+		btnBack.hidden=NO;
+      _btnFinalPay.userInteractionEnabled = NO;
+		btnBack.userInteractionEnabled=YES;
+
+		timeStampString=TimeStamp;
+		[[self navigationController] setNavigationBarHidden:YES animated:YES];
+
+		  [Utils startActivityIndicatorInView:self.view withMessage:nil];
+		float totalAmt =[ [_dict objectForKey:@"total_amount"]floatValue];
+		NSString *total = [NSString stringWithFormat:@"%.2f",totalAmt];
+		NSString *deviceType=[_dict objectForKey:@"deviceType"];
+		NSString *deviceId = [_dict objectForKey:@"deviceId"];
+		NSString *userId = [_dict objectForKey:@"userId"];
+		NSString *userAddId = [_dict objectForKey:@"user_address_id"];
+		NSString *storeId = [_dict objectForKey:@"store_id"];
+		NSString *productId = [_dict objectForKey:@"product_ids"];
+		NSString *offerType = [_dict objectForKey:@"offer_types"];
+		NSString *productprice = [_dict objectForKey:@"product_prices"];
+		NSString *productQty = [_dict objectForKey:@"product_qtys"];
+		NSString *delDate = [_dict objectForKey:@"delivery_date"];
+		NSString *delSlot = [_dict objectForKey:@"delivery_slot"];
+		NSString *totalDisc = [_dict objectForKey:@"total_discount"];
+		NSString *couponCode = [_dict objectForKey:@"coupon_code"];
+		NSString *paymentModeId = [_dict objectForKey:@"payment_mode_id"];
+		
+		NSString* delSlotReplaceSpace=[delSlot stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+		if (couponCode == nil ) {
+			couponCode=@"";
+		}
+		NSString *urlString =[NSString stringWithFormat:@"https://www.aaramshop.com/jio/jio_payment?unique=%@&deviceId=%@&deviceType=%@&userId=%@&user_address_id=%@&store_id=%@&product_ids=%@&offer_types=%@&product_prices=%@&product_qtys=%@&delivery_date=%@&delivery_slot=%@&total_amount=%@&total_discount=%@&coupon_code=%@&payment_mode_id=%@",timeStampString,deviceId,deviceType,userId,userAddId,storeId,productId,offerType,productprice,productQty,delDate,delSlotReplaceSpace,total,totalDisc,couponCode,paymentModeId];
+		
+		
+		NSURL* url=[NSURL URLWithString:urlString];
+		NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+	  [webView loadRequest:urlRequest];
+	}
+
+}
+
 -(void)dataDictionary
 {
  //   _dict=self.cmPayment.pamentDataDic;
 
-    [self callWebServiceForCheckout:_dict];
+ [self performSelector:@selector(callWebServiceForCheckout:) withObject:_dict afterDelay:0.1];
+   // [self callWebServiceForCheckout:_dict];
 }
 
 -(void)callWebServiceForCheckout:(NSMutableDictionary *)aDict
@@ -434,5 +500,27 @@ default:
         [self performSelector:@selector(openFeedbackScreen) withObject:nil afterDelay:0.5];
         
     }
+}
+- (IBAction)btnBack:(id)sender {
+	[AppManager startStatusbarActivityIndicatorWithUserInterfaceInteractionEnabled:YES];
+	if (![Utils isInternetAvailable])
+	    {
+		[Utils stopActivityIndicatorInView:self.view];
+		//    btnPay.enabled = NO;
+		[AppManager stopStatusbarActivityIndicator];
+		[Utils showAlertView:kAlertTitle message:kAlertCheckInternetConnection delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+		return;
+	    }
+_btnFinalPay.userInteractionEnabled = NO;
+	
+	NSString *deviceId = [[NSUserDefaults standardUserDefaults] objectForKey:kDeviceId];
+	//NSString *deviceType = [[NSUserDefaults standardUserDefaults] objectForKey:kDeviceType];
+	NSMutableDictionary *orderDic = [[NSMutableDictionary alloc] init];
+	[orderDic setObject:deviceId forKey:kDeviceId];
+	[orderDic setObject:@"1" forKey:kDeviceType];
+	[orderDic setObject:timeStampString forKey:@"unique"];
+
+
+	[aaramShop_ConnectionManager getDataForFunction:kURLJioOrderStatus withInput:orderDic withCurrentTask:TASK_JIOMONEY_ORDERCOMPLETE andDelegate:self ];
 }
 @end

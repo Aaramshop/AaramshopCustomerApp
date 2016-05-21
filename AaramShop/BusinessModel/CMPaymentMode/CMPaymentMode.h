@@ -11,4 +11,5 @@
 @interface CMPaymentMode : NSObject
 @property (nonatomic, strong) NSString *mode_id;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) BOOL isChecked;
 @end

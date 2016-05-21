@@ -216,7 +216,7 @@
     view.backgroundColor = [UIColor clearColor];
 	UIButton *btnCreateShoppingList = [[UIButton alloc]init];
 	
-	[btnCreateShoppingList setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 70)];
+	[btnCreateShoppingList setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 80)];
 	
     [btnCreateShoppingList setTitle:@"Create New Shopping List" forState:UIControlStateNormal];
     [btnCreateShoppingList setBackgroundImage:[UIImage imageNamed:@"shoppingListCoverImage.png"] forState:UIControlStateNormal];
