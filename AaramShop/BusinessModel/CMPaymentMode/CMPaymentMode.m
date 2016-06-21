@@ -14,8 +14,9 @@
     self = [super init];
     if (self)
     {
-        _mode_id  =   nil;
+        _mode_id  =   @"0";
         _name=nil;
+	_isChecked=NO;
     }
     return  self;
 }
@@ -24,14 +25,15 @@
 {
     [encoder encodeObject:self.mode_id forKey: @"mode_id"];
     [encoder encodeObject:self.name forKey: @"name"];
+	[encoder encodeBool:self.isChecked forKey:@"isChecked"];
    }
 
 - (id)initWithCoder:(NSCoder *)decoder
 {
     self.mode_id            = [decoder decodeObjectForKey:@"mode_id"];
     self.name             = [decoder decodeObjectForKey:@"name"];
-    
-    
+	self.isChecked		=	[decoder decodeBoolForKey:@"isChecked"];
+	
     return self;
 }
 @end

@@ -26,6 +26,5 @@
    // NSString *strRupeSymbol =@"";
     lblTotalAmt.text = @"Total Amount";
     lblPrice.text=[NSString stringWithFormat:@"₹ %@", total];
- //    lblPrice.text = [inDataDic objectForKey:kTotalHuddleAccepted];
 }
 @end

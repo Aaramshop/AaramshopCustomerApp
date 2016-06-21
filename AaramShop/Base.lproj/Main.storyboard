@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="T4W-Ww-KUr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Roboto-Bold.ttf">
+        <mutableArray key="Roboto-Bold_0.ttf">
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
@@ -24,7 +24,7 @@
             <string>Roboto-Bold</string>
             <string>Roboto-Bold</string>
         </mutableArray>
-        <mutableArray key="Roboto-Medium.ttf">
+        <mutableArray key="Roboto-Medium_0.ttf">
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
@@ -75,7 +75,7 @@
             <string>Roboto-Medium</string>
             <string>Roboto-Medium</string>
         </mutableArray>
-        <mutableArray key="Roboto-Regular.ttf">
+        <mutableArray key="Roboto-Regular_0.ttf">
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
@@ -3908,6 +3908,11 @@ Your family will be able to add products of their choice and create a master sho
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyg-W9-Mqn">
+                                <rect key="frame" x="0.0" y="-8" width="320" height="26"/>
+                                <color key="backgroundColor" red="0.80392156862745101" green="0.043137254901960784" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijq-0X-2K0">
                                 <rect key="frame" x="0.0" y="458" width="320" height="46"/>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.043137254899999998" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3923,15 +3928,15 @@ Your family will be able to add products of their choice and create a master sho
                                     <action selector="btnFinalPay:" destination="PKh-pA-wpt" eventType="touchUpInside" id="twy-3t-YUs"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-ns-dK0">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NJa-ns-dK0">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AmountCell" id="5jP-U4-h1R" customClass="TotalAmtTableCell">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="44"/>
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AmountCell" id="5jP-U4-h1R" customClass="TotalAmtTableCell">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5jP-U4-h1R" id="CHA-tO-gG7">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Amount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iK0-Ns-41v">
@@ -3962,8 +3967,21 @@ Your family will be able to add products of their choice and create a master sho
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.25" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eoN-hF-6KN">
+                                                    <rect key="frame" x="0.0" y="42" width="228" height="1"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="9PL-gj-asp"/>
+                                                        <constraint firstAttribute="width" constant="228" id="HNF-x7-Qwx"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="eoN-hF-6KN" firstAttribute="leading" secondItem="CHA-tO-gG7" secondAttribute="leading" id="E32-ah-ofl"/>
+                                                <constraint firstItem="eoN-hF-6KN" firstAttribute="top" secondItem="iK0-Ns-41v" secondAttribute="bottom" constant="10" id="FnI-2d-r0V"/>
                                                 <constraint firstItem="yoT-Ar-6G2" firstAttribute="leading" secondItem="iK0-Ns-41v" secondAttribute="leading" constant="212" id="LYK-Vv-fiC"/>
                                                 <constraint firstItem="Bcf-lk-8Au" firstAttribute="leading" secondItem="yoT-Ar-6G2" secondAttribute="leading" constant="7" id="M9a-ZV-pme"/>
                                                 <constraint firstAttribute="trailing" secondItem="yoT-Ar-6G2" secondAttribute="trailing" id="NNp-7w-gb7"/>
@@ -3981,10 +3999,10 @@ Your family will be able to add products of their choice and create a master sho
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PaymentCell" id="zFo-va-qHw" customClass="PaymentModeTableCell">
-                                        <rect key="frame" x="0.0" y="94" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zFo-va-qHw" id="wkb-5X-WPP">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdt-7C-fiG">
@@ -4041,7 +4059,7 @@ Your family will be able to add products of their choice and create a master sho
                                     <constraint firstAttribute="height" constant="46" id="21z-XM-VgA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
-                                <state key="normal" title="BACK">
+                                <state key="normal" title="BACK TO APP">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -4056,17 +4074,21 @@ Your family will be able to add products of their choice and create a master sho
                             <constraint firstItem="fxf-yb-rsd" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="CfK-mE-WEw"/>
                             <constraint firstAttribute="trailing" secondItem="Ijq-0X-2K0" secondAttribute="trailing" id="D2r-Vn-Rsm"/>
                             <constraint firstAttribute="trailing" secondItem="NJa-ns-dK0" secondAttribute="trailing" id="EeP-Bx-5v5"/>
+                            <constraint firstItem="Hyg-W9-Mqn" firstAttribute="width" secondItem="wND-LD-ttk" secondAttribute="width" id="FTo-1K-PyF"/>
                             <constraint firstItem="Pcz-tD-hmS" firstAttribute="top" secondItem="9Ak-ji-HnW" secondAttribute="bottom" id="RV1-Oh-IpV"/>
                             <constraint firstItem="NJa-ns-dK0" firstAttribute="top" secondItem="a6j-2Y-Dna" secondAttribute="bottom" id="UMX-vC-DYp"/>
                             <constraint firstItem="9Ak-ji-HnW" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="Zb5-IW-Zpc"/>
                             <constraint firstItem="NJa-ns-dK0" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="cz0-ST-tMW"/>
                             <constraint firstItem="fxf-yb-rsd" firstAttribute="top" secondItem="a6j-2Y-Dna" secondAttribute="bottom" id="dWw-Oh-qxd"/>
                             <constraint firstItem="Ijq-0X-2K0" firstAttribute="bottom" secondItem="NJa-ns-dK0" secondAttribute="bottom" constant="44" id="faR-lS-CzD"/>
+                            <constraint firstItem="Hyg-W9-Mqn" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="gZy-JH-mI2"/>
                             <constraint firstItem="Ijq-0X-2K0" firstAttribute="leading" secondItem="wND-LD-ttk" secondAttribute="leading" id="hkZ-h6-rM9"/>
                             <constraint firstAttribute="trailing" secondItem="fxf-yb-rsd" secondAttribute="trailing" id="kph-Ka-jRo"/>
                             <constraint firstItem="Pcz-tD-hmS" firstAttribute="top" secondItem="fxf-yb-rsd" secondAttribute="bottom" id="nxX-Xy-w4D"/>
                             <constraint firstItem="Pcz-tD-hmS" firstAttribute="top" secondItem="Ijq-0X-2K0" secondAttribute="bottom" id="p3h-DU-ulb"/>
                             <constraint firstItem="9Ak-ji-HnW" firstAttribute="bottom" secondItem="NJa-ns-dK0" secondAttribute="bottom" constant="44" id="sWD-4v-70O"/>
+                            <constraint firstItem="Hyg-W9-Mqn" firstAttribute="height" secondItem="wND-LD-ttk" secondAttribute="height" constant="-478" id="vWB-es-3PE"/>
+                            <constraint firstItem="fxf-yb-rsd" firstAttribute="top" secondItem="Hyg-W9-Mqn" secondAttribute="bottom" constant="-18" id="wIQ-Yf-Xa9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kCs-Pg-rVc"/>

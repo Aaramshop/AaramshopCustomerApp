@@ -313,6 +313,7 @@
 #define kPaymentMode_Id								@"payment_mode_id"
 #define kPayment_modes									@"payment_modes"
 #define kPaymentMode_Name							@"payment_mode"
+#define kPaymentModeByStoreId							@"paymentModeByStoreId"
 
 //================== Offers =================
 #define kURLGetOffers										@"getOffers"
