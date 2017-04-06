@@ -18,6 +18,7 @@ typedef enum
 	TASK_FORGOT_PASSWORD,
 	TASK_UPDATE_ADDRESS,
 	TASK_TO_GET_HOME_STORE_BANNER,
+	TASK_TO_GET_HOME_STORE,
 	TASK_TO_GET_HOME_STORE_DETAILS,
 	TASK_TO_MAKE_HOME_STORE,
 	TASK_TO_GET_STORES,
@@ -74,7 +75,10 @@ typedef enum
     TASK_TO_SEARCH_HOME_STORE_PRODUCTS,
     TASK_TO_UPDATE_PRODUCT_FROM_ORDER_ID,
     TASK_TO_REORDER_PRODUCTS,
-	TASK_JIOMONEY_ORDERCOMPLETE
+	TASK_JIOMONEY_ORDERCOMPLETE,
+    TASK_DELETE_ADDRESS,
+	TASK_DELETE_STORE,
+	TASK_TO_MAK_STORE_FAVORITE,
     
 }CURRENT_TASK;
 
@@ -88,13 +92,14 @@ typedef enum
 @interface AaramShop_ConnectionManager : NSObject
 {
 	CURRENT_TASK currentTask;
-	  NSURLSessionDataTask* task;
+	NSURLSessionDataTask* task;
 }
 @property(nonatomic,strong) AFHTTPSessionManager *sessionManager;
 @property(nonatomic,assign) CURRENT_TASK currentTask;
 @property(nonatomic,weak) id<AaramShop_ConnectionManager_Delegate> delegate;
 
 -(BOOL) getDataForFunction : (NSString *) functionName withInput: (NSMutableDictionary *) aDict withCurrentTask : (CURRENT_TASK) inputTask andDelegate : (id)inputDelegate;
+
 -(BOOL) getDataForFunction:(NSString *)functionName withInput:(NSMutableDictionary *)aDict withCurrentTask:(CURRENT_TASK)inputTask Delegate:(id)inputDelegate andMultipartData:(NSData *)data withMediaKey:(NSString *)imageKey;
 
 -(void)failureBlockCalled:(NSError *)error;

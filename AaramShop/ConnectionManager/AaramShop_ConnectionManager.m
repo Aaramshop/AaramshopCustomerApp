@@ -20,6 +20,7 @@
     self.currentTask = inputTask;
     
     NSURL *baseURL = [NSURL URLWithString:gURLManager.baseUrl];
+    NSLog(@"Base Url %@",baseURL);
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];
@@ -34,11 +35,14 @@
     
 	
 //	}
+    NSLog(@"Function name %@",functionName);
 //
     [manager.requestSerializer setTimeoutInterval:60];
     task = [manager POST:functionName parameters:aDict
           success:^(NSURLSessionDataTask *task, id responseObject)
      {
+         NSLog(@"aDict:%@",aDict);
+         
          [AppManager stopStatusbarActivityIndicator];
 		
          if(self.delegate != nil && [self.delegate respondsToSelector:@selector(responseReceived:)])

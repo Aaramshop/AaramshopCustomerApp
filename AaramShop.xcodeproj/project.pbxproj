@@ -1524,6 +1524,10 @@
 		AC2985AD1B43C817003F06E0 /* homeStoreEnterHomeStoreBox.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2985AA1B43C817003F06E0 /* homeStoreEnterHomeStoreBox.png */; };
 		AC2985AE1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2985AB1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@2x.png */; };
 		AC2985AF1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2985AC1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@3x.png */; };
+		F3AE59CB1E83E5A7000B926D /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = F3AE59CA1E83E5A7000B926D /* delete.png */; };
+		F3B3E8CC1E8538F600EF33FA /* deletebtn.png in Resources */ = {isa = PBXBuildFile; fileRef = F3B3E8CB1E8538F600EF33FA /* deletebtn.png */; };
+		F3EF55521E9223A300FECBD7 /* AddHomeStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF55511E9223A300FECBD7 /* AddHomeStoreViewController.m */; };
+		F3EF55551E926BA800FECBD7 /* AddStoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EF55541E926BA800FECBD7 /* AddStoreTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3494,6 +3498,12 @@
 		AC2985AA1B43C817003F06E0 /* homeStoreEnterHomeStoreBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeStoreEnterHomeStoreBox.png; sourceTree = "<group>"; };
 		AC2985AB1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeStoreEnterHomeStoreBox@2x.png"; sourceTree = "<group>"; };
 		AC2985AC1B43C817003F06E0 /* homeStoreEnterHomeStoreBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeStoreEnterHomeStoreBox@3x.png"; sourceTree = "<group>"; };
+		F3AE59CA1E83E5A7000B926D /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		F3B3E8CB1E8538F600EF33FA /* deletebtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deletebtn.png; sourceTree = "<group>"; };
+		F3EF55501E9223A300FECBD7 /* AddHomeStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddHomeStoreViewController.h; sourceTree = "<group>"; };
+		F3EF55511E9223A300FECBD7 /* AddHomeStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddHomeStoreViewController.m; sourceTree = "<group>"; };
+		F3EF55531E926BA800FECBD7 /* AddStoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStoreTableViewCell.h; sourceTree = "<group>"; };
+		F3EF55541E926BA800FECBD7 /* AddStoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStoreTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -6069,6 +6079,8 @@
 			isa = PBXGroup;
 			children = (
 				3624FACB1C4676680080FA36 /* gpx (1).gpx */,
+				F3B3E8CB1E8538F600EF33FA /* deletebtn.png */,
+				F3AE59CA1E83E5A7000B926D /* delete.png */,
 				36B2E6811C3FC3C5007C3900 /* Moengage */,
 				274A5A511B05C443009112B5 /* Frameworks */,
 				6B12DC681AF2294D00245209 /* Main.storyboard */,
@@ -6282,6 +6294,8 @@
 				6B12DCD11AF29E6D00245209 /* ForgotPasswordViewController */,
 				6B12DCB91AF26F7B00245209 /* LoginViewController */,
 				6B12DCB51AF26CA500245209 /* OptionViewController */,
+				F3EF55501E9223A300FECBD7 /* AddHomeStoreViewController.h */,
+				F3EF55511E9223A300FECBD7 /* AddHomeStoreViewController.m */,
 			);
 			path = PresentationViewControllers;
 			sourceTree = "<group>";
@@ -6291,6 +6305,8 @@
 			children = (
 				6B12DCB61AF26CBC00245209 /* OptionViewController.h */,
 				6B12DCB71AF26CBC00245209 /* OptionViewController.m */,
+				F3EF55531E926BA800FECBD7 /* AddStoreTableViewCell.h */,
+				F3EF55541E926BA800FECBD7 /* AddStoreTableViewCell.m */,
 			);
 			path = OptionViewController;
 			sourceTree = "<group>";
@@ -7844,6 +7860,7 @@
 					6B12DC5A1AF2294D00245209 = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = THBY882CDS;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -7949,6 +7966,7 @@
 				274A5A4D1B05C075009112B5 /* homeOfferBox@3x.png in Resources */,
 				6BD2D30D1B284C8900EC6E54 /* homeDownArrow@2x.png in Resources */,
 				3682095F1B1C46FA002AA93F /* equatorial guinea.png in Resources */,
+				F3B3E8CC1E8538F600EF33FA /* deletebtn.png in Resources */,
 				2791DE361B036E5C000121BC /* menuCartIcon@2x.png in Resources */,
 				6BD2D3221B284C8900EC6E54 /* homeStarIconActive@2x.png in Resources */,
 				6B5490491B68E59100465C82 /* checkBoxActive@2x.png in Resources */,
@@ -8526,6 +8544,7 @@
 				6BD2D2E91B28408800EC6E54 /* homeRecomondedStoreShopIcon@2x.png in Resources */,
 				362537F11B76136600DF34F8 /* homeInviteBtn.png in Resources */,
 				274A5C7A1B05C4AA009112B5 /* poweredByFoursquare_gray@2x.png in Resources */,
+				F3AE59CB1E83E5A7000B926D /* delete.png in Resources */,
 				368209181B1C46FA002AA93F /* austria.png in Resources */,
 				6B8EB2B21B26B8BE00402CFC /* homeStoreDetailsDeleversIcon.png in Resources */,
 				368209F91B1C46FA002AA93F /* senegal.png in Resources */,
@@ -9130,6 +9149,7 @@
 				274A5D071B05C4AA009112B5 /* DDXMLElement.m in Sources */,
 				6B809DB31B31755D00E91673 /* UIView+WebCacheOperation.m in Sources */,
 				6BAE4E251BAC06C000DCF04E /* PostAutoSuggestionTableViewController.m in Sources */,
+				F3EF55521E9223A300FECBD7 /* AddHomeStoreViewController.m in Sources */,
 				36A69EDE1B57DE320058EB88 /* MoneyTableCell.m in Sources */,
 				274A5CEE1B05C4AA009112B5 /* XMPPAttentionModule.m in Sources */,
 				6B809DAC1B31755D00E91673 /* SDWebImagePrefetcher.m in Sources */,
@@ -9200,6 +9220,7 @@
 				368AFEE41B383BD400417836 /* TotalPriceTableCell.m in Sources */,
 				274A5C7E1B05C4AA009112B5 /* UIImageEffects.m in Sources */,
 				6B8EB28B1B25B9D100402CFC /* HomeStoreDetailViewController.m in Sources */,
+				F3EF55551E926BA800FECBD7 /* AddStoreTableViewCell.m in Sources */,
 				274A5CD21B05C4AA009112B5 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				274A5CFB1B05C4AA009112B5 /* GCDAsyncSocket.m in Sources */,
 				274A5CA61B05C4AA009112B5 /* XMPPRosterMemoryStorage.m in Sources */,
@@ -9490,7 +9511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9518,7 +9539,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "96b48d27-278f-49c4-959e-3c465cf2d08a";
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Debug;
@@ -9529,7 +9550,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaram Shop Private Limited (THBY882CDS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9557,7 +9578,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aaramshop.AaramShopTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "96b48d27-278f-49c4-959e-3c465cf2d08a";
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 			};
 			name = Release;

@@ -10,12 +10,14 @@
 #import "LocationTableCell.h"
 #import "AddressModel.h"
 #import "LocationAlertViewController.h"
-@interface AddLocationViewController : UIViewController<LocationAlertViewControllerDelegate>
+@interface AddLocationViewController : UIViewController<LocationAlertViewControllerDelegate,LocationListCellDelegate,AaramShop_ConnectionManager_Delegate>
 {
 	
 	__weak IBOutlet UITableView *tblView;
 	NSMutableArray *datasource;
 	LocationAlertViewController *locationAlert;
 }
+//- (IBAction)deleteCell:(id)sender;
+
 - (IBAction)btnAddLoc:(id)sender;
 @end

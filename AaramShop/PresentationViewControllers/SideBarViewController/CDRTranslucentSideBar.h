@@ -32,7 +32,7 @@ typedef enum
 - (void)sideBar:(CDRTranslucentSideBar *)sideBar willAppear:(BOOL)animated;
 - (void)sideBar:(CDRTranslucentSideBar *)sideBar didDisappear:(BOOL)animated;
 - (void)sideBar:(CDRTranslucentSideBar *)sideBar willDisappear:(BOOL)animated;
-- (void)sideBarDelegatePushMethod:(UIViewController*)viewC;
+- (void)sideBarDelegatePushMethod:(UIViewController *)viewC;
 
 
 

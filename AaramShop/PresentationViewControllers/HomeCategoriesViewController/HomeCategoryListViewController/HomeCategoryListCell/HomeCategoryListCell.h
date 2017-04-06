@@ -14,10 +14,16 @@
 
 #import "StoreModel.h"
 
+@protocol MakeFavouriteDelegate <NSObject>
 
-@interface HomeCategoryListCell : SWTableViewCell<UIGestureRecognizerDelegate>
+-(void)makeStoreFovourite:(NSInteger)index;
+
+@end
+
+@interface HomeCategoryListCell : SWTableViewCell<UIGestureRecognizerDelegate,UIAlertViewDelegate,AaramShop_ConnectionManager_Delegate>
+
 {
-   
+   AppDelegate *appDeleg;
     __weak IBOutlet UIImageView *imgHomeIcon;
     __weak IBOutlet UIImageView *imgStore;
     __weak IBOutlet UIImageView *imgCategoryTypeIcon;
@@ -41,18 +47,23 @@
     __weak IBOutlet UIButton *btnDistance;
     __weak IBOutlet UIButton *btnDeliveryType;
     __weak IBOutlet UIButton *btnTotalOrders;
+	//__weak IBOutlet UIImageView *imgIsFavourite;
     
     
-    __weak IBOutlet UIImageView *imgIsFavourite;
+	
     
 }
+@property (weak, nonatomic) IBOutlet UIImageView *imgIsFavourite;
 
 @property(nonatomic, strong) NSIndexPath *indexPath;
 @property(nonatomic,assign) BOOL isRecommendedStore;
 @property(nonatomic) NSInteger selectedCategory;
+@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+@property(nonatomic,strong) NSString *strStore_Id;
+@property(nonatomic,weak) id <MakeFavouriteDelegate>delegates;
 
 -(void)updateCellWithData:(StoreModel  *)objStoreData;
 -(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
-
+//-(void) responseReceived:(id)responseObject;
 
 @end

@@ -42,7 +42,6 @@
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
-
 @property (nonatomic, strong) CDRTranslucentSideBar *rightSideBar;
 
 @property CGPoint panStartPoint;
@@ -108,14 +107,17 @@
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         CGRect translucentFrame =
         CGRectMake(self.showFromRight ? self.view.bounds.size.width : -self.sideBarWidth, 0, self.sideBarWidth, self.view.bounds.size.height);
+		 CGRectMake(self.showFromRight ? self.view.bounds.size.width : -self.sideBarWidth, 0, self.sideBarWidth, self.view.bounds.size.height);
         self.translucentView = [[UIToolbar alloc] initWithFrame:translucentFrame];
         self.translucentView.frame = translucentFrame;
+		//self.translucentView.frame=CGRectMake(0, 0, 30, 100);
         self.translucentView.contentMode = _showFromRight ? UIViewContentModeTopRight : UIViewContentModeTopLeft;
         self.translucentView.clipsToBounds = YES;
         self.translucentView.backgroundColor=[UIColor clearColor];
         self.translucentView.barStyle =UIBarStyleDefault;
         
         [self.view.layer insertSublayer:self.translucentView.layer atIndex:0];
+		        //[self.view addSubview:self.translucentView];
     }
 }
 #pragma mark - View Life Cycle
@@ -146,8 +148,9 @@
     UIView *vContentView = [[UIView alloc] initWithFrame:CGRectZero];
     vContentView.backgroundColor = [UIColor clearColor];
     if (!_showFromRight) {
+		//260
         
-        tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,260, [UIScreen mainScreen].bounds.size.height) style:UITableViewStyleGrouped];
+        tblView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0 ,260 , [UIScreen mainScreen].bounds.size.height) style:UITableViewStyleGrouped];
         
         tblView.backgroundColor=[UIColor clearColor];
         [vContentView addSubview:tblView];
@@ -396,10 +399,6 @@
         return nil;
     return nil;
 }
-
-
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.tag == 0) {
@@ -431,9 +430,6 @@
         NSDictionary *dataDic = [arrOptions objectAtIndex: indexPath.row];
         aCell.indexPath=indexPath;
         [aCell updateCellWithData: dataDic];
-        
-        
-        
         
         return aCell;
     }

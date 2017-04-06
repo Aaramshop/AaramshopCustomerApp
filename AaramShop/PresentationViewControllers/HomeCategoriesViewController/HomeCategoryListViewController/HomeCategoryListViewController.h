@@ -14,8 +14,9 @@
 #import "RecommendedStoreCell.h"
 
 #import "StoreModel.h"
+#import "HomeCategoryListCell.h"
 
-@interface HomeCategoryListViewController : UIViewController<SWTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate,AaramShop_ConnectionManager_Delegate>
+@interface HomeCategoryListViewController : UIViewController<SWTableViewCellDelegate,UITableViewDataSource,UITableViewDelegate,AaramShop_ConnectionManager_Delegate,MakeFavouriteDelegate,MakeStoreFavouriteDelegate>
 {
     __weak IBOutlet UITableView *tblStores;
 	__weak IBOutlet UILabel *lblMessage;
@@ -28,7 +29,6 @@
     UIButton *btnExpandCollapse;
     
     BOOL isTableExpanded;
-    
     UIRefreshControl *refreshStoreList;
     BOOL isLoading;
 	AppDelegate *appDel;
@@ -38,7 +38,7 @@
 
 @property(nonatomic,strong) StoreModel *storeModel;
 @property(nonatomic) NSInteger totalNoOfPages;
-
+-(void)makeStoreFovourite:(NSInteger)index;
 //@property(nonatomic) BOOL isFirstPage;
 
 @end

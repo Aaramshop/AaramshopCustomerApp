@@ -107,6 +107,8 @@
 	}
 	
 	[aaramShop_ConnectionManager getDataForFunction:kGetUserAddressURL withInput:aDict withCurrentTask:TASK_GET_USER_ADDRESS andDelegate:self ];
+    
+    
 	
 }
 -(void)createDataToGetHomeStoreBanner

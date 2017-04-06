@@ -12,6 +12,7 @@
 #import "AddLocationViewController.h"
 #import "HomeStoreViewController.h"
 #import "AddNewLocationViewController.h"
+#import "AddHomeStoreViewController.h"
 @interface PreferencesViewController : UIViewController<CustomNavigationDelegate,AaramShop_ConnectionManager_Delegate>
 {
 	
@@ -24,4 +25,5 @@
 	UIButton *backBtn;
 	AppDelegate *appDel;
 }
+@property(nonatomic,weak)UIImageView *imageView;
 @end

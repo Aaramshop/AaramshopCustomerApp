@@ -271,6 +271,7 @@
 	cell.delegate = self;
 	
 	[cell updateCell:[arrShoppingList objectAtIndex:indexPath.row]];
+    
 	
 	return cell;
 }

@@ -68,8 +68,6 @@
         imgVHomeIcon = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 35, 35)];
         imgVHomeIcon.image = [UIImage imageNamed:@"homeScreenHomeIconRed"];
         
-        
-
         [self.contentView addSubview:lblCategoryName];
         [self.contentView addSubview:lblDeliveryType];
         [self.contentView addSubview: lblDistance];

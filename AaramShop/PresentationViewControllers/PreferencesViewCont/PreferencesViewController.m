@@ -7,26 +7,36 @@
 //
 
 #import "PreferencesViewController.h"
+#import "AddHomeStoreViewController.h"
 
 @interface PreferencesViewController ()
 {
+	NSMutableArray *storeName,*storeImage,*storeArray;
+	NSMutableDictionary *homeDict;
+	NSUserDefaults *userDefaults;
+    AddHomeStoreViewController *storeViewController;
 	
 }
 @end
 
 @implementation PreferencesViewController
+@synthesize imageView;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view.
 	appDel = APP_DELEGATE;
-	
+	//[self.navigationController setNavigationBarHidden:YES];
 	aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc] init];
 	aaramShop_ConnectionManager.delegate = self;
 	preferencesModel = [[CMPreferences alloc] init];
 	arrLocation = [[NSMutableArray alloc] init];
 	strAddressCount = @"";
-	
+	storeName=[[NSMutableArray alloc]init];
+	storeImage=[[NSMutableArray alloc]init];
+	storeArray=[[NSMutableArray alloc]init];
+	homeDict=[[NSMutableDictionary alloc]init];
+
 	[self setUpNavigationBar];
 	
 	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -302,10 +312,25 @@
 			break;
 		case 2:
 		{
-			appDel.isLoggedIn = YES;
-			HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
 			
-			[self.navigationController pushViewController:homeStoreVwController animated:YES];
+			
+			appDel.isLoggedIn = YES;
+//			HomeStoreViewController *homeStoreVwController = (HomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"homeStoreScreen"];
+			
+			storeViewController=(AddHomeStoreViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"addHomeStoreScreen"];
+			//[self createDataToGetHomeStores];
+           // NSLog(@"StoreName  %@",storeName);
+			//storeViewController.nameArray=storeName;
+			
+			[self.navigationController pushViewController:storeViewController animated:YES];
+//			AddHomeStoreViewController *addHomeStore=[[AddHomeStoreViewController alloc]init];
+//			addHomeStore.nameArray=storeName;
+//			userDefaults = [NSUserDefaults standardUserDefaults];
+//								[userDefaults setObject:storeName forKey:@"store_name"];
+//								[userDefaults setObject:storeImage forKey:@"store_image"];
+//								[userDefaults synchronize];
+//								NSLog(@"userd %@",userDefaults);
+
 		}
 			break;
 			
@@ -420,6 +445,7 @@
 				preferencesModel.delivery_status_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:kDelivery_status_notification]];
 				preferencesModel.chat_notification = [NSString stringWithFormat:@"%@",[responseObject objectForKey:kChat_notification]];
 				preferencesModel.address_count = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"address_count"]];
+				NSLog(@"response object for get pref %@",responseObject);
 				
 				[tblView reloadData];
 			}
@@ -443,6 +469,52 @@
 			}
 		}
 			break;
+			
+		case TASK_TO_GET_STORES:
+		{
+			
+//			if([[responseObject objectForKey:kstatus] intValue] == 1)
+//			{
+//				[[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:kGet_store] forKey:kGet_store];
+//				[[NSUserDefaults standardUserDefaults] synchronize];
+//				
+//				//[self parseData:[responseObject objectForKey:@"user_address"]];
+//				
+//				NSLog(@"response object %@",responseObject);
+//				NSLog(@"response object %lu",(unsigned long)[responseObject count]);
+//			}
+//			else
+//			{
+//				[Utils showAlertView:kAlertTitle message:[responseObject objectForKey:kMessage] delegate:nil cancelButtonTitle:kAlertBtnOK otherButtonTitles:nil];
+//			}
+//			
+//			//for (int i=0; [responseObject count]; i++) {
+//			
+//			storeArray=[responseObject objectForKey:@"stores"];
+//			//			NSLog(@"dict %@",storeName);
+//			//			dict=[storeName objectAtIndex:0];
+//			//			NSLog(@"dict %@",dict);
+//			
+//			for (homeDict in storeArray ) {
+//            NSLog(@"Dictr %@",homeDict);
+//				for (NSInteger i=0; i<=[homeDict count]; i++) {
+//					storeName=[homeDict objectForKey:@"store_name"];
+//                    
+//					storeImage=[homeDict objectForKey:@"store_image"];
+//                    storeViewController.nameArray=storeName;
+////					NSLog(@"arraya : %@ %@",storeName,storeImage);
+////					userDefaults=nil;
+////					userDefaults = [NSUserDefaults standardUserDefaults];
+////					[userDefaults setObject:storeName forKey:@"store_name"];
+////					[userDefaults setObject:storeImage forKey:@"store_image"];
+////					[userDefaults synchronize];
+////					NSLog(@"userd %@",userDefaults);
+//				}
+               // NSLog(@"userd %@",storeName);
+
+			
+		
+			}
 		default:
 			break;
 	}
@@ -461,4 +533,17 @@
 	[tblView setUserInteractionEnabled:enable];
 	[backBtn setUserInteractionEnabled:enable];
 }
+
+
+ 
+ /////////////////////////////
+ 
+
+ //NSLog(@"Get User Doct : %@",dict);
+ //userId=[dict objectForKey:kUserId];
+ 
+ #pragma mark - Call Webservice To Change Password
+
+
+
 @end

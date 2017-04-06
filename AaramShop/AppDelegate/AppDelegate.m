@@ -38,8 +38,7 @@
     [AppsFlyerTracker sharedTracker].appsFlyerDevKey = @"Et9PeRUx2ptr9mzrKncKT6"; // You can get this key at the coniguration page of your app on AppsFlyer's dashboard.
 	
 	
-	
-	[[MoEngage sharedInstance] initializeWithApiKey:@"D4GVQ20TTL2FITJHIKUWC0P5" inApplication:application withLaunchOptions:launchOptions];
+    [[MoEngage sharedInstance] initializeWithApiKey:@"D4GVQ20TTL2FITJHIKUWC0P5" inApplication:application withLaunchOptions:launchOptions];
 	[self sendAppStatusToMoEngage];
 	[self saveAppVersionToDefaults];
 //    NSLocale *theLocale = [NSLocale currentLocale];
@@ -202,10 +201,6 @@
     [self.tabBarController setSelectedIndex:2];
     
 }
-
-
-
-
 
 
 #pragma mark - Register Device For Device Token
@@ -538,6 +533,7 @@
 	home.tabBarItem.selectedImage = [[UIImage imageNamed:@"tabBarHomeIconActive"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 	home.title = @"Home";
 	home.strStore_Id = _objStoreModel.store_id;
+    NSLog(@"dkhdjsbfjbsfbsb %@",_objStoreModel.store_id);
 	home.strStoreImage = _objStoreModel.store_image;
 	home.strStore_CategoryName = _objStoreModel.store_name;
 	

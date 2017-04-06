@@ -30,11 +30,12 @@
 	UIButton *btnCart;
 	UIButton *btnSearch;
 	UIButton *btnBroadcast;
+    //NSString *store_id1;
 }
 
 @property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
 @property (nonatomic, strong) CDRTranslucentSideBar *sideBar;
-
+@property(nonatomic ,strong) NSString *str_id;
 @end
 
 

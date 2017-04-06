@@ -957,6 +957,8 @@
 
 +(NSMutableDictionary *)setPredefindValueForWebservice
 {
+    //AppDelegate *appDeleg;
+    //appDeleg = APP_DELEGATE;
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     
     //SessionToken
@@ -973,6 +975,7 @@
     //Device Id and Device Token..
     [dict setObject:kDevice forKey:kDeviceType];
     [dict setObject:[self getUserDefaultValue:kDeviceId] forKey:kDeviceId];
+    //[dict setObject:appDeleg.objStoreModel.store_id forKey:kStore_id];
     
     return dict;
 }

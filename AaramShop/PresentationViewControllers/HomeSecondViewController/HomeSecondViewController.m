@@ -34,6 +34,8 @@
 	NSInteger selectedIndex;
 	int pageno;
 	int totalNoOfPages;
+    //UIButton *btnFav;
+	NSUInteger makeFovouriteCount;
 	
 }
 @end
@@ -234,7 +236,9 @@
 {
 	NSMutableDictionary *dict = [Utils setPredefindValueForWebservice];
 	[dict removeObjectForKey:kUserId];
+	
 	[dict setObject:strStore_Id forKey:kStore_id];
+	NSLog(@"My store id :%@",[dict objectForKey:kStore_id]);
 	[Utils stopActivityIndicatorInView:self.view];
 	[Utils startActivityIndicatorInView:self.view withMessage:nil];
 	[self performSelector:@selector(callWebserviceTogetStoreProductCategories:) withObject:dict afterDelay:0.1];
@@ -718,7 +722,7 @@
 	
 	NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
 	self.navigationItem.rightBarButtonItems = arrBtnsRight;
-	
+	//comment by ashish
 	NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack,barBtnFav, nil];
 	self.navigationItem.leftBarButtonItems = arrBtnsLeft;
 	self.navigationItem.rightBarButtonItems = arrBtnsRight;
@@ -758,6 +762,13 @@
 		return;
 		
 	}
+//    if ([btnFav isSelected] ) {
+//        NSLog(@"selected");
+//    }
+//         else{
+//              NSLog(@"nnnoselected");
+//             
+//         }
 }
 -(void)btnSearchClicked{
 	GlobalSearchResultViewC *globalSearchResultViewC = (GlobalSearchResultViewC *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GlobalSearchResultView" ];
@@ -1391,6 +1402,9 @@
 	[aaramShop_ConnectionManager getDataForFunction:KURLSerachStoreProducts withInput:dict withCurrentTask:TASK_TO_SEARCH_HOME_STORE_PRODUCTS andDelegate:self ];
 	
 }
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
 // added on 17 Sep 2015 .. ends ...

@@ -527,6 +527,7 @@
             objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_id]];
+                //NSLog(@"kekdfjbfjhbfjs %@",objStore.store_id);
             objStore.store_image = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_latitude]];
             objStore.store_longitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_longitude]];
@@ -1095,7 +1096,8 @@
         {
             if(isHomeCell)
             {
-                if (self.mainCategoryIndex !=0) {
+                if (self.mainCategoryIndex !=0)
+                {
                     objStoreModel = [arrSubCategory objectAtIndex:indexPath.row];
                     
                 }

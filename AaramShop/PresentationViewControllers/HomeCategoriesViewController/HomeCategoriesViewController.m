@@ -25,29 +25,26 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     CGFloat kCollectionHeight;
     CGFloat kYSLScrollMenuViewHeight;
     CGFloat kTabbarHeight;
-	NSString *strHeaderTitle;
+    NSString *strHeaderTitle;
     AppDelegate *appDeleg;
-	NSMutableArray *pickerArray;
-	CGFloat* value;
+    NSMutableArray *pickerArray;
+    CGFloat* value;
 }
 @end
 
 @implementation HomeCategoriesViewController
-@synthesize aaramShop_ConnectionManager;
+@synthesize aaramShop_ConnectionManager,str_id;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
-    
-	
     self.navigationController.navigationBarHidden = NO;
-
-	appDeleg = APP_DELEGATE;
-	//value= [screenBoundsFixedToPortraitOrientation];
-	[self designPickerViewSlots];
-	
-	[self toolBarDesignes];
+    
+    appDeleg = APP_DELEGATE;
+    //value= [screenBoundsFixedToPortraitOrientation];
+    [self designPickerViewSlots];
+    
+    [self toolBarDesignes];
     [self initilizeData];
     
     aaramShop_ConnectionManager = [[AaramShop_ConnectionManager alloc]init];
@@ -56,13 +53,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.sideBar = [Utils createLeftBarWithDelegate:self];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:kBroadcastNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotBroadCastMessage:) name:kBroadcastNotification object:nil];
-	
-	id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-	[tracker set:kGAIScreenName value:@"Home"];
-	[tracker send:[[GAIDictionaryBuilder createScreenView] build]];
-	
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kBroadcastNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotBroadCastMessage:) name:kBroadcastNotification object:nil];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Home"];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+    
 }
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -71,61 +68,58 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     //	if([arrCategories count]==0)
     //	{
     //	}
-
     
     
-	if([AppManager sharedManager].notifyDict && [[[AppManager sharedManager].notifyDict valueForKey:@"pType"]integerValue]==3)
-	{
-		[self btnBroadcastClicked];
-		[AppManager sharedManager].notifyDict = nil;
-		return;
-	}
-	if(!arrAddress)
-	{
-		arrAddress = [[NSMutableArray alloc]init];
-	}
-	[arrAddress removeAllObjects];
-	
-	arrAddress = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] valueForKey:kUser_address]];
-
-	if (appDeleg.myCurrentLocation == nil) {
-		if([arrAddress count]>0)
-		{
-			CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[[arrAddress objectAtIndex:0] objectForKey:@"latitude"] doubleValue] longitude:[[[arrAddress objectAtIndex:0] objectForKey:@"longitude"] doubleValue]];
-			appDeleg.myCurrentLocation = newLocation;
-			strHeaderTitle =[[arrAddress objectAtIndex:0] objectForKey:@"user_address_title"];
-		}
-		else
-		{
-			CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:0.00000f longitude:0.00000f];
-			appDeleg.myCurrentLocation = newLocation;
-			strHeaderTitle =@"";
-			
-		}
-	}
-	else
-	{
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.longitude CONTAINS[cd] %@ AND SELF.latitude CONTAINS[cd] %@",[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude],[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude]];
-		NSArray *arrFilter = [arrAddress filteredArrayUsingPredicate:predicate];
-		if([arrFilter count]>0)
-		{
-			strHeaderTitle = [[arrFilter objectAtIndex:0] objectForKey:@"user_address_title"];
-		}
-	}
-	 [self setUpNavigationBar];
-	[self	createDataToGetStores];
-
+    
+    if([AppManager sharedManager].notifyDict && [[[AppManager sharedManager].notifyDict valueForKey:@"pType"]integerValue]==3)
+    {
+        [self btnBroadcastClicked];
+        [AppManager sharedManager].notifyDict = nil;
+        return;
+    }
+    if(!arrAddress)
+    {
+        arrAddress = [[NSMutableArray alloc]init];
+    }
+    [arrAddress removeAllObjects];
+    
+    arrAddress = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] valueForKey:kUser_address]];
+    
+    if (appDeleg.myCurrentLocation == nil) {
+        if([arrAddress count]>0)
+        {
+            CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[[arrAddress objectAtIndex:0] objectForKey:@"latitude"] doubleValue] longitude:[[[arrAddress objectAtIndex:0] objectForKey:@"longitude"] doubleValue]];
+            appDeleg.myCurrentLocation = newLocation;
+            strHeaderTitle =[[arrAddress objectAtIndex:0] objectForKey:@"user_address_title"];
+        }
+        else
+        {
+            CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:0.00000f longitude:0.00000f];
+            appDeleg.myCurrentLocation = newLocation;
+            strHeaderTitle =@"";
+            
+        }
+    }
+    else
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.longitude CONTAINS[cd] %@ AND SELF.latitude CONTAINS[cd] %@",[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.longitude],[NSString stringWithFormat:@"%f",appDeleg.myCurrentLocation.coordinate.latitude]];
+        NSArray *arrFilter = [arrAddress filteredArrayUsingPredicate:predicate];
+        if([arrFilter count]>0)
+        {
+            strHeaderTitle = [[arrFilter objectAtIndex:0] objectForKey:@"user_address_title"];
+        }
+    }
+    [self setUpNavigationBar];
+    [self	createDataToGetStores];
+    
     NSLog(@"value = %f",appDeleg.myCurrentLocation.coordinate.latitude);
     if(![gCXMPPController isConnected])
     {
         [gCXMPPController connect];
     }
-
-
+    
+    
 }
-
-
-
 -(void)initilizeData
 {
     kCollectionHeight = 235 - 66; // minus navigation height (66).
@@ -133,13 +127,13 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     kTabbarHeight = 49;
     
     kTableProductsHeight = self.view.frame.size.height - (kCollectionHeight + kTabbarHeight + 2);
-
+    
     viewOverlay.hidden = YES;
     collectionMaster.hidden = YES;
-
-//	[collectionMaster setFrame:[UIScreen mainScreen].bounds.size.width];
-	//collectionMaster=
-//	[collectionMaster setFrame:];
+    
+    //	[collectionMaster setFrame:[UIScreen mainScreen].bounds.size.width];
+    //collectionMaster=
+    //	[collectionMaster setFrame:];
     arrCategories = [[NSMutableArray alloc]init];
     
     totalNoOfPages = 0;
@@ -150,14 +144,14 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     // Dispose of any resources that can be recreated.
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 #pragma mark Navigation
@@ -169,19 +163,19 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     _headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
     _headerTitleSubtitleView.autoresizesSubviews = NO;
     
-	btnPicker = [UIButton buttonWithType:UIButtonTypeCustom];
-	[btnPicker setFrame:CGRectMake(0, 0, 97, 44)];
-	btnPicker.titleLabel.textAlignment=NSTextAlignmentCenter;
-	btnPicker.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:15];
-	btnPicker.titleLabel.adjustsFontSizeToFitWidth = NO;
-	[btnPicker setImage:[UIImage imageNamed:@"dropDownArrowLocation"] forState:UIControlStateNormal];
-	[btnPicker setTitle:[NSString stringWithFormat:@" %@", strHeaderTitle] forState:UIControlStateNormal];
-	
-	[btnPicker addTarget:self action:@selector(btnPicker) forControlEvents:UIControlEventTouchUpInside];
-	[btnPicker setShowsTouchWhenHighlighted:YES];
-	[_headerTitleSubtitleView addSubview:btnPicker];
-	self.navigationItem.titleView = _headerTitleSubtitleView;
-	
+    btnPicker = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnPicker setFrame:CGRectMake(0, 0, 97, 44)];
+    btnPicker.titleLabel.textAlignment=NSTextAlignmentCenter;
+    btnPicker.titleLabel.font = [UIFont fontWithName:kRobotoRegular size:15];
+    btnPicker.titleLabel.adjustsFontSizeToFitWidth = NO;
+    [btnPicker setImage:[UIImage imageNamed:@"dropDownArrowLocation"] forState:UIControlStateNormal];
+    [btnPicker setTitle:[NSString stringWithFormat:@" %@", strHeaderTitle] forState:UIControlStateNormal];
+    
+    [btnPicker addTarget:self action:@selector(btnPicker) forControlEvents:UIControlEventTouchUpInside];
+    [btnPicker setShowsTouchWhenHighlighted:YES];
+    [_headerTitleSubtitleView addSubview:btnPicker];
+    self.navigationItem.titleView = _headerTitleSubtitleView;
+    
     UIImage *imgBack = [UIImage imageNamed:@"menuIcon.png"];
     backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.bounds = CGRectMake( -10, 0, 30, 30);
@@ -191,236 +185,236 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     NSArray *arrBtnsLeft = [[NSArray alloc]initWithObjects:barBtnBack, nil];
     self.navigationItem.leftBarButtonItems = arrBtnsLeft;
-	
-	UIView *rightContainer=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 26, 44)];
-	[rightContainer setBackgroundColor:[UIColor clearColor]];
-	UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
-	btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnCart.frame = CGRectMake((rightContainer.frame.size.width - 26)/2, (rightContainer.frame.size.height - 26)/2, 26, 26);
-	
-	[btnCart setImage:imgCart forState:UIControlStateNormal];
-	[btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
-	
-	[rightContainer addSubview:btnCart];
-	
-	UIButton *badgeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-	badgeBtn.frame = CGRectMake(16, 5, 23, 23);
-	[badgeBtn addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
-	[badgeBtn setBackgroundImage:[UIImage imageNamed:@"addToCardNoBox"] forState:UIControlStateNormal];
-	
-	UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+1	, 13, 20, 8)];
-	lab.font = [UIFont fontWithName:kRobotoRegular size:9];
-	[lab setTextAlignment:NSTextAlignmentCenter];
-	[lab setTextColor:[UIColor whiteColor]];
-	[lab setBackgroundColor:[UIColor clearColor]];
-	NSInteger count = [AppManager getCountOfProductsInCart];
-	if (count > 0) {
-		gAppManager.intCount = count;
-		if (count>99) {
-			lab.text = @"99+";
-		}
-		else
-			lab.text = [NSString stringWithFormat:@"%ld",(long)count];
-		[rightContainer addSubview:badgeBtn];
-		[rightContainer addSubview:lab];
-	}
-	
-	
-	UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
-	
-	
-	btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnSearch.bounds = CGRectMake( 0, 0, 26, 26);
-	
-	[btnSearch setImage:imgSearch forState:UIControlStateNormal];
-	[btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
-	UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
-
-	UIImage *imgBroadcast = nil;
-	if([[NSUserDefaults standardUserDefaults] boolForKey:kBroadcastNotificationAvailable])
-	{
-		imgBroadcast = [UIImage imageNamed:@"bellIconRed"];
-	}
-	else
-	{
-		imgBroadcast = [UIImage imageNamed:@"bellIcon"];
-	}
-	
-	btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
-	btnBroadcast.bounds = CGRectMake( 0, 0, 26, 26);
-	
-	[btnBroadcast setImage:imgBroadcast forState:UIControlStateNormal];
-	[btnBroadcast addTarget:self action:@selector(btnBroadcastClicked) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *barBtnBroadcast = [[UIBarButtonItem alloc] initWithCustomView:btnBroadcast];
-	
-	
-	NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
-	self.navigationItem.rightBarButtonItems = arrBtnsRight;
-
+    
+    UIView *rightContainer=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 26, 44)];
+    [rightContainer setBackgroundColor:[UIColor clearColor]];
+    UIImage *imgCart = [UIImage imageNamed:@"addToCartIcon.png"];
+    btnCart = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnCart.frame = CGRectMake((rightContainer.frame.size.width - 26)/2, (rightContainer.frame.size.height - 26)/2, 26, 26);
+    
+    [btnCart setImage:imgCart forState:UIControlStateNormal];
+    [btnCart addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    [rightContainer addSubview:btnCart];
+    
+    UIButton *badgeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    badgeBtn.frame = CGRectMake(16, 5, 23, 23);
+    [badgeBtn addTarget:self action:@selector(btnCartClicked) forControlEvents:UIControlEventTouchUpInside];
+    [badgeBtn setBackgroundImage:[UIImage imageNamed:@"addToCardNoBox"] forState:UIControlStateNormal];
+    
+    UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(badgeBtn.frame.origin.x+1	, 13, 20, 8)];
+    lab.font = [UIFont fontWithName:kRobotoRegular size:9];
+    [lab setTextAlignment:NSTextAlignmentCenter];
+    [lab setTextColor:[UIColor whiteColor]];
+    [lab setBackgroundColor:[UIColor clearColor]];
+    NSInteger count = [AppManager getCountOfProductsInCart];
+    if (count > 0) {
+        gAppManager.intCount = count;
+        if (count>99) {
+            lab.text = @"99+";
+        }
+        else
+            lab.text = [NSString stringWithFormat:@"%ld",(long)count];
+        [rightContainer addSubview:badgeBtn];
+        [rightContainer addSubview:lab];
+    }
+    
+    
+    UIImage *imgSearch = [UIImage imageNamed:@"searchIcon.png"];
+    
+    
+    btnSearch = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnSearch.bounds = CGRectMake( 0, 0, 26, 26);
+    
+    [btnSearch setImage:imgSearch forState:UIControlStateNormal];
+    [btnSearch addTarget:self action:@selector(btnSearchClicked) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barBtnSearch = [[UIBarButtonItem alloc] initWithCustomView:btnSearch];
+    UIBarButtonItem* barBtnCart  = [[UIBarButtonItem alloc] initWithCustomView:rightContainer];
+    
+    UIImage *imgBroadcast = nil;
+    if([[NSUserDefaults standardUserDefaults] boolForKey:kBroadcastNotificationAvailable])
+    {
+        imgBroadcast = [UIImage imageNamed:@"bellIconRed"];
+    }
+    else
+    {
+        imgBroadcast = [UIImage imageNamed:@"bellIcon"];
+    }
+    
+    btnBroadcast = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnBroadcast.bounds = CGRectMake( 0, 0, 26, 26);
+    
+    [btnBroadcast setImage:imgBroadcast forState:UIControlStateNormal];
+    [btnBroadcast addTarget:self action:@selector(btnBroadcastClicked) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barBtnBroadcast = [[UIBarButtonItem alloc] initWithCustomView:btnBroadcast];
+    
+    
+    NSArray *arrBtnsRight = [[NSArray alloc]initWithObjects:barBtnCart,barBtnSearch,barBtnBroadcast, nil];
+    self.navigationItem.rightBarButtonItems = arrBtnsRight;
+    
 }
 - (void)userInteraction:(BOOL)enable
 {
-	btnBroadcast.userInteractionEnabled = enable;
-	btnCart.userInteractionEnabled = enable;
-	btnSearch.userInteractionEnabled = enable;
-	backBtn.userInteractionEnabled = enable;
-	collectionMaster.userInteractionEnabled = enable;
-	viewOverlay.userInteractionEnabled = enable;
-	viewSubcategories.userInteractionEnabled = enable;
+    btnBroadcast.userInteractionEnabled = enable;
+    btnCart.userInteractionEnabled = enable;
+    btnSearch.userInteractionEnabled = enable;
+    backBtn.userInteractionEnabled = enable;
+    collectionMaster.userInteractionEnabled = enable;
+    viewOverlay.userInteractionEnabled = enable;
+    viewSubcategories.userInteractionEnabled = enable;
 }
 - (void)btnPicker
 {
-	if(!pickerArray)
-		pickerArray = [[NSMutableArray alloc] init];
-	[pickerArray removeAllObjects];
-
-	[pickerArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Add new address",@"user_address_title",@"0",kUser_address_id, nil]];
-	[pickerArray addObjectsFromArray:arrAddress];
-	[pickerViewSlots reloadAllComponents];
-	[self userInteraction:NO];
-	[self showPickerView:YES];
-	[self showOptionPatch:YES];
-	
+    if(!pickerArray)
+        pickerArray = [[NSMutableArray alloc] init];
+    [pickerArray removeAllObjects];
+    
+    [pickerArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Add new address",@"user_address_title",@"0",kUser_address_id, nil]];
+    [pickerArray addObjectsFromArray:arrAddress];
+    [pickerViewSlots reloadAllComponents];
+    [self userInteraction:NO];
+    [self showPickerView:YES];
+    [self showOptionPatch:YES];
+    
 }
 -(void)designPickerViewSlots
 {
-	
-	pickerViewSlots=[[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds)+100,[UIScreen mainScreen].bounds.size.width ,216)];
-	pickerViewSlots.delegate =self;
-	pickerViewSlots.dataSource =self;
-	pickerViewSlots.backgroundColor=[UIColor whiteColor];
-	pickerViewSlots.showsSelectionIndicator = YES;
-	[self.view addSubview:pickerViewSlots];
+    
+    pickerViewSlots=[[UIPickerView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds)+100,[UIScreen mainScreen].bounds.size.width ,216)];
+    pickerViewSlots.delegate =self;
+    pickerViewSlots.dataSource =self;
+    pickerViewSlots.backgroundColor=[UIColor whiteColor];
+    pickerViewSlots.showsSelectionIndicator = YES;
+    [self.view addSubview:pickerViewSlots];
 }
 -(void)toolBarDesignes
 {
-	if (keyBoardToolBar==nil)
-	{
-		keyBoardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 630 , [[UIScreen mainScreen]bounds].size.width, 40)];
-		UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
-		btnCancel.tag = kBtnCancel;
-		
-		keyBoardToolBar.backgroundColor=[UIColor blackColor];
-		UIBarButtonItem *tempDistance = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-		UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
-		btnDone.tag = kBtnDone;
-		keyBoardToolBar.items = [NSArray arrayWithObjects:btnCancel,tempDistance,btnDone, nil];
-	}
-	else
-	{
-		[keyBoardToolBar removeFromSuperview];
-	}
-	
-	[self.view addSubview:keyBoardToolBar];
-	[self.view bringSubviewToFront:keyBoardToolBar];
+    if (keyBoardToolBar==nil)
+    {
+        keyBoardToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 630 , [[UIScreen mainScreen]bounds].size.width, 40)];
+        UIBarButtonItem *btnCancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
+        btnCancel.tag = kBtnCancel;
+        
+        keyBoardToolBar.backgroundColor=[UIColor blackColor];
+        UIBarButtonItem *tempDistance = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        UIBarButtonItem *btnDone = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(toolBarBtnClicked:)];
+        btnDone.tag = kBtnDone;
+        keyBoardToolBar.items = [NSArray arrayWithObjects:btnCancel,tempDistance,btnDone, nil];
+    }
+    else
+    {
+        [keyBoardToolBar removeFromSuperview];
+    }
+    
+    [self.view addSubview:keyBoardToolBar];
+    [self.view bringSubviewToFront:keyBoardToolBar];
 }
 
 -(void)toolBarBtnClicked:(UIBarButtonItem *)sender
 {
-	if ([sender tag] == kBtnCancel) {
-		[self showOptionPatch:NO];
-		[self showPickerView:NO];
-		[self userInteraction:YES];
-		
-	}
-	else if ([sender tag] == kBtnDone)
-	{
-
-		[self userInteraction:YES];
-		[self showOptionPatch:NO];
-		[self showPickerView:NO];
-		if([[dictPickerValue objectForKey:kUser_address_id] integerValue]==0)
-		{
-			LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
-			locationScreen.delegate							= self;
-			locationScreen.hidesBottomBarWhenPushed	=	YES;
-			locationScreen.addAddressCompletion	= ^(void)
-			{
-				self.navigationController.navigationBarHidden = NO;
-			};
-			[self.navigationController pushViewController:locationScreen animated:YES];
-		}
-		else
-		{
-			strHeaderTitle =[dictPickerValue objectForKey:@"user_address_title"];
-			[btnPicker setTitle:[NSString stringWithFormat:@" %@", strHeaderTitle] forState:UIControlStateNormal];
-			CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[dictPickerValue objectForKey:@"latitude"] doubleValue] longitude:[[dictPickerValue objectForKey:@"longitude"] doubleValue]];
-			appDeleg.myCurrentLocation = newLocation;
-			[self createDataToGetStores];
-		}
-		
-	}
+    if ([sender tag] == kBtnCancel) {
+        [self showOptionPatch:NO];
+        [self showPickerView:NO];
+        [self userInteraction:YES];
+        
+    }
+    else if ([sender tag] == kBtnDone)
+    {
+        
+        [self userInteraction:YES];
+        [self showOptionPatch:NO];
+        [self showPickerView:NO];
+        if([[dictPickerValue objectForKey:kUser_address_id] integerValue]==0)
+        {
+            LocationEnterViewController *locationScreen = (LocationEnterViewController*) [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LocationEnterScreen"];
+            locationScreen.delegate							= self;
+            locationScreen.hidesBottomBarWhenPushed	=	YES;
+            locationScreen.addAddressCompletion	= ^(void)
+            {
+                self.navigationController.navigationBarHidden = NO;
+            };
+            [self.navigationController pushViewController:locationScreen animated:YES];
+        }
+        else
+        {
+            strHeaderTitle =[dictPickerValue objectForKey:@"user_address_title"];
+            [btnPicker setTitle:[NSString stringWithFormat:@" %@", strHeaderTitle] forState:UIControlStateNormal];
+            CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:[[dictPickerValue objectForKey:@"latitude"] doubleValue] longitude:[[dictPickerValue objectForKey:@"longitude"] doubleValue]];
+            appDeleg.myCurrentLocation = newLocation;
+            [self createDataToGetStores];
+        }
+        
+    }
 }
 -(void)showOptionPatch:(BOOL)isShow
 {
-	if(isShow)
-	{
-		[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
-		 {
-			 keyBoardToolBar.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) -(196 + 20 +49) , [[UIScreen mainScreen]bounds].size.width, 40 );
-		 }completion:nil];
-		
-	}
-	else
-	{
-		[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
-		 {
-			 keyBoardToolBar.frame = CGRectMake(0, [[UIScreen mainScreen]bounds].size.height + 40 +49, [[UIScreen mainScreen]bounds].size.width, 40);
-		 }
-						 completion:nil];
-	}
+    if(isShow)
+    {
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
+         {
+             keyBoardToolBar.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) -(196 + 20 +49) , [[UIScreen mainScreen]bounds].size.width, 40 );
+         }completion:nil];
+        
+    }
+    else
+    {
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^
+         {
+             keyBoardToolBar.frame = CGRectMake(0, [[UIScreen mainScreen]bounds].size.height + 40 +49, [[UIScreen mainScreen]bounds].size.width, 40);
+         }
+                         completion:nil];
+    }
 }
 -(void)showPickerView:(BOOL)isShow
 {
-	if(isShow)
-	{
-		[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-			pickerViewSlots.frame = CGRectMake(0,CGRectGetHeight(self.view.bounds)-(196-20+49), [[UIScreen mainScreen]bounds].size.width, 196);
-			
-		}
-						 completion:nil];
-		
-	}
-	else
-	{
-		[UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
-						 animations:^{
-							 pickerViewSlots.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds)+100-49, [[UIScreen mainScreen]bounds].size.width,196);
-						 }
-						 completion:nil];
-		
-	}
+    if(isShow)
+    {
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            pickerViewSlots.frame = CGRectMake(0,CGRectGetHeight(self.view.bounds)-(196-20+49), [[UIScreen mainScreen]bounds].size.width, 196);
+            
+        }
+                         completion:nil];
+        
+    }
+    else
+    {
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             pickerViewSlots.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds)+100-49, [[UIScreen mainScreen]bounds].size.width,196);
+                         }
+                         completion:nil];
+        
+    }
 }
 #pragma mark PickerView Methods & Delegates
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-	
-	return pickerArray.count;
+    
+    return pickerArray.count;
 }
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-	return 1;
+    return 1;
 }
 
 // Display each row's data.
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-	
-	return [pickerArray [row] objectForKey:@"user_address_title"];
-	
+    
+    return [pickerArray [row] objectForKey:@"user_address_title"];
+    
 }
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-	
-	dictPickerValue= [pickerArray objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
-	gAppManager.addressSelected = row-1;
-	
+    
+    dictPickerValue= [pickerArray objectAtIndex:[pickerViewSlots selectedRowInComponent:0]];
+    gAppManager.addressSelected = row-1;
+    
 }
 
 - (void)btnBroadcastClicked
 {
-	BroadcastViewController *broadcastView = (BroadcastViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"broadcastView"];
-	[self.navigationController pushViewController:broadcastView animated:YES];
+    BroadcastViewController *broadcastView = (BroadcastViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"broadcastView"];
+    [self.navigationController pushViewController:broadcastView animated:YES];
 }
 
 -(void)btnMenuClicked
@@ -429,15 +423,15 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 }
 -(void)btnSearchClicked
 {
-	GlobalSearchResultViewC *globalSearchResultViewC = (GlobalSearchResultViewC *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GlobalSearchResultView" ];
-	[self.navigationController pushViewController:globalSearchResultViewC animated:YES];
-
+    GlobalSearchResultViewC *globalSearchResultViewC = (GlobalSearchResultViewC *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GlobalSearchResultView" ];
+    [self.navigationController pushViewController:globalSearchResultViewC animated:YES];
+    
 }
 -(void)btnCartClicked
 {
-	CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
-	[self.navigationController pushViewController:cartView animated:YES];
-
+    CartViewController *cartView = (CartViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"CartViewScene"];
+    [self.navigationController pushViewController:cartView animated:YES];
+    
 }
 - (void)sideBarDelegatePushMethod:(UIViewController*)viewC{
     [self.navigationController pushViewController:viewC animated:YES];
@@ -449,61 +443,54 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     return YES;
 }
 
-
-
-
 -(void)setupViewDesign
 {
     // SetUp ViewControllers
     
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-
+    
     NSMutableArray *viewControllers = [[NSMutableArray alloc] initWithCapacity:[arrCategories count]];
     
     [arrCategories enumerateObjectsUsingBlock:^(StoreModel *storeModel, NSUInteger idx, BOOL *stop)
-    {
-        HomeCategoryListViewController *homeCategoryListView = [sb instantiateViewControllerWithIdentifier:@"HomeCategoryListView"];
-        homeCategoryListView.title = storeModel.store_main_category_name;
-        homeCategoryListView.storeModel = storeModel;
-        homeCategoryListView.totalNoOfPages = totalNoOfPages;
-        
-//        if (idx==0)
-//        {
-//            homeCategoryListView.isFirstPage = YES;
-//        }
-//        else
-//        {
-//            homeCategoryListView.isFirstPage = NO;
-//        }
-	
-        
-        CGRect frame = homeCategoryListView.view.frame;
-        frame.origin.y = 0.0;
-        homeCategoryListView.view.frame = frame;
-        
-        [viewControllers addObject:homeCategoryListView];
-    }];
-    
-    
-    
-    
+     {
+         HomeCategoryListViewController *homeCategoryListView = [sb instantiateViewControllerWithIdentifier:@"HomeCategoryListView"];
+         homeCategoryListView.title = storeModel.store_main_category_name;
+         homeCategoryListView.storeModel = storeModel;
+         homeCategoryListView.totalNoOfPages = totalNoOfPages;
+         
+         //        if (idx==0)
+         //        {
+         //            homeCategoryListView.isFirstPage = YES;
+         //        }
+         //        else
+         //        {
+         //            homeCategoryListView.isFirstPage = NO;
+         //        }
+         
+         
+         CGRect frame = homeCategoryListView.view.frame;
+         frame.origin.y = 0.0;
+         homeCategoryListView.view.frame = frame;
+         
+         [viewControllers addObject:homeCategoryListView];
+     }];
     
     // ContainerView
     float statusHeight = 0;
     float navigationHeight = 0;
     if(containerVC)
-	{
-		[containerVC.view removeFromSuperview];
-		containerVC = nil;
-	}
+    {
+        [containerVC.view removeFromSuperview];
+        containerVC = nil;
+    }
     containerVC = [[YSLContainerViewController alloc]initWithControllers:viewControllers
-                                                                                        topBarHeight:statusHeight + navigationHeight
-                                                                                parentViewController:self];
+                                                            topBarHeight:statusHeight + navigationHeight
+                                                    parentViewController:self];
     containerVC.delegate = self;
     containerVC.menuItemFont = [UIFont fontWithName:kRobotoRegular size:14.0];
     
-    //
+    
     CGRect containerFrame  = containerVC.view.frame;
     containerFrame.origin.y = 0.0;
     containerFrame.size.height = kTableProductsHeight;
@@ -541,10 +528,10 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     int pageno = 0;
     
     [dict setObject:[NSString stringWithFormat:@"%d",pageno] forKey:kPage_no];
-
     
-//        [dict setObject:@"28.5160458" forKey:kLatitude]; // temp
-//        [dict setObject:@"77.3735504" forKey:kLongitude]; // temp
+    
+    //        [dict setObject:@"28.5160458" forKey:kLatitude]; // temp
+    //        [dict setObject:@"77.3735504" forKey:kLongitude]; // temp
     
     
     [self callWebserviceToGetStores:dict];
@@ -556,11 +543,11 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     [Utils stopActivityIndicatorInView:self.view];
     [Utils startActivityIndicatorInView:self.view withMessage:nil];
-
+    
     if (![Utils isInternetAvailable])
     {
         [Utils stopActivityIndicatorInView:self.view];
-
+        
         viewOverlay.hidden = YES;
         collectionMaster.hidden = YES;
         [AppManager stopStatusbarActivityIndicator];
@@ -575,11 +562,11 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 -(void) didFailWithError:(NSError *)error
 {
     [Utils stopActivityIndicatorInView:self.view];
-
+    
     viewOverlay.hidden = YES;
     collectionMaster.hidden = YES;
     [AppManager stopStatusbarActivityIndicator];
-
+    
     [aaramShop_ConnectionManager failureBlockCalled:error];
 }
 
@@ -587,8 +574,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 {
     [AppManager stopStatusbarActivityIndicator];
     [Utils stopActivityIndicatorInView:self.view];
-
-
+    
+    
     if (aaramShop_ConnectionManager.currentTask == TASK_TO_GET_STORES) {
         
         if ([[responseObject objectForKey:kstatus] intValue] == 1 && [[responseObject objectForKey:kIsValid] intValue] == 1) {
@@ -652,7 +639,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             objStoreModel.arrShoppingStores = [[NSMutableArray alloc]init];
         }
         
-
+        
         
         for (NSDictionary *dictRecommended in arrTempRecomendedStores) {
             
@@ -665,6 +652,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictRecommended objectForKey:kStore_id]];
+            //NSString *str1=objStore.store_id;
             objStore.store_image = [NSString stringWithFormat:@"%@",[[dictRecommended objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             
             
@@ -683,6 +671,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
         }
         for (NSDictionary *dictHome in arrTempHomeStores) {
             
+            // NSLog(@"aaaaaaaa %@",arrTempHomeStores);
+            
             StoreModel *objStore = [[StoreModel alloc]init];
             objStore.chat_username = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kChat_username]];
             objStore.home_delivey = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kHome_delivery]];
@@ -692,6 +682,9 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             objStore.store_category_icon = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_category_icon]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_id]];
+            
+            NSLog(@"hghghgh %@",objStore.store_id);
+            
             objStore.store_image = [NSString stringWithFormat:@"%@",[[dictHome objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             
             objStore.store_latitude = [NSString stringWithFormat:@"%@",[dictHome objectForKey:kStore_latitude]];
@@ -722,6 +715,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
             
             objStore.store_category_name = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_category_name]];
             objStore.store_id = [NSString stringWithFormat:@"%@",[dictShopping objectForKey:kStore_id]];
+            NSLog(@"cccccc %@",objStore.store_id);
+            //NSString *store_id1=objStore.store_id;
             
             objStore.store_image = [NSString stringWithFormat:@"%@",[[dictShopping objectForKey:kStore_image]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             
@@ -744,12 +739,9 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
         [arrCategories addObject:objStoreModel];
     }
     [collectionMaster reloadData];
-	
-    [self setupViewDesign];
     
-
+    [self setupViewDesign];
 }
-
 
 #pragma mark - UICollectionView Delegate & DataSource Methods
 
@@ -766,7 +758,7 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HomeCategoriesCollectionCell *cell = (HomeCategoriesCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier: strCollectionCell forIndexPath:indexPath];
-
+    
     cell.indexPath = indexPath;
     [cell updateMasterCollectionCell:[arrCategories objectAtIndex:indexPath.item]];
     cell.backgroundColor = [UIColor redColor];
@@ -782,8 +774,8 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	//You may want to create a divider to scale the size by the way..
-	return CGSizeMake([UIScreen mainScreen].bounds.size.width,235);
+    //You may want to create a divider to scale the size by the way..
+    return CGSizeMake([UIScreen mainScreen].bounds.size.width,235);
 }
 #pragma mark -- YSLContainerViewControllerDelegate
 - (void)containerViewItemIndex:(NSInteger)index currentController:(UIViewController *)controller
@@ -793,15 +785,15 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
     
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
-	
+    
     [collectionMaster scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     
     [controller viewWillAppear:YES];
-
+    
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionView *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-	return 0; // This is the minimum inter item spacing, can be more
+    return 0; // This is the minimum inter item spacing, can be more
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -825,146 +817,146 @@ static NSString *strCollectionCell = @"collectionCellMasterCategory";
 }
 - (void)gotBroadCastMessage:(NSNotification *)notification
 {
-	[self setUpNavigationBar];
+    [self setUpNavigationBar];
 }
 
 /*
-
-
-{
-    categories =     (
-                      {
-                          "home_stores" =             (
-                                                       {
-                                                           "chat_username" = 14351391776712;
-                                                           "home_delivery" = 1;
-                                                           "is_favorite" = 1;
-                                                           "is_home_store" = 1;
-                                                           "is_open" = 0;
-                                                           "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
-                                                           "store_category_id" = 2;
-                                                           "store_category_name" = Grocery;
-                                                           "store_id" = 9206;
-                                                           "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/S1435139177.png";
-                                                           "store_latitude" = "28.516395";
-                                                           "store_longitude" = "77.372966";
-                                                           "store_mobile" = 8377944952;
-                                                           "store_name" = "Sabka Bazar";
-                                                           "store_rating" = 5;
-                                                           "total_orders" = 24;
-                                                       },
-                                                       {
-                                                           "chat_username" = 14351708254740;
-                                                           "home_delivery" = 1;
-                                                           "is_favorite" = 1;
-                                                           "is_home_store" = 1;
-                                                           "is_open" = 0;
-                                                           "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
-                                                           "store_category_id" = 2;
-                                                           "store_category_name" = Grocery;
-                                                           "store_id" = 9212;
-                                                           "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/P1435170825.png";
-                                                           "store_latitude" = "";
-                                                           "store_longitude" = "";
-                                                           "store_mobile" = 9582150033;
-                                                           "store_name" = Prateek;
-                                                           "store_rating" = 5;
-                                                           "total_orders" = 5;
-                                                       },
-                                                       {
-                                                           "chat_username" = 14369559578164;
-                                                           "home_delivery" = 1;
-                                                           "is_favorite" = 1;
-                                                           "is_home_store" = 1;
-                                                           "is_open" = 1;
-                                                           "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
-                                                           "store_category_id" = 2;
-                                                           "store_category_name" = Grocery;
-                                                           "store_id" = 9267;
-                                                           "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/M1436955957.png";
-                                                           "store_latitude" = "";
-                                                           "store_longitude" = "";
-                                                           "store_mobile" = 8800375554;
-                                                           "store_name" = "Malik Stores ";
-                                                           "store_rating" = 5;
-                                                           "total_orders" = 0;
-                                                       },
-                                                       {
-                                                           "chat_username" = 14377229557840;
-                                                           "home_delivery" = 1;
-                                                           "is_favorite" = 0;
-                                                           "is_home_store" = 1;
-                                                           "is_open" = 0;
-                                                           "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
-                                                           "store_category_id" = 2;
-                                                           "store_category_name" = Grocery;
-                                                           "store_id" = 9271;
-                                                           "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/A1437722955.png";
-                                                           "store_latitude" = "28.515737";
-                                                           "store_longitude" = "77.373311";
-                                                           "store_mobile" = 7811806364;
-                                                           "store_name" = aaram132;
-                                                           "store_rating" = 5;
-                                                           "total_orders" = 1;
-                                                       }
-                                                       );
-                          "recommended_stores" =             (
-                          );
-                          "shopping_store" =             (
-                                                          {
-                                                              "chat_username" = 14351571438319;
-                                                              "home_delivery" = 1;
-                                                              "is_favorite" = 0;
-                                                              "is_home_store" = 0;
-                                                              "is_open" = 1;
-                                                              "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
-                                                              "store_category_id" = 2;
-                                                              "store_category_name" = Grocery;
-                                                              "store_id" = 69;
-                                                              "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/01-30-46894064714.jpg";
-                                                              "store_latitude" = "28.567132";
-                                                              "store_longitude" = "77.19836";
-                                                              "store_mobile" = 1126166277;
-                                                              "store_name" = "City Stores";
-                                                              "store_rating" = 5;
-                                                              "total_orders" = 32;
-                                                          }
-                                                          );
-                          "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/1-Grocery.png";
-                          "store_main_category_banner_2" = "";
-                          "store_main_category_id" = 0;
-                          "store_main_category_name" = "My Stores";
-                      },
-                      {
-                          "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/1-Grocery.png";
-                          "store_main_category_banner_2" = "";
-                          "store_main_category_id" = 2;
-                          "store_main_category_name" = Grocery;
-                      },
-                      {
-                          "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/3-Personal Care.png";
-                          "store_main_category_banner_2" = "";
-                          "store_main_category_id" = 7;
-                          "store_main_category_name" = "Personal Care";
-                      },
-                      {
-                          "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/2-Medical.png";
-                          "store_main_category_banner_2" = "";
-                          "store_main_category_id" = 10;
-                          "store_main_category_name" = Medicine;
-                      }
-                      );
-    deviceId = 3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0;
-    isValid = 1;
-    message = "Store Category Related Data!";
-    "page_no" = 0;
-    status = 1;
-    "total_page" = 1;
-    userId = 8;
-}
-
-
-
-//*/
+ 
+ 
+ {
+ categories =     (
+ {
+ "home_stores" =             (
+ {
+ "chat_username" = 14351391776712;
+ "home_delivery" = 1;
+ "is_favorite" = 1;
+ "is_home_store" = 1;
+ "is_open" = 0;
+ "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+ "store_category_id" = 2;
+ "store_category_name" = Grocery;
+ "store_id" = 9206;
+ "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/S1435139177.png";
+ "store_latitude" = "28.516395";
+ "store_longitude" = "77.372966";
+ "store_mobile" = 8377944952;
+ "store_name" = "Sabka Bazar";
+ "store_rating" = 5;
+ "total_orders" = 24;
+ },
+ {
+ "chat_username" = 14351708254740;
+ "home_delivery" = 1;
+ "is_favorite" = 1;
+ "is_home_store" = 1;
+ "is_open" = 0;
+ "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+ "store_category_id" = 2;
+ "store_category_name" = Grocery;
+ "store_id" = 9212;
+ "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/P1435170825.png";
+ "store_latitude" = "";
+ "store_longitude" = "";
+ "store_mobile" = 9582150033;
+ "store_name" = Prateek;
+ "store_rating" = 5;
+ "total_orders" = 5;
+ },
+ {
+ "chat_username" = 14369559578164;
+ "home_delivery" = 1;
+ "is_favorite" = 1;
+ "is_home_store" = 1;
+ "is_open" = 1;
+ "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+ "store_category_id" = 2;
+ "store_category_name" = Grocery;
+ "store_id" = 9267;
+ "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/M1436955957.png";
+ "store_latitude" = "";
+ "store_longitude" = "";
+ "store_mobile" = 8800375554;
+ "store_name" = "Malik Stores ";
+ "store_rating" = 5;
+ "total_orders" = 0;
+ },
+ {
+ "chat_username" = 14377229557840;
+ "home_delivery" = 1;
+ "is_favorite" = 0;
+ "is_home_store" = 1;
+ "is_open" = 0;
+ "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+ "store_category_id" = 2;
+ "store_category_name" = Grocery;
+ "store_id" = 9271;
+ "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/A1437722955.png";
+ "store_latitude" = "28.515737";
+ "store_longitude" = "77.373311";
+ "store_mobile" = 7811806364;
+ "store_name" = aaram132;
+ "store_rating" = 5;
+ "total_orders" = 1;
+ }
+ );
+ "recommended_stores" =             (
+ );
+ "shopping_store" =             (
+ {
+ "chat_username" = 14351571438319;
+ "home_delivery" = 1;
+ "is_favorite" = 0;
+ "is_home_store" = 0;
+ "is_open" = 1;
+ "store_category_icon" = "http://52.74.220.25/uploaded_files/aaramshop_category_icon/1-grocery icon.png";
+ "store_category_id" = 2;
+ "store_category_name" = Grocery;
+ "store_id" = 69;
+ "store_image" = "http://52.74.220.25/uploaded_files/aaramshop/01-30-46894064714.jpg";
+ "store_latitude" = "28.567132";
+ "store_longitude" = "77.19836";
+ "store_mobile" = 1126166277;
+ "store_name" = "City Stores";
+ "store_rating" = 5;
+ "total_orders" = 32;
+ }
+ );
+ "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/1-Grocery.png";
+ "store_main_category_banner_2" = "";
+ "store_main_category_id" = 0;
+ "store_main_category_name" = "My Stores";
+ },
+ {
+ "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/1-Grocery.png";
+ "store_main_category_banner_2" = "";
+ "store_main_category_id" = 2;
+ "store_main_category_name" = Grocery;
+ },
+ {
+ "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/3-Personal Care.png";
+ "store_main_category_banner_2" = "";
+ "store_main_category_id" = 7;
+ "store_main_category_name" = "Personal Care";
+ },
+ {
+ "store_main_category_banner_1" = "http://52.74.220.25/uploaded_files/aaramshop_category_banner/user/2-Medical.png";
+ "store_main_category_banner_2" = "";
+ "store_main_category_id" = 10;
+ "store_main_category_name" = Medicine;
+ }
+ );
+ deviceId = 3304645e047e061df52d0635ac8171941826e6dc467aff1d5e12d4c8d4da6be0;
+ isValid = 1;
+ message = "Store Category Related Data!";
+ "page_no" = 0;
+ status = 1;
+ "total_page" = 1;
+ userId = 8;
+ }
+ 
+ 
+ 
+ //*/
 
 @end

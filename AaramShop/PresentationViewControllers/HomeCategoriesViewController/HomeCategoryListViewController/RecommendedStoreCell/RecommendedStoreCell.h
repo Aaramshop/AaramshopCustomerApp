@@ -11,13 +11,20 @@
 #import "SWTableViewCell.h"
 #import "SWCellScrollView.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "HomeCategoryListCell.h"
+#import "AppDelegate.h"
 #import "StoreModel.h"
+@protocol MakeStoreFavouriteDelegate <NSObject>
+
+-(void)makeStoreFovourite:(NSInteger)index;
+//-(void)makeStoreFovourite:(NSInteger)index :(NSInteger)rIndex;
+@end
 
 
-@interface RecommendedStoreCell : SWTableViewCell<UIGestureRecognizerDelegate>
+
+@interface RecommendedStoreCell : SWTableViewCell<UIGestureRecognizerDelegate,AaramShop_ConnectionManager_Delegate,UIAlertViewDelegate>
 {
-    
+	AppDelegate *appDeledate;
     __weak IBOutlet UIImageView *imgStore;
     __weak IBOutlet UIImageView *imgCategoryTypeIcon;
     
@@ -42,13 +49,18 @@
     __weak IBOutlet UIButton *btnTotalOrders;
     
     
-    __weak IBOutlet UIImageView *imgIsFavourite;
+   // __weak IBOutlet UIImageView *imgIsFavourite;
     
 }
 
 @property(nonatomic, strong) NSIndexPath *indexPath;
 @property(nonatomic,assign) BOOL isRecommendedStore;
 @property(nonatomic) NSInteger selectedCategory;
+@property(nonatomic,strong) AaramShop_ConnectionManager *aaramShop_ConnectionManager;
+
+@property(nonatomic,strong) NSString *strStore_Id;
+@property(nonatomic,weak) id <MakeStoreFavouriteDelegate>delegatess;
+@property (weak, nonatomic) IBOutlet UIImageView *imgFavourite;
 
 
 -(void)updateCellWithData:(StoreModel  *)objStoreData;
